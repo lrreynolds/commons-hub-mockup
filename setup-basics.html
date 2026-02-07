@@ -71,7 +71,21 @@
               <label>Owner display name</label>
               <input type="text" placeholder="e.g., Lou Reynolds" />
             </div>
-
+<div class="field">
+  <label for="ownerEmail">Owner email</label>
+  <input
+    id="ownerEmail"
+    name="ownerEmail"
+    type="email"
+    placeholder="e.g., lou@yourdomain.com"
+    autocomplete="email"
+    inputmode="email"
+    required
+  />
+  <div class="muted" style="margin-top:6px;">
+    Used for login, important updates, and billing.
+  </div>
+</div>
             <div class="field">
               <label>Community name</label>
               <input type="text" placeholder="e.g., The Commons Hub" />
