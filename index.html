@@ -1,0 +1,227 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Commons — A Calm Home for Your Community</title>
+<style>
+:root{
+  --bg:#f4f7f5;
+  --card:#ffffff;
+  --text:#102018;
+  --muted:#50665a;
+  --line:#d8e1db;
+
+  --btn:#1f6f4a;
+  --btnText:#ffffff;
+}
+
+*{box-sizing:border-box}
+
+body{
+  font-family: system-ui, sans-serif;
+  margin:0;
+  line-height:1.5;
+  background:var(--bg);
+  color:var(--text);
+}
+
+/* ---- Generic sections ---- */
+
+section{
+  max-width:960px;
+  margin:0 auto;
+  padding:80px 20px;
+}
+
+h1{
+  font-size:42px;
+  line-height:1.1;
+  letter-spacing:-0.02em;
+}
+
+h2{font-size:32px}
+
+p{max-width:700px}
+
+.cta{
+  display:inline-block;
+  padding:14px 22px;
+  background:var(--btn);
+  color:var(--btnText);
+  border-radius:14px;
+  font-weight:900;
+  text-decoration:none;
+}
+
+.muted{color:var(--muted)}
+
+.grid{
+  display:grid;
+  gap:24px;
+}
+
+@media(min-width:800px){
+  .grid{grid-template-columns:1fr 1fr}
+}
+
+.card{
+  background:white;
+  padding:20px;
+  border-radius:16px;
+}
+
+/* ===== HERO ===== */
+
+.hero{
+  padding:80px 18px 70px;
+  display:flex;
+  justify-content:center;
+}
+
+.heroInner{
+  max-width:960px;
+  margin:0 auto;
+  padding:0 56px;
+}
+
+.hero h1{
+  font-size:clamp(34px,5vw,42px);
+  line-height:1.05;
+  margin:0;
+}
+
+.hero .sub{
+  margin-top:14px;
+  font-size:18px;
+  color:var(--muted);
+  max-width:720px;
+}
+
+.hero .sub b{color:var(--text)}
+
+/* ---- Benefit tiles ---- */
+
+
+
+.benefitGrid{
+  margin-top: 46px;
+  display: grid;
+  gap: 18px;
+  grid-template-columns: 1fr;              /* mobile default */
+}
+
+@media (min-width: 760px){
+  .benefitGrid{
+    grid-template-columns: repeat(2, 1fr); /* tablet */
+  }
+}
+
+@media (min-width: 1040px){
+  .benefitGrid{
+    grid-template-columns: repeat(3, 1fr); /* desktop: always 3 across */
+  }
+}
+.benefit{
+  background:var(--card);
+  border:1px solid var(--line);
+  border-radius:18px;
+  padding:18px;
+}
+
+.benefit h3{
+  margin:0 0 8px;
+  font-size:16px;
+}
+
+.benefit p{
+  margin:0;
+  color:var(--muted);
+  font-size:14px;
+}
+
+/* ---- Centered promise column ---- */
+
+.heroSpeed{
+  font-size:1.1rem;
+  font-weight:800;
+  color:var(--btn);
+  text-align:center;
+
+  max-width:420px;
+  margin:28px auto 40px;
+}
+
+.heroPromise{
+  font-weight:800;
+  color:var(--btn);
+  text-align:center;
+
+  max-width:450px;
+  margin:40px auto 18px;
+}
+
+.heroBottomCta{
+  display:flex;
+  justify-content:center;
+}
+
+/* ---- Mobile polish ---- */
+
+@media (max-width:640px){
+  section{padding:64px 16px}
+  .heroInner{padding:0 22px}
+  .hero .sub{font-size:16px}
+}
+
+
+</style>
+</head>
+<body>
+<section class="hero">
+  <div class="heroInner">
+    <h1>Turn comments into a real community.</h1>
+
+    <p class="sub">
+      Commons turns scattered comments into one shared Twitter-style feed (chronological, no ads or algorithms) —
+      with built-in fundraising — without extra content or technical setup.
+    </p>
+    <p class="heroSpeed">
+  Launch in minutes — not months.
+</p>
+
+
+
+    <div class="benefitGrid">
+      <div class="benefit">
+        <h3>Real conversations</h3>
+        <p>
+          Turn scattered comment threads into one shared chronological feed where your audience talks with you — and each other — openly, without subscriptions blocking participation (like Substack comments).
+        </p>
+      </div>
+
+      <div class="benefit">
+        <h3>Built-in fundraising</h3>
+        <p>
+          Supporter memberships and one-time tips live right alongside the conversation — no extra platforms, no patchwork of accounts. Upgrade later for goal-based fundraising.
+        </p>
+      </div>
+
+      <div class="benefit">
+        <h3>Fits your workflow</h3>
+        <p>
+          Keep publishing on YouTube or Substack. Just share your links and start discussions — Commons becomes the home for conversation and community participation.
+        </p>
+      </div>
+    </div>
+   <p class="heroPromise">
+  No ads • No algorithms • No surprises • Cancel anytime
+</p>
+    <div class="heroBottomCta">
+      <a class="cta" href="demo/#s2">Create your community</a>
+    </div>
+  </div>
+</section>
+
+</body>
+</html>
