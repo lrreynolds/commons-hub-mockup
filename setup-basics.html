@@ -1,1 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Commonshub — Setup (Basics)</title>
+  <link rel="stylesheet" href="assets/styles.css" />
+</head>
+<body>
 
+  <div class="wrap">
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="dot"></div>
+        <div>
+          <b>Commonshub</b>
+          <span>Setup flow (mock)</span>
+        </div>
+      </div>
+
+      <nav class="nav">
+        <a class="navItem" href="setup.html">
+          <div><b>Step 1: Plan</b><br><small>Pick a plan</small></div>
+          <div>○</div>
+        </a>
+        <a class="navItem active" href="setup-basics.html">
+          <div><b>Step 2: Basics</b><br><small>Name & address</small></div>
+          <div>●</div>
+        </a>
+        <a class="navItem" href="setup-launch.html">
+          <div><b>Step 3: Launch</b><br><small>Confirm</small></div>
+          <div>○</div>
+        </a>
+      </nav>
+
+      <div class="hint">
+        <b>Mock only:</b> inputs don’t save yet.
+      </div>
+    </aside>
+
+    <main class="stage">
+      <div class="topbar">
+        <div class="left">
+          <div class="logoMark"></div>
+          <div class="meta">
+            <b>Set up your community</b>
+            <span>Basics: name + address</span>
+          </div>
+        </div>
+        <div class="chip">Step 2 of 3</div>
+      </div>
+
+      <div class="content">
+        <div class="center">
+          <div class="header">
+            <div>
+              <h2>Basics</h2>
+              <p>Just enough to create the community. Everything else can be edited later.</p>
+            </div>
+            <div class="chip">2–minute setup</div>
+          </div>
+
+          <div class="progress">
+            <span>Plan</span>
+            <div class="bar"><div style="width:66%"></div></div>
+            <span>Launch</span>
+          </div>
+
+          <div class="card" style="margin-top:12px;">
+            <div class="field">
+              <label>Owner display name</label>
+              <input type="text" placeholder="e.g., Lou Reynolds" />
+            </div>
+
+            <div class="field">
+              <label>Community name</label>
+              <input type="text" placeholder="e.g., The Commons Hub" />
+            </div>
+
+            <div class="field">
+              <label>Community address (subdomain)</label>
+              <input type="text" placeholder="e.g., mycommunity" />
+              <div class="muted" style="margin-top:6px;">
+                This becomes <b>mycommunity.commonshub.social</b>
+              </div>
+            </div>
+
+            <div class="note" style="margin-top:12px;">
+              <b>Tip:</b> You can upgrade to a custom domain later without losing your community.
+            </div>
+          </div>
+
+          <div class="footerBar">
+            <a class="secondary" href="setup.html">Back</a>
+            <a class="primary" href="setup-launch.html">Continue</a>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+</body>
+</html>
