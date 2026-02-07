@@ -2,19 +2,13 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Commonshub — Setup</title>
-
-  <!-- Shared CSS -->
-  <link rel="stylesheet" href="./assets/styles.css" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Commonshub — Setup (Plan)</title>
+  <link rel="stylesheet" href="assets/styles.css" />
 </head>
-
-<body class="navCollapsed">
-  <!-- Optional: fixed “Storyboard” toggle (kept, but collapsed by default) -->
-  <button class="ghostBtn navToggle" id="navToggle" type="button">Storyboard</button>
+<body>
 
   <div class="wrap">
-    <!-- Sidebar (optional, can remove if you want setup to be super clean) -->
     <aside class="sidebar">
       <div class="brand">
         <div class="dot"></div>
@@ -24,109 +18,113 @@
         </div>
       </div>
 
-     <div class="nav">
-  <a class="navItem active" href="setup.html">Step 1: Plan <small>Pick a plan</small></a>
-  <a class="navItem" href="setup-basics.html">Step 2: Basics <small>Name & address</small></a>
-  <a class="navItem" href="setup-launch.html">Step 3: Launch <small>Confirm</small></a>
-</div>
+      <nav class="nav">
+        <a class="navItem active" href="setup.html">
+          <div><b>Step 1: Plan</b><br><small>Pick a plan</small></div>
+          <div>●</div>
+        </a>
+        <a class="navItem" href="setup-basics.html">
+          <div><b>Step 2: Basics</b><br><small>Name & address</small></div>
+          <div>○</div>
+        </a>
+        <a class="navItem" href="setup-launch.html">
+          <div><b>Step 3: Launch</b><br><small>Confirm</small></div>
+          <div>○</div>
+        </a>
+      </nav>
 
       <div class="hint">
-        <b>Mock only:</b> This page is for messaging + flow. Buttons just navigate to placeholder pages.
+        <b>Mock only:</b> this flow is for messaging + structure.
+        Buttons just navigate between pages.
       </div>
     </aside>
 
-    <!-- Main content -->
     <main class="stage">
-      <!-- Setup: Plan -->
-      <section id="setup-plan">
-        <div class="topbar">
-          <div class="left">
-            <div class="logoMark"></div>
-            <div class="meta">
-              <b>Set up your community</b>
-              <span>Choose a simple plan</span>
-            </div>
+      <div class="topbar">
+        <div class="left">
+          <div class="logoMark"></div>
+          <div class="meta">
+            <b>Set up your community</b>
+            <span>Choose a simple plan</span>
           </div>
-          <div class="chip">Step 1 of 3</div>
         </div>
+        <div class="chip">Step 1 of 3</div>
+      </div>
 
-        <div class="content">
-          <div class="center">
-            <div class="header">
-              <div>
-                <h2>Pick a plan</h2>
-                <p>Keep it simple for MVP. Upgrade options later.</p>
-              </div>
-              <div class="chip">5–minute launch</div>
+      <div class="content">
+        <div class="center">
+          <div class="header">
+            <div>
+              <h2>Pick a plan</h2>
+              <p>Keep it simple for MVP. Upgrade options later.</p>
             </div>
+            <div class="chip">5–minute launch</div>
+          </div>
 
           <div class="progress">
-  <span>Plan</span>
-  <div class="bar"><div style="width:33%"></div></div>
-  <span>Launch</span>
-</div>
+            <span>Plan</span>
+            <div class="bar"><div style="width:33%"></div></div>
+            <span>Launch</span>
+          </div>
 
-            <div class="planGrid">
-              <!-- Starter -->
-              <div class="card planCard">
-                <h3>Starter</h3>
-                <div class="muted">For launching your community</div>
-                <div class="planPrice">$15<span class="planPriceUnit">/mo</span></div>
-
-                <div class="list">
-                  <div class="item"><b>Hosted community</b><div class="muted">Mastodon-based, managed for you</div></div>
-                  <div class="item"><b>Basic funding</b><div class="muted">Supporter memberships + one-time tips</div></div>
-                  <div class="item"><b>Commons address</b><div class="muted">Use a Commonshub subdomain to start</div></div>
-                  <div class="item"><b>Standard support</b><div class="muted">Email support, typically within 48 hours</div></div>
-                  <div class="item"><b>1,000 character posts</b><div class="muted">A little extra room by default</div></div>
-                  <div class="item"><b>Backups + monitoring</b><div class="muted">Included</div></div>
-                </div>
-
-                <div class="note">
-                  Best for busy creators who want a <b>sane, high-signal</b> community without tech overhead.
-                </div>
+          <div class="planGrid" style="margin-top:12px;">
+            <div class="card">
+              <h3>Starter</h3>
+              <div class="muted">For launching your community</div>
+              <div style="font-size:26px; font-weight:900; margin-top:8px;">
+                $15 <span class="muted" style="font-size:14px; font-weight:700;">/mo</span>
               </div>
 
-              <!-- Growth -->
-              <div class="card planCard planCard--featured">
-                <div style="display:flex; justify-content:space-between; align-items:center; gap:10px;">
-                  <h3 style="margin:0;">Growth</h3>
-                  <div class="chip">Most creators</div>
-                </div>
+              <div class="list" style="margin-top:12px;">
+                <div class="item"><b>Hosted community</b><div class="muted">Mastodon-based, managed for you</div></div>
+                <div class="item"><b>Basic funding</b><div class="muted">Supporter memberships + one-time tips</div></div>
+                <div class="item"><b>Commons address</b><div class="muted">Use a commonshub.social subdomain to start</div></div>
+                <div class="item"><b>Standard support</b><div class="muted">Email support, typically within 48 hours</div></div>
+                <div class="item"><b>1,000 character posts</b><div class="muted">A little extra room by default</div></div>
+                <div class="item"><b>Backups + monitoring</b><div class="muted">Included</div></div>
+              </div>
 
-                <div class="muted">For more active communities</div>
-                <div class="planPrice">$29<span class="planPriceUnit">/mo</span></div>
-
-                <div class="list">
-                  <div class="item"><b>Everything in Starter</b><div class="muted">Plus the upgrades below</div></div>
-                  <div class="item"><b>Custom domain</b><div class="muted">Use your own community address</div></div>
-                  <div class="item"><b>Fundraising goals</b><div class="muted">Goal-based campaigns with progress tracking</div></div>
-                  <div class="item"><b>Priority support</b><div class="muted">Email support, typically within 24 hours</div></div>
-                  <div class="item"><b>More media capacity</b><div class="muted">Higher storage & throughput</div></div>
-                </div>
-
-                <div class="note">
-                  Best once your community is active and you want goal-oriented fundraising.
-                </div>
+              <div class="note" style="margin-top:12px;">
+                Best for busy creators who want a <b>sane, high-signal</b> community without tech overhead.
               </div>
             </div>
 
-            <div class="note" style="margin-top:12px;">
-              <b>Simple billing:</b> pay monthly, cancel anytime.
-            </div>
+            <div class="card" style="border:2px solid rgba(31,111,74,.25);">
+              <div style="display:flex; justify-content:space-between; align-items:center; gap:10px;">
+                <h3 style="margin:0;">Growth</h3>
+                <div class="chip">Most creators</div>
+              </div>
+              <div class="muted">For more active communities</div>
+              <div style="font-size:26px; font-weight:900; margin-top:8px;">
+                $29 <span class="muted" style="font-size:14px; font-weight:700;">/mo</span>
+              </div>
 
-            <div class="footerBar">
-              <!-- For now: these are just links. Later we can wire to real steps. -->
-              <a class="secondary" href="./index.html">Back</a>
-              <a class="primary" href="./dashboard.html">Continue</a>
+              <div class="list" style="margin-top:12px;">
+                <div class="item"><b>Everything in Starter</b><div class="muted">Plus the upgrades below</div></div>
+                <div class="item"><b>Custom domain</b><div class="muted">Use your own community address</div></div>
+                <div class="item"><b>Fundraising goals</b><div class="muted">Goal-based campaigns with progress tracking</div></div>
+                <div class="item"><b>Priority support</b><div class="muted">Email support, typically within 24 hours</div></div>
+                <div class="item"><b>More media capacity</b><div class="muted">Higher storage & throughput</div></div>
+              </div>
+
+              <div class="note" style="margin-top:12px;">
+                Best once your community is active and you want goal-oriented fundraising.
+              </div>
             </div>
           </div>
+
+          <div class="note" style="margin-top:12px;">
+            <b>Simple billing:</b> pay monthly, cancel anytime.
+          </div>
+
+          <div class="footerBar">
+            <a class="secondary" href="index.html">Back</a>
+            <a class="primary" href="setup-basics.html">Continue</a>
+          </div>
         </div>
-      </section>
+      </div>
     </main>
   </div>
 
-  <!-- Shared JS -->
-  <script src="./assets/app.js"></script>
 </body>
 </html>
