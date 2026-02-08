@@ -283,50 +283,70 @@ Tip: Start with the Local timeline to see what’s happening in this community.
     </div>
 
     <!-- ========== Enabled view ========== -->
-    <div id="fundingEnabledView" style="display:none;">
-      <div class="list" style="margin-top:12px;">
-        <div class="item">
-          <b>Status</b>
-          <div class="muted">Enabled · Stripe connected</div>
-        </div>
+    <!-- ========== Enabled view ========== -->
+<div id="fundingEnabledView" style="display:none;">
 
-        <div class="item">
-          <b>Support types</b>
-          <div class="muted">
-            Monthly support, one-time tips
-            <span style="opacity:.7;">(campaigns available on Growth plan)</span>
-          </div>
-        </div>
+  <!-- Status summary -->
+  <div class="list" style="margin-top:12px;">
+    <div class="item">
+      <b>Status</b>
+      <div class="muted">Enabled · Stripe connected</div>
+    </div>
 
-        <div class="item">
-          <b>How it appears to members</b>
-          <div class="muted">
-            Support appears as pinned posts or announcements in the Mastodon feed.
-          </div>
-        </div>
-
-        <div class="item">
-          <b>Active funding messages</b>
-          <div class="muted">
-            Pinned support post · Visible to all members
-          </div>
-        </div>
-      </div>
-
-      <div class="note" style="margin-top:12px;">
-        <b>Important:</b> Payments happen outside Mastodon. Posts simply link to your support page.
-      </div>
-
-      <div class="footerBar" style="margin-top:12px;">
-        <a class="secondary" href="#">
-          View funding post (Mastodon)
-        </a>
-        <button class="secondary" type="button" disabled style="opacity:.55; cursor:not-allowed;">
-          Create funding post (coming soon)
-        </button>
+    <div class="item">
+      <b>Support types</b>
+      <div class="muted">
+        Monthly support, one-time tips
+        <span style="opacity:.7;">(campaigns available on Growth plan)</span>
       </div>
     </div>
   </div>
+
+  <!-- Funding post -->
+  <div class="card" style="margin-top:14px; background: var(--card2);">
+    <h3 style="margin:0 0 6px;">Funding post</h3>
+    <div class="muted">
+      Commonshub creates and pins this post in your community.
+      It links members to your support page.
+    </div>
+
+    <div class="field" style="margin-top:12px;">
+      <label>Post text</label>
+      <textarea disabled>
+If this community has been valuable, you can support it here:
+
+[Support this community →]
+
+Monthly support and one-time tips help cover hosting and keep the commons healthy.
+      </textarea>
+
+      <div class="muted" style="margin-top:6px;">
+        The support link is inserted automatically so members always land on the correct page.
+      </div>
+    </div>
+
+    <div class="note" style="margin-top:12px;">
+      <b>Important:</b> Payments happen outside Mastodon.
+      This post simply links to your Commonshub support page.
+    </div>
+
+    <div class="footerBar" style="margin-top:12px;">
+      <a class="secondary" href="#" style="opacity:.55; pointer-events:none;">
+        Preview post (coming soon)
+      </a>
+      <button class="primary" type="button" disabled style="opacity:.55; cursor:not-allowed;">
+        Activate funding post (coming soon)
+      </button>
+    </div>
+
+    <div class="footerBar" style="margin-top:10px;">
+      <a class="secondary" href="#">
+        View funding post (Mastodon)
+      </a>
+    </div>
+  </div>
+
+</div>
 </section>
 
           <!-- SECTION: Overview / lightweight metrics (stub) -->
