@@ -7,6 +7,12 @@
   <link rel="stylesheet" href="assets/styles.css" />
 </head>
 <body>
+
+  <!-- Mobile/desktop nav toggle (optional UI; JS no-ops if absent) -->
+  <button class="secondary" id="navToggle" type="button" style="position:fixed; top:14px; left:14px; z-index:50; width:auto;">
+    Menu
+  </button>
+
   <div class="wrap">
     <aside class="sidebar">
       <div class="brand">
@@ -16,6 +22,29 @@
           <span>Owner dashboard (mock)</span>
         </div>
       </div>
+
+      <nav class="nav" aria-label="Dashboard sections">
+        <a class="navItem active" href="#community">
+          <div><b>Community</b><br><small>Status + basics</small></div>
+          <div>●</div>
+        </a>
+        <a class="navItem" href="#announcement">
+          <div><b>Announcement</b><br><small>Pinned post</small></div>
+          <div>○</div>
+        </a>
+        <a class="navItem" href="#invites">
+          <div><b>Invites</b><br><small>Bring people in</small></div>
+          <div>○</div>
+        </a>
+        <a class="navItem" href="#funding">
+          <div><b>Funding</b><br><small>Stripe + support</small></div>
+          <div>○</div>
+        </a>
+        <a class="navItem" href="#metrics">
+          <div><b>Overview</b><br><small>Light totals</small></div>
+          <div>○</div>
+        </a>
+      </nav>
 
       <div class="hint">
         <b>Mock only:</b> This dashboard shows the Commonshub controls for your community
@@ -37,6 +66,7 @@
 
       <div class="content">
         <div class="center">
+
           <div class="header">
             <div>
               <h2>Your community is live</h2>
@@ -45,41 +75,110 @@
             <div class="chip">Status: Live</div>
           </div>
 
-          <div class="card">
-            <h3>Community</h3>
-            <div class="muted">Role: Community owner</div>
+          <!-- SECTION: Community -->
+          <section id="community" style="scroll-margin-top:90px;">
+            <div class="card">
+              <h3>Community</h3>
+              <div class="muted">Role: Community owner</div>
 
-            <div class="list" style="margin-top:10px;">
-              <div class="item">
-                <b>Name</b>
-                <div class="muted">The Commons Hub</div>
+              <div class="list" style="margin-top:10px;">
+                <div class="item">
+                  <b>Name</b>
+                  <div class="muted">The Commons Hub</div>
+                </div>
+
+                <div class="item">
+                  <b>Address</b>
+                  <div class="muted">mycommunity.commonshub.social</div>
+                </div>
+
+                <div class="item">
+                  <b>Hosting</b>
+                  <div class="muted">Active · Managed by Commonshub</div>
+                </div>
               </div>
 
-              <div class="item">
-                <b>Address</b>
-                <div class="muted">mycommunity.commonshub.social</div>
+              <div class="footerBar">
+                <a class="secondary" href="setup-basics.html">Edit community details</a>
+                <a class="primary" href="community.html">
+                  View community <span style="font-weight:800; opacity:.85;">(Mastodon)</span>
+                </a>
               </div>
 
-              <div class="item">
-                <b>Hosting</b>
-                <div class="muted">Active · Managed by Commonshub</div>
+              <div class="note">
+                <b>Note:</b> Members participate in the native Mastodon experience (web or mobile apps).
+                This dashboard is the Commonshub layer.
               </div>
             </div>
+          </section>
 
-            <div class="footerBar">
-              <a class="secondary" href="setup-basics.html">Edit community details</a>
-              <a class="primary" href="community.html">View community <span style="font-weight:800; opacity:.85;">(Mastodon)</span></a>
-            </div>
+          <!-- SECTION: Announcement (stub for next step) -->
+          <section id="announcement" style="margin-top:14px; scroll-margin-top:90px;">
+            <div class="card">
+              <h3>Pinned announcement</h3>
+              <div class="muted">This will appear at the top of your community.</div>
 
-            <div class="note">
-              <b>Note:</b> Members participate in the native Mastodon experience (web or mobile apps).
-              This dashboard is the Commonshub layer.
+              <div class="note" style="margin-top:12px;">
+                Next: we’ll add the announcement editor here.
+              </div>
             </div>
-          </div>
+          </section>
+
+          <!-- SECTION: Invites (stub) -->
+          <section id="invites" style="margin-top:14px; scroll-margin-top:90px;">
+            <div class="card">
+              <h3>Invite members</h3>
+              <div class="muted">Share a simple link to bring people in.</div>
+
+              <div class="note" style="margin-top:12px;">
+                Next: we’ll add an invite link + copy hint here.
+              </div>
+            </div>
+          </section>
+
+          <!-- SECTION: Funding (stub) -->
+          <section id="funding" style="margin-top:14px; scroll-margin-top:90px;">
+            <div class="card">
+              <h3>Funding</h3>
+              <div class="muted">Connect Stripe and enable support for your community.</div>
+
+              <div class="note" style="margin-top:12px;">
+                Next: we’ll add Stripe connection + enable/disable funding here.
+              </div>
+            </div>
+          </section>
+
+          <!-- SECTION: Overview / lightweight metrics (stub) -->
+          <section id="metrics" style="margin-top:14px; scroll-margin-top:90px;">
+            <div class="card">
+              <h3>Overview</h3>
+              <div class="muted">Light totals only (no analytics).</div>
+
+              <div class="note" style="margin-top:12px;">
+                Next: we’ll add member count and money raised here (labeled illustrative if needed).
+              </div>
+            </div>
+          </section>
 
         </div>
       </div>
     </main>
   </div>
+
+  <script src="assets/app.js"></script>
+  <script>
+    // Optional: highlight active nav item on click (no scrolling logic beyond anchors)
+    (() => {
+      const items = Array.from(document.querySelectorAll(".nav .navItem"));
+      if (!items.length) return;
+
+      items.forEach(a => {
+        a.addEventListener("click", () => {
+          items.forEach(x => x.classList.remove("active"));
+          a.classList.add("active");
+        });
+      });
+    })();
+  </script>
 </body>
 </html>
