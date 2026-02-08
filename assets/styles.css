@@ -231,7 +231,20 @@ body{
   align-items:center;
   justify-content:center;
 }
-
+.editBadge{
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  font-size:11px;
+  color: var(--muted);
+  border:1px solid var(--line);
+  background: rgba(255,255,255,.6);
+  padding:3px 8px;
+  border-radius:999px;
+  margin-left:8px;
+  white-space:nowrap;
+}
+.editBadge b{ color: var(--text); font-weight:800; }
 /* Forms */
 .field{ margin-top:12px; }
 label{
