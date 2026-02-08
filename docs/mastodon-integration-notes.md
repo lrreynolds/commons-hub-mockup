@@ -157,3 +157,25 @@ Legend:
 **Fallback doc needed?** Maybe  
 **Fallback doc title:** Set About text and pin a welcome post in Mastodon  
 **Owner-friendly wording (dashboard copy):** First impression (what people see before and after joining)
+
+## Dashboard block: Invites
+
+**Control name:** Invite members  
+**Surface shown to owner:** Single reusable invite link  
+**Surface shown to invitee:** Standard Mastodon invite + signup flow  
+**Mastodon primitive:** Invite links (admin-generated)  
+**Desired Commonshub behavior:** Generate and display invite link without forcing owner into Mastodon admin UI  
+
+**Implementation paths (ranked):**
+1) Internal admin automation (generate invite on instance)  
+2) API (if supported for invite creation)  
+3) Pre-generated reusable invite at provision time  
+4) Fallback: guide owner to generate invite in Mastodon admin UI  
+
+**Current confidence:** Yellow  
+**Unknowns:**  
+- Can invites be generated via supported API?  
+- Can we create a long-lived reusable invite safely?
+
+**Fallback doc needed?** Yes (likely)  
+**Fallback doc title:** Create an invite link in Mastodon  
