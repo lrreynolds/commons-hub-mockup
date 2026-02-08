@@ -140,3 +140,20 @@ Legend:
 **Fallback doc needed?** Yes  
 **Fallback doc title:** After you join: start with the Local timeline (recommended)  
 **Owner-friendly wording (dashboard copy):** Tip: ask members to start with Local for community context
+
+## Dashboard block: First impression (About + pinned)
+
+**Control name:** First impression (About message + pinned welcome post)  
+**Where shown to invitees:** About shows on public landing/about and during signup; pinned welcome shows at top of Local feed after signup  
+**Mastodon primitive:** Instance description/About; Instance rules (separate); Status post + pinned  
+**Desired Commonshub behavior:** Owner edits both from dashboard  
+**Implementation path (ranked):**  
+1) Provisioning default ✅ (seed About + default pinned)  
+2) API (official) ? (posting likely; pinning unknown)  
+3) Admin automation / internal endpoint ?  
+4) Creator does it in Mastodon UI ✅ fallback  
+**Current confidence:** Yellow  
+**Unknowns to verify:** Can we set About and create/pin a post via supported API? If not, which pieces must fall back?  
+**Fallback doc needed?** Maybe  
+**Fallback doc title:** Set About text and pin a welcome post in Mastodon  
+**Owner-friendly wording (dashboard copy):** First impression (what people see before and after joining)
