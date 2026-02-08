@@ -231,97 +231,100 @@ Tip: Start with the Local timeline to see what’s happening in this community.
 </section>
 
         <!-- SECTION: Funding -->
+<!-- SECTION: Funding -->
 <section id="funding" style="margin-top:14px; scroll-margin-top:90px;">
   <div class="card fundingCard">
-    <h3>Funding</h3>
-    <div class="muted">
-      Let members support the community if they find it valuable.
-    </div>
-
-    <!-- Facts (rows, not sub-cards) -->
-    <div class="list" style="margin-top:12px;">
-      <div class="item">
-        <b>Status</b>
-        <div class="muted">Not enabled</div>
+    <!-- Header row + mock toggle -->
+    <div class="toggleRow" style="margin-top:0;">
+      <div>
+        <b style="font-size:14px;">Funding</b>
+        <div class="muted">Let members support the community if they find it valuable.</div>
       </div>
 
-      <div class="item">
-        <b>How it appears to members</b>
-        <div class="muted">
-          Support is shared through pinned posts or announcements — never ads or interruptions.
-        </div>
-      </div>
-
-      <div class="item">
-        <b>Support types</b>
-        <div class="muted">
-          Ongoing, one-time, or goal-based (availability depends on plan).
-        </div>
-      </div>
-    </div>
-
-    <!-- Reassurance -->
-  <div class="note" style="margin-top:12px;">
-  <b>Good to know:</b> Funding is optional. When you’re ready, connect Stripe — members never see Stripe unless you turn funding on.
-</div>
-
-    <!-- Action -->
-    <div class="footerBar" style="margin-top:12px;">
-     <button class="secondary" type="button" disabled style="opacity:.55; cursor:not-allowed;">
-  Connect Stripe (coming soon)
-</button>
-    </div>
-  </div>
-</section>
-          <!-- SECTION: Funding (Stripe enabled — mock state) -->
-<section id="funding-enabled" style="margin-top:14px; scroll-margin-top:90px;">
-  <div class="card fundingCard">
-    <h3>Funding</h3>
-    <div class="muted">
-      Let members support the community if they find it valuable.
-    </div>
-
-    <div class="list" style="margin-top:12px;">
-      <div class="item">
-        <b>Status</b>
-        <div class="muted">Enabled · Stripe connected</div>
-      </div>
-
-      <div class="item">
-        <b>Support types</b>
-        <div class="muted">
-          Monthly support, one-time tips
-          <span style="opacity:.7;">(campaigns available on Growth plan)</span>
-        </div>
-      </div>
-
-      <div class="item">
-        <b>How it appears to members</b>
-        <div class="muted">
-          Support appears as pinned posts or announcements in the Mastodon feed.
-        </div>
-      </div>
-
-      <div class="item">
-        <b>Active funding messages</b>
-        <div class="muted">
-          Pinned support post · Visible to all members
-        </div>
-      </div>
-    </div>
-
-    <div class="note" style="margin-top:12px;">
-      <b>Important:</b> Payments happen outside Mastodon.
-      Posts simply link to your support page.
-    </div>
-
-    <div class="footerBar" style="margin-top:12px;">
-      <a class="secondary" href="#">
-        View funding post (Mastodon)
-      </a>
-      <button class="secondary" type="button" disabled>
-        Create funding post (coming soon)
+      <!-- Mock toggle: switches between “not enabled” and “enabled” views -->
+      <button class="secondary" id="fundingToggleBtn" type="button" style="width:auto;">
+        Show enabled view
       </button>
+    </div>
+
+    <!-- ========== Disabled view ========== -->
+    <div id="fundingDisabledView">
+      <!-- Facts -->
+      <div class="list" style="margin-top:12px;">
+        <div class="item">
+          <b>Status</b>
+          <div class="muted">Not enabled</div>
+        </div>
+
+        <div class="item">
+          <b>How it appears to members</b>
+          <div class="muted">
+            Support is shared through pinned posts or announcements — never ads or interruptions.
+          </div>
+        </div>
+
+        <div class="item">
+          <b>Support types</b>
+          <div class="muted">
+            Ongoing, one-time, or goal-based (availability depends on plan).
+          </div>
+        </div>
+      </div>
+
+      <div class="note" style="margin-top:12px;">
+        <b>Good to know:</b> Funding is optional. When you’re ready, connect Stripe — members never see Stripe unless you turn funding on.
+      </div>
+
+      <div class="footerBar" style="margin-top:12px;">
+        <button class="secondary" type="button" disabled style="opacity:.55; cursor:not-allowed;">
+          Connect Stripe (coming soon)
+        </button>
+      </div>
+    </div>
+
+    <!-- ========== Enabled view ========== -->
+    <div id="fundingEnabledView" style="display:none;">
+      <div class="list" style="margin-top:12px;">
+        <div class="item">
+          <b>Status</b>
+          <div class="muted">Enabled · Stripe connected</div>
+        </div>
+
+        <div class="item">
+          <b>Support types</b>
+          <div class="muted">
+            Monthly support, one-time tips
+            <span style="opacity:.7;">(campaigns available on Growth plan)</span>
+          </div>
+        </div>
+
+        <div class="item">
+          <b>How it appears to members</b>
+          <div class="muted">
+            Support appears as pinned posts or announcements in the Mastodon feed.
+          </div>
+        </div>
+
+        <div class="item">
+          <b>Active funding messages</b>
+          <div class="muted">
+            Pinned support post · Visible to all members
+          </div>
+        </div>
+      </div>
+
+      <div class="note" style="margin-top:12px;">
+        <b>Important:</b> Payments happen outside Mastodon. Posts simply link to your support page.
+      </div>
+
+      <div class="footerBar" style="margin-top:12px;">
+        <a class="secondary" href="#">
+          View funding post (Mastodon)
+        </a>
+        <button class="secondary" type="button" disabled style="opacity:.55; cursor:not-allowed;">
+          Create funding post (coming soon)
+        </button>
+      </div>
     </div>
   </div>
 </section>
@@ -358,5 +361,28 @@ Tip: Start with the Local timeline to see what’s happening in this community.
       });
     })();
   </script>
+  <script>
+(() => {
+  const btn = document.getElementById("fundingToggleBtn");
+  const off = document.getElementById("fundingDisabledView");
+  const on = document.getElementById("fundingEnabledView");
+  if (!btn || !off || !on) return;
+
+  let enabled = false;
+
+  function render(){
+    off.style.display = enabled ? "none" : "block";
+    on.style.display = enabled ? "block" : "none";
+    btn.textContent = enabled ? "Show disabled view" : "Show enabled view";
+  }
+
+  btn.addEventListener("click", () => {
+    enabled = !enabled;
+    render();
+  });
+
+  render();
+})();
+</script>
 </body>
 </html>
