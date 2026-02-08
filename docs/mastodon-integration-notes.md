@@ -199,3 +199,20 @@ Legend:
 **Fallback:**  
 If Stripe connection cannot be fully abstracted, provide a short creator guide:
 “Enable funding for your Commonshub community”
+
+## Funding modes (conceptual)
+
+Planned support types:
+1. Monthly recurring support (multiple amounts)
+2. One-time tips
+3. Goal-based fundraising with target amount
+
+MVP stance:
+- All modes abstracted behind Stripe
+- No dashboard UI for selecting modes in MVP
+- Mode selection and presentation handled through:
+  - Announcement copy
+  - Pinned posts
+  - (Later) optional structured helpers
+
+Do not introduce separate “funding objects” in MVP UI.
