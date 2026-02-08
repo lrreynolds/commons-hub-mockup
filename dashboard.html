@@ -189,16 +189,46 @@ Tip: Start with the Local timeline to see what’s happening in this community.
 </section>
 
           <!-- SECTION: Invites (stub) -->
-          <section id="invites" style="margin-top:14px; scroll-margin-top:90px;">
-            <div class="card">
-              <h3>Invite members</h3>
-              <div class="muted">Share a simple link to bring people in.</div>
+      <!-- SECTION: Invites -->
+<section id="invites" style="margin-top:14px; scroll-margin-top:90px;">
+  <div class="card">
+    <h3>Invite members</h3>
+    <div class="muted">
+      Share a simple link. New members go through the standard Mastodon signup flow.
+    </div>
 
-              <div class="note" style="margin-top:12px;">
-                Next: we’ll add an invite link + copy hint here.
-              </div>
-            </div>
-          </section>
+    <div class="field" style="margin-top:12px;">
+      <label>Invite link</label>
+      <input
+        type="text"
+        value="https://mycommunity.commonshub.social/invite/abc123"
+        readonly
+      />
+      <div class="muted" style="margin-top:6px;">
+        Anyone with this link can create an account on your community.
+      </div>
+    </div>
+
+    <div class="footerBar" style="margin-top:12px;">
+      <button class="primary" type="button">
+        Copy invite link
+      </button>
+    </div>
+
+    <div class="note" style="margin-top:12px;">
+      <b>What members will see:</b><br>
+      • Your community banner and About message<br>
+      • Your community norms (accept rules)<br>
+      • A standard Mastodon account setup flow<br>
+      • The Local timeline after joining
+    </div>
+
+    <div class="note" style="margin-top:10px;">
+      <b>Important:</b> Account creation, profiles, and moderation tools live in Mastodon.
+      Commonshub gives you a simple on-ramp and handles hosting.
+    </div>
+  </div>
+</section>
 
           <!-- SECTION: Funding (stub) -->
           <section id="funding" style="margin-top:14px; scroll-margin-top:90px;">
