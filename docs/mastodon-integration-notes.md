@@ -216,3 +216,18 @@ MVP stance:
   - (Later) optional structured helpers
 
 Do not introduce separate “funding objects” in MVP UI.
+
+## Funding by plan
+
+Base plan:
+- Monthly recurring support
+- One-time tips
+
+Growth plan:
+- Everything in Base
+- Goal-based fundraising campaigns (target + progress)
+
+Dashboard behavior:
+- Funding section describes capabilities generically
+- Plan enforcement happens at enable-time, not via UI gating
+- Do not surface upsell or disabled controls in MVP dashboard
