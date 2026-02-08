@@ -284,3 +284,4 @@ textarea{min-height:110px; resize:vertical}
   .wrap{grid-template-columns:1fr}
   .sidebar{position:relative; top:auto}
 }
+.fundingCard { outline: 6px solid hotpink !important; }
