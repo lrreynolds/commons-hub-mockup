@@ -252,6 +252,18 @@ input[type="text"], input[type="email"], textarea, select{
 }
 textarea{min-height:110px; resize:vertical}
 
+/* Funding: lighter rows so it doesn't feel like nested cards */
+.fundingCard .list .item{
+  background: transparent;
+  border-color: rgba(16,32,24,.08);
+  padding: 10px 0;
+  border-radius: 0;
+}
+
+.fundingCard .list .item + .item{
+  border-top: 1px solid rgba(16,32,24,.08);
+}
+
 /* Plan grid: responsive */
 .planGrid{
   display:grid;
