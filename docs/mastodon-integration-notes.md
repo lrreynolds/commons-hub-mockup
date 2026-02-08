@@ -179,3 +179,23 @@ Legend:
 
 **Fallback doc needed?** Yes (likely)  
 **Fallback doc title:** Create an invite link in Mastodon  
+
+## Dashboard block: Funding
+
+**Control name:** Funding  
+**Default state:** Disabled  
+**Member-facing surface:** Pinned posts / announcements (no widgets, no ads)  
+**Payment processor:** Stripe (via Commonshub)
+
+**Design intent:**
+- Funding should feel optional and non-intrusive
+- No paywalls or gated participation
+- Support is contextual and message-driven
+
+**Implementation unknowns:**
+- How to link Stripe accounts per instance
+- Whether funding signals appear inside Mastodon UI or only via posts
+
+**Fallback:**  
+If Stripe connection cannot be fully abstracted, provide a short creator guide:
+“Enable funding for your Commonshub community”
