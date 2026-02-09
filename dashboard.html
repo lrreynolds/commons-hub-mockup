@@ -252,52 +252,7 @@
     })();
   </script>
 
-  <script>
-    // Page-local toggles that depend on wizard completion flag (mock-only)
-    (() => {
-      let complete = false;
-      try { complete = localStorage.getItem("commonshub_setup_complete") === "1"; } catch {}
 
-      const pre = document.getElementById("preSetup");
-      const post = document.getElementById("postSetup");
-      const navPre = document.getElementById("navPreSetup");
-      const navPost = document.getElementById("navPostSetup");
-
-      if (pre && post) {
-        pre.style.display = complete ? "none" : "block";
-        post.style.display = complete ? "block" : "none";
-      }
-      if (navPre && navPost) {
-        navPre.style.display = complete ? "none" : "block";
-        navPost.style.display = complete ? "block" : "none";
-      }
-
-      // Copy invite link: reveal field + copy
-      const copyBtn = document.getElementById("copyInviteBtn");
-      const inviteField = document.getElementById("inviteField");
-      const inviteInput = document.getElementById("inviteLink");
-
-      if (copyBtn && inviteInput) {
-        copyBtn.addEventListener("click", async () => {
-          if (inviteField) inviteField.style.display = "block";
-          inviteInput.focus();
-          inviteInput.select();
-
-          try {
-            await navigator.clipboard.writeText(inviteInput.value);
-            const old = copyBtn.textContent;
-            copyBtn.textContent = "Copied";
-            setTimeout(() => (copyBtn.textContent = old), 900);
-          } catch {
-            document.execCommand("copy");
-            const old = copyBtn.textContent;
-            copyBtn.textContent = "Copied";
-            setTimeout(() => (copyBtn.textContent = old), 900);
-          }
-        });
-      }
-    })();
-  </script>
 
 </body>
 </html>
