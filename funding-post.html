@@ -1,1 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Commonshub — Pinned Post</title>
+  <link rel="stylesheet" href="assets/styles.css" />
+</head>
+<body class="flow">
+  <div class="wrap" style="grid-template-columns:1fr; max-width:980px;">
+    <main class="stage" style="width:100%;">
+      <div class="topbar">
+        <div class="left">
+          <div class="logoMark"></div>
+          <div class="meta">
+            <b>Make funding visible</b>
+            <span>Pinned post + share link</span>
+          </div>
+        </div>
+        <a class="secondary" href="#" data-reset="all" style="width:auto;">Start over</a>
+      </div>
 
+      <div class="content">
+        <div class="center" style="max-width:760px;">
+          <section class="card">
+            <h3 style="margin:0 0 6px;">Support link</h3>
+            <div class="muted" style="margin-bottom:10px;">Copy this anytime later from the dashboard.</div>
+
+            <div class="field" style="margin-top:0;">
+              <label>Magic link</label>
+              <input id="supportLink" type="text" value="https://mycommunity.commonshub.social/support" readonly />
+            </div>
+
+            <div class="field" style="margin-top:14px;">
+              <label>Pinned post (editable)</label>
+              <textarea id="postText" style="min-height:140px;">If this community has been valuable to you, you can support it here:
+
+Support this community → https://mycommunity.commonshub.social/support
+
+Monthly support and one-time tips help keep the commons healthy.</textarea>
+            </div>
+
+            <div class="footerBar" style="margin-top:16px;">
+              <a class="secondary" href="funding-options.html" style="width:auto;">Back</a>
+              <button class="primary" id="enableFunding" type="button">Enable funding</button>
+            </div>
+          </section>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script>
+    document.getElementById("enableFunding")?.addEventListener("click", () => {
+      try {
+        localStorage.setItem("commonshub_support_link", document.getElementById("supportLink")?.value || "");
+        localStorage.setItem("commonshub_funding_enabled", "1");
+      } catch {}
+      window.location.href = "funding-done.html";
+    });
+  </script>
+  <script src="assets/app.js"></script>
+</body>
+</html>
