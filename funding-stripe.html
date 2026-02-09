@@ -88,7 +88,7 @@
         try {
           // Stripe is now connected (mock)
           localStorage.setItem("commonshub_stripe_connected", "1");
-
+localStorage.setItem("commonshub_funding_enabled", "1");
           // Optional: you can track when it happened
           localStorage.setItem("commonshub_stripe_connected_at", String(Date.now()));
         } catch {}
