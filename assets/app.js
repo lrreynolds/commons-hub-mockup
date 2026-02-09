@@ -1,4 +1,5 @@
 // assets/app.js
+
 (() => {
   // ----------------------------
   // 1) Mobile/desktop nav toggle
@@ -11,56 +12,68 @@
   }
 
   // ----------------------------
-  // 2) Setup completion switching
+  // 2) Dashboard pre/post setup switch
   // ----------------------------
   const pre = document.getElementById("preSetup");
   const post = document.getElementById("postSetup");
+  const navPre = document.getElementById("navPreSetup");
+  const navPost = document.getElementById("navPostSetup");
 
-  // If the dashboard hasn’t been updated to include these wrappers, don’t break anything.
-  if (pre || post) {
-    let isComplete = false;
+  // Only run this logic on dashboard pages that have these blocks.
+  const isDashboard = !!(pre || post || navPre || navPost);
+  if (isDashboard) {
+    let complete = false;
+    let celebrateOnce = false;
+
     try {
-      isComplete = localStorage.getItem("commonshub_setup_complete") === "1";
+      complete = localStorage.getItem("commonshub_setup_complete") === "1";
+      celebrateOnce = localStorage.getItem("commonshub_celebrate_once") === "1";
     } catch {}
 
-    if (pre) pre.style.display = isComplete ? "none" : "block";
-    if (post) post.style.display = isComplete ? "block" : "none";
+    if (pre && post) {
+      pre.style.display = complete ? "none" : "block";
+      post.style.display = complete ? "block" : "none";
+    }
+    if (navPre && navPost) {
+      navPre.style.display = complete ? "none" : "block";
+      navPost.style.display = complete ? "block" : "none";
+    }
 
-    // One-time celebration hook (optional)
-    try {
-      if (isComplete && localStorage.getItem("commonshub_celebrate_once") === "1") {
-        localStorage.removeItem("commonshub_celebrate_once");
-
-        // Add a CSS class so you can style a subtle celebration if you want
-        document.body.classList.add("celebrateOnce");
-
-        // Optional: auto-remove the class after a moment
-        setTimeout(() => document.body.classList.remove("celebrateOnce"), 1500);
-      }
-    } catch {}
-  }
-
-  // ----------------------------
-  // 3) Copy invite link (post-setup)
-  // ----------------------------
-  const copyInviteBtn = document.getElementById("copyInviteBtn");
-  const inviteInput = document.getElementById("inviteLink");
-
-  if (copyInviteBtn && inviteInput) {
-    copyInviteBtn.addEventListener("click", async () => {
-      const text = inviteInput.value || inviteInput.getAttribute("value") || "";
-      if (!text) return;
-
+    // Optional: one-time “celebration” hook
+    // (For now: just a subtle class you can style later)
+    if (complete && celebrateOnce) {
+      document.body.classList.add("celebrate");
       try {
-        await navigator.clipboard.writeText(text);
-        const old = copyInviteBtn.textContent;
-        copyInviteBtn.textContent = "Copied";
-        setTimeout(() => (copyInviteBtn.textContent = old), 900);
-      } catch {
+        localStorage.removeItem("commonshub_celebrate_once");
+      } catch {}
+      setTimeout(() => document.body.classList.remove("celebrate"), 1200);
+    }
+
+    // Copy invite link (reveals field + copies)
+    const copyBtn = document.getElementById("copyInviteBtn");
+    const inviteField = document.getElementById("inviteField");
+    const inviteInput = document.getElementById("inviteLink");
+
+    if (copyBtn && inviteInput) {
+      copyBtn.addEventListener("click", async () => {
+        if (inviteField) inviteField.style.display = "block";
         inviteInput.focus();
         inviteInput.select();
-        document.execCommand("copy");
-      }
-    });
+
+        const setCopied = () => {
+          const old = copyBtn.textContent;
+          copyBtn.textContent = "Copied";
+          setTimeout(() => (copyBtn.textContent = old), 900);
+        };
+
+        try {
+          await navigator.clipboard.writeText(inviteInput.value);
+          setCopied();
+        } catch {
+          document.execCommand("copy");
+          setCopied();
+        }
+      });
+    }
   }
 })();
