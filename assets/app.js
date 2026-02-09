@@ -11,7 +11,7 @@
   }
 
   // ----------------------------
-  // 2) Pre/Post setup switching
+  // 2) Pre/Post setup switching (dashboard only)
   // ----------------------------
   let complete = false;
   try {
@@ -79,26 +79,64 @@
   const details = document.getElementById("details");
 
   if (toggleDetailsBtn && details) {
+    // Ensure initial state is hidden if author set display:none inline
     toggleDetailsBtn.addEventListener("click", () => {
-      const open = details.style.display !== "none";
-      details.style.display = open ? "none" : "block";
-      toggleDetailsBtn.textContent = open ? "Show details" : "Hide details";
+      const isHidden = details.style.display === "none";
+      details.style.display = isHidden ? "block" : "none";
+      toggleDetailsBtn.textContent = isHidden ? "Hide details" : "Show details";
     });
   }
 
   // ----------------------------
-  // 5) Reset demo flow (dev only)
+  // 5) Reset demo flow (works on ALL pages)
   // ----------------------------
+  function resetFlow(kind) {
+    try {
+      if (kind === "all") {
+        localStorage.removeItem("commonshub_server_live");
+        localStorage.removeItem("commonshub_setup_complete");
+        localStorage.removeItem("commonshub_setup_step");
+        localStorage.removeItem("commonshub_celebrate_once");
+      } else if (kind === "server") {
+        // Restart server provisioning flow
+        localStorage.removeItem("commonshub_server_live");
+        localStorage.removeItem("commonshub_setup_complete");
+        localStorage.removeItem("commonshub_setup_step");
+        localStorage.removeItem("commonshub_celebrate_once");
+      } else if (kind === "community") {
+        // Keep server live, redo community setup wizard
+        localStorage.removeItem("commonshub_setup_complete");
+        localStorage.removeItem("commonshub_setup_step");
+        localStorage.removeItem("commonshub_celebrate_once");
+      }
+    } catch {}
+
+    const target =
+      kind === "server" ? "setup.html" :
+      kind === "community" ? "dashboard.html" :
+      "index.html";
+
+    window.location.href = target;
+  }
+
+  // New: any link/button with data-reset="all|server|community"
+  document.addEventListener("click", (e) => {
+    const el = e.target && e.target.closest ? e.target.closest("[data-reset]") : null;
+    if (!el) return;
+
+    e.preventDefault();
+    const kind = (el.getAttribute("data-reset") || "all").toLowerCase();
+    if (kind !== "all" && kind !== "server" && kind !== "community") return;
+
+    resetFlow(kind);
+  });
+
+  // Back-compat: old dashboard-only reset link id
   const reset = document.getElementById("resetFlowLink");
   if (reset) {
     reset.addEventListener("click", (e) => {
       e.preventDefault();
-      try {
-        localStorage.removeItem("commonshub_setup_complete");
-        localStorage.removeItem("commonshub_setup_step");
-        localStorage.removeItem("commonshub_celebrate_once");
-      } catch {}
-      window.location.href = "index.html";
+      resetFlow("community");
     });
   }
 })();
