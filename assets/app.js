@@ -153,17 +153,25 @@
     });
   });
 
-    // ----------------------------
-  // 2.5) Funding button label (post-setup)
+   // ----------------------------
+  // 6) Funding button toggle
   // ----------------------------
   const fundingBtn = document.getElementById("fundingBtn");
+
   if (fundingBtn) {
     let fundingEnabled = false;
     try {
-      fundingEnabled = localStorage.getItem("commonshub_funding_enabled") === "1";
+      fundingEnabled =
+        localStorage.getItem("commonshub_funding_enabled") === "1";
     } catch {}
 
-    fundingBtn.textContent = fundingEnabled ? "Funding settings" : "Enable funding";
+    if (fundingEnabled) {
+      fundingBtn.textContent = "Manage funding";
+      fundingBtn.href = "funding-options.html";
+    } else {
+      fundingBtn.textContent = "Enable funding";
+      fundingBtn.href = "funding-start.html";
+    }
   }
 
   // Back-compat: old dashboard-only reset link id
