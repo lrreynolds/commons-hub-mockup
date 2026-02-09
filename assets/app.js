@@ -4,55 +4,51 @@
   // ----------------------------
   // 1) Mobile/desktop nav toggle
   // ----------------------------
-  const btn = document.getElementById("navToggle");
-  if (!btn) return;
+  const navBtn = document.getElementById("navToggle");
+  if (navBtn) {
+    navBtn.addEventListener("click", () => {
+      document.body.classList.toggle("navCollapsed");
+    });
+  }
 
-  btn.addEventListener("click", () => {
-    document.body.classList.toggle("navCollapsed");
-  });
-})();
-
-(() => {
   // ------------------------------------------
   // 2) Funding section: enabled/disabled toggle
   // ------------------------------------------
-  const btn = document.getElementById("fundingToggleBtn");
-  const off = document.getElementById("fundingDisabledView");
-  const on = document.getElementById("fundingEnabledView");
-  if (!btn || !off || !on) return;
+  const fundingToggleBtn = document.getElementById("fundingToggleBtn");
+  const fundingOff = document.getElementById("fundingDisabledView");
+  const fundingOn = document.getElementById("fundingEnabledView");
 
-  let enabled = false;
+  if (fundingToggleBtn && fundingOff && fundingOn) {
+    let enabled = false;
 
-  function render() {
-    off.style.display = enabled ? "none" : "block";
-    on.style.display = enabled ? "block" : "none";
-    btn.textContent = enabled ? "Show disabled view" : "Show enabled view";
+    const renderFundingToggle = () => {
+      fundingOff.style.display = enabled ? "none" : "block";
+      fundingOn.style.display = enabled ? "block" : "none";
+      fundingToggleBtn.textContent = enabled ? "Show disabled view" : "Show enabled view";
+    };
+
+    fundingToggleBtn.addEventListener("click", () => {
+      enabled = !enabled;
+      renderFundingToggle();
+    });
+
+    renderFundingToggle();
   }
 
-  btn.addEventListener("click", () => {
-    enabled = !enabled;
-    render();
-  });
-
-  render();
-})();
-
-(() => {
   // ---------------------------------------------------------
   // 3) Funding post: "Activate funding post (mock)" interaction
   // ---------------------------------------------------------
-
   const actionBtn = document.getElementById("fundingPostActionBtn");
-  if (!actionBtn) return; // if section not present on this page, no-op
+  if (!actionBtn) return; // If section not present on this page, no-op
 
-  const title = document.getElementById("fundingPostTitle");          // <h3 id="fundingPostTitle">
-  const draft = document.getElementById("fundingPostDraft");          // <div id="fundingPostDraft">
-  const live = document.getElementById("fundingPostLive");            // <div id="fundingPostLive">
-  const textArea = document.getElementById("fundingPostText");         // <textarea id="fundingPostText">
-  const rendered = document.getElementById("fundingPostRendered");     // <div id="fundingPostRendered">
-  const linkInput = document.getElementById("fundingSupportLink");     // <input id="fundingSupportLink">
-  const copyBtn = document.getElementById("copySupportLinkBtn");       // <button id="copySupportLinkBtn">
-  const viewBtn = document.getElementById("viewFundingPostBtn");       // <a id="viewFundingPostBtn">
+  const title = document.getElementById("fundingPostTitle");      // <h3 id="fundingPostTitle">
+  const draft = document.getElementById("fundingPostDraft");      // <div id="fundingPostDraft">
+  const live = document.getElementById("fundingPostLive");        // <div id="fundingPostLive">
+  const textArea = document.getElementById("fundingPostText");    // <textarea id="fundingPostText">
+  const rendered = document.getElementById("fundingPostRendered");// <div id="fundingPostRendered">
+  const linkInput = document.getElementById("fundingSupportLink");// <input id="fundingSupportLink">
+  const copyBtn = document.getElementById("copySupportLinkBtn");  // <button id="copySupportLinkBtn">
+  const viewBtn = document.getElementById("viewFundingPostBtn");  // <a id="viewFundingPostBtn">
 
   // Mock constants (in real app these come from backend)
   const SUPPORT_URL =
@@ -61,7 +57,7 @@
 
   let isLive = false;
 
-  function activate() {
+  function activateFundingPost() {
     if (isLive) return;
     isLive = true;
 
@@ -74,12 +70,10 @@
 
     // Switch UI from draft -> live
     if (rendered) rendered.textContent = withLink;
-
     if (draft) draft.style.display = "none";
     if (live) live.style.display = "block";
 
-    // ✅ Your requested change:
-    // Put "live" in the title and remove the big "post is live" button entirely.
+    // Put "live" in the title and remove the big button
     if (title) title.textContent = "Funding post (live)";
     actionBtn.style.display = "none";
 
@@ -90,7 +84,7 @@
     }
   }
 
-  actionBtn.addEventListener("click", activate);
+  actionBtn.addEventListener("click", activateFundingPost);
 
   // Copy support link
   if (copyBtn && linkInput) {
