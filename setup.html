@@ -7,7 +7,13 @@
   <link rel="stylesheet" href="assets/styles.css" />
 </head>
 <body>
-
+<script>
+(() => {
+  try {
+    sessionStorage.setItem("commonshub_in_setup_flow", "1");
+  } catch {}
+})();
+</script>
   <div class="wrap">
     <aside class="sidebar">
       <div class="brand">
