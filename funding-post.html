@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Commonshub — Pinned Post</title>
+  <title>Commonshub — Funding post</title>
   <link rel="stylesheet" href="assets/styles.css" />
 </head>
 <body class="flow">
@@ -13,8 +13,8 @@
         <div class="left">
           <div class="logoMark"></div>
           <div class="meta">
-            <b>Make funding visible</b>
-            <span>Pinned post + share link</span>
+            <b>Pinned funding post</b>
+            <span>One calm post · links to your support page</span>
           </div>
         </div>
         <a class="secondary" href="#" data-reset="all" style="width:auto;">Start over</a>
@@ -22,43 +22,203 @@
 
       <div class="content">
         <div class="center" style="max-width:760px;">
-          <section class="card">
-            <h3 style="margin:0 0 6px;">Support link</h3>
-            <div class="muted" style="margin-bottom:10px;">Copy this anytime later from the dashboard.</div>
 
-            <div class="field" style="margin-top:0;">
-              <label>Magic link</label>
-              <input id="supportLink" type="text" value="https://mycommunity.commonshub.social/support" readonly />
+          <!-- DRAFT -->
+          <section class="card" id="draftCard">
+            <h3 style="margin:0 0 6px;">Create a pinned post</h3>
+            <div class="muted">
+              This is optional, but it’s the cleanest way to let members support you.
+              You can edit or unpin later in Mastodon.
             </div>
 
             <div class="field" style="margin-top:14px;">
-              <label>Pinned post (editable)</label>
-              <textarea id="postText" style="min-height:140px;">If this community has been valuable to you, you can support it here:
-
-Support this community → https://mycommunity.commonshub.social/support
-
-Monthly support and one-time tips help keep the commons healthy.</textarea>
+              <label>Post text (editable)</label>
+              <textarea id="postText" style="min-height:190px;"></textarea>
+              <div class="muted" style="margin-top:6px;">
+                The support link will be inserted automatically below.
+              </div>
             </div>
 
-            <div class="footerBar" style="margin-top:16px;">
+            <div class="note" style="margin-top:14px;">
+              <b>Support link:</b> <span id="supportLinkInline" class="muted"></span>
+            </div>
+
+            <div class="footerBar" style="margin-top:16px; gap:12px;">
               <a class="secondary" href="funding-options.html" style="width:auto;">Back</a>
-              <button class="primary" id="enableFunding" type="button">Enable funding</button>
+              <button class="primary" id="postBtn" type="button" style="flex:1; justify-content:center;">
+                Post + pin in Mastodon (mock)
+              </button>
             </div>
           </section>
+
+          <!-- LIVE -->
+          <section class="card" id="liveCard" style="display:none;">
+            <h3 style="margin:0 0 6px;">Pinned post is live</h3>
+            <div class="muted">
+              Nice. Your support link is now easy to find inside the community.
+            </div>
+
+            <div class="card" style="background:var(--card2); margin-top:14px;">
+              <div class="muted" style="font-size:13px; margin-bottom:8px;">Pinned post (rendered)</div>
+              <div id="renderedText" style="white-space:pre-wrap;"></div>
+            </div>
+
+            <div class="footerBar" style="margin-top:16px; gap:12px;">
+              <button class="secondary" id="copySupportBtn" type="button" style="flex:1; width:auto; justify-content:center;">
+                Copy support link
+              </button>
+              <a class="primary" href="dashboard.html" style="flex:1; justify-content:center;">
+                Back to dashboard
+              </a>
+            </div>
+
+            <div class="field" id="supportField" style="margin-top:12px; display:none;">
+              <label>Support link</label>
+              <input id="supportLink" type="text" value="" readonly />
+              <div class="muted" style="margin-top:6px;">
+                Share this link anywhere (Substack, YouTube, email, socials).
+              </div>
+            </div>
+
+            <div class="muted" style="margin-top:12px;">
+              Want to adjust the post later? Do it in Mastodon. (Commonshub stays out of the way.)
+            </div>
+          </section>
+
         </div>
       </div>
     </main>
   </div>
 
-  <script>
-    document.getElementById("enableFunding")?.addEventListener("click", () => {
-      try {
-        localStorage.setItem("commonshub_support_link", document.getElementById("supportLink")?.value || "");
-        localStorage.setItem("commonshub_funding_enabled", "1");
-      } catch {}
-      window.location.href = "funding-done.html";
-    });
-  </script>
   <script src="assets/app.js"></script>
+  <script>
+    (() => {
+      // Keys (mock state)
+      const K_SUPPORT_LINK = "commonshub_support_link";
+      const K_POST_TEXT = "commonshub_funding_post_text";
+      const K_POST_LIVE = "commonshub_funding_post_live";
+      const K_FUNDING_ENABLED = "commonshub_funding_enabled";
+
+      const DEFAULT_SUPPORT_LINK = "https://mycommunity.commonshub.social/support";
+
+      const draftCard = document.getElementById("draftCard");
+      const liveCard = document.getElementById("liveCard");
+      const postText = document.getElementById("postText");
+      const postBtn = document.getElementById("postBtn");
+
+      const inline = document.getElementById("supportLinkInline");
+      const rendered = document.getElementById("renderedText");
+
+      const supportField = document.getElementById("supportField");
+      const supportInput = document.getElementById("supportLink");
+      const copyBtn = document.getElementById("copySupportBtn");
+
+      // Resolve link
+      let supportLink = DEFAULT_SUPPORT_LINK;
+      try {
+        supportLink = localStorage.getItem(K_SUPPORT_LINK) || DEFAULT_SUPPORT_LINK;
+        localStorage.setItem(K_SUPPORT_LINK, supportLink);
+      } catch {}
+
+      inline.textContent = supportLink;
+      supportInput.value = supportLink;
+
+      // Default copy (very calm)
+      const DEFAULT_COPY =
+`If this community is valuable to you, you can help support it.
+
+Support is optional. Participation is always free.
+
+[Support this community →]`;
+
+      // Restore draft text if present
+      try {
+        postText.value = localStorage.getItem(K_POST_TEXT) || DEFAULT_COPY;
+      } catch {
+        postText.value = DEFAULT_COPY;
+      }
+
+      function buildRenderedText(raw) {
+        return (raw || "").replace(
+          "[Support this community →]",
+          `Support this community → ${supportLink}`
+        ).trim();
+      }
+
+      async function copyText(text) {
+        try { await navigator.clipboard.writeText(text); return true; }
+        catch { return false; }
+      }
+
+      function showLive(renderedText) {
+        draftCard.style.display = "none";
+        liveCard.style.display = "block";
+        rendered.textContent = renderedText;
+      }
+
+      // If already live, jump to live view
+      let alreadyLive = false;
+      try { alreadyLive = localStorage.getItem(K_POST_LIVE) === "1"; } catch {}
+      if (alreadyLive) {
+        const saved = (() => { try { return localStorage.getItem(K_POST_TEXT) || DEFAULT_COPY; } catch { return DEFAULT_COPY; } })();
+        showLive(buildRenderedText(saved));
+      }
+
+      // Activate (mock)
+      postBtn?.addEventListener("click", () => {
+        const raw = (postText.value || "").trim();
+        const renderedText = buildRenderedText(raw);
+
+        try {
+          localStorage.setItem(K_POST_TEXT, raw);
+          localStorage.setItem(K_POST_LIVE, "1");
+          localStorage.setItem(K_FUNDING_ENABLED, "1"); // useful for dashboard status later
+        } catch {}
+
+        showLive(renderedText);
+      });
+
+      copyBtn?.addEventListener("click", async () => {
+        supportField.style.display = "block";
+        supportInput.focus();
+        supportInput.select();
+
+        const ok = await copyText(supportInput.value);
+        if (!ok) {
+          try { document.execCommand("copy"); } catch {}
+        }
+
+        const old = copyBtn.textContent;
+        copyBtn.textContent = "Copied";
+        setTimeout(() => (copyBtn.textContent = old), 900);
+      });
+
+      // Page-local reset (since this uses data-reset)
+      const resetLink = document.querySelector('[data-reset="all"]');
+      if (resetLink) {
+        resetLink.addEventListener("click", (e) => {
+          e.preventDefault();
+          try {
+            localStorage.removeItem("commonshub_server_live");
+            localStorage.removeItem("commonshub_setup_complete");
+            localStorage.removeItem("commonshub_setup_step");
+            localStorage.removeItem("commonshub_celebrate_once");
+
+            localStorage.removeItem("commonshub_stripe_connected");
+            localStorage.removeItem("commonshub_funding_subs_on");
+            localStorage.removeItem("commonshub_funding_tips_on");
+            localStorage.removeItem("commonshub_funding_amounts_subs");
+            localStorage.removeItem("commonshub_funding_amounts_tips");
+
+            localStorage.removeItem(K_SUPPORT_LINK);
+            localStorage.removeItem(K_POST_TEXT);
+            localStorage.removeItem(K_POST_LIVE);
+            localStorage.removeItem(K_FUNDING_ENABLED);
+          } catch {}
+          window.location.href = "index.html";
+        });
+      }
+    })();
+  </script>
 </body>
 </html>
