@@ -281,6 +281,12 @@ textarea{min-height:110px; resize:vertical}
   border-top: 1px solid rgba(16,32,24,.08) !important;
 }
 
+/* Optional: keep the invite link present for copying but not visually loud */
+#inviteLink {
+  position: absolute;
+  left: -9999px;
+}
+
 /* Plan grid: responsive */
 .planGrid{
   display:grid;
