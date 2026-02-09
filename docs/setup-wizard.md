@@ -1,225 +1,288 @@
-# Commonshub — Setup Wizard (MVP)
+# Commonshub — Community Setup Wizard (MVP)
 
 ## Purpose
 
-The setup wizard exists to get a newly created community into a
-**presentable, invite-ready state** with minimal cognitive load.
+The Commonshub setup wizard guides a creator from a newly provisioned (but empty)
+Mastodon instance to a **ready-to-invite community** in three calm, focused steps.
 
-It is intentionally:
-- Linear
-- Focused on one task at a time
-- Free of advanced configuration
-- Safe to pause and resume
+The wizard is:
+- One-time (dismisses permanently when complete)
+- Designed to take ~5 minutes
+- Focused on *activation*, not configuration depth
+- Explicitly not a replacement for the Mastodon UX
 
-After completion, the wizard disappears and the dashboard shifts into
-a steady-state “monitoring + funding” mode.
-
----
-
-## What the Wizard Is (and Is Not)
-
-**It is:**
-- A guided onboarding flow for first-time community owners
-- A way to set defaults that make Mastodon onboarding feel complete
-- A Commonshub layer on top of Mastodon
-
-**It is not:**
-- A replacement for the Mastodon admin UI
-- A full content management system
-- A place for ongoing edits or optimization
-
-Edits after setup happen in Mastodon.
+After completion, the dashboard transitions to a quiet monitoring and stewardship role.
 
 ---
 
-## Wizard Entry Point
+## Core Principles
 
-After instance creation, owners land on a simple dashboard state:
-
-> **Your community is live**  
-> Finish setup to invite people in.
-
-Primary action:
-- **Set up your community**
-
-If the owner leaves mid-wizard, returning to the dashboard resumes the wizard at the current step.
+- One step per screen
+- Fits on a single screen (no scrolling on standard laptops)
+- Defaults always allow progression
+- Uploads and edits are optional, never blocking
+- Only one post is created in the wizard (the pinned welcome post)
+- Clear boundary:
+  - **Commonshub = setup, stewardship, funding**
+  - **Mastodon = posting, interaction, moderation**
 
 ---
 
 ## Wizard Structure
 
-### Progress Indicator
+---
 
-- Shown at the top of the wizard
-- Shows step name and progress (e.g. 2 of 4)
-- No sidebar navigation
-- No skipping ahead
+## Step 1 — Brand your community
+
+### Goal
+Make the community feel real, owned, and recognizable immediately.
+
+### Fields
+
+1. **Community banner**
+   - Default: Commonshub-branded banner (pre-applied)
+   - Optional: upload custom image
+   - Appears on:
+     - Public community page
+     - Signup flow
+
+2. **Avatar (owner identity)**
+   - Default: placeholder avatar
+   - Optional: upload image
+   - Appears:
+     - Next to every post by the owner
+     - As the recognizable “face” of the community
+
+### Helper Copy
+> This avatar appears next to every post you make and helps members recognize you.
+
+### Primary Action
+**Save and continue**
 
 ---
 
-## Step 1 — Branding
+### Developer Notes — Step 1
 
-**Goal:**  
-Ensure the community looks intentional and welcoming before invites.
+**Intent**
+- This step is about *identity*, not polish.
+- Defaults must always be sufficient.
 
-**Inputs:**
-- Community banner image  
-- (Optional) Community icon
+**Implementation Notes**
+- Banner + avatar should map directly to Mastodon instance settings.
+- If Mastodon APIs do not support setting these at runtime:
+  - Apply via instance provisioning scripts
+  - Or store values for later manual application
+- Do not block progression on uploads.
+- No validation beyond file type/size (if implemented at all).
 
-**Defaults:**
-- Commonshub-branded banner is provided automatically
-- Owner may skip uploads and use defaults
-
-**Applied to Mastodon:**
-- Instance banner
-- Instance thumbnail/icon
-
-**Completion rule:**  
-At least one banner is selected (default or custom).
+**Fallback**
+- If editing later is required, creators will do so via Mastodon.
+- Dashboard should not attempt to stay in sync with Mastodon edits.
 
 ---
 
-## Step 2 — Community Basics
+## Step 2 — Community purpose
 
-**Goal:**  
-Set expectations before someone joins.
+### Goal
+Define intent, expectations, and behavioral norms before anyone joins.
 
-**Inputs:**
-- About message (public)
-- Community norms (short, friendly rules)
+### Fields
 
-**Defaults provided:**
-- Warm, non-threatening About copy
-- Minimal norms (kindness, respect, no spam)
+1. **Community mission** (About)
+   - Short text
+   - Default copy provided
+   - Shown:
+     - On public community page
+     - During signup preview
 
-**Applied to Mastodon:**
-- Instance About page
-- Rules shown during signup
+2. **Community norms**
+   - Short, friendly rules
+   - Default set provided
+   - Members must agree during signup
 
-**Important constraint:**  
-These values are written once. Future edits happen in Mastodon.
+### Guidance
+- Norms should be welcoming, not legalistic.
+- Text should fit comfortably in a single textarea.
 
----
-
-## Step 3 — Welcome Post
-
-**Goal:**  
-Ensure new members land in a living space, not an empty feed.
-
-**Inputs:**
-- Pinned welcome post text
-
-**Defaults provided:**
-- Friendly greeting
-- Light norms reminder
-- Invitation to introduce themselves
-- Suggestion to start with the Local timeline
-
-**Applied to Mastodon:**
-- Pinned post in Local timeline
+### Primary Action
+**Save and continue**
 
 ---
 
-## Step 4 — Funding (Optional)
+### Developer Notes — Step 2
 
-This step is **always offered**, never required.
+**Intent**
+- This is *structural*, not conversational content.
+- These values frame the entire community.
 
-### Framing
+**Implementation Notes**
+- Maps to:
+  - Mastodon instance “About” text
+  - Mastodon rules / terms shown during signup
+- Do not expose advanced moderation or policy options.
+- Keep copy short and editable only during setup.
 
-> **Support your community (optional)**  
-> You can enable funding now or skip this and turn it on later.
+**Important**
+- If creators later edit these in Mastodon:
+  - Changes do NOT need to propagate back to Commonshub.
+  - Dashboard should remain source-of-truth only during setup.
 
-### Actions
+---
 
+## Step 3 — Welcome your members
+
+### Goal
+Set a human tone and invite participation.
+
+### Fields
+
+1. **Pinned welcome post**
+   - Editable text
+   - Default copy provided
+   - Pinned to the top of the Local timeline
+
+### Constraints
+- This is the **only post created in the wizard**
+- Text only (no media, embeds, or formatting tools)
+
+### Helper Copy
+> This post sets the tone for new members. You’ll create all other posts directly in Mastodon.
+
+### Primary Action
+**Finish setup**
+
+---
+
+### Developer Notes — Step 3
+
+**Intent**
+- This is personal, human, and invitational.
+- It should feel easy, not performative.
+
+**Implementation Notes**
+- Implement as:
+  - Draft text in Commonshub
+  - Then create + pin a Mastodon status via API (if possible)
+- Text-only is intentional:
+  - Avoids media, upload, and preview complexity
+  - Reinforces Mastodon as the place for real posting
+
+**Fallback**
+- If automated pinning is not feasible:
+  - Provide clear instructions or a link to Mastodon
+  - Mark the step as “completed” once acknowledged
+
+---
+
+## Wizard Completion State
+
+### Message
+> 🎉 Your community is ready
+
+### Explanation
+> You’ll post and interact with members directly in Mastodon. Commonshub handles hosting, invites, and funding.
+
+### Primary Actions
+- **Visit your community**
+- **Invite members**
+
+### Persistent Option
 - **Enable funding**
-  - Enters Stripe connection flow
-- **Skip for now**
-  - Completes setup
 
-### Funding Types (plan-dependent)
-
-- Monthly support
-- One-time tips
-- Goal-based campaigns (Growth plan)
-
-### Important Principles
-
-- Payments happen outside Mastodon
-- Funding appears only via posts or announcements
-- No ads, popups, or interruptions
+Funding:
+- Is optional
+- Is not required to complete setup
+- Remains visible post-wizard until enabled
 
 ---
 
-## Wizard Completion
+### Developer Notes — Completion
 
-After the final step (or skipping funding), the wizard exits.
+**Intent**
+- This is the payoff moment.
+- The creator should feel done, not dropped into more setup.
 
-The owner is returned to the main dashboard.
-
----
-
-## Post-Wizard Dashboard (Steady State)
-
-Once setup is complete, the dashboard becomes quiet and minimal.
-
-### Always visible sections
-
-#### 1. Community status
-- Live / healthy
-- Member count
-- Post count
-- Hosting status
-
-#### 2. Funding
-- **If enabled:** status + money raised
-- **If declined:** prominent “Enable funding” button
-
-Funding can be enabled at any time via the same Stripe flow.
-
-#### 3. Primary actions
-- Invite members
-- Visit community
+**Implementation Notes**
+- Wizard should never reappear once completed.
+- Store completion flag server-side.
+- Dashboard layout should change after completion.
 
 ---
 
-## Editing After Setup
+## Post-Wizard Dashboard Behavior
 
-Commonshub does not attempt to stay in sync with Mastodon edits.
+### What Disappears
+- Wizard UI
+- Setup editors
+- Progress indicators
 
-After setup:
-- Dashboard shows **“Edit in Mastodon”** links
-- Changes made directly in Mastodon do not propagate back
+### What Remains
 
-This avoids:
-- Sync conflicts
-- Hidden state
-- Confusing authority boundaries
+1. **Status**
+   - Live
+   - Hosting active
+
+2. **Overview**
+   - Member count
+   - Post count
+   - Funding status
+
+3. **Funding Panel**
+   - Shows status if enabled
+   - Otherwise shows a clear “Enable funding” action
+
+4. **Primary Actions**
+   - Visit community
+   - Invite members
+   - Enable funding (if not enabled)
+
+### Editing After Setup
+
+- No editing inside Commonshub dashboard
+- Subtle breadcrumb only:
+  > Edit posts, rules, and branding in Mastodon
 
 ---
 
-## Mastodon Responsibilities vs Commonshub
+### Developer Notes — Dashboard
 
-**Handled by Commonshub**
-- Hosting
-- Instance creation
-- Stripe integration
-- Invite links
-- Funding pages
+**Intent**
+- Quiet, monitoring-oriented, non-distracting.
+- Avoid “Chinese menu” syndrome.
 
-**Handled by Mastodon**
-- Account creation
-- Feeds and timelines
-- Moderation
-- Content editing
-- Rules enforcement
+**Implementation Notes**
+- Treat dashboard as a control plane, not a content surface.
+- Do not attempt bi-directional sync with Mastodon state.
+- Prefer static or lightly refreshed stats over real-time data.
 
 ---
 
-## Design Philosophy
+## Explicit Non-Goals (MVP)
 
-- Calm over clever
-- Stewardship over optimization
-- Defaults over decisions
-- Trust over control
+- Creating regular posts in the dashboard
+- Media uploads outside Mastodon
+- Advanced moderation tools
+- Analytics or growth dashboards
+- Complex billing or payout netting logic
+- Multi-step funding configuration inside the wizard
 
-The wizard exists to get owners to “done” — not to teach Mastodon.
+---
+
+## Success Criteria
+
+A creator should:
+- Complete setup in under 5 minutes
+- Understand where content is posted
+- Invite members with confidence
+- Enable funding when ready
+- Never feel overwhelmed or lost
+
+---
+
+## Summary
+
+The setup wizard is not a configuration panel.
+It is an **onboarding experience** designed to get creators to a calm,
+confident “ready to invite” state as quickly as possible.
+
+Everything else belongs in Mastodon.
