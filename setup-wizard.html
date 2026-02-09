@@ -1,1 +1,207 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Commonshub — Setup Wizard</title>
+  <link rel="stylesheet" href="assets/styles.css" />
+</head>
+<body>
 
+  <div class="wrap" style="grid-template-columns: 1fr; max-width: 980px;">
+    <main class="stage" style="width:100%;">
+      <div class="topbar">
+        <div class="left">
+          <div class="logoMark"></div>
+          <div class="meta">
+            <b>Setup your community</b>
+            <span>3 calm steps · ~5 minutes</span>
+          </div>
+        </div>
+        <div class="chip">Step <span id="stepNum">1</span> of 3</div>
+      </div>
+
+      <div class="content">
+        <div class="center" style="max-width:760px;">
+
+          <!-- Progress (simple + quiet) -->
+          <div class="progress" style="margin-bottom:14px;">
+            <div class="bar" aria-hidden="true">
+              <div id="progressBar" style="width:33%;"></div>
+            </div>
+            <div id="progressText">Branding</div>
+          </div>
+
+          <!-- Single step card container -->
+          <section class="card" id="wizardCard">
+
+            <!-- STEP 1 -->
+            <div class="wizardStep" id="step1">
+              <h3 style="margin-bottom:6px;">Step 1 — Brand your community</h3>
+              <div class="muted">
+                This makes your community feel real and recognizable before you invite anyone.
+              </div>
+
+              <div class="field" style="margin-top:12px;">
+                <label>Community banner</label>
+
+                <div class="note" style="margin-top:0;">
+                  <b>Default:</b> A Commonshub-branded banner is already applied.
+                  Uploading a custom banner is optional.
+                </div>
+
+                <input type="file" accept="image/*" />
+                <div class="muted" style="margin-top:6px;">
+                  Appears on the public community page and during signup.
+                </div>
+              </div>
+
+              <div class="field" style="margin-top:12px;">
+                <label>Owner avatar (your “face” in the community)</label>
+
+                <input type="file" accept="image/*" />
+                <div class="muted" style="margin-top:6px;">
+                  This avatar appears next to every post you make and helps members recognize you.
+                </div>
+              </div>
+
+              <div class="footerBar" style="margin-top:16px;">
+                <a class="secondary" href="dashboard.html" style="width:auto;">Exit</a>
+                <button class="primary" id="next1" type="button">Save and continue</button>
+              </div>
+            </div>
+
+            <!-- STEP 2 -->
+            <div class="wizardStep" id="step2" style="display:none;">
+              <h3 style="margin-bottom:6px;">Step 2 — Community purpose</h3>
+              <div class="muted">
+                Define your mission and friendly norms before anyone joins.
+              </div>
+
+              <div class="field" style="margin-top:12px;">
+                <label>Community mission (About)</label>
+                <textarea id="aboutText">Welcome — this is a community space for thoughtful conversation and shared learning.</textarea>
+                <div class="muted" style="margin-top:6px;">
+                  Shown on the public/about page and previewed during signup.
+                </div>
+              </div>
+
+              <div class="field" style="margin-top:12px;">
+                <label>Community norms (short + friendly)</label>
+                <textarea id="rulesText">Be kind and treat people with respect.
+Disagree thoughtfully — critique ideas, not individuals.
+Don’t post spam or automated content.
+Respect privacy and boundaries.</textarea>
+                <div class="muted" style="margin-top:6px;">
+                  Members are asked to accept these during signup.
+                </div>
+              </div>
+
+              <div class="footerBar" style="margin-top:16px;">
+                <button class="secondary" id="back2" type="button" style="width:auto;">Back</button>
+                <button class="primary" id="next2" type="button">Save and continue</button>
+              </div>
+            </div>
+
+            <!-- STEP 3 -->
+            <div class="wizardStep" id="step3" style="display:none;">
+              <h3 style="margin-bottom:6px;">Step 3 — Welcome your members</h3>
+              <div class="muted">
+                Create a single pinned welcome post. All other posting happens in Mastodon.
+              </div>
+
+              <div class="field" style="margin-top:12px;">
+                <label>Pinned welcome post (text only)</label>
+                <textarea id="welcomeText">Welcome 👋
+
+A few simple norms:
+• Be kind and human
+• Disagree thoughtfully
+• No spam
+
+Introduce yourself below:
+• What brought you here?
+• What do you hope to learn or contribute?
+
+Tip: Start with the Local timeline to see what’s happening in this community.</textarea>
+
+                <div class="muted" style="margin-top:6px;">
+                  This is the only post created by the wizard. You’ll create all other posts directly in Mastodon.
+                </div>
+              </div>
+
+              <div class="footerBar" style="margin-top:16px;">
+                <button class="secondary" id="back3" type="button" style="width:auto;">Back</button>
+                <button class="primary" id="finish" type="button">Finish setup</button>
+              </div>
+            </div>
+
+            <!-- DONE -->
+            <div class="wizardStep" id="done" style="display:none;">
+              <h3 style="margin-bottom:6px;">🎉 Your community is ready</h3>
+              <div class="muted">
+                You’ll post and interact with members directly in Mastodon.
+                Commonshub handles hosting, invites, and funding.
+              </div>
+
+              <div class="note" style="margin-top:12px;">
+                <b>Next:</b> Visit your community to make your first real post, then invite members.
+              </div>
+
+              <div class="footerBar" style="margin-top:16px;">
+                <a class="primary" href="community.html">Visit community (Mastodon)</a>
+                <a class="secondary" href="dashboard.html" style="width:auto;">Back to dashboard</a>
+              </div>
+
+              <div class="muted" style="margin-top:12px;">
+                Funding is optional and can be enabled later from the dashboard.
+              </div>
+            </div>
+
+          </section>
+
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script>
+    // Minimal wizard navigation (mock-only)
+    (() => {
+      const stepNum = document.getElementById("stepNum");
+      const progressBar = document.getElementById("progressBar");
+      const progressText = document.getElementById("progressText");
+
+      const s1 = document.getElementById("step1");
+      const s2 = document.getElementById("step2");
+      const s3 = document.getElementById("step3");
+      const done = document.getElementById("done");
+
+      const show = (n) => {
+        s1.style.display = n === 1 ? "block" : "none";
+        s2.style.display = n === 2 ? "block" : "none";
+        s3.style.display = n === 3 ? "block" : "none";
+        done.style.display = n === 4 ? "block" : "none";
+
+        if (n <= 3) {
+          stepNum.textContent = String(n);
+          progressBar.style.width = n === 1 ? "33%" : n === 2 ? "66%" : "100%";
+          progressText.textContent = n === 1 ? "Branding" : n === 2 ? "Purpose" : "Welcome post";
+        } else {
+          stepNum.textContent = "3";
+          progressBar.style.width = "100%";
+          progressText.textContent = "Complete";
+        }
+      };
+
+      document.getElementById("next1")?.addEventListener("click", () => show(2));
+      document.getElementById("back2")?.addEventListener("click", () => show(1));
+      document.getElementById("next2")?.addEventListener("click", () => show(3));
+      document.getElementById("back3")?.addEventListener("click", () => show(2));
+      document.getElementById("finish")?.addEventListener("click", () => show(4));
+
+      show(1);
+    })();
+  </script>
+</body>
+</html>
