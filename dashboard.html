@@ -8,7 +8,7 @@
 </head>
 <body>
 
-  <!-- Mobile/desktop nav toggle (optional UI; JS no-ops if absent) -->
+  <!-- Mobile/desktop nav toggle -->
   <button class="secondary" id="navToggle" type="button" style="position:fixed; top:14px; left:14px; z-index:50; width:auto;">
     Menu
   </button>
@@ -23,22 +23,13 @@
         </div>
       </div>
 
- <nav class="nav" aria-label="Dashboard sections">
-  <a class="navItem active" href="#status">
-    <div><b>Status</b><br><small>Health + key actions</small></div>
-    <div>●</div>
-  </a>
-
-  <a class="navItem" href="#overview">
-    <div><b>Overview</b><br><small>Members + activity</small></div>
-    <div>○</div>
-  </a>
-
-  <a class="navItem" href="#funding">
-    <div><b>Funding</b><br><small>Support + payouts</small></div>
-    <div>○</div>
-  </a>
-</nav>
+      <!-- Pre-wizard: only one nav item -->
+      <nav class="nav" aria-label="Dashboard sections">
+        <a class="navItem active" href="#status">
+          <div><b>Status</b><br><small>Live + next step</small></div>
+          <div>●</div>
+        </a>
+      </nav>
 
       <div class="hint">
         <b>Mock only:</b> This dashboard shows the Commonshub controls for your community
@@ -52,7 +43,7 @@
           <div class="logoMark"></div>
           <div class="meta">
             <b>Commons Dashboard</b>
-            <span>Stewardship + funding</span>
+            <span>Stewardship + hosting</span>
           </div>
         </div>
         <div class="chip">Owner view</div>
@@ -64,141 +55,45 @@
           <div class="header">
             <div>
               <h2>Your community is live</h2>
-              <p>Commonshub hosts your community on Mastodon. You manage announcements, invites, and funding here.</p>
+              <p>Your server is running. Next, we’ll help you make it feel “real” before you invite anyone.</p>
             </div>
             <div class="chip">Status: Live</div>
           </div>
 
- <!-- SECTION: Community -->
-<!-- SECTION: Status (post-wizard home) -->
-<section id="status" style="scroll-margin-top:90px;">
-  <div class="card">
-    <h3>Community status</h3>
-    <div class="muted">Role: Community owner</div>
+          <!-- SECTION: Status (pre-wizard home) -->
+          <section id="status" style="scroll-margin-top:90px;">
+            <div class="card">
+              <h3>Community status</h3>
+              <div class="muted">Role: Community owner</div>
 
-    <div class="list" style="margin-top:10px;">
-      <div class="item">
-        <b>Name</b>
-        <div class="muted">The Commons Hub</div>
-      </div>
+              <!-- Compact info: no “editable fields” vibe -->
+              <div class="list" style="margin-top:10px;">
+                <div class="item">
+                  <b>Community</b>
+                  <div class="muted">The Commons Hub · mycommunity.commonshub.social</div>
+                </div>
 
-      <div class="item">
-        <b>Address</b>
-        <div class="muted">mycommunity.commonshub.social</div>
-      </div>
+                <div class="item">
+                  <b>Hosting</b>
+                  <div class="muted">Active · Managed by Commonshub</div>
+                </div>
 
-      <div class="item">
-        <b>Hosting</b>
-        <div class="muted">Active · Managed by Commonshub</div>
-      </div>
-    </div>
+                <div class="item">
+                  <b>Members</b>
+                  <div class="muted">0 (expected)</div>
+                </div>
+              </div>
 
-    <div class="note" style="margin-top:12px;">
-      <b>Where things live:</b> Posting, moderation, and edits happen in Mastodon.
-      Commonshub handles hosting, invites, and funding.
-    </div>
+              <div class="note" style="margin-top:12px;">
+                <b>Next:</b> Run a 3-step setup (branding, mission + norms, welcome post).
+                After that, you’ll be able to invite members.
+              </div>
 
-    <div class="footerBar" style="margin-top:12px;">
-      <a class="primary" href="community.html">Visit community (Mastodon)</a>
-      <button class="secondary" id="copyInviteBtn" type="button" style="width:auto;">
-        Copy invite link
-      </button>
-      <a class="secondary" href="setup-wizard.html" style="width:auto;">
-        Setup wizard
-      </a>
-    </div>
-
-    <div class="field" style="margin-top:12px;">
-      <label>Invite link</label>
-      <input
-        id="inviteLink"
-        type="text"
-        value="https://mycommunity.commonshub.social/invite/abc123"
-        readonly
-      />
-      <div class="muted" style="margin-top:6px;">
-        Share this link wherever your audience already is (Substack, YouTube, email, etc.).
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- SECTION: Overview -->
-<section id="overview" style="margin-top:14px; scroll-margin-top:90px;">
-  <div class="card">
-    <h3>Overview</h3>
-    <div class="muted">Light totals only — enough to feel oriented.</div>
-
-    <div class="list" style="margin-top:12px;">
-      <div class="item">
-        <b>Members</b>
-        <div class="muted">0</div>
-      </div>
-
-      <div class="item">
-        <b>Posts</b>
-        <div class="muted">0</div>
-      </div>
-
-      <div class="item">
-        <b>Local timeline</b>
-        <div class="muted">Empty (expected)</div>
-      </div>
-
-      <div class="item">
-        <b>Setup</b>
-        <div class="muted">Complete</div>
-      </div>
-    </div>
-
-    <div class="note" style="margin-top:12px;">
-      <b>Tip:</b> Your community can be live with 0 members.
-      The next “real” step is inviting people — and making your first post in Mastodon.
-    </div>
-  </div>
-</section>
-
-<!-- SECTION: Funding (post-wizard panel; setup happens in funding wizard later) -->
-<section id="funding" style="margin-top:14px; scroll-margin-top:90px;">
-  <div class="card fundingCard">
-    <h3>Funding</h3>
-    <div class="muted">
-      Optional support for your community. No ads. No interruptions.
-    </div>
-
-    <div class="list" style="margin-top:12px;">
-      <div class="item">
-        <b>Status</b>
-        <div class="muted">Not enabled</div>
-      </div>
-
-      <div class="item">
-        <b>Support types</b>
-        <div class="muted">Monthly support, one-time tips <span style="opacity:.7;">(campaigns on Growth plan)</span></div>
-      </div>
-
-      <div class="item">
-        <b>Money raised (this month)</b>
-        <div class="muted">$0</div>
-      </div>
-    </div>
-
-    <div class="note" style="margin-top:12px;">
-      <b>How it works:</b> Payments are handled by Stripe. Members donate on your support page.
-      A pinned post in Mastodon simply links to it.
-    </div>
-
-    <div class="footerBar" style="margin-top:12px;">
-      <a class="primary" href="funding-wizard.html">Enable funding</a>
-      <a class="secondary" href="billing.html" style="width:auto;">Billing</a>
-    </div>
-
-    <div class="muted" style="margin-top:10px;">
-      Need to edit community details, rules, or pinned posts later?
-      Use Mastodon’s admin tools. <a href="#" style="color:inherit;">(Help)</a>
-    </div>
-  </div>
-</section>
+              <div class="footerBar" style="margin-top:12px;">
+                <a class="primary" href="setup-wizard.html">Set up your community</a>
+              </div>
+            </div>
+          </section>
 
         </div>
       </div>
@@ -207,7 +102,7 @@
 
   <script src="assets/app.js"></script>
   <script>
-    // Optional: highlight active nav item on click (no scrolling logic beyond anchors)
+    // Optional: highlight active nav item on click
     (() => {
       const items = Array.from(document.querySelectorAll(".nav .navItem"));
       if (!items.length) return;
@@ -220,7 +115,6 @@
       });
     })();
   </script>
- 
- 
+
 </body>
 </html>
