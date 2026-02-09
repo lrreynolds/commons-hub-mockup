@@ -153,26 +153,31 @@
     });
   });
 
-   // ----------------------------
-  // 6) Funding button toggle
   // ----------------------------
-  const fundingBtn = document.getElementById("fundingBtn");
+// 6) Funding button toggle (3-state)
+// ----------------------------
+const fundingBtn = document.getElementById("fundingBtn");
 
-  if (fundingBtn) {
-    let fundingEnabled = false;
-    try {
-      fundingEnabled =
-        localStorage.getItem("commonshub_funding_enabled") === "1";
-    } catch {}
+if (fundingBtn) {
+  let stripeConnected = false;
+  let fundingEnabled = false;
 
-    if (fundingEnabled) {
-      fundingBtn.textContent = "Manage funding";
-      fundingBtn.href = "funding-options.html";
-    } else {
-      fundingBtn.textContent = "Enable funding";
-      fundingBtn.href = "funding-start.html";
-    }
+  try {
+    stripeConnected = localStorage.getItem("commonshub_stripe_connected") === "1";
+    fundingEnabled  = localStorage.getItem("commonshub_funding_enabled") === "1";
+  } catch {}
+
+  if (!stripeConnected) {
+    fundingBtn.textContent = "Enable funding";
+    fundingBtn.href = "funding-start.html";
+  } else if (!fundingEnabled) {
+    fundingBtn.textContent = "Finish funding setup";
+    fundingBtn.href = "funding-options.html";
+  } else {
+    fundingBtn.textContent = "Manage funding";
+    fundingBtn.href = "funding-options.html";
   }
+}
 
   // Back-compat: old dashboard-only reset link id
   const reset = document.getElementById("resetFlowLink");
