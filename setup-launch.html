@@ -7,7 +7,16 @@
   <link rel="stylesheet" href="assets/styles.css" />
 </head>
 <body>
-
+<script>
+(() => {
+  try {
+    const ok = sessionStorage.getItem("commonshub_in_setup_flow") === "1";
+    if (!ok) window.location.replace("setup.html");
+  } catch {
+    window.location.replace("setup.html");
+  }
+})();
+</script>
   <div class="wrap">
     <aside class="sidebar">
       <div class="brand">
