@@ -1,1 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Commonshub — Stripe</title>
+  <link rel="stylesheet" href="assets/styles.css" />
+</head>
+<body class="flow">
+  <div class="wrap" style="grid-template-columns:1fr; max-width:980px;">
+    <main class="stage" style="width:100%;">
+      <div class="topbar">
+        <div class="left">
+          <div class="logoMark"></div>
+          <div class="meta">
+            <b>Stripe setup</b>
+            <span>Payouts go directly to you</span>
+          </div>
+        </div>
+        <a class="secondary" href="#" data-reset="all" style="width:auto;">Start over</a>
+      </div>
 
+      <div class="content">
+        <div class="center" style="max-width:760px;">
+          <section class="card">
+            <h3 style="margin:0 0 6px;">Connect Stripe (simulated)</h3>
+            <div class="muted">
+              This step happens in Stripe. Commonshub never touches your funds.
+            </div>
+
+            <div class="footerBar" style="margin-top:16px;">
+              <a class="secondary" href="funding.html" style="width:auto;">Back</a>
+              <button class="primary" id="stripeDone" type="button">I connected Stripe</button>
+            </div>
+          </section>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script>
+    document.getElementById("stripeDone")?.addEventListener("click", () => {
+      try { localStorage.setItem("commonshub_stripe_connected", "1"); } catch {}
+      window.location.href = "funding-options.html";
+    });
+  </script>
+  <script src="assets/app.js"></script>
+</body>
+</html>
