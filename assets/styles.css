@@ -294,6 +294,34 @@ textarea{min-height:110px; resize:vertical}
   gap:12px;
   align-items:start;
 }
+
+/* Wizard spacing polish */
+
+.wizard h3 {
+  margin-bottom: 12px;
+}
+
+.wizard .stepIntro {
+  margin-bottom: 20px;
+}
+
+.wizard .field {
+  margin-top: 20px;
+}
+
+.wizard input[type="file"] {
+  margin-top: 8px;
+  margin-bottom: 8px;
+}
+
+.wizard .field .muted {
+  margin-top: 8px;
+}
+
+.wizard .footerBar {
+  margin-top: 28px;
+}
+
 @media (max-width: 860px){
   .planGrid{ grid-template-columns: 1fr; }
 }
