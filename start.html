@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Commonshub — Start</title>
+</head>
+<body>
+<script>
+(() => {
+  let serverLive = false;
+  let setupDone = false;
+  try {
+    serverLive = localStorage.getItem("commonshub_server_live") === "1";
+    setupDone  = localStorage.getItem("commonshub_setup_complete") === "1";
+  } catch {}
+
+  // 1) Not provisioned yet -> send to server setup
+  if (!serverLive) {
+    window.location.replace("setup-basics.html"); // <-- your server setup page (rename if needed)
+    return;
+  }
+
+  // 2) Provisioned -> always dashboard (dashboard will show pre/post automatically)
+  window.location.replace("dashboard.html");
+})();
+</script>
+</body>
+</html>
