@@ -1,5 +1,4 @@
 // assets/app.js
-
 (() => {
   // ----------------------------
   // 1) Mobile/desktop nav toggle
@@ -12,68 +11,94 @@
   }
 
   // ----------------------------
-  // 2) Dashboard pre/post setup switch
+  // 2) Pre/Post setup switching
   // ----------------------------
+  let complete = false;
+  try {
+    complete = localStorage.getItem("commonshub_setup_complete") === "1";
+  } catch {}
+
   const pre = document.getElementById("preSetup");
   const post = document.getElementById("postSetup");
-  const navPre = document.getElementById("navPreSetup");
-  const navPost = document.getElementById("navPostSetup");
+  const navSubtitle = document.getElementById("navSubtitle");
+  const headerSubcopy = document.getElementById("headerSubcopy");
 
-  // Only run this logic on dashboard pages that have these blocks.
-  const isDashboard = !!(pre || post || navPre || navPost);
-  if (isDashboard) {
-    let complete = false;
-    let celebrateOnce = false;
+  if (pre && post) {
+    pre.style.display = complete ? "none" : "block";
+    post.style.display = complete ? "block" : "none";
+  }
+  if (navSubtitle) {
+    navSubtitle.textContent = complete ? "Health + key actions" : "Live + next step";
+  }
+  if (headerSubcopy) {
+    headerSubcopy.textContent = complete
+      ? "Your server is running. Your community is ready — post in Mastodon, invite your audience, enable funding if you want."
+      : "Your server is running. Next, we’ll help you make it feel “real” before you invite anyone.";
+  }
 
+  // ----------------------------
+  // 3) Copy invite (post-setup)
+  // ----------------------------
+  const copyBtn = document.getElementById("copyInviteBtn");
+  const inviteField = document.getElementById("inviteField");
+  const inviteInput = document.getElementById("inviteLink");
+
+  async function copyText(text) {
     try {
-      complete = localStorage.getItem("commonshub_setup_complete") === "1";
-      celebrateOnce = localStorage.getItem("commonshub_celebrate_once") === "1";
-    } catch {}
-
-    if (pre && post) {
-      pre.style.display = complete ? "none" : "block";
-      post.style.display = complete ? "block" : "none";
+      await navigator.clipboard.writeText(text);
+      return true;
+    } catch {
+      return false;
     }
-    if (navPre && navPost) {
-      navPre.style.display = complete ? "none" : "block";
-      navPost.style.display = complete ? "block" : "none";
-    }
+  }
 
-    // Optional: one-time “celebration” hook
-    // (For now: just a subtle class you can style later)
-    if (complete && celebrateOnce) {
-      document.body.classList.add("celebrate");
+  if (copyBtn && inviteInput) {
+    copyBtn.addEventListener("click", async () => {
+      if (inviteField) inviteField.style.display = "block";
+
+      inviteInput.focus();
+      inviteInput.select();
+
+      const ok = await copyText(inviteInput.value);
+      if (!ok) {
+        try {
+          document.execCommand("copy");
+        } catch {}
+      }
+
+      const old = copyBtn.textContent;
+      copyBtn.textContent = "Copied";
+      setTimeout(() => (copyBtn.textContent = old), 900);
+    });
+  }
+
+  // ----------------------------
+  // 4) Details toggle (post-setup)
+  // ----------------------------
+  const toggleDetailsBtn = document.getElementById("toggleDetailsBtn");
+  const details = document.getElementById("details");
+
+  if (toggleDetailsBtn && details) {
+    toggleDetailsBtn.addEventListener("click", () => {
+      const open = details.style.display !== "none";
+      details.style.display = open ? "none" : "block";
+      toggleDetailsBtn.textContent = open ? "Show details" : "Hide details";
+    });
+  }
+
+  // ----------------------------
+  // 5) Reset demo flow (dev only)
+  // ----------------------------
+  const reset = document.getElementById("resetFlowLink");
+  if (reset) {
+    reset.addEventListener("click", (e) => {
+      e.preventDefault();
       try {
+        localStorage.removeItem("commonshub_setup_complete");
+        localStorage.removeItem("commonshub_setup_step");
         localStorage.removeItem("commonshub_celebrate_once");
       } catch {}
-      setTimeout(() => document.body.classList.remove("celebrate"), 1200);
-    }
-
-    // Copy invite link (reveals field + copies)
-    const copyBtn = document.getElementById("copyInviteBtn");
-    const inviteField = document.getElementById("inviteField");
-    const inviteInput = document.getElementById("inviteLink");
-
-    if (copyBtn && inviteInput) {
-      copyBtn.addEventListener("click", async () => {
-        if (inviteField) inviteField.style.display = "block";
-        inviteInput.focus();
-        inviteInput.select();
-
-        const setCopied = () => {
-          const old = copyBtn.textContent;
-          copyBtn.textContent = "Copied";
-          setTimeout(() => (copyBtn.textContent = old), 900);
-        };
-
-        try {
-          await navigator.clipboard.writeText(inviteInput.value);
-          setCopied();
-        } catch {
-          document.execCommand("copy");
-          setCopied();
-        }
-      });
-    }
+      window.location.href = "index.html";
+    });
   }
 })();
