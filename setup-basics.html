@@ -7,7 +7,18 @@
   <link rel="stylesheet" href="assets/styles.css" />
 </head>
 <body>
-
+<script>
+(() => {
+  // If you didn't come from setup.html, force step 1.
+  // (MVP mock guard; remove when backend owns state.)
+  try {
+    const ok = sessionStorage.getItem("commonshub_in_setup_flow") === "1";
+    if (!ok) window.location.replace("setup.html");
+  } catch {
+    window.location.replace("setup.html");
+  }
+})();
+</script>
   <div class="wrap">
     <aside class="sidebar">
       <div class="brand">
