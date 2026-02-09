@@ -31,6 +31,21 @@ body{
   font-family:var(--font);
   line-height:1.35;
 }
+/* -----------------------------
+   Focused setup / wizard flow
+----------------------------- */
+
+body.flow .sidebar {
+  display: none;
+}
+
+body.flow .wrap {
+  grid-template-columns: 1fr;
+}
+
+body.flow .stage {
+  width: 100%;
+}
 
 /* Layout */
 .wrap{
