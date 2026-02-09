@@ -242,8 +242,8 @@ document.getElementById("finish")?.addEventListener("click", () => {
     // Resume (mock)
     let startStep = 1;
     try {
-      const saved = parseInt(localStorage.getItem(STORAGE_KEY) || "1", 10);
-      if (saved >= 1 && saved <= 4) startStep = saved;
+  const saved = parseInt(localStorage.getItem(STORAGE_KEY) || "1", 10);
+if (saved >= 1 && saved <= 3) startStep = saved; // <-- not 4
     } catch {}
 
     show(startStep, { persist: false });
