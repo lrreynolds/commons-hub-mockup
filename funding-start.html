@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Commonshub — Funding</title>
+</head>
+<body>
+<script>
+(() => {
+  let stripeConnected = false;
+  try {
+    stripeConnected = localStorage.getItem("commonshub_stripe_connected") === "1";
+  } catch {}
+
+  if (!stripeConnected) {
+    window.location.replace("funding-connect.html");
+    return;
+  }
+
+  window.location.replace("funding-options.html");
+})();
+</script>
+</body>
+</html>
