@@ -46,6 +46,8 @@ body.flow .wrap {
 body.flow .stage {
   width: 100%;
 }
+/* Flow pages should be distraction-free */
+body.flow #navToggle { display: none !important; }
 
 /* Layout */
 .wrap{
