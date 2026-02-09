@@ -1,1 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Stripe — Connect payouts (mock)</title>
+  <link rel="stylesheet" href="assets/styles.css" />
+</head>
 
+<body class="flow">
+  <div class="wrap" style="grid-template-columns: 1fr; max-width: 980px;">
+    <main class="stage" style="width:100%;">
+      <div class="topbar">
+        <div class="left">
+          <div class="logoMark"></div>
+          <div class="meta">
+            <b>Stripe (mock)</b>
+            <span>Connect payouts for Commonshub</span>
+          </div>
+        </div>
+
+        <div style="display:flex; gap:10px; align-items:center;">
+          <div class="chip">External step</div>
+          <a class="secondary" href="#" data-reset="all" style="width:auto;">Start over</a>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="center" style="max-width:760px;">
+
+          <div class="header">
+            <div>
+              <h2>Finish your payout setup</h2>
+              <p>This is a simulated Stripe onboarding page. In the real flow, you’d enter identity + bank details here.</p>
+            </div>
+            <div class="chip">~2 minutes</div>
+          </div>
+
+          <section class="card">
+            <h3 style="margin:0 0 10px;">What Stripe will collect</h3>
+
+            <div class="list">
+              <div class="item">
+                <b>Identity</b>
+                <div class="muted">Name, address, and verification details</div>
+              </div>
+              <div class="item">
+                <b>Bank payouts</b>
+                <div class="muted">Where funds should be deposited</div>
+              </div>
+              <div class="item">
+                <b>Tax information</b>
+                <div class="muted">As required by your country</div>
+              </div>
+            </div>
+
+            <div class="note" style="margin-top:12px;">
+              <b>Important:</b> Commonshub doesn’t see card details. Stripe handles payments securely.
+            </div>
+
+            <div class="field" style="margin-top:14px;">
+              <label>Mock status</label>
+              <input type="text" value="Ready to connect" readonly />
+              <div class="muted" style="margin-top:6px;">Click “Finish & return” to simulate a successful Stripe connection.</div>
+            </div>
+
+            <div class="footerBar" style="margin-top:18px;">
+              <a class="secondary" href="funding-start.html" style="width:auto;">Back</a>
+              <button class="primary" id="finishStripe" type="button">Finish &amp; return</button>
+            </div>
+
+            <div class="muted" style="margin-top:10px; font-size:13px;">
+              You will return to Commonshub to choose subscriptions and/or tips.
+            </div>
+          </section>
+
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script>
+    (() => {
+      const btn = document.getElementById("finishStripe");
+      if (!btn) return;
+
+      btn.addEventListener("click", () => {
+        try {
+          // Stripe is now connected (mock)
+          localStorage.setItem("commonshub_stripe_connected", "1");
+
+          // Optional: you can track when it happened
+          localStorage.setItem("commonshub_stripe_connected_at", String(Date.now()));
+        } catch {}
+
+        // Next screen in funding flow
+        window.location.href = "funding-options.html";
+      });
+    })();
+  </script>
+</body>
+</html>
