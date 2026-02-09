@@ -23,11 +23,27 @@
         </div>
       </div>
 
-      <!-- Pre-wizard: only one nav item -->
-      <nav class="nav" aria-label="Dashboard sections">
+      <!-- Pre-setup nav (shown until wizard completes) -->
+      <nav class="nav" id="navPreSetup" aria-label="Dashboard sections">
         <a class="navItem active" href="#status">
           <div><b>Status</b><br><small>Live + next step</small></div>
           <div>●</div>
+        </a>
+      </nav>
+
+      <!-- Post-setup nav (shown after wizard completes) -->
+      <nav class="nav" id="navPostSetup" aria-label="Dashboard sections" style="display:none;">
+        <a class="navItem active" href="#status">
+          <div><b>Status</b><br><small>Health + key actions</small></div>
+          <div>●</div>
+        </a>
+        <a class="navItem" href="#overview">
+          <div><b>Overview</b><br><small>Members + activity</small></div>
+          <div>○</div>
+        </a>
+        <a class="navItem" href="#funding">
+          <div><b>Funding</b><br><small>Support + payouts</small></div>
+          <div>○</div>
         </a>
       </nav>
 
@@ -60,41 +76,159 @@
             <div class="chip">Status: Live</div>
           </div>
 
-          <!-- SECTION: Status (pre-wizard home) -->
-          <section id="status" style="scroll-margin-top:90px;">
-            <div class="card">
-              <h3>Community status</h3>
-              <div class="muted">Role: Community owner</div>
+          <!-- ========================= -->
+          <!-- PRE-SETUP (wizard not done) -->
+          <!-- ========================= -->
+          <div id="preSetup">
+            <section id="status" style="scroll-margin-top:90px;">
+              <div class="card">
+                <h3>Community status</h3>
+                <div class="muted">Role: Community owner</div>
 
-              <!-- Compact info: no “editable fields” vibe -->
-              <div class="list" style="margin-top:10px;">
-                <div class="item">
-                  <b>Community</b>
-                  <div class="muted">The Commons Hub · mycommunity.commonshub.social</div>
+                <div class="list" style="margin-top:10px;">
+                  <div class="item">
+                    <b>Community</b>
+                    <div class="muted">The Commons Hub · mycommunity.commonshub.social</div>
+                  </div>
+
+                  <div class="item">
+                    <b>Hosting</b>
+                    <div class="muted">Active · Managed by Commonshub</div>
+                  </div>
+
+                  <div class="item">
+                    <b>Members</b>
+                    <div class="muted">0 (expected)</div>
+                  </div>
                 </div>
 
-                <div class="item">
-                  <b>Hosting</b>
-                  <div class="muted">Active · Managed by Commonshub</div>
+                <div class="note" style="margin-top:12px;">
+                  <b>Next:</b> This takes about 3–5 minutes. You can stop anytime.
                 </div>
 
-                <div class="item">
-                  <b>Members</b>
-                  <div class="muted">0 (expected)</div>
+                <div class="footerBar" style="margin-top:12px;">
+                  <a class="primary" href="setup-wizard.html">Set up your community</a>
                 </div>
               </div>
+            </section>
+          </div>
 
-              <div class="note" style="margin-top:12px;">
-                <b>Next:</b> This takes about 3–5 minutes. You can stop anytime.
-              </div>
+          <!-- ========================= -->
+          <!-- POST-SETUP (wizard done)  -->
+          <!-- ========================= -->
+          <div id="postSetup" style="display:none;">
 
-              <div class="footerBar" style="margin-top:12px;">
-               <a class="primary" href="setup-wizard.html">
-  Set up your community
-</a>
+            <!-- SECTION: Status -->
+            <section id="status" style="scroll-margin-top:90px;">
+              <div class="card">
+                <h3>Community status</h3>
+                <div class="muted">Role: Community owner</div>
+
+                <div class="list" style="margin-top:10px;">
+                  <div class="item">
+                    <b>Community</b>
+                    <div class="muted">The Commons Hub · mycommunity.commonshub.social</div>
+                  </div>
+
+                  <div class="item">
+                    <b>Hosting</b>
+                    <div class="muted">Active · Managed by Commonshub</div>
+                  </div>
+                </div>
+
+                <div class="note" style="margin-top:12px;">
+                  <b>Where things live:</b> Posting, moderation, and edits happen in Mastodon.
+                  Commonshub handles hosting, invites, and funding.
+                </div>
+
+                <div class="footerBar" style="margin-top:12px;">
+                  <a class="primary" href="community.html">Visit community (Mastodon)</a>
+                  <button class="secondary" id="copyInviteBtn" type="button" style="width:auto;">Copy invite link</button>
+                  <a class="secondary" href="#funding" style="width:auto;">Funding</a>
+                </div>
+
+                <!-- Invite link input stays hidden by default to keep things zen -->
+                <div class="field" id="inviteField" style="margin-top:12px; display:none;">
+                  <label>Invite link</label>
+                  <input
+                    id="inviteLink"
+                    type="text"
+                    value="https://mycommunity.commonshub.social/invite/abc123"
+                    readonly
+                  />
+                  <div class="muted" style="margin-top:6px;">
+                    Share this link wherever your audience already is (Substack, YouTube, email, etc.).
+                  </div>
+                </div>
               </div>
-            </div>
-          </section>
+            </section>
+
+            <!-- SECTION: Overview -->
+            <section id="overview" style="margin-top:14px; scroll-margin-top:90px;">
+              <div class="card">
+                <h3>Overview</h3>
+                <div class="muted">Light totals only — enough to feel oriented.</div>
+
+                <div class="list" style="margin-top:12px;">
+                  <div class="item">
+                    <b>Members</b>
+                    <div class="muted">0</div>
+                  </div>
+                  <div class="item">
+                    <b>Posts</b>
+                    <div class="muted">0</div>
+                  </div>
+                  <div class="item">
+                    <b>Local timeline</b>
+                    <div class="muted">Empty (expected)</div>
+                  </div>
+                </div>
+
+                <div class="note" style="margin-top:12px;">
+                  <b>Tip:</b> Make your first real post in Mastodon, then invite your audience.
+                </div>
+              </div>
+            </section>
+
+            <!-- SECTION: Funding -->
+            <section id="funding" style="margin-top:14px; scroll-margin-top:90px;">
+              <div class="card fundingCard">
+                <h3>Funding</h3>
+                <div class="muted">Optional support for your community. No ads. No interruptions.</div>
+
+                <div class="list" style="margin-top:12px;">
+                  <div class="item">
+                    <b>Status</b>
+                    <div class="muted">Not enabled</div>
+                  </div>
+                  <div class="item">
+                    <b>Support types</b>
+                    <div class="muted">Monthly support, one-time tips <span style="opacity:.7;">(campaigns on Growth plan)</span></div>
+                  </div>
+                  <div class="item">
+                    <b>Money raised (this month)</b>
+                    <div class="muted">$0</div>
+                  </div>
+                </div>
+
+                <div class="note" style="margin-top:12px;">
+                  <b>How it works:</b> Payments are handled by Stripe. Members donate on your support page.
+                  A pinned post in Mastodon simply links to it.
+                </div>
+
+                <div class="footerBar" style="margin-top:12px;">
+                  <a class="primary" href="funding-wizard.html">Enable funding</a>
+                  <a class="secondary" href="billing.html" style="width:auto;">Billing</a>
+                </div>
+
+                <div class="muted" style="margin-top:10px;">
+                  Need to edit community details, rules, or pinned posts later?
+                  Use Mastodon’s admin tools. <a href="#" style="color:inherit;">(Help)</a>
+                </div>
+              </div>
+            </section>
+
+          </div>
 
         </div>
       </div>
@@ -102,6 +236,7 @@
   </div>
 
   <script src="assets/app.js"></script>
+
   <script>
     // Optional: highlight active nav item on click
     (() => {
@@ -114,6 +249,53 @@
           a.classList.add("active");
         });
       });
+    })();
+  </script>
+
+  <script>
+    // Page-local toggles that depend on wizard completion flag (mock-only)
+    (() => {
+      let complete = false;
+      try { complete = localStorage.getItem("commonshub_setup_complete") === "1"; } catch {}
+
+      const pre = document.getElementById("preSetup");
+      const post = document.getElementById("postSetup");
+      const navPre = document.getElementById("navPreSetup");
+      const navPost = document.getElementById("navPostSetup");
+
+      if (pre && post) {
+        pre.style.display = complete ? "none" : "block";
+        post.style.display = complete ? "block" : "none";
+      }
+      if (navPre && navPost) {
+        navPre.style.display = complete ? "none" : "block";
+        navPost.style.display = complete ? "block" : "none";
+      }
+
+      // Copy invite link: reveal field + copy
+      const copyBtn = document.getElementById("copyInviteBtn");
+      const inviteField = document.getElementById("inviteField");
+      const inviteInput = document.getElementById("inviteLink");
+
+      if (copyBtn && inviteInput) {
+        copyBtn.addEventListener("click", async () => {
+          if (inviteField) inviteField.style.display = "block";
+          inviteInput.focus();
+          inviteInput.select();
+
+          try {
+            await navigator.clipboard.writeText(inviteInput.value);
+            const old = copyBtn.textContent;
+            copyBtn.textContent = "Copied";
+            setTimeout(() => (copyBtn.textContent = old), 900);
+          } catch {
+            document.execCommand("copy");
+            const old = copyBtn.textContent;
+            copyBtn.textContent = "Copied";
+            setTimeout(() => (copyBtn.textContent = old), 900);
+          }
+        });
+      }
     })();
   </script>
 
