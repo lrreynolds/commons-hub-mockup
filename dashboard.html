@@ -70,25 +70,20 @@
           </div>
 
  <!-- SECTION: Community -->
-<section id="community" style="scroll-margin-top:90px;">
+<!-- SECTION: Status (post-wizard home) -->
+<section id="status" style="scroll-margin-top:90px;">
   <div class="card">
-    <h3>Community</h3>
+    <h3>Community status</h3>
     <div class="muted">Role: Community owner</div>
 
     <div class="list" style="margin-top:10px;">
       <div class="item">
-        <b>
-          Name
-          <span class="editBadge">Edit</span>
-        </b>
+        <b>Name</b>
         <div class="muted">The Commons Hub</div>
       </div>
 
       <div class="item">
-        <b>
-          Address
-          <span class="editBadge"><b>Fixed</b></span>
-        </b>
+        <b>Address</b>
         <div class="muted">mycommunity.commonshub.social</div>
       </div>
 
@@ -99,37 +94,40 @@
     </div>
 
     <div class="note" style="margin-top:12px;">
-      <b>Recommended before inviting:</b> Add an About message and a pinned welcome post so the community feels complete when someone arrives.
+      <b>Where things live:</b> Posting, moderation, and edits happen in Mastodon.
+      Commonshub handles hosting, invites, and funding.
     </div>
 
-    <div class="footerBar">
-      <!-- Primary = next best step -->
-      <a class="primary" href="#announcement">
-        Finish first impression
-      </a>
-
-      <!-- Secondary = still available, but not the main path -->
-      <a class="secondary" href="community.html" style="width:auto;">
-        View community <span style="font-weight:800; opacity:.85;">(Mastodon)</span>
-      </a>
-
-      <!-- Optional: keep, but tone it down -->
-      <a class="secondary" href="setup-basics.html" style="width:auto;">
-        Edit community details
+    <div class="footerBar" style="margin-top:12px;">
+      <a class="primary" href="community.html">Visit community (Mastodon)</a>
+      <button class="secondary" id="copyInviteBtn" type="button" style="width:auto;">
+        Copy invite link
+      </button>
+      <a class="secondary" href="setup-wizard.html" style="width:auto;">
+        Setup wizard
       </a>
     </div>
 
-    <div class="note">
-      <b>Note:</b> Members participate in the native Mastodon experience (web or mobile apps).
-      This dashboard is the Commonshub layer.
+    <div class="field" style="margin-top:12px;">
+      <label>Invite link</label>
+      <input
+        id="inviteLink"
+        type="text"
+        value="https://mycommunity.commonshub.social/invite/abc123"
+        readonly
+      />
+      <div class="muted" style="margin-top:6px;">
+        Share this link wherever your audience already is (Substack, YouTube, email, etc.).
+      </div>
     </div>
   </div>
 </section>
-          <!-- SECTION: Overview (moved up) -->
-<section id="metrics" style="margin-top:14px; scroll-margin-top:90px;">
+
+<!-- SECTION: Overview -->
+<section id="overview" style="margin-top:14px; scroll-margin-top:90px;">
   <div class="card">
     <h3>Overview</h3>
-    <div class="muted">A quick snapshot of what’s set up.</div>
+    <div class="muted">Light totals only — enough to feel oriented.</div>
 
     <div class="list" style="margin-top:12px;">
       <div class="item">
@@ -138,290 +136,69 @@
       </div>
 
       <div class="item">
-        <b>First impression</b>
-        <div class="muted">Not set</div>
+        <b>Posts</b>
+        <div class="muted">0</div>
       </div>
 
       <div class="item">
-        <b>Invites</b>
-        <div class="muted">Not created</div>
+        <b>Local timeline</b>
+        <div class="muted">Empty (expected)</div>
       </div>
 
       <div class="item">
-        <b>Funding</b>
-        <div class="muted">Not enabled</div>
+        <b>Setup</b>
+        <div class="muted">Complete</div>
       </div>
     </div>
 
     <div class="note" style="margin-top:12px;">
-      <b>Next step:</b> Add an About message and a pinned welcome post so your community feels complete before invites.
-    </div>
-
-    <div class="footerBar" style="margin-top:12px;">
-      <a class="primary" href="#announcement">Finish first impression</a>
-      <a class="secondary" href="#invites">Invite members</a>
+      <b>Tip:</b> Your community can be live with 0 members.
+      The next “real” step is inviting people — and making your first post in Mastodon.
     </div>
   </div>
 </section>
 
-          <!-- SECTION: Community norms -->
-<section id="norms" style="margin-top:14px; scroll-margin-top:90px;">
-  <div class="card">
-    <h3>Community norms</h3>
-    <div class="muted">
-      New members will be asked to agree to these during signup.
-    </div>
-
-    <div class="field" style="margin-top:12px;">
-      <label>Norms</label>
-      <textarea>
-Be kind and treat people with respect.
-Disagree thoughtfully — critique ideas, not individuals.
-Don’t post spam or automated content.
-Respect people’s privacy and boundaries.
-Follow moderator guidance if issues arise.
-      </textarea>
-
-      <div class="muted" style="margin-top:6px;">
-        Keep this short and friendly. You can expand or refine these later as your community grows.
-      </div>
-    </div>
-
-    <div class="note" style="margin-top:12px;">
-      <b>Why this matters:</b> These norms appear in the “Accept rules” step before someone creates an account.
-    </div>
-  </div>
-</section>
-
-          <!-- SECTION: Announcement (stub for next step) -->
-        <!-- SECTION: Announcement -->
-<section id="announcement" style="margin-top:14px; scroll-margin-top:90px;">
-  <div class="card">
-    <h3>First impression</h3>
-    <div class="muted">
-      These show up in the Mastodon experience. Keep them short, warm, and specific.
-    </div>
-
-    <div class="field" style="margin-top:12px;">
-      <label>About message (public)</label>
-      <textarea>
-Welcome — this is the community space for thoughtful conversation and shared learning.
-Start with the Local timeline to see what members are discussing.
-      </textarea>
-      <div class="muted" style="margin-top:6px;">
-        Shown on your community’s public/about page (people see this before they join).
-      </div>
-    </div>
-
-    <div class="field" style="margin-top:12px;">
-      <label>Pinned welcome post (in the feed)</label>
-      <textarea>
-Welcome 👋
-
-A few simple norms:
-• Be kind and human
-• Disagree thoughtfully
-• No spam
-
-Introduce yourself below:
-• What brought you here?
-• What do you hope to learn or contribute?
-
-Tip: Start with the Local timeline to see what’s happening in this community.
-      </textarea>
-      <div class="muted" style="margin-top:6px;">
-        Shown at the top of the Local feed after someone joins.
-      </div>
-    </div>
-
-    <div class="note" style="margin-top:12px;">
-      <b>Important:</b> Replies and moderation happen in Mastodon (web or any Mastodon app). Commonshub helps you set the tone and keep funding simple.
-    </div>
-  </div>
-</section>
-
-          <!-- SECTION: Invites (stub) -->
-      <!-- SECTION: Invites -->
-<section id="invites" style="margin-top:14px; scroll-margin-top:90px;">
-  <div class="card">
-    <h3>Invite members</h3>
-    <div class="muted">
-      Share a simple link. New members join through the standard Mastodon signup flow.
-    </div>
-
-    <div class="field" style="margin-top:12px;">
-      <label>Invite link</label>
-      <input
-        type="text"
-        value="https://mycommunity.commonshub.social/invite/abc123"
-        readonly
-      />
-      <div class="muted" style="margin-top:6px;">
-        Anyone with this link can create an account on your community.
-      </div>
-    </div>
-
-    <div class="footerBar" style="margin-top:12px;">
-      <button class="primary" type="button">
-        Copy invite link
-      </button>
-    </div>
-
-    <div class="note" style="margin-top:12px;">
-      <b>What members will see:</b><br>
-      • Your community banner and About message<br>
-      • Your community norms (accept rules)<br>
-      • A standard Mastodon account setup flow<br>
-      • The Local timeline after joining
-    </div>
-
-    <div class="note" style="margin-top:10px;">
-      <b>Important:</b> Account creation, profiles, and moderation tools live in Mastodon.
-      Commonshub gives you a simple on-ramp and handles hosting.
-    </div>
-  </div>
-</section>
-
-<!-- SECTION: Funding -->
+<!-- SECTION: Funding (post-wizard panel; setup happens in funding wizard later) -->
 <section id="funding" style="margin-top:14px; scroll-margin-top:90px;">
   <div class="card fundingCard">
-    <!-- Header row + mock toggle -->
-    <div class="toggleRow" style="margin-top:0;">
-      <div>
-        <b style="font-size:14px;">Funding</b>
-        <div class="muted">Let members support the community if they find it valuable.</div>
-      </div>
-
-      <!-- Mock toggle: switches between “not enabled” and “enabled” views -->
-      <button class="secondary" id="fundingToggleBtn" type="button" style="width:auto;">
-        Show enabled view
-      </button>
+    <h3>Funding</h3>
+    <div class="muted">
+      Optional support for your community. No ads. No interruptions.
     </div>
 
-    <!-- ========== Disabled view ========== -->
-    <div id="fundingDisabledView">
-      <div class="list" style="margin-top:12px;">
-        <div class="item">
-          <b>Status</b>
-          <div class="muted">Not enabled</div>
-        </div>
-
-        <div class="item">
-          <b>How it appears to members</b>
-          <div class="muted">
-            Support is shared through pinned posts or announcements — never ads or interruptions.
-          </div>
-        </div>
-
-        <div class="item">
-          <b>Support types</b>
-          <div class="muted">
-            Ongoing, one-time, or goal-based (availability depends on plan).
-          </div>
-        </div>
+    <div class="list" style="margin-top:12px;">
+      <div class="item">
+        <b>Status</b>
+        <div class="muted">Not enabled</div>
       </div>
 
-      <div class="note" style="margin-top:12px;">
-        <b>Good to know:</b> Funding is optional. When you’re ready, connect Stripe — members never see Stripe unless you turn funding on.
+      <div class="item">
+        <b>Support types</b>
+        <div class="muted">Monthly support, one-time tips <span style="opacity:.7;">(campaigns on Growth plan)</span></div>
       </div>
 
-      <div class="footerBar" style="margin-top:12px;">
-        <button class="secondary" type="button" disabled style="opacity:.55; cursor:not-allowed;">
-          Connect Stripe (coming soon)
-        </button>
+      <div class="item">
+        <b>Money raised (this month)</b>
+        <div class="muted">$0</div>
       </div>
     </div>
 
-    <!-- ========== Enabled view ========== -->
-    <div id="fundingEnabledView" style="display:none;">
-      <!-- Status summary -->
-      <div class="list" style="margin-top:12px;">
-        <div class="item">
-          <b>Status</b>
-          <div class="muted">Enabled · Stripe connected</div>
-        </div>
+    <div class="note" style="margin-top:12px;">
+      <b>How it works:</b> Payments are handled by Stripe. Members donate on your support page.
+      A pinned post in Mastodon simply links to it.
+    </div>
 
-        <div class="item">
-          <b>Support types</b>
-          <div class="muted">
-            Monthly support, one-time tips
-            <span style="opacity:.7;">(campaigns available on Growth plan)</span>
-          </div>
-        </div>
+    <div class="footerBar" style="margin-top:12px;">
+      <a class="primary" href="funding-wizard.html">Enable funding</a>
+      <a class="secondary" href="billing.html" style="width:auto;">Billing</a>
+    </div>
 
-        <div class="item">
-          <b>How it appears to members</b>
-          <div class="muted">
-            Support appears as pinned posts or announcements in the Mastodon feed.
-          </div>
-        </div>
-      </div>
-
-      <!-- Funding post editor / live state -->
-      <div class="card" style="margin-top:14px; background: var(--card2);">
-      <h3 id="fundingPostTitle" style="margin:0 0 6px;">Funding post</h3>
-        <div class="muted" style="margin-bottom:10px;">
-          Commonshub pins a single support post in your community. It links members to your support page.
-        </div>
-
-        <!-- DRAFT (editable) -->
-        <div id="fundingPostDraft">
-          <div class="field" style="margin-top:0;">
-            <label>Post text</label>
-            <textarea id="fundingPostText">If this community has been valuable to you, you can support it here:
-
-[Support this community →]
-
-Monthly support and one-time tips help cover hosting and keep the commons healthy.</textarea>
-
-            <div class="muted" style="margin-top:6px;">
-              The support link is inserted automatically when you activate, so members always land on the correct page.
-            </div>
-          </div>
-        </div>
-
-        <!-- LIVE (after activation) -->
-        <div id="fundingPostLive" style="display:none;">
-          <div class="item" style="margin-top:10px;">
-            <b>Pinned post (what members see)</b>
-            <div class="muted" id="fundingPostRendered" style="white-space:pre-wrap; margin-top:6px;"></div>
-          </div>
-
-          <div class="field" style="margin-top:12px;">
-            <label>Support link (copyable)</label>
-            <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap;">
-              <input id="fundingSupportLink" type="text" value="https://mycommunity.commonshub.social/support" readonly />
-              <button class="secondary" id="copySupportLinkBtn" type="button" style="width:auto;">
-                Copy link
-              </button>
-            </div>
-            <div class="muted" style="margin-top:6px;">
-              Use this link anywhere (email, website, etc.). The pinned post also points here.
-            </div>
-          </div>
-        </div>
-
-        <div class="note" style="margin-top:12px;">
-          <b>Important:</b> Payments happen outside Mastodon. This post simply links to your Commonshub support page.
-        </div>
-
-        <!-- Single action area -->
-        <div class="footerBar" style="margin-top:12px;">
-          <button class="primary" id="fundingPostActionBtn" type="button">
-            Activate funding post (mock)
-          </button>
-
-          <!-- Only appears after activation -->
-          <a class="secondary" id="viewFundingPostBtn" href="#" style="display:none;">
-            View post in Mastodon
-          </a>
-        </div>
-      </div>
+    <div class="muted" style="margin-top:10px;">
+      Need to edit community details, rules, or pinned posts later?
+      Use Mastodon’s admin tools. <a href="#" style="color:inherit;">(Help)</a>
     </div>
   </div>
 </section>
-
-      
 
         </div>
       </div>
