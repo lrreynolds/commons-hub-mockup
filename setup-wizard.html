@@ -230,13 +230,13 @@ Tip: Start with the Local timeline to see what’s happening.</textarea>
     document.getElementById("back2")?.addEventListener("click", () => show(1));
     document.getElementById("next2")?.addEventListener("click", () => show(3));
     document.getElementById("back3")?.addEventListener("click", () => show(2));
-    document.getElementById("finish")?.addEventListener("click", () => {
+ document.getElementById("finish")?.addEventListener("click", () => {
   try {
     localStorage.setItem("commonshub_setup_complete", "1");
-    localStorage.setItem("commonshub_celebrate_once", "1"); // dashboard will consume
-    localStorage.setItem("commonshub_setup_step", "4");     // if you're using resume
+    localStorage.setItem("commonshub_celebrate_once", "1");
+    localStorage.removeItem("commonshub_setup_step"); // prevents resuming at step 4
   } catch {}
-  show(4);
+  window.location.href = "dashboard.html";
 });
 
     // Resume (mock)
