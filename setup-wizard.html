@@ -18,7 +18,10 @@
             <span>3 calm steps · ~5 minutes</span>
           </div>
         </div>
-        <div class="chip">Step <span id="stepNum">1</span> of 3</div>
+        <div style="display:flex; gap:10px; align-items:center;">
+  <div class="chip">Step <span id="stepNum">1</span> of 3</div>
+  <a class="secondary" href="#" data-reset="all" style="width:auto;">Start over</a>
+</div>
       </div>
 
       <div class="content">
@@ -183,7 +186,7 @@ Tip: Start with the Local timeline to see what’s happening.</textarea>
       </div>
     </main>
   </div>
-
+<script src="assets/app.js"></script>
 <script>
   // Minimal wizard navigation (mock-only)
   (() => {
