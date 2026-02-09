@@ -131,23 +131,27 @@
     resetFlow(kind);
   });
 
-  // Global "Start over" handler (any page)
-document.querySelectorAll('[data-reset="all"]').forEach(a => {
-  a.addEventListener("click", (e) => {
-    e.preventDefault();
-    try {
-      localStorage.removeItem("commonshub_server_live");
-      localStorage.removeItem("commonshub_setup_complete");
-      localStorage.removeItem("commonshub_setup_step");
-      localStorage.removeItem("commonshub_celebrate_once");
+  // ----------------------------
+  // Universal "Start over" handler
+  // ----------------------------
+  document.querySelectorAll("[data-reset='all']").forEach(el => {
+    el.addEventListener("click", (e) => {
+      e.preventDefault();
+      try {
+        localStorage.removeItem("commonshub_server_live");
+        localStorage.removeItem("commonshub_setup_complete");
+        localStorage.removeItem("commonshub_setup_step");
+        localStorage.removeItem("commonshub_celebrate_once");
 
-      localStorage.removeItem("commonshub_stripe_connected");
-      localStorage.removeItem("commonshub_funding_enabled");
-      localStorage.removeItem("commonshub_support_link");
-    } catch {}
-    window.location.href = "index.html";
+        localStorage.removeItem("commonshub_stripe_connected");
+        localStorage.removeItem("commonshub_funding_enabled");
+        localStorage.removeItem("commonshub_funding_subs_on");
+        localStorage.removeItem("commonshub_funding_tips_on");
+      } catch {}
+      try { sessionStorage.removeItem("commonshub_in_setup_flow"); } catch {}
+      window.location.href = "index.html";
+    });
   });
-});
 
   // Back-compat: old dashboard-only reset link id
   const reset = document.getElementById("resetFlowLink");
