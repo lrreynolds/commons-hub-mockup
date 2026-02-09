@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Commonshub — Funding</title>
+  <link rel="stylesheet" href="assets/styles.css" />
+</head>
+
+<body class="flow">
+  <div class="wrap" style="grid-template-columns: 1fr; max-width: 980px;">
+    <main class="stage" style="width:100%;">
+      <div class="topbar">
+        <div class="left">
+          <div class="logoMark"></div>
+          <div class="meta">
+            <b>Enable funding</b>
+            <span>Connect payouts first</span>
+          </div>
+        </div>
+
+        <!-- Always-visible escape hatch -->
+        <a class="secondary" href="#" data-reset="all" style="width:auto;">Start over</a>
+      </div>
+
+      <div class="content">
+        <div class="center" style="max-width:760px;">
+
+          <section class="card">
+            <h3 style="margin:0 0 8px;">Connect payouts (Stripe)</h3>
+
+            <div class="muted" style="margin-bottom:14px;">
+              Stripe handles payments securely. Commonshub never sees card details.
+            </div>
+
+            <div class="list" style="margin-top:10px;">
+              <div class="item">
+                <b>Currencies</b>
+                <div class="muted">Members can support you in Stripe-supported currencies.</div>
+              </div>
+              <div class="item">
+                <b>Payouts</b>
+                <div class="muted">Funds deposit to your bank account (via Stripe).</div>
+              </div>
+              <div class="item">
+                <b>Control</b>
+                <div class="muted">You can disconnect anytime from Stripe.</div>
+              </div>
+            </div>
+
+            <div class="note" style="margin-top:14px;">
+              <b>Next:</b> You’ll choose whether to offer subscriptions and/or tips.
+            </div>
+
+            <div class="footerBar" style="margin-top:14px; gap:12px;">
+              <!-- MOCK: "Connect Stripe" just sets a flag and moves forward -->
+              <button class="primary" id="connectStripeBtn" type="button" style="flex:1; justify-content:center;">
+                Connect Stripe
+              </button>
+
+              <a class="secondary" href="dashboard.html" style="flex:1; width:auto; justify-content:center;">
+                Not now
+              </a>
+            </div>
+
+            <!-- Very subtle breadcrumb -->
+            <div class="muted" style="margin-top:12px; font-size:13px;">
+              Payments happen on Stripe. Commonshub just links members to your support page.
+            </div>
+          </section>
+
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="assets/app.js"></script>
+  <script>
+    // Mock-only: connect Stripe then go to funding options
+    (() => {
+      const btn = document.getElementById("connectStripeBtn");
+      if (!btn) return;
+
+      btn.addEventListener("click", () => {
+        try {
+          localStorage.setItem("commonshub_stripe_connected", "1");
+        } catch {}
+        window.location.href = "funding-options.html";
+      });
+    })();
+  </script>
+</body>
+</html>
