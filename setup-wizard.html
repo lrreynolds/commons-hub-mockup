@@ -18,14 +18,24 @@
             <span>3 calm steps · ~5 minutes</span>
           </div>
         </div>
+
         <div style="display:flex; gap:10px; align-items:center;">
-  <div class="chip">Step <span id="stepNum">1</span> of 3</div>
-  <a class="secondary" href="#" data-reset="all" style="width:auto;">Start over</a>
-</div>
+          <div class="chip">Step <span id="stepNum">1</span> of 3</div>
+          <a class="secondary" href="#" data-reset="all" style="width:auto;">Start over</a>
+        </div>
       </div>
 
       <div class="content">
         <div class="center" style="max-width:760px;">
+
+          <!-- Flow banner: makes it feel like a temporary guided mode -->
+          <div class="flowBanner">
+            <div>
+              <b>Guided setup</b>
+              <span class="muted">· Temporary flow · You’ll return to your dashboard when finished.</span>
+            </div>
+            <a class="secondary exitLink" href="dashboard.html">Return to dashboard</a>
+          </div>
 
           <!-- Progress (simple + quiet) -->
           <div class="progress" style="margin-bottom:14px;">
@@ -36,106 +46,123 @@
           </div>
 
           <!-- Single step card container -->
-          <section class="card" id="wizardCard">
+          <section class="card flowCard" id="wizardCard">
 
-           
-          <!-- STEP 1 -->
-<div class="wizardStep" id="step1">
-  <h3 style="margin:0 0 6px;">Step 1 — Brand your community</h3>
-  <div class="muted" style="margin-bottom:14px;">
-    Make the community feel real and recognizable before you invite anyone.
-  </div>
+            <!-- STEP 1 -->
+            <div class="wizardStep" id="step1">
+              <div style="display:flex; justify-content:space-between; align-items:flex-start; gap:12px; margin-bottom:10px;">
+                <div>
+                  <div class="stepChip">Step 1 of 3</div>
+                  <h3 style="margin:8px 0 0;">Brand your community</h3>
+                </div>
+              </div>
 
-  <!-- Banner -->
-  <div class="field" style="margin-top:0;">
-    <label>Community banner</label>
+              <div class="muted" style="margin-bottom:14px;">
+                Make the community feel real and recognizable before you invite anyone.
+              </div>
 
-    <!-- Visual default preview (mock) -->
-    <div style="margin-top:8px; border:1px solid var(--border); border-radius:14px; overflow:hidden; background:var(--card2);">
-      <div style="padding:12px; font-weight:700;">Default community banner</div>
-      <div style="height:120px; display:flex; align-items:center; justify-content:center; opacity:.7;">
-        (Default banner preview)
-      </div>
-    </div>
+              <!-- Banner -->
+              <div class="field" style="margin-top:0;">
+                <label>Community banner</label>
 
-    <div class="note" style="margin-top:10px;">
-      <b>Default:</b> A Commonshub-branded banner is already applied. Uploading a custom banner is optional.
-    </div>
+                <!-- Visual default preview (mock) -->
+                <div style="margin-top:8px; border:1px solid var(--border); border-radius:14px; overflow:hidden; background:var(--card2);">
+                  <div style="padding:12px; font-weight:700;">Default community banner</div>
+                  <div style="height:120px; display:flex; align-items:center; justify-content:center; opacity:.7;">
+                    (Default banner preview)
+                  </div>
+                </div>
 
-    <input id="bannerFile" type="file" accept="image/*" style="margin-top:10px;" />
-    <div class="muted" style="margin-top:6px;">
-      Appears on the public community page and during signup.
-    </div>
-  </div>
+                <div class="note" style="margin-top:10px;">
+                  <b>Default:</b> A Commonshub-branded banner is already applied. Uploading a custom banner is optional.
+                </div>
 
-  <!-- Avatar -->
-  <div class="field" style="margin-top:18px;">
-    <label>Owner avatar (your “face” in the community)</label>
+                <input id="bannerFile" type="file" accept="image/*" style="margin-top:10px;" />
+                <div class="muted" style="margin-top:6px;">
+                  Appears on the public community page and during signup.
+                </div>
+              </div>
 
-    <div style="display:flex; gap:12px; align-items:center; margin-top:10px;">
-      <div style="width:56px; height:56px; border-radius:16px; border:1px solid var(--border); background:var(--card2);
-                  display:flex; align-items:center; justify-content:center; opacity:.7;">
-        (Avatar)
-      </div>
-      <div class="muted" style="flex:1;">
-        Default avatar applied
-      </div>
-    </div>
+              <!-- Avatar -->
+              <div class="field" style="margin-top:18px;">
+                <label>Owner avatar (your “face” in the community)</label>
 
-    <input id="avatarFile" type="file" accept="image/*" style="margin-top:10px;" />
-    <div class="muted" style="margin-top:6px;">
-      This avatar appears next to every post you make and helps members recognize you.
-    </div>
-  </div>
+                <div style="display:flex; gap:12px; align-items:center; margin-top:10px;">
+                  <div style="width:56px; height:56px; border-radius:16px; border:1px solid var(--border); background:var(--card2);
+                              display:flex; align-items:center; justify-content:center; opacity:.7;">
+                    (Avatar)
+                  </div>
+                  <div class="muted" style="flex:1;">
+                    Default avatar applied
+                  </div>
+                </div>
 
-  <div class="footerBar" style="margin-top:18px;">
-    <a class="secondary" href="dashboard.html" style="width:auto;">Exit</a>
-    <button class="primary" id="next1" type="button">Save and continue</button>
-  </div>
-</div>
+                <input id="avatarFile" type="file" accept="image/*" style="margin-top:10px;" />
+                <div class="muted" style="margin-top:6px;">
+                  This avatar appears next to every post you make and helps members recognize you.
+                </div>
+              </div>
 
-          <!-- STEP 2 -->
-<div class="wizardStep" id="step2" style="display:none;">
-  <h3 style="margin:0 0 6px;">Step 2 — Community purpose</h3>
-  <div class="muted" style="margin-bottom:14px;">
-    Define the mission and friendly norms before anyone joins.
-  </div>
+              <div class="footerBar" style="margin-top:18px;">
+                <a class="secondary exitLink" href="dashboard.html" style="width:auto;">Return to dashboard</a>
+                <button class="primary forward" id="next1" type="button">Save and continue</button>
+              </div>
+            </div>
 
-  <div class="field" style="margin-top:0;">
-    <label>Community mission (About)</label>
-    <textarea id="aboutText" style="min-height:90px;">Welcome — this is a community space for thoughtful conversation and shared learning.</textarea>
-    <div class="muted" style="margin-top:6px;">
-      Shown on the public/about page and previewed during signup.
-    </div>
-  </div>
+            <!-- STEP 2 -->
+            <div class="wizardStep" id="step2" style="display:none;">
+              <div style="display:flex; justify-content:space-between; align-items:flex-start; gap:12px; margin-bottom:10px;">
+                <div>
+                  <div class="stepChip">Step 2 of 3</div>
+                  <h3 style="margin:8px 0 0;">Community purpose</h3>
+                </div>
+              </div>
 
-  <div class="field" style="margin-top:16px;">
-    <label>Community norms (short + friendly)</label>
-    <textarea id="rulesText" style="min-height:110px;">Be kind and treat people with respect.
+              <div class="muted" style="margin-bottom:14px;">
+                Define the mission and friendly norms before anyone joins.
+              </div>
+
+              <div class="field" style="margin-top:0;">
+                <label>Community mission (About)</label>
+                <textarea id="aboutText" style="min-height:90px;">Welcome — this is a community space for thoughtful conversation and shared learning.</textarea>
+                <div class="muted" style="margin-top:6px;">
+                  Shown on the public/about page and previewed during signup.
+                </div>
+              </div>
+
+              <div class="field" style="margin-top:16px;">
+                <label>Community norms (short + friendly)</label>
+                <textarea id="rulesText" style="min-height:110px;">Be kind and treat people with respect.
 Disagree thoughtfully — critique ideas, not individuals.
 Don’t post spam or automated content.
 Respect privacy and boundaries.</textarea>
-    <div class="muted" style="margin-top:6px;">
-      Members are asked to accept these during signup.
-    </div>
-  </div>
+                <div class="muted" style="margin-top:6px;">
+                  Members are asked to accept these during signup.
+                </div>
+              </div>
 
-  <div class="footerBar" style="margin-top:18px;">
-    <button class="secondary" id="back2" type="button" style="width:auto;">Back</button>
-    <button class="primary" id="next2" type="button">Save and continue</button>
-  </div>
-</div>
+              <div class="footerBar" style="margin-top:18px;">
+                <button class="secondary" id="back2" type="button" style="width:auto;">Back</button>
+                <button class="primary forward" id="next2" type="button">Save and continue</button>
+              </div>
+            </div>
 
-          <!-- STEP 3 -->
-<div class="wizardStep" id="step3" style="display:none;">
-  <h3 style="margin:0 0 6px;">Step 3 — Welcome your members</h3>
-  <div class="muted" style="margin-bottom:14px;">
-    Create a single pinned welcome post. All other posting happens in Mastodon.
-  </div>
+            <!-- STEP 3 -->
+            <div class="wizardStep" id="step3" style="display:none;">
+              <div style="display:flex; justify-content:space-between; align-items:flex-start; gap:12px; margin-bottom:10px;">
+                <div>
+                  <div class="stepChip">Step 3 of 3</div>
+                  <h3 style="margin:8px 0 0;">Welcome your members</h3>
+                </div>
+              </div>
 
-  <div class="field" style="margin-top:0;">
-    <label>Pinned welcome post (text only)</label>
-    <textarea id="welcomeText" style="min-height:190px;">Welcome 👋
+              <div class="muted" style="margin-bottom:14px;">
+                Create a single pinned welcome post. All other posting happens in Mastodon.
+              </div>
+
+              <div class="field" style="margin-top:0;">
+                <label>Pinned welcome post (text only)</label>
+                <textarea id="welcomeText" style="min-height:190px;">Welcome 👋
 
 A few simple norms:
 • Be kind and human
@@ -148,37 +175,37 @@ Introduce yourself:
 
 Tip: Start with the Local timeline to see what’s happening.</textarea>
 
-    <div class="muted" style="margin-top:6px;">
-      This is the only post created by the wizard. You’ll create all other posts directly in Mastodon.
-    </div>
-  </div>
+                <div class="muted" style="margin-top:6px;">
+                  This is the only post created by the wizard. You’ll create all other posts directly in Mastodon.
+                </div>
+              </div>
 
-  <div class="footerBar" style="margin-top:18px;">
-    <button class="secondary" id="back3" type="button" style="width:auto;">Back</button>
-    <button class="primary" id="finish" type="button">Finish setup</button>
-  </div>
-</div>
+              <div class="footerBar" style="margin-top:18px;">
+                <button class="secondary" id="back3" type="button" style="width:auto;">Back</button>
+                <button class="primary forward" id="finish" type="button">Finish setup</button>
+              </div>
+            </div>
 
-<!-- DONE -->
-<div class="wizardStep" id="done" style="display:none;">
-  <h3 style="margin:0 0 6px;">🎉 Your community is ready</h3>
-  <div class="muted">
-    You’ll post and interact with members directly in Mastodon.
-    Commonshub handles hosting, invites, and funding.
-  </div>
+            <!-- DONE -->
+            <div class="wizardStep" id="done" style="display:none;">
+              <h3 style="margin:0 0 6px;">🎉 Your community is ready</h3>
+              <div class="muted">
+                You’ll post and interact with members directly in Mastodon.
+                Commonshub handles hosting, invites, and funding.
+              </div>
 
-  <div class="note" style="margin-top:14px;">
-    <b>Next:</b> You’re done. Your dashboard will now show the key actions: Visit, Invite, and Funding.
-  </div>
+              <div class="note" style="margin-top:14px;">
+                <b>Next:</b> You’re done. Your dashboard will now show the key actions: Visit, Invite, and Community funding.
+              </div>
 
-  <div class="footerBar" style="margin-top:18px;">
-    <a class="primary" id="doneBtn" href="dashboard.html">Done</a>
-  </div>
+              <div class="footerBar" style="margin-top:18px;">
+                <a class="primary forward" id="doneBtn" href="dashboard.html">Return to dashboard</a>
+              </div>
 
-  <div class="muted" style="margin-top:12px;">
-    Funding is optional and can be enabled anytime.
-  </div>
-</div>
+              <div class="muted" style="margin-top:12px;">
+                Community funding is optional and can be enabled anytime.
+              </div>
+            </div>
 
           </section>
 
@@ -186,71 +213,72 @@ Tip: Start with the Local timeline to see what’s happening.</textarea>
       </div>
     </main>
   </div>
-<script src="assets/app.js"></script>
-<script>
-  // Minimal wizard navigation (mock-only)
-  (() => {
-    const stepNum = document.getElementById("stepNum");
-    const progressBar = document.getElementById("progressBar");
-    const progressText = document.getElementById("progressText");
 
-    const s1 = document.getElementById("step1");
-    const s2 = document.getElementById("step2");
-    const s3 = document.getElementById("step3");
-    const done = document.getElementById("done");
+  <script src="assets/app.js"></script>
+  <script>
+    // Minimal wizard navigation (mock-only)
+    (() => {
+      const stepNum = document.getElementById("stepNum");
+      const progressBar = document.getElementById("progressBar");
+      const progressText = document.getElementById("progressText");
 
-    const STORAGE_KEY = "commonshub_setup_step"; // mock-only
+      const s1 = document.getElementById("step1");
+      const s2 = document.getElementById("step2");
+      const s3 = document.getElementById("step3");
+      const done = document.getElementById("done");
 
-    const steps = {
-      1: { label: "Branding", pct: "33%" },
-      2: { label: "Purpose", pct: "66%" },
-      3: { label: "Welcome post", pct: "100%" },
-      4: { label: "Complete", pct: "100%" },
-    };
+      const STORAGE_KEY = "commonshub_setup_step"; // mock-only
 
-    function show(n, { persist = true } = {}) {
-      s1.style.display = n === 1 ? "block" : "none";
-      s2.style.display = n === 2 ? "block" : "none";
-      s3.style.display = n === 3 ? "block" : "none";
-      done.style.display = n === 4 ? "block" : "none";
+      const steps = {
+        1: { label: "Branding", pct: "33%" },
+        2: { label: "Purpose", pct: "66%" },
+        3: { label: "Welcome post", pct: "100%" },
+        4: { label: "Complete", pct: "100%" },
+      };
 
-      const meta = steps[n] || steps[1];
+      function show(n, { persist = true } = {}) {
+        s1.style.display = n === 1 ? "block" : "none";
+        s2.style.display = n === 2 ? "block" : "none";
+        s3.style.display = n === 3 ? "block" : "none";
+        done.style.display = n === 4 ? "block" : "none";
 
-      // Top-right label stays "Step X of 3"
-      stepNum.textContent = String(Math.min(n, 3));
+        const meta = steps[n] || steps[1];
 
-      // Progress bar + label
-      progressBar.style.width = meta.pct;
-      progressText.textContent = meta.label;
+        // Top-right label stays "Step X of 3"
+        stepNum.textContent = String(Math.min(n, 3));
 
-      if (persist) {
-        try { localStorage.setItem(STORAGE_KEY, String(n)); } catch {}
+        // Progress bar + label
+        progressBar.style.width = meta.pct;
+        progressText.textContent = meta.label;
+
+        if (persist) {
+          try { localStorage.setItem(STORAGE_KEY, String(n)); } catch {}
+        }
       }
-    }
 
-    // Wire buttons
-    document.getElementById("next1")?.addEventListener("click", () => show(2));
-    document.getElementById("back2")?.addEventListener("click", () => show(1));
-    document.getElementById("next2")?.addEventListener("click", () => show(3));
-    document.getElementById("back3")?.addEventListener("click", () => show(2));
-document.getElementById("finish")?.addEventListener("click", () => {
-  try {
-    localStorage.setItem("commonshub_setup_complete", "1");
-    localStorage.setItem("commonshub_celebrate_once", "1");
-    localStorage.removeItem("commonshub_setup_step"); // optional
-  } catch {}
-  window.location.href = "dashboard.html";
-});
+      // Wire buttons
+      document.getElementById("next1")?.addEventListener("click", () => show(2));
+      document.getElementById("back2")?.addEventListener("click", () => show(1));
+      document.getElementById("next2")?.addEventListener("click", () => show(3));
+      document.getElementById("back3")?.addEventListener("click", () => show(2));
+      document.getElementById("finish")?.addEventListener("click", () => {
+        try {
+          localStorage.setItem("commonshub_setup_complete", "1");
+          localStorage.setItem("commonshub_celebrate_once", "1");
+          localStorage.removeItem("commonshub_setup_step"); // optional
+        } catch {}
+        window.location.href = "dashboard.html";
+      });
 
-    // Resume (mock)
-    let startStep = 1;
-    try {
-  const saved = parseInt(localStorage.getItem(STORAGE_KEY) || "1", 10);
-if (saved >= 1 && saved <= 3) startStep = saved; // <-- not 4
-    } catch {}
+      // Resume (mock)
+      let startStep = 1;
+      try {
+        const saved = parseInt(localStorage.getItem(STORAGE_KEY) || "1", 10);
+        if (saved >= 1 && saved <= 3) startStep = saved; // not 4
+      } catch {}
 
-    show(startStep, { persist: false });
-  })();
-</script>
+      show(startStep, { persist: false });
+    })();
+  </script>
 </body>
 </html>
