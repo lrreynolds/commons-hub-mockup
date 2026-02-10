@@ -199,3 +199,4 @@
   fundingCtaWrap.style.display = "none";
   fundingLiveActions.style.display = "block";
 })();
+})();
