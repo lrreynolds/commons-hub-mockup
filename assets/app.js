@@ -1,6 +1,5 @@
 // assets/app.js
 (() => {
-console.log("app.js loaded");
   // ----------------------------
   // 1) Mobile/desktop nav toggle
   // ----------------------------
