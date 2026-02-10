@@ -18,16 +18,7 @@
         </div>
       </div>
 
-      <!-- Keep sidebar calm: one nav item always -->
-      <nav class="nav" aria-label="Dashboard sections">
-        <a class="navItem active" href="#status">
-          <div>
-            <b>Status</b><br>
-            <small id="navSubtitle">Live + next step</small>
-          </div>
-          <div>●</div>
-        </a>
-      </nav>
+     
 
       <div class="hint">
         <b>Mock only:</b> Commonshub is the control plane (hosting, invites, community funding).
@@ -108,7 +99,7 @@
           <!-- POST-SETUP (wizard done)  -->
           <!-- ========================= -->
           <div id="postSetup" style="display:none;">
-            <section id="status" style="scroll-margin-top:90px;">
+            <section id="status-post" style="scroll-margin-top:90px;">
               <div class="card">
 
                 <h3>Ready to invite</h3>
@@ -157,88 +148,72 @@
                   </div>
                 </div>
 
-                <!-- Community funding block (zen) -->
-                <div class="card" style="margin-top:14px; background:var(--card2);">
-                  <h3 style="margin:0 0 6px;">Community funding</h3>
-                  <div class="muted" id="fundingSubcopy">
-                    Optional. Participation is always free.
-                  </div>
-
-                  <!-- Status lines (quiet) -->
-                  <div class="list" style="margin-top:12px;">
-                    <div class="item">
-                      <b>Stripe</b>
-                      <div class="muted" id="stripeStatus">Not connected</div>
-                    </div>
-                    <div class="item">
-                      <b>Community funding</b>
-                      <div class="muted" id="fundingStatus">Off</div>
-                    </div>
-                  </div>
-
-                  <!-- STATE A/B CTA (single large button) -->
-                  <div id="fundingCtaWrap" class="footerBar" style="margin-top:14px;">
-                    <a class="primary" id="fundingPrimaryBtn" href="funding-start.html">
-                      Enable community funding
-                    </a>
-                  </div>
-
- <div id="fundingLiveActions" style="display:none;">
-  <div class="footerBar" style="margin-top:14px; gap:12px;">
-    <a class="secondary"
-       id="fundingPreviewBtn"
-       href="community-funding.html"
-       style="flex:1; width:auto; justify-content:center;">
-      Visit community funding page
-    </a>
-
-    <button class="secondary"
-            id="copyFundingLinkBtn"
-            type="button"
-            style="flex:1; width:auto; justify-content:center;">
-      Copy community funding link
-    </button>
+         <!-- Community funding block (zen) -->
+<div class="card" style="margin-top:14px; background:var(--card2);">
+  <h3 style="margin:0 0 6px;">Community funding</h3>
+  <div class="muted" id="fundingSubcopy">
+    Optional. Participation is always free.
   </div>
 
-  <div class="muted" style="margin-top:10px; font-size:13px;">
-    <a href="funding-start.html" style="color:inherit; text-decoration:none;">
-      Manage community funding
+  <!-- Status lines (quiet) -->
+  <div class="list" style="margin-top:12px;">
+    <div class="item">
+      <b>Stripe</b>
+      <div class="muted" id="stripeStatus">Not connected</div>
+    </div>
+    <div class="item">
+      <b>Community funding</b>
+      <div class="muted" id="fundingStatus">Off</div>
+    </div>
+  </div>
+
+  <!-- STATE A/B CTA (single large button) -->
+  <div id="fundingCtaWrap" class="footerBar" style="margin-top:14px;">
+    <a class="primary" id="fundingPrimaryBtn" href="funding-start.html">
+      Enable community funding
     </a>
   </div>
 
-  <div class="field" id="fundingLinkField" style="margin-top:12px; display:none;">
-    <label>Community funding link</label>
-    <input
-      id="fundingLinkInput"
-      type="text"
-      value="https://mycommunity.commonshub.social/funding"
-      readonly
-    />
+  <!-- STATE C actions (only visible when funding is live) -->
+  <div id="fundingLiveActions" style="display:none; margin-top:14px;">
+    <div class="footerBar" style="gap:12px;">
+      <a class="secondary"
+         id="fundingPreviewBtn"
+         href="community-funding.html"
+         style="flex:1; width:auto; justify-content:center;">
+        Visit community funding page
+      </a>
+
+      <button class="secondary"
+              id="copyFundingLinkBtn"
+              type="button"
+              style="flex:1; width:auto; justify-content:center;">
+        Copy community funding link
+      </button>
+    </div>
+
+    <div class="muted" style="margin-top:10px; font-size:13px;">
+      <a href="funding-start.html" style="color:inherit; text-decoration:none;">
+        Manage community funding
+      </a>
+    </div>
+
+    <div class="field" id="fundingLinkField" style="margin-top:12px; display:none;">
+      <label>Community funding link</label>
+      <input
+        id="fundingLinkInput"
+        type="text"
+        value="https://mycommunity.commonshub.social/funding"
+        readonly
+      />
+      <div class="muted" style="margin-top:6px;">
+        Share this link anywhere. (This page also invites people to join your community.)
+      </div>
+    </div>
   </div>
 </div>
 
-                  <!-- Funding link field (only revealed when copy clicked, and only in State C) -->
-                  <div class="field" id="fundingLinkField" style="margin-top:12px; display:none;">
-                    <label>Community funding link</label>
-                    <input
-                      id="fundingLink"
-                      type="text"
-                      value="https://mycommunity.commonshub.social/fund"
-                      readonly
-                    />
-                    <div class="muted" style="margin-top:6px;">
-                      Share this link anywhere. (This page also invites people to join your community.)
-                    </div>
-                  </div>
-                </div>
-
-                <!-- Details toggle (everything else is hidden by default) -->
-                
-
-               
-                </div>
-
-              </div>
+         
             </section>
           </div>
 
@@ -246,109 +221,111 @@
       </div>
     </main>
   </div>
-
-  <script src="assets/app.js"></script>
-
+<script src="assets/app.js"></script>
   <script>
-    // Dashboard-only: Community funding state rendering (A/B/C)
-    (() => {
-      const stripeStatus = document.getElementById("stripeStatus");
-      const fundingStatus = document.getElementById("fundingStatus");
-      const fundingSubcopy = document.getElementById("fundingSubcopy");
+  // Dashboard-only: Community funding state rendering
+  (() => {
+    const stripeStatus = document.getElementById("stripeStatus");
+    const fundingStatus = document.getElementById("fundingStatus");
+    const fundingSubcopy = document.getElementById("fundingSubcopy");
 
-      const fundingPrimaryBtn = document.getElementById("fundingPrimaryBtn");
-      const fundingCtaWrap = document.getElementById("fundingCtaWrap");
+    const fundingPrimaryBtn = document.getElementById("fundingPrimaryBtn");
+    const fundingCtaWrap = document.getElementById("fundingCtaWrap");
 
-      const fundingLiveActions = document.getElementById("fundingLiveActions");
-      const manageFundingBtn = document.getElementById("manageFundingBtn");
+    const fundingLiveActions = document.getElementById("fundingLiveActions");
+    const copyFundingLinkBtn = document.getElementById("copyFundingLinkBtn");
 
-      const copyFundingBtn = document.getElementById("copyFundingBtn");
-      const fundingLinkField = document.getElementById("fundingLinkField");
-      const fundingLinkInput = document.getElementById("fundingLink");
+    const fundingLinkField = document.getElementById("fundingLinkField");
+    const fundingLinkInput = document.getElementById("fundingLinkInput");
 
-      if (!stripeStatus || !fundingStatus || !fundingPrimaryBtn) return;
+    if (!stripeStatus || !fundingStatus || !fundingPrimaryBtn) return;
 
-      let stripeConnected = false;
-      let fundingEnabled = false;
+    let stripeConnected = false;
+    let fundingEnabled = false;
 
-      try {
-        stripeConnected = localStorage.getItem("commonshub_stripe_connected") === "1";
-        fundingEnabled  = localStorage.getItem("commonshub_funding_enabled") === "1";
-      } catch {}
+    try {
+      stripeConnected = localStorage.getItem("commonshub_stripe_connected") === "1";
+      fundingEnabled  = localStorage.getItem("commonshub_funding_enabled") === "1";
+    } catch {}
 
-      // STATE A: Stripe not connected => funding cannot be on
-      if (!stripeConnected) {
-        stripeStatus.textContent = "Not connected";
-        fundingStatus.textContent = "Off";
-        if (fundingSubcopy) {
-          fundingSubcopy.textContent =
-            "Optional. Participation is always free. Connect Stripe to enable community funding.";
-        }
+    // Helper: hide live UI bits
+    function hideLiveBits() {
+      if (fundingLiveActions) fundingLiveActions.style.display = "none";
+      if (fundingLinkField) fundingLinkField.style.display = "none";
+      if (fundingCtaWrap) fundingCtaWrap.style.display = "flex";
+    }
 
-        fundingPrimaryBtn.textContent = "Enable community funding";
-        fundingPrimaryBtn.href = "funding-start.html";
+    // STATE A: Stripe not connected (funding cannot be on)
+    if (!stripeConnected) {
+      stripeStatus.textContent = "Not connected";
+      fundingStatus.textContent = "Off";
 
-        if (fundingLiveActions) fundingLiveActions.style.display = "none";
-        if (fundingLinkField) fundingLinkField.style.display = "none";
-        return;
-      }
-
-      // Stripe connected:
-      stripeStatus.textContent = "Connected";
-
-      // STATE B: Stripe connected, funding off
-      if (!fundingEnabled) {
-        fundingStatus.textContent = "Off";
-        if (fundingSubcopy) {
-          fundingSubcopy.textContent =
-            "Stripe is connected. Turn on community funding when you’re ready.";
-        }
-
-        fundingPrimaryBtn.textContent = "Turn on community funding";
-        fundingPrimaryBtn.href = "funding-options.html";
-
-        if (fundingLiveActions) fundingLiveActions.style.display = "none";
-        if (fundingLinkField) fundingLinkField.style.display = "none";
-        return;
-      }
-
-      // STATE C: funding live (assumes pinned post/banner completed in your flow)
-      fundingStatus.textContent = "Live";
       if (fundingSubcopy) {
         fundingSubcopy.textContent =
-          "Community funding is live and shareable.";
+          "Optional. Participation is always free. Connect Stripe to enable community funding.";
       }
 
-      // Hide single CTA; show two actions
-      if (fundingCtaWrap) fundingCtaWrap.style.display = "none";
-      if (fundingLiveActions) fundingLiveActions.style.display = "flex";
+      fundingPrimaryBtn.textContent = "Enable community funding";
+      fundingPrimaryBtn.href = "funding-start.html";
 
-      if (manageFundingBtn) manageFundingBtn.href = "funding-options.html";
+      hideLiveBits();
+      return;
+    }
 
-      async function copyText(text) {
-        try { await navigator.clipboard.writeText(text); return true; }
-        catch { return false; }
+    // Stripe connected:
+    stripeStatus.textContent = "Connected";
+
+    // STATE B: Stripe connected, funding off
+    if (!fundingEnabled) {
+      fundingStatus.textContent = "Off";
+
+      if (fundingSubcopy) {
+        fundingSubcopy.textContent =
+          "Stripe is connected. Turn on community funding when you’re ready.";
       }
 
-      if (copyFundingBtn && fundingLinkInput) {
-        copyFundingBtn.addEventListener("click", async () => {
-          if (fundingLinkField) fundingLinkField.style.display = "block";
+      fundingPrimaryBtn.textContent = "Turn on community funding";
+      fundingPrimaryBtn.href = "funding-options.html";
 
-          fundingLinkInput.focus();
-          fundingLinkInput.select();
+      hideLiveBits();
+      return;
+    }
 
-          const ok = await copyText(fundingLinkInput.value);
-          if (!ok) {
-            try { document.execCommand("copy"); } catch {}
-          }
+    // STATE C: Funding live
+    fundingStatus.textContent = "Live";
 
-          const old = copyFundingBtn.textContent;
-          copyFundingBtn.textContent = "Copied";
-          setTimeout(() => (copyFundingBtn.textContent = old), 900);
-        });
-      }
-    })();
-  </script>
+    if (fundingSubcopy) {
+      fundingSubcopy.textContent = "Community funding is live and shareable.";
+    }
+
+    // Hide single CTA; show two actions
+    if (fundingCtaWrap) fundingCtaWrap.style.display = "none";
+    if (fundingLiveActions) fundingLiveActions.style.display = "block";
+
+    async function copyText(text) {
+      try { await navigator.clipboard.writeText(text); return true; }
+      catch { return false; }
+    }
+
+    if (copyFundingLinkBtn && fundingLinkInput) {
+      copyFundingLinkBtn.addEventListener("click", async () => {
+        if (fundingLinkField) fundingLinkField.style.display = "block";
+
+        fundingLinkInput.focus();
+        fundingLinkInput.select();
+
+        const ok = await copyText(fundingLinkInput.value);
+        if (!ok) {
+          try { document.execCommand("copy"); } catch {}
+        }
+
+        const old = copyFundingLinkBtn.textContent;
+        copyFundingLinkBtn.textContent = "Copied";
+        setTimeout(() => (copyFundingLinkBtn.textContent = old), 900);
+      });
+    }
+  })();
+</script>
 
 </body>
 </html>
