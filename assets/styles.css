@@ -396,6 +396,82 @@ body.dashboard .secondary{
   margin-top: 28px;
 }
 
+/* ===========================
+   Flow mode (setup/funding/etc)
+   Applies only when body.flow
+   =========================== */
+
+body.flow {
+  /* Slightly different overall backdrop to signal "mode" */
+  background: radial-gradient(1200px 700px at 20% 0%, rgba(31,111,74,.10), transparent 60%),
+              radial-gradient(900px 600px at 85% 15%, rgba(31,111,74,.06), transparent 55%),
+              var(--bg, #f5f7f5);
+}
+
+/* Optional: if your dashboard is also body.flow and you want it NOT to use this,
+   then make dashboard use body.dashboard instead. If dashboard must stay flow,
+   we can scope this further later. */
+
+body.flow .stage {
+  /* Give the "mode" a calmer framed feel */
+  border: 1px solid rgba(0,0,0,.06);
+  box-shadow: 0 18px 70px rgba(0,0,0,.08);
+}
+
+/* Flow banner (top “you are in a guided mode”) */
+.flowBanner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 12px;
+  border-radius: 14px;
+  border: 1px solid rgba(31,111,74,.18);
+  background: rgba(31,111,74,.06);
+  margin-bottom: 14px;
+}
+
+.flowBanner b {
+  font-weight: 800;
+}
+
+.flowBanner .muted {
+  opacity: .85;
+}
+
+/* Make the step “work surface” feel elevated (only inside flows) */
+body.flow .card.flowCard {
+  border: 1px solid rgba(0,0,0,.08);
+  box-shadow: 0 14px 40px rgba(0,0,0,.10);
+}
+
+/* Step chip style */
+.stepChip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(31,111,74,.22);
+  background: rgba(31,111,74,.08);
+  font-weight: 800;
+  font-size: 13px;
+}
+
+/* Make “Return to dashboard” look like a quiet exit */
+body.flow .exitLink {
+  width: auto !important;
+  opacity: .85;
+}
+
+/* Make the primary CTA feel more “forward” */
+body.flow .primary.forward {
+  position: relative;
+}
+body.flow .primary.forward::after {
+  content: " →";
+  font-weight: 900;
+}
 @media (max-width: 860px){
   .planGrid{ grid-template-columns: 1fr; }
 }
