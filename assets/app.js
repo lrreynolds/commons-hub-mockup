@@ -165,6 +165,22 @@ if (fundingBtn) {
     fundingBtn.href = "funding-options.html";
   }
 }
+  // ----------------------------
+// 6b) Funding live actions visibility (dashboard)
+// ----------------------------
+const fundingLiveActions = document.getElementById("fundingLiveActions");
+
+let stripeConnected = false;
+let fundingEnabled = false;
+
+try {
+  stripeConnected = localStorage.getItem("commonshub_stripe_connected") === "1";
+  fundingEnabled = localStorage.getItem("commonshub_funding_enabled") === "1";
+} catch {}
+
+if (fundingLiveActions) {
+  fundingLiveActions.style.display = (stripeConnected && fundingEnabled) ? "block" : "none";
+}
 
   // Back-compat: old dashboard-only reset link id
   const reset = document.getElementById("resetFlowLink");
