@@ -306,9 +306,13 @@ body.dashboard{
   --text: #e9f2ec;
   --muted: rgba(233,242,236,.72);
 
-  /* Cards become soft panels */
-  --card: rgba(255,255,255,.06);
-  --card2: rgba(255,255,255,.04);
+   /* Cards float as light surfaces */
+  --card: rgba(255,255,255,.92);
+  --card2: rgba(255,255,255,.85);
+
+  /* Text inside cards should be dark again */
+  --text: #0f1713;
+  --muted: rgba(15,23,19,.7);
 
   /* Borders + shadows get subtle */
   --border: rgba(255,255,255,.10);
