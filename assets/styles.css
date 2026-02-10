@@ -486,7 +486,7 @@ body.dashboard .header{
 
 /* Stage + topbar read as UI chrome on dark */
 body.dashboard .stage{
-  background: rgba(0,0,0,.18);
+   background: rgba(255,255,255,.06);
   border: 1px solid var(--dashBorder);
   box-shadow: 0 22px 60px rgba(0,0,0,.28);
   backdrop-filter: blur(14px);
@@ -597,4 +597,12 @@ body.dashboard .sidebar a{
 body.dashboard .wrap{
   grid-template-columns: 1fr;
   max-width: 900px;
+}
+
+/* Dashboard canvas (override) — keep this LAST */
+body.dashboard{
+  background:
+    radial-gradient(1200px 600px at 30% 0%, rgba(31,111,74,.10), transparent 60%),
+    radial-gradient(1000px 600px at 80% 10%, rgba(31,111,74,.08), transparent 60%),
+    #2f3a35;
 }
