@@ -1,14 +1,24 @@
-# Commonshub MVP — Mastodon Integration Notes (handoff)
+# Commonshub MVP — Mastodon Integration Notes
 
 Purpose:
-- Sanity-check what Commonshub can do via provisioning/API vs what must fall back to Mastodon UI.
-- Keep notes in a form usable by engineers and creator-facing documentation writers.
+- Sanity-check what Commonshub can do via provisioning/API vs Mastodon UI
+- Support engineering and creator-facing docs
 
-Legend:
-- Confidence: Green (clear), Yellow (likely but verify), Red (unclear / probably not possible via supported API)
-- Fallback doc: Only write if dashboard cannot reliably do it.
+This document should be read alongside:
+- mvp-flow-and-state.md (product behavior)
+- community-funding-integration.md (Stripe + funding)
 
 ---
+
+## Legend
+
+- Green: clear / supported
+- Yellow: likely, verify
+- Red: unsupported or unclear
+
+---
+
+## (existing sections 1–6 unchanged)
 
 ## Notes Template (copy/paste)
 
@@ -231,3 +241,26 @@ Dashboard behavior:
 - Funding section describes capabilities generically
 - Plan enforcement happens at enable-time, not via UI gating
 - Do not surface upsell or disabled controls in MVP dashboard
+
+- ## 7) Funding-related posts and announcements
+
+**Control name:** Community funding announcement / pinned post  
+**Where shown:** Local feed, profile, announcement banner  
+**Mastodon primitive:** Status post; optional pin; optional announcement  
+**Desired Commonshub behavior:**  
+- Create a single funding message
+- Optionally pin or announce it
+
+**Implementation path (ranked):**
+1) API (official) ?  
+2) Admin automation / internal endpoint ?  
+3) Creator does it in Mastodon UI (fallback)
+
+**Current confidence:** Yellow  
+**Unknowns to verify:**
+- Can announcements be created programmatically?
+- Can pins be toggled via API?
+
+**Fallback doc needed?** Likely Yes  
+**Fallback doc title:** Share your community funding post in Mastodon  
+**Owner-friendly wording:** Community funding announcement
