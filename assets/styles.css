@@ -17,7 +17,7 @@
   --border: var(--line); /* alias so either name works */
 
   /* Brand */
-  --accent:#1f6f4a;
+  --accent:#215f43;
   --accent2:#0f5132;
 
   /* Buttons */
@@ -61,7 +61,7 @@ body{
   margin: 0 auto;
   padding: 22px 16px 22px;
   display:grid;
-  grid-template-columns: 320px 1fr;
+  grid-template-columns: 300px 1fr;
   gap:16px;
   min-height: 100vh;
   align-items:start;
@@ -188,7 +188,7 @@ body{
   white-space:nowrap;
 }
 
-.content{ padding:18px; }
+.content{ padding:14px 18px 18px; }
 .center{ max-width:860px; margin:0 auto; }
 
 /* =========================================================
@@ -263,6 +263,7 @@ body{
   display:inline-flex;
   align-items:center;
   justify-content:center;
+  box-shadow: 0 6px 18px rgba(31,111,74,.35);
 }
 
 .secondary{
@@ -477,6 +478,12 @@ body.dashboard{
   color: var(--dashText);
 }
 
+body.dashboard .header{
+  padding-bottom:14px;
+  margin-bottom:18px;
+  border-bottom:1px solid var(--dashBorder);
+}
+
 /* Stage + topbar read as UI chrome on dark */
 body.dashboard .stage{
   background: rgba(0,0,0,.18);
@@ -487,6 +494,9 @@ body.dashboard .stage{
 body.dashboard .topbar{
   background: rgba(0,0,0,.14);
   border-bottom: 1px solid var(--dashBorder);
+}
+body.dashboard .topbar .chip{
+  font-weight:700;
 }
 
 /* Cards are light "panels" */
@@ -512,7 +522,17 @@ body.dashboard .secondary{
 /* muted inside the dark dashboard chrome */
 body.dashboard .topbar .muted,
 body.dashboard .header .muted{
-  color: var(--dashMuted);
+  color: rgba(233,242,236,.82);
+}
+
+body.dashboard .header h2{
+  font-size:20px;
+  font-weight:900;
+  letter-spacing:-.01em;
+}
+
+body.dashboard .card + .card{
+  margin-top:18px;
 }
 
 /* muted inside light cards stays dark-muted */
@@ -538,4 +558,39 @@ body.dashboard .card .muted{
 @media (max-width: 1020px){
   .wrap{ grid-template-columns:1fr; }
   .sidebar{ position:relative; top:auto; }
+}
+
+/* =========================
+   Dashboard sidebar tuning
+   ========================= */
+
+body.dashboard .sidebar{
+  background: rgba(0,0,0,.28);
+  border: 1px solid var(--dashBorder);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.04);
+  backdrop-filter: blur(12px);
+}
+
+body.dashboard .brand{
+  border-bottom: 1px solid var(--dashBorder);
+}
+
+body.dashboard .brand b{
+  color: var(--dashText);
+}
+
+body.dashboard .brand span{
+  color: var(--dashMuted);
+}
+
+/* Sidebar hint becomes quiet banner */
+body.dashboard .hint{
+  background: rgba(255,255,255,.06);
+  border: 1px dashed var(--dashBorder);
+  color: var(--dashMuted);
+}
+
+/* Sidebar links */
+body.dashboard .sidebar a{
+  color: var(--dashText);
 }
