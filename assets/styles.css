@@ -357,19 +357,30 @@ body.flow .wrap{ grid-template-columns:1fr; }
 body.flow .stage{ width:100%; }
 body.flow #navToggle{ display:none !important; }
 
-/* Stronger, more visible “journey” background */
-body.flow{
+/* =========================================================
+   FLOW MODE (SAFE)
+   Only affects pages that include: <div class="flowRoot">
+   ========================================================= */
+
+.flowRoot{
+  min-height: 100vh;
+  padding: 22px 0;
   background:
-    radial-gradient(1200px 700px at 20% 0%, rgba(31,111,74,.12), transparent 60%),
-    radial-gradient(900px 600px at 85% 15%, rgba(31,111,74,.08), transparent 55%),
-    linear-gradient(to bottom, rgba(31,111,74,.06) 0%, rgba(245,247,245,1) 70%),
-    var(--bg);
+    radial-gradient(1200px 700px at 20% 0%, rgba(31,111,74,.10), transparent 60%),
+    radial-gradient(900px 600px at 85% 15%, rgba(31,111,74,.07), transparent 55%),
+    linear-gradient(to bottom, rgba(31,111,74,.05) 0%, rgba(245,247,245,1) 70%);
 }
 
-/* Flow stage feels a bit more “framed” */
-body.flow .stage{
+/* The stage should feel like a panel sitting on the canvas */
+.flowRoot .stage{
   border: 1px solid rgba(0,0,0,.06);
   box-shadow: 0 18px 70px rgba(0,0,0,.08);
+}
+
+/* Banner = mode indicator */
+.flowRoot .flowBanner{
+  border: 1px solid rgba(31,111,74,.20);
+  background: rgba(31,111,74,.07);
 }
 
 /* Flow banner + step chip (only apply if you use these classes) */
