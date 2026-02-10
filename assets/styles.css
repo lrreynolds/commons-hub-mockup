@@ -521,9 +521,9 @@ body.dashboard .secondary{
 }
 
 body.dashboard #fundingLiveActions .secondary{
-  background: rgba(255,255,255,.12);
-  color: var(--dashText);
-  border: 1px solid rgba(233,242,236,.22);
+  background: #ffffff;
+  color: var(--cardText);
+  border: 1px solid var(--line);
 }
 
 body.dashboard #fundingLiveActions{
