@@ -488,11 +488,11 @@ body.dashboard .header{
 body.dashboard .stage{
   background: rgba(0,0,0,.18);
   border: 1px solid var(--dashBorder);
-  box-shadow: 0 30px 90px rgba(0,0,0,.45);
+  box-shadow: 0 22px 60px rgba(0,0,0,.28);
   backdrop-filter: blur(14px);
 }
 body.dashboard .topbar{
-  background: rgba(0,0,0,.14);
+  background: rgba(255,255,255,.06);
   border-bottom: 1px solid var(--dashBorder);
 }
 body.dashboard .topbar .chip{
