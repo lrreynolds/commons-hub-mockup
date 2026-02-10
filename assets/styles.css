@@ -297,7 +297,59 @@ textarea{min-height:110px; resize:vertical}
 .fundingCard .list .item + .item{
   border-top: 1px solid rgba(16,32,24,.08) !important;
 }
+/* =========================
+   Dashboard theme (place-like)
+   ========================= */
+body.dashboard{
+  /* Dark “room” */
+  --bg: #0f1713;
+  --text: #e9f2ec;
+  --muted: rgba(233,242,236,.72);
 
+  /* Cards become soft panels */
+  --card: rgba(255,255,255,.06);
+  --card2: rgba(255,255,255,.04);
+
+  /* Borders + shadows get subtle */
+  --border: rgba(255,255,255,.10);
+}
+
+/* If your layout uses body background directly */
+body.dashboard{
+  background: var(--bg);
+  color: var(--text);
+}
+
+/* Make sidebar feel quieter and integrated */
+body.dashboard .sidebar{
+  background: transparent;
+  border-right: 1px solid var(--border);
+}
+
+/* Make cards feel like calm panels */
+body.dashboard .card{
+  background: var(--card);
+  border: 1px solid var(--border);
+}
+
+/* Muted text stays readable on dark */
+body.dashboard .muted{
+  color: var(--muted);
+}
+
+/* Chips shouldn’t scream on dark */
+body.dashboard .chip{
+  background: rgba(255,255,255,.08);
+  border: 1px solid var(--border);
+  color: var(--text);
+}
+
+/* Buttons: keep primary “alive”, soften secondary */
+body.dashboard .secondary{
+  background: rgba(255,255,255,.06);
+  border: 1px solid var(--border);
+  color: var(--text);
+}
 /* Optional: keep the invite link present for copying but not visually loud */
 #inviteLink {
   position: absolute;
