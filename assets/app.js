@@ -1,5 +1,6 @@
 // assets/app.js
 (() => {
+console.log("app.js loaded");
   // ----------------------------
   // 1) Mobile/desktop nav toggle
   // ----------------------------
@@ -16,6 +17,7 @@
   let complete = false;
   try {
     complete = localStorage.getItem("commonshub_setup_complete") === "1";
+
   } catch {}
 
   const pre = document.getElementById("preSetup");
