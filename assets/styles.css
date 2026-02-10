@@ -626,3 +626,9 @@ body.dashboard #fundingLiveActions button.secondary{
   color:var(--cardText);
   border:1px solid rgba(15,23,19,.14);
 }
+/* Invite CTA buttons inside light cards */
+body.dashboard .card .secondary{
+  background:#ffffff;
+  color:var(--cardText);
+  border:1px solid var(--line);
+}
