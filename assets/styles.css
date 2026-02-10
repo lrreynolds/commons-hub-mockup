@@ -440,44 +440,68 @@ body.flow .primary.forward::after{
   border-top: 1px solid rgba(16,32,24,.08) !important;
 }
 
-/* =========================================================
-   Dashboard Mode (place-like)
-   NOTE: only applies if you set <body class="dashboard"> on dashboard.html
-   ========================================================= */
+/* =========================
+   Dashboard theme (place-like)
+   Apply ONLY when <body class="dashboard">
+   ========================= */
 
 body.dashboard{
-  background:#0f1713;
-  color:#e9f2ec;
+  /* Dark “room” */
+  --bg:#0f1713;
+
+  /* On dark surfaces */
+  --dashText:#e9f2ec;
+  --dashMuted: rgba(233,242,236,.70);
+  --dashBorder: rgba(233,242,236,.14);
+
+  /* Card surfaces (still light) */
+  --card: rgba(255,255,255,.94);
+  --card2: rgba(255,255,255,.88);
+
+  /* Card text (dark) */
+  --cardText:#0f1713;
+  --cardMuted: rgba(15,23,19,.70);
+
+  /* Make borders on light cards consistent */
+  --line: rgba(15,23,19,.10);
 }
 
-/* Let the stage + cards float as light surfaces on dark */
+body.dashboard{
+  background: var(--bg);
+  color: var(--dashText);
+}
+
+/* Stage + topbar read as UI chrome on dark */
 body.dashboard .stage{
-  background: rgba(255,255,255,.06);
-  border: 1px solid rgba(255,255,255,.10);
+  background: rgba(0,0,0,.18);
+  border: 1px solid var(--dashBorder);
+  box-shadow: 0 30px 90px rgba(0,0,0,.45);
+  backdrop-filter: blur(14px);
+}
+body.dashboard .topbar{
+  background: rgba(0,0,0,.14);
+  border-bottom: 1px solid var(--dashBorder);
 }
 
-body.dashboard .card,
-body.dashboard .item{
-  background: rgba(255,255,255,.92);
-  color:#0f1713;
-  border: 1px solid rgba(255,255,255,.14);
+/* Cards are light "panels" */
+body.dashboard .card{
+  background: var(--card);
+  color: var(--cardText);
+  border: 1px solid rgba(255,255,255,.18);
 }
+body.dashboard .muted{ color: var(--cardMuted); }
 
-body.dashboard .muted{
-  color: rgba(233,242,236,.72);
-}
-
-/* Chips shouldn’t pop too hard on dark */
+/* Chips and secondary buttons should be subtle but readable */
 body.dashboard .chip{
-  background: rgba(255,255,255,.08);
-  border: 1px solid rgba(255,255,255,.10);
-  color: rgba(233,242,236,.9);
+  background: rgba(255,255,255,.10);
+  border: 1px solid var(--dashBorder);
+  color: var(--dashText);
 }
 
 body.dashboard .secondary{
-  background: rgba(255,255,255,.06);
-  border: 1px solid rgba(255,255,255,.10);
-  color: rgba(233,242,236,.92);
+  background: rgba(255,255,255,.10);
+  border: 1px solid var(--dashBorder);
+  color: var(--dashText);
 }
 
 /* =========================================================
