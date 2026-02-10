@@ -454,7 +454,7 @@ body.flow .flowRoot #navToggle{ display:none !important; }
 
 body.dashboard{
   /* Dark “room” */
-  --bg:#3a4440;
+  --bg:#46524d;
 
   /* On dark surfaces */
   --dashText:#e9f2ec;
@@ -602,7 +602,7 @@ body.dashboard .wrap{
 /* Dashboard canvas (override) — keep this LAST */
 body.dashboard{
   background:
-    radial-gradient(1200px 600px at 30% 0%, rgba(31,111,74,.10), transparent 60%),
-    radial-gradient(1000px 600px at 80% 10%, rgba(31,111,74,.08), transparent 60%),
-    #2f3a35;
+    radial-gradient(1200px 600px at 30% 0%, rgba(31,111,74,.05), transparent 70%),
+    radial-gradient(1000px 600px at 80% 10%, rgba(31,111,74,.04), transparent 70%),
+    var(--bg);
 }
