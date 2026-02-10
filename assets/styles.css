@@ -519,6 +519,20 @@ body.dashboard .secondary{
   border: 1px solid var(--dashBorder);
   color: var(--dashText);
 }
+
+body.dashboard #fundingLiveActions .secondary{
+  background: rgba(255,255,255,.12);
+  color: var(--dashText);
+  border: 1px solid rgba(233,242,236,.22);
+}
+
+body.dashboard #fundingLiveActions{
+  display:flex;
+  gap:10px;
+  align-items:center;
+  justify-content:space-between;
+}
+
 /* muted inside the dark dashboard chrome */
 body.dashboard .topbar .muted,
 body.dashboard .header .muted{
