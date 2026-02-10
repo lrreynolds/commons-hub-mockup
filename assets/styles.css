@@ -527,6 +527,7 @@ body.dashboard #fundingLiveActions .secondary{
 }
 
 body.dashboard #fundingLiveActions{
+  display:flex;
   gap:10px;
   align-items:center;
   justify-content:space-between;
@@ -618,4 +619,10 @@ body.dashboard{
     radial-gradient(1200px 600px at 30% 0%, rgba(31,111,74,.05), transparent 70%),
     radial-gradient(1000px 600px at 80% 10%, rgba(31,111,74,.04), transparent 70%),
     var(--bg);
+}
+body.dashboard #fundingLiveActions a.secondary,
+body.dashboard #fundingLiveActions button.secondary{
+  background:#ffffff;
+  color:var(--cardText);
+  border:1px solid rgba(15,23,19,.14);
 }
