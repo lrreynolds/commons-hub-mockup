@@ -454,7 +454,7 @@ body.flow .flowRoot #navToggle{ display:none !important; }
 
 body.dashboard{
   /* Dark “room” */
-  --bg:#0f1713;
+  --bg:#1b2420;
 
   /* On dark surfaces */
   --dashText:#e9f2ec;
@@ -593,11 +593,4 @@ body.dashboard .hint{
 /* Sidebar links */
 body.dashboard .sidebar a{
   color: var(--dashText);
-}
-.fundingCard{
-  background: var(--card2);
-  border: 1px solid var(--line);
-  border-radius: var(--radius2);
-  padding:14px;
-  margin-top:14px;
 }
