@@ -140,12 +140,22 @@
     });
   });
 
-  // ----------------------------
-// 6) Funding button toggle (3-state)
 // ----------------------------
-const fundingBtn = document.getElementById("fundingBtn");
+// 6) Funding UI (dashboard) — 3-state
+// ----------------------------
+(() => {
+  const stripeStatus = document.getElementById("stripeStatus");
+  const fundingStatus = document.getElementById("fundingStatus");
+  const fundingSubcopy = document.getElementById("fundingSubcopy");
 
-if (fundingBtn) {
+  const fundingPrimaryBtn = document.getElementById("fundingPrimaryBtn");
+  const fundingCtaWrap = document.getElementById("fundingCtaWrap");
+
+  const fundingLiveActions = document.getElementById("fundingLiveActions");
+
+  // Only run on pages that actually have the funding block
+  if (!fundingPrimaryBtn || !fundingCtaWrap || !fundingLiveActions) return;
+
   let stripeConnected = false;
   let fundingEnabled = false;
 
@@ -154,40 +164,38 @@ if (fundingBtn) {
     fundingEnabled  = localStorage.getItem("commonshub_funding_enabled") === "1";
   } catch {}
 
+  // Default: show single CTA, hide live actions
+  fundingCtaWrap.style.display = "flex";
+  fundingLiveActions.style.display = "none";
+
+  if (stripeStatus) stripeStatus.textContent = stripeConnected ? "Connected" : "Not connected";
+
+  // State A: Stripe not connected
   if (!stripeConnected) {
-    fundingBtn.textContent = "Enable funding";
-    fundingBtn.href = "funding-start.html";
-  } else if (!fundingEnabled) {
-    fundingBtn.textContent = "Finish funding setup";
-    fundingBtn.href = "funding-options.html";
-  } else {
-    fundingBtn.textContent = "Manage funding";
-    fundingBtn.href = "funding-options.html";
+    if (fundingStatus) fundingStatus.textContent = "Off";
+    if (fundingSubcopy) fundingSubcopy.textContent =
+      "Optional. Participation is always free. Connect Stripe to enable community funding.";
+
+    fundingPrimaryBtn.textContent = "Enable community funding";
+    fundingPrimaryBtn.href = "funding-start.html";
+    return;
   }
-}
-  // ----------------------------
-// 6b) Funding live actions visibility (dashboard)
-// ----------------------------
-const fundingLiveActions = document.getElementById("fundingLiveActions");
 
-let stripeConnected = false;
-let fundingEnabled = false;
+  // State B: Stripe connected, funding off
+  if (!fundingEnabled) {
+    if (fundingStatus) fundingStatus.textContent = "Off";
+    if (fundingSubcopy) fundingSubcopy.textContent =
+      "Stripe is connected. Turn on community funding when you’re ready.";
 
-try {
-  stripeConnected = localStorage.getItem("commonshub_stripe_connected") === "1";
-  fundingEnabled = localStorage.getItem("commonshub_funding_enabled") === "1";
-} catch {}
-
-if (fundingLiveActions) {
-  fundingLiveActions.style.display = (stripeConnected && fundingEnabled) ? "block" : "none";
-}
-
-  // Back-compat: old dashboard-only reset link id
-  const reset = document.getElementById("resetFlowLink");
-  if (reset) {
-    reset.addEventListener("click", (e) => {
-      e.preventDefault();
-      resetFlow("community");
-    });
+    fundingPrimaryBtn.textContent = "Turn on community funding";
+    fundingPrimaryBtn.href = "funding-options.html";
+    return;
   }
+
+  // State C: Funding live
+  if (fundingStatus) fundingStatus.textContent = "Live";
+  if (fundingSubcopy) fundingSubcopy.textContent = "Community funding is live and shareable.";
+
+  fundingCtaWrap.style.display = "none";
+  fundingLiveActions.style.display = "block";
 })();
