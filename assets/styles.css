@@ -594,3 +594,10 @@ body.dashboard .hint{
 body.dashboard .sidebar a{
   color: var(--dashText);
 }
+.fundingCard{
+  background: var(--card2);
+  border: 1px solid var(--line);
+  border-radius: var(--radius2);
+  padding:14px;
+  margin-top:14px;
+}
