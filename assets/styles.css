@@ -351,11 +351,11 @@ textarea{ min-height:110px; resize:vertical }
    Purpose: make it feel like you stepped into a short “journey”
    ========================================================= */
 
-/* Hide sidebar / menu toggle on flows */
-body.flow .sidebar{ display:none; }
-body.flow .wrap{ grid-template-columns:1fr; }
-body.flow .stage{ width:100%; }
-body.flow #navToggle{ display:none !important; }
+/* Hide sidebar / menu toggle only on pages that actually include .flowRoot */
+body.flow .flowRoot .sidebar{ display:none; }
+body.flow .flowRoot .wrap{ grid-template-columns:1fr; }
+body.flow .flowRoot .stage{ width:100%; }
+body.flow .flowRoot #navToggle{ display:none !important; }
 
 /* =========================================================
    FLOW MODE (SAFE)
@@ -377,14 +377,9 @@ body.flow #navToggle{ display:none !important; }
   box-shadow: 0 18px 70px rgba(0,0,0,.08);
 }
 
-/* Banner = mode indicator */
-.flowRoot .flowBanner{
-  border: 1px solid rgba(31,111,74,.20);
-  background: rgba(31,111,74,.07);
-}
 
 /* Flow banner + step chip (only apply if you use these classes) */
-.flowBanner{
+.flowRoot .flowBanner{
   display:flex;
   align-items:center;
   justify-content:space-between;
@@ -395,9 +390,9 @@ body.flow #navToggle{ display:none !important; }
   background: rgba(31,111,74,.06);
   margin-bottom:14px;
 }
-.flowBanner b{ font-weight:900; }
+.flowRoot .flowBanner b{ font-weight:900; }
 
-.stepChip{
+.flowRoot .stepChip{
   display:inline-flex;
   align-items:center;
   gap:8px;
@@ -410,17 +405,17 @@ body.flow #navToggle{ display:none !important; }
 }
 
 /* Make “Return to dashboard” / start over slightly quieter */
-body.flow .exitLink,
-body.flow a[data-reset]{
+.flowRoot .exitLink,
+.flowRoot a[data-reset]{
   opacity: .82;
 }
-body.flow .exitLink:hover,
-body.flow a[data-reset]:hover{
+.flowRoot .exitLink:hover,
+.flowRoot a[data-reset]:hover{
   opacity: 1;
 }
 
 /* Shimmer / motion for progress fill (flow only) */
-body.flow .progress .bar > div{
+.flowRoot .progress .bar > div{
   background: linear-gradient(90deg, var(--accent), rgba(31,111,74,0.65), var(--accent));
   background-size: 200% 100%;
   animation: flowPulse 3s ease-in-out infinite;
@@ -432,7 +427,7 @@ body.flow .progress .bar > div{
 }
 
 /* Primary CTA “forward” arrow (only if you add .forward) */
-body.flow .primary.forward::after{
+.flowRoot .primary.forward::after{
   content:" →";
   font-weight:900;
 }
@@ -500,7 +495,7 @@ body.dashboard .card{
   color: var(--cardText);
   border: 1px solid rgba(255,255,255,.18);
 }
-body.dashboard .muted{ color: var(--cardMuted); }
+
 
 /* Chips and secondary buttons should be subtle but readable */
 body.dashboard .chip{
@@ -513,6 +508,16 @@ body.dashboard .secondary{
   background: rgba(255,255,255,.10);
   border: 1px solid var(--dashBorder);
   color: var(--dashText);
+}
+/* muted inside the dark dashboard chrome */
+body.dashboard .topbar .muted,
+body.dashboard .header .muted{
+  color: var(--dashMuted);
+}
+
+/* muted inside light cards stays dark-muted */
+body.dashboard .card .muted{
+  color: var(--cardMuted);
 }
 
 /* =========================================================
