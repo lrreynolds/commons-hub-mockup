@@ -72,20 +72,7 @@
     });
   }
 
-  // ----------------------------
-  // 4) Details toggle (post-setup)
-  // ----------------------------
-  const toggleDetailsBtn = document.getElementById("toggleDetailsBtn");
-  const details = document.getElementById("details");
 
-  if (toggleDetailsBtn && details) {
-    // Ensure initial state is hidden if author set display:none inline
-    toggleDetailsBtn.addEventListener("click", () => {
-      const isHidden = details.style.display === "none";
-      details.style.display = isHidden ? "block" : "none";
-      toggleDetailsBtn.textContent = isHidden ? "Hide details" : "Show details";
-    });
-  }
 
   // ----------------------------
   // 5) Reset demo flow (works on ALL pages)
