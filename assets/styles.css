@@ -454,7 +454,7 @@ body.flow .flowRoot #navToggle{ display:none !important; }
 
 body.dashboard{
   /* Dark “room” */
-  --bg:#1b2420;
+  --bg:#2b3430;
 
   /* On dark surfaces */
   --dashText:#e9f2ec;
@@ -593,4 +593,8 @@ body.dashboard .hint{
 /* Sidebar links */
 body.dashboard .sidebar a{
   color: var(--dashText);
+}
+body.dashboard .wrap{
+  grid-template-columns: 1fr;
+  max-width: 900px;
 }
