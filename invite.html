@@ -1,1 +1,322 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Mastodon · Invitation</title>
 
+  <!-- Keep your base CSS available (buttons, radius, etc.) -->
+  <link rel="stylesheet" href="assets/styles.css" />
+
+  <!-- Mastodon-ish skin (scoped to this page) -->
+  <style>
+    /* Page-level theme */
+    body.mastoMock{
+      margin:0;
+      font-family: var(--font);
+      color: rgba(255,255,255,.92);
+      background:
+        radial-gradient(900px 600px at 50% 0%, rgba(110,95,255,.18), transparent 60%),
+        radial-gradient(900px 600px at 10% 20%, rgba(60,160,255,.10), transparent 60%),
+        #0f111a;
+      min-height:100vh;
+    }
+
+    .mWrap{
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 48px 18px 60px;
+    }
+
+    .mCard{
+      background: rgba(255,255,255,.04);
+      border: 1px solid rgba(255,255,255,.10);
+      border-radius: 22px;
+      box-shadow: 0 28px 90px rgba(0,0,0,.45);
+      padding: 34px 30px 26px;
+      backdrop-filter: blur(12px);
+    }
+
+    .mTop{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      margin-bottom: 18px;
+    }
+
+    .mastodonBrand{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      user-select:none;
+    }
+
+    .mLogo{
+      width:46px;
+      height:46px;
+      border-radius: 14px;
+      display:grid;
+      place-items:center;
+      background: radial-gradient(circle at 30% 30%, rgba(255,255,255,.18), rgba(255,255,255,0) 55%),
+                  linear-gradient(135deg, rgba(112,96,255,1), rgba(112,96,255,.35));
+      border: 1px solid rgba(255,255,255,.16);
+    }
+
+    .mLogo svg{ width:26px; height:26px; opacity:.95; }
+
+    .mastodonBrand b{
+      font-size: 28px;
+      letter-spacing: -.02em;
+    }
+
+    .mSubtleBtn{
+      text-decoration:none;
+      font-weight:800;
+      border-radius: 999px;
+      padding: 10px 14px;
+      border: 1px solid rgba(255,255,255,.18);
+      background: rgba(255,255,255,.06);
+      color: rgba(255,255,255,.90);
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      white-space:nowrap;
+    }
+    .mSubtleBtn:hover{ background: rgba(255,255,255,.09); }
+
+    /* Stepper */
+    .stepper{
+      margin: 18px 0 22px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap: 22px;
+      color: rgba(255,255,255,.72);
+      font-weight:700;
+    }
+    .stepLine{
+      height: 2px;
+      width: 140px;
+      background: rgba(255,255,255,.18);
+      border-radius: 999px;
+    }
+    .stepDot{
+      width: 20px;
+      height: 20px;
+      border-radius: 999px;
+      border: 2px solid rgba(255,255,255,.35);
+      background: rgba(255,255,255,.06);
+      box-shadow: 0 0 0 6px rgba(112,96,255,.08);
+    }
+    .stepDot.active{
+      border-color: rgba(112,96,255,1);
+      background: rgba(112,96,255,.35);
+      box-shadow: 0 0 0 6px rgba(112,96,255,.18);
+    }
+    .stepLabelRow{
+      display:flex;
+      justify-content:space-between;
+      gap: 22px;
+      margin-top: -8px;
+      font-size: 13px;
+      color: rgba(255,255,255,.70);
+    }
+    .stepLabelRow > div{ width: 180px; text-align:center; }
+
+    /* Headline / text */
+    h1{
+      margin: 0 0 10px;
+      font-size: 40px;
+      letter-spacing: -.03em;
+    }
+    .lead{
+      margin: 0 0 18px;
+      font-size: 16px;
+      color: rgba(255,255,255,.78);
+      max-width: 760px;
+    }
+
+    /* “Invited by” block */
+    .inviteFrom{
+      display:flex;
+      align-items:center;
+      gap: 12px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(0,0,0,.18);
+      border-radius: 16px;
+      padding: 12px 14px;
+      margin: 16px 0 12px;
+    }
+    .avatar{
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, rgba(255,255,255,.16), rgba(255,255,255,0));
+      border: 1px solid rgba(255,255,255,.14);
+      display:grid;
+      place-items:center;
+      font-weight:900;
+      color: rgba(255,255,255,.88);
+    }
+    .fromMeta b{ display:block; font-size: 14px; }
+    .fromMeta span{ display:block; font-size: 13px; color: rgba(255,255,255,.70); }
+
+    /* Rules list */
+    .rules{
+      margin-top: 14px;
+      border-top: 1px solid rgba(255,255,255,.10);
+      padding-top: 18px;
+    }
+    .rule{
+      display:flex;
+      gap: 14px;
+      padding: 18px 0;
+      border-bottom: 1px solid rgba(255,255,255,.08);
+    }
+    .ruleNum{
+      width: 40px;
+      height: 40px;
+      border-radius: 999px;
+      background: rgba(112,96,255,.32);
+      border: 1px solid rgba(112,96,255,.45);
+      display:grid;
+      place-items:center;
+      font-weight: 900;
+    }
+    .ruleBody b{ display:block; margin-bottom: 4px; }
+    .ruleBody div{ color: rgba(255,255,255,.72); }
+
+    /* CTA */
+    .mFooter{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap: 12px;
+      margin-top: 18px;
+      flex-wrap: wrap;
+    }
+    .primaryM{
+      text-decoration:none;
+      border-radius: 14px;
+      padding: 14px 18px;
+      font-weight: 900;
+      background: linear-gradient(135deg, rgba(112,96,255,1), rgba(112,96,255,.55));
+      border: 1px solid rgba(255,255,255,.14);
+      color: #fff;
+      box-shadow: 0 10px 30px rgba(112,96,255,.24);
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-width: 240px;
+    }
+    .primaryM::after{ content:" →"; font-weight: 900; }
+    .fineprint{
+      color: rgba(255,255,255,.58);
+      font-size: 13px;
+    }
+
+    @media (max-width: 720px){
+      .stepLine{ width: 80px; }
+      h1{ font-size: 34px; }
+      .stepLabelRow > div{ width: 120px; }
+    }
+  </style>
+</head>
+
+<body class="mastoMock">
+  <div class="mWrap">
+    <div class="mCard">
+
+      <div class="mTop">
+        <div class="mastodonBrand">
+          <div class="mLogo" aria-hidden="true">
+            <!-- simple “m” mark -->
+            <svg viewBox="0 0 24 24" fill="none">
+              <path d="M7.2 16.8V9.6c0-2.1 1.7-3.8 3.8-3.8h2c2.1 0 3.8 1.7 3.8 3.8v7.2"
+                    stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M9 16.8V11.2c0-.9.7-1.6 1.6-1.6h.4c.9 0 1.6.7 1.6 1.6v5.6"
+                    stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <b>mastodon</b>
+        </div>
+
+        <!-- This should feel like “back to Commonshub” -->
+        <a class="mSubtleBtn" href="community-funding.html">
+          Back to Commonshub
+        </a>
+      </div>
+
+      <div class="stepper" aria-hidden="true">
+        <div class="stepDot active"></div>
+        <div class="stepLine"></div>
+        <div class="stepDot"></div>
+        <div class="stepLine"></div>
+        <div class="stepDot"></div>
+      </div>
+      <div class="stepLabelRow" aria-hidden="true">
+        <div>Accept rules</div>
+        <div>Your details</div>
+        <div>Confirm email</div>
+      </div>
+
+      <h1>You’ve been invited.</h1>
+      <p class="lead">
+        You can join <b>mycommunity.commonshub.social</b> thanks to an invitation you received from:
+      </p>
+
+      <div class="inviteFrom">
+        <div class="avatar">CH</div>
+        <div class="fromMeta">
+          <b>Community Owner</b>
+          <span>@owner@mycommunity.commonshub.social</span>
+        </div>
+      </div>
+
+      <p class="lead" style="margin-top:10px;">
+        Before you proceed, please consider the ground rules set by the moderators of this community.
+      </p>
+
+      <div class="rules">
+        <div class="rule">
+          <div class="ruleNum">1</div>
+          <div class="ruleBody">
+            <b>Respectful interaction</b>
+            <div>Treat all users with respect and kindness. Harassment and hate speech are not tolerated.</div>
+          </div>
+        </div>
+
+        <div class="rule">
+          <div class="ruleNum">2</div>
+          <div class="ruleBody">
+            <b>Privacy protection</b>
+            <div>Don’t share personal information without explicit consent. Respect privacy at all times.</div>
+          </div>
+        </div>
+
+        <div class="rule">
+          <div class="ruleNum">3</div>
+          <div class="ruleBody">
+            <b>No spam or bots</b>
+            <div>No automated posting or spam. Keep the space clean, calm, and human.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mFooter">
+        <!-- This is your mock “continue” -->
+        <a class="primaryM" href="setup-basics.html">Agree & continue</a>
+
+        <div class="fineprint">
+          Mock page. In the real flow, this is Mastodon’s invite onboarding.
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <script src="assets/app.js"></script>
+</body>
+</html>
