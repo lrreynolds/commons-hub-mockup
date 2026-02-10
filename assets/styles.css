@@ -333,6 +333,7 @@ body.dashboard .sidebar{
 /* Make cards feel like calm panels */
 body.dashboard .card{
   background: var(--card);
+  color: #0f1713;
   border: 1px solid var(--border);
 }
 
