@@ -183,20 +183,41 @@
                     </a>
                   </div>
 
-                  <!-- STATE C actions (two buttons) -->
-                  <div id="fundingLiveActions" class="footerBar"
-                       style="margin-top:14px; gap:12px; display:none;">
-                    <a class="secondary" id="manageFundingBtn"
-                       href="funding-options.html"
-                       style="flex:1; width:auto; justify-content:center;">
-                      Manage community funding
-                    </a>
+                 <div class="footerBar" style="margin-top:14px; gap:12px;">
+  <a class="secondary"
+     id="fundingPreviewBtn"
+     href="community-funding.html"
+     style="flex:1; width:auto; justify-content:center;">
+    Visit community funding page
+  </a>
 
-                    <button class="secondary" id="copyFundingBtn" type="button"
-                            style="flex:1; width:auto; justify-content:center;">
-                      Copy community funding link
-                    </button>
-                  </div>
+  <button class="secondary"
+          id="copyFundingLinkBtn"
+          type="button"
+          style="flex:1; width:auto; justify-content:center;">
+    Copy community funding link
+  </button>
+</div>
+
+<div class="muted" style="margin-top:10px; font-size:13px;">
+  <a href="funding-start.html" style="color:inherit; text-decoration:none;">
+    Manage community funding
+  </a>
+</div>
+
+<!-- Optional: hidden field that appears after copy, like invite -->
+<div class="field" id="fundingLinkField" style="margin-top:12px; display:none;">
+  <label>Community funding link</label>
+  <input
+    id="fundingLinkInput"
+    type="text"
+    value="https://mycommunity.commonshub.social/funding"
+    readonly
+  />
+  <div class="muted" style="margin-top:6px;">
+    Share this link anywhere (YouTube, Substack, email, etc.).
+  </div>
+</div>
 
                   <!-- Funding link field (only revealed when copy clicked, and only in State C) -->
                   <div class="field" id="fundingLinkField" style="margin-top:12px; display:none;">
