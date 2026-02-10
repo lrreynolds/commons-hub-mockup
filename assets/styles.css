@@ -527,7 +527,6 @@ body.dashboard #fundingLiveActions .secondary{
 }
 
 body.dashboard #fundingLiveActions{
-  display:flex;
   gap:10px;
   align-items:center;
   justify-content:space-between;
