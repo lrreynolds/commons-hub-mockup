@@ -454,7 +454,7 @@ body.flow .flowRoot #navToggle{ display:none !important; }
 
 body.dashboard{
   /* Dark “room” */
-  --bg:#2b3430;
+  --bg:#3a4440;
 
   /* On dark surfaces */
   --dashText:#e9f2ec;
@@ -486,13 +486,13 @@ body.dashboard .header{
 
 /* Stage + topbar read as UI chrome on dark */
 body.dashboard .stage{
-   background: rgba(255,255,255,.06);
+   background: rgba(255,255,255,.10);
   border: 1px solid var(--dashBorder);
   box-shadow: 0 22px 60px rgba(0,0,0,.28);
   backdrop-filter: blur(14px);
 }
 body.dashboard .topbar{
-  background: rgba(255,255,255,.06);
+  background: rgba(255,255,255,.12);
   border-bottom: 1px solid var(--dashBorder);
 }
 body.dashboard .topbar .chip{
