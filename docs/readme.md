@@ -1,192 +1,136 @@
-# Commonshub — Documentation Index
+# Commonshub — Canonical Documentation
 
-This directory contains the authoritative product, governance, economic, and architectural documentation for Commonshub.
+This repository contains the authoritative documentation for the Commonshub MVP.
 
-These documents define how the platform works, how decisions are made, and what is non-negotiable.
+The documents are intentionally minimal and structured around a clear hierarchy.
 
-If something feels ambiguous, start with the Constitution.
+If something feels ambiguous, follow this order:
+
+1. Constitution (why)
+2. Product Spec (what + how)
+3. Supporting technical docs
 
 ---
 
-# 1. Foundational Documents (Read First)
+# 1. Foundation
 
-## 📜 Constitution
-**commonshub-constitution-v1.0.md**
+## commonshub-constitution-v1.0.md
 
 Defines:
 
-- What Commonshub is
-- What it is not
+- Purpose of Commonshub
 - Creator sovereignty
-- Economic alignment
+- Optional funding philosophy
 - Governance boundaries
-- Non-negotiables
+- Non-extractive principles
 
-This is the highest authority document.
-
-If there is a conflict between documents, the Constitution wins.
-
----
-
-## 💰 Economic & Funding Model
-**commonshub-economic-and-funding-model-v1.0.md**
-
-Defines:
-
-- Default funding model (open + optional)
-- Creator-defined gating (future capability)
-- Membership lifecycle rules
-- Announcement copy standards
-- Stripe integration principles
-- Revenue alignment
-
-This document governs all funding and access decisions.
+This is the philosophical layer.
+All product and design decisions must align with it.
 
 ---
 
-# 2. Product Definition
+# 2. Product Behavior (Canonical)
 
-## 🧭 MVP Scope
-**commonshub-mvp-scope-v1.0.md**
+## commonshub-product-spec-v1.1.md
 
 Defines:
 
 - What MVP includes
-- What MVP explicitly excludes
-- What is deferred
-- What is non-goal
+- What MVP excludes
+- State transitions
+- Funding lifecycle
+- Announcement & pinned post behavior
+- Stripe integration model
+- Operational guardrails
 
-Use this when scoping work.
+This is the execution contract.
 
----
-
-## 🧠 Product Principles
-**commonshub-product-principles-v1.0.md**
-
-Defines:
-
-- UX constraints
-- Funding language rules
-- Optionality requirements
-- Dark pattern prohibitions
-- Announcement copy format
-- Design guardrails
-
-Use this when making UX or messaging decisions.
+If engineers disagree about behavior, this document wins.
 
 ---
 
-# 3. System & Architecture
+# 3. Supporting Documents
 
-## 🏗 Platform Architecture
-**commonshub-platform-architecture-v1.0.md**
+## commonshub-economic-and-funding-model-v1.0.md
 
 Defines:
 
-- Control plane vs social surface
-- Mastodon provisioning role
 - Stripe platform model
-- State boundaries
-- Integration assumptions
-
-Audience: backend, infra, senior frontend.
+- Revenue flow
+- Fee structure logic
+- Future funding modes
+- Creator sovereignty in economic structure
 
 ---
 
-## ⚙ Operational Playbook
-**commonshub-operational-playbook-v1.0.md**
+## commonshub-design-principles-v1.0.md
 
 Defines:
 
-- How instances are provisioned
-- How funding state changes propagate
-- Announcement regeneration rules
-- Failure handling
-- Escalation logic
-
-Audience: operations, backend, support.
+- UX tone constraints
+- Anti-dark-pattern rules
+- Simplicity constraints
+- Clarity requirements
 
 ---
 
-# 4. Governance & Positioning
-
-## 🛡 Governance & Moderation Boundaries
-**commonshub-governance-and-moderation-boundaries-v1.0.md**
+## commonshub-platform-architecture-v1.0.md
 
 Defines:
 
-- What creators control
-- What Commonshub controls
-- What Mastodon controls
-- Escalation boundaries
-- Platform liability constraints
+- System boundaries
+- Control plane vs social surface
+- Stripe integration architecture
+- Mastodon provisioning model
 
 ---
 
-## 🗣 Brand Voice & Messaging
-**commonshub-brand-voice-and-messaging-v1.0.md**
+## mastodon-integration-notes.md
 
-Defines:
+Practical integration realities:
 
-- Tone constraints
-- Announcement formatting
-- Funding language rules
-- What marketing must not do
-
----
-
-## 📐 Terms & Positioning Framework
-**commonshub-terms-and-positioning-framework-v1.0.md**
-
-Defines:
-
-- Official terminology
-- How we describe ourselves
-- What we refuse to call ourselves
-- Positioning guardrails
+- What Mastodon API allows
+- What must be manual
+- What cannot be controlled
+- UX implications
 
 ---
 
-# 5. Deprecated / Legacy (To Be Removed)
+## known-risks-and-unknowns.md
 
-The following earlier MVP handoff documents are superseded by the above:
-
-- mvp-flow.md
-- mvp-flow-and-state.md
-- community-funding-integration.md
-- mastodon-integration-notes.md (to be folded into architecture)
-- known-risks-and-unknowns.md (to be folded into operational playbook)
-
-These may be archived once the architecture and playbook are confirmed complete.
+Operational, legal, and technical uncertainties.
+Living document.
 
 ---
 
-# Core Platform Principles (Quick Reference)
+# 4. Non-Negotiables
 
-- Participation is always free (default model)
-- Funding is optional (unless creator explicitly gates access)
-- No ads
-- No tracking
-- No algorithmic manipulation
-- Creator sovereignty over economic model
-- Mastodon (or future federated tools) remain the social surface
-- Commonshub is the control plane
+- Participation is always free in MVP.
+- Funding is optional.
+- Creator sovereignty is preserved.
+- No dark patterns.
+- No algorithmic manipulation.
+- Commonshub is infrastructure, not a social network.
 
 ---
 
-# How to Navigate This Directory
+# 5. Scope Discipline
 
-If you are:
+If a feature:
 
-- 🧠 Making a product decision → Start with Product Principles.
-- 💰 Touching funding logic → Read Economic & Funding Model.
-- 🏗 Changing system architecture → Read Platform Architecture.
-- 🛡 Addressing moderation or policy → Read Constitution + Governance.
-- 🗣 Writing copy → Read Brand Voice + Economic Model.
+- Requires subscription enforcement
+- Requires access control logic
+- Introduces billing complexity
+- Adds operational risk
+
+It is not MVP unless explicitly added to the Product Spec.
 
 ---
 
-Commonshub is designed as a coherent system.
+# 6. Versioning
 
-Documentation should remain minimal, authoritative, and non-redundant.
-If two documents say the same thing, one of them is wrong.
+Major philosophy changes require a Constitution version bump.
+
+Behavioral changes require a Product Spec version bump.
+
+Supporting docs may evolve without changing core versions.
