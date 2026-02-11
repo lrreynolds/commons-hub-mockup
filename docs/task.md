@@ -209,5 +209,6 @@ After review:
 - We’ll discuss next steps together
 
 ---
+Each candidate should work in their own fork and submit a PR. Do not collaborate with other applicants.
 
 Thanks for taking this on — we’re excited to see how you think.
