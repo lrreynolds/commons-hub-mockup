@@ -493,6 +493,41 @@ p{max-width:740px}
     filter: none !important;
   }
 }
+
+  .hero h1{
+  opacity:0;
+  animation: riseFade 520ms ease-out forwards;
+}
+
+.hero .sub{
+  opacity:0;
+  animation: riseFade 520ms ease-out forwards;
+  animation-delay:90ms;
+}
+
+.beforeAfterSection{
+  opacity:0;
+  animation: riseFade 560ms ease-out forwards;
+  animation-delay:170ms;
+}
+
+.benefitGrid{
+  opacity:0;
+  animation: riseFade 560ms ease-out forwards;
+  animation-delay:250ms;
+}
+
+.heroBottomCta{
+  opacity:0;
+  animation: riseFade 520ms ease-out forwards;
+  animation-delay:320ms;
+}
+
+/* gentle breathing */
+.heroBottomCta .cta{
+  will-change: transform;
+  animation: ctaBreathe 2.8s ease-in-out 1.2s infinite;
+}
 </style>
 </head>
 
