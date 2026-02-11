@@ -1,352 +1,331 @@
-# Commonshub Product Specification v1.1
+Commonshub Product Specification v1.1
 
-Status: Canonical Product Reference  
-Scope: Defines MVP behavior, state model, lifecycle rules, and operational constraints  
-Last Updated: 2026-02-11  
+Status: Canonical Operational Document
+Scope: System behavior, MVP scope, lifecycle logic, funding mechanics
+Last Updated: 2026-02-11
 
----
+⸻
 
-# 1. Purpose
+1. Purpose
 
 This document defines:
+	•	What Commonshub MVP includes
+	•	What is intentionally excluded
+	•	System states and transitions
+	•	Funding lifecycle behavior
+	•	Announcement and pinned post logic
+	•	Stripe interaction model
+	•	Guardrails and enforcement rules
+	•	Future gating model boundaries
 
-- What Commonshub MVP includes
-- What is explicitly excluded
-- State transitions and lifecycle behavior
-- Funding system logic
-- Announcement and pinned post workflow
-- Stripe integration behavior
-- Operational guardrails
+This document governs system behavior.
 
-This is the authoritative behavioral contract for the system.
+It operationalizes the Constitution.
 
-Philosophy lives in the Constitution.
-This document governs execution.
+⸻
 
----
+2. MVP Definition
 
-# 2. MVP Definition
-
-MVP = The smallest viable version of Commonshub that:
-
-1. Provisions a Mastodon-based community
-2. Connects Stripe via platform account
-3. Enables optional community funding
-4. Surfaces funding via:
-   - Announcement template
-   - Pinned post template
-   - Public funding page
-5. Provides a clean creator dashboard
+MVP = The smallest viable system that:
+	1.	Provisions a Mastodon-based community
+	2.	Connects Stripe via platform account
+	3.	Enables optional community funding
+	4.	Surfaces funding via:
+	•	Funding page
+	•	Announcement template
+	•	Pinned post template
+	5.	Provides a creator dashboard
 
 Nothing beyond this is assumed.
 
----
+⸻
 
-# 3. What Is Included in MVP
+3. Core System States
 
-## 3.1 Community Provisioning
-
-- Mastodon instance setup (manual-assisted or semi-automated)
-- Admin account creation
-- Basic branding (name, description)
-- Invite flow
-- Join link exposure
+# 3. Core System States
 
 ---
 
-## 3.2 Creator Dashboard
+## 3.1 Server State
 
-Creator can:
-
-- See hosting status
-- See Stripe connection status
-- See funding status
-- Enable/disable funding
-- Access funding link
-- Access invite link
-
-Dashboard reflects system state — it does not create state.
+| State         | Meaning                          |
+|---------------|----------------------------------|
+| Provisioning  | Server is being created          |
+| Live          | Mastodon instance operational    |
+| Suspended     | Hosting paused                   |
+| Deleted       | Instance removed                 |
 
 ---
 
-## 3.3 Funding Infrastructure (MVP)
+## 3.2 Community Setup State
 
-- Stripe Connect (platform model)
-- Creator connects Stripe account
-- Funding is optional by default
-- Funding page auto-generated
-- Copy link to funding page
-- Announcement + pinned post templates provided
+| State        | Meaning                           |
+|--------------|-----------------------------------|
+| Not Started  | Wizard not begun                  |
+| In Progress  | Wizard mid-flow                   |
+| Complete     | Branding and welcome complete     |
 
-No gating logic in MVP.
+State flag (MVP mock):
 
-Participation remains free.
-
----
-
-# 4. Explicitly Out of Scope (MVP)
-
-Not included:
-
-- Hard paywalls
-- Subscription-enforced Mastodon access
-- Tiered access systems
-- Role-based content restrictions
-- Live stream paywalls
-- PeerTube integration
-- Video library gating
-- Advanced analytics
-- Multi-tier contribution systems
-- Automated billing enforcement logic
-- Membership entitlement systems
-
-If it requires subscription state enforcement, it is not MVP.
+`commonshub_setup_complete`
 
 ---
 
-# 5. Core System States
-
-## 5.1 Server State
-
-| State | Meaning |
-|--------|----------|
-| Provisioning | Server is being created |
-| Live | Mastodon instance operational |
-| Suspended | Hosting paused |
-| Deleted | Instance removed |
-
----
-
-## 5.2 Setup State
-
-| State | Meaning |
-|--------|----------|
-| Not Started | Wizard not begun |
-| In Progress | Wizard mid-flow |
-| Complete | Branding + welcome complete |
-
----
-
-## 5.3 Funding State
+## 3.3 Funding State
 
 | Stripe Connected | Funding Enabled | Effective State |
 |------------------|-----------------|-----------------|
-| No | No | Funding Off |
-| Yes | No | Stripe Ready |
-| Yes | Yes | Funding Live |
+| No               | No              | Funding Off     |
+| Yes              | No              | Stripe Ready    |
+| Yes              | Yes             | Funding Live    |
 
----
+State flags (MVP mock):
 
-# 6. Funding State Transitions
+- `commonshub_stripe_connected`
+- `commonshub_funding_enabled`
 
-## 6.1 Stripe Connected
+Future: persisted in backend DB.
 
-Trigger:
-- Stripe Connect successful
+⸻
 
-System Behavior:
-- Dashboard shows "Stripe connected"
-- Funding remains Off
-- No announcement created
+4. Funding Lifecycle (MVP)
 
----
-
-## 6.2 Funding Enabled
+4.1 Stripe Connected
 
 Trigger:
-- Creator enables funding
+	•	Stripe Connect successful
 
 System Behavior:
+	•	Dashboard reflects “Stripe connected”
+	•	Funding remains Off
+	•	No announcement created
 
-1. Funding page becomes public
-2. Dashboard reflects "Funding Live"
-3. Creator is shown:
-   - Announcement template
-   - Pinned post template
-4. Creator manually posts announcement
-5. Creator manually pins post
+⸻
 
-System does not auto-post without explicit consent.
-
----
-
-## 6.3 Funding Modified
+4.2 Funding Enabled
 
 Trigger:
-- Creator changes pricing or funding options
+	•	Creator turns funding on
 
 System Behavior:
+	1.	Dashboard updates to “Funding Live”
+	2.	Funding page becomes public
+	3.	Creator is shown:
+	•	Announcement template
+	•	Pinned post template
+	4.	Creator manually posts announcement
+	5.	Creator manually pins post
 
-- No silent public changes
-- Prompt creator:
+System does NOT:
+	•	Auto-post without consent
+	•	Auto-pin without consent
 
-  "Funding options changed. Update announcement?"
+⸻
+
+4.3 Funding Modified
+
+Trigger:
+	•	Creator changes funding options
+
+System Behavior:
+	•	No silent public change
+	•	Prompt:
+“Your funding options changed. Would you like to update your announcement?”
 
 Future:
-- Regenerate draft announcement
-- Offer update pinned post
+	•	Regenerate draft announcement
+	•	Offer pinned post update
 
----
+⸻
 
-## 6.4 Funding Disabled
-
-Trigger:
-- Creator disables funding
-
-System Behavior:
-
-- Funding page hidden
-- Dashboard reflects Off
-- Prompt:
-
-  "Remove announcement and unpin post?"
-
-System does not auto-delete posts.
-
----
-
-## 6.5 Stripe Disconnected
+4.4 Funding Disabled
 
 Trigger:
-- Stripe account disconnected
-- Stripe deauthorization event
+	•	Creator turns funding off
 
 System Behavior:
+	•	Funding page hidden
+	•	Dashboard reflects Off
+	•	Creator prompted to:
+	•	Remove announcement
+	•	Unpin post
 
-- Funding automatically set to Off
-- Funding page hidden
-- Dashboard reflects Stripe not connected
-- Creator notified
+System does not auto-delete content.
 
----
+⸻
 
-# 7. Announcement & Pinned Post Model
+4.5 Stripe Disconnected
 
-## 7.1 Why Both Exist
+Trigger:
+	•	Stripe disconnect webhook
 
-Announcements:
-- Visible in Mastodon web UI
-- Instance-level visibility
-- Not shown in all mobile clients
+System Behavior:
+	•	Funding automatically set to Off
+	•	Funding page hidden
+	•	Creator notified
+	•	Dashboard reflects “Stripe not connected”
 
-Pinned Post:
-- Visible across most clients
-- Account-level visibility
+⸻
 
-System must suggest both.
+5. Funding Surfaces
 
----
-
-## 7.2 Standard Announcement Format (MVP)
-
-Three-line structure:
-
-Support this community if you'd like.  
-Participation is always free. No ads.  
-Visit: https://example.community/funding  
-
-Rules:
-
-- Maximum 3 lines preferred
-- No emoji
-- No hype language
-- No urgency tactics
-- No implied obligation
-
----
-
-# 8. Funding Page Requirements
+5.1 Funding Page Requirements
 
 Funding page must:
+	•	State participation is free
+	•	State funding is optional
+	•	Explain purpose of funding
+	•	Include secure payment disclosure
+	•	Provide join link
 
-- Clearly state participation is free
-- Clearly state funding is optional
-- Explain purpose of funding
-- Show secure payment note (Stripe)
-- Provide join link
-- Avoid marketing pressure
+Funding page must not:
+	•	Imply mandatory payment
+	•	Use urgency tactics
+	•	Hide participation path
 
-Funding page must never:
+⸻
 
-- Imply mandatory payment
-- Use scarcity tactics
-- Hide participation path
+5.2 Announcement Template (MVP)
 
----
+Three-line standard:
 
-# 9. Gated Mode (Future – Not MVP)
+Support this community if you’d like.
+Participation is always free. No ads.
+Visit: https://example.community/funding
 
-Commonshub supports creator sovereignty.
+Rules:
+	•	Max 3 lines preferred
+	•	No emoji
+	•	No hype
+	•	No urgency language
+	•	No exclamation marks
 
-Future possibility:
+⸻
 
-- Optional gated community mode
-- Membership-required instances
-- Paid access to live streams or video libraries
+5.3 Pinned Post
 
-If implemented:
+Purpose:
+	•	Visible in clients where announcements are hidden
 
-- Must clearly state access requirements
-- Must clarify billing relationship
-- Must not imply universal free model
+Must mirror announcement tone.
 
-Not implemented in MVP.
+System rule:
+	•	Suggest pinning when funding enabled
+	•	Never auto-pin without explicit consent
 
----
+⸻
 
-# 10. Stripe Integration Model (Future Evolution)
+6. Explicitly Out of Scope (MVP)
+
+Not included:
+	•	Hard paywalls
+	•	Subscription-gated Mastodon instances
+	•	Tiered access systems
+	•	Role-based content gating
+	•	Live stream paywalls
+	•	PeerTube gating
+	•	Multi-tier contribution logic
+	•	Advanced analytics
+	•	Algorithmic growth systems
+
+If it introduces subscription enforcement complexity, it is not MVP.
+
+⸻
+
+7. Future Gated Mode (Architectural Allowance)
+
+Future mode may allow:
+	•	Membership-required communities
+	•	Paid access to content
+	•	Tier-based participation
+
+If implemented, system must:
+	•	Clearly label community as gated
+	•	Clearly state membership requirements
+	•	Clarify billing responsibility (Stripe)
+	•	Avoid bait-and-switch mechanics
+
+Gating must never be implicit.
+
+⸻
+
+8. Stripe Webhook Model (Future)
 
 Events to handle:
+	•	checkout.session.completed
+	•	customer.subscription.created
+	•	customer.subscription.deleted
+	•	account.updated
+	•	account.application.deauthorized
 
-- checkout.session.completed
-- customer.subscription.created
-- customer.subscription.deleted
-- account.updated
-- account.application.deauthorized
+System must:
+	•	Update funding state
+	•	Update entitlement layer (future)
+	•	Notify creator
 
-Stripe becomes authoritative source of billing state.
+Stripe is source of truth for billing.
 
----
+⸻
 
-# 11. Operational Guardrails
+9. State Persistence Model
+
+MVP:
+	•	LocalStorage (mock only)
+
+Production:
+	•	Backend database authoritative
+	•	Stripe webhook authoritative for billing
+
+Never trust client-only state for billing enforcement.
+
+⸻
+
+10. Operational Guardrails
 
 Never:
-
-- Auto-enable funding
-- Auto-gate communities
-- Auto-delete creator posts
-- Force announcements
-- Hide participation option
+	•	Auto-enable funding
+	•	Auto-gate community
+	•	Hide participation path when optional
+	•	Remove posts without creator consent
+	•	Imply payment requirement when optional
 
 Always:
+	•	Preserve clarity
+	•	Preserve creator sovereignty
+	•	Preserve transparency
+	•	Preserve explicit consent
 
-- Preserve creator sovereignty
-- Preserve optional participation framing
-- Maintain clarity in state transitions
-- Avoid extractive UX patterns
+⸻
 
----
+11. Known Risks (MVP)
+	•	Stripe webhook failures
+	•	Announcement not posted by creator
+	•	Mobile clients ignoring announcements
+	•	Creator misunderstanding optionality
 
-# 12. Decision Rule
+Mitigation:
+	•	Clear dashboard prompts
+	•	Redundant pinned post suggestion
+	•	Clear funding page messaging
+
+⸻
+
+12. Decision Rule
 
 If a feature:
+	•	Requires subscription state enforcement → Not MVP
+	•	Requires content gating logic → Not MVP
+	•	Adds billing lifecycle complexity → Not MVP
+	•	Can exist as infrastructure support only → Consider
 
-- Requires subscription enforcement → Not MVP
-- Requires access control logic → Not MVP
-- Requires complex billing sync → Not MVP
-- Adds operational risk → Not MVP
+⸻
 
-MVP prioritizes clarity and stability.
-
----
-
-# 13. Alignment
+13. Alignment
 
 This document operationalizes:
+	•	Constitution v1.1
+	•	Economic and Funding Model
+	•	Platform Architecture
+	•	Creator Sovereignty
 
-- Constitution v1.0
-- Economic Model v1.0
-- Product Principles v1.0
-- Brand Voice v1.0
-
-This is the execution layer.
+This document governs system behavior.
