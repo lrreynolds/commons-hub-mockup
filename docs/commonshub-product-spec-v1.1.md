@@ -40,8 +40,6 @@ Nothing beyond this is assumed.
 
 ⸻
 
-3. Core System States
-
 # 3. Core System States
 
 ---
