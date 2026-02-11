@@ -15,11 +15,11 @@
   --btn:#1f6f4a;
   --btnText:#ffffff;
 
-  --band:#eef3f0;          /* subtle separation band */
+  --band:#eef3ef;
   --shadow: 0 10px 30px rgba(16,32,24,.06);
 }
 
-*{box-sizing:border-box}
+*{ box-sizing:border-box; }
 
 body{
   font-family: system-ui, -apple-system, Segoe UI, sans-serif;
@@ -29,34 +29,7 @@ body{
   color:var(--text);
 }
 
-section{
-  max-width:960px;
-  margin:0 auto;
-  padding:80px 20px;
-}
-
-h1{
-  font-size:42px;
-  line-height:1.05;
-  letter-spacing:-0.02em;
-  margin:0;
-}
-
-p{max-width:740px}
-
-.cta{
-  display:inline-block;
-  padding:14px 22px;
-  background:var(--btn);
-  color:var(--btnText);
-  border-radius:14px;
-  font-weight:900;
-  text-decoration:none;
-}
-
-.muted{color:var(--muted)}
-
-/* ===== HERO ===== */
+/* ===== HERO LAYOUT ===== */
 
 .hero{
   padding:80px 18px 70px;
@@ -65,29 +38,28 @@ p{max-width:740px}
 }
 
 .heroInner{
+  width:100%;
   max-width:960px;
   margin:0 auto;
   padding:0 56px;
 }
 
-/* =========================
-   Headline polish (shorter headline already helps)
-   ========================= */
-
-.hero h1{
-  letter-spacing:-0.03em;
-  font-weight:900;
-  line-height:1.03;
-  text-wrap: balance; /* modern browsers; safe if ignored */
-  opacity:0;
-  animation: riseFade 520ms ease-out forwards;
+@media (max-width:640px){
+  .hero{ padding:64px 16px 56px; }
+  .heroInner{ padding:0 22px; }
 }
 
-/* Slightly reduce on smaller screens to avoid wrap */
-@media (max-width:560px){
-  .hero h1{
-    font-size: clamp(34px, 9vw, 44px);
-  }
+/* ===== TYPE ===== */
+
+.hero h1{
+  font-size:clamp(36px,5vw,54px);
+  line-height:1.03;
+  letter-spacing:-0.03em;
+  font-weight:900;
+  margin:0;
+  text-wrap: balance; /* ok if ignored */
+  opacity:0;
+  animation: riseFade 520ms ease-out forwards;
 }
 
 .hero .sub{
@@ -97,172 +69,55 @@ p{max-width:740px}
   max-width:780px;
   opacity:0;
   animation: riseFade 520ms ease-out forwards;
-  animation-delay: 90ms;
+  animation-delay:90ms;
 }
 
-.hero .sub b{color:var(--text)}
+@media (max-width:640px){
+  .hero .sub{ font-size:16px; }
+}
 
-/* ===== BEFORE/AFTER VISUAL BAND ===== */
+.hero .sub b{ color:var(--text); }
 
-.visualBand{
-  margin-top:34px;
+/* ===== BEFORE / AFTER PANEL ===== */
+
+.beforeAfterSection{
+  margin-top:40px;
+  padding:30px 28px;
   background:var(--band);
-  border:1px solid rgba(216,225,219,.9);
-  border-radius:22px;
-  padding:28px;
+  border:1px solid var(--line);
+  border-radius:28px;
   box-shadow: var(--shadow);
+  opacity:0;
+  animation: riseFade 560ms ease-out forwards;
+  animation-delay:170ms;
 }
 
-.visualGrid{
+.beforeAfterGrid{
   display:grid;
   gap:18px;
-  align-items:stretch;
+  align-items:center;
+  grid-template-columns: 1fr auto 1fr;
 }
 
-@media(min-width:900px){
-  .visualGrid{
-    grid-template-columns: 1fr 84px 1fr;
-    gap:18px;
-  }
-}
-
-.label{
+.beforeAfterLabel{
   font-size:12px;
-  letter-spacing:.14em;
+  letter-spacing:0.14em;
   font-weight:900;
   color:rgba(16,32,24,.65);
   margin:0 0 10px;
 }
 
-.beforeList{
-  display:grid;
-  gap:10px;
-}
-
-.beforePill{
+.beforeBox{
   background:var(--card);
   border:1px solid var(--line);
   border-radius:14px;
-  padding:12px 14px;
-  font-size:14px;         /* smaller than benefits */
-  color:rgba(16,32,24,.78);
-}
-
-.beforeAfterSection{
-  margin-top:50px;
-  padding:40px 32px;
-  background:#eef3ef;
-  border-radius:28px;
-  border:1px solid var(--line);
-  opacity:0;
-  animation: riseFade 560ms ease-out forwards;
-  animation-delay: 170ms;
-}
-  .beforeAfterGrid{
-  display:grid;
-  grid-template-columns:1fr auto 1fr;
-  gap:28px;
-  align-items:center;
-}
-
-.beforeAfterExplain{
-  margin-top:18px;
-  font-size:14px;
-  text-align:center;
-  color:var(--muted);
-}
-
-.beforeAfterLabel{
-  font-size:12px;
-  letter-spacing:0.15em;
-  font-weight:700;
-  color:var(--muted);
-  margin-bottom:10px;
-}
-.beforeBox{
-  font-size:14px;
-  padding:10px 14px;
-  margin-bottom:10px;
-  border-radius:14px;
-  background:white;
-  border:1px solid var(--line);
-}
-
-  .beforeAfterTagline{
-  margin-top:10px;
-  text-align:center;
-  font-weight:700;
-  color:var(--btn);
-}
-
-.afterCard{
-  background:white;
-  border:1px solid var(--line);
-  border-radius:18px;
-  padding:16px;
-}
-
-.afterItem{
-  display:grid;
-  grid-template-columns:34px 1fr;
-  gap:10px;
-  padding:10px 8px;
-  border-radius:14px;
-}
-
-.afterItem + .afterItem{
-  border-top:1px solid rgba(216,225,219,.7);
-}
-
-.feedItem{
-  display:flex;
-  gap:10px;
-  margin-bottom:14px;
-}
-  .feedItem{
-  opacity:0;
-  animation: riseFade 520ms ease-out forwards;
-}
-
-.feedItem:nth-child(1){ animation-delay:220ms; }
-.feedItem:nth-child(2){ animation-delay:300ms; }
-.feedItem:nth-child(3){ animation-delay:380ms; }
-  
-.feedItem:last-child{
-  margin-bottom:0;
-}
-
-.feedName{
-  font-size:14px;
-  font-weight:700;
-}
-
-.feedText{
+  padding:10px 12px;
   font-size:13px;
-  color:var(--muted);
-  margin-top:2px;
+  color:rgba(16,32,24,.78);
+  margin-bottom:10px;
 }
 
-.avatar{
-  width:28px;
-  height:28px;
-  border-radius:50%;
-  background:#cfd7d1;
-  flex-shrink:0;
-}
-
-.afterName{
-  font-weight:900;
-  font-size:14px;         /* smaller */
-  margin:0 0 4px;
-}
-
-.afterText{
-  margin:0;
-  font-size:14px;         /* smaller */
-  color:rgba(16,32,24,.75);
-  line-height:1.35;
-}
+.beforeBox:last-child{ margin-bottom:0; }
 
 .arrowWrap{
   display:flex;
@@ -271,68 +126,101 @@ p{max-width:740px}
 }
 
 .arrow{
-  font-size:24px;
-  color:var(--btn);
-}
-
-.arrow svg{
-  width:26px;
-  height:26px;
-  stroke:var(--btn);
-  stroke-width:3.5;
-  fill:none;
-}
-
-@media(max-width:760px){
-  .arrow{ display:none; }
-}
-
-/* =========================
-   Mobile: hide arrow (as you suggested)
-   ========================= */
-@media (max-width:760px){
-  .arrowWrap{ display:none; }
-}
-  
-@media(max-width:760px){
-  .beforeAfterGrid{
-    grid-template-columns:1fr;
-  }
-  .arrowWrap{
-    display:none;
-  }
-}
-/* Explainer + caption */
-.explainer{
-  margin:16px 0 0;
-  font-size:14px;
-  color:rgba(16,32,24,.70);
-}
-
-.caption{
-  margin:14px 0 0;
+  width:42px;
+  height:42px;
+  border-radius:999px;
+  background:rgba(31,111,74,.08);
+  border:1px solid rgba(31,111,74,.18);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:22px;
   font-weight:900;
   color:var(--btn);
-  text-align:center;
-  font-size:16px;
 }
 
-/* ===== BENEFIT TILES ===== */
+/* MOBILE: stack + hide arrow */
+@media (max-width:760px){
+  .beforeAfterGrid{ grid-template-columns: 1fr; }
+  .arrowWrap{ display:none; }
+}
+
+/* AFTER CARD */
+.afterCard{
+  background:var(--card);
+  border:1px solid var(--line);
+  border-radius:18px;
+  padding:14px;
+}
+
+.feedItem{
+  display:flex;
+  gap:10px;
+  padding:10px 8px;
+  border-radius:14px;
+
+  opacity:0;
+  animation: riseFade 520ms ease-out forwards;
+}
+
+.feedItem + .feedItem{
+  border-top:1px solid rgba(216,225,219,.7);
+}
+
+.feedItem:nth-of-type(1){ animation-delay:220ms; }
+.feedItem:nth-of-type(2){ animation-delay:300ms; }
+.feedItem:nth-of-type(3){ animation-delay:380ms; }
+
+.avatar{
+  width:28px;
+  height:28px;
+  border-radius:50%;
+  background:#cfd7d1;
+  flex-shrink:0;
+  margin-top:2px;
+}
+
+.feedName{
+  font-size:13px;
+  font-weight:800;
+  margin:0;
+}
+
+.feedText{
+  font-size:13px;
+  color:var(--muted);
+  margin-top:2px;
+  line-height:1.35;
+}
+
+.beforeAfterExplain{
+  margin-top:16px;
+  font-size:14px;
+  text-align:center;
+  color:var(--muted);
+}
+
+.beforeAfterTagline{
+  margin-top:10px;
+  text-align:center;
+  font-weight:900;
+  color:var(--btn);
+}
+
+/* ===== BENEFITS ===== */
 
 .benefitGrid{
-  margin-top:26px;
+  margin-top:22px;
   display:grid;
   gap:18px;
-  grid-template-columns:1fr;
+  grid-template-columns: 1fr;
   opacity:0;
   animation: riseFade 560ms ease-out forwards;
-  animation-delay: 250ms;
+  animation-delay:250ms;
 }
 
 @media (min-width:760px){
-  .benefitGrid{
-    grid-template-columns: repeat(3, 1fr);
-  }
+  .benefitGrid{ grid-template-columns: repeat(3, 1fr); }
 }
 
 .benefit{
@@ -360,8 +248,12 @@ p{max-width:740px}
   font-weight:900;
   color:var(--btn);
   text-align:center;
-  margin:28px auto 18px;
+  margin:26px auto 18px;
   font-size:18px;
+}
+
+@media (max-width:640px){
+  .heroPromise{ font-size:16px; }
 }
 
 .heroBottomCta{
@@ -369,172 +261,51 @@ p{max-width:740px}
   justify-content:center;
   opacity:0;
   animation: riseFade 520ms ease-out forwards;
-  animation-delay: 320ms;
-}
-
-/* CTA “breathes” very slightly after load */
-.heroBottomCta .cta{
-  will-change: transform;
-  animation: ctaBreathe 2.8s ease-in-out 1.2s infinite;
-}
-
-/* Hover polish (desktop only) */
-@media (hover:hover){
-  .heroBottomCta .cta:hover{
-    transform: translateY(-1px);
-  }
-}
-
-/* ===== MOBILE POLISH ===== */
-
-@media (max-width:640px){
-  section{padding:64px 16px}
-  .heroInner{padding:0 22px}
-  .hero .sub{font-size:16px}
-
-  .visualBand{
-    padding:18px;
-    border-radius:18px;
-  }
-
-  .caption{font-size:15px}
-  .heroPromise{font-size:16px}
-}
-  /* =========================
-   Hero headline polish
-   ========================= */
-
-/* Slightly tighter + more decisive headline */
-.hero h1{
-  letter-spacing: -0.03em;      /* a touch tighter */
-  font-weight: 900;             /* punch */
-  text-rendering: geometricPrecision;
-}
-
-/* Optional: if you want it a hair smaller on mobile to avoid wrapping */
-@media (max-width: 560px){
-  .hero h1{
-    font-size: clamp(34px, 9vw, 44px);
-    line-height: 1.03;
-  }
-}
-
-/* =========================
-   Subtle entrance animation
-   ========================= */
-
-@keyframes riseFadeIn {
-  from { opacity: 0; transform: translateY(10px); filter: blur(1px); }
-  to   { opacity: 1; transform: translateY(0);    filter: blur(0); }
-}
-
-@keyframes softFloat {
-  0%, 100% { transform: translateY(0); }
-  50%      { transform: translateY(-2px); }
-}
-
-/* Apply staged entrance to key hero elements */
-.hero h1{
-  opacity: 0;
-  animation: riseFadeIn 520ms ease-out forwards;
-}
-
-.hero .sub{
-  opacity: 0;
-  animation: riseFadeIn 520ms ease-out forwards;
-  animation-delay: 90ms;
-}
-
-.hero .panel,              /* if you have a wrapper around the before/after graphic */
-.hero .graphicPanel,       /* or if you used a name like this */
-.hero .comparisonPanel,    /* or this */
-.hero .beforeAfterWrap{    /* or this */
-  opacity: 0;
-  animation: riseFadeIn 560ms ease-out forwards;
-  animation-delay: 170ms;
-}
-
-/* If you DON'T have a wrapper class for the graphic area,
-   target the first big rounded container after the subtext.
-   (Uncomment + adjust if needed)
-
-.hero .sub + .yourGraphicContainerClass{
-  opacity: 0;
-  animation: riseFadeIn 560ms ease-out forwards;
-  animation-delay: 170ms;
-}
-*/
-
-/* CTA gets a barely-there breathing emphasis (starts after load) */
-@keyframes ctaBreathe {
-  0%, 100% { transform: translateY(0); box-shadow: 0 6px 18px rgba(16,32,24,0.10); }
-  50%      { transform: translateY(-1px); box-shadow: 0 10px 26px rgba(16,32,24,0.14); }
+  animation-delay:320ms;
 }
 
 .cta{
+  display:inline-block;
+  padding:14px 22px;
+  background:var(--btn);
+  color:var(--btnText);
+  border-radius:16px;
+  font-weight:900;
+  text-decoration:none;
   will-change: transform;
-}
-
-.hero .cta{
   animation: ctaBreathe 2.8s ease-in-out 1.2s infinite;
 }
 
-/* Optional: on hover, slightly more responsive (desktop only) */
 @media (hover:hover){
-  .hero .cta:hover{
-    transform: translateY(-1px);
-  }
+  .cta:hover{ transform: translateY(-1px); }
+}
+
+/* ===== ANIMATIONS ===== */
+
+@keyframes riseFade{
+  from { opacity:0; transform:translateY(10px); filter: blur(1px); }
+  to   { opacity:1; transform:translateY(0);    filter: blur(0); }
+}
+
+@keyframes ctaBreathe{
+  0%,100% { transform: translateY(0);   box-shadow: 0 6px 18px rgba(16,32,24,.10); }
+  50%     { transform: translateY(-1px); box-shadow: 0 10px 26px rgba(16,32,24,.14); }
 }
 
 /* Respect reduced motion */
 @media (prefers-reduced-motion: reduce){
   .hero h1,
   .hero .sub,
-  .hero .panel,
-  .hero .graphicPanel,
-  .hero .comparisonPanel,
-  .hero .beforeAfterWrap,
-  .hero .cta{
-    animation: none !important;
-    opacity: 1 !important;
-    transform: none !important;
-    filter: none !important;
+  .beforeAfterSection,
+  .benefitGrid,
+  .heroBottomCta,
+  .feedItem,
+  .cta{
+    animation:none !important;
+    opacity:1 !important;
+    transform:none !important;
+    filter:none !important;
   }
-}
-
-  .hero h1{
-  opacity:0;
-  animation: riseFade 520ms ease-out forwards;
-}
-
-.hero .sub{
-  opacity:0;
-  animation: riseFade 520ms ease-out forwards;
-  animation-delay:90ms;
-}
-
-.beforeAfterSection{
-  opacity:0;
-  animation: riseFade 560ms ease-out forwards;
-  animation-delay:170ms;
-}
-
-.benefitGrid{
-  opacity:0;
-  animation: riseFade 560ms ease-out forwards;
-  animation-delay:250ms;
-}
-
-.heroBottomCta{
-  opacity:0;
-  animation: riseFade 520ms ease-out forwards;
-  animation-delay:320ms;
-}
-
-/* gentle breathing */
-.heroBottomCta .cta{
-  will-change: transform;
-  animation: ctaBreathe 2.8s ease-in-out 1.2s infinite;
 }
 </style>
 </head>
