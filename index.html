@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Commonshub — Turn comments into a real community</title>
+<title>Commons — Turn comments into a real community</title>
 <style>
 :root{
   --bg:#f4f7f5;
@@ -14,12 +14,15 @@
 
   --btn:#1f6f4a;
   --btnText:#ffffff;
+
+  --band:#eef3f0;          /* subtle separation band */
+  --shadow: 0 10px 30px rgba(16,32,24,.06);
 }
 
 *{box-sizing:border-box}
 
 body{
-  font-family: system-ui, sans-serif;
+  font-family: system-ui, -apple-system, Segoe UI, sans-serif;
   margin:0;
   line-height:1.5;
   background:var(--bg);
@@ -34,11 +37,12 @@ section{
 
 h1{
   font-size:42px;
-  line-height:1.1;
+  line-height:1.05;
   letter-spacing:-0.02em;
+  margin:0;
 }
 
-p{max-width:720px}
+p{max-width:740px}
 
 .cta{
   display:inline-block;
@@ -67,35 +71,162 @@ p{max-width:720px}
 }
 
 .hero h1{
-  font-size:clamp(34px,5vw,42px);
-  line-height:1.05;
-  margin:0;
+  font-size:clamp(34px,5vw,52px);
 }
 
 .hero .sub{
   margin-top:14px;
   font-size:18px;
   color:var(--muted);
-  max-width:740px;
+  max-width:780px;
 }
 
 .hero .sub b{color:var(--text)}
 
-/* ---- Benefit tiles ---- */
+/* ===== BEFORE/AFTER VISUAL BAND ===== */
+
+.visualBand{
+  margin-top:34px;
+  background:var(--band);
+  border:1px solid rgba(216,225,219,.9);
+  border-radius:22px;
+  padding:28px;
+  box-shadow: var(--shadow);
+}
+
+.visualGrid{
+  display:grid;
+  gap:18px;
+  align-items:stretch;
+}
+
+@media(min-width:900px){
+  .visualGrid{
+    grid-template-columns: 1fr 84px 1fr;
+    gap:18px;
+  }
+}
+
+.label{
+  font-size:12px;
+  letter-spacing:.14em;
+  font-weight:900;
+  color:rgba(16,32,24,.65);
+  margin:0 0 10px;
+}
+
+.beforeList{
+  display:grid;
+  gap:10px;
+}
+
+.beforePill{
+  background:var(--card);
+  border:1px solid var(--line);
+  border-radius:14px;
+  padding:12px 14px;
+  font-size:14px;         /* smaller than benefits */
+  color:rgba(16,32,24,.78);
+}
+
+.afterCard{
+  background:var(--card);
+  border:1px solid var(--line);
+  border-radius:18px;
+  padding:14px;
+}
+
+.afterItem{
+  display:grid;
+  grid-template-columns:34px 1fr;
+  gap:10px;
+  padding:10px 8px;
+  border-radius:14px;
+}
+
+.afterItem + .afterItem{
+  border-top:1px solid rgba(216,225,219,.7);
+}
+
+.avatar{
+  width:34px;
+  height:34px;
+  border-radius:999px;
+  background:rgba(80,102,90,.18);
+  margin-top:2px;
+}
+
+.afterName{
+  font-weight:900;
+  font-size:14px;         /* smaller */
+  margin:0 0 4px;
+}
+
+.afterText{
+  margin:0;
+  font-size:14px;         /* smaller */
+  color:rgba(16,32,24,.75);
+  line-height:1.35;
+}
+
+.arrowWrap{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.arrow{
+  width:52px;
+  height:52px;
+  border-radius:999px;
+  background:rgba(31,111,74,.10);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border:1px solid rgba(31,111,74,.18);
+}
+
+.arrow svg{
+  width:26px;
+  height:26px;
+  stroke:var(--btn);
+  stroke-width:3.5;
+  fill:none;
+}
+
+/* Hide arrow on mobile (top-to-bottom flow already reads perfectly) */
+@media(max-width:899px){
+  .arrowWrap{display:none;}
+}
+
+/* Explainer + caption */
+.explainer{
+  margin:16px 0 0;
+  font-size:14px;
+  color:rgba(16,32,24,.70);
+}
+
+.caption{
+  margin:14px 0 0;
+  font-weight:900;
+  color:var(--btn);
+  text-align:center;
+  font-size:16px;
+}
+
+/* ===== BENEFIT TILES ===== */
 
 .benefitGrid{
-  margin-top: 42px;
-  display: grid;
-  gap: 18px;
-  grid-template-columns: 1fr;
+  margin-top:26px;
+  display:grid;
+  gap:18px;
+  grid-template-columns:1fr;
 }
 
-@media (min-width: 760px){
-  .benefitGrid{ grid-template-columns: repeat(2, 1fr); }
-}
-
-@media (min-width: 1040px){
-  .benefitGrid{ grid-template-columns: repeat(3, 1fr); }
+@media (min-width:760px){
+  .benefitGrid{
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
 
 .benefit{
@@ -114,16 +245,17 @@ p{max-width:720px}
   margin:0;
   color:var(--muted);
   font-size:14px;
+  line-height:1.45;
 }
 
-/* ---- Centered promise + CTA ---- */
+/* ===== PROMISE + CTA ===== */
 
 .heroPromise{
   font-weight:900;
   color:var(--btn);
   text-align:center;
-  max-width:520px;
-  margin:34px auto 18px;
+  margin:28px auto 18px;
+  font-size:18px;
 }
 
 .heroBottomCta{
@@ -131,114 +263,20 @@ p{max-width:720px}
   justify-content:center;
 }
 
-/* ---- Mobile polish ---- */
+/* ===== MOBILE POLISH ===== */
 
 @media (max-width:640px){
   section{padding:64px 16px}
   .heroInner{padding:0 22px}
   .hero .sub{font-size:16px}
-}
 
-  /* ===== Transformation Section ===== */
-
-.transformWrap{
-  margin: 48px 0 70px;
-}
-
-.transformGrid{
-  display:grid;
-  grid-template-columns: 1fr;
-  gap:30px;
-  align-items:center;
-}
-
-@media(min-width:900px){
-  .transformGrid{
-    grid-template-columns: 1fr auto 1fr;
+  .visualBand{
+    padding:18px;
+    border-radius:18px;
   }
-}
 
-.transformSide{
-  text-align:left;
-}
-
-.label{
-  font-size:13px;
-  font-weight:700;
-  letter-spacing:0.08em;
-  text-transform:uppercase;
-  color:var(--muted);
-  margin-bottom:12px;
-}
-
-.stack{
-  display:flex;
-  flex-direction:column;
-  gap:12px;
-}
-
-.source{
-  background:white;
-  border:1px solid var(--line);
-  border-radius:14px;
-  padding:14px;
-  font-size:14px;
-  color:var(--muted);
-}
-
-.arrow{
-  font-size:34px;
-  font-weight:800;
-  color:var(--btn);
-  text-align:center;
-}
-
-/* ---- Feed mock ---- */
-
-.feedMock{
-  background:white;
-  border:1px solid var(--line);
-  border-radius:18px;
-  padding:18px;
-  display:flex;
-  flex-direction:column;
-  gap:16px;
-}
-
-.post{
-  display:flex;
-  gap:12px;
-}
-
-.avatar{
-  width:34px;
-  height:34px;
-  border-radius:50%;
-  background:var(--line);
-  flex-shrink:0;
-}
-
-.content{
-  flex:1;
-}
-
-.name{
-  font-size:14px;
-  font-weight:700;
-  margin-bottom:4px;
-}
-
-.text{
-  font-size:14px;
-  color:var(--muted);
-  line-height:1.4;
-}
-
-.transformCaption{
-  text-align:center;
-  margin-top:24px;
-  font-weight:700;
-  color:var(--btn);
+  .caption{font-size:15px}
+  .heroPromise{font-size:16px}
 }
 </style>
 </head>
@@ -249,97 +287,86 @@ p{max-width:720px}
     <h1>Turn comments into a real community.</h1>
 
     <p class="sub">
-      A <b>chronological, Twitter-style feed</b> for your audience —
-      with <b>built-in community funding</b> —
-      and <b>no extra content to create</b>.
+      A <b>chronological, Twitter-style feed</b> for your audience — with <b>built-in community funding</b> — and <b>no extra content</b> to create.
     </p>
-<!-- ===== Transformation Visual ===== -->
 
-<div class="transformWrap">
+    <!-- VISUAL (separated band) -->
+    <div class="visualBand" aria-label="Before and after example">
+      <div class="visualGrid">
 
-  <div class="transformGrid">
+        <div>
+          <div class="label">BEFORE</div>
+          <div class="beforeList">
+            <div class="beforePill">YouTube Comments</div>
+            <div class="beforePill">Substack Replies</div>
+            <div class="beforePill">Twitter Threads</div>
+          </div>
+        </div>
 
-    <!-- BEFORE -->
-    <div class="transformSide">
-      <div class="label">Before</div>
+        <div class="arrowWrap" aria-hidden="true">
+          <div class="arrow">
+            <svg viewBox="0 0 24 24">
+              <path d="M5 12h12"></path>
+              <path d="M13 6l6 6-6 6"></path>
+            </svg>
+          </div>
+        </div>
 
-      <div class="stack">
-        <div class="source">YouTube Comments</div>
-        <div class="source">Substack Replies</div>
-        <div class="source">Twitter Threads</div>
+        <div>
+          <div class="label">AFTER</div>
+          <div class="afterCard">
+            <div class="afterItem">
+              <div class="avatar"></div>
+              <div>
+                <p class="afterName">Alex</p>
+                <p class="afterText">This episode hit hard. Especially the part about sustainable communities.</p>
+              </div>
+            </div>
+            <div class="afterItem">
+              <div class="avatar"></div>
+              <div>
+                <p class="afterName">Jordan</p>
+                <p class="afterText">Same here. I love having one place to continue the conversation.</p>
+              </div>
+            </div>
+            <div class="afterItem">
+              <div class="avatar"></div>
+              <div>
+                <p class="afterName">You</p>
+                <p class="afterText">Appreciate that. This is exactly why we built this space.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
       </div>
+
+      <p class="explainer">
+        <b>Before:</b> scattered, linear comment threads. <b>After:</b> a media-rich, two-way conversation feed.
+      </p>
+
+      <div class="caption">From scattered threads → one shared home.</div>
     </div>
 
-    <!-- ARROW -->
-    <div class="arrow">→</div>
-
-    <!-- AFTER -->
-    <div class="transformSide">
-      <div class="label">After</div>
-
-      <div class="feedMock">
-        <div class="post">
-          <div class="avatar"></div>
-          <div class="content">
-            <div class="name">Alex</div>
-            <div class="text">This episode hit hard. Especially the part about sustainable communities.</div>
-          </div>
-        </div>
-
-        <div class="post">
-          <div class="avatar"></div>
-          <div class="content">
-            <div class="name">Jordan</div>
-            <div class="text">Same here. I love having one place to continue the conversation.</div>
-          </div>
-        </div>
-
-        <div class="post">
-          <div class="avatar"></div>
-          <div class="content">
-            <div class="name">You</div>
-            <div class="text">Appreciate that. This is exactly why we built this space.</div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-  </div>
-
-  <div class="transformCaption">
-    From scattered threads → one shared home.
-  </div>
-
-</div>
+    <!-- BENEFITS -->
     <div class="benefitGrid">
       <div class="benefit">
         <h3>Real conversations</h3>
-        <p>
-          One shared feed. No algorithmic distortion.
-          Your audience talks with you — and each other — openly.
-        </p>
+        <p>One shared feed. No algorithmic distortion. Your audience talks with you — and each other — openly.</p>
       </div>
 
       <div class="benefit">
         <h3>No extra work</h3>
-        <p>
-          Keep publishing on YouTube or Substack.
-          Just share your link. Conversations happen here.
-        </p>
+        <p>Keep publishing on YouTube or Substack. Just share your link. Conversations happen here.</p>
       </div>
 
       <div class="benefit">
         <h3>Sustainable by design</h3>
-        <p>
-          Built-in community funding keeps it healthy —
-          without ads, algorithms, or platform extraction.
-        </p>
+        <p>Built-in community funding keeps it healthy — without ads, algorithms, or platform extraction.</p>
       </div>
     </div>
 
-    <p class="heroPromise">
-      No ads • No algorithms • Community funded
-    </p>
+    <p class="heroPromise">No ads • No algorithms • Community funded</p>
 
     <div class="heroBottomCta">
       <a class="cta" href="start.html?reset=1">Start</a>
