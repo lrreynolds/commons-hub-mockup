@@ -95,7 +95,7 @@ The following are intentionally excluded:
 	•	Live stream paywalls
 	•	PeerTube integration
 	•	Video library gating
-	•	NFT / token systems
+	•	NFT or token systems
 	•	Referral systems
 	•	Affiliate systems
 	•	Algorithmic growth features
