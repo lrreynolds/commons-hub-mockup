@@ -1,169 +1,213 @@
-Commonshub MVP — Paid Design & Systems Task
+# Commonshub MVP — Paid Design & Systems Task
 
-Context
+## Context
 
 You’re joining Commonshub at a very early stage.
 
-Commonshub is not a social network.
+Commonshub is not a social network.  
 It is a control plane that provisions, hosts, and sustains independent Mastodon-based communities — with optional, non-extractive community funding.
 
-Mastodon is the social surface.
-Stripe handles payments.
+Mastodon is the social surface.  
+Stripe handles payments.  
 Commonshub connects the pieces and provides a calm, creator-first experience.
 
-This task is designed to simulate day-one collaboration on the most important part of the MVP.
+This task simulates day-one collaboration on the most important part of the MVP.
 
-It is not about shipping production code.
-It is about judgment, taste, systems thinking, and clarity.
+It is not about shipping production code.  
+It is about judgment, systems thinking, clarity, and restraint.
 
-⸻
+---
 
-What’s in the repo
+## Before Starting
 
-Before starting, please read:
-	1.	mvp-flow-and-state.md — the authoritative end-to-end product flow
-	2.	mastodon-integration.md — what Commonshub can and cannot control via Mastodon
-	3.	community-funding-integration.md — Stripe, funding states, and public surfaces
-	4.	The existing HTML mockups — these are directional, not final designs
+Please read the following documents in `/docs`:
+
+1. **commonshub-product-spec-v1.1.md**  
+   The authoritative MVP behavior document.
+
+2. **commonshub-mastodon-integration-mvp-v1.0.md**  
+   What Commonshub can and cannot control inside Mastodon.
+
+3. **commonshub-economic-and-funding-model-v1.0.md**  
+   Funding philosophy, optionality rules, and boundaries.
+
+4. The existing HTML mockups  
+   These are directional — not final designs.
 
 If something feels ambiguous, assume:
-	•	Commonshub prefers clarity over cleverness
-	•	Defaults should always allow progress
-	•	Mastodon remains the place where social interaction happens
 
-⸻
+- Clarity over cleverness  
+- Defaults should always allow progress  
+- Mastodon remains the social layer  
+- Funding must remain calm and optional  
+- Creator sovereignty must be preserved  
 
-The task
+---
 
-Goal
-Design and document the Community Funding experience end-to-end, covering:
-	•	Internal creator experience (dashboard + setup)
-	•	External public experience (funding + onboarding)
-	•	Integration boundaries with Mastodon and Stripe
+# The Task
+
+## Goal
+
+Design and document the **Community Funding experience** end-to-end, covering:
+
+- Internal creator experience (dashboard + setup)
+- External public experience (funding + onboarding)
+- Integration boundaries with Mastodon and Stripe
 
 This is the heart of the Commonshub MVP.
 
-⸻
+---
 
-What to produce
+# What to Produce
 
-Create a new directory named task in the repo.
+Create a new directory named `task` in the repo.
 
 Inside it, include all three items below.
 
-⸻
+---
 
-1) Funding flow walkthrough (required)
+## 1) Funding Flow Walkthrough (Required)
 
-Create a document named funding-flow.md inside the task directory.
+Create a document named:
+
+`funding-flow.md`
 
 This document should clearly walk through the full funding journey.
 
-On the creator side:
-	•	How funding is enabled from the dashboard
-	•	How Stripe Connect fits into the flow
-	•	What state changes occur at each step
-	•	How the pinned funding post or announcement is created
+### On the creator side:
 
-On the public side:
-	•	How the community funding page works as both:
-	•	A funding surface
-	•	A community onboarding ramp
-	•	How non-members are invited to join
-	•	How messaging stays calm, optional, and non-extractive
+- How funding is enabled from the dashboard
+- How Stripe Connect fits into the flow
+- What state changes occur at each step
+- How the announcement and pinned funding post are created
+- What is automated vs what requires fallback
+
+### On the public side:
+
+- How the community funding page functions as:
+  - A funding surface
+  - A community onboarding ramp
+- How non-members are invited to join
+- How messaging remains calm and optional
+- How participation stays free
 
 For each step, describe:
-	•	What the user sees
-	•	What state changes
-	•	Which system is responsible (Commonshub, Mastodon, or Stripe)
-	•	Where fallback to Mastodon UI may be required
 
-This should read like a clear walkthrough, not a spec dump.
+- What the user sees
+- What state changes
+- Which system is responsible (Commonshub, Mastodon, or Stripe)
+- Where fallback to Mastodon UI may be required
 
-⸻
+This should read like a walkthrough, not a technical spec.
 
-2) UI sketches or wireframes (required)
+---
+
+## 2) UI Sketches or Wireframes (Required)
 
 Provide rough UI sketches or wireframes for the following.
 
-Internal (creator-facing):
-	•	Dashboard before funding is enabled
-	•	Dashboard after funding is enabled
-	•	Funding explainer screen
-	•	Stripe connect step (conceptual)
+### Internal (creator-facing)
 
-Public (member-facing):
-	•	Community funding landing page (funding + onboarding)
-	•	Example pinned funding post or announcement
+- Dashboard before funding is enabled
+- Dashboard after funding is enabled
+- Funding explainer screen
+- Stripe Connect step (conceptual)
 
-These can be simple wireframes, annotated screenshots, or low-fidelity mockups.
+### Public (member-facing)
 
-Polish is not required.
-Clarity, restraint, and judgment are required.
+- Community funding landing page
+- Example funding announcement
+- Example pinned funding post
 
-We’re explicitly looking for:
-	•	Separation of internal vs public surfaces
-	•	Taste in admin UI vs brand-facing UI
-	•	How you avoid over-designing the dashboard
-	•	How you treat the public funding page as the creator’s front door
+These can be:
 
-⸻
+- Simple wireframes
+- Annotated screenshots
+- Low-fidelity mockups
 
-3) Integration reasoning notes (required)
+Polish is not required.  
+Clarity and restraint are required.
 
-Create a document named integration-notes.md inside the task directory.
+We are explicitly looking for:
+
+- Clear separation between internal vs public surfaces
+- Calm admin UI
+- Taste in messaging
+- Avoidance of dashboard complexity
+- Respect for the optional funding model
+
+---
+
+## 3) Integration Reasoning Notes (Required)
+
+Create a document named:
+
+`integration-notes.md`
 
 Briefly explain how you think about:
-	•	Mastodon constraints (pinning posts, announcements, invite links)
-	•	Stripe constraints (connect, payouts, funding modes)
-	•	Where automation is realistic vs where fallback is appropriate
+
+- Mastodon constraints (pinning posts, announcements, invite links)
+- Stripe constraints (Connect, payouts, funding modes)
+- Automation vs fallback decisions
+- Where you would avoid building complexity in MVP
 
 You do not need to be correct about every API detail.
-We care about how you reason under uncertainty.
 
-⸻
+We care about:
 
-Time & scope
-	•	Expected time: 4–6 hours
-	•	This is a paid task
-	•	Do not write production code
-	•	Do not introduce new features beyond the MVP docs
-	•	Do not redesign the entire product
+- How you reason under uncertainty
+- Whether you respect system boundaries
+- Whether you understand separation of concerns
+
+---
+
+# Time & Scope
+
+- Expected time: 4–6 hours
+- This is a paid task
+- Do not write production code
+- Do not introduce new features beyond MVP
+- Do not redesign the entire product
 
 Think of this as:
-“What would you hand to a teammate if you were joining Commonshub tomorrow?”
 
-⸻
+> “What would you hand to a teammate if you were joining Commonshub tomorrow?”
 
-How we’ll evaluate
+---
 
-We’ll look for:
-	•	Clear understanding of product intent
-	•	Good separation of concerns
-	•	Calm, intentional UX decisions
-	•	Respect for constraints
-	•	Ability to explain tradeoffs
-	•	Taste and restraint
+# How We’ll Evaluate
 
-We are not scoring:
-	•	Visual polish
-	•	Framework choices
-	•	Cleverness
-	•	Feature volume
+We will look for:
 
-⸻
+- Clear understanding of product intent
+- Respect for constitutional principles
+- Clean separation of concerns
+- Calm, intentional UX decisions
+- Thoughtful tradeoffs
+- Restraint
 
-Submission
+We are not evaluating:
 
-Commit your work under the task directory.
-Keep everything self-contained.
+- Visual polish
+- Framework choice
+- Cleverness
+- Feature volume
+
+---
+
+# Submission
+
+Commit your work under the `task` directory.
+
+Keep everything self-contained.  
 Add brief comments where helpful.
 
 After review:
-	•	We’ll schedule a follow-up call
-	•	You’ll walk us through your thinking
-	•	We’ll discuss next steps together
 
-⸻
+- We’ll schedule a follow-up call
+- You’ll walk us through your thinking
+- We’ll discuss next steps together
+
+---
 
 Thanks for taking this on — we’re excited to see how you think.
