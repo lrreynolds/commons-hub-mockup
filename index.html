@@ -129,11 +129,42 @@ p{max-width:740px}
   color:rgba(16,32,24,.78);
 }
 
+.beforeAfterSection{
+  margin-top:50px;
+  padding:28px;
+  background:#f1f6f3;
+  border:1px solid #e3ebe6;
+  border-radius:24px;
+}
+
+.beforeAfterExplain{
+  font-size:14px;
+  color:var(--muted);
+  text-align:center;
+  margin-top:18px;
+}
+
+.beforeAfterLabel{
+  font-size:11px;
+  letter-spacing:0.14em;
+  font-weight:700;
+  color:var(--muted);
+  margin-bottom:10px;
+}
+.beforeBox{
+  background:#f7faf8;
+  border:1px solid #e3ebe6;
+  border-radius:14px;
+  padding:10px 14px;
+  font-size:14px;
+  margin-bottom:10px;
+}
+
 .afterCard{
-  background:var(--card);
-  border:1px solid var(--line);
+  background:white;
+  border:1px solid #e3ebe6;
   border-radius:18px;
-  padding:14px;
+  padding:16px;
 }
 
 .afterItem{
@@ -148,12 +179,30 @@ p{max-width:740px}
   border-top:1px solid rgba(216,225,219,.7);
 }
 
+.feedItem{
+  display:flex;
+  gap:10px;
+  margin-bottom:12px;
+}
+
+.feedName{
+  font-size:14px;
+  font-weight:700;
+  margin-bottom:2px;
+}
+
+.feedText{
+  font-size:14px;
+  color:var(--muted);
+  line-height:1.35;
+}
+
 .avatar{
-  width:34px;
-  height:34px;
-  border-radius:999px;
-  background:rgba(80,102,90,.18);
-  margin-top:2px;
+  width:32px;
+  height:32px;
+  border-radius:50%;
+  background:#dde5df;
+  flex-shrink:0;
 }
 
 .afterName{
@@ -176,14 +225,9 @@ p{max-width:740px}
 }
 
 .arrow{
-  width:52px;
-  height:52px;
-  border-radius:999px;
-  background:rgba(31,111,74,.10);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  border:1px solid rgba(31,111,74,.18);
+  font-size:22px;
+  color:var(--btn);
+  opacity:0.6;
 }
 
 .arrow svg{
@@ -192,6 +236,10 @@ p{max-width:740px}
   stroke:var(--btn);
   stroke-width:3.5;
   fill:none;
+}
+
+@media(max-width:760px){
+  .arrow{ display:none; }
 }
 
 /* Hide arrow on mobile (top-to-bottom flow already reads perfectly) */
