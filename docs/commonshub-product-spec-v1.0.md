@@ -1,289 +1,239 @@
-Commonshub Product Specification
+Commonshub Product Specification v1.0
 
-Version 1.0 (MVP)
+Status: Canonical – MVP Build Contract
+Last Updated: 2026-02-11
 
 ⸻
 
 1. Purpose
 
-This document defines the functional behavior, user experience rules, and non-negotiable product constraints for the Commonshub MVP.
+This document defines:
+	•	What Commonshub MVP builds
+	•	What it intentionally excludes
+	•	How funding behaves
+	•	What state transitions exist
+	•	What decision rules protect scope
+	•	How this aligns with the Constitution and Economic Model
 
-It translates the Constitution into implementable product decisions.
+This document is the authoritative engineering contract for MVP.
 
-Audience:
-	•	Product
-	•	Frontend engineers
-	•	Backend engineers
-	•	Designers
-	•	Payments integration
-
-⸻
-
-2. Product Model (MVP)
-
-2.1 What Commonshub Is
-
-Commonshub is the control plane for creator-owned federated communities.
-
-In MVP:
-	•	Mastodon is the social surface.
-	•	Commonshub provisions and configures Mastodon instances.
-	•	Commonshub manages funding integration (Stripe).
-	•	Commonshub manages setup flows and lifecycle state.
+If something is not described here, it is not part of MVP.
 
 ⸻
 
-2.2 What Commonshub Is Not
+2. MVP Definition
 
-Commonshub is not:
-	•	A social feed
-	•	A content algorithm
-	•	An advertising platform
-	•	A centralized moderation authority
-	•	A payment processor
-
-Stripe handles payments.
-Mastodon handles social interaction.
-
-⸻
-
-3. MVP Scope
-
-3.1 Included in MVP
-
-A. Server Provisioning
-	•	Mastodon instance provisioning
-	•	Admin account creation
-	•	Domain/subdomain configuration
-	•	Basic setup flow
-
-B. Creator Setup Wizard
-	•	Plan selection
-	•	Community name + address
-	•	Launch confirmation
-
-C. Dashboard
-	•	Community health
-	•	Invite link
-	•	Funding state
-	•	Funding management entry point
-
-D. Community Funding (Optional)
-	•	Stripe Connect onboarding
-	•	Enable/disable funding
-	•	Monthly + one-time support
+MVP is the smallest viable version of Commonshub that:
+	1.	Provisions a Mastodon-based community
+	2.	Connects Stripe via platform account
+	3.	Enables optional community funding
+	4.	Surfaces funding via:
+	•	Announcement
+	•	Pinned post template
 	•	Public funding page
-	•	Funding link
-	•	Funding announcement pattern
-	•	Pinned post pattern
+	5.	Provides a clean creator dashboard
+
+Nothing beyond this is assumed.
 
 ⸻
 
-3.2 Explicitly Out of Scope (MVP)
-	•	Gated Mastodon membership
-	•	Paid-only Mastodon instances
-	•	Role-based billing tiers
-	•	Automated removal for non-payment
-	•	PeerTube integration
-	•	Live stream gating
-	•	Analytics dashboards
-	•	Revenue splits beyond Stripe platform fee
+3. Core System Surfaces
+
+3.1 Creator-Facing Surfaces
+	•	Setup Wizard
+	•	Creator Dashboard
+	•	Funding Settings
+	•	Stripe Connection Flow
+
+3.2 Public-Facing Surfaces
+	•	Mastodon community
+	•	Public funding page
+	•	Funding announcement (Mastodon)
+	•	Pinned post template
 
 ⸻
 
-4. Funding Model
+4. MVP Scope (Non-Negotiable)
 
-4.1 Default Model (MVP)
+4.1 Included in MVP
 
-Funding is optional.
+Community Provisioning
+	•	Mastodon instance setup (semi-automated or manual-assisted)
+	•	Admin account creation
+	•	Basic branding (name, description)
+	•	Invite flow
 
-Participation in the community is always free.
-
-Funding exists to support sustainability — not to gate access.
-
-All funding language must clearly state:
-	•	Participation is always free.
-	•	Community funding is optional.
-
-⸻
-
-4.2 Funding States
-
-Funding has three states:
-
-State A: Stripe Not Connected
-	•	Funding disabled
-	•	CTA: “Enable community funding”
-	•	Subcopy explains optional nature
-
-State B: Stripe Connected, Funding Off
-	•	CTA: “Turn on community funding”
-	•	Funding page not public
-
-State C: Funding Live
-	•	Funding page public
-	•	Dashboard shows:
-	•	Visit funding page
+Funding Infrastructure
+	•	Stripe Connect (platform account model)
+	•	Creator connects Stripe account
+	•	Enable/disable community funding
+	•	Public funding page generation
 	•	Copy funding link
-	•	Announcement and pinned post suggested
+	•	Copy invite link
+
+Announcement Workflow
+
+When funding is enabled:
+	•	Generate standard three-line announcement copy
+	•	Generate pinned post copy
+	•	Provide one-click copy mechanism
+	•	Auto-post (optional, future enhancement but not required for MVP)
+
+Creator Dashboard
+
+Creator can:
+	•	See hosting status
+	•	See Stripe connection status
+	•	See funding status
+	•	Enable/disable funding
+	•	Access funding link
+	•	Access invite link
 
 ⸻
 
-5. Announcement & Pinned Post Pattern (MVP)
+4.2 Explicitly Out of Scope (MVP)
 
-5.1 Standard Announcement Format
+The following are intentionally excluded:
+	•	Hard paywall enforcement
+	•	Subscription-gated Mastodon instances
+	•	Tiered access systems
+	•	Role-based content restrictions
+	•	Live stream paywalls
+	•	PeerTube integration
+	•	Video library gating
+	•	Referral systems
+	•	Affiliate systems
+	•	Algorithmic growth features
+	•	Advanced analytics
+	•	Multi-tier subscription logic
+	•	Automated billing enforcement logic
 
-Maximum three lines.
+If it introduces subscription lifecycle complexity, it is not MVP.
 
-No hype.
-No urgency.
-No pressure.
+⸻
 
-Standard format:
+5. Funding Model (MVP)
 
-Support this community if you’d like.
+5.1 Default Mode: Optional Funding
+	•	Participation is always free
+	•	Funding is optional
+	•	No access gating
+	•	No feature restriction
+	•	No content restriction
+
+Funding is contextual support, not membership enforcement.
+
+⸻
+
+5.2 Future Modes (Not MVP, Not Promised)
+
+Possible future directions:
+	•	Optional gated community mode
+	•	Membership-required instances
+	•	Paid access to live streams
+	•	Paid access to video libraries
+	•	Tiered contribution models
+	•	Subscription state management
+	•	Creator-managed access enforcement
+
+These are architectural possibilities, not commitments.
+
+⸻
+
+6. State Model
+
+6.1 Hosting States
+	•	Not provisioned
+	•	Provisioning
+	•	Active
+
+6.2 Stripe States
+	•	Not connected
+	•	Connected
+
+6.3 Funding States
+	•	Disabled
+	•	Enabled (optional funding live)
+
+No gating states exist in MVP.
+
+⸻
+
+7. Announcement Copy Pattern (MVP)
+
+Standard three-line format:
+
+If this community is useful to you, support is welcome.
 Participation is always free. No ads. No algorithms.
-Visit → https://example.community/funding
+Visit → example.community/support
 
 Rules:
 	•	Max 3 lines preferred
 	•	No emoji
+	•	No hype
+	•	No urgency pressure
 	•	No exclamation marks
-	•	No scarcity tactics
-	•	No implied obligation
+	•	No scarcity language
+
+Pinned post uses same copy but may include brief context.
 
 ⸻
 
-5.2 Pinned Post Pattern
+8. MVP Design Constraints
 
-Pinned posts may include slightly more context but must remain calm.
+MVP must:
+	•	Be understandable in under 10 minutes
+	•	Avoid billing complexity
+	•	Avoid tier logic
+	•	Avoid content enforcement logic
+	•	Avoid moderation automation complexity
+	•	Avoid subscription lifecycle enforcement
+	•	Avoid legal ambiguity around paid membership
 
-Tone:
-	•	Matter-of-fact
-	•	No marketing language
-	•	No conversion tactics
-
-⸻
-
-6. Future: Gated Mode (Not MVP)
-
-Commonshub may support creator-controlled gated access in the future.
-
-Important:
-
-Commonshub does not impose a single funding model.
-
-Creators may choose:
-	•	Fully open community (default)
-	•	Open community + paid extras
-	•	Gated membership access
-
-If gated mode is implemented:
-
-Language must clearly state:
-	•	“Access requires active membership.”
-	•	“Membership is required to participate.”
-	•	“Billing is handled by Stripe.”
-
-No ambiguity.
-No bait-and-switch.
+If a feature increases operational risk or billing complexity, it is not MVP.
 
 ⸻
 
-7. UX Guardrails
+9. Decision Rules
 
-7.1 No Dark Patterns
-
-The product must not include:
-	•	Countdown timers
-	•	Scarcity messaging
-	•	“Only 3 spots left”
-	•	Emotional guilt triggers
-	•	“Support now or lose access” messaging (in default mode)
+If a feature:
+	•	Requires complex subscription state management → Not MVP
+	•	Requires content enforcement logic → Not MVP
+	•	Requires automated billing sync logic → Not MVP
+	•	Requires role-based access control → Not MVP
+	•	Can be implemented as simple infrastructure support → Consider MVP
 
 ⸻
 
-7.2 Optionality Must Be Clear
+10. Alignment With Canonical Documents
 
-On funding surfaces:
+This Product Spec aligns with:
+	•	Constitution v1.0
+	•	Economic & Funding Model v1.0
+	•	Product Principles v1.0
+	•	Design Principles v1.0
+	•	Governance & Moderation Boundaries v1.0
 
-Must include:
-	•	Participation is always free.
-	•	Community funding is optional.
-
-If gated mode:
-	•	Access requirements must be explicit.
-
-⸻
-
-7.3 Creator Sovereignty
-
-Commonshub provides tools.
-Creators choose:
-	•	Whether funding is enabled
-	•	What contribution levels exist
-	•	Whether to publish announcements
-	•	Whether to gate access (future)
-
-Commonshub does not impose economic structure.
+If conflict arises:
+Constitution overrides Product Spec.
 
 ⸻
 
-8. Brand & Voice Constraints
+11. What MVP Proves
 
-Commonshub voice is:
-	•	Calm
-	•	Stewardship-oriented
-	•	Non-salesy
-	•	Non-extractive
-	•	Clear
+MVP proves:
+	•	Infrastructure layer works
+	•	Stripe integration works
+	•	Funding workflow works
+	•	Announcement workflow works
+	•	Creator dashboard works
+	•	Sovereignty model holds
 
-Avoid:
-	•	Marketing hype
-	•	Growth language
-	•	Conversion language
-	•	“Monetize your audience” framing
-
-Preferred framing:
-	•	Sustain
-	•	Support
-	•	Stewardship
-	•	Community care
+Expansion beyond this foundation must be deliberate, not reactive.
 
 ⸻
 
-9. State Flags (MVP)
+Final Instruction
 
-Key client-side states:
-	•	commonshub_server_live
-	•	commonshub_setup_complete
-	•	commonshub_stripe_connected
-	•	commonshub_funding_enabled
-
-Funding UI must derive entirely from state flags.
-
-No implicit UI assumptions.
-
-⸻
-
-10. Product Non-Negotiables
-	1.	No ads.
-	2.	No tracking.
-	3.	No algorithms.
-	4.	Funding optional by default.
-	5.	Creator sovereignty.
-	6.	Transparent billing via Stripe.
-	7.	Mastodon remains the social layer.
-	8.	Commonshub remains the control plane.
-
-⸻
-
-11. Versioning
-
-Version: 1.0
-Status: MVP Authoritative Specification
-
-Future versions must update:
-	•	Funding models
-	•	Gated access capabilities
-	•	Additional federated integrations
+If it is not described here,
+it is not part of MVP.
