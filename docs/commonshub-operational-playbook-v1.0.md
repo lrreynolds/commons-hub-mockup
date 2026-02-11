@@ -156,3 +156,152 @@ Limitation:
 ## Announcement Template (MVP)
 
 Three-line standard:
+
+Support this community if you’d like.
+Participation is always free. No ads.
+Visit: https://example.community/funding
+
+Principles:
+- Short
+- Calm
+- Non-salesy
+- Clear optionality
+
+---
+
+# 5. Pinned Post Rules
+
+Pinned post exists because:
+
+- Many mobile clients ignore announcements
+- Pins are universally visible
+
+Pinned post should:
+
+- Mirror announcement
+- Be equally short
+- Link to funding page
+
+System Rule:
+- When funding is enabled, suggest both
+- Never auto-pin without explicit consent
+
+---
+
+# 6. Funding Page Rules
+
+Funding page must:
+
+- State participation is free
+- State funding is optional
+- Explain purpose of funding
+- Show secure payment note
+- Provide join link
+
+Funding page must never:
+
+- Imply mandatory payment
+- Use urgency tactics
+- Hide join option
+
+---
+
+# 7. Gated Community Mode (Future)
+
+If creator enables gated mode (future feature):
+
+System must:
+
+- Clearly label community as gated
+- Clarify access requirements
+- Clarify billing relationship
+- Clarify refund policy (Stripe)
+
+Announcements must reflect:
+
+"Access requires active membership."
+
+Never assume universal free model.
+
+---
+
+# 8. Creator Sovereignty Rules
+
+Commonshub:
+
+- Suggests language
+- Suggests best practices
+- Provides templates
+
+Commonshub does NOT:
+
+- Override creator funding decisions
+- Enforce free participation
+- Remove announcements automatically
+- Control pricing
+
+---
+
+# 9. State Storage Rules (MVP)
+
+LocalStorage keys (mock):
+
+- commonshub_setup_complete
+- commonshub_setup_step
+- commonshub_stripe_connected
+- commonshub_funding_enabled
+- commonshub_funding_subs_on
+- commonshub_funding_tips_on
+
+Future:
+- Persisted in backend database
+- Stripe webhooks authoritative
+
+---
+
+# 10. Stripe Webhook Model (Future)
+
+Events to handle:
+
+- checkout.session.completed
+- customer.subscription.created
+- customer.subscription.deleted
+- account.updated
+- account.application.deauthorized
+
+System must:
+
+- Update funding state
+- Update entitlement layer (if implemented)
+- Notify creator of changes
+
+---
+
+# 11. Operational Guardrails
+
+Never:
+
+- Auto-enable funding
+- Auto-gate community
+- Auto-delete posts
+- Force announcement creation
+- Hide join link when funding enabled
+
+Always:
+
+- Preserve optionality
+- Preserve clarity
+- Preserve creator control
+
+---
+
+# 12. Alignment With Constitution
+
+This playbook operationalizes:
+
+- Creator sovereignty
+- Non-extractive funding
+- Optional participation
+- Clear boundaries
+
+This document governs behavior, not philosophy.
