@@ -138,6 +138,108 @@ p{max-width:720px}
   .heroInner{padding:0 22px}
   .hero .sub{font-size:16px}
 }
+
+  /* ===== Transformation Section ===== */
+
+.transformWrap{
+  margin: 48px 0 70px;
+}
+
+.transformGrid{
+  display:grid;
+  grid-template-columns: 1fr;
+  gap:30px;
+  align-items:center;
+}
+
+@media(min-width:900px){
+  .transformGrid{
+    grid-template-columns: 1fr auto 1fr;
+  }
+}
+
+.transformSide{
+  text-align:left;
+}
+
+.label{
+  font-size:13px;
+  font-weight:700;
+  letter-spacing:0.08em;
+  text-transform:uppercase;
+  color:var(--muted);
+  margin-bottom:12px;
+}
+
+.stack{
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+}
+
+.source{
+  background:white;
+  border:1px solid var(--line);
+  border-radius:14px;
+  padding:14px;
+  font-size:14px;
+  color:var(--muted);
+}
+
+.arrow{
+  font-size:34px;
+  font-weight:800;
+  color:var(--btn);
+  text-align:center;
+}
+
+/* ---- Feed mock ---- */
+
+.feedMock{
+  background:white;
+  border:1px solid var(--line);
+  border-radius:18px;
+  padding:18px;
+  display:flex;
+  flex-direction:column;
+  gap:16px;
+}
+
+.post{
+  display:flex;
+  gap:12px;
+}
+
+.avatar{
+  width:34px;
+  height:34px;
+  border-radius:50%;
+  background:var(--line);
+  flex-shrink:0;
+}
+
+.content{
+  flex:1;
+}
+
+.name{
+  font-size:14px;
+  font-weight:700;
+  margin-bottom:4px;
+}
+
+.text{
+  font-size:14px;
+  color:var(--muted);
+  line-height:1.4;
+}
+
+.transformCaption{
+  text-align:center;
+  margin-top:24px;
+  font-weight:700;
+  color:var(--btn);
+}
 </style>
 </head>
 
@@ -151,7 +253,64 @@ p{max-width:720px}
       with <b>built-in community funding</b> —
       and <b>no extra content to create</b>.
     </p>
+<!-- ===== Transformation Visual ===== -->
 
+<div class="transformWrap">
+
+  <div class="transformGrid">
+
+    <!-- BEFORE -->
+    <div class="transformSide">
+      <div class="label">Before</div>
+
+      <div class="stack">
+        <div class="source">YouTube Comments</div>
+        <div class="source">Substack Replies</div>
+        <div class="source">Twitter Threads</div>
+      </div>
+    </div>
+
+    <!-- ARROW -->
+    <div class="arrow">→</div>
+
+    <!-- AFTER -->
+    <div class="transformSide">
+      <div class="label">After</div>
+
+      <div class="feedMock">
+        <div class="post">
+          <div class="avatar"></div>
+          <div class="content">
+            <div class="name">Alex</div>
+            <div class="text">This episode hit hard. Especially the part about sustainable communities.</div>
+          </div>
+        </div>
+
+        <div class="post">
+          <div class="avatar"></div>
+          <div class="content">
+            <div class="name">Jordan</div>
+            <div class="text">Same here. I love having one place to continue the conversation.</div>
+          </div>
+        </div>
+
+        <div class="post">
+          <div class="avatar"></div>
+          <div class="content">
+            <div class="name">You</div>
+            <div class="text">Appreciate that. This is exactly why we built this space.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="transformCaption">
+    From scattered threads → one shared home.
+  </div>
+
+</div>
     <div class="benefitGrid">
       <div class="benefit">
         <h3>Real conversations</h3>
