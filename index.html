@@ -70,8 +70,22 @@ p{max-width:740px}
   padding:0 56px;
 }
 
+/* =========================
+   Headline polish (shorter headline already helps)
+   ========================= */
+
 .hero h1{
-  font-size:clamp(34px,5vw,52px);
+  letter-spacing:-0.03em;
+  font-weight:900;
+  line-height:1.03;
+  text-wrap: balance; /* modern browsers; safe if ignored */
+}
+
+/* Slightly reduce on smaller screens to avoid wrap */
+@media (max-width:560px){
+  .hero h1{
+    font-size: clamp(34px, 9vw, 44px);
+  }
 }
 
 .hero .sub{
@@ -349,6 +363,107 @@ p{max-width:740px}
 
   .caption{font-size:15px}
   .heroPromise{font-size:16px}
+}
+  /* =========================
+   Hero headline polish
+   ========================= */
+
+/* Slightly tighter + more decisive headline */
+.hero h1{
+  letter-spacing: -0.03em;      /* a touch tighter */
+  font-weight: 900;             /* punch */
+  text-rendering: geometricPrecision;
+}
+
+/* Optional: if you want it a hair smaller on mobile to avoid wrapping */
+@media (max-width: 560px){
+  .hero h1{
+    font-size: clamp(34px, 9vw, 44px);
+    line-height: 1.03;
+  }
+}
+
+/* =========================
+   Subtle entrance animation
+   ========================= */
+
+@keyframes riseFadeIn {
+  from { opacity: 0; transform: translateY(10px); filter: blur(1px); }
+  to   { opacity: 1; transform: translateY(0);    filter: blur(0); }
+}
+
+@keyframes softFloat {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-2px); }
+}
+
+/* Apply staged entrance to key hero elements */
+.hero h1{
+  opacity: 0;
+  animation: riseFadeIn 520ms ease-out forwards;
+}
+
+.hero .sub{
+  opacity: 0;
+  animation: riseFadeIn 520ms ease-out forwards;
+  animation-delay: 90ms;
+}
+
+.hero .panel,              /* if you have a wrapper around the before/after graphic */
+.hero .graphicPanel,       /* or if you used a name like this */
+.hero .comparisonPanel,    /* or this */
+.hero .beforeAfterWrap{    /* or this */
+  opacity: 0;
+  animation: riseFadeIn 560ms ease-out forwards;
+  animation-delay: 170ms;
+}
+
+/* If you DON'T have a wrapper class for the graphic area,
+   target the first big rounded container after the subtext.
+   (Uncomment + adjust if needed)
+
+.hero .sub + .yourGraphicContainerClass{
+  opacity: 0;
+  animation: riseFadeIn 560ms ease-out forwards;
+  animation-delay: 170ms;
+}
+*/
+
+/* CTA gets a barely-there breathing emphasis (starts after load) */
+@keyframes ctaBreathe {
+  0%, 100% { transform: translateY(0); box-shadow: 0 6px 18px rgba(16,32,24,0.10); }
+  50%      { transform: translateY(-1px); box-shadow: 0 10px 26px rgba(16,32,24,0.14); }
+}
+
+.cta{
+  will-change: transform;
+}
+
+.hero .cta{
+  animation: ctaBreathe 2.8s ease-in-out 1.2s infinite;
+}
+
+/* Optional: on hover, slightly more responsive (desktop only) */
+@media (hover:hover){
+  .hero .cta:hover{
+    transform: translateY(-1px);
+  }
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce){
+  .hero h1,
+  .hero .sub,
+  .hero .panel,
+  .hero .graphicPanel,
+  .hero .comparisonPanel,
+  .hero .beforeAfterWrap,
+  .hero .cta{
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+  }
 }
 </style>
 </head>
