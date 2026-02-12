@@ -125,10 +125,12 @@
         localStorage.removeItem("commonshub_setup_complete");
         localStorage.removeItem("commonshub_setup_step");
         localStorage.removeItem("commonshub_celebrate_once");
+        localStorage.removeItem("commonshub_mastodon_login_attempted");
       } else if (kind === "community") {
         localStorage.removeItem("commonshub_setup_complete");
         localStorage.removeItem("commonshub_setup_step");
         localStorage.removeItem("commonshub_celebrate_once");
+        localStorage.removeItem("commonshub_mastodon_login_attempted");
       }
     } catch {}
 
@@ -159,7 +161,7 @@
         localStorage.removeItem("commonshub_setup_complete");
         localStorage.removeItem("commonshub_setup_step");
         localStorage.removeItem("commonshub_celebrate_once");
-
+        localStorage.removeItem("commonshub_mastodon_login_attempted");
         localStorage.removeItem("commonshub_stripe_connected");
         localStorage.removeItem("commonshub_funding_enabled");
         localStorage.removeItem("commonshub_funding_subs_on");
