@@ -84,6 +84,51 @@ State flags (MVP mock):
 
 Future: persisted in backend DB.
 
+## 3.4 External Admin Access (Mastodon)
+
+### Purpose
+
+Commonshub must provide a reliable way for creators to access the Mastodon admin interface.
+
+Direct linking to `/admin` produces a confusing permission error if the creator is not logged in.
+
+We must always route through Mastodon’s authentication layer.
+
+### Required URL Pattern
+
+Never link directly to:
+
+    https://<instance>/admin
+
+Always link to:
+
+    https://<instance>/auth/sign_in?redirect_to=/admin
+
+Behavior:
+- If logged in → redirects to `/admin`
+- If logged out → login page → then redirects to `/admin`
+
+### Dashboard Requirement
+
+The Commonshub dashboard must include:
+
+Button label:
+    Mastodon dashboard
+
+Behavior:
+- Opens in new tab
+- Uses redirect-safe login URL
+- Never displays raw admin URL
+- May include subtle helper text:
+  "Opens Mastodon admin. You may be asked to sign in."
+
+### Architectural Rule
+
+Any future external admin surface (PeerTube, Owncast, Stripe Express, etc.)
+must follow the same redirect-safe authentication pattern.
+
+Never link raw admin endpoints that can produce permission errors.
+
 ⸻
 
 4. Funding Lifecycle (MVP)
