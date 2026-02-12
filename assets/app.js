@@ -119,6 +119,7 @@
         localStorage.removeItem("commonshub_setup_complete");
         localStorage.removeItem("commonshub_setup_step");
         localStorage.removeItem("commonshub_celebrate_once");
+        localStorage.removeItem("commonshub_mastodon_login_attempted");
       } else if (kind === "server") {
         localStorage.removeItem("commonshub_server_live");
         localStorage.removeItem("commonshub_setup_complete");
