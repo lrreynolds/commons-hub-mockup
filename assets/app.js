@@ -1,3 +1,4 @@
+
 // assets/app.js
 (() => {
   // ----------------------------
@@ -37,45 +38,36 @@
   }
 
   // ----------------------------
-  // 2.5) Mastodon access buttons (MVP mock)
-  //     Show “Sign in” first, then “Mastodon dashboard” after 1 click
-  // ----------------------------
-  (function setupMastodonAdminButtons() {
-    const loginBtn = document.getElementById("mastodonLoginBtn");
-    const adminBtn = document.getElementById("mastodonAdminBtn");
-    const hint = document.getElementById("mastodonHint");
+// 2.5) Mastodon access buttons (MVP mock)
+// Show "Sign in" first, then "Mastodon dashboard" after 1 click
+// ----------------------------
+(function setupMastodonAdminButtons() {
+  const loginBtn = document.getElementById("mastodonLoginBtn");
+  const adminBtn = document.getElementById("mastodonAdminBtn");
+  const hint = document.getElementById("mastodonHint");
 
-    if (!loginBtn || !adminBtn) return;
+  if (!loginBtn || !adminBtn) return;
 
-    let loginAttempted = false;
-    try {
-      loginAttempted = localStorage.getItem("commonshub_mastodon_login_attempted") === "1";
-    } catch {}
+  let loginAttempted = false;
+  try {
+    loginAttempted =
+      localStorage.getItem("commonshub_mastodon_login_attempted") === "1";
+  } catch {}
 
-    // Default state
-    loginBtn.style.display = loginAttempted ? "none" : "inline-flex";
-    adminBtn.style.display = loginAttempted ? "inline-flex" : "none";
-    if (hint) hint.style.display = loginAttempted ? "none" : "block";
+  // Default state
+  loginBtn.style.display = loginAttempted ? "none" : "inline-flex";
+  adminBtn.style.display = loginAttempted ? "inline-flex" : "none";
+  if (hint) hint.style.display = loginAttempted ? "none" : "block";
 
-    // When they click "Sign in", we:
-    // 1) remember it (so next load shows Admin button)
-    // 2) open the real Mastodon sign-in page
-    // 3) refresh this dashboard (so the mock swaps buttons)
-    loginBtn.addEventListener("click", (e) => {
-      e.preventDefault();
+  // When "Sign in" is clicked
+  loginBtn.addEventListener("click", (e) => {
+    e.preventDefault();
 
-      try {
-        localStorage.setItem("commonshub_mastodon_login_attempted", "1");
-      } catch {}
+    localStorage.setItem("commonshub_mastodon_login_attempted", "1");
 
-      // open login in a new tab/window (same behavior as target=_blank)
-      const url = loginBtn.getAttribute("href");
-      if (url) window.open(url, "_blank", "noopener");
-
-      // swap state immediately in the mock
-      window.location.reload();
-    });
-  })();
+    window.location.reload();
+  });
+})();
 
   // ----------------------------
   // 3) Copy invite (post-setup)
