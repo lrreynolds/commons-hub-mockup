@@ -195,3 +195,13 @@
     background-position: 0% 50%;
   }
 }
+
+/* Dashboard Theme Variables */
+:root {
+  --dash-bg: #46524d;
+  --dash-text: #e9f2ec;
+  --dash-muted: rgba(233, 242, 236, 0.7);
+  --dash-border: rgba(233, 242, 236, 0.14);
+  --dash-card-text: #0f1713;
+  --dash-card-muted: rgba(15, 23, 19, 0.7);
+}
