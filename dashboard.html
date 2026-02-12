@@ -102,33 +102,41 @@
                   </div>
                 </div>
 
-            <!-- Primary actions: visit + invite + admin -->
-<div class="footerBar" style="margin-top:14px; gap:12px;">
-  <a class="primary"
-     href="community.html"
-     style="flex:1; width:auto; justify-content:center;">
+<!-- Primary actions: Visit + Invite + Mastodon access -->
+<div class="footerBar" id="primaryActions" style="margin-top:14px; gap:12px;">
+
+  <!-- Always available: public/community -->
+  <a class="primary" id="visitCommunityBtn" href="community.html"
+     style="flex:1; justify-content:center;">
     Visit community (Mastodon)
   </a>
 
-  <button class="secondary"
-          id="copyInviteBtn"
-          type="button"
+  <!-- Always available: invite -->
+  <button class="secondary" id="copyInviteBtn" type="button"
           style="flex:1; width:auto; justify-content:center;">
     Copy invite link
   </button>
 
-  <a class="secondary"
-     id="mastodonAdminBtn"
-     href="https://mycommunity.commonshub.social/auth/sign_in?redirect_to=/admin"
-     target="_blank"
-     rel="noopener"
-     style="flex:1; width:auto; justify-content:center;">
+  <!-- Conditional: show sign-in FIRST, then dashboard AFTER -->
+  <a class="secondary" id="mastodonLoginBtn"
+     href="https://mycommunity.commonshub.social/auth/sign_in"
+     target="_blank" rel="noopener"
+     style="flex:1; width:auto; justify-content:center; display:none;">
+    Sign in to Mastodon
+  </a>
+
+  <a class="secondary" id="mastodonAdminBtn"
+     href="https://mycommunity.commonshub.social/admin"
+     target="_blank" rel="noopener"
+     style="flex:1; width:auto; justify-content:center; display:none;">
     Mastodon dashboard
   </a>
 </div>
 
-<div class="muted" style="margin-top:10px; font-size:13px;">
-  Opens Mastodon admin. You may be asked to sign in.
+<!-- Small helper line: only shown when login button is visible -->
+<div class="muted" id="mastodonHint"
+     style="margin-top:10px; font-size:13px; display:none;">
+  Sign in first, then you can open the Mastodon dashboard.
 </div>
 
                 <!-- Invite link stays hidden unless the user wants it -->
