@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Mastodon — Sign in (Mock)</title>
+  <link rel="stylesheet" href="assets/styles.css" />
+</head>
+<body class="flow">
+
+  <div class="wrap" style="grid-template-columns:1fr; max-width:680px;">
+    <main class="stage" style="width:100%;">
+
+      <div class="topbar">
+        <div class="left">
+          <div class="logoMark"></div>
+          <div class="meta">
+            <b>Mastodon</b>
+            <span>Sign in (Mock)</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="center">
+
+          <section class="card">
+            <h2 style="margin:0 0 10px;">Mastodon login page</h2>
+            <div class="muted">
+              In production, this would be your Mastodon instance’s sign-in screen.
+            </div>
+
+            <div class="note" style="margin-top:16px;">
+              <b>Mock behavior:</b><br>
+              Clicking “Continue” simulates a successful login and returns you to the Commonshub dashboard.
+            </div>
+
+            <div class="footerBar" style="margin-top:16px;">
+              <a class="primary" href="dashboard.html"
+                 style="flex:1; justify-content:center;"
+                 onclick="localStorage.setItem('commonshub_mastodon_login_attempted','1');">
+                Continue (simulate login)
+              </a>
+            </div>
+
+          </section>
+
+        </div>
+      </div>
+
+    </main>
+  </div>
+
+</body>
+</html>
