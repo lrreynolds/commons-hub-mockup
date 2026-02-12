@@ -74,6 +74,9 @@ export default function SetupWizardPage() {
       try {
         localStorage.setItem("commonshub_setup_complete", "1");
         localStorage.setItem("commonshub_celebrate_once", "1");
+        // Set funding to live for demo purposes
+        localStorage.setItem("commonshub_stripe_connected", "1");
+        localStorage.setItem("commonshub_funding_enabled", "1");
         localStorage.removeItem(STORAGE_KEY);
       } catch {
         // Ignore
