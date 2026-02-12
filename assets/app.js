@@ -60,10 +60,15 @@
   }
 
   // When they click login, remember it (so next time they see Admin button)
-  loginBtn.addEventListener("click", () => {
-    localStorage.setItem("commonshub_mastodon_login_attempted", "1");
-  });
-})();
+loginBtn.addEventListener("click", (e) => {
+  e.preventDefault();
+
+  // Simulate successful login
+  localStorage.setItem("commonshub_mastodon_login_attempted", "1");
+
+  // Reload dashboard to reflect new state
+  window.location.reload();
+});
   
   // ----------------------------
   // 3) Copy invite (post-setup)
