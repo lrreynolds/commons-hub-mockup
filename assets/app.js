@@ -37,6 +37,34 @@
       : "Your server is running. Next, we’ll help you make it feel “real” before you invite anyone.";
   }
 
+  (function setupMastodonAdminButtons() {
+  const loginBtn = document.getElementById("mastodonLoginBtn");
+  const adminBtn = document.getElementById("mastodonAdminBtn");
+  const hint = document.getElementById("mastodonHint");
+
+  if (!loginBtn || !adminBtn) return;
+
+  // MVP mock: have we sent them to the Mastodon login once?
+  const loginAttempted = localStorage.getItem("commonshub_mastodon_login_attempted") === "1";
+
+  // Default: show "Sign in", hide "Admin"
+  loginBtn.style.display = "inline-flex";
+  adminBtn.style.display = "none";
+  if (hint) hint.style.display = "block";
+
+  // After they’ve clicked "Sign in" once, swap to show "Admin"
+  if (loginAttempted) {
+    loginBtn.style.display = "none";
+    adminBtn.style.display = "inline-flex";
+    if (hint) hint.style.display = "none";
+  }
+
+  // When they click login, remember it (so next time they see Admin button)
+  loginBtn.addEventListener("click", () => {
+    localStorage.setItem("commonshub_mastodon_login_attempted", "1");
+  });
+})();
+  
   // ----------------------------
   // 3) Copy invite (post-setup)
   // ----------------------------
