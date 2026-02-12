@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export function CTA() {
   return (
     <div
@@ -7,8 +9,8 @@ export function CTA() {
         animationDelay: "320ms",
       }}
     >
-      <a
-        href="#start"
+      <Link
+        href="/setup"
         className="inline-block px-[22px] py-[14px] rounded-[16px] font-black no-underline"
         style={{
           background: "var(--ch-btn)",
@@ -18,7 +20,7 @@ export function CTA() {
         }}
       >
         Start Your Community
-      </a>
+      </Link>
     </div>
   );
 }

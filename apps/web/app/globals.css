@@ -119,6 +119,7 @@
 :root {
   --ch-bg: #f4f7f5;
   --ch-card: #ffffff;
+  --ch-card2: #fbfcfb;
   --ch-text: #102018;
   --ch-muted: #50665a;
   --ch-line: #d8e1db;
@@ -126,6 +127,11 @@
   --ch-btn-text: #ffffff;
   --ch-band: #eef3ef;
   --ch-shadow: 0 10px 30px rgba(16, 32, 24, 0.06);
+  --ch-pill: #eef4f0;
+  --ch-accent: #215f43;
+  --ch-accent2: #0f5132;
+  --ch-radius: 18px;
+  --ch-radius2: 14px;
 }
 
 @layer base {
@@ -174,5 +180,18 @@
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+  }
+}
+
+/* Flow Mode Styles (Setup Pages) */
+@keyframes flowPulse {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
   }
 }
