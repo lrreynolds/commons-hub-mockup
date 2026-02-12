@@ -146,6 +146,52 @@ Announcements and pins are suggested — never auto-created without consent.
 
 ---
 
+---
+
+## 2.6 Mastodon Admin Access
+
+### Mastodon Admin Dashboard Link
+
+**Primitive:** Mastodon admin panel (`/admin`)  
+**Desired:** Dashboard button linking directly to Mastodon admin interface  
+
+**Behavior:**
+
+- Commonshub dashboard includes a “Mastodon dashboard” button.
+- Button links directly to: https://{instance-domain}/admin
+- Opens in a new tab.
+
+**Expected outcomes:**
+
+| User State | Result |
+|------------|--------|
+| Logged in as admin | Admin panel opens |
+| Logged in as non-admin | Mastodon shows permission error |
+| Not logged in | Mastodon redirects to sign-in flow |
+
+**Important constraint:**
+
+Commonshub cannot reliably preflight authentication state
+or role permissions without deeper integration.
+
+Attempts to force login using redirect parameters (e.g. `redirect_to`)
+are not guaranteed to work across Mastodon versions or configurations.
+
+**MVP Rule:**
+
+- Link directly to `/admin`
+- Add helper copy:
+> Opens Mastodon admin. You may be asked to sign in.
+- Do not attempt to intercept permission errors.
+
+**Rationale:**
+
+Mastodon admin navigation is non-obvious.
+Providing a direct link reduces creator friction
+while respecting Mastodon’s authentication boundaries.
+
+**Confidence:** High (stable endpoint)
+
 # 3. Funding Integration Boundary
 
 MVP stance:
