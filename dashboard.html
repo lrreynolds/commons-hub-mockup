@@ -111,20 +111,28 @@
     Visit community (Mastodon)
   </a>
 
-  <!-- Always available: invite -->
+<!-- Primary actions: Visit + Invite + Mastodon access -->
+<div class="footerBar" id="primaryActions" style="margin-top:14px; gap:12px;">
+
+  <a class="primary" id="visitCommunityBtn" href="community.html"
+     style="flex:1; justify-content:center;">
+    Visit community (Mastodon)
+  </a>
+
   <button class="secondary" id="copyInviteBtn" type="button"
           style="flex:1; width:auto; justify-content:center;">
     Copy invite link
   </button>
 
-  <!-- Conditional: show sign-in FIRST, then dashboard AFTER -->
+  <!-- Show sign-in by default -->
   <a class="secondary" id="mastodonLoginBtn"
      href="https://mycommunity.commonshub.social/auth/sign_in"
      target="_blank" rel="noopener"
-     style="flex:1; width:auto; justify-content:center; display:none;">
+     style="flex:1; width:auto; justify-content:center;">
     Sign in to Mastodon
   </a>
 
+  <!-- Hide admin until we’ve “attempted login” -->
   <a class="secondary" id="mastodonAdminBtn"
      href="https://mycommunity.commonshub.social/admin"
      target="_blank" rel="noopener"
@@ -133,9 +141,8 @@
   </a>
 </div>
 
-<!-- Small helper line: only shown when login button is visible -->
-<div class="muted" id="mastodonHint"
-     style="margin-top:10px; font-size:13px; display:none;">
+<!-- Shown by default -->
+<div class="muted" id="mastodonHint" style="margin-top:10px; font-size:13px;">
   Sign in first, then you can open the Mastodon dashboard.
 </div>
 
