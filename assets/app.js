@@ -39,6 +39,7 @@
 
   // ----------------------------
 // 2.5) Mastodon access buttons (MVP mock)
+// ----------------------------
 // Show "Sign in" first, then "Mastodon dashboard" after 1 click
 // ----------------------------
 (function setupMastodonAdminButtons() {
@@ -48,24 +49,27 @@
 
   if (!loginBtn || !adminBtn) return;
 
+  const KEY = "commonshub_mastodon_login_attempted";
+
   let loginAttempted = false;
   try {
-    loginAttempted =
-      localStorage.getItem("commonshub_mastodon_login_attempted") === "1";
+    loginAttempted = localStorage.getItem(KEY) === "1";
   } catch {}
 
-  // Default state
+  // Default render
   loginBtn.style.display = loginAttempted ? "none" : "inline-flex";
   adminBtn.style.display = loginAttempted ? "inline-flex" : "none";
   if (hint) hint.style.display = loginAttempted ? "none" : "block";
 
-  // When "Sign in" is clicked
-  loginBtn.addEventListener("click", (e) => {
-    e.preventDefault();
+  // IMPORTANT: DO NOT preventDefault.
+  // Let the link open in a new tab, but flip the local flag here.
+  loginBtn.addEventListener("click", () => {
+    try {
+      localStorage.setItem(KEY, "1");
+    } catch {}
 
-    localStorage.setItem("commonshub_mastodon_login_attempted", "1");
-
-    window.location.reload();
+    // Optional: refresh this tab shortly after so the Admin button appears
+    setTimeout(() => window.location.reload(), 150);
   });
 })();
 
