@@ -115,11 +115,64 @@
   --sidebar-ring: oklch(0.551 0.027 264.364);
 }
 
+/* CommonsHub Custom Variables */
+:root {
+  --ch-bg: #f4f7f5;
+  --ch-card: #ffffff;
+  --ch-text: #102018;
+  --ch-muted: #50665a;
+  --ch-line: #d8e1db;
+  --ch-btn: #1f6f4a;
+  --ch-btn-text: #ffffff;
+  --ch-band: #eef3ef;
+  --ch-shadow: 0 10px 30px rgba(16, 32, 24, 0.06);
+}
+
 @layer base {
   * {
     @apply border-border outline-ring/50;
   }
   body {
-    @apply bg-background text-foreground;
+    font-family: system-ui, -apple-system, Segoe UI, sans-serif;
+    margin: 0;
+    line-height: 1.5;
+    background: var(--ch-bg);
+    color: var(--ch-text);
+  }
+}
+
+/* Animations */
+@keyframes riseFade {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+    filter: blur(1px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+@keyframes ctaBreathe {
+  0%,
+  100% {
+    transform: translateY(0);
+    box-shadow: 0 6px 18px rgba(16, 32, 24, 0.1);
+  }
+  50% {
+    transform: translateY(-1px);
+    box-shadow: 0 10px 26px rgba(16, 32, 24, 0.14);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
 }
