@@ -16,7 +16,6 @@
   let complete = false;
   try {
     complete = localStorage.getItem("commonshub_setup_complete") === "1";
-
   } catch {}
 
   const pre = document.getElementById("preSetup");
@@ -37,39 +36,47 @@
       : "Your server is running. Next, we’ll help you make it feel “real” before you invite anyone.";
   }
 
+  // ----------------------------
+  // 2.5) Mastodon access buttons (MVP mock)
+  //     Show “Sign in” first, then “Mastodon dashboard” after 1 click
+  // ----------------------------
   (function setupMastodonAdminButtons() {
-  const loginBtn = document.getElementById("mastodonLoginBtn");
-  const adminBtn = document.getElementById("mastodonAdminBtn");
-  const hint = document.getElementById("mastodonHint");
+    const loginBtn = document.getElementById("mastodonLoginBtn");
+    const adminBtn = document.getElementById("mastodonAdminBtn");
+    const hint = document.getElementById("mastodonHint");
 
-  if (!loginBtn || !adminBtn) return;
+    if (!loginBtn || !adminBtn) return;
 
-  // MVP mock: have we sent them to the Mastodon login once?
-  const loginAttempted = localStorage.getItem("commonshub_mastodon_login_attempted") === "1";
+    let loginAttempted = false;
+    try {
+      loginAttempted = localStorage.getItem("commonshub_mastodon_login_attempted") === "1";
+    } catch {}
 
-  // Default: show "Sign in", hide "Admin"
-  loginBtn.style.display = "inline-flex";
-  adminBtn.style.display = "none";
-  if (hint) hint.style.display = "block";
+    // Default state
+    loginBtn.style.display = loginAttempted ? "none" : "inline-flex";
+    adminBtn.style.display = loginAttempted ? "inline-flex" : "none";
+    if (hint) hint.style.display = loginAttempted ? "none" : "block";
 
-  // After they’ve clicked "Sign in" once, swap to show "Admin"
-  if (loginAttempted) {
-    loginBtn.style.display = "none";
-    adminBtn.style.display = "inline-flex";
-    if (hint) hint.style.display = "none";
-  }
+    // When they click "Sign in", we:
+    // 1) remember it (so next load shows Admin button)
+    // 2) open the real Mastodon sign-in page
+    // 3) refresh this dashboard (so the mock swaps buttons)
+    loginBtn.addEventListener("click", (e) => {
+      e.preventDefault();
 
-  // When they click login, remember it (so next time they see Admin button)
-loginBtn.addEventListener("click", (e) => {
-  e.preventDefault();
+      try {
+        localStorage.setItem("commonshub_mastodon_login_attempted", "1");
+      } catch {}
 
-  // Simulate successful login
-  localStorage.setItem("commonshub_mastodon_login_attempted", "1");
+      // open login in a new tab/window (same behavior as target=_blank)
+      const url = loginBtn.getAttribute("href");
+      if (url) window.open(url, "_blank", "noopener");
 
-  // Reload dashboard to reflect new state
-  window.location.reload();
-});
-  
+      // swap state immediately in the mock
+      window.location.reload();
+    });
+  })();
+
   // ----------------------------
   // 3) Copy invite (post-setup)
   // ----------------------------
@@ -106,8 +113,6 @@ loginBtn.addEventListener("click", (e) => {
     });
   }
 
-
-
   // ----------------------------
   // 5) Reset demo flow (works on ALL pages)
   // ----------------------------
@@ -119,13 +124,11 @@ loginBtn.addEventListener("click", (e) => {
         localStorage.removeItem("commonshub_setup_step");
         localStorage.removeItem("commonshub_celebrate_once");
       } else if (kind === "server") {
-        // Restart server provisioning flow
         localStorage.removeItem("commonshub_server_live");
         localStorage.removeItem("commonshub_setup_complete");
         localStorage.removeItem("commonshub_setup_step");
         localStorage.removeItem("commonshub_celebrate_once");
       } else if (kind === "community") {
-        // Keep server live, redo community setup wizard
         localStorage.removeItem("commonshub_setup_complete");
         localStorage.removeItem("commonshub_setup_step");
         localStorage.removeItem("commonshub_celebrate_once");
@@ -140,7 +143,6 @@ loginBtn.addEventListener("click", (e) => {
     window.location.href = target;
   }
 
-  // New: any link/button with data-reset="all|server|community"
   document.addEventListener("click", (e) => {
     const el = e.target && e.target.closest ? e.target.closest("[data-reset]") : null;
     if (!el) return;
@@ -152,10 +154,7 @@ loginBtn.addEventListener("click", (e) => {
     resetFlow(kind);
   });
 
-  // ----------------------------
-  // Universal "Start over" handler
-  // ----------------------------
-  document.querySelectorAll("[data-reset='all']").forEach(el => {
+  document.querySelectorAll("[data-reset='all']").forEach((el) => {
     el.addEventListener("click", (e) => {
       e.preventDefault();
       try {
@@ -174,63 +173,66 @@ loginBtn.addEventListener("click", (e) => {
     });
   });
 
-// ----------------------------
-// 6) Funding UI (dashboard) — 3-state
-// ----------------------------
-(() => {
-  const stripeStatus = document.getElementById("stripeStatus");
-  const fundingStatus = document.getElementById("fundingStatus");
-  const fundingSubcopy = document.getElementById("fundingSubcopy");
+  // ----------------------------
+  // 6) Funding UI (dashboard) — 3-state
+  // ----------------------------
+  (() => {
+    const stripeStatus = document.getElementById("stripeStatus");
+    const fundingStatus = document.getElementById("fundingStatus");
+    const fundingSubcopy = document.getElementById("fundingSubcopy");
 
-  const fundingPrimaryBtn = document.getElementById("fundingPrimaryBtn");
-  const fundingCtaWrap = document.getElementById("fundingCtaWrap");
+    const fundingPrimaryBtn = document.getElementById("fundingPrimaryBtn");
+    const fundingCtaWrap = document.getElementById("fundingCtaWrap");
+    const fundingLiveActions = document.getElementById("fundingLiveActions");
 
-  const fundingLiveActions = document.getElementById("fundingLiveActions");
+    // Only run on pages that actually have the funding block
+    if (!fundingPrimaryBtn || !fundingCtaWrap || !fundingLiveActions) return;
 
-  // Only run on pages that actually have the funding block
-  if (!fundingPrimaryBtn || !fundingCtaWrap || !fundingLiveActions) return;
+    let stripeConnected = false;
+    let fundingEnabled = false;
 
-  let stripeConnected = false;
-  let fundingEnabled = false;
+    try {
+      stripeConnected = localStorage.getItem("commonshub_stripe_connected") === "1";
+      fundingEnabled = localStorage.getItem("commonshub_funding_enabled") === "1";
+    } catch {}
 
-  try {
-    stripeConnected = localStorage.getItem("commonshub_stripe_connected") === "1";
-    fundingEnabled  = localStorage.getItem("commonshub_funding_enabled") === "1";
-  } catch {}
+    // Default: show single CTA, hide live actions
+    fundingCtaWrap.style.display = "flex";
+    fundingLiveActions.style.display = "none";
 
-  // Default: show single CTA, hide live actions
-  fundingCtaWrap.style.display = "flex";
-  fundingLiveActions.style.display = "none";
+    if (stripeStatus) stripeStatus.textContent = stripeConnected ? "Connected" : "Not connected";
 
-  if (stripeStatus) stripeStatus.textContent = stripeConnected ? "Connected" : "Not connected";
+    // State A: Stripe not connected
+    if (!stripeConnected) {
+      if (fundingStatus) fundingStatus.textContent = "Off";
+      if (fundingSubcopy) {
+        fundingSubcopy.textContent =
+          "Optional. Participation is always free. Connect Stripe to enable community funding.";
+      }
 
-  // State A: Stripe not connected
-  if (!stripeConnected) {
-    if (fundingStatus) fundingStatus.textContent = "Off";
-    if (fundingSubcopy) fundingSubcopy.textContent =
-      "Optional. Participation is always free. Connect Stripe to enable community funding.";
+      fundingPrimaryBtn.textContent = "Enable community funding";
+      fundingPrimaryBtn.href = "funding-start.html";
+      return;
+    }
 
-    fundingPrimaryBtn.textContent = "Enable community funding";
-    fundingPrimaryBtn.href = "funding-start.html";
-    return;
-  }
+    // State B: Stripe connected, funding off
+    if (!fundingEnabled) {
+      if (fundingStatus) fundingStatus.textContent = "Off";
+      if (fundingSubcopy) {
+        fundingSubcopy.textContent =
+          "Stripe is connected. Turn on community funding when you’re ready.";
+      }
 
-  // State B: Stripe connected, funding off
-  if (!fundingEnabled) {
-    if (fundingStatus) fundingStatus.textContent = "Off";
-    if (fundingSubcopy) fundingSubcopy.textContent =
-      "Stripe is connected. Turn on community funding when you’re ready.";
+      fundingPrimaryBtn.textContent = "Turn on community funding";
+      fundingPrimaryBtn.href = "funding-options.html";
+      return;
+    }
 
-    fundingPrimaryBtn.textContent = "Turn on community funding";
-    fundingPrimaryBtn.href = "funding-options.html";
-    return;
-  }
+    // State C: Funding live
+    if (fundingStatus) fundingStatus.textContent = "Live";
+    if (fundingSubcopy) fundingSubcopy.textContent = "Community funding is live and shareable.";
 
-  // State C: Funding live
-  if (fundingStatus) fundingStatus.textContent = "Live";
-  if (fundingSubcopy) fundingSubcopy.textContent = "Community funding is live and shareable.";
-
-  fundingCtaWrap.style.display = "none";
-  fundingLiveActions.style.display = "block";
-})();
+    fundingCtaWrap.style.display = "none";
+    fundingLiveActions.style.display = "block";
+  })();
 })();
