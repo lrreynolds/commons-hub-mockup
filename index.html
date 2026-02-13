@@ -144,18 +144,24 @@ body{
   color:var(--btn);
 }
 
-/* MOBILE: stack + hide arrow */
+/* MOBILE: stack + full width */
 @media (max-width:760px){
+
   .beforeAfterSection{
-    max-width: none;               /* let it fill on mobile */
+    width:100%;
+    max-width:none;
+    margin:32px 0 0;      /* remove auto-centering gap */
     padding:24px 18px;
   }
+
   .beforeAfterGrid{
-    grid-template-columns: 1fr;
+    grid-template-columns:1fr;
   }
+
   .arrowWrap{
     display:none;
   }
+
 }
 
 /* AFTER CARD */
