@@ -1,0 +1,263 @@
+🛠️ COMMONSHUB — ADMIN DEFAULTS TEMPLATE
+
+This is the baseline configuration for every new community instance.
+
+Only change values when a creator explicitly requests it.
+
+⸻
+
+1️⃣ INSTANCE PROFILE
+
+Instance Name
+
+[Community Name]
+
+Example:
+Indications & Warnings
+
+⸻
+
+Short Description (shown in previews & directories)
+
+A dedicated discussion space for serious geopolitical analysis.
+
+Chronological conversation.
+No algorithms.
+Community supported.
+
+Full Description / About Page
+
+This is the official discussion community for [Show / Creator Name].
+
+It exists to provide a higher-signal environment for:
+• Post-episode analysis
+• Subject-matter expertise
+• Open source investigation
+• Serious, good-faith discussion
+
+This is a chronological space.
+Thoughtful contributions remain visible.
+
+Participation is open.
+
+Community support sustains the work but is never required.
+
+Code of conduct and moderation policies are enforced to maintain signal quality.
+
+
+	•	disinformation drops without sources
+
+⸻
+2️⃣ BRANDING ASSETS
+
+Avatar
+
+400 × 400 px (PNG)
+
+Header / Hero
+
+1500 × 500 px
+
+Thumbnail
+
+(Use avatar if none provided)
+
+⸻
+
+3️⃣ REGISTRATION MODE
+
+For pilots:
+
+✅ Invite-only
+
+Reason: controlled early tone + signal
+
+Later → open or request-based
+
+⸻
+
+4️⃣ DEFAULT POST LENGTH
+
+Recommended:
+
+1500 characters
+
+Why:
+	•	long-form analysis friendly
+	•	thread reduction
+	•	matches your positioning
+
+⸻
+
+5️⃣ VISIBILITY & DISCOVERY
+
+Enable:
+
+✅ Local timeline
+✅ Federated timeline
+✅ Profile directory
+
+Disable initially (optional for small pilots):
+
+❌ Trending links
+❌ Trending hashtags
+
+(turn on later when volume justifies it)
+
+⸻
+
+6️⃣ MODERATION BASELINE
+
+Required Rules
+
+(Use the server rules template you already generated)
+
+Moderation stance (internal)
+
+Signal-first.
+
+Remove:
+	•	bad-faith actors
+	•	harassment
+	•	spam
+	•	disinformation drops without sources
+
+7️⃣ CONTENT RETENTION
+
+Recommended for pilots:
+
+Keep media cached for performance
+Standard retention for posts
+
+(No aggressive deletion early — you want visible activity)
+
+⸻
+
+8️⃣ FEDERATION BASELINE
+
+Preload trusted blocklist
+
+Use:
+	•	mastodon.social baseline
+or
+	•	IFTAS blocklist
+
+This gives instant safety without manual work.
+
+⸻
+
+9️⃣ RELAYS (DISCOVERY)
+
+Join 1–2 high-quality relays only
+
+Purpose:
+	•	make the instance feel alive
+	•	surface relevant content
+
+Avoid:
+large noisy relays at pilot stage.
+
+⸻
+
+🔟 DEFAULT HASHTAGS
+
+Set per community.
+
+Example:
+#IndicationsAndWarnings
+#Ukraine
+#OSINT
+#Geopolitics
+
+Used for:
+	•	discovery
+	•	onboarding guidance
+	•	content grouping
+
+⸻
+
+1️⃣1️⃣ FEATURED ACCOUNTS
+
+Pre-feature:
+	•	Show account
+	•	Hosts
+	•	3–5 high-signal external accounts
+
+This fixes the empty timeline problem instantly.
+
+⸻
+
+1️⃣2️⃣ PINNED WELCOME POST
+
+Every instance starts with:
+
+“Start here” post:
+
+Welcome to the official discussion community for [Show].
+
+If you're new:
+
+1️⃣ Follow the show account  
+2️⃣ Introduce yourself in the Founding Members thread  
+3️⃣ Join the latest episode discussion  
+
+This is a chronological, high-signal space.
+
+No algorithms.
+No engagement games.
+
+1️⃣3️⃣ ADMIN ROLES (PILOT PHASE)
+
+At launch:
+
+You = Owner / Admin
+
+Later:
+
+Creator = Admin
+Moderator(s) = assigned gradually
+
+Never start with multiple admins on day one.
+
+⸻
+
+1️⃣4️⃣ BACKUP & MAINTENANCE BASELINE
+
+V handles infrastructure.
+
+But document:
+	•	backup schedule
+	•	update window
+	•	emergency contact path
+
+So creators feel safe.
+
+⸻
+
+1️⃣5️⃣ ANALYTICS BASELINE (MANUAL FOR NOW)
+
+Track:
+	•	total accounts
+	•	active accounts
+	•	posts per episode thread
+	•	core contributors
+
+Manual snapshot weekly is enough for pilots.
+
+⸻
+
+⚙️ PILOT DEFAULT STACK (QUICK CHECKLIST)
+
+For fast deployment:
+
+✅ Branding uploaded
+✅ Invite-only enabled
+✅ 1500 char posts
+✅ Server rules live
+✅ Blocklist imported
+✅ 1 relay connected
+✅ Featured accounts set
+✅ Welcome post pinned
+✅ 5 seed posts published
+
+→ Instance ready for demo.
