@@ -462,13 +462,6 @@ body{
   font-weight: 900;
   letter-spacing: -0.01em;
 }
-/* --- How section headline: prevent awkward orphan wrap --- */
-#how h2{
-  max-width: 22ch;
-  margin-left: auto;
-  margin-right: auto;
-  text-wrap: balance;
-}
 
 /* --- Engine titles: override the existing .benefit h3 rule --- */
 .benefit h3.engineTitle{
@@ -490,6 +483,51 @@ body{
   font-size: 1.25rem;
   font-weight: 900;
   letter-spacing: -0.01em;
+}
+  /* utility */
+.muted{ color: var(--muted); }
+
+/* center the HOW section headline reliably */
+#how h2{
+  max-width: 28ch;
+  margin: 0 auto 14px;
+  text-align: center;
+  text-wrap: balance;
+}
+
+/* center the content layer so it doesn't feel "wimpy" */
+.benefit.yourContent{
+  text-align: center;
+}
+.benefit.yourContent strong{
+  display:block;
+  font-size: 1.05rem;
+  font-weight: 900;
+  margin-bottom: 4px;
+}
+.benefit.yourContent .muted{
+  display:block;
+  font-size: 0.95rem;
+  margin-bottom: 4px;
+}
+.benefit.yourContent .note{
+  font-size: 0.95rem;
+}
+
+/* reduce engine body copy size a hair */
+.engineCopy{
+  font-size: 13.5px;
+  line-height: 1.4;
+  color: var(--muted);
+}
+.engineCopy b{ color: var(--text); }
+
+/* commonshub copy: tighter and balanced */
+.commonCopy{
+  font-size: 14px;
+  line-height: 1.4;
+  color: var(--muted);
+  margin: 0.35rem 0 0;
 }
 </style>
 </head>
@@ -652,9 +690,9 @@ not comments that reset every time you <b>publish</b>.
 
   <!-- EXISTING CONTENT (EXTERNAL / SUBORDINATE) -->
 <div class="benefit yourContent">
-  <strong>Your content (already exists)</strong><br>
+  <strong>Your content (already exists)</strong>
   <span class="muted">YouTube • Substack • Podcast</span>
-  <div class="muted">Keep publishing exactly as you do today. <b>Nothing changes.</b></div>
+  <div class="note muted">Keep publishing exactly as you do today. <b style="color:var(--text);">Nothing changes.</b></div>
 </div>
 <div style="
   display:flex;
@@ -716,46 +754,46 @@ not comments that reset every time you <b>publish</b>.
   </div>
 
   <!-- ENGINES (2-UP) -->
-  <div class="benefitGrid" style="
-    margin-top:0;                 /* critical */
-    grid-template-columns:1fr 1fr;
-    gap:14px;                      /* a little tighter than 18 */
-  ">
+ <div class="benefitGrid" style="
+  margin-top:0;
+  grid-template-columns:1fr 1fr;
+  gap:14px;
+">
 
-    <div class="benefit" style="text-align:center;">
-     <h3 class="engineTitle">Social media engine</h3>
-Mastodon — a proven, open network used by millions.
-<b>No</b> ads or algorithm.
-</p>
-    </div>
-
-    <div class="benefit" style="text-align:center;">
-     <h3 class="engineTitle">Funding &amp; payments engine</h3>
-<p>
-Stripe — memberships, tips, and donations.<br>
-Money goes <b>directly</b> to you.
-</p>
-    </div>
-
+  <div class="benefit" style="text-align:center;">
+    <h3 class="engineTitle">Social media engine</h3>
+    <p class="engineCopy">
+      Mastodon — a proven, open network used by millions.
+      <b>No</b> ads or algorithm.
+    </p>
   </div>
 
-  <!-- COMMONSHUB (FULL WIDTH) -->
-  <div class="benefit isPrimary" style="
-    margin-top:0;          /* critical */
-    text-align:center;
-    padding:1.1rem 1.25rem 1.2rem;
-  ">
-  <h3 class="commonshubTitle">Commonshub — managed infrastructure</h3>
-We handle setup, hosting, updates, and Stripe integration.
-</p>
-<p class="muted">
-Runs on your domain. Under <b>your control</b>.
-</p>
+  <div class="benefit" style="text-align:center;">
+    <h3 class="engineTitle">Funding &amp; payments engine</h3>
+    <p class="engineCopy">
+      Stripe — memberships, tips, and donations.<br>
+      Money goes <b>directly</b> to you.
+    </p>
   </div>
 
 </div>
-</section>
-    </div>
+
+<div class="benefit isPrimary" style="
+  margin-top:0;
+  text-align:center;
+  padding:1.1rem 1.25rem 1.2rem;
+">
+  <h3 class="commonshubTitle">Commonshub — managed infrastructure</h3>
+  <p class="commonCopy">
+    We handle setup, hosting, updates, and Stripe integration.
+  </p>
+  <p class="commonCopy">
+    Runs on your domain. Under <b>your control</b>.
+  </p>
+</div>
+
+</div>
+
 
   </div>
 </section>
