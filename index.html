@@ -155,26 +155,43 @@ body{
     padding:24px 18px;
   }
 
+  /* MOBILE: stack BEFORE/AFTER */
   .beforeAfterGrid{
     grid-template-columns:1fr;
+  }
+
+  /* BEFORE / AFTER: add a visual break when stacked */
+  .beforeAfterGrid > div:first-child{
+    padding-bottom:14px;
+    margin-bottom:14px;
+    border-bottom:1px solid rgba(16,32,24,.12);
+  }
+
+  .beforeAfterGrid > div:last-child{
+    padding-top:4px;
+  }
+
+  /* Engines: slightly smaller copy on mobile */
+  #how .benefitGrid .benefit p{
+    font-size:13px;
+    line-height:1.35;
+  }
+
+  /* Optional: slightly smaller engine titles on mobile */
+  #how .benefit h3.engineTitle{
+    font-size:1.05rem !important;
   }
 
   .arrowWrap{
     display:none;
   }
 
+  /* keep your existing mobile override */
+  .afterCard{
+    transform:none;
+  }
 }
-
-/* AFTER CARD */
-.afterCard{
-  background:var(--card);
-  border:1px solid var(--line);
-  border-radius:18px;
-  padding:14px;
-
-  /* optical alignment fix (desktop only) */
-  transform: translateY(4px);      /* NEW: 3–6px is the sweet spot */
-}
+  
 @media (max-width:760px){
   .afterCard{ transform:none; }
 }
