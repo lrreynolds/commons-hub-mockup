@@ -50,6 +50,44 @@ Code of conduct and moderation policies are enforced to maintain signal quality.
 ⸻
 2️⃣ BRANDING ASSETS
 
+1) Server Thumbnail (instance card image)
+
+This appears in:
+	•	server directory listings
+	•	link previews
+	•	some federation discovery surfaces
+
+Size:
+➡️ 640 × 360 px (16:9)
+
+Format: PNG or JPG
+
+Design guidance:
+	•	Show the show / community identity
+	•	Works at small sizes
+	•	High contrast
+	•	No tiny text
+
+2) Server Header / Hero
+
+This is the main visual identity at the top of the public page.
+
+Size:
+➡️ 1500 × 500 px
+
+Safe area (center):
+➡️ keep key content inside 1200 × 320 px
+
+Why:
+	•	Mastodon crops on smaller screens
+
+Design guidance:
+	•	Show:
+	•	show name
+	•	visual identity
+	•	optional tagline
+	•	Avoid putting important content at the extreme edges
+
 Avatar
 
 400 × 400 px (PNG)
@@ -61,6 +99,10 @@ Header / Hero
 Thumbnail
 
 (Use avatar if none provided)
+
+Favicon / App Icon
+PNG, 512×512 px (square).
+Simple mark or logo, centered, with padding so it remains clear when cropped to a rounded square.
 
 ⸻
 
