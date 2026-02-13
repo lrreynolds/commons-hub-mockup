@@ -462,7 +462,35 @@ body{
   font-weight: 900;
   letter-spacing: -0.01em;
 }
+/* --- How section headline: prevent awkward orphan wrap --- */
+#how h2{
+  max-width: 22ch;
+  margin-left: auto;
+  margin-right: auto;
+  text-wrap: balance;
+}
 
+/* --- Engine titles: override the existing .benefit h3 rule --- */
+.benefit h3.engineTitle{
+  font-size: 1.15rem !important;
+  line-height: 1.2 !important;
+  font-weight: 750 !important;
+  letter-spacing: -0.01em !important;
+  margin-bottom: 0.45rem !important;
+}
+
+/* --- Your content: make it feel deliberate (not wimpy) --- */
+.benefit.yourContent strong{
+  font-size: 1.05rem;
+  font-weight: 850;
+}
+
+/* --- New community: make the internal title the hero --- */
+.newCommunity .title{
+  font-size: 1.25rem;
+  font-weight: 900;
+  letter-spacing: -0.01em;
+}
 </style>
 </head>
 
@@ -702,7 +730,7 @@ Mastodon — a proven, open network used by millions.
     </div>
 
     <div class="benefit" style="text-align:center;">
-     <h3 class="engineTitle">Funding & payments engine</h3>
+     <h3 class="engineTitle">Funding &amp; payments engine</h3>
 <p>
 Stripe — memberships, tips, and donations.<br>
 Money goes <b>directly</b> to you.
