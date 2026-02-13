@@ -425,6 +425,43 @@ body{
   color: var(--muted);
   font-size: 13px;
 }
+  /* SECTION HEADLINE — prevent awkward last-word wrap */
+#how h2{
+  max-width: 18ch;
+  margin-left: auto;
+  margin-right: auto;
+  text-wrap: balance;
+}
+
+/* YOUR CONTENT BOX — stronger, not bigger than NEW */
+.yourContent strong{
+  font-size: 15px;
+  font-weight: 800;
+}
+
+.yourContent .muted{
+  font-size: 14px;
+}
+
+/* NEW COMMUNITY — make it the internal hero */
+.newCommunity .title{
+  font-size: 18px;
+  font-weight: 900;
+  letter-spacing: -0.01em;
+}
+
+/* ENGINE TITLES — reduce visual weight */
+.engineTitle{
+  font-size: 17px;
+  font-weight: 800;
+}
+
+/* COMMONSHUB TITLE — keep authoritative */
+.commonshubTitle{
+  font-size: 20px;
+  font-weight: 900;
+  letter-spacing: -0.01em;
+}
 
 </style>
 </head>
@@ -586,10 +623,10 @@ not comments that reset every time you <b>publish</b>.
 ">
 
   <!-- EXISTING CONTENT (EXTERNAL / SUBORDINATE) -->
-<div class="beforeBox contentLayer" style="text-align:center;">
-  <div class="layerTitle"><strong>Your content</strong> <span class="layerMeta">(already exists)</span></div>
-  <div class="layerNote">YouTube • Substack • Podcast</div>
-  <div class="layerNote" style="margin-top:4px;">Keep publishing exactly as you do today. <b>Nothing changes</b>.</div>
+<div class="benefit yourContent">
+  <strong>Your content (already exists)</strong><br>
+  <span class="muted">YouTube • Substack • Podcast</span>
+  <div class="muted">Keep publishing exactly as you do today. <b>Nothing changes.</b></div>
 </div>
 <div style="
   display:flex;
@@ -638,12 +675,7 @@ not comments that reset every time you <b>publish</b>.
         text-transform:uppercase;
       ">NEW · YOU OWN THIS</span>
 
-      <span style="
-        font-weight:900;
-        font-size:16px;
-        letter-spacing:-0.01em;
-        color:var(--text);
-      ">Your independent community</span>
+      <span class="title">Your independent community</span>
     </div>
 
     <div style="color:var(--muted); font-size:14px; line-height:1.35;">
@@ -663,15 +695,14 @@ not comments that reset every time you <b>publish</b>.
   ">
 
     <div class="benefit" style="text-align:center;">
-     <h3>Social media engine</h3>
-<p>
+     <h3 class="engineTitle">Social media engine</h3>
 Mastodon — a proven, open network used by millions.
 <b>No</b> ads or algorithm.
 </p>
     </div>
 
     <div class="benefit" style="text-align:center;">
-      <h3>Funding & payments engine</h3>
+     <h3 class="engineTitle">Funding & payments engine</h3>
 <p>
 Stripe — memberships, tips, and donations.<br>
 Money goes <b>directly</b> to you.
@@ -686,8 +717,7 @@ Money goes <b>directly</b> to you.
     text-align:center;
     padding:1.1rem 1.25rem 1.2rem;
   ">
-  <h3>Commonshub — managed infrastructure</h3>
-<p>
+  <h3 class="commonshubTitle">Commonshub — managed infrastructure</h3>
 We handle setup, hosting, updates, and Stripe integration.
 </p>
 <p class="muted">
