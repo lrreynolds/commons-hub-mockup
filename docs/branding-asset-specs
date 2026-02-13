@@ -1,0 +1,206 @@
+🎨 Commonshub Mastodon Branding Asset Specs
+
+1) Server Thumbnail (instance card image)
+
+This appears in:
+	•	server directory listings
+	•	link previews
+	•	some federation discovery surfaces
+
+Size:
+➡️ 640 × 360 px (16:9)
+
+Format: PNG or JPG
+
+Design guidance:
+	•	Show the show / community identity
+	•	Works at small sizes
+	•	High contrast
+	•	No tiny text
+
+⸻
+
+2) Server Header / Hero
+
+This is the main visual identity at the top of the public page.
+
+Size:
+➡️ 1500 × 500 px
+
+Safe area (center):
+➡️ keep key content inside 1200 × 320 px
+
+Why:
+	•	Mastodon crops on smaller screens
+
+Design guidance:
+	•	Show:
+	•	show name
+	•	visual identity
+	•	optional tagline
+	•	Avoid putting important content at the extreme edges
+
+⸻
+
+3) Favicon / App Icon
+
+(covered above — included here for completeness)
+
+Size:
+➡️ 512 × 512 px PNG
+
+Use for:
+	•	browser tab
+	•	mobile install icon
+	•	bookmarks
+
+⸻
+
+4) Default Avatar (for the INSTANCE account)
+
+This is the system / brand voice account.
+
+Size:
+➡️ 400 × 400 px
+
+Use for:
+	•	@admin
+	•	or your branded system account
+
+⸻
+
+5) Owner / Host Avatars
+
+For Alan / Chuck (or any creator):
+
+Size:
+➡️ 400 × 400 px
+
+Style recommendation:
+	•	face centered
+	•	tight crop
+	•	high contrast
+
+This matters more than people think — it drives trust immediately.
+
+⸻
+
+6) OpenGraph / Social Share Image
+
+This controls how the server looks when shared on:
+	•	X
+	•	iMessage
+	•	Slack
+	•	email
+	•	Substack
+
+Size:
+➡️ 1200 × 630 px
+
+This is VERY important for growth loops.
+
+Design it like:
+
+“Companion community for
+Indications & Warnings
+Join the discussion”
+
+⸻
+
+🧱 Text / Identity Assets
+
+These are just as important as graphics.
+
+7) Server Display Name
+
+Example:
+Indications & Warnings Community
+
+⸻
+
+8) Short Description
+
+Appears on homepage and previews.
+
+Target length:
+➡️ 120–160 characters
+
+⸻
+
+9) Extended Description / About
+
+Appears on About page.
+
+Use for:
+	•	what this community is
+	•	who it’s for
+	•	participation tone
+
+⸻
+
+10) Server Rules
+
+We already started templates — this is where they plug in.
+
+⸻
+
+🌱 Optional (but powerful for pilots)
+
+11) Default Welcome Post (pinned)
+
+You will create this.
+
+No asset needed — but part of the “branding system”.
+
+⸻
+
+12) Hashtag
+
+Example:
+
+#IndicationsAndWarnings
+
+Used for:
+	•	episode threads
+	•	discovery
+	•	rhythm
+
+⸻
+
+⚡ What YOU should request from creators (minimal version)
+
+Your earlier instinct was correct — keep it ultra light.
+
+Creator Asset Request (final)
+
+Please send:
+	1.	Community / show name
+	2.	Desired subdomain
+	3.	Square logo (or we will create one from your existing artwork)
+	4.	Header / banner image (if you have one)
+	5.	Short description (1–2 sentences)
+
+That’s it.
+
+Everything else = white-glove by you.
+
+⸻
+
+🧠 Internal: your reusable “instant launch kit”
+
+You should maintain a fallback pack:
+
+When creators send nothing, you can still launch a beautiful server.
+
+Have ready:
+	•	neutral high-quality header template
+	•	neutral OpenGraph template
+	•	system avatar
+	•	default thumbnail
+
+Swap:
+	•	name
+	•	logo
+	•	description
+
+→ launch in minutes.
