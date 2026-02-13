@@ -1,4 +1,110 @@
-bout Page)
+Commonshub — Pilot Branding & Launch Spec (v2)
+
+Purpose
+
+This document defines the minimum assets, identity, and content required to launch a production-quality pilot community.
+
+It is designed for:
+	•	fast white-glove onboarding
+	•	consistent visual quality
+	•	repeatable setup for future guided flows
+
+This is not a full customization system.
+This is the 90-minute launch kit.
+
+⸻
+
+1. Creator Asset Request (External)
+
+Send this to the creator.
+
+What we need from you
+	1.	Community / Show Name
+	2.	Desired subdomain
+Example: community.indicationsandwarnings.com
+	3.	Square logo
+Preferred: 400 × 400 px or larger
+	4.	Header / banner image (optional)
+If not provided, we will generate one.
+	5.	Short description (1–2 sentences)
+What this community is for.
+
+That’s it.
+
+We handle everything else.
+
+⸻
+
+2. Visual Asset Specifications (Internal)
+
+2.1 Server Header
+
+Primary visual identity.
+	•	Size: 1500 × 500 px
+	•	Safe area: 1200 × 320 px centered
+	•	Format: PNG or JPG
+
+⸻
+
+2.2 Server Thumbnail / OpenGraph Image
+
+Used for:
+	•	link previews
+	•	server directories
+	•	invite links
+	•	social sharing
+	•	Size: 1200 × 630 px
+	•	Safe area: 960 × 500 centered
+	•	Format: PNG or JPG
+
+Required for every pilot.
+
+⸻
+
+2.3 Instance / System Avatar
+
+Used for:
+	•	admin account
+	•	system voice
+	•	Size: 400 × 400 px
+
+⸻
+
+2.4 Creator Avatars
+
+For hosts.
+	•	Size: 400 × 400 px
+
+⸻
+
+2.5 Favicon / App Icon
+	•	Size: 512 × 512 px PNG
+
+⸻
+
+3. Identity Settings
+
+3.1 Server Display Name
+
+Format:
+
+{Show Name} Community
+
+⸻
+
+3.2 Short Description
+
+Target: 120–160 characters
+
+Appears on:
+	•	homepage
+	•	previews
+	•	directories
+
+⸻
+
+3.3 Extended Description (About Page)
+
 
 Purpose: Immediately communicate what this space is and how to participate.
 
