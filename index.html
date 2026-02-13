@@ -81,20 +81,20 @@ body{
 /* ===== BEFORE / AFTER PANEL ===== */
 
 .beforeAfterSection{
-  margin-top:36px;                 /* was 40px */
-  padding:26px 26px;               /* was 30px 28px */
+  margin:36px auto 0;            /* centers it */
+  padding:26px 26px;
   background:var(--band);
   border:1px solid var(--line);
   border-radius:28px;
   box-shadow: var(--shadow);
+
+  /* ↓ THIS is the key change */
+  width:88%;                     /* creates visible side margins */
+  max-width:820px;              /* keeps it elegant on large screens */
+
   opacity:0;
   animation: riseFade 560ms ease-out forwards;
   animation-delay:170ms;
-
-  /* shrink / de-emphasize slightly vs benefit grid */
-  max-width: 900px;                /* NEW: keeps it from perfectly matching the grid width */
-  margin-left:auto;                /* NEW */
-  margin-right:auto;               /* NEW */
 }
 
 .beforeAfterGrid{
