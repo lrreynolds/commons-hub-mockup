@@ -81,8 +81,8 @@ body{
 /* ===== BEFORE / AFTER PANEL ===== */
 
 .beforeAfterSection{
-  margin-top:40px;
-  padding:30px 28px;
+  margin-top:36px;                 /* was 40px */
+  padding:26px 26px;               /* was 30px 28px */
   background:var(--band);
   border:1px solid var(--line);
   border-radius:28px;
@@ -90,13 +90,18 @@ body{
   opacity:0;
   animation: riseFade 560ms ease-out forwards;
   animation-delay:170ms;
+
+  /* shrink / de-emphasize slightly vs benefit grid */
+  max-width: 900px;                /* NEW: keeps it from perfectly matching the grid width */
+  margin-left:auto;                /* NEW */
+  margin-right:auto;               /* NEW */
 }
 
 .beforeAfterGrid{
   display:grid;
   gap:18px;
-  align-items:center;
   grid-template-columns: 1fr auto 1fr;
+  align-items:center;              /* ensures visual centering */
 }
 
 .beforeAfterLabel{
@@ -141,8 +146,16 @@ body{
 
 /* MOBILE: stack + hide arrow */
 @media (max-width:760px){
-  .beforeAfterGrid{ grid-template-columns: 1fr; }
-  .arrowWrap{ display:none; }
+  .beforeAfterSection{
+    max-width: none;               /* let it fill on mobile */
+    padding:24px 18px;
+  }
+  .beforeAfterGrid{
+    grid-template-columns: 1fr;
+  }
+  .arrowWrap{
+    display:none;
+  }
 }
 
 /* AFTER CARD */
@@ -151,6 +164,12 @@ body{
   border:1px solid var(--line);
   border-radius:18px;
   padding:14px;
+
+  /* optical alignment fix (desktop only) */
+  transform: translateY(4px);      /* NEW: 3–6px is the sweet spot */
+}
+@media (max-width:760px){
+  .afterCard{ transform:none; }
 }
 
 .feedItem{
@@ -194,26 +213,20 @@ body{
 }
 
 .beforeAfterExplain{
-  margin-top:16px;
+  margin-top:14px;                 /* was 16px */
   font-size:14px;
   text-align:center;
   color:var(--muted);
 }
 
-/* .beforeAfterTagline{
-  margin-top:10px;
-  text-align:center;
-  font-weight:900;
-  color:var(--btn);
-} */
-  .beforeAfterTagline{
+.beforeAfterTagline{
+  margin-top:6px;                  /* NEW: pulls it up a touch */
   font-size: 1.15rem;
   font-weight: 600;
   letter-spacing: -0.01em;
   text-align:center;
   color:var(--btn);
 }
-
 /* ===== BENEFITS ===== */
 
 .benefitGrid{
