@@ -51,21 +51,18 @@ Format: PNG or JPG
 
 ⸻
 
-2.2 Server Thumbnail
+2.2 Server Thumbnail/OG Image
 
-Used in directories and previews.
-
-Size:
-640 × 360 px
-
-⸻
-
-2.3 OpenGraph Share Image
-
-Controls how the community appears when shared.
+Used for:
+	•	link previews
+	•	server directories
+	•	invite links
+	•	shares in chat/social
 
 Size:
 1200 × 630 px
+Safe area: 960 × 500 centered
+Format: PNG or JPG
 
 This is required for every pilot.
 
@@ -79,6 +76,7 @@ Used for:
 
 Size:
 400 × 400 px
+Format: PNG or JPG
 
 ⸻
 
@@ -88,6 +86,7 @@ For hosts.
 
 Size:
 400 × 400 px
+Format: PNG or JPG
 
 ⸻
 
@@ -131,6 +130,44 @@ Structure:
 	2.	Who it is for
 	3.	Participation tone
 	4.	Link to primary platform
+
+Target: 500–900 characters
+Hard max: ~1,200 characters
+
+✍️ Canonical structure (with ideal length per section)
+
+1. What this community is
+
+~1–2 sentences (180–250 chars)
+Clear and concrete.
+
+2. Who it is for
+
+~1 sentence (120–180 chars)
+Identity signal.
+
+3. Participation tone
+
+~1–2 sentences (150–220 chars)
+Sets the culture immediately.
+
+4. Link to primary platform
+
+1 short line
+
+⸻
+
+📏 Example at the correct length (~720 chars)
+
+This is the companion discussion community for Indications & Warnings.
+A chronological, signal-first space for serious geopolitical analysis and post-episode conversation.
+
+It’s for viewers who want depth, context, and direct engagement — not algorithm-driven noise.
+
+Expect professional tone, evidence-based discussion, and respectful disagreement.
+This is an open, public environment. Read first, then join the conversation.
+
+Main show: youtube.com/…
 
 ⸻
 
