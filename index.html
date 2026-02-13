@@ -340,6 +340,35 @@ body{
     filter:none !important;
   }
 }
+.sectionCta{
+  display:flex;
+  justify-content:flex-end;
+  margin-top:28px;
+}
+
+.secondaryCta{
+  padding:12px 18px;
+  font-size:14px;
+  border-radius:14px;
+  background:transparent;
+  color:var(--btn);
+  border:1px solid rgba(31,111,74,.35);
+  animation:none;           /* no breathing on secondary */
+}
+
+@media (hover:hover){
+  .secondaryCta:hover{
+    background:rgba(31,111,74,.06);
+    transform:translateY(-1px);
+  }
+}
+
+@media (max-width:640px){
+  .sectionCta{
+    justify-content:center;
+  }
+}  
+
 </style>
 </head>
 
@@ -533,7 +562,20 @@ not comments that reset every time you <b>publish</b>.
         Your own domain. Your own relationship with your community.
         No ads. No algorithm. No platform lock-in.
       </p>
+<p class="beforeAfterExplain" style="margin-top:22px;">
+  Your own domain. Your own relationship with your community.
+  No ads. No algorithm. No platform lock-in.
+</p>
 
+<div class="sectionCta">
+  <a class="cta secondaryCta" href="start.html?reset=1">
+    See how it works
+  </a>
+</div>
+
+</div>   <!-- closes the beforeAfterSection -->
+</div>   <!-- closes heroInner -->
+</section>
     </div>
 
   </div>
