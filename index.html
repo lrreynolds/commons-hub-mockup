@@ -404,7 +404,27 @@ body{
     text-align:center;
   }
 }
+/* Respect the creator’s existing content layer */
+.contentLayer{
+  background: var(--card);
+  border: 1px solid var(--line);
+}
 
+.contentLayer strong,
+.contentLayer .layerTitle{
+  color: var(--text);
+  font-weight: 800;
+}
+
+.contentLayer .layerMeta{
+  color: rgba(16,32,24,.72); /* soft, but not “diminished” */
+  font-weight: 600;
+}
+
+.contentLayer .layerNote{
+  color: var(--muted);
+  font-size: 13px;
+}
 
 </style>
 </head>
@@ -566,18 +586,11 @@ not comments that reset every time you <b>publish</b>.
 ">
 
   <!-- EXISTING CONTENT (EXTERNAL / SUBORDINATE) -->
-  <div class="beforeBox" style="
-    text-align:center;
-    margin:0;            /* override beforeBox default bottom margin */
-    padding:8px 12px;    /* tighter */
-    opacity:.72;         /* subordinate */
-  ">
-   <strong>Your content (already exists)</strong><br>
-<span class="muted">
-YouTube • Substack • Podcast<br>
-Keep publishing exactly as you do today.
-</span>
-  </div>
+<div class="beforeBox contentLayer" style="text-align:center;">
+  <div class="layerTitle"><strong>Your content</strong> <span class="layerMeta">(already exists)</span></div>
+  <div class="layerNote">YouTube • Substack • Podcast</div>
+  <div class="layerNote" style="margin-top:4px;">Keep publishing exactly as you do today.</div>
+</div>
 <div style="
   display:flex;
   align-items:center;
@@ -623,7 +636,7 @@ Keep publishing exactly as you do today.
         font-size:12px;
         letter-spacing:.06em;
         text-transform:uppercase;
-      ">NEW -> YOUR OWN</span>
+      ">NEW · YOU OWN THIS</span>
 
       <span style="
         font-weight:900;
