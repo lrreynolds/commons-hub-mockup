@@ -402,6 +402,38 @@ body{
   50%     { transform: translateY(-1px); box-shadow: 0 10px 26px rgba(16,32,24,.14); }
 }
 
+  .reveal {
+  opacity: 0;
+  transform: translateY(12px);
+  transition:
+    opacity 600ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 600ms cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, transform;
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal--slow {
+  transition-duration: 750ms;
+}
+
+.reveal--delay-1 { transition-delay: 90ms; }
+.reveal--delay-2 { transition-delay: 180ms; }
+.reveal--delay-3 { transition-delay: 270ms; }
+.reveal--delay-4 { transition-delay: 360ms; }
+
+/* Respect Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
 /* Respect reduced motion */
 @media (prefers-reduced-motion: reduce){
   .hero h1,
@@ -707,47 +739,48 @@ not comments that reset every time you <b>publish</b>.
 
     </div>
 
-    <!-- BENEFITS -->
-    <div class="benefitGrid">
+  <!-- BENEFITS -->
+<div class="benefitGrid">
 
-      <div class="benefit">
-        <h3>Real conversations</h3>
-        <p>
-          One shared feed. No algorithmic distortion. No reset.
-          Your audience talks with you — and each other — openly.
-        </p>
-      </div>
+  <div class="benefit reveal reveal--delay-1">
+    <h3>Real conversations</h3>
+    <p>
+      One shared feed. No algorithmic distortion. No reset.
+      Your audience talks with you — and each other — openly.
+    </p>
+  </div>
 
-      <div class="benefit">
-        <h3>No extra work</h3>
-        <p>
-          Keep publishing on YouTube or Substack.
-          Just share your link. Conversations happen here.
-        </p>
-      </div>
+  <div class="benefit reveal reveal--delay-2">
+    <h3>No extra work</h3>
+    <p>
+      Keep publishing on YouTube or Substack.
+      Just share your link. Conversations happen here.
+    </p>
+  </div>
 
-      <div class="benefit">
-        <h3>Sustainable by design</h3>
-        <p>
-          Built-in community funding keeps it healthy —
-          without ads, algorithms, or platform extraction.
-        </p>
-      </div>
+  <div class="benefit reveal reveal--delay-3">
+    <h3>Sustainable by design</h3>
+    <p>
+      Built-in community funding keeps it healthy —
+      without ads, algorithms, or platform extraction.
+    </p>
+  </div>
 
-    </div>
-<p class="powerLine">
+</div>
+
+<p class="powerLine reveal reveal--slow reveal--delay-2">
   One place for your audience, collaborators, and sources — <b>under your control</b> —
   that cannot be throttled, shadowbanned, or shut down.
 </p>
-    <p class="heroPromise">
-      No ads • No algorithms • Community funded
-    </p>
 
-   <div class="heroBottomCta heroBottomCtaRow">
+<p class="heroPromise reveal reveal--delay-3">
+  No ads • No algorithms • Community funded
+</p>
+
+<div class="heroBottomCta heroBottomCtaRow reveal reveal--delay-4">
   <a class="cta" href="start.html?reset=1">Start Your Community</a>
   <a class="cta secondaryCta" href="#how">See how it works</a>
 </div>
-
   </div>
 </section>
 <section id="how" class="hero" style="padding-top:40px; padding-bottom:20px;">
@@ -887,4 +920,24 @@ not comments that reset every time you <b>publish</b>.
 </section>
 
 </body>
+  <script>
+  (function () {
+    const els = document.querySelectorAll(".reveal");
+    if (!els.length) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+            observer.unobserve(entry.target);
+          }
+        }
+      },
+      { threshold: 0.15 }
+    );
+
+    els.forEach((el) => observer.observe(el));
+  })();
+</script>
 </html>
