@@ -239,6 +239,15 @@ This micro-input influences:
 
 9. The Onboarding Flow
 
+Step Advancement Rule
+
+You only move to the next step after explicit approval.
+
+Explicit approval means:
+	•	selecting an option
+	•	writing “approve”
+	•	providing a final custom choice
+
 Step 1 — Community Positioning
 
 Define:
@@ -396,6 +405,17 @@ Because these match:
 
 Prefer place-based editorial language over analytical descriptions.
 Generate 5 options.
+
+Focus Line Iteration Bias
+
+If the creator does not immediately approve a focus line:
+
+Assume this is identity-critical.
+
+Automatically generate a second, more refined set
+based on the closest match.
+
+Do not force a choice on the first pass.
 
 ⸻
 
