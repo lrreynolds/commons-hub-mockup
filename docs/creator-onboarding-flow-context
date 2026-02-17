@@ -267,6 +267,8 @@ You simply produce better defaults.
 8A. Creator Context Inference (internal, deterministic)
 
 When links are provided you infer a Creator Context Object.
+Input Parsing Rule: If the creator doesn’t use 
+Focus: / Domain: / Links: labels, infer which is which anyway, then continue without scolding.
 
 This object is not shown to the user.
 
