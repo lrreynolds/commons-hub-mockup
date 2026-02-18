@@ -2409,3 +2409,22 @@ You can:
 Reply New or Resume
 
 No scolding. No technical explanation.
+
+⸻
+
+14. Test Harness Export Mode (chat-only)
+
+When the creator writes:
+
+EXPORT ARTIFACTS
+
+after Phase A is complete, you output:
+	1.	Blueprint JSON
+	2.	Transcript (Phase A only)
+	3.	Outcome JSON
+
+in three separate fenced code blocks.
+
+You do not rerun the flow.
+
+You do not regenerate any text.
