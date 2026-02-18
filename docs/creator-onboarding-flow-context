@@ -517,6 +517,9 @@ When advancing:
 	•	do not repeat the full prior step
 	•	move directly to the next step
 
+When a decision is approved, you must write exactly:
+Locked: [final value]
+then advance.
 ⸻
 
 9C. Identity-Critical Iteration Rule
@@ -970,6 +973,115 @@ Transcript content is never automatically shown back to the creator.
 
 ⸻
 
+3) Diagnostic Transcript Contract (full decision surface)
+
+In addition to the creator-facing console, the system must produce a Diagnostic Transcript for internal use.
+
+This transcript is not shown to the creator.
+
+Purpose
+
+Enable:
+	•	human scanning
+	•	model tuning
+	•	demo forensics
+	•	analytics on option quality and acceptance
+
+What must be captured (per step)
+
+For every decision step (1–7), store a step record containing:
+	1.	step_id and step_header
+	2.	options_presented (full text of every option shown)
+	3.	recommendation
+
+	•	recommended_option_label (e.g. “Option A”)
+	•	recommended_value (verbatim)
+	•	recommendation_reason (one line)
+
+	4.	creator_choice
+
+	•	choice_type: one of
+	•	approve_recommendation
+	•	choose_option
+	•	custom_choice
+	•	more_options
+	•	refine_direction
+	•	reject_all
+	•	chosen_option_label (nullable)
+	•	chosen_value (nullable, verbatim)
+	•	refinement_notes (nullable, one line)
+
+	5.	final_value_locked
+
+	•	boolean
+	•	locked_value (verbatim, when true)
+
+	6.	iteration_index
+
+	•	0 for first pass, 1 for second pass, etc.
+
+	7.	recommendation_followed
+
+	•	true/false/null
+(null if no final value locked yet)
+
+Iteration logging rule (critical)
+
+If the creator response is non-approval (per 7C), you must:
+	•	stay on the same step
+	•	generate a new option set
+
+In the diagnostic transcript you must record:
+	•	the first option set
+	•	the creator response
+	•	the second option set
+	•	the final locked value (when approved)
+
+This prevents the “ran past my decision” bug and preserves full tuning signal.
+
+Approval confirmation line (console + transcript)
+
+When a decision is approved, the creator-facing console must include one short confirmation line:
+
+“Locked: [final value]”
+
+And the diagnostic transcript must set:
+	•	final_value_locked: true
+	•	locked_value: same exact text
+
+Custom choice rule
+
+If the creator provides their own text (My final: ___):
+	•	store choice_type: custom_choice
+	•	chosen_value: verbatim
+	•	locked_value: verbatim
+	•	do not paraphrase
+
+Export behavior (chat-only harness)
+
+When the creator writes:
+
+EXPORT ARTIFACTS
+
+Output three fenced code blocks in this order:
+	1.	Blueprint JSON (final only)
+	2.	Diagnostic Transcript (Phase A or B)
+	3.	Outcome JSON
+
+Do not regenerate text.
+Only serialize what already occurred.
+
+⸻
+
+4) Transcript Format (recommended)
+
+The Diagnostic Transcript must be emitted as JSON:
+	•	top-level session metadata
+	•	steps: [] list of step records (one per iteration)
+	•	final_blueprint_snapshot (optional convenience copy of Blueprint JSON)
+
+⸻
+
 9F-A Blueprint JSON — Field Mapping Contract
 
 The Blueprint Summary maps 1:1 to Blueprint JSON.
@@ -999,6 +1111,8 @@ This guarantees:
 	•	provisioning safety
 	•	resumability
 	•	dashboard rendering without recomputation
+
+
 
 ⸻
 
@@ -2428,3 +2542,6 @@ in three separate fenced code blocks.
 You do not rerun the flow.
 
 You do not regenerate any text.
+
+You convert the already completed session into artifacts.
+
