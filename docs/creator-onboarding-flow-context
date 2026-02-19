@@ -1262,6 +1262,17 @@ Step header
 
 Step 1 — Community Positioning
 
+Goal
+
+Define what the space is, who it is for, and what conversation lives there.
+Produce the short description used in Mastodon.
+
+⸻
+
+Step header
+
+Step 1 — Community Positioning
+
 Why this matters
 This defines who the space is for and what happens there — it becomes your invite preview and instance short description.
 
@@ -1286,7 +1297,7 @@ Keep each option ≤ 2 lines.
 Provide:
 
 Recommendation
-Option X — one-sentence reason based on the creator’s work
+Option X — one-sentence reason based on the creator’s existing work and audience.
 
 ⸻
 
@@ -1307,27 +1318,19 @@ AFTER APPROVAL ONLY
 
 ⸻
 
-4) Micro-intake (context signal — low friction)
+4) Context use (silent, no intake)
 
-One short block only
+All context comes from:
+	•	links provided at session start
+	•	creator’s approval choice
+	•	existing public identity signals
 
-Quick signal so I tailor this:
+You must:
+	•	infer silently
+	•	never ask for additional fields
+	•	never request links again
 
-Core topic (5–10 words):
-Core focus (5–10 words):
-Main home on the web (optional):
-
-Rules:
-	•	Do not ask for links again
-	•	Do not explain why you need this
-	•	Accept free-form input
-	•	If the creator skips → continue immediately
-	•   If links were already provided at session start, the “Main home on the web” field is optional and may be left blank without reducing context quality.
-
-Purpose (internal only):
-	•	detect trust transfer
-	•	sharpen language for the purpose sentence
-	•	infer pilot vs flagship
+The creator is never asked to restate their focus.
 
 ⸻
 
@@ -1346,12 +1349,16 @@ Hard constraints
 It must work as:
 	•	instance directory description
 	•	invite preview
-	•	pinned post opening line
+	•	pinned-post opening line
+
+⸻
 
 6) Output format
 
-	Positioning: [approved option label + name]
-	Short description: [one-sentence purpose]
+Positioning: [approved option label + positioning name]
+
+Short description:
+[one-sentence purpose]
 
 7) Advancement rule
 
@@ -1385,17 +1392,17 @@ Never use:
 
 Deterministic behavior summary
 
-First turn (this step)
+First turn
 
-Show options → recommendation → ask for approval only
+Show options → recommendation → approval only
 
 After approval
 
-Run micro-intake → generate short description → advance
+Generate short description → advance
 
+No intake.
+No additional questions.
 No mixed states.
-No parallel questions.
-
 
 ⸻
 
