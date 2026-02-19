@@ -1,0 +1,283 @@
+# Commons Dashboard → Mastodon Deep Link Routing Spec
+
+## Purpose
+
+The Commons Dashboard is a **guided control surface** that:
+
+- takes the creator to the correct Mastodon admin page (deep link)
+- optionally shows suggested copy (pasteable)
+- optionally verifies or auto-applies via API later
+
+**Mastodon remains the system of record.**
+
+---
+
+# Key Assumptions
+
+1. The creator may arrive at the dashboard **not logged into Mastodon**.
+2. Admin deep links require an authenticated Mastodon session.
+3. We will support:
+   - **MVP:** “Open Mastodon page + paste + save + Mark done”
+   - **Future:** auto-apply + verify state via API
+
+---
+
+# Link Types
+
+We support three link classes:
+
+## A) Public instance links
+No auth required.
+
+Examples:
+- `https://<instance_domain>/about`
+- `https://<instance_domain>/explore`
+
+## B) User UI links (logged-in user)
+Require Mastodon login but not necessarily admin.
+
+Examples:
+- `https://<instance_domain>/home`
+- `https://<instance_domain>/settings/profile`
+
+## C) Admin panel links (admin session required)
+Require admin permissions and authenticated session.
+
+Examples:
+- `https://<instance_domain>/admin/settings/appearance`
+- `https://<instance_domain>/admin/settings/registrations`
+- `https://<instance_domain>/admin/custom_emojis`
+
+---
+
+# Canonical Deep Link Object
+
+Every checklist item that opens Mastodon uses this contract:
+
+```json
+{
+  "id": "about_text",
+  "label": "About text",
+  "purpose": "This becomes the server description + sets expectations for new members.",
+  "link": {
+    "type": "admin",
+    "path": "/admin/settings/about",
+    "requires_auth": true
+  },
+  "suggested_copy": "…",
+  "completion": {
+    "mode": "self_reported",
+    "status": "suggested"
+  }
+}
+
+Fields:
+  • link.type: "public" | "user" | "admin"
+  • link.path: must begin with /
+  • requires_auth: true for "user" and "admin"
+
+⸻
+
+URL Construction
+
+Given:
+  • instance_domain (from ProvisioningMetadata)
+  • path (from link object)
+
+Construct:
+
+target_url = https://{instance_domain}{path}
+
+Rules:
+  • Always use https://
+  • No query params unless explicitly required for a page
+  • Never hardcode domain strings in the front end
+
+⸻
+
+Auth Gate Behavior (MVP)
+
+Dashboard rule
+
+Never assume Mastodon session exists.
+
+When the creator presses Open on an admin link:
+  1.  Open the deep link in a new tab:
+  • https://<instance_domain><path>
+  2.  If Mastodon redirects to login:
+  • creator logs in
+  • then continues to destination (Mastodon should return them after login)
+
+Dashboard copy for the first item
+
+The first checklist item should always be:
+
+Sign in to Mastodon
+  • Purpose: “Admin links only work after you sign in.”
+
+Deep link:
+  • https://<instance_domain>/auth/sign_in (or the correct login route for your Mastodon build)
+
+Completion:
+  • self-reported (“Mark done”)
+
+This trains the creator and avoids confusing failures.
+
+⸻
+
+Auth Gate Behavior (SSO-Integrated)
+
+Once unified auth is in place (V’s plan):
+
+We still retain the same UX rule:
+
+The dashboard checks if the Mastodon session is valid before opening admin deep links.
+
+Recommended implementation options:
+
+Option 1 (simple): always open, rely on redirect
+  • Keep MVP behavior
+  • Least coupling
+  • Works even if session detection fails
+
+Option 2 (better): preflight check before opening admin links
+
+Dashboard performs a lightweight probe:
+  • GET https://<instance_domain>/api/v1/accounts/verify_credentials
+
+If:
+  • 200 → session exists → open admin link
+  • 401/403 → no session → open /auth/sign_in instead
+
+Notes:
+  • this requires CORS handling or proxying via Commons backend
+  • recommended to implement via backend proxy for security + simplicity
+
+⸻
+
+“Open” Button Behavior
+
+The “Open” button does exactly one thing:
+  • open the deep link (or login route if auth check fails)
+
+It does NOT:
+  • mark the item done
+  • attempt to apply suggested copy
+  • validate the content
+
+That separation keeps MVP clean.
+
+⸻
+
+Completion (“Mark done”) Behavior
+
+MVP: completion is user-declared.
+
+When the creator presses Mark done:
+  • set payload status = applied
+  • hide suggested copy (optional UX)
+  • keep a “Show suggested copy” toggle for review
+
+No API verification in MVP.
+
+⸻
+
+Future: Apply + Verify Modes
+
+A checklist item can specify:
+
+"completion": {
+  "mode": "self_reported | verify | auto_apply_then_verify",
+  "status": "suggested | applied | skipped"
+}
+
+verify
+  • dashboard (or backend) checks Mastodon state via API
+  • if matches → status becomes applied
+
+auto_apply_then_verify
+  • backend applies the setting during provisioning or on-demand
+  • then verify and mark applied
+
+Even in these modes, Mastodon remains source of truth.
+
+⸻
+
+Handling Link Drift (Mastodon upgrades)
+
+Admin paths may vary across Mastodon versions.
+
+Rules:
+  1.  All path values must live in a single routing map file:
+  • mastodon_admin_routes.json or routes.ts
+  2.  Checklist items reference route keys, not raw paths:
+
+Example:
+
+"link": {
+  "type": "admin",
+  "route_key": "ADMIN_SETTINGS_ABOUT"
+}
+
+Routing map:
+
+{
+  "ADMIN_SETTINGS_ABOUT": "/admin/settings/about"
+}
+
+This lets you patch routes centrally if Mastodon changes.
+
+⸻
+
+Error Handling UX
+
+If the opened page returns 404 or permission error
+
+Dashboard should show:
+
+“Couldn’t open that admin page.
+Try signing in again, or use Mastodon’s admin menu.”
+
+Plus a button:
+  • “Open Mastodon admin home” → /admin
+
+This prevents dead ends.
+
+⸻
+
+Recommended Checklist Deep Links (Starter Set)
+
+Admin links (likely):
+  • /admin (admin home)
+  • /admin/settings/about
+  • /admin/settings/appearance
+  • /admin/settings/registrations
+  • /admin/settings/discovery (or equivalent)
+  • /admin/settings/branding (or equivalent)
+  • /admin/custom_emojis (optional)
+
+User profile link (host account):
+  • /settings/profile
+
+Public links:
+  • /about
+  • /@<owner_username> (profile page)
+  • /explore
+
+(Exact routes should be confirmed against the Mastodon version you deploy.)
+
+⸻
+
+Summary
+
+The dashboard is a routing and guidance layer.
+  • Build URLs from instance_domain + path
+  • Always include a “Sign in to Mastodon” step
+  • In MVP, rely on redirect-to-login and self-reported completion
+  • Over time, add preflight session checks + apply/verify via API
+  • Centralize route paths behind route keys to avoid breakage
+
+⸻
+
+
+
