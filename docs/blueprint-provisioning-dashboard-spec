@@ -1,0 +1,305 @@
+# Commons — Blueprint → Provisioning → Dashboard Architecture
+
+## Core Product Rule
+
+**Mastodon is the system of record for all live configuration.**
+
+Commons:
+
+- does not store editable instance settings
+- does not mirror Mastodon admin state
+- does not act as a second admin UI
+
+Commons **does**:
+
+- generate identity and launch configuration
+- provision infrastructure
+- provide a guided control surface with deep links into Mastodon
+
+---
+
+# System Overview
+
+The lifecycle has three distinct artifacts:
+
+1. **Blueprint** → identity + structural decisions (Phase A output)
+2. **SetupPayloads** → generated launch configuration (Phase A, silent)
+3. **ProvisioningMetadata** → live infrastructure state
+
+---
+
+# Phase Model
+
+## Phase A — Pre-purchase (Blueprint generation)
+
+User-visible outputs:
+
+- Positioning
+- Community name
+- Domain strategy
+- Focus line
+- Owner profile
+
+System also generates **silently**:
+
+- About / long description
+- Server rules
+- Registration mode recommendation
+- Discovery recommendation
+- Branding direction
+- Pinned post
+- First post
+- Invite message
+- Collaborator seeding guidance
+
+These are stored as **SetupPayloads**.
+
+### Result
+
+At the end of Phase A we have:
+
+- a complete, reusable launch configuration
+- no infrastructure created
+- no purchase required
+
+---
+
+## Purchase Event
+
+Purchase does **not** generate content.
+
+It only:
+
+1. provisions the instance
+2. binds the Blueprint to the live server
+3. unlocks the dashboard
+
+---
+
+## First Dashboard Load
+
+The dashboard immediately shows:
+
+- server status: live
+- guided setup checklist
+- all suggested configuration payloads
+
+No regeneration.
+No waiting.
+
+---
+
+# Data Model
+
+## Blueprint (authoritative identity object)
+
+Created in Phase A.
+
+```json
+{
+  "id": "uuid",
+  "community_name": "",
+  "positioning": "",
+  "focus_line": "",
+  "domain_strategy": "",
+  "owner_profile": {
+    "handle": "",
+    "bio": "",
+    "display_name": ""
+  },
+  "launch_mode": "pilot | flagship",
+  "created_at": ""
+}
+
+Properties:
+  • deterministic
+  • versioned
+  • resumable
+  • infrastructure-independent
+
+⸻
+
+SetupPayloads (launch configuration suggestions)
+
+Generated in Phase A.
+
+These are not live state.
+
+{
+  "id": "uuid",
+  "blueprint_id": "uuid",
+  "payloads": [
+    {
+      "key": "about_text",
+      "mastodon_admin_path": "/admin/settings/about",
+      "suggested_copy": "",
+      "status": "suggested | applied | skipped"
+    }
+  ]
+}
+
+Payload Types
+  • about_text
+  • server_rules
+  • registrations_mode
+  • discovery_mode
+  • branding_recommendation
+  • pinned_post
+  • first_post
+  • invite_message
+  • collaborator_seed_guidance
+
+⸻
+
+ProvisioningMetadata (live system state)
+
+{
+  "id": "uuid",
+  "blueprint_id": "uuid",
+  "instance_domain": "",
+  "admin_handle": "",
+  "hosting_status": "provisioning | live | failed",
+  "invite_link": "",
+  "created_at": ""
+}
+
+Dashboard Responsibilities
+
+The dashboard is:
+
+a guided control surface for applying configuration inside Mastodon.
+
+It:
+  • displays suggested copy
+  • deep-links to the correct Mastodon admin page
+  • tracks completion state
+
+It does not:
+  • store editable configuration
+  • overwrite Mastodon state
+  • attempt to stay in sync with Mastodon
+
+⸻
+
+Checklist Item Contract
+
+Each checklist item contains:
+  • label
+  • purpose text
+  • deep link
+  • suggested copy (optional)
+  • status
+
+Status values
+  • suggested → not yet applied
+  • applied → user confirmed
+  • skipped → user intentionally ignored
+
+⸻
+
+MVP Behavior
+
+Application is manual:
+
+User flow:
+  1.  Click Open
+  2.  Paste suggested copy in Mastodon
+  3.  Save
+  4.  Return → click Mark done
+
+We do not read Mastodon state in MVP.
+
+Completion state is user-declared.
+
+⸻
+
+Post-MVP (API-assisted mode)
+
+Some payloads may be auto-applied during provisioning:
+
+Examples:
+  • about_text
+  • owner profile
+  • registrations_mode
+  • discovery_mode
+
+Dashboard then shows:
+  • ✅ Applied automatically
+  • 👁 View suggested copy
+  • ✏ Edit in Mastodon
+
+Mastodon remains source of truth.
+
+⸻
+
+Resume Flow
+
+If user returns without purchasing:
+  1.  Load Blueprint
+  2.  Skip regeneration
+  3.  Show purchase step
+
+After purchase:
+
+→ go directly to populated dashboard.
+
+⸻
+
+UX Mental Model
+
+User learns:
+
+Commons = where I find the right button
+Mastodon = where I make the change
+
+This:
+  • trains Mastodon navigation
+  • avoids admin UI replacement
+  • keeps system scalable
+
+⸻
+
+State Transitions
+
+Blueprint lifecycle
+
+new → generated → saved → bound_to_instance
+
+Instance lifecycle
+
+none → provisioning → live
+
+Payload lifecycle
+
+suggested → applied | skipped
+
+Domain Binding
+
+When provisioning completes:
+  • instance_domain is written to ProvisioningMetadata
+  • owner_handle is finalized
+  • deep links become active
+
+⸻
+
+Success State
+
+A creator:
+  • completes onboarding without provisioning
+  • can return at any time
+  • purchases
+  • lands in a fully prepared dashboard
+  • applies configuration in minutes
+
+⸻
+
+Product Definition (Canonical)
+
+The onboarding flow produces a complete, reusable launch configuration before purchase.
+Provisioning only creates the server and reveals a guided application dashboard.
+Mastodon remains the system of record for all live settings.
+
+---
+
+
+
