@@ -2295,12 +2295,14 @@ These are collected only after the creator proceeds to setup.
 Step 6 — Owner Profile
 
 Goal
-Form the creator’s identity inside the space:
-	•	the primary handle
-	•	the authority bio
-	•	the profile header concept
 
-This is what people trust when they enter.
+Form the creator’s identity inside the space:
+
+• the primary fediverse handle
+• the authority bio
+• the visual header direction
+
+This is the trust anchor when people enter.
 
 ⸻
 
@@ -2309,100 +2311,96 @@ Why this matters
 This is the visible host of the room.
 
 It must:
-	•	feel like the creator everywhere else
-	•	read naturally in the fediverse format
-	•	immediately signal credibility and responsibility
+
+• feel like you everywhere else
+• be instantly recognizable
+• transfer your existing credibility into the space
 
 ⸻
 
 1) Inputs (silent)
 
 Use:
-	•	community name
-	•	selected domain path
-	•	domain candidate (if any)
-	•	creator context
-	•	detected platform identity
-	•	real-world name recognition (when present)
+
+• locked domain from Step 3
+• community_name (display form)
+• instance_slug
+• creator context
+• detected public identity
+• real-world name recognition (when present)
 
 Do not ask for new input.
 
 ⸻
 
-2) Handle formation rules (deterministic)
-
-The handle must:
-	•	preserve the creator’s known identity
-	•	be the name people already search for
-	•	avoid extra words
-	•	avoid role labels unless already part of their public identity
-
-⸻
-
-Handle structure
-
-Always output in full fediverse form:
-
-@username@domain
+2) Handle formation (deterministic)
 
 Username selection priority
-
-Priority order:
 	1.	Existing primary public handle
 	2.	Real name (natural spacing removed)
 	3.	Most recognized byline name
 
 Reject:
-	•	adding “official”
-	•	adding roles (“analyst”, “show”, etc.)
-	•	adding numbers unless already part of identity
+
+• adding “official”
+• adding role labels
+• adding numbers (unless already part of identity)
 
 ⸻
 
-Domain binding
-
-Derived from Step 3:
+Domain binding (from Step 3)
 
 Commonshub subdomain →
-@username@community.commonshub.social
+@username@[instance_slug].commonshub.social
 
 External subdomain →
-@username@community.primarydomain.com
+@username@[domain_candidate]
 
 Custom domain →
-@username@customdomain.com
+@username@[domain_candidate]
 
 No variation.
 
 ⸻
 
-3) Readability test (must pass)
+3) Immediate identity reveal (required)
+
+Before showing the bio, output:
+
+Your primary identity inside this space
+
+@username@full.domain
+
+This is the emotional confirmation moment.
+
+⸻
+
+4) Readability safety check (silent)
 
 The full handle must:
-	•	be readable in one glance
-	•	not repeat words awkwardly
-	•	not exceed visual comfort
+
+• be readable in one glance
+• avoid awkward repetition
+• avoid visual overload
 
 If it fails → silently shorten the username variant.
 
 ⸻
 
-4) Bio generation
+5) Bio generation
 
 Generate one short bio.
 
 Hard constraints
 
-Max 3 sentences
+Max 3 sentences.
 
 Must answer:
 	1.	Who this is
-	2.	What this person has done (authority signal)
-	3.	Why they host this space
+	2.	What gives authority
+	3.	Why this space exists
 
 Written in first person.
-
-⸻
 
 Voice
 
@@ -2415,27 +2413,23 @@ Not a résumé.
 
 ⸻
 
-5) Profile header concept
+6) Profile header concept
 
 One line only.
 
-This is visual direction, not copy.
+Visual direction — not copy.
 
-Format:
+Format
 
 Profile header concept:
-[visual description in 8–12 words]
-
-Example shape:
-
-Dark map grid with live conflict markers
+[8–12 word visual description]
 
 No slogans.
 No explanations.
 
 ⸻
 
-6) Output format
+7) Output format
 
 Recommended owner handle:
 @username@domain
@@ -2446,22 +2440,24 @@ Owner bio:
 Profile header concept:
 [one line]
 
-7) Approval gate (identity-sensitive but single-pass by default)
+⸻
+
+8) Approval gate
 
 End with:
 
 Approve
 or request a refinement.
 
-Do not auto-iterate unless the creator asks.
+Do not auto-iterate unless asked.
 
-This step is usually accepted immediately because it preserves their real identity.
+This step is single-pass by default because it mirrors their real identity.
 
 ⸻
 
 AFTER APPROVAL ONLY
 
-8) Blueprint field mapping (deterministic)
+9) Deterministic Blueprint mapping
 
 Write directly:
 
@@ -2472,42 +2468,52 @@ No regeneration later.
 
 ⸻
 
-9) Advance
+10) Advance
 
-Proceed to:
+Immediately output:
 
-Blueprint Summary output
+COMMUNITY BLUEPRINT
 
 No recap.
 
 ⸻
 
-Identity continuity rules (core system behavior)
+Identity continuity rule (core behavior)
 
-When a strong public identity exists
+When a strong public identity exists:
 
 The system must:
-	•	mirror the name people already trust
-	•	avoid inventing a “fediverse persona”
-	•	preserve search continuity
+
+• mirror the name people already trust
+• avoid inventing a new persona
+• preserve search continuity
 
 Because this:
-	•	accelerates audience migration
-	•	transfers credibility instantly
-	•	reduces cognitive friction
+
+• accelerates audience migration
+• transfers credibility instantly
+• reduces cognitive friction
 
 ⸻
 
-When the creator is emerging
+Emerging creator rule
+
+If no strong public identity exists:
 
 Use:
-	•	their publishing name
-	•	the cleanest long-term form
+
+• their publishing name
+• the cleanest long-term form
 
 Never force branding language.
 
+⸻
 
+Emotional success test (must pass)
 
+When the handle is shown, the creator should feel:
+
+“This is real — this exists — I can give this to people.”
 ⸻
 
 Step 7 — Collaborator Seeding Strategy
