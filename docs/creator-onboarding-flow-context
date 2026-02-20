@@ -1626,6 +1626,7 @@ No recap.
 Step 3 — Domain Strategy
 
 Goal
+
 Choose where this community lives and what appears in every member handle.
 
 This determines the permanent identity layer.
@@ -1645,12 +1646,12 @@ Option A — Commonshub subdomain
 Fastest launch.
 No external setup required.
 
-yourname.commonshub.social
+[instance_slug].commonshub.social
 
 Best for:
-	•	Pilot mode
-	•	rapid activation
-	•	testing the space live
+• Pilot mode
+• rapid activation
+• testing the space live
 
 ⸻
 
@@ -1658,12 +1659,12 @@ Option B — Subdomain of your existing site
 
 Keeps trust with your current audience.
 
-community.yoursite.com
+[instance_slug].[primary_domain]
 
 Best for:
-	•	strong existing domain
-	•	brand continuity
-	•	converting an active audience
+• strong existing domain
+• brand continuity
+• converting an active audience
 
 Requires:
 Premium plan
@@ -1675,12 +1676,12 @@ Option C — Full custom domain
 
 Standalone long-term identity.
 
-yourcommunity.com
+[instance_slug].com
 
 Best for:
-	•	Flagship launch
-	•	institution-level presence
-	•	fully independent brand
+• Flagship launch
+• institution-level presence
+• fully independent brand
 
 Requires:
 Premium plan
@@ -1691,13 +1692,14 @@ DNS connection (later, not now)
 2) Recommendation (mode-aware)
 
 Your recommendation must be based on:
-	•	trust transfer detection
-	•	brand strength
-	•	launch mode (pilot vs flagship)
+
+• trust transfer detection
+• brand strength
+• launch mode (pilot vs flagship)
 
 Recommendation format
 
-Recommendation  
+Recommendation
 Option X — one-sentence reason tied to launch mode and audience activation speed
 
 Examples of reasoning:
@@ -1716,139 +1718,156 @@ Approve
 or choose another option.
 
 Do not:
-	•	mention plans again
-	•	ask for domain names
-	•	ask for technical details
+• mention plans again
+• ask for domain names
+• ask for technical details
 
 No mixed actions.
 
+⸻
+
 AFTER APPROVAL ONLY
 
-(If not explicit approval → follow non-advance rule and regenerate with tighter reasoning.)
-
-Identity resolution for lock line
-
-For Option A (Commonshub subdomain):
-
-Locked: [community_name].[commonshub.social]
-
-Example:
-Locked: ukrainebrief.commonshub.social
-
-For Option B (external subdomain):
-
-Locked: [community_name].[primary_domain]
-
-For Option C (custom domain):
-
-Locked: [custom_domain]
+If not explicit approval → follow non-advance rule and regenerate.
 
 ⸻
 
-4) Domain candidate generation (only when required)
+4) Construct the final domain (deterministic)
 
-This runs only after approval and only for Option B or C.
+Use:
 
-For Option A
+instance_slug from Step 2
+	•	the selected domain path
 
-Skip this section entirely.
+to construct the real instance domain.
+
+⸻
+
+If Option A — Commonshub subdomain
+
+Construct:
+
+[instance_slug].commonshub.social
+
+Display:
+
+Locked domain: [instance_slug].commonshub.social
+Domain path: Commonshub subdomain — fastest launch
+
+Set:
+
+domain_candidate: null
+launch_mode: pilot
+
 Advance immediately to Step 4.
 
 ⸻
 
-For Option B — External subdomain
+If Option B — External subdomain
 
-Generate:
+If the creator supplied a specific subdomain:
 
-3 domain candidates
+Use it exactly as provided.
+
+Display:
+
+Locked domain: [creator_subdomain]
+Domain path: External subdomain — brand continuity
+
+Set:
+
+domain_candidate: [creator_subdomain]
+
+If no subdomain was supplied:
+
+Generate 3 domain candidates.
 
 Rules:
-	•	must use the creator’s primary domain
-	•	short
-	•	speakable
-	•	identity-aligned
+• must use the creator’s primary domain
+• short
+• speakable
+• identity-aligned
 
-Example format:
+Example:
 
-Domain candidate:
-community.yoursite.com
+intel.jasonjaysmart.com
 
 Then:
 
 Approve
 or choose another option.
 
+After approval:
+
+Display locked domain as above.
+
+Launch mode logic:
+
+Strong existing domain → flagship
+Otherwise → pilot
+
+Advance immediately to Step 4.
+
 ⸻
 
-For Option C — Custom domain
+If Option C — Custom domain
 
-Generate:
-
-3 domain candidates
+Generate 3 domain candidates.
 
 Rules:
-	•	.com bias (default)
-	•	1–3 words
-	•	no hyphens
-	•	mission-aligned
-	•	handle-friendly
+• .com bias
+• 1–3 words
+• no hyphens
+• mission-aligned
+• handle-friendly
 
 Do not check availability.
 
-Then:
+After approval:
 
-Approve
-or choose another option.
+Display:
 
-⸻
+Locked domain: [approved_custom_domain]
+Domain path: Custom domain — standalone identity
 
-AFTER DOMAIN CANDIDATE APPROVAL
+Set:
 
-Advance immediately to:
+domain_candidate: [approved_custom_domain]
+launch_mode: flagship
 
-Step 4 — Focus Line
-
-No recap.
+Advance immediately to Step 4.
 
 ⸻
 
 Blueprint field mapping (deterministic)
 
-This step must output values that map directly to Blueprint JSON.
-
-⸻
-
 Domain path → Blueprint
 
-Use exactly one of:
+Use exactly:
 
 Commonshub subdomain — fastest launch
 External subdomain — brand continuity
 Custom domain — standalone identity
 
-No variation in wording.
-
 ⸻
 
 Domain candidate → Blueprint
 
-Populate only when:
-	•	Option B or C is selected
+Populate only for:
+
+Option B
+Option C
 
 For Option A:
 
 domain_candidate: null
 
-Launch mode (internal but required for JSON)
+⸻
 
-Set silently based on recommendation logic:
+Launch mode (internal for JSON)
 
-launch_mode: pilot | flagship
-
-Rules:
-
-Option A → pilot default
-Option B → flagship bias if strong domain
+Option A → pilot
+Option B → flagship if strong domain, else pilot
 Option C → flagship
 
 ⸻
@@ -1857,26 +1876,29 @@ Plan gating rule (visibility constraint)
 
 You may:
 
-✔ mention “Requires Premium plan” in the option description
+✔ mention “Requires Premium plan” in option descriptions
+
 You must NOT:
-	•	explain pricing
-	•	compare plans
-	•	delay the decision
+
+✘ explain pricing
+✘ compare plans
+✘ delay the decision
 
 Plan selection happens later in product UI.
 
 ⸻
 
-Trust transfer rule (applied here, not earlier)
+Trust transfer rule
 
 When a strong primary domain exists:
 
 Bias toward Option B because it:
-	•	preserves identity
-	•	accelerates audience migration
-	•	increases credibility
 
-This must appear in the recommendation sentence — not as a system explanation.
+• preserves identity
+• accelerates audience migration
+• increases credibility
+
+This appears only inside the recommendation sentence.
 
 ⸻
 
@@ -1884,13 +1906,13 @@ Pilot safety rule
 
 If Pilot mode is detected:
 
-Your recommendation must protect speed and reversibility.
+Recommendation must protect speed and reversibility.
 
-Language pattern:
+Use language pattern:
 
 “Fastest way to go live — you can move to a custom domain later.”
 
-(Never promise migration mechanics.)
+Never promise migration mechanics.
 
 ⸻
 
@@ -1904,10 +1926,13 @@ Show options → recommendation → approval only
 
 After approval
 
-If Option A → advance immediately
+Option A → construct domain → lock → advance
 
-If Option B or C → generate domain candidates → approval → advance
+Option B →
+• if subdomain provided → lock → advance
+• else → generate candidates → approve → lock → advance
 
+Option C → generate candidates → approve → lock → advance
 ⸻
 
 Step 4 — Focus Line
