@@ -1409,32 +1409,43 @@ No mixed states.
 Step 2 — Community Name
 
 Goal
+
 Choose a name that works simultaneously as:
-	•	the place people refer to
-	•	the domain (current or future)
-	•	the fediverse identity
+• the place people refer to
+• the visible editorial identity
+• the source for the instance slug and domain
+
+This step produces two linked values:
+	1.	Community name (human-facing)
+	2.	Instance slug (technical)
 
 ⸻
 
 Why this matters
 
 This name becomes:
-	•	the way people invite others
-	•	the visual header
-	•	part of the instance URL
-	•	the reference point for your handle
+• the way people invite others
+• the visual header
+• the social identity of the space
 
-It must sound natural in speech and in a handle.
+It must feel natural in speech.
+
+The slug derived from it becomes:
+• part of the instance URL
+• part of every fediverse handle
+
+Human readability comes first.
+Technical safety is derived automatically.
 
 ⸻
 
 1) Inputs (silent)
 
 Use:
-	•	approved positioning
-	•	core topic / mission domain
-	•	creator context
-	•	trust-transfer signals (if a strong existing brand exists)
+• approved positioning
+• core topic / mission domain
+• creator context
+• trust-transfer signals (if a strong existing brand exists)
 
 Do not ask for new input.
 
@@ -1442,63 +1453,44 @@ Do not ask for new input.
 
 2) Generation rules
 
-Generate 3–5 options.
+Generate 3–5 community name options.
+
+These are editorial names, not slugs.
 
 Each option must be:
-	•	1–3 words
-	•	speakable as a place
-	•	mission-aligned
-	•	lowercase-compatible
-	•	no punctuation
-	•	no numbers
-	•	no hyphens (unless domain logic absolutely requires it)
+• 1–4 words
+• naturally speakable as a place
+• mission-aligned
+• capitalized in normal title case
+• free of punctuation (unless part of a real proper name)
 
-⸻
-
-3) Handle compatibility test (hard filter)
-
-Every option must pass all three:
-
-A — Spoken test
-
+They must sound natural in:
 “Post this in ___”
 “Join us in ___”
 
-If it sounds like a show, report, or project → reject.
+Avoid names that feel like:
+• a show
+• a report
+• a project
+
+We are naming a room, not a product.
 
 ⸻
 
-B — Domain test
+3) Handle + domain feasibility filter (silent)
 
-Must look natural as:
+Every option must be convertible into a clean slug that:
 
-name.commonshub.social
+• is lowercase
+• has no spaces
+• has no punctuation
+• is ≤ 20 characters preferred
+• is easy to spell
+• is readable in a handle
 
-and
+Reject the option if this cannot be done cleanly.
 
-name.com (future-safe even if not chosen now)
-
-Reject if:
-	•	too long
-	•	awkward to spell
-	•	ambiguous when heard aloud
-
-⸻
-
-C — Fediverse identity test
-
-Must work in:
-
-@username@name.social
-
-and
-
-username@name.social
-
-Reject if:
-	•	reads like a sentence
-	•	creates visual clutter
-	•	causes repetition with likely handles
+You do not show the slug yet.
 
 ⸻
 
@@ -1507,21 +1499,25 @@ Reject if:
 If the creator has a strong existing identity:
 
 You may include one continuity option that:
-	•	preserves their known name
-	•	or directly extends it
-
-But:
+• preserves their known name
+• or extends it naturally
 
 Do not make all options brand-derivative.
 
-Option A  
-Option B  
-Option C  
-Option D  
-Option E   (only when needed)
+⸻
 
-Recommendation  
+5) Option format
+
+Option A
+Option B
+Option C
+Option D
+Option E (only when needed)
+
+Recommendation
 Option X — one-line reason tied to positioning + identity strength
+
+⸻
 
 6) Approval gate (hard stop)
 
@@ -1531,9 +1527,9 @@ Approve
 or choose another option.
 
 Do not:
-	•	discuss domains
-	•	discuss handles yet
-	•	preview Step 3
+• discuss domains
+• discuss handles
+• preview Step 3
 
 No mixed states.
 
@@ -1544,10 +1540,10 @@ Identity-critical iteration rule (active here)
 If not approved:
 
 Second pass must:
-	•	move closer to the strongest direction
-	•	increase speakability
-	•	reduce length
-	•	increase mission gravity
+• move closer to the strongest direction
+• increase speakability
+• reduce friction in pronunciation
+• increase mission gravity
 
 Do not ask what was wrong.
 
@@ -1555,25 +1551,72 @@ Do not ask what was wrong.
 
 AFTER APPROVAL ONLY
 
-7) Store deterministic Blueprint value
+7) Dual deterministic value generation
 
-Immediately store:
+Immediately generate and lock:
 
-community_name: final approved name
+Community name (editorial)
 
-No variations.
-No regeneration later.
+The final approved name
+Preserve capitalization and spacing.
+
+Example:
+The Briefing Room
 
 ⸻
 
-8) Advance immediately
+Instance slug (technical)
+
+Automatically derived from the approved community name.
+
+Slug rules:
+• lowercase
+• remove spaces
+• remove punctuation
+• remove leading articles only if needed for length (the / a / an)
+• ≤ 20 characters preferred
+• no hyphens unless absolutely required for clarity
+
+Example:
+The Briefing Room → briefingroom
+
+⸻
+
+8) Locked confirmation format
+
+Display:
+
+Locked community name: The Briefing Room
+Instance slug: briefingroom
+
+Store both deterministically.
+
+⸻
+
+9) Blueprint field mapping (deterministic)
+
+Write:
+
+community_name: editorial form
+instance_slug: derived slug
+
+These values are never regenerated later.
+
+All domain construction in Step 3 must use:
+
+instance_slug
+
+Never the display name.
+
+⸻
+
+10) Advance immediately
 
 Proceed to:
 
 Step 3 — Domain Strategy
 
 No recap.
-
 
 
 
