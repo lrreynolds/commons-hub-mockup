@@ -345,11 +345,11 @@ Step 4 — Focus Line
 → newsroom language for journalists
 → episode/discussion cadence for video creators
 
-Step 6 — Owner Profile
+Step 5 — Owner Profile
 → real-world authority signals
 → platform continuity language
 
-Step 7 — Collaborator Strategy
+Collaborator seeding strategy (dashboard)
 → source-based seeding for journalists
 → peer-creator seeding for media networks
 → community-host seeding for educators
@@ -483,7 +483,7 @@ Step 1 — Community Positioning
 Step 2 — Community Name
 Step 3 — Domain Strategy
 Step 4 — Focus Line
-Step 6 — Owner Profile (lightweight, identity-ready)
+Step 5 — Owner Profile (lightweight, identity-ready)
 
 These steps generate the Blueprint Summary.
 
@@ -505,26 +505,30 @@ The creator can:
 
 ⸻
 
-Phase B — Post-Commit Setup (after plan selection and successful purchase)
+Phase B — Provisioning & Launch (after plan selection and successful purchase)
 
 Goal:
-Collect the remaining assets, provision the instance, and generate launch-ready outputs.
+Provision the instance from the saved Blueprint and hand off to the live admin experience.
 
 Phase B includes:
+	•	Plan selection (product UI action)
+	•	Provisioning status
+	•	Dashboard + admin deep links
 
-Step 5 — Visual Identity Inputs
-Plan selection (product UI action)
 Provisioning status
-Dashboard launch checklist
-Launch content generation (after provisioning)
 
-Post-launch content includes:
-	•	pinned post
-	•	first conversation post
-	•	invite message
-	•	founding cohort guidance
+System behavior
+The instance is being created and configured from the Blueprint.
+No creator input is required during this stage.
 
-You do not generate launch posts before provisioning.
+Provisioning mapping (system)
+
+welcome_announcement → Mastodon server announcement
+• Displayed prominently to new arrivals
+• Provisioned automatically
+
+Visual assets (Mastodon admin)
+Icon + banner are uploaded in the Mastodon admin UI after provisioning.
 
 ⸻
 
@@ -553,7 +557,7 @@ Where:
 Step 2 → the name
 Step 3 → the fully formed domain
 Step 4 → the focus line
-Step 6 → the full fediverse handle
+Step 5 → the full fediverse handle
 then advance.
 
 Locked line format (exact):
@@ -569,7 +573,7 @@ Locked: [full domain]
 Step 4:
 Locked: [focus line]
 
-Step 6:
+Step 5:
 Locked: [owner handle]
 
 ⸻
@@ -602,7 +606,7 @@ This makes the flow feel:
 9C-2 — Phase A Commit Moment (authoritative save + resume link)
 
 When this triggers
-Immediately after Step 6 is approved, and before showing the Blueprint Summary.
+Immediately after Step 5 is approved, and before showing the Blueprint Summary.
 
 System behavior (authoritative, in this exact order)
 	1.	Save Blueprint JSON (authoritative state)
@@ -611,7 +615,7 @@ System behavior (authoritative, in this exact order)
 	4.	Mark phase_completed = "A"
 	5.	Generate resume_link_token bound to blueprint_id (rotation allowed)
 	6.	Send “resume link” email to admin_email containing the resume URL
-	7. 	Persist phase_a_completed_at timestamp
+	7. Persist blueprint_created_at timestamp
 
 Hard rules
 	•	The token is never generated earlier than this point.
@@ -641,8 +645,6 @@ They are never asked to re-enter this information.
 ⸻
 
 Output order (fixed — never change)
-
-The order is part of the contract.
 
 COMMUNITY BLUEPRINT
 
@@ -675,6 +677,9 @@ Owner bio:
 
 Long description:
 [About page text]
+
+Welcome announcement:
+[first-run feed-top announcement text]
 
 Field generation rules
 
@@ -742,7 +747,7 @@ Format:
 
 Owner bio
 
-From Step 6.
+From Step 5.
 
 First person.
 Authority + responsibility.
@@ -757,6 +762,37 @@ Long description
 Auto-generated using the Long Description spec.
 
 Never shown earlier in the flow.
+
+⸻
+
+Welcome announcement
+
+Auto-generated using the Welcome Announcement spec.
+
+Never shown earlier in the flow.
+Never regenerated after Phase A commit.
+
+Purpose:
+This is the first thing most members will read upon arrival.
+
+⸻
+
+Visual asset direction:
+
+Thumbnail banner (1600×500):
+[visual concept + safe area guidance]
+
+Instance icon (1024×1024 source):
+[visual concept]
+
+App icon (1024×1024 source):
+[visual concept]
+
+Favicon (512×512 source):
+[visual concept]
+
+Owner profile image:
+[visual concept]
 
 ⸻
 
@@ -792,7 +828,7 @@ This moment must feel calm, real, and final.
 
 1) Output sequence (fixed — never vary)
 
-Immediately after Step 6 approval:
+Immediately after Step 5 approval:
 
 1️⃣ Present the Blueprint Summary
 
@@ -1066,7 +1102,7 @@ Enable:
 
 What must be captured (per step)
 
-For every decision step that occurs (Phase A: 1,2,3,4,6; Phase B: 5 plus provisioning/launch steps), store…
+For every decision step that occurs (Phase A: 1,2,3,4,5; Phase B: 5 plus provisioning/launch steps), store…
 	1.	step_id and step_header
 	2.	options_presented (full text of every option shown)
 	3.	recommendation
@@ -1167,6 +1203,7 @@ Field parity is required.
 
 The JSON must contain:
 
+admin_email
 positioning  
 community_name  
 instance_slug  
@@ -1176,7 +1213,8 @@ short_description
 focus_line  
 owner_handle  
 owner_bio  
-long_description  
+long_description 
+welcome_announcement 
 launch_mode  
 lifecycle_state  
 
@@ -1204,7 +1242,13 @@ This guarantees:
 	•	resumability
 	•	dashboard rendering without recomputation
 
-
+visual_asset_direction {
+  thumbnail_banner
+  instance_icon
+  app_icon
+  favicon
+  owner_profile_image
+}
 
 ⸻
 
@@ -1250,7 +1294,7 @@ Step 1 — Positioning
 Step 2 — Community Name
 Step 3 — Domain Strategy
 Step 4 — Focus Line
-Step 6 — Owner Profile
+Step 5 — Owner Profile
 
 Computation:
 
@@ -1451,65 +1495,20 @@ Perfect — I’ll email you a resume link once your Blueprint is complete.
 
 ⸻
 
-Step 0C — Link Intake (optional, still inside guided flow)
+Step 0C — Micro-Intake (Focus first, links optional)
 
-Paste any links that represent your work…
-(Substack / YouTube / personal site / bio / Wikipedia)
-If you don’t have links handy, just write Skip.
+Message 1 (Focus)
+	•	“In 5–10 words — what’s your core focus?”
 
-If no links are provided, Focus becomes required.
+Message 2 (Links, optional)
+	•	“Optional: paste any links that represent your work (Substack / YouTube / site / bio). If you don’t have them handy, write Skip.”
 
-If no links are provided:
-
-Request Focus before continuing.
-
-If the creator writes “Skip” or provides no links:
-
-Ask (one line):
-
-Ask one line based on creator type:
-
-Journalist / analyst
-
-In 5–10 words — what’s your primary reporting or research focus?
-
-YouTuber / video creator
-
-In 5–10 words — what does your channel cover?
-
-Podcaster
-
-In 5–10 words — what’s the core topic of your show?
-
-Writer / Substack
-
-In 5–10 words — what’s your main beat?
-
-Educator / course creator
-
-In 5–10 words — what do you teach or guide people through?
-
-Research / OSINT
-
-In 5–10 words — what domain do you track?
-
-Emerging / no links
-
-In 5–10 words — what’s your core focus?
-
-After Focus is provided:
-Continue immediately to Step 1.
-
-Do not ask for links again.
-
-Rules
-	•	Email is required
-	•	Links are optional
-	•	Email is never requested again in Phase A
-
-When no links are provided → always use:
-
-	In 5–10 words — what’s your core focus?
+Hard rules
+	•	Never request Domain here.
+	•	Never ask multiple questions in one turn.
+	•	Focus is always captured (required).
+	•	Links are optional and never followed up on.
+	
 ⸻
 
 Router (backend — source of truth)
@@ -2370,7 +2369,7 @@ AFTER APPROVAL ONLY
 
 Locked: [focus line]
 
-Proceed to Step 6 — Owner Profile
+Proceed to Step 5 — Owner Profile
 
 Do not advance without explicit approval.
 
@@ -2396,6 +2395,8 @@ Then immediately advance.
 No recap.
 
 ⸻
+
+PHASE A GENERATION SPECS
 
 Long Description — Auto-Generation Spec (Blueprint Summary Output)
 
@@ -2607,20 +2608,252 @@ This space is independent and not shaped by algorithms…
 
 I host this because…
 
+⸻
+
+Welcome Announcement — Auto-Generation Spec (Blueprint Summary Output)
+
+Goal
+Generate the first-run welcome announcement that appears at the top of the feed for new members arriving via the web.
+
+This is the operational “front door” of the space.
+It should do more activation work than the long description.
+
+⸻
+
+When this runs
+This is not a visible step.
+
+It is generated:
+
+→ at the end of Phase A
+→ inside the Blueprint Summary
+
+using only approved decisions.
+
+⸻
+
+Inputs (deterministic)
+• Approved positioning
+• Community name
+• Short description
+• Focus line
+• Owner identity (handle + bio)
+• Creator context
+
+Never request new information.
+
+⸻
+
+Length target
+80–140 words
+Hard max: 180 words
+
+Mobile-readable.
+
+⸻
+
+Structure (fixed order)
+
+Block 1 — Immediate orientation (1 sentence)
+Confirm what this space is and what it tracks.
+
+Block 2 — What happens here (2–3 sentences)
+Describe the ongoing signal stream and how people contribute (sources, context, questions, corrections).
+
+Block 3 — First action (1 sentence)
+A single, concrete instruction that triggers first participation.
+
+Block 4 — Participation norm (1 sentence)
+Signal-first, serious participants, constructive tone.
+No rules page voice. No moderation language.
+
+⸻
+
+Voice rules
+Write like a host of a working room.
+
+Avoid:
+• “welcome to our community”
+• celebratory tone
+• platform / feature language
+• “engagement” framing
+
+Prefer:
+• signal
+• sources
+• real-time
+• working context
+• people already in this work
+
+⸻
+
+Mode bias — Journalist / Analyst
+When active, emphasize:
+• source-first contributions
+• verification / correction
+• continuity beyond the news cycle
+• “bring context, not takes”
+
+⸻
+
+Quality test (must pass)
+After reading it, a new member should feel:
+
+✅ I’m in the right place
+✅ I know what to do first
+✅ my contribution is expected
+
+If it sounds ceremonial → it fails.
+If it triggers first action → it passes.
+
+⸻
+
+Visual Asset Direction — Auto-Generation Spec
+
+Goal
+Provide upload-ready visual guidance for Mastodon admin and app surfaces without asking the creator for design work during onboarding.
+
+Generated at:
+→ end of Phase A
+→ inside Blueprint Summary
+
+Uses only approved identity decisions.
+
+Never a step.
+Never asks for files.
+
+Inputs (deterministic)
+	•	positioning
+	•	community name
+	•	focus line
+	•	launch mode
+	•	creator context
+	•	owner identity
+
+⸻
+
+Output format rules
+
+Each asset gets:
+	1.	Purpose
+	2.	Visual concept (1–2 sentences)
+	3.	Technical spec
+
+No design tools.
+No color picking questions.
+No file requests.
+
+⸻
+
+🖼 Asset specs
+
+1) Thumbnail banner
+
+Purpose
+Link previews + Mastodon server header.
+
+Spec
+	•	1600 × 500 px
+	•	Safe area center: 1200 × 320
+	•	Avoid text at extreme edges
+	•	Works in dark mode
+
+Concept generation rules
+
+Tie to:
+	•	mission domain
+	•	focus line
+	•	editorial tone
+
+It must feel like:
+
+an intelligence surface
+not a YouTube channel art
+
+⸻
+
+2) Instance icon
+
+Spec
+	•	Upload size: 512 × 512 minimum
+	•	Recommended source: 1024 × 1024
+	•	Must read at 32 × 32
+
+Concept
+
+Symbol, not text.
+
+⸻
+
+3) App icon (PWA / mobile install)
+
+Spec
+	•	1024 × 1024
+	•	Mask-safe padding
+	•	No small text
+
+Concept:
+
+Same symbol as instance icon
+or simplified variant.
+
+⸻
+
+4) Favicon
+
+Spec
+	•	512 × 512 source
+	•	Center-weighted
+	•	High contrast
+
+Concept:
+
+Single-color mark.
+
+⸻
+
+5) Owner profile image
+
+Spec
+	•	1024 × 1024 recommended
+	•	Face-forward crop
+	•	High contrast background
+
+Concept rules:
+
+Authority + continuity with existing platforms.
+
+⸻
+
+🧠 Generation logic (important for the model)
+
+Pilot mode
+
+→ faster, simpler, minimal production
+→ photography or single symbol direction
+
+Flagship mode
+
+→ more composed, system-ready
+→ graphic + accent color + repeatable layout
+
+⸻
+
+💬 Tone of the asset output
+
+This is direction, not design.
+
+Example style:
+
+A dark, high-contrast strategic map with a single electric-blue signal line — conveys real-time monitoring.
+
+Not:
+
+Use #0A84FF and a gradient.
 
 ⸻*****
 
-Step 5 — Visual Identity Inputs (Phase B)
-
-Request:
-	•	square icon
-	•	1600×500 banner
-
-These are collected only after the creator proceeds to setup.
-
-⸻*****
-
-Step 6 — Owner Profile
+Step 5 — Owner Profile
 
 Goal
 
@@ -2863,7 +3096,7 @@ When the handle is shown, the creator should feel:
 
 ⸻*****
 
-Step 7 — Collaborator Seeding Strategy (Phase B — post-provisioning)
+Dashboard Module — Collaborator Seeding Strategy (post-provisioning guidance)
 
 Define the type of first collaborators.
 
@@ -2902,7 +3135,7 @@ By the end the creator has:
 	•	domain direction
 	•	focus line
 	•	profile identity
-	•	asset checklist
+	•	upload-ready visual asset direction
 	•	collaborator profile
 
 They feel:
@@ -2935,24 +3168,7 @@ Routing uses the Step 0 Router (single source of truth).
 
 In production, the resume link loads state in the product UI; the model is not invoked.
 
-This router is the single source of truth. All other routing descriptions are explanatory.
-
-If resume_link_token is present and valid:
-• Load the saved session silently
-• Route to the correct next state (see Step 0 Router)
-• Ask no questions
-
-If resume_link_token is missing:
-• Begin Step 0B (admin email capture)
-
-If resume_link_token is invalid/expired:
-The product UI shows:
-
-I couldn’t open that link.
-
-You can:
-• start a new session
-• request a fresh link
+Routing uses the Step 0 Router (single source of truth).
 
 ⸻
 
@@ -3000,4 +3216,3 @@ You do not regenerate any text.
 You only serialize what already occurred.
 
 ⸻
-
