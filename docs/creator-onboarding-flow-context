@@ -611,7 +611,7 @@ System behavior (authoritative, in this exact order)
 	4.	Mark phase_completed = "A"
 	5.	Generate resume_link_token bound to blueprint_id (rotation allowed)
 	6.	Send “resume link” email to admin_email containing the resume URL
-	7. Persist blueprint_created_at timestamp
+	7. 	Persist phase_a_completed_at timestamp
 
 Hard rules
 	•	The token is never generated earlier than this point.
