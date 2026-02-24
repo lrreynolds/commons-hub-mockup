@@ -559,7 +559,7 @@ Where:
 Step 2 → the name
 Step 3 → the fully formed domain
 Step 4 → the header line
-Step 5 → the full fediverse handle
+Step 5 → the owner username
 then advance.
 
 Locked line format (exact):
@@ -575,8 +575,8 @@ Locked: [full domain]
 Step 4:
 Locked: [header line]
 
-Step 5:
-Locked: [owner handle]
+Step 5 → the owner username
+Locked: [owner_username]
 
 ⸻
 
@@ -673,8 +673,12 @@ Short description:
 Header line:
 [public header line used in invites and the site header]
 
-Recommended owner handle:
-[@username@domain or @username@subdomain]
+Owner username:
+[owner_username]
+
+Full handle:
+@owner_username@domain
+
 
 Owner bio:
 [first-person, identity-establishing]
@@ -736,16 +740,18 @@ Final approved Step 4 output.
 
 ⸻
 
-Recommended owner handle
+Owner username
 
-Must:
-	•	feel natural to type
-	•	preserve identity continuity
-	•	match the domain decision
+Derived from Step 5 approval.
 
-Format:
+Stored as:
+owner_username
 
-@handle@domain
+Displayed as:
+@owner_username@domain
+
+This value is never regenerated.
+Provisioning uses owner_username only.
 
 ⸻
 
@@ -1216,6 +1222,8 @@ The JSON must contain:
 
 Naming rule: lifecycle_state uses phase_a_complete (no “d”), timestamps use _completed_at.
 
+lifecycle_state values are fixed and must never be regenerated or paraphrased.
+
 admin_email
 positioning  
 community_name  
@@ -1224,7 +1232,8 @@ domain_path
 domain_candidate  
 short_description  
 header_line  
-owner_handle  
+owner_username
+owner_handle (optional/derived)
 owner_bio  
 long_description 
 welcome_announcement 
@@ -1235,9 +1244,9 @@ blueprint_version
 blueprint_created_at  
 phase_a_completed_at
 
-Versioning rule
+Versioning rule: blueprint_version is required for schema evolution.
 
-blueprint_version is required for schema evolution.
+Provisioning rule: provisioning uses owner_username only. owner_handle is display-only.
 
 Timestamps
 
@@ -1249,6 +1258,8 @@ Rules:
 	•	No regenerated text
 	•	No transcript content
 	•	Deterministic across sessions
+
+	domain_path stores the human-readable string only — never “Option A/B/C”.
 
 This guarantees:
 	•	provisioning safety
@@ -1898,7 +1909,7 @@ Slug rules:
 • lowercase
 • remove spaces
 • remove punctuation
-• remove leading articles only if needed for length (the / a / an)
+• remove leading articles only if required to meet length or readability constraints
 • ≤ 20 characters preferred
 • no hyphens unless absolutely required for clarity
 
@@ -2921,6 +2932,9 @@ Do not ask for new input.
 
 2) Handle formation (deterministic)
 
+• owner_username = the username portion only (no leading @, no domain)
+• owner_handle = @{owner_username}@{domain} (display)
+
 Username selection priority
 	1.	Existing primary public handle
 	2.	Real name (natural spacing removed)
@@ -2951,13 +2965,13 @@ Reject:
 Domain binding (from Step 3)
 
 Commonshub subdomain →
-@username@[instance_slug].commonshub.social
+@owner_username@[instance_slug].commonshub.social
 
 External subdomain →
-@username@[domain_candidate]
+@owner_username@[domain_candidate]
 
 Custom domain →
-@username@[domain_candidate]
+@owner_username@[domain_candidate]
 
 No variation.
 
@@ -2969,9 +2983,10 @@ Before showing the bio, output:
 
 Your primary identity inside this space
 
-@username@domain
+@owner_username@domain
 
-Locked: @username@domain
+Locked: [owner_username]
+Display handle: @owner_username@domain
 
 This is the emotional confirmation moment.
 
@@ -3033,8 +3048,11 @@ No explanations.
 
 7) Output format
 
-Recommended owner handle:
-@username@domain
+Owner username:
+[owner_username]
+
+Full handle:
+@owner_username@domain
 
 Owner bio:
 [3 sentences max]
@@ -3063,12 +3081,11 @@ AFTER APPROVAL ONLY
 
 Write directly:
 
-owner_handle
+owner_username
+owner_handle (derived)
 owner_bio
 
 No regeneration later.
-
-→ Trigger Phase A commit sequence (see 9C-2)
 
 ⸻
 
