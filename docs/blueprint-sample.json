@@ -1,0 +1,55 @@
+{
+  "blueprint_version": "1.0",
+  "lifecycle_state": "phase_a_complete",
+
+  "owner_email": "vatniksoup@gmail.com",
+
+  "community_name": "Vatnik Soup",
+  "instance_slug": "vatniksoup",
+  "domain": "intel.vatniksoup.com",
+
+  "positioning": "Disinformation campaign analysis",
+  "short_description": "People exposing and analyzing disinformation campaigns, troll farms, and propaganda actors shaping global information warfare.",
+  "header_line": "Information Warfare Tracking",
+
+  "owner_username": "pekka",
+  "owner_handle": "@pekka@intel.vatniksoup.com",
+  "owner_bio": "I investigate online propaganda networks and coordinated influence campaigns behind the Vatnik Soup project. My work documents troll farms, propaganda actors, and the narratives shaping information warfare. I host this space so researchers, journalists, and observers can track these operations together in real time.",
+
+  "long_description": "This is the live signal space for tracking online propaganda networks, coordinated disinformation campaigns, and the actors shaping today’s information warfare environment. It extends the work of Vatnik Soup by creating a place where ongoing signal, context, and source-driven analysis can accumulate in real time.\n\nThe space is for journalists, OSINT researchers, analysts, investigators, and highly engaged citizens who follow influence operations and propaganda ecosystems. Many participants will already be working in this field — documenting narratives, tracing network activity, or analyzing coordinated messaging.\n\nHere you will find real-time observations, emerging narratives, source threads, and collaborative context that often disappears in fast-moving news cycles. Participants can add sources, surface patterns, challenge claims, and extend investigations as propaganda actors adapt and shift tactics.\n\nUnlike algorithm-driven platforms, this space keeps the signal intact. Important threads persist, evidence accumulates, and serious participants can follow developments beyond the moment of a single post.\n\nI host this space because understanding propaganda networks requires collective observation. By gathering researchers and observers in one place, we can track how these operations evolve and document them as a durable public record.",
+
+  "welcome_announcement": "This space tracks propaganda networks, influence operations, and coordinated disinformation activity in real time. You will see emerging narratives, source threads, and observations related to troll farms, propaganda actors, and information warfare campaigns. Participants often add sources, corrections, and additional context as stories develop. If you’re new here, start by introducing yourself and sharing the area of propaganda or influence activity you follow most closely. Bring sources, context, and careful analysis — the goal here is signal that helps everyone understand how these operations actually work.",
+
+  "launch_mode": "flagship",
+
+  "registration_recommendation": {
+    "mode": "invite_only",
+    "invite_request_message": "This space launches in small cohorts. If your work is in this field and you'd like to join, contact: vatniksoup@gmail.com"
+  },
+
+  "launch_content": {
+    "posts": {
+      "welcome": "Welcome to Vatnik Soup. This space tracks propaganda networks, influence operations, and coordinated disinformation activity in real time. If you're new here, introduce yourself and share the area of propaganda or influence activity you follow most closely.",
+      "how_to_participate": "How to participate: bring sources, context, and careful analysis. Add sources, surface patterns, challenge claims, and extend investigations as propaganda actors adapt and shift tactics.",
+      "mobile_apps": "Recommended mobile apps for following this space: Mastodon (official), Ice Cubes (iOS), and Tusky (Android). Turn on notifications for replies and mentions if you want to stay close to the signal."
+    },
+    "invite_message_template": "I’m opening a dedicated community space for tracking propaganda networks and influence operations. It’s designed for researchers, journalists, and serious observers who want durable, source-driven signal beyond fast-moving social feeds.\n\nIf you’d like, I can send you an invite link.",
+    "core_hashtags": [
+      "Disinformation",
+      "OSINT",
+      "Propaganda",
+      "InformationWarfare"
+    ]
+  },
+
+  "visual_asset_direction": {
+    "thumbnail_banner": "Dark strategic map or network diagram with connected nodes representing propaganda actors and narrative flows, with a few highlighted signal paths suggesting real-time monitoring.",
+    "instance_icon": "Simple radar or signal-scan symbol suggesting detection of hidden propaganda networks.",
+    "app_icon": "Bold radar pulse mark on a dark field representing monitoring influence operations.",
+    "favicon": "Minimal single-color radar pulse or signal wave icon with strong contrast for tab visibility.",
+    "owner_profile_image": "Face-forward portrait with dark or neutral background matching investigative intelligence tone."
+  },
+
+  "blueprint_created_at": "2026-03-07T00:00:00Z",
+  "phase_a_completed_at": "2026-03-07T00:05:00Z"
+}
