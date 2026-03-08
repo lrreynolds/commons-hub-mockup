@@ -1,0 +1,320 @@
+1. Recommended dashboard mapping
+
+Login
+
+Deep link
+/auth/sign_in
+
+Pair with
+No copy block. Just show:
+	•	instance domain
+	•	owner username
+	•	a note like “Sign in to open the admin links below”
+
+Automation
+Handled by SSO / auth layer, not blueprint.
+
+⸻
+
+Owner profile
+
+Deep link
+/settings/profile
+
+Pair with blueprint
+	•	owner_username
+	•	owner_handle
+	•	owner_bio
+	•	visual_asset_direction.owner_profile_image
+
+Show in dashboard
+	•	Suggested display name
+	•	Suggested bio
+	•	Suggested profile image direction
+
+Can this be auto-injected?
+Yes, mostly. Mastodon’s documented account API supports updating profile data with PATCH /api/v1/accounts/update_credentials, including display_name, note (bio), avatar, header, and some profile preferences.  ￼
+
+⸻
+
+Branding
+
+Deep link
+/admin/settings/branding
+
+Pair with blueprint
+	•	community_name
+	•	admin_email
+	•	short_description
+	•	visual_asset_direction.thumbnail_banner
+	•	visual_asset_direction.instance_icon
+	•	visual_asset_direction.app_icon
+	•	visual_asset_direction.favicon
+
+Show in dashboard
+	•	Server name
+	•	Contact email
+	•	Short description
+	•	Asset guidance only
+
+Can this be auto-injected?
+Probably not via the official public REST API. In the current official Mastodon API docs, the documented admin REST surface includes things like accounts, domain blocks, reports, trends, and related admin resources, but I do not see documented write endpoints for branding/settings pages.  ￼
+So for MVP, treat branding as manual UI paste/upload.
+
+⸻
+
+About page
+
+Deep link
+/admin/settings/about
+
+Pair with blueprint
+	•	long_description
+
+Show in dashboard
+	•	One large copy block
+	•	“Paste into About / extended description”
+
+Can this be auto-injected?
+Not through a documented public REST endpoint that I could verify. The public instance API documents reading server information and extended description, but not writing About/settings via official REST methods.  ￼
+So I would classify this as manual for now.
+
+⸻
+
+Registrations / invite-only launch
+
+Deep link
+/admin/settings/registrations
+
+Pair with blueprint
+Your current blueprint does not yet contain a launch access message.
+I would add these fields:
+	•	launch_signup_mode
+examples: invite_only, approval_required, open
+	•	launch_signup_message
+	•	launch_contact_email
+
+Show in dashboard
+	•	Recommended mode
+	•	Recommended custom signup message
+
+Can this be auto-injected?
+I could not find a documented official REST admin write endpoint for registrations/settings in the current Mastodon docs. So assume manual UI only for now.  ￼
+
+⸻
+
+Announcement
+
+Deep link
+/admin/announcements
+
+Pair with blueprint
+	•	welcome_announcement
+
+Show in dashboard
+	•	Copy block for the announcement text
+
+Can this be auto-injected?
+Not via the documented public REST API. The official announcements API docs only document viewing announcements plus dismissing/reacting to them as a user; they do not document an admin “create announcement” REST endpoint. The admin docs describe creating announcements in the web UI under Administration → Announcements.  ￼
+So for MVP: manual UI paste.
+
+⸻
+
+Pinned posts / first posts
+
+Deep link
+/home
+
+Pair with blueprint
+Your current blueprint does not yet include these.
+I would add:
+	•	launch_posts.welcome
+	•	launch_posts.how_to_participate
+	•	launch_posts.mobile_apps
+
+Show in dashboard
+	•	Three copy blocks
+	•	“Create these in order”
+	•	“Pin after posting”
+
+Can this be auto-injected?
+Yes. Mastodon’s documented statuses API supports creating statuses with POST /api/v1/statuses, and the documented pin endpoint supports pinning your own status with POST /api/v1/statuses/:id/pin.  ￼
+This is one of the strongest candidates for later automation.
+
+⸻
+
+Rules
+
+Deep link
+/admin/rules
+
+Pair with blueprint
+Your current blueprint does not yet include rules.
+I would add:
+	•	community_rules: array of short rules
+
+Show in dashboard
+	•	Short numbered rules
+	•	“Paste / recreate in Mastodon rules UI”
+
+Can this be auto-injected?
+I could not verify a documented official REST write endpoint for rules in the current Mastodon docs. The roles docs show that “Manage Rules” is a permission, but that does not itself document a public REST method.  ￼
+So I would treat rules as manual UI unless V wants to use internal Rails/admin tooling.
+
+⸻
+
+Discovery / recommended follows
+
+Deep link
+/admin/settings/discovery
+
+Pair with blueprint
+Your current blueprint does not yet include recommended follows.
+I would add:
+	•	recommended_follows: array of handles/URLs
+
+Show in dashboard
+	•	Suggested accounts list
+	•	“Add these as recommended follows”
+
+Can this be auto-injected?
+I could not find a documented public REST admin write endpoint for discovery settings. So assume manual UI.  ￼
+
+⸻
+
+Invites
+
+Deep link
+/admin/invites
+
+Pair with blueprint
+Your current blueprint does not yet include invite presets.
+I would add:
+	•	invite_presets.core_collaborators.max_uses
+	•	invite_presets.core_collaborators.expires_at
+	•	invite_message_template
+
+Show in dashboard
+	•	Invite policy guidance
+	•	Suggested invite message copy
+
+Can this be auto-injected?
+I could not find a documented official REST endpoint for creating invite links in the current Mastodon docs. The user docs describe generating invites in the Mastodon UI.  ￼
+So for MVP: manual UI only.
+
+⸻
+
+Tags / core hashtags
+
+Deep link
+/admin/tags
+
+Pair with blueprint
+Your current blueprint does not yet include hashtags.
+I would add:
+	•	core_hashtags: array of strings
+
+Show in dashboard
+	•	Suggested tags list
+
+Can this be auto-injected?
+I could not verify a documented public REST admin write endpoint for tag configuration. Treat as manual UI for now. The official admin REST surface documents trends and some moderation resources, but not tag configuration writes.  ￼
+
+⸻
+
+Domain blocks / moderation
+
+Deep link
+/admin/instances?limited=1
+
+Pair with blueprint
+Usually none by default, but you could later add:
+	•	blocked_domains
+	•	limited_domains
+
+Can this be auto-injected?
+Yes, at least for domain blocks. The official admin REST API documents POST /api/v1/admin/domain_blocks to add a blocked domain.  ￼
+
+⸻
+
+2. Practical conclusion: what can be automated soonest
+
+Strong candidates for official API automation
+
+These are the best early wins:
+	•	Owner profile
+	•	bio / display name / avatar / header via PATCH /api/v1/accounts/update_credentials  ￼
+	•	Launch posts
+	•	create via POST /api/v1/statuses  ￼
+	•	Pin posts
+	•	via POST /api/v1/statuses/:id/pin  ￼
+	•	Domain blocks
+	•	if needed, via POST /api/v1/admin/domain_blocks  ￼
+
+Best treated as manual UI for MVP
+
+Because I could not verify documented public REST write endpoints for them:
+	•	registrations
+	•	branding
+	•	about page
+	•	announcements creation
+	•	rules
+	•	discovery settings
+	•	invite creation
+	•	tag setup  ￼
+
+That makes your current dashboard strategy exactly right:
+deep link + copy block + mark done
+
+⸻
+
+3. Blueprint fields you should add next
+
+To make the dashboard useful even before automation, I’d add these to the blueprint:
+
+{
+  "launch_signup_mode": "invite_only",
+  "launch_signup_message": "This space launches in small cohorts...",
+  "community_rules": [
+    "Be constructive.",
+    "Argue with sources.",
+    "Keep the signal high."
+  ],
+  "recommended_follows": [
+    "@owner@instance",
+    "@collaborator@example.com"
+  ],
+  "launch_posts": {
+    "welcome": "...",
+    "how_to_participate": "...",
+    "mobile_apps": "..."
+  },
+  "invite_message_template": "...",
+  "core_hashtags": ["Ukraine", "Russia", "OSINT"]
+}
+
+That would let the dashboard cover almost the entire setup guide without needing new APIs.
+
+⸻
+
+4. What I would hand V
+
+I’d give him this implementation rule:
+
+Phase 1 dashboard behavior
+
+For each setup step:
+	•	show Open in Mastodon
+	•	show Copy suggested text
+	•	allow Mark done
+	•	once done, hide the suggested text by default
+
+Phase 2 automation
+
+Only automate the steps with documented stable APIs first:
+	•	profile update
+	•	create/pin launch posts
+	•	maybe domain blocks
+
+
+Step | Deep link pattern | Blueprint field(s) | MVP mode (manual/API) | Notes
