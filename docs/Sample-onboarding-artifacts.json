@@ -1,0 +1,180 @@
+{
+  "blueprint_version": "1.0",
+  "lifecycle_state": "phase_a_complete",
+  "admin_email": "vatniksoup@gmail.com",
+
+  "positioning": "Option C — Disinformation campaign analysis",
+
+  "community_name": "Vatnik Soup",
+  "instance_slug": "vatniksoup",
+
+  "domain_path": "External subdomain — brand continuity",
+  "domain_candidate": "intel.vatniksoup.com",
+
+  "short_description": "People exposing and analyzing disinformation campaigns, troll farms, and propaganda actors shaping global information warfare.",
+
+  "header_line": "Information Warfare Tracking",
+
+  "owner_username": "pekka",
+  "owner_handle": "@pekka@intel.vatniksoup.com",
+
+  "owner_bio": "I investigate online propaganda networks and coordinated influence campaigns behind the Vatnik Soup project. My work documents troll farms, propaganda actors, and the narratives shaping information warfare. I host this space so researchers, journalists, and observers can track these operations together in real time.",
+
+  "long_description": "This is the live signal space for tracking online propaganda networks, coordinated disinformation campaigns, and the actors shaping today’s information warfare environment. It extends the work of Vatnik Soup by creating a place where ongoing signal, context, and source-driven analysis can accumulate in real time.\n\nThe space is for journalists, OSINT researchers, analysts, investigators, and highly engaged citizens who follow influence operations and propaganda ecosystems. Many participants will already be working in this field — documenting narratives, tracing network activity, or analyzing coordinated messaging.\n\nHere you will find real-time observations, emerging narratives, source threads, and collaborative context that often disappears in fast-moving news cycles. Participants can add sources, surface patterns, challenge claims, and extend investigations as propaganda actors adapt and shift tactics.\n\nUnlike algorithm-driven platforms, this space keeps the signal intact. Important threads persist, evidence accumulates, and serious participants can follow developments beyond the moment of a single post.\n\nI host this space because understanding propaganda networks requires collective observation. By gathering researchers and observers in one place, we can track how these operations evolve and document them as a durable public record.",
+
+  "welcome_announcement": "This space tracks propaganda networks, influence operations, and coordinated disinformation activity in real time. You will see emerging narratives, source threads, and observations related to troll farms, propaganda actors, and information warfare campaigns. Participants often add sources, corrections, and additional context as stories develop. If you’re new here, start by introducing yourself and sharing the area of propaganda or influence activity you follow most closely. Bring sources, context, and careful analysis — the goal here is signal that helps everyone understand how these operations actually work.",
+
+  "launch_mode": "flagship",
+
+  "visual_asset_direction": {
+    "thumbnail_banner": "Dark strategic map or network diagram with connected nodes representing propaganda actors and narrative flows, with a few highlighted signal paths suggesting real-time monitoring.",
+    "instance_icon": "Simple radar or signal-scan symbol suggesting detection of hidden propaganda networks.",
+    "app_icon": "Bold radar pulse mark on a dark field representing monitoring influence operations.",
+    "favicon": "Minimal single-color radar pulse or signal wave icon with strong contrast for tab visibility.",
+    "owner_profile_image": "Face-forward portrait with dark or neutral background matching investigative intelligence tone."
+  },
+
+  "blueprint_created_at": "2026-03-07T00:00:00Z",
+  "phase_a_completed_at": "2026-03-07T00:05:00Z"
+}
+
+{
+  "session_metadata": {
+    "phase_completed": "A",
+    "creator_archetype": "researcher",
+    "mission_domain_clarity": "high"
+  },
+  "steps": [
+    {
+      "step_id": 1,
+      "step_header": "Community Positioning",
+      "options_presented": [
+        "Option A — Researchers and analysts tracking state-backed propaganda networks",
+        "Option B — Journalists and OSINT researchers mapping narrative manipulation",
+        "Option C — People exposing and analyzing disinformation campaigns and propaganda actors",
+        "Option D — Analysts following real-time breakdowns of propaganda strategies"
+      ],
+      "recommendation": {
+        "recommended_option_label": "Option C",
+        "recommended_value": "People exposing and analyzing disinformation campaigns and propaganda actors shaping global information warfare",
+        "recommendation_reason": "Matches Vatnik Soup mission analyzing propaganda actors and networks"
+      },
+      "creator_choice": {
+        "choice_type": "approve_recommendation",
+        "chosen_option_label": "Option C",
+        "chosen_value": "People exposing and analyzing disinformation campaigns and propaganda actors shaping global information warfare"
+      },
+      "final_value_locked": true,
+      "locked_value": "Option C — Disinformation campaign analysis",
+      "iteration_index": 0,
+      "recommendation_followed": true
+    },
+    {
+      "step_id": 2,
+      "step_header": "Community Name",
+      "options_presented": [
+        "Vatnik Soup",
+        "The Propaganda Watch",
+        "Disinformation Field",
+        "Propaganda Signal",
+        "The Influence Map"
+      ],
+      "recommendation": {
+        "recommended_option_label": "Option A",
+        "recommended_value": "Vatnik Soup",
+        "recommendation_reason": "Preserves strong existing brand identity and trust transfer"
+      },
+      "creator_choice": {
+        "choice_type": "approve_recommendation",
+        "chosen_option_label": "Option A",
+        "chosen_value": "Vatnik Soup"
+      },
+      "final_value_locked": true,
+      "locked_value": "Vatnik Soup",
+      "iteration_index": 0,
+      "recommendation_followed": true
+    },
+    {
+      "step_id": 3,
+      "step_header": "Domain Strategy",
+      "options_presented": [
+        "Option A — Commonshub subdomain",
+        "Option B — Subdomain of existing site",
+        "Option C — Full custom domain"
+      ],
+      "recommendation": {
+        "recommended_option_label": "Option B",
+        "recommended_value": "External subdomain of vatniksoup.com",
+        "recommendation_reason": "Strong existing domain enables trust transfer"
+      },
+      "creator_choice": {
+        "choice_type": "choose_option",
+        "chosen_option_label": "Option C",
+        "chosen_value": "intel.vatniksoup.com"
+      },
+      "final_value_locked": true,
+      "locked_value": "intel.vatniksoup.com",
+      "iteration_index": 1,
+      "recommendation_followed": false
+    },
+    {
+      "step_id": 4,
+      "step_header": "Header Line",
+      "options_presented": [
+        "Disinformation Networks",
+        "Propaganda and Influence Operations",
+        "Information Warfare Tracking",
+        "State Propaganda Monitoring",
+        "Disinformation Actors and Networks"
+      ],
+      "recommendation": {
+        "recommended_option_label": "Option C",
+        "recommended_value": "Information Warfare Tracking",
+        "recommendation_reason": "Best matches positioning focused on propaganda networks"
+      },
+      "creator_choice": {
+        "choice_type": "approve_recommendation",
+        "chosen_option_label": "Option C",
+        "chosen_value": "Information Warfare Tracking"
+      },
+      "final_value_locked": true,
+      "locked_value": "Information Warfare Tracking",
+      "iteration_index": 0,
+      "recommendation_followed": true
+    },
+    {
+      "step_id": 5,
+      "step_header": "Owner Profile",
+      "options_presented": [
+        "@vatniksoup@intel.vatniksoup.com"
+      ],
+      "recommendation": {
+        "recommended_option_label": "default",
+        "recommended_value": "vatniksoup",
+        "recommendation_reason": "Matches established project identity"
+      },
+      "creator_choice": {
+        "choice_type": "custom_choice",
+        "chosen_option_label": null,
+        "chosen_value": "pekka"
+      },
+      "final_value_locked": true,
+      "locked_value": "pekka",
+      "iteration_index": 0,
+      "recommendation_followed": false
+    }
+  ]
+}
+
+{
+  "phase_completed": "A",
+  "proceeded_to_setup": false,
+  "abandonment_reason": null,
+
+  "recommendation_acceptance_rate": 0.6,
+  "custom_name_used": false,
+  "iteration_count_total": 0,
+
+  "time_to_blueprint_minutes": null,
+  "time_to_provision_minutes": null
+}
