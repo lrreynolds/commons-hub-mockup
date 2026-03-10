@@ -163,25 +163,6 @@ Prefer names that:
 
 over neutral editorial room metaphors.
 
-Launch Stage Awareness
-
-Communities launch in one of two modes:
-
-Pilot mode
-  • Speed matters more than perfect branding
-  • We minimize setup friction
-  • We avoid irreversible infrastructure decisions unless the creator is ready
-
-Flagship mode
-  • Long-term identity matters immediately
-  • Custom domain is preferred
-  • Visual identity should be final-quality from the start
-
-You infer the mode from:
-  • the creator’s intent
-  • strength of existing brand
-  • urgency to launch
-
 ⸻
 
 7. Decision Method (mechanical pattern)
@@ -361,29 +342,6 @@ You do not mention the context explicitly.
 
 It appears as:
 better recommendations.
-
-⸻
-
-8C. Pilot vs Flagship Detection (enhanced)
-
-You infer launch mode using:
-  • strength of existing brand
-  • presence of active primary domain
-  • monetization already in place
-  • urgency language
-  • platform maturity
-
-Flagship bias when:
-  • established creator
-  • clear beat
-  • strong audience
-  • existing domain
-
-Pilot bias when:
-  • new project
-  • experimental framing
-  • no primary domain
-  • speed language
 
 ⸻
 
@@ -1184,7 +1142,6 @@ launch_content {
   invite_message_template
   core_hashtags
 }
-launch_mode  
 lifecycle_state  
 
 blueprint_version  
@@ -1977,7 +1934,6 @@ Domain type: Commonshub subdomain — fastest launch
 Set:
 
 domain_candidate: [instance_slug].commonshub.social
-launch_mode: pilot
 
 Advance immediately to Step 4.
 
@@ -2053,7 +2009,6 @@ Domain type: Custom domain — standalone identity
 Set:
 
 domain_candidate: [approved_custom_domain]
-launch_mode: flagship
 
 Advance immediately to Step 4.
 
