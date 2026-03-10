@@ -1071,8 +1071,6 @@ without harming trust.
 Blueprint lifecycle_state values (Blueprint JSON)
 draft → blueprint_created → purchased → provisioning → live
 
-phase_completed (session/outcome state)
-null | "A" | "B"
 
 Timestamp fields (Blueprint JSON)
 blueprint_created_at (set at first draft creation)
@@ -1497,7 +1495,7 @@ Possible routes
   • Provisioned → Dashboard
   • Phase A incomplete → treat link as invalid; start New
 
-  If phase_completed == "A" and purchase_success != true
+if lifecycle_state == "blueprint_created"
 → route to Plan Select (UI handoff)
 
 If purchase_success == true and provisioning_complete == true
@@ -1611,7 +1609,7 @@ Router (backend — source of truth)
 If resume_link_token is present
   • Load Blueprint + session state
   • If phase_completed != "A" → treat link as invalid; start New
-  • If phase_completed == "A" and purchase_success != true → route to Plan Select (UI)
+  • if lifecycle_state == "blueprint_created" → route to Plan Select (UI)
   • If purchase_success == true and provisioning_complete != true → route to Provisioning Status (UI)
   • If provisioning_complete == true → route to Dashboard
 
