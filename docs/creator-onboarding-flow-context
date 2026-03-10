@@ -466,6 +466,10 @@ No user confirmation.
 
 9. Guided Blueprint Creation
 
+The guided flow is responsible only for Blueprint creation.
+
+Session management, resume links, purchasing, provisioning, and dashboard actions are handled by the product UI and backend.
+
 The onboarding flow produces a complete Community Blueprint.
 
 This is the only responsibility of the guided flow.
@@ -1395,24 +1399,7 @@ Resume is link-based and handled by the product backend, not by the guided flow.
 
 ⸻
 
-Entry inputs (system)
-
-The system may receive:
-
-A) resume_link_token (from a magic link)
-B) no token (fresh entry)
-
-Routing based on this token is a backend/UI responsibility.
-
-The guided flow is invoked only for new Blueprint creation.
-
-
-⸻
-
 0B) New Session Path (email first — guided flow starts here)
-
-Trigger
-No resume_link_token present.
 
 First message (exact)
 
@@ -1483,21 +1470,6 @@ Hard rules
 Store once (authoritative):
 
 owner_email
-
-Bind to:
-  • blueprint_id
-  • resume_link_token
-
-Resume token rotation rule
-
-Each time a resume link is successfully used:
-
-• issue a new resume_link_token  
-• invalidate the previous token  
-
-This allows long-lived resumability without link forwarding risk.
-
-Never require the creator to re-enter owner_email.
  
 owner_email is used for:
   1.  Mastodon server contact email (required field)
@@ -3103,21 +3075,7 @@ The creator feels in control of every identity decision without friction.
 The onboarding flow always begins with Step 0.
 
 There is no New/Resume prompt in chat.
-Resume is token-based.
-
-⸻
-
-13A — Entry Router (system-driven)
-
-The system may provide:
-• resume_link_token (from a magic link)
-• no token (fresh entry)
-
-Routing rules:
-
-Routing uses the Step 0 Router (single source of truth).
-
-In production, the resume link loads state in the product UI; the model is not invoked.
+Resume is handled by the product using the creator’s private resume link.
 
 ⸻
 
@@ -3141,7 +3099,7 @@ You must never ask the creator to paste:
 • Blueprint JSON
 • transcripts
 
-The only acceptable resume mechanism is the resume_link_token.
+The only acceptable resume mechanism is the creator’s private resume link.
 
 (Internal exception: developer/test harness only — not shown to creators.)
 
