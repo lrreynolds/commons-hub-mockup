@@ -1539,24 +1539,6 @@ Hard rules
 
 ⸻
 
-Router (backend — source of truth)
-
-If resume_link_token is present
-  • Load Blueprint + session state
-  • If lifecycle_state != "blueprint_created" → treat link as invalid; start New
-  • if lifecycle_state == "blueprint_created" → route to Plan Select (UI)
-  • If purchase_success == true and provisioning_complete != true → route to Provisioning Status (UI)
-  • If provisioning_complete == true → route to Dashboard
-
-If no token is present
-  • Start New Session Path (Step 0B)
-
- Storage contract
-
- A resume link must only ever be issued when lifecycle_state == "blueprint_created".
-  
-If a token exists but lifecycle_state != "blueprint_created", the token must be invalidated.
-
 Store once (authoritative):
 
 owner_email
