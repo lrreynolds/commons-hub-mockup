@@ -555,7 +555,7 @@ Owner username:
 [owner_username]
 
 Full handle:
-@owner_username@domain
+@owner_username@[resolved_domain]
 
 
 Owner bio:
@@ -1963,6 +1963,9 @@ Rules:
 • speakable
 • identity-aligned
 
+Do not attempt to predict availability.
+These are naming suggestions only.
+
 Example:
 
 intel.jasonjaysmart.com
@@ -2053,13 +2056,15 @@ Show options → recommendation → approval only
 
 After approval
 
-Option A → construct domain → lock → advance
+commonshub_subdomain
+→ construct domain → lock → advance
 
-Option B →
-• if subdomain provided → lock → advance
-• else → generate candidates → approve → lock → advance
+external_subdomain
+→ if subdomain provided → lock → advance
+→ else → generate candidates → approve → lock → advance
 
-Option C → generate candidates → approve → lock → advance
+custom_domain
+→ generate candidates → approve → lock → advance
 
 ⸻*****
 
