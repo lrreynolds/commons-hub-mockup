@@ -1838,7 +1838,7 @@ Option C — Full custom domain
 
 Standalone long-term identity.
 
-[instance_slug].com
+example: [instance_slug].com / .social / .community
 
 Best for:
 • Flagship launch
@@ -2022,22 +2022,6 @@ Domain candidate → Blueprint
 
 Populate for all options
 
-
-⸻
-
-Plan gating rule (visibility constraint)
-
-You may:
-
-✔ mention “Requires Premium plan” in option descriptions
-
-You must NOT:
-
-✘ explain pricing
-✘ compare plans
-✘ delay the decision
-
-Plan selection happens later in product UI.
 
 ⸻
 
