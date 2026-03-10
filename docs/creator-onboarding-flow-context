@@ -578,7 +578,7 @@ Hard rules
 
 9D — Blueprint Output — Blueprint Summary
 
-At the end of Phase A you output a clean, copy-and-save block.
+At the end you output a clean, copy-and-save block.
 
 This is the creator-facing artifact and the source of truth for provisioning.
 
@@ -742,7 +742,7 @@ Welcome announcement
 Auto-generated using the Welcome Announcement spec.
 
 Never shown earlier in the flow.
-Never regenerated after Phase A commit.
+Never regenerated.
 
 Purpose:
 This is the first thing most members will read upon arrival.
@@ -837,11 +837,11 @@ No persuasion.
 
 ⸻
 
-9E — Phase A Closing Contract
+9E — Closing Contract
 
 Goal
 
-End Phase A with:
+End with:
   • a complete, credible identity artifact
   • a pressure-free binary decision
   • a saved state that can be resumed without loss
@@ -1027,7 +1027,7 @@ before:
 
 purchase_success = true
 
-This keeps Phase A:
+This keeps the blueprint:
 
 identity-only
 fast
@@ -1051,7 +1051,7 @@ Result
 
 With this contract:
 
-Phase A becomes:
+Blueprint becomes:
   • a self-contained product
   • a shareable artifact
   • a resumable configuration state
@@ -1074,11 +1074,9 @@ draft → blueprint_created → purchased → provisioning → live
 
 Timestamp fields (Blueprint JSON)
 blueprint_created_at (set at first draft creation)
-phase_a_completed_at (set at Phase A commit moment)
 
-At the end of Phase A
-and again at the end of Phase B
-the system saves two artifacts.
+At the end
+the system saves three artifacts.
 
 1) Blueprint JSON (authoritative state)
 
