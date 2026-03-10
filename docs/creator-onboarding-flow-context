@@ -1069,7 +1069,7 @@ without harming trust.
 9F. Persistence Contract (always on)
 
 Blueprint lifecycle_state values (Blueprint JSON)
-draft → phase_a_complete → purchased → provisioning → live
+draft → blueprint_created → purchased → provisioning → live
 
 phase_completed (session/outcome state)
 null | "A" | "B"
