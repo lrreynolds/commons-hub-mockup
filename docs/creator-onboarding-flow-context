@@ -1919,7 +1919,7 @@ to construct the real instance domain.
 
 ⸻
 
-If Option A — Commonshub subdomain
+If selected path = commonshub_subdomain
 
 Construct:
 
@@ -1938,7 +1938,7 @@ Advance immediately to Step 4.
 
 ⸻
 
-If Option B — External subdomain
+If selected path = external_subdomain
 
 If the creator proposes a specific subdomain:
 
@@ -1980,7 +1980,7 @@ Advance immediately to Step 4.
 
 ⸻
 
-If Option C — Custom domain
+If selected path = custom_domain
 
 Generate 3 domain candidates.
 
