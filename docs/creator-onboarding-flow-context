@@ -639,7 +639,7 @@ Directly from Step 2 approval.
 
 ⸻
 
-Domain path
+Domain type
 
 Directly from Step 3 decision.
 
@@ -1968,7 +1968,7 @@ This keeps the flow frictionless and provisioning-safe.
 Use:
 
 instance_slug from Step 2
-  • the selected domain path
+  • the selected Domain type
 
 to construct the real instance domain.
 
@@ -1983,7 +1983,7 @@ Construct:
 Display:
 
 Locked: [instance_slug].commonshub.social
-Domain path: Commonshub subdomain — fastest launch
+Domain type: Commonshub subdomain — fastest launch
 
 Set:
 
@@ -2003,7 +2003,7 @@ Use it exactly as provided.
 Display:
 
 Locked: [value]
-Domain path: External subdomain — brand continuity
+Domain type: External subdomain — brand continuity
 
 Set:
 
@@ -2059,7 +2059,7 @@ After approval:
 Display:
 
 Locked: [value]
-Domain path: Custom domain — standalone identity
+Domain type: Custom domain — standalone identity
 
 Set:
 
@@ -2072,7 +2072,7 @@ Advance immediately to Step 4.
 
 Blueprint field mapping (deterministic)
 
-Domain path → Blueprint
+Domain type → Blueprint
 
 Use exactly:
 
