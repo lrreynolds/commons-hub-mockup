@@ -905,7 +905,6 @@ Do not:
   • explain what will happen next
   • generate launch content
 
-Phase B resumes only after successful purchase.
 
 ⸻
 
@@ -1129,7 +1128,7 @@ Enable:
 
 What must be captured (per step)
 
-For every decision step that occurs (Phase A: 1,2,3,4,5; Phase B: 5 plus provisioning/launch steps), store…
+For every decision step that occurs (1,2,3,4,5), store…
   1.  step_id and step_header
   2.  options_presented (full text of every option shown)
   3.  recommendation
@@ -1205,7 +1204,7 @@ EXPORT ARTIFACTS
 
 Output three fenced code blocks in this order:
   1.  Blueprint JSON (final only)
-  2.  Diagnostic Transcript (Phase A or B)
+  2.  Diagnostic Transcript
   3.  Outcome JSON
 
 Do not regenerate text.
@@ -1274,7 +1273,6 @@ owner_username is required. owner_handle is optional/derived. If owner_username 
 Timestamps
 
 blueprint_created_at → first draft session creation  
-phase_a_completed_at → the moment Phase A commit sequence finishes
 
 Canonical domain resolution (for handle construction)
 
@@ -1338,8 +1336,7 @@ Storage rules:
     iteration_count_total: number
 
     time_to_blueprint_minutes (optional)
-    time_to_provision_minutes (Phase B, optional)
-
+ 
 These are used for:
   • product learning
   • flow tuning
@@ -1349,7 +1346,7 @@ Not for behavioral tracking inside the creator experience.
 
 A) — Outcome Metric Computation Rules (deterministic)
 
-These metrics are computed from the Phase A transcript only.
+These metrics are computed from the transcript only.
 
 They are never inferred from the Blueprint.
 
@@ -1437,11 +1434,11 @@ iteration_count_total = 3
 
 ⸻
 
-Phase A scope rule
+Scope rule
 
-These metrics are calculated only when Phase A completes.
+These metrics are calculated only when completed.
 
-If Phase A is incomplete:
+If incomplete:
 
 All three fields must be:
 
@@ -1475,59 +1472,6 @@ Routing based on this token is a backend/UI responsibility.
 
 The guided flow is invoked only for new Blueprint creation.
 
-⸻
-
-0A) Resume Link Path (no guided-flow interaction)
-
-Trigger
-A valid resume_link_token is present.
-
-Backend behavior
-  1.  Load Blueprint + session state
-  2.  Determine next_state
-  3.  Route directly in the product UI
-
-Possible routes
-  • Phase A complete → Plan Select screen
-  • Purchased, not provisioned → Provisioning Status
-  • Provisioned → Dashboard
-  • Phase A incomplete → treat link as invalid; start New
-
-if lifecycle_state == "blueprint_created"
-→ route to Plan Select (UI handoff)
-
-If purchase_success == true and provisioning_complete == true
-→ route to Dashboard (their live site + admin deep links)
-
-If token is valid but state is partial (shouldn’t happen)
-→ treat as invalid and start New
-
-Optional UI copy (one line)
-Welcome back — loading your Blueprint…
-
-Hard rules
-
-The guided flow model is not invoked when:
-  • Phase A is complete
-  • The user is past the Blueprint stage
-
-No questions are asked.
-No steps are rerun.
-No email is requested.
-
-⸻
-
-Invalid / expired link
-
-UI shows:
-
-I couldn’t open that link.
-
-You can:
-• start a new session
-• request a fresh link
-
-(No technical detail.)
 
 ⸻
 
@@ -1641,7 +1585,7 @@ Never require the creator to re-enter owner_email.
  
 owner_email is used for:
   1.  Mastodon server contact email (required field)
-  2.  Resume link delivery at Phase A completion
+  2.  Resume link delivery at completion
   3.  Owner login link after provisioning
 
 ⸻*****
@@ -2481,7 +2425,7 @@ No recap.
 
 ⸻
 
-PHASE A GENERATION SPECS
+GENERATION SPECS
 
 Long Description — Auto-Generation Spec (Blueprint Summary Output)
 
@@ -2501,7 +2445,7 @@ This is not a visible step.
 
 It is generated:
 
-→ at the end of Phase A
+→ at the end
 → inside the Blueprint Summary
 
 using only approved decisions.
@@ -2710,7 +2654,7 @@ This is not a visible step.
 
 It is generated:
 
-→ at the end of Phase A
+→ at the end
 → inside the Blueprint Summary
 
 using only approved decisions.
@@ -2799,7 +2743,7 @@ Goal
 Provide upload-ready visual guidance for Mastodon admin and app surfaces without asking the creator for design work during onboarding.
 
 Generated at:
-→ end of Phase A
+→ end
 → inside Blueprint Summary
 
 Uses only approved identity decisions.
@@ -3293,9 +3237,9 @@ When the creator writes:
 
 EXPORT ARTIFACTS
 
-after Phase A is complete, you output:
+after complete, you output:
 1. Blueprint JSON (final only)
-2. Diagnostic Transcript (Phase A only)
+2. Diagnostic Transcript
 3. Outcome JSON (must include all computed metrics)
 
 in three separate fenced code blocks.
