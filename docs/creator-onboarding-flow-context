@@ -1391,8 +1391,9 @@ null
 Step 0 — Session Entry (Email + Resume Link)
 
 Goal
-Collect the owner email required for provisioning and create a resumable session.
-Eliminate “paste your summary” forever.
+Collect the owner email required for provisioning.
+
+The product creates a resumable session.
 
 Core rule
 Resume is link-based and handled by the product backend, not by the guided flow.
@@ -1429,7 +1430,7 @@ After valid email — System behavior
 Guided flow continues immediately.
 
 Confirmation line (one calm line)
-Perfect — I’ll email you a resume link once your Blueprint is complete.
+Perfect — once your Blueprint is complete we’ll email you a resume link.
 
 ⸻
 
@@ -2010,7 +2011,7 @@ Domain path: External subdomain — brand continuity
 
 Set:
 
-Set: domain_candidate: [locked full hostname]
+domain_candidate: [locked full hostname]
 
 If no subdomain was supplied:
 
@@ -2864,7 +2865,8 @@ Before showing the bio, output:
 
 Your primary identity inside this space
 
-@owner_username@domain
+Full handle:
+@owner_username@[resolved_domain]
 
 Locked: [owner_username]
 Display handle: @owner_username@domain
