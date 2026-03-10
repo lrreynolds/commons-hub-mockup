@@ -1830,7 +1830,6 @@ Best for:
 • converting an active audience
 
 Requires:
-Premium plan
 DNS connection (later, not now)
 
 ⸻
@@ -1847,7 +1846,6 @@ Best for:
 • fully independent brand
 
 Requires:
-Premium plan
 DNS connection (later, not now)
 
 ⸻
@@ -1899,8 +1897,8 @@ Availability rule
 
 Commonshub subdomains are checked for availability during setup.
 
-If the requested name is unavailable,
-the creator must select an available variant.
+If the name is unavailable during setup,
+the product will offer available variants.
 
 External and custom domains require DNS verification during setup.
 
