@@ -2865,7 +2865,7 @@ Full handle:
 @owner_username@[resolved_domain]
 
 Locked: [owner_username]
-Display handle: @owner_username@domain
+Display handle: @owner_username@[resolved_domain]
 
 This is the emotional confirmation moment.
 
@@ -2931,7 +2931,7 @@ Owner username:
 [owner_username]
 
 Full handle:
-@owner_username@domain
+@owner_username@[resolved_domain]
 
 Owner bio:
 [3 sentences max]
