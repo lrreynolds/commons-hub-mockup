@@ -553,8 +553,6 @@ This makes the flow feel:
 
 ⸻
 
-⸻
-
 9D — Blueprint Output — Blueprint Summary
 
 At the end you output a clean, copy-and-save block.
@@ -1166,7 +1164,7 @@ The Diagnostic Transcript must be emitted as JSON:
 
 ⸻
 
-9F-A Blueprint JSON — Field Mapping Contract
+9G — Blueprint JSON Field Mapping Contract
 
 The Blueprint Summary maps 1:1 to Blueprint JSON.
 
@@ -1261,7 +1259,7 @@ Storage rules:
 
 ⸻
 
-  9G. Outcome Signals (minimum set)
+  9H. Outcome Signals (minimum set)
 
   The system records:
 
@@ -1306,6 +1304,7 @@ Step 5 — Owner Profile
 
 Computation:
 
+If total_recommendations = 0 → recommendation_acceptance_rate = null
 accepted_recommendations / total_recommendations
 
 Where:
@@ -1384,7 +1383,7 @@ null
 
 ⸻
 
-9H. Step Definitions
+9I. Step Definitions
 
 ⸻*****
 
@@ -2000,7 +1999,7 @@ Advance immediately to Step 4.
 
 If Option B — External subdomain
 
-If the creator supplied a specific subdomain:
+If the creator proposes a specific subdomain:
 
 Use it exactly as provided.
 
@@ -2306,9 +2305,6 @@ Automatically:
 Do not ask what was wrong.
 Fix it through better options.
 
-Locked: [final selected line]
-
-Then immediately advance.
 
 No recap.
 
