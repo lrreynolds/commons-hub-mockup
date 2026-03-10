@@ -543,7 +543,7 @@ Instance slug:
 [instance_slug]
 
 Domain candidate:
-[only if applicable]
+[domain_candidate]
 
 Short description:
 [one-sentence purpose — Mastodon directory]
@@ -1846,16 +1846,9 @@ DNS connection (later, not now)
 
 ⸻
 
-2) Recommendation (mode-aware)
+2) Recommendation
 
-Your recommendation must be based on:
-
-• trust transfer detection
-• brand strength
-
-Recommendation format
-
-Recommendation should consider:
+Recommendation must consider:
 
 • trust transfer detection
 • brand strength
@@ -1864,10 +1857,9 @@ Recommendation should consider:
 
 Examples of reasoning:
 
-Strong existing domain → bias to Option B
-New or exploratory project → bias to Option A
+Strong existing domain → bias to Option B  
+New or exploratory project → bias to Option A  
 Independent brand identity → Option C
-
 
 ⸻
 
