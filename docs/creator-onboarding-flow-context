@@ -565,11 +565,10 @@ System behavior (authoritative, in this exact order)
   3.  Save Diagnostic Transcript
   4.  Compute Outcome JSON
  5. Validate required fields (must exist: owner_email, community_name, instance_slug, domain_path, short_description, header_line, owner_username, owner_bio, long_description, welcome_announcement, launch_content.posts.welcome, launch_content.posts.how_to_participate, launch_content.posts.mobile_apps, launch_content.core_hashtags). If any are missing → do not mark phase_completed.
-  5A. Mark phase_completed = "A"
-  5B. Set lifecycle_state = "phase_a_complete" in Blueprint JSON
-  6.  Generate token
-  7.  Send resume-link email
-  8.  Persist phase_a_completed_at
+ 5A. Set lifecycle_state = "blueprint_created" in Blueprint JSON
+6. Generate resume token
+7. Send resume-link email
+8. Persist blueprint_created_at
 
 Hard rules
   • The token is never generated earlier than this point.
