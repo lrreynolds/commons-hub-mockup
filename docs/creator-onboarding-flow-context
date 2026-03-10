@@ -1803,7 +1803,22 @@ The domain becomes part of every handle and is hard to change later — this is 
 
 ⸻
 
-1) Present the three paths (always show all three)
+1) Determine available domain paths (context-aware)
+
+Detect whether the creator has an existing domain.
+
+Signals may include:
+• a personal website domain in the provided links
+• a domain explicitly mentioned by the creator
+• a domain pasted during the link intake step
+
+If a domain is detected → show 3 options.
+
+If no domain is detected → show only 2 options.
+
+Case A — No domain detected
+
+Show two options only:
 
 Option A — Commonshub subdomain
 
@@ -1812,42 +1827,30 @@ No external setup required.
 
 [instance_slug].commonshub.social
 
-Best for:
-• rapid activation
-• testing the space live
 
-⸻
-
-Option B — Subdomain of your existing site
-
-Keeps trust with your current audience.
-
-[instance_slug].[primary_domain]
-
-Best for:
-• strong existing domain
-• brand continuity
-• converting an active audience
-
-Requires:
-DNS connection (later, not now)
-
-⸻
-
-Option C — Full custom domain
+Option B — Full custom domain
 
 Standalone long-term identity.
 
 example: [instance_slug].com / .social / .community
 
-Best for:
-• Flagship launch
-• institution-level presence
-• fully independent brand
+If you already own a domain you’d like to use, tell me and I’ll generate subdomain options for it.
 
-Requires:
-DNS connection (later, not now)
 
+Case B — Domain detected
+
+Example: jasonjaysmart.com
+
+Then show three options:
+
+Option A — Commonshub subdomain
+[instance_slug].commonshub.social
+
+Option B — Subdomain of your existing site
+[instance_slug].jasonjaysmart.com
+
+Option C — Full custom domain
+example: [instance_slug].com / .social / .community
 ⸻
 
 2) Recommendation
@@ -1872,7 +1875,8 @@ Independent brand identity → Option C
 End with:
 
 Approve
-or choose another option.
+choose another option
+or provide your own domain.
 
 Do not:
 • mention plans again
