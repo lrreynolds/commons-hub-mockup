@@ -790,50 +790,6 @@ Never shown earlier in the flow.
 
 ⸻
 
-Welcome announcement
-
-Auto-generated using the Welcome Announcement spec.
-
-Never shown earlier in the flow.
-Never regenerated after Phase A commit.
-
-Purpose:
-This is the first thing most members will read upon arrival.
-
-⸻
-
-Initial posts
-
-Auto-generated using the Launch Posts spec.
-
-These are not shown earlier in the flow.
-
-They are stored in Blueprint JSON as:
-
-launch_content.posts.welcome
-launch_content.posts.how_to_participate
-launch_content.posts.mobile_apps
-
-Purpose:
-These are draft posts the creator can paste into Mastodon after provisioning and pin in the recommended order.
-
-⸻
-
-Core hashtags
-
-Auto-generated using the Core Hashtags spec.
-
-Stored in Blueprint JSON as:
-
-launch_content.core_hashtags
-
-Rules:
-• Store canonical tag strings only
-• Do not include the # symbol
-• 3–7 tags preferred
-• Must reflect the mission domain and likely conversation structure
-
-⸻
 
 Visual asset direction:
 
@@ -854,24 +810,6 @@ Owner profile image:
 
 ⸻
 
-Launch content:
-
-Welcome post:
-[launch_content.posts.welcome]
-
-How to participate:
-[launch_content.posts.how_to_participate]
-
-Mobile apps:
-[launch_content.posts.mobile_apps]
-
-Invite message template:
-[launch_content.invite_message_template]
-
-Core hashtags:
-[tag1, tag2, tag3]
-
-⸻
 
 Creator-facing closing line (required)
 
