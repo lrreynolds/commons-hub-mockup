@@ -270,7 +270,6 @@ You use them only to:
   • understand tone and audience relationship
   • detect existing monetization
   • detect collaboration patterns
-  • detect whether this is a pilot or flagship launch
 
 You never:
   • import followers
@@ -323,7 +322,6 @@ Step 2 — Naming
 
 Step 3 — Domain Strategy
 → trust transfer to existing domain
-→ pilot vs flagship detection
 
 Step 4 — Header Line
 → newsroom language for journalists
@@ -1809,7 +1807,6 @@ No external setup required.
 [instance_slug].commonshub.social
 
 Best for:
-• Pilot mode
 • rapid activation
 • testing the space live
 
@@ -1855,7 +1852,6 @@ Your recommendation must be based on:
 
 • trust transfer detection
 • brand strength
-• launch mode (pilot vs flagship)
 
 Recommendation format
 
@@ -1905,12 +1901,6 @@ If the requested name is unavailable,
 the creator must select an available variant.
 
 External and custom domains require DNS verification during setup.
-
-Rules:
-• preserve readability
-• append the smallest possible suffix
-• do not reopen the decision
-• do not ask the creator
 
 Then display the Locked domain normally.
 
@@ -2649,20 +2639,6 @@ Spec
 Concept rules:
 
 Authority + continuity with existing platforms.
-
-⸻
-
-🧠 Generation logic (important for the model)
-
-Pilot mode
-
-→ faster, simpler, minimal production
-→ photography or single symbol direction
-
-Flagship mode
-
-→ more composed, system-ready
-→ graphic + accent color + repeatable layout
 
 ⸻
 
