@@ -599,14 +599,14 @@ Directly from Step 2 approval.
 
 Domain candidate
 
-Only shown when:
-  • external subdomain
-  • custom domain
+The planned domain for the community.
 
-Never shown for Commonshub subdomain.
+For:
+• Commonshub subdomain → [instance_slug].commonshub.social
+• External subdomain → approved hostname
+• Custom domain → approved hostname
 
-Do not check availability.
-
+Availability is verified later during setup.
 ⸻
 
 Short description
@@ -1897,9 +1897,14 @@ If not explicit approval → follow non-advance rule and regenerate.
 
 Availability safeguard (system)
 
-If the constructed domain is unavailable:
+Availability rule
 
-The system silently generates the shortest valid variant.
+Commonshub subdomains are checked for availability during setup.
+
+If the requested name is unavailable,
+the creator must select an available variant.
+
+External and custom domains require DNS verification during setup.
 
 Rules:
 • preserve readability
@@ -1977,11 +1982,6 @@ After approval:
 
 Display locked domain as above.
 
-Launch mode logic:
-
-Strong existing domain → flagship
-Otherwise → pilot
-
 Advance immediately to Step 4.
 
 ⸻
@@ -2030,22 +2030,8 @@ Storage rule: domain_type in Blueprint JSON must be exactly one of the three str
 
 Domain candidate → Blueprint
 
-Populate only for:
+Populate for all options
 
-Option B
-Option C
-
-For Option A:
-
-domain_candidate: null
-
-⸻
-
-Launch mode (internal for JSON)
-
-Option A → pilot
-Option B → flagship if strong domain, else pilot
-Option C → flagship
 
 ⸻
 
@@ -2076,20 +2062,6 @@ Bias toward Option B because it:
 • increases credibility
 
 This appears only inside the recommendation sentence.
-
-⸻
-
-Pilot safety rule
-
-If Pilot mode is detected:
-
-Recommendation must protect speed and reversibility.
-
-Use language pattern:
-
-“Fastest way to go live — you can move to a custom domain later.”
-
-Never promise migration mechanics.
 
 ⸻
 
