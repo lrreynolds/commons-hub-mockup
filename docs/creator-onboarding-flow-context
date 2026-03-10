@@ -1177,7 +1177,7 @@ owner_email
 positioning  
 community_name  
 instance_slug  
-domain_path  
+domain_type  
 domain_candidate  
 short_description  
 header_line  
@@ -1221,7 +1221,7 @@ Rules:
   • No transcript content
   • Deterministic across sessions
 
-  domain_path stores the human-readable string only — never “Option A/B/C”.
+  domain_type stores the human-readable string only — never “Option A/B/C”.
 
 This guarantees:
   • provisioning safety
@@ -2080,7 +2080,7 @@ Commonshub subdomain — fastest launch
 External subdomain — brand continuity
 Custom domain — standalone identity
 
-Storage rule: domain_path in Blueprint JSON must be exactly one of the three strings above (never “Option A/B/C”).
+Storage rule: domain_type in Blueprint JSON must be exactly one of the three strings above (never “Option A/B/C”).
 
 ⸻
 
