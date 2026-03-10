@@ -472,11 +472,6 @@ This is the only responsibility of the guided flow.
 
 The Blueprint contains all identity, copy, and configuration required to provision the community.
 
-The creator may then:
-
-• proceed immediately to plan selection  
-• leave and return later using their resume link
-
 The LLM is not involved in purchase, provisioning, or dashboard actions.
 
 Those steps occur in product UI after Blueprint creation.
@@ -553,26 +548,6 @@ This makes the flow feel:
   • precision-driven
 
 ⸻
-
-9C-2 — Blueprint Commit Moment (authoritative save + resume link)
-
-When this triggers
-Immediately after Step 5 is approved, and before showing the Blueprint Summary.
-
-System behavior (authoritative, in this exact order)
-1. Persist blueprint_created_at
-2. Save Blueprint JSON
-3. Save Diagnostic Transcript
-4. Compute Outcome JSON
-5. Validate required fields
-6. Set lifecycle_state = "blueprint_created"
-7. Generate resume token
-8. Send resume-link email
-
-Hard rules
-  • The token is never generated earlier than this point.
-  • The token only resumes to Plan Select (unless purchase/provisioning already happened).
-  • The creator never pastes anything to resume.
 
 ⸻
 
@@ -1000,41 +975,7 @@ This is a handoff.
 
 ⸻
 
-6) Re-entry guarantee (state continuity)
-
-When the creator returns with a valid Blueprint:
-
-System says:
-
-Blueprint detected — you’re at the proceed-to-setup point.
-Ready to proceed to setup?
-
-No Blueprint is ever regenerated.
-
-No earlier step is rerun.
-
-⸻
-
-7) Phase boundary enforcement
-
-Under no condition may the system:
-  • request visual assets
-  • generate launch posts
-  • discuss onboarding checklist
-
-before:
-
-purchase_success = true
-
-This keeps the blueprint:
-
-identity-only
-fast
-safe
-
-⸻
-
-8) Quality test (must pass)
+6) Quality test (must pass)
 
 After reading the Blueprint, the creator must feel:
 
