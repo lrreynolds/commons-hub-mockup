@@ -1855,14 +1855,18 @@ Your recommendation must be based on:
 
 Recommendation format
 
-Recommendation
-Option X — one-sentence reason tied to launch mode and audience activation speed
+Recommendation should consider:
+
+• trust transfer detection
+• brand strength
+• creator context
+• mission domain clarity
 
 Examples of reasoning:
 
-Pilot → bias to Option A
-Flagship with strong domain → bias to Option B
-New independent brand → Option C
+Strong existing domain → bias to Option B
+New or exploratory project → bias to Option A
+Independent brand identity → Option C
 
 
 ⸻
@@ -2543,8 +2547,8 @@ Inputs (deterministic)
   • positioning
   • community name
   • header line
-  • launch mode
   • creator context
+  • domain_type
   • owner identity
 
 ⸻
