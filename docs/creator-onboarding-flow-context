@@ -554,21 +554,20 @@ This makes the flow feel:
 
 ⸻
 
-9C-2 — Phase A Commit Moment (authoritative save + resume link)
+9C-2 — Blueprint Commit Moment (authoritative save + resume link)
 
 When this triggers
 Immediately after Step 5 is approved, and before showing the Blueprint Summary.
 
 System behavior (authoritative, in this exact order)
-  1.  Create / persist blueprint_created_at (if not already set)
-  2.  Save Blueprint JSON
-  3.  Save Diagnostic Transcript
-  4.  Compute Outcome JSON
- 5. Validate required fields (must exist: owner_email, community_name, instance_slug, domain_path, short_description, header_line, owner_username, owner_bio, long_description, welcome_announcement, launch_content.posts.welcome, launch_content.posts.how_to_participate, launch_content.posts.mobile_apps, launch_content.core_hashtags). If any are missing → do not mark phase_completed.
- 5A. Set lifecycle_state = "blueprint_created" in Blueprint JSON
-6. Generate resume token
-7. Send resume-link email
-8. Persist blueprint_created_at
+1. Persist blueprint_created_at
+2. Save Blueprint JSON
+3. Save Diagnostic Transcript
+4. Compute Outcome JSON
+5. Validate required fields
+6. Set lifecycle_state = "blueprint_created"
+7. Generate resume token
+8. Send resume-link email
 
 Hard rules
   • The token is never generated earlier than this point.
@@ -577,7 +576,7 @@ Hard rules
 
 ⸻
 
-9D — Phase A Output — Blueprint Summary
+9D — Blueprint Output — Blueprint Summary
 
 At the end of Phase A you output a clean, copy-and-save block.
 
