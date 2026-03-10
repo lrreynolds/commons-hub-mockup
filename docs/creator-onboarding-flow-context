@@ -555,7 +555,7 @@ Owner username:
 [owner_username]
 
 Full handle:
-@owner_username@[resolved_domain]
+@owner_username@[domain_candidate]
 
 
 Owner bio:
@@ -1932,6 +1932,7 @@ Domain type: Commonshub subdomain — fastest launch
 
 Set:
 
+domain_type: Commonshub subdomain — fastest launch
 domain_candidate: [instance_slug].commonshub.social
 
 Advance immediately to Step 4.
@@ -1951,7 +1952,8 @@ Domain type: External subdomain — brand continuity
 
 Set:
 
-domain_candidate: [locked full hostname]
+domain_type: External subdomain — brand continuity
+domain_candidate: [hostname]
 
 If no subdomain was supplied:
 
@@ -2005,7 +2007,8 @@ Domain type: Custom domain — standalone identity
 
 Set:
 
-domain_candidate: [approved_custom_domain]
+domain_type: Custom domain — standalone identity
+domain_candidate: [hostname]
 
 Advance immediately to Step 4.
 
@@ -2744,10 +2747,10 @@ Before showing the bio, output:
 Your primary identity inside this space
 
 Full handle:
-@owner_username@[resolved_domain]
+@owner_username@[domain_candidate]
 
 Locked: [owner_username]
-Display handle: @owner_username@[resolved_domain]
+Display handle: @owner_username@[domain_candidate]
 
 This is the emotional confirmation moment.
 
@@ -2813,7 +2816,7 @@ Owner username:
 [owner_username]
 
 Full handle:
-@owner_username@[resolved_domain]
+@owner_username@[domain_candidate]
 
 Owner bio:
 [3 sentences max]
