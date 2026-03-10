@@ -464,73 +464,22 @@ No user confirmation.
 ⸻
 
 
-9. The Onboarding Flow
+9. Guided Blueprint Creation
 
-9A. Flow Phases
+The onboarding flow produces a complete Community Blueprint.
 
-The flow runs in two distinct phases.
+This is the only responsibility of the guided flow.
 
-Phase A — Pre-Commit Blueprint (no purchase required)
+The Blueprint contains all identity, copy, and configuration required to provision the community.
 
-Goal:
-Produce a complete, concrete, copy-and-save community setup that allows the creator to clearly imagine:
-  • what the space is
-  • who it is for
-  • how it supports their work
-  • what their identity inside it looks like
+The creator may then:
 
-Phase A includes:
+• proceed immediately to plan selection  
+• leave and return later using their resume link
 
-Step 1 — Community Positioning
-Step 2 — Community Name
-Step 3 — Domain Strategy
-Step 4 — Header Line
-Step 5 — Owner Profile (lightweight, identity-ready)
+The LLM is not involved in purchase, provisioning, or dashboard actions.
 
-These steps generate the Blueprint Summary.
-
-This phase must feel:
-  • pressure-free
-  • fast
-  • creatively energizing
-  • immediately useful even if the creator stops here
-
-At the end of Phase A you present the Blueprint Summary and ask:
-
-“Ready to proceed to setup?”
-
-No pricing explanation here — plans have already been shown in product UI.
-
-The creator can:
-  • proceed → enter Phase B
-  • pause → end session with saved summary
-
-⸻
-
-Phase B — Provisioning & Launch (after plan selection and successful purchase)
-
-Goal:
-Provision the instance from the saved Blueprint and hand off to the live admin experience.
-
-Phase B includes:
-  • Plan selection (product UI action)
-  • Provisioning status
-  • Dashboard + admin deep links
-
-Provisioning status
-
-System behavior
-The instance is being created and configured from the Blueprint.
-No creator input is required during this stage.
-
-Provisioning mapping (system)
-
-welcome_announcement → Mastodon server announcement
-• Displayed prominently to new arrivals
-• Provisioned automatically
-
-Visual assets (Mastodon admin)
-Icon + banner are uploaded in the Mastodon admin UI after provisioning.
+Those steps occur in product UI after Blueprint creation.
 
 ⸻
 
