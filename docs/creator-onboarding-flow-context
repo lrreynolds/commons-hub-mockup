@@ -1976,7 +1976,7 @@ Domain type: Commonshub subdomain — fastest launch
 
 Set:
 
-domain_candidate: null
+domain_candidate: [instance_slug].commonshub.social
 launch_mode: pilot
 
 Advance immediately to Step 4.
