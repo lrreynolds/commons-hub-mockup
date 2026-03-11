@@ -3053,3 +3053,191 @@ You do not regenerate any text.
 You only serialize what already occurred.
 
 ⸻
+
+14A — Diagnostic Transcript JSON Schema
+
+Diagnostic Transcript Object
+
+The Diagnostic Transcript captures the full decision log of the onboarding session.
+
+It is used for:
+
+• debugging
+• flow tuning
+• analytics verification
+• training data for improving recommendations
+
+This object must contain only structured data.
+
+It must not contain regenerated text.
+
+It must reflect exactly what occurred during the session.
+
+diagnostic_transcript {
+
+  flow_version
+
+  session_start_timestamp
+
+  steps [
+
+    {
+      step_id
+      step_name
+
+      options_generated
+
+      recommended_option
+
+      creator_response
+
+      final_selection
+
+      iteration_index
+    }
+
+  ]
+
+}
+
+Field Definitions
+
+"flow_version": "commonshub_onboarding_v1"
+
+session_start_timestamp
+
+ISO-8601 timestamp when the onboarding session began.
+
+Example: 
+
+2026-03-12T16:02:31Z
+
+steps
+
+Array containing each decision step.
+
+Steps included:
+
+step_1_positioning
+step_2_community_name
+step_3_domain
+step_4_header_line
+step_5_owner_profile
+
+Micro-intake is not included.
+
+⸻
+
+step_id
+
+Canonical identifier.
+
+Example:
+
+step_2_community_name
+
+step_name
+
+Human readable label.
+
+Example:
+
+Community Name
+
+options_generated
+
+Array of the options shown to the creator.
+
+Example
+
+[
+"The Security Brief",
+"The Strategic Signal",
+"The Ukraine Briefing Room"
+]
+
+If the step regenerated options, each iteration must appear as a separate step object.
+
+⸻
+
+recommended_option
+
+Exact text of the option recommended by the system.
+
+Example
+
+"The Security Brief"
+
+creator_response
+
+Exact response given by the creator.
+
+Examples
+
+"approve"
+"Option B"
+"My final: Strategic Signal"
+
+final_selection
+
+The approved value that was locked.
+
+Example
+
+"The Security Brief"
+
+iteration_index
+
+Indicates which generation cycle the step represents.
+
+First generation:
+
+0
+
+First regeneration:
+
+1
+
+Second regeneration:
+
+2
+
+Example Output
+
+The second code block should look like this:
+
+{
+  "diagnostic_transcript": {
+    "session_start_timestamp": "2026-03-12T16:02:31Z",
+    "steps": [
+      {
+        "step_id": "step_1_positioning",
+        "step_name": "Community Positioning",
+        "options_generated": [
+          "A working room for analysts tracking post-Soviet power",
+          "A real-time signal space for Ukraine war intelligence",
+          "An ongoing briefing for geopolitical security analysis"
+        ],
+        "recommended_option": "A working room for analysts tracking post-Soviet power",
+        "creator_response": "approve",
+        "final_selection": "A working room for analysts tracking post-Soviet power",
+        "iteration_index": 0
+      },
+      {
+        "step_id": "step_2_community_name",
+        "step_name": "Community Name",
+        "options_generated": [
+          "The Security Brief",
+          "The Strategic Signal",
+          "The Briefing Room"
+        ],
+        "recommended_option": "The Security Brief",
+        "creator_response": "approve",
+        "final_selection": "The Security Brief",
+        "iteration_index": 0
+      }
+    ]
+  }
+}
+
+⸻
