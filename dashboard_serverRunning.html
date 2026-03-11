@@ -1,0 +1,171 @@
+<div class="header">
+  <div>
+    <h2>Your community is live</h2>
+    <p id="headerSubcopy">
+      Your server is running. Now let’s complete launch setup so the space feels real before you invite anyone.
+    </p>
+  </div>
+</div>
+
+<section class="card launchSetupCard">
+  <div class="launchSetupTop">
+    <div>
+      <h3>Launch setup</h3>
+      <div class="muted">Complete these steps to prepare your community for its first cohort. About 20–30 minutes.</div>
+    </div>
+
+    <div class="launchProgressMeta">
+      <b id="launchProgressCount">Step 1 of 7</b>
+      <span class="muted" id="launchProgressPercent">0% complete</span>
+    </div>
+  </div>
+
+  <div class="progress" style="margin-top:14px;">
+    <div class="bar"><div id="launchProgressBar" style="width:0%"></div></div>
+  </div>
+
+  <div class="launchSteps" id="launchSteps" style="margin-top:16px;">
+
+    <!-- Step 1 -->
+    <section class="setupStep is-open" data-step="1">
+      <button class="setupStepHeader" type="button">
+        <span class="setupStepIndex">1</span>
+        <span class="setupStepTitleWrap">
+          <span class="setupStepTitle">Secure your launch</span>
+          <span class="setupStepSummary">Set registrations to invite-only for your first cohort.</span>
+        </span>
+        <span class="setupStepState">Open</span>
+      </button>
+
+      <div class="setupStepBody">
+        <div class="muted">
+          Starting with a curated first cohort keeps the signal high and sets the tone.
+        </div>
+
+        <div class="item" style="margin-top:12px;">
+          <b>Open in Mastodon</b>
+          <div class="footerBar" style="margin-top:10px;">
+            <a class="secondary" href="https://securitybrief.jasonjaysmart.com/admin/settings/registrations" target="_blank" rel="noopener" style="width:auto;">
+              Open registrations
+            </a>
+          </div>
+        </div>
+
+        <div class="item" style="margin-top:12px;">
+          <b>Suggested setting</b>
+          <div class="muted" style="margin-top:6px;">Who can sign up → Nobody can sign up</div>
+        </div>
+
+        <div class="item" style="margin-top:12px;">
+          <b>Suggested message</b>
+          <textarea readonly>This space launches in small cohorts.
+
+If your work is in this field and you’d like to join, contact:
+jason@jasonjaysmart.com</textarea>
+          <div class="footerBar" style="margin-top:10px;">
+            <button class="secondary" type="button" data-copy="step1">Copy text</button>
+            <button class="primary" type="button" data-done="step1">Mark done</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Step 2 -->
+    <section class="setupStep" data-step="2">
+      <button class="setupStepHeader" type="button">
+        <span class="setupStepIndex">2</span>
+        <span class="setupStepTitleWrap">
+          <span class="setupStepTitle">Set your host identity</span>
+          <span class="setupStepSummary">Complete your profile so the room feels hosted and credible.</span>
+        </span>
+        <span class="setupStepState">Locked</span>
+      </button>
+
+      <div class="setupStepBody" hidden>
+        <!-- profile fields, links, optional verification -->
+      </div>
+    </section>
+
+    <!-- Step 3 -->
+    <section class="setupStep" data-step="3">
+      <button class="setupStepHeader" type="button">
+        <span class="setupStepIndex">3</span>
+        <span class="setupStepTitleWrap">
+          <span class="setupStepTitle">Define the community identity</span>
+          <span class="setupStepSummary">Apply branding, short description, and About page copy.</span>
+        </span>
+        <span class="setupStepState">Locked</span>
+      </button>
+
+      <div class="setupStepBody" hidden></div>
+    </section>
+
+    <!-- Step 4 -->
+    <section class="setupStep" data-step="4">
+      <button class="setupStepHeader" type="button">
+        <span class="setupStepIndex">4</span>
+        <span class="setupStepTitleWrap">
+          <span class="setupStepTitle">Establish the signal structure</span>
+          <span class="setupStepSummary">Set rules, hashtags, and recommended follows.</span>
+        </span>
+        <span class="setupStepState">Locked</span>
+      </button>
+
+      <div class="setupStepBody" hidden></div>
+    </section>
+
+    <!-- Step 5 -->
+    <section class="setupStep" data-step="5">
+      <button class="setupStepHeader" type="button">
+        <span class="setupStepIndex">5</span>
+        <span class="setupStepTitleWrap">
+          <span class="setupStepTitle">Create pinned posts</span>
+          <span class="setupStepSummary">Publish the three posts that orient new members.</span>
+        </span>
+        <span class="setupStepState">Locked</span>
+      </button>
+
+      <div class="setupStepBody" hidden></div>
+    </section>
+
+    <!-- Step 6 -->
+    <section class="setupStep" data-step="6">
+      <button class="setupStepHeader" type="button">
+        <span class="setupStepIndex">6</span>
+        <span class="setupStepTitleWrap">
+          <span class="setupStepTitle">Publish welcome announcement</span>
+          <span class="setupStepSummary">Show new visitors exactly what this space is and how to begin.</span>
+        </span>
+        <span class="setupStepState">Locked</span>
+      </button>
+
+      <div class="setupStepBody" hidden></div>
+    </section>
+
+    <!-- Step 7 -->
+    <section class="setupStep" data-step="7">
+      <button class="setupStepHeader" type="button">
+        <span class="setupStepIndex">7</span>
+        <span class="setupStepTitleWrap">
+          <span class="setupStepTitle">Generate invite links</span>
+          <span class="setupStepSummary">Create your first cohort invite links and begin activation.</span>
+        </span>
+        <span class="setupStepState">Locked</span>
+      </button>
+
+      <div class="setupStepBody" hidden></div>
+    </section>
+
+  </div>
+</section>
+
+<section class="card" style="margin-top:14px;">
+  <h3>After launch</h3>
+  <div class="muted">Once setup is complete, you’ll use these actions most often.</div>
+
+  <div class="footerBar" style="margin-top:14px;">
+    <a class="primary" href="community.html">Visit community</a>
+    <a class="secondary" href="mastodon-login.html" style="width:auto;">Sign in to Mastodon</a>
+    <button class="secondary" type="button" style="width:auto;">Copy invite link</button>
+  </div>
+</section>
