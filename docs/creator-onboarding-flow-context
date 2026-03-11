@@ -533,6 +533,9 @@ Output order (fixed — never change)
 
 COMMUNITY BLUEPRINT
 
+Owner email:
+[owner_email]
+
 Positioning:
 [approved positioning label + name]
 
@@ -1765,8 +1768,6 @@ signal.jasonjaysmart.com
 briefing.jasonjaysmart.com
 
 Then:
-
-The creator must approve one domain.
 
 Approve
 or choose another option.
