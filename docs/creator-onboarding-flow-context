@@ -1681,7 +1681,7 @@ Independent brand identity → Option C
 End with:
 
 Approve
-or provide your domain.
+or provide a specific domain.
 
 Do not:
 • mention plans again
@@ -1744,9 +1744,13 @@ Advance immediately to Step 4.
 
 If selected path = external_subdomain
 
-If the creator proposes a specific subdomain:
+If the creator provides a specific subdomain:
 
 Use it exactly as provided.
+
+Otherwise:
+
+Generate 3 subdomain candidates.
 
 Display:
 
@@ -1884,14 +1888,11 @@ This is the live conversation descriptor.
 
 ⸻
 
-
 Step 4 — Header Line
 
 Why this matters
 This turns your core focus into a clear public signal — the line people see in the header and invite preview.
 
-
-Here are strong header line options:
 ⸻
 
 1) Inputs (silent)
