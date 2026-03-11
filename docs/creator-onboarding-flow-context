@@ -966,7 +966,7 @@ short_description
 header_line
 
 owner_username
-owner_handle
+owner_handle (derived)
 owner_bio
 
 long_description
@@ -1014,7 +1014,7 @@ This guarantees:
 
 9H. Outcome Signals (minimum set)
 
-  The system records:
+The system records:
 
     blueprint_completed: true | false
     proceeded_to_setup: true | false
@@ -1144,7 +1144,7 @@ Step 0 — Session Entry (Email + Resume Link)
 Goal
 Collect the owner email required for provisioning.
 
-The product creates a resumable session.
+The system manages resumable sessions via the product backend.
 
 Core rule
 Resume is link-based and handled by the product backend, not by the guided flow.
@@ -1680,8 +1680,8 @@ Independent brand identity → Option C
 
 End with:
 
-Choose an option
-or provide your own domain.
+Approve
+or provide your domain.
 
 Do not:
 • mention plans again
@@ -1884,14 +1884,14 @@ This is the live conversation descriptor.
 
 ⸻
 
-Step header
-Based on your focus and your existing work, here are strong header line options:
 
 Step 4 — Header Line
 
 Why this matters
 This turns your core focus into a clear public signal — the line people see in the header and invite preview.
 
+
+Here are strong header line options:
 ⸻
 
 1) Inputs (silent)
