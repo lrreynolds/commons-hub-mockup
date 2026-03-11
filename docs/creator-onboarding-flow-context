@@ -545,6 +545,9 @@ Community name:
 Instance slug:
 [instance_slug]
 
+Domain type:
+[domain_type]
+
 Domain candidate:
 [domain_candidate]
 
@@ -566,22 +569,22 @@ Owner bio:
 Long description:
 [About page text]
 
-Welcome announcement:
-[first-run feed-top announcement text]
+Visual asset direction:
 
-Initial posts:
+Thumbnail banner (1600×500):
+[visual concept + safe area guidance]
 
-Welcome post:
-[first pinned post draft]
+Instance icon (1024×1024 source):
+[visual concept]
 
-How to participate:
-[participation guidance post draft]
+App icon (1024×1024 source):
+[visual concept]
 
-Mobile apps:
-[mobile app recommendation post draft]
+Favicon (512×512 source):
+[visual concept]
 
-Core hashtags:
-[comma-separated canonical hashtag list, shown without # symbols]
+Owner profile image:
+[visual concept]
 
 Field generation rules
 
