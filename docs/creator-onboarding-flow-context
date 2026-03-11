@@ -1583,10 +1583,7 @@ Step 3 — Community Address
 
 No recap.
 
-
-
 ⸻*****
-
 
 Step 3 — Community Address
 
@@ -1615,6 +1612,22 @@ Signals may include:
 • a personal website domain in the provided links
 • a domain explicitly mentioned by the creator
 • a domain pasted during the link intake step
+
+Domain detection rule:
+
+Only treat a domain as "existing" if:
+
+• it is a root domain
+• it is not a platform host
+• it is explicitly owned by the creator
+
+Reject domains that are:
+
+youtube.com
+substack.com
+twitter.com
+linkedin.com
+medium.com
 
 If a domain is detected → show 3 options.
 
@@ -1868,8 +1881,13 @@ commonshub_subdomain
 → construct domain → lock → advance
 
 external_subdomain
-→ if subdomain provided → lock → advance
-→ else → generate candidates → approve → lock → advance
+→ If external_subdomain is chosen:
+
+Generate candidates immediately.
+
+Show them in the same step.
+
+Approve the final hostname.
 
 custom_domain
 → generate candidates → approve → lock → advance
@@ -2514,7 +2532,8 @@ Fallback priority:
 3. username + minimal suffix
 
 Do not ask the creator.
-Do not reopen the step.
+If the creator requests refinement,
+generate a cleaner username variant and present it again.
 
 Always present the final result as the Locked handle. 
 
@@ -2548,7 +2567,7 @@ Before showing the bio, output:
 Your primary identity inside this space
 
 Locked: [owner_username]
-Full handle: 
+Owner handle: 
 @owner_username@[domain_candidate]
 
 This is the emotional confirmation moment.
@@ -2722,9 +2741,9 @@ Use:
 
 For options always use:
 
-Option A
-Option B
-Option C
+Option A → Commonshub subdomain — fastest launch
+Option B → External subdomain — brand continuity
+Option C → Custom domain — standalone identity
 
 Then:
 
