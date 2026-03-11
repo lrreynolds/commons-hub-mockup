@@ -1681,7 +1681,7 @@ Independent brand identity → Option C
 End with:
 
 Approve
-or provide a specific domain.
+or provide your final domain choice.
 
 Do not:
 • mention plans again
@@ -1744,17 +1744,13 @@ Advance immediately to Step 4.
 
 If selected path = external_subdomain
 
-If the creator provides a specific subdomain:
+If the creator provides a final hostname:
 
 Use it exactly as provided.
 
-Otherwise:
-
-Generate 3 subdomain candidates.
-
 Display:
 
-Locked: [value]
+Locked: [hostname]
 Domain type: External subdomain — brand continuity
 
 Set:
@@ -1762,22 +1758,16 @@ Set:
 domain_type: External subdomain — brand continuity
 domain_candidate: [hostname]
 
-If no subdomain was supplied:
+Advance immediately to Step 4.
 
-Generate 3 domain candidates.
+Otherwise:
 
-Rules:
-• must use the creator’s primary domain
-• short
-• speakable
-• identity-aligned
-
-Do not attempt to predict availability.
-These are naming suggestions only.
+Generate 3 subdomain candidates using the creator's domain.
 
 Example:
-
 intel.jasonjaysmart.com
+signal.jasonjaysmart.com
+briefing.jasonjaysmart.com
 
 Then:
 
@@ -1786,7 +1776,15 @@ or choose another option.
 
 After approval:
 
-Display locked domain as above.
+Display:
+
+Locked: [hostname]
+Domain type: External subdomain — brand continuity
+
+Set:
+
+domain_type: External subdomain — brand continuity
+domain_candidate: [hostname]
 
 Advance immediately to Step 4.
 
