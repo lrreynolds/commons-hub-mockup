@@ -1294,7 +1294,7 @@ abandonment_reason_category: technical_concern
 abandonment_reason_category: trust_uncertain
 abandonment_reason_category: audience_migration_risk
 abandonment_reason_category: unclear_value
-abandonment_reason_category: domain_availablity_check
+abandonment_reason_category: domain_availability_check
 abandonment_reason_category: other
 
 Not for behavioral tracking inside the creator experience.
@@ -1304,6 +1304,53 @@ Not for behavioral tracking inside the creator experience.
 These metrics are computed from the transcript only.
 
 They are never inferred from the Blueprint.
+
+abandonment_reason_category
+
+Definition:
+
+A normalized category derived from the creator’s answer to:
+
+“What’s the main reason you’re not proceeding today?”
+
+This value is computed only when:
+
+proceeded_to_setup = false
+and
+abandonment_reason is not null
+
+Allowed values:
+
+timing
+pricing
+needs_example
+technical_concern
+trust_uncertain
+audience_migration_risk
+unclear_value
+domain_availability_check
+other
+
+Classification rule:
+
+Choose exactly one category based on the primary reason expressed in the creator’s response.
+
+If multiple reasons are mentioned, classify using the most explicit or first-stated blocking reason.
+
+If the reason does not clearly match any category, use:
+
+other
+
+Examples:
+
+“I need to think about timing” → timing
+“I need to understand the pricing” → pricing
+“I want to see a live example first” → needs_example
+“I’m worried about setup / DNS / infrastructure” → technical_concern
+“I’m not sure this is credible yet” → trust_uncertain
+“I’m worried about moving my audience” → audience_migration_risk
+“I’m not sure why I need this yet” → unclear_value
+“I need to know whether the domain is available” → domain_availability_check
 
 ⸻
 
