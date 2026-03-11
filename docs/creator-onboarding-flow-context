@@ -993,12 +993,14 @@ owner_email
 
 positioning
 community_name
+instance_display_name
 instance_slug
 
 domain_type
 domain_candidate
 
 short_description
+instance_tagline
 header_line
 
 owner_username
@@ -1007,6 +1009,52 @@ owner_bio
 
 long_description
 welcome_announcement
+
+⸻
+
+Instance Display Name
+
+instance_display_name
+
+This is the Mastodon server name shown in:
+
+• server branding
+• app headers
+• instance directory listings
+• invite previews
+
+Default rule:
+
+instance_display_name must equal community_name.
+
+The field exists separately so provisioning systems can map directly to the Mastodon setting:
+
+/admin/settings/branding → Server name
+
+This value is deterministic and derived from the approved Community Name in Step 2.
+
+It is never regenerated.
+
+Instance Tagline
+
+instance_tagline
+
+This maps directly to the Mastodon server description field.
+
+It appears in:
+• instance directories
+• server preview cards
+• some app onboarding surfaces
+
+Deterministic rule
+
+instance_tagline must equal short_description.
+
+This field exists separately so provisioning systems can map directly to the Mastodon setting:
+
+/admin/settings/branding → Server description
+
+The value is never regenerated.
 
 ⸻
 
@@ -1060,6 +1108,8 @@ provisioning {
 
   instance_domain
   instance_slug
+  instance_display_name
+  instance_tagline
 
   domain_type
   domain_candidate
@@ -1073,6 +1123,14 @@ provisioning {
 }
 
 Rules
+
+Provisioning mapping rule
+
+instance_display_name = community_name
+
+instance_tagline = short_description
+
+These fields exist separately so infrastructure scripts can map directly to Mastodon branding settings during provisioning.
 
 mastodon_admin_email must equal owner_email.
 
