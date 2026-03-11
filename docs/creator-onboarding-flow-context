@@ -609,7 +609,23 @@ For:
 • External subdomain → approved domain
 • Custom domain → approved domain
 
-Availability is verified later during setup.
+Important
+
+This is the intended address based on the Blueprint.
+
+Actual availability is verified during provisioning after a plan is selected.
+
+During setup the creator will:
+
+• confirm the domain
+• see if the Commonshub subdomain is available
+• verify DNS ownership for external/custom domains
+• change the value if needed
+
+If the selected domain is unavailable, the system will prompt the creator to choose a new value before provisioning begins.
+
+The Blueprint always stores the original candidate so the creator can return later and continue setup from this plan.
+
 ⸻
 
 Short description
