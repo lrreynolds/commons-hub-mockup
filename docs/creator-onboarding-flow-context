@@ -557,7 +557,6 @@ Owner username:
 Full handle:
 @owner_username@[domain_candidate]
 
-
 Owner bio:
 [first-person, identity-establishing]
 
@@ -954,7 +953,7 @@ Field parity is required.
 
 The JSON must contain:
 
-owner_email 
+owner_email
 
 positioning
 community_name
@@ -1013,7 +1012,7 @@ This guarantees:
 
 ⸻
 
-  9H. Outcome Signals (minimum set)
+9H. Outcome Signals (minimum set)
 
   The system records:
 
@@ -1034,7 +1033,7 @@ These are used for:
 
 Not for behavioral tracking inside the creator experience.
 
-A) — Outcome Metric Computation Rules (deterministic)
+9H-A — Outcome Metric Computation Rules (deterministic)
 
 These metrics are computed from the transcript only.
 
@@ -1172,10 +1171,7 @@ That email doesn’t look right — try again.
 
 ⸻
 
-
 After a valid email is entered, continue immediately to the focus intake step.
-
-Guided flow continues immediately.
 
 Confirmation line (one calm line)
 Perfect — once your Blueprint is complete we’ll email you a resume link.
@@ -1598,8 +1594,8 @@ Goal
 
 Generate strong candidate addresses for the community.
 
-The creator will select the preferred direction, but
-availability and final selection are confirmed during setup.
+The creator selects the preferred direction.
+Availability is verified during setup.
 
 This step produces a domain candidate used in the Blueprint.
 
@@ -1977,7 +1973,7 @@ Option X — one-line reason
 
 Reason must reference:
 
-fit with the approved positioning.
+Fit with the approved positioning.
 
 ⸻
 
@@ -2552,11 +2548,9 @@ Before showing the bio, output:
 
 Your primary identity inside this space
 
-Full handle:
-@owner_username@[domain_candidate]
-
 Locked: [owner_username]
-Full handle: @owner_username@[domain_candidate]
+Full handle: 
+@owner_username@[domain_candidate]
 
 This is the emotional confirmation moment.
 
