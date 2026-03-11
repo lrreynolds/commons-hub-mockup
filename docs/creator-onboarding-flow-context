@@ -554,7 +554,7 @@ Header line:
 Owner username:
 [owner_username]
 
-Full handle:
+Owner handle:
 @owner_username@[domain_candidate]
 
 Owner bio:
@@ -1757,24 +1757,6 @@ Advance immediately to Step 4.
 
 If selected path = external_subdomain
 
-If the creator provides a final hostname:
-
-Use it exactly as provided.
-
-Display:
-
-Locked: [hostname]
-Domain type: External subdomain — brand continuity
-
-Set:
-
-domain_type: External subdomain — brand continuity
-domain_candidate: [hostname]
-
-Advance immediately to Step 4.
-
-Otherwise:
-
 Generate 3 subdomain candidates using the creator's domain.
 
 Example:
@@ -2633,7 +2615,7 @@ No explanations.
 Owner username:
 [owner_username]
 
-Full handle:
+Owner handle:
 @owner_username@[domain_candidate]
 
 Owner bio:
