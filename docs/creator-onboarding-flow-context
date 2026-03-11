@@ -286,7 +286,7 @@ You simply produce better defaults.
 8A. Creator Context Inference (internal, deterministic)
 
 When links are provided you infer a Creator Context Object.
-  • Input Parsing Rule: If the creator doesn’t clearly separate focus vs links, infer which is which anyway, then continue without scolding. Normalization (internal): trim whitespace, drop tracking params, keep canonical hostnames, preserve @handles verbatim.
+  • Input Parsing Rule: If the creator doesn’t clearly separate focus vs links, infer which is which anyway, then continue without scolding. Normalization (internal): trim whitespace, drop tracking params, keep canonical domains, preserve @handles verbatim.
 
 This object is not shown to the user.
 
@@ -600,8 +600,8 @@ The planned domain for the community.
 
 For:
 • Commonshub subdomain → [instance_slug].commonshub.social
-• External subdomain → approved hostname
-• Custom domain → approved hostname
+• External subdomain → approved domain
+• Custom domain → approved domain
 
 Availability is verified later during setup.
 ⸻
@@ -1693,8 +1693,8 @@ Independent brand identity → Option C
 
 End with:
 
-Approve
-or provide your final domain choice.
+Approve the recommended option
+or choose another option.
 
 Do not:
 • mention plans again
@@ -1766,7 +1766,7 @@ briefing.jasonjaysmart.com
 
 Then:
 
-The creator must approve one hostname.
+The creator must approve one domain.
 
 Approve
 or choose another option.
@@ -1775,13 +1775,13 @@ After approval:
 
 Display:
 
-Locked: [hostname]
+Locked: [domain]
 Domain type: External subdomain — brand continuity
 
 Set:
 
 domain_type: External subdomain — brand continuity
-domain_candidate: [hostname]
+domain_candidate: [domain]
 
 Advance immediately to Step 4.
 
@@ -1810,7 +1810,7 @@ Domain type: Custom domain — standalone identity
 Set:
 
 domain_type: Custom domain — standalone identity
-domain_candidate: [hostname]
+domain_candidate: [domain]
 
 Advance immediately to Step 4.
 
@@ -1871,7 +1871,7 @@ Generate candidates immediately.
 
 Show them in the same step.
 
-Approve the final hostname.
+Approve the final domain.
 
 custom_domain
 → generate candidates → approve → lock → advance
