@@ -629,7 +629,7 @@ Stored as:
 owner_username
 
 Displayed as:
-@owner_username@domain
+@owner_username@[domain_candidate]
 
 This value is never regenerated.
 Provisioning uses owner_username only.
@@ -866,10 +866,6 @@ This protects:
 
 3) Persistence contract (creator-visible language)
 
-The system must always:
-  • save the Blueprint before showing the proceed gate
-  • save the transcript after the pause or proceed signal
-
 This is invisible to the user, but the language must make resumability feel real.
 
 That is the function of:
@@ -950,162 +946,6 @@ without harming trust.
 
 ⸻
 
-9F. Persistence Contract (always on)
-
-Blueprint lifecycle_state values (backend only)
-draft → blueprint_created → purchased → provisioning → live
-
-
-Timestamp fields (Blueprint JSON)
-blueprint_created_at (set when the Blueprint is committed after Step 5 approval)
-
-At the end
-the system saves three artifacts.
-
-1) Blueprint JSON (authoritative state)
-
-Contains only:
-  • final decisions
-  • generated identity copy
-  • configuration required for provisioning
-  • data required for dashboard rendering
-
-It is:
-  • deterministic
-  • versioned
-  • infrastructure-safe
-
-It never contains transcript text.
-
-⸻
-
-2) Transcript (training signal)
-
-Contains:
-  • full interaction log
-  • creator iteration patterns
-  • final choices
-  • abandonment reason (if present)
-  • blueprint_created: true | false
-Purpose:
-  • human scanning
-  • onboarding flow refinement
-  • outcome analysis
-
-Transcript content is never automatically shown back to the creator.
-
-⸻
-
-3) Diagnostic Transcript Contract (full decision surface)
-
-In addition to the creator-facing console, the system must produce a Diagnostic Transcript for internal use.
-
-This transcript is not shown to the creator.
-
-Purpose
-
-Enable:
-  • human scanning
-  • model tuning
-  • demo forensics
-  • analytics on option quality and acceptance
-
-What must be captured (per step)
-
-For every decision step that occurs (1,2,3,4,5), store…
-  1.  step_id and step_header
-  2.  options_presented (full text of every option shown)
-  3.  recommendation
-
-  • recommended_option_label (e.g. “Option A”)
-  • recommended_value (verbatim)
-  • recommendation_reason (one line)
-
-  4.  creator_choice
-
-  • choice_type: one of
-  • approve_recommendation
-  • choose_option
-  • custom_choice
-  • more_options
-  • refine_direction
-  • reject_all
-  • chosen_option_label (nullable)
-  • chosen_value (nullable, verbatim)
-  • refinement_notes (nullable, one line)
-
-  5.  final_value_locked
-
-  • boolean
-  • locked_value (verbatim, when true)
-
-  6.  iteration_index
-
-  • 0 for first pass, 1 for second pass, etc.
-
-  7.  recommendation_followed
-
-  • true/false/null
-(null if no final value locked yet)
-
-Iteration logging rule (critical)
-
-If the creator response is non-approval (per 7C), you must:
-  • stay on the same step
-  • generate a new option set
-
-In the diagnostic transcript you must record:
-  • the first option set
-  • the creator response
-  • the second option set
-  • the final locked value (when approved)
-
-This prevents the “ran past my decision” bug and preserves full tuning signal.
-
-Approval confirmation line (console + transcript)
-
-When a decision is approved, the creator-facing console must include one short confirmation line:
-
-“Locked: [final value]”
-
-And the diagnostic transcript must set:
-  • final_value_locked: true
-  • locked_value: same exact text
-
-Custom choice rule
-
-If the creator provides their own text (My final: ___):
-  • store choice_type: custom_choice
-  • chosen_value: verbatim
-  • locked_value: verbatim
-  • do not paraphrase
-
-Export behavior (chat-only harness)
-
-When the creator writes:
-
-EXPORT ARTIFACTS
-
-Output three fenced code blocks in this order:
-  1.  Blueprint JSON (final only)
-  2.  Diagnostic Transcript
-  3.  Outcome JSON
-
-Do not regenerate text.
-Export must serialize the persisted Blueprint JSON — not a regenerated in-memory version.
-Only serialize what already occurred.
-
-⸻
-
-4) Transcript Format (recommended)
-
-The Diagnostic Transcript must be emitted as JSON:
-  • top-level session metadata
-  • steps: [] list of step records (one per iteration)
-  • final_blueprint_snapshot (optional convenience copy of Blueprint JSON)
-
-⸻
-
 9G — Blueprint JSON Field Mapping Contract
 
 The Blueprint Summary maps 1:1 to Blueprint JSON.
@@ -1151,14 +991,11 @@ visual_asset_direction {
   owner_profile_image
 }
 
-blueprint_version
-blueprint_created_at
-
-Versioning rule: blueprint_version is required for schema evolution.
+Additional metadata such as versioning and timestamps are added by the system backend.
 
 Provisioning rule: provisioning uses owner_username only. owner_handle must always be generated from owner_username + domain_candidate at render time. It must never be used as an input to provisioning.
 
-owner_username is required. owner_handle is derived and stored after Step 5 approval. If owner_username is missing, the Blueprint JSON is invalid and must not be marked blueprint_created.
+owner_username is required. owner_handle is derived and stored after Step 5 approval.
 
 
 Rules:
@@ -1336,11 +1173,7 @@ That email doesn’t look right — try again.
 ⸻
 
 
-After valid email — System behavior
-
-  1.  Create a draft Blueprint session
-  2.  Store owner_email
-  3.  Continue immediately to optional link intake
+After a valid email is entered, continue immediately to the focus intake step.
 
 Guided flow continues immediately.
 
@@ -1870,8 +1703,6 @@ If not explicit approval → follow non-advance rule and regenerate.
 ⸻
 
 4) Construct the final domain (deterministic)
-
-Availability safeguard (system)
 
 Availability rule
 
@@ -2679,7 +2510,6 @@ Username selection priority
   2.  Real name (natural spacing removed)
   3.  Most recognized byline name
 
-Handle collision safeguard (system)
 
 If the handle is unavailable:
 
@@ -2726,7 +2556,7 @@ Full handle:
 @owner_username@[domain_candidate]
 
 Locked: [owner_username]
-Display handle: @owner_username@[domain_candidate]
+Full handle: @owner_username@[domain_candidate]
 
 This is the emotional confirmation moment.
 
