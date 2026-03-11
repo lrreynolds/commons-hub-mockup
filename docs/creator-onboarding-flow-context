@@ -1272,6 +1272,7 @@ The system records:
     blueprint_completed: true | false
     proceeded_to_setup: true | false
     abandonment_reason: string | null
+    abandonment_reason_category
 
     recommendation_acceptance_rate: number
     custom_name_used: true | false
@@ -1283,6 +1284,18 @@ These are used for:
   • product learning
   • flow tuning
   • future follow-up logic
+
+Example:
+
+abandonment_reason_category: timing
+abandonment_reason_category: pricing
+abandonment_reason_category: needs_example
+abandonment_reason_category: technical_concern
+abandonment_reason_category: trust_uncertain
+abandonment_reason_category: audience_migration_risk
+abandonment_reason_category: unclear_value
+abandonment_reason_category: domain_availablity_check
+abandonment_reason_category: other
 
 Not for behavioral tracking inside the creator experience.
 
