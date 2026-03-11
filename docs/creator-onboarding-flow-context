@@ -1054,7 +1054,7 @@ They are displayed again inside the dashboard onboarding checklist.
 
 Provisioning Helper Fields
 
-These fields assist the dashboard setup process.
+These fields assist the dashboard setup and infrastructure provisioning process.
 
 provisioning {
 
@@ -1065,8 +1065,9 @@ provisioning {
   domain_candidate
 
   owner_username
-  owner_email
+  owner_handle
 
+  owner_email
   mastodon_admin_email
 
 }
@@ -1075,15 +1076,21 @@ Rules
 
 mastodon_admin_email must equal owner_email.
 
-owner_handle must never be used as an input to provisioning.
+owner_username is the canonical identity field.
 
-Provisioning uses:
+owner_handle is derived from:
+
+@owner_username@domain_candidate
+
+and may be used by provisioning scripts that expect a full fediverse handle when creating the initial admin account.
+
+Provisioning systems may use either:
 
 owner_username
-instance_slug
-domain_candidate
+or
+owner_handle
 
-only.
+depending on the infrastructure implementation.
 
 ⸻
 
