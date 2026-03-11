@@ -1728,8 +1728,8 @@ This keeps the flow frictionless and provisioning-safe.
 
 Use:
 
-instance_slug from Step 2
-  • the selected Domain type
+instance_slug from Step 2 
+and the selected Domain type
 
 to construct the real instance domain.
 
@@ -2720,12 +2720,6 @@ Outputs are:
 Use:
   • short headers
   • tight bullet points
-
-For options always use:
-
-Option A → Commonshub subdomain — fastest launch
-Option B → External subdomain — brand continuity
-Option C → Custom domain — standalone identity
 
 Then:
 
