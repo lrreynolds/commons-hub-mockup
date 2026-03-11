@@ -969,11 +969,25 @@ without harming trust.
 
 9G — Blueprint JSON Field Mapping Contract
 
-The Blueprint Summary maps 1:1 to Blueprint JSON.
+The Blueprint JSON is the full provisioning artifact.
 
-Field parity is required.
+The Blueprint Summary shown to the creator is a subset of this object.
 
-The JSON must contain:
+The JSON must contain both:
+
+1. Creator-facing identity fields
+2. System provisioning and onboarding helpers
+
+The JSON must be deterministic and derived only from approved decisions.
+
+No regenerated text.
+No transcript content.
+
+All text fields must exactly match the values generated during the flow.
+
+⸻
+
+Core Identity Fields
 
 owner_email
 
@@ -994,15 +1008,35 @@ owner_bio
 long_description
 welcome_announcement
 
+⸻
+
+Launch Content (not shown during onboarding)
+
 launch_content {
   posts {
     welcome
     how_to_participate
     mobile_apps
   }
+
   invite_message_template
+
   core_hashtags
 }
+
+Purpose
+
+These provide ready-to-paste launch content for the creator after provisioning.
+
+They are used by:
+
+• the dashboard onboarding guide
+• copy buttons
+• first-run launch instructions
+
+⸻
+
+Visual Asset Direction
 
 visual_asset_direction {
   thumbnail_banner
@@ -1012,25 +1046,157 @@ visual_asset_direction {
   owner_profile_image
 }
 
-Additional metadata such as versioning and timestamps are added by the system backend.
+These values are descriptive guidance for asset creation.
 
-Provisioning rule: provisioning uses owner_username only. owner_handle must always be generated from owner_username + domain_candidate at render time. It must never be used as an input to provisioning.
+They are displayed again inside the dashboard onboarding checklist.
 
-owner_username is required. owner_handle is derived and stored after Step 5 approval.
+⸻
 
+Provisioning Helper Fields
 
-Rules:
-  • Values must be identical to the displayed Blueprint Summary
-  • No regenerated text
-  • No transcript content
-  • Deterministic across sessions
+These fields assist the dashboard setup process.
 
-  domain_type stores the human-readable string only — never “Option A/B/C”.
+provisioning {
 
-This guarantees:
-  • provisioning safety
-  • resumability
-  • dashboard rendering without recomputation
+  instance_domain
+  instance_slug
+
+  domain_type
+  domain_candidate
+
+  owner_username
+  owner_email
+
+  mastodon_admin_email
+
+}
+
+Rules
+
+mastodon_admin_email must equal owner_email.
+
+owner_handle must never be used as an input to provisioning.
+
+Provisioning uses:
+
+owner_username
+instance_slug
+domain_candidate
+
+only.
+
+⸻
+
+Creator Context Object (internal)
+
+creator_context {
+
+  focus
+
+  inferred_archetype
+
+  primary_content_mode
+  publishing_cadence
+  platform_posture
+  audience_relationship
+
+  monetization_presence
+  brand_strength
+  mission_domain_clarity
+
+}
+
+Purpose
+
+This supports:
+
+• dashboard onboarding hints
+• collaborator seeding guidance
+• future product automation
+
+It is never shown to the creator.
+
+⸻
+
+Collaborator Seeding Strategy
+
+collaborator_seeding_strategy {
+
+  seed_type
+
+  recommended_first_participants
+
+  rationale
+
+}
+
+Values are inferred from creator_context.
+
+Used only inside the dashboard onboarding guide.
+
+⸻
+
+Provisioning Status Block (system controlled)
+
+provisioning_status {
+
+  domain_availability_checked: false
+  dns_verified: false
+  instance_created: false
+
+}
+
+These fields are placeholders for the backend provisioning system.
+
+The LLM always initializes them to false.
+
+⸻
+
+Blueprint Metadata
+
+blueprint_metadata {
+
+  blueprint_version
+
+  generated_at
+
+  creator_archetype
+
+}
+
+These values are filled by the system backend.
+
+The LLM must include the object but leave values null.
+
+⸻
+
+Determinism rules
+
+All values must be reproducible from the completed onboarding flow.
+
+No new text may be invented when exporting artifacts.
+
+No fields may contain transcript content.
+
+Domain type must always store the full string:
+
+Commonshub subdomain — fastest launch
+External subdomain — brand continuity
+Custom domain — standalone identity
+
+Never store Option A/B/C.
+
+⸻
+
+Result
+
+This structure ensures the Blueprint JSON supports:
+
+• provisioning
+• dashboard onboarding guidance
+• launch assistance
+• future automation
+• analytics
 
 ⸻
 
