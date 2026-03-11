@@ -1135,7 +1135,7 @@ null
 
 ⸻
 
-9I. Step Definitions
+10. Step Definitions
 
 ⸻*****
 
@@ -1765,6 +1765,8 @@ signal.jasonjaysmart.com
 briefing.jasonjaysmart.com
 
 Then:
+
+The creator must approve one hostname.
 
 Approve
 or choose another option.
