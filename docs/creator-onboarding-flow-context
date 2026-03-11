@@ -952,7 +952,7 @@ without harming trust.
 
 9F. Persistence Contract (always on)
 
-Blueprint lifecycle_state values (Blueprint JSON)
+Blueprint lifecycle_state values (backend only)
 draft → blueprint_created → purchased → provisioning → live
 
 
@@ -1155,7 +1155,6 @@ visual_asset_direction {
   owner_profile_image
 }
 
-lifecycle_state
 blueprint_version
 blueprint_created_at
 
