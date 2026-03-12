@@ -511,21 +511,18 @@ This makes the flow feel:
 
 9D — Blueprint Output — Blueprint Summary
 
-At the end you output a clean, copy-and-save block.
-
-This is the creator-facing artifact and the source of truth for provisioning.
+The Blueprint Summary is the creator-facing artifact.
 
 It must be:
-  • stable
-  • deterministic
-  • copy-paste usable
-  • infrastructure-mappable
 
-The creator is explicitly told:
+• clean
+• stable
+• copy-paste usable
+• infrastructure-mappable
 
-“You can return later and continue from this point.”
+It contains only the configuration and assets required to provision the community.
 
-They are never asked to re-enter this information.
+Operational launch helpers (posts, hashtags, invite templates) are not shown here and are stored only in the Blueprint JSON.
 
 ⸻
 
@@ -564,12 +561,34 @@ Owner handle:
 @owner_username@[domain_candidate]
 
 Owner bio:
-[first-person, identity-establishing]
+[first-person identity statement]
 
 Long description:
 [About page text]
 
-Visual asset direction:
+⸻
+
+Domain setup note (required)
+
+Your community will use the domain above.
+
+During setup the system will:
+
+• check availability if you selected a Commonshub subdomain
+• ask you to verify DNS ownership if you selected an external or custom domain
+
+If the domain is unavailable or cannot be verified,
+you will be prompted to choose a new value before provisioning begins.
+
+This Blueprint always stores the original domain candidate so you can resume setup later.
+
+⸻
+
+Visual asset direction
+
+These assets will be requested during setup.
+
+You can prepare them now or upload them later in the dashboard.
 
 Thumbnail banner (1600×500):
 [visual concept + safe area guidance]
@@ -585,178 +604,6 @@ Favicon (512×512 source):
 
 Owner profile image:
 [visual concept]
-
-Field generation rules
-
-Positioning
-
-Directly from Step 1 approval.
-
-⸻
-
-Community name
-
-Directly from Step 2 approval.
-
-⸻
-
-Domain candidate
-
-The planned domain for the community.
-
-For:
-• Commonshub subdomain → [instance_slug].commonshub.social
-• External subdomain → approved domain
-• Custom domain → approved domain
-
-Important
-
-This is the intended address based on the Blueprint.
-
-Actual availability is verified during provisioning after a plan is selected.
-
-During setup the creator will:
-
-• confirm the domain
-• see if the Commonshub subdomain is available
-• verify DNS ownership for external/custom domains
-• change the value if needed
-
-If the selected domain is unavailable, the system will prompt the creator to choose a new value before provisioning begins.
-
-The Blueprint always stores the original candidate so the creator can return later and continue setup from this plan.
-
-⸻
-
-Short description
-
-This is the Step 1 purpose sentence.
-
-Do not regenerate.
-
-⸻
-
-Header line
-
-Final approved Step 4 output.
-
-⸻
-
-Owner username
-
-Derived from Step 5 approval.
-
-Stored as:
-owner_username
-
-Displayed as:
-@owner_username@[domain_candidate]
-
-This value is never regenerated.
-Provisioning uses owner_username only.
-
-⸻
-
-Owner bio
-
-From Step 5.
-
-First person.
-Authority + responsibility.
-Why this space exists.
-
-Max 3 sentences.
-
-⸻
-
-Long description
-
-Auto-generated using the Long Description spec.
-
-Never shown earlier in the flow.
-
-⸻
-
-Welcome announcement
-
-Auto-generated using the Welcome Announcement spec.
-
-Never shown earlier in the flow.
-Never regenerated.
-
-Purpose:
-This is the first thing most members will read upon arrival.
-
-⸻
-
-Initial posts
-
-Auto-generated using the Launch Posts spec.
-
-These are not shown earlier in the flow.
-
-They are stored in Blueprint JSON as:
-
-launch_content.posts.welcome
-launch_content.posts.how_to_participate
-launch_content.posts.mobile_apps
-
-Purpose:
-These are draft posts the creator can paste into Mastodon after provisioning and pin in the recommended order.
-
-⸻
-
-Core hashtags
-
-Auto-generated using the Core Hashtags spec.
-
-Stored in Blueprint JSON as:
-
-launch_content.core_hashtags
-
-Rules:
-• Store canonical tag strings only
-• Do not include the # symbol
-• 3–7 tags preferred
-• Must reflect the mission domain and likely conversation structure
-
-⸻
-
-Visual asset direction:
-
-Thumbnail banner (1600×500):
-[visual concept + safe area guidance]
-
-Instance icon (1024×1024 source):
-[visual concept]
-
-App icon (1024×1024 source):
-[visual concept]
-
-Favicon (512×512 source):
-[visual concept]
-
-Owner profile image:
-[visual concept]
-
-⸻
-
-Launch content:
-
-Welcome post:
-[launch_content.posts.welcome]
-
-How to participate:
-[launch_content.posts.how_to_participate]
-
-Mobile apps:
-[launch_content.posts.mobile_apps]
-
-Invite message template:
-[launch_content.invite_message_template]
-
-Core hashtags:
-[tag1, tag2, tag3]
 
 ⸻
 
@@ -773,7 +620,6 @@ Ready to proceed to setup?
 Nothing else.
 
 No persuasion.
-
 
 ⸻
 
@@ -969,21 +815,26 @@ without harming trust.
 
 9G — Blueprint JSON Field Mapping Contract
 
-The Blueprint JSON is the full provisioning artifact.
+The Blueprint JSON is the complete provisioning artifact produced by the onboarding flow.
 
-The Blueprint Summary shown to the creator is a subset of this object.
+The Blueprint Summary shown to the creator (9D) is a subset of this JSON object.
 
 The JSON must contain both:
+  1.  Creator-visible identity configuration
+  2.  System provisioning and onboarding helpers
 
-1. Creator-facing identity fields
-2. System provisioning and onboarding helpers
+The structure defined here must never change during export.
 
-The JSON must be deterministic and derived only from approved decisions.
+The JSON must be deterministic and derived only from approved decisions during the flow.
 
-No regenerated text.
-No transcript content.
+Rules:
 
-All text fields must exactly match the values generated during the flow.
+• No regenerated text during export
+• No transcript content
+• No recomputation of fields
+• No structural variation between sessions
+
+All text fields must match the values generated earlier in the flow.
 
 ⸻
 
@@ -1004,7 +855,7 @@ instance_tagline
 header_line
 
 owner_username
-owner_handle (derived)
+owner_handle
 owner_bio
 
 long_description
@@ -1016,139 +867,141 @@ Instance Display Name
 
 instance_display_name
 
-This is the Mastodon server name shown in:
+This is the Mastodon server name displayed in:
 
 • server branding
-• app headers
 • instance directory listings
+• mobile app headers
 • invite previews
 
-Default rule:
+Deterministic rule:
 
-instance_display_name must equal community_name.
+instance_display_name must equal:
 
-The field exists separately so provisioning systems can map directly to the Mastodon setting:
+community_name
 
-/admin/settings/branding → Server name
+This value maps directly to:
 
-This value is deterministic and derived from the approved Community Name in Step 2.
+Mastodon → Admin → Branding → Server name
 
-It is never regenerated.
+It must never be regenerated later.
+
+⸻
 
 Instance Tagline
 
 instance_tagline
 
-This maps directly to the Mastodon server description field.
+This maps to the Mastodon server description.
 
-It appears in:
+Appears in:
+
 • instance directories
-• server preview cards
-• some app onboarding surfaces
+• instance preview cards
+• some Mastodon onboarding screens
 
-Deterministic rule
+Deterministic rule:
 
-instance_tagline must equal short_description.
+instance_tagline must equal:
 
-This field exists separately so provisioning systems can map directly to the Mastodon setting:
+short_description
 
-/admin/settings/branding → Server description
+Mapping target:
 
-The value is never regenerated.
+Mastodon → Admin → Branding → Server description
+
+This value is never regenerated.
 
 ⸻
 
 Launch Content (not shown during onboarding)
 
 launch_content {
-  posts {
-    welcome
-    how_to_participate
-    mobile_apps
-  }
 
-  invite_message_template
+posts {
+welcome
+how_to_participate
+mobile_apps
+}
 
-  core_hashtags
+invite_message_template
+
+core_hashtags
 }
 
 Purpose
 
-These provide ready-to-paste launch content for the creator after provisioning.
+These provide ready-to-paste launch helpers used after provisioning.
 
-They are used by:
-
-• the dashboard onboarding guide
-• copy buttons
-• first-run launch instructions
+They are displayed inside the dashboard onboarding guide, not in the Blueprint Summary.
 
 ⸻
 
 Visual Asset Direction
 
 visual_asset_direction {
-  thumbnail_banner
-  instance_icon
-  app_icon
-  favicon
-  owner_profile_image
+
+thumbnail_banner
+instance_icon
+app_icon
+favicon
+owner_profile_image
+
 }
 
-These values are descriptive guidance for asset creation.
+These values contain descriptive guidance text generated during onboarding.
 
-They are displayed again inside the dashboard onboarding checklist.
+They are reused in:
+
+• dashboard onboarding checklist
+• setup instructions
+• asset upload prompts
 
 ⸻
 
 Provisioning Helper Fields
 
-These fields assist the dashboard setup and infrastructure provisioning process.
+These fields assist the infrastructure provisioning system.
 
 provisioning {
 
-  instance_domain
-  instance_slug
-  instance_display_name
-  instance_tagline
+instance_domain
+instance_slug
+instance_display_name
+instance_tagline
 
-  domain_type
-  domain_candidate
+domain_type
+domain_candidate
 
-  owner_username
-  owner_handle
+owner_username
+owner_handle
 
-  owner_email
-  mastodon_admin_email
+owner_email
+mastodon_admin_email
 
 }
 
-Rules
+Provisioning mapping rules
 
-Provisioning mapping rule
+instance_domain = domain_candidate
 
 instance_display_name = community_name
 
 instance_tagline = short_description
 
-These fields exist separately so infrastructure scripts can map directly to Mastodon branding settings during provisioning.
+mastodon_admin_email = owner_email
 
-mastodon_admin_email must equal owner_email.
-
-owner_username is the canonical identity field.
-
-owner_handle is derived from:
+owner_handle must always be derived from:
 
 @owner_username@domain_candidate
 
-and may be used by provisioning scripts that expect a full fediverse handle when creating the initial admin account.
-
-Provisioning systems may use either:
+Provisioning scripts may use either:
 
 owner_username
 or
 owner_handle
 
-depending on the infrastructure implementation.
+depending on infrastructure implementation.
 
 ⸻
 
@@ -1156,30 +1009,30 @@ Creator Context Object (internal)
 
 creator_context {
 
-  focus
+focus
 
-  inferred_archetype
+inferred_archetype
 
-  primary_content_mode
-  publishing_cadence
-  platform_posture
-  audience_relationship
+primary_content_mode
+publishing_cadence
+platform_posture
+audience_relationship
 
-  monetization_presence
-  brand_strength
-  mission_domain_clarity
+monetization_presence
+brand_strength
+mission_domain_clarity
 
 }
 
 Purpose
 
-This supports:
+Supports:
 
 • dashboard onboarding hints
 • collaborator seeding guidance
-• future product automation
+• future automation
 
-It is never shown to the creator.
+This object is never shown to the creator.
 
 ⸻
 
@@ -1187,17 +1040,17 @@ Collaborator Seeding Strategy
 
 collaborator_seeding_strategy {
 
-  seed_type
+seed_type
 
-  recommended_first_participants
+recommended_first_participants
 
-  rationale
+rationale
 
 }
 
-Values are inferred from creator_context.
+Values are derived from creator_context.
 
-Used only inside the dashboard onboarding guide.
+This object supports the post-provisioning onboarding guide.
 
 ⸻
 
@@ -1205,15 +1058,15 @@ Provisioning Status Block (system controlled)
 
 provisioning_status {
 
-  domain_availability_checked: false
-  dns_verified: false
-  instance_created: false
+domain_availability_checked: false
+dns_verified: false
+instance_created: false
 
 }
 
-These fields are placeholders for the backend provisioning system.
+The LLM must always initialize these fields to false.
 
-The LLM always initializes them to false.
+They are updated later by the provisioning backend.
 
 ⸻
 
@@ -1221,47 +1074,61 @@ Blueprint Metadata
 
 blueprint_metadata {
 
-  blueprint_version
-
-  generated_at
-
-  creator_archetype
+blueprint_version
+generated_at
+creator_archetype
 
 }
 
-These values are filled by the system backend.
+These values are populated by the backend system.
 
 The LLM must include the object but leave values null.
 
+Example
+
+blueprint_metadata {
+blueprint_version: null
+generated_at: null
+creator_archetype: null
+}
+
 ⸻
 
-Determinism rules
+Determinism Rules
 
-All values must be reproducible from the completed onboarding flow.
+All JSON values must be reproducible from the completed onboarding flow.
 
-No new text may be invented when exporting artifacts.
+The export step must never generate new content.
 
-No fields may contain transcript content.
+The JSON must not contain:
 
-Domain type must always store the full string:
+• transcript text
+• user prompts
+• chat responses
+• regenerated descriptions
+
+Every field must originate from:
+
+• approved creator decisions
+• deterministic generation specs defined earlier in the flow
+
+⸻
+
+Domain Storage Rule
+
+domain_type must always store the full string, not an option label.
+
+Valid values:
 
 Commonshub subdomain — fastest launch
 External subdomain — brand continuity
 Custom domain — standalone identity
 
-Never store Option A/B/C.
+Never store:
 
-⸻
-
-Result
-
-This structure ensures the Blueprint JSON supports:
-
-• provisioning
-• dashboard onboarding guidance
-• launch assistance
-• future automation
-• analytics
+Option A
+Option B
+Option C
 
 ⸻
 
