@@ -861,19 +861,19 @@ community_blueprint {
   long_description
   welcome_announcement
 
-  visual_asset_direction { ... }
+  visual_asset_direction
 
-  launch_content { ... }
+  launch_content
 
-  provisioning { ... }
+  provisioning
 
-  creator_context { ... }
+  creator_context
 
-  collaborator_seeding_strategy { ... }
+  collaborator_seeding_strategy
 
-  provisioning_status { ... }
+  provisioning_status
 
-  blueprint_metadata { ... }
+  blueprint_metadata
 
 }
 
@@ -1176,7 +1176,7 @@ securitybrief.commonshub.social
 intel.jasonjaysmart.com
 securitybrief.com
 
-his value is never regenerated later.
+This value is never regenerated later.
 
 ⸻
 
@@ -1880,6 +1880,10 @@ linkedin.com
 medium.com
 
 If a domain is detected → show 3 options.
+
+If an existing root domain is detected, store:
+
+creator_root_domain: [domain]
 
 If no domain is detected → show only 2 options.
 
