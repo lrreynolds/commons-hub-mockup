@@ -1,55 +1,97 @@
 {
-  "blueprint_version": "1.0",
-  "lifecycle_state": "phase_a_complete",
+  "blueprint": {
+    "owner_email": "jason@jaysonjaysmart.com",
 
-  "owner_email": "vatniksoup@gmail.com",
+    "positioning": "Option B — Signal space for strategy, national security, and reputational warfare",
 
-  "community_name": "Vatnik Soup",
-  "instance_slug": "vatniksoup",
-  "domain": "intel.vatniksoup.com",
+    "community_name": "The Security Brief",
+    "instance_display_name": "The Security Brief",
+    "instance_slug": "securitybrief",
 
-  "positioning": "Disinformation campaign analysis",
-  "short_description": "People exposing and analyzing disinformation campaigns, troll farms, and propaganda actors shaping global information warfare.",
-  "header_line": "Information Warfare Tracking",
+    "domain_type": "External subdomain — brand continuity",
+    "domain_candidate": "securitybrief.jasonjaysmart.com",
 
-  "owner_username": "pekka",
-  "owner_handle": "@pekka@intel.vatniksoup.com",
-  "owner_bio": "I investigate online propaganda networks and coordinated influence campaigns behind the Vatnik Soup project. My work documents troll farms, propaganda actors, and the narratives shaping information warfare. I host this space so researchers, journalists, and observers can track these operations together in real time.",
+    "short_description": "A signal space for analysts, journalists, and operators tracking strategy, national security, and reputational warfare in real time.",
+    "instance_tagline": "A signal space for analysts, journalists, and operators tracking strategy, national security, and reputational warfare in real time.",
+    "header_line": "Real-Time Security Briefings",
 
-  "long_description": "This is the live signal space for tracking online propaganda networks, coordinated disinformation campaigns, and the actors shaping today’s information warfare environment. It extends the work of Vatnik Soup by creating a place where ongoing signal, context, and source-driven analysis can accumulate in real time.\n\nThe space is for journalists, OSINT researchers, analysts, investigators, and highly engaged citizens who follow influence operations and propaganda ecosystems. Many participants will already be working in this field — documenting narratives, tracing network activity, or analyzing coordinated messaging.\n\nHere you will find real-time observations, emerging narratives, source threads, and collaborative context that often disappears in fast-moving news cycles. Participants can add sources, surface patterns, challenge claims, and extend investigations as propaganda actors adapt and shift tactics.\n\nUnlike algorithm-driven platforms, this space keeps the signal intact. Important threads persist, evidence accumulates, and serious participants can follow developments beyond the moment of a single post.\n\nI host this space because understanding propaganda networks requires collective observation. By gathering researchers and observers in one place, we can track how these operations evolve and document them as a durable public record.",
+    "owner_username": "jasonjaysmart",
+    "owner_handle": "@jasonjaysmart@securitybrief.jasonjaysmart.com",
 
-  "welcome_announcement": "This space tracks propaganda networks, influence operations, and coordinated disinformation activity in real time. You will see emerging narratives, source threads, and observations related to troll farms, propaganda actors, and information warfare campaigns. Participants often add sources, corrections, and additional context as stories develop. If you’re new here, start by introducing yourself and sharing the area of propaganda or influence activity you follow most closely. Bring sources, context, and careful analysis — the goal here is signal that helps everyone understand how these operations actually work.",
+    "owner_bio": "I am a national security analyst reporting from Kyiv on Russia’s war and the structures behind authoritarian power. My work connects real-time developments with historical and strategic context. I host this space to provide a continuous briefing for people tracking war, strategy, and reputational conflict.",
 
-  "launch_mode": "flagship",
+    "long_description": "This is the live signal space for tracking strategy, national security developments, and reputational conflict shaping global power. It exists as a continuous briefing room where developments, sources, and analysis can accumulate in real time beyond the limits of traditional publishing cycles.\n\nThe Security Brief is for analysts, journalists, researchers, policy professionals, and highly engaged observers who follow strategic competition, authoritarian systems, and information warfare. It attracts people already working in or closely tracking this domain and creates a shared working context around fast-moving events.\n\nHere you will find real-time signal: source material, contextual analysis, corrections, and collaborative sense-making as developments unfold. Posts build a durable record of events and interpretations that remain accessible long after the news cycle moves on.\n\nThis space operates independently from algorithmic feeds and editorial throttling. The goal is signal over noise — a place where serious participants can exchange verified context and sharpen understanding of complex geopolitical developments.\n\nI host this space as part of my work reporting on Russia’s war against Ukraine and the broader structures of authoritarian power. It allows ongoing briefings and collaborative context that cannot exist inside traditional articles alone.",
 
-  "registration_recommendation": {
-    "mode": "invite_only",
-    "invite_request_message": "This space launches in small cohorts. If your work is in this field and you'd like to join, contact: vatniksoup@gmail.com"
-  },
+    "welcome_announcement": "This is the live signal space for tracking strategy, national security developments, and reputational conflict shaping global power. Here you will see sources, context, and real-time analysis as events unfold across the security landscape.\n\nParticipants here often bring field experience, research, or closely tracked information. Source material, corrections, and contextual additions are especially valuable contributions.\n\nIf you are new, start by introducing yourself and sharing the area of security or strategy you follow most closely.",
 
-  "launch_content": {
-    "posts": {
-      "welcome": "Welcome to Vatnik Soup. This space tracks propaganda networks, influence operations, and coordinated disinformation activity in real time. If you're new here, introduce yourself and share the area of propaganda or influence activity you follow most closely.",
-      "how_to_participate": "How to participate: bring sources, context, and careful analysis. Add sources, surface patterns, challenge claims, and extend investigations as propaganda actors adapt and shift tactics.",
-      "mobile_apps": "Recommended mobile apps for following this space: Mastodon (official), Ice Cubes (iOS), and Tusky (Android). Turn on notifications for replies and mentions if you want to stay close to the signal."
+    "visual_asset_direction": {
+      "thumbnail_banner": "Dark geopolitical map with subtle grid lines and a bright signal line cutting across Eastern Europe, conveying real-time monitoring of conflict and strategy. Center safe area (1200×320) kept clear for header readability.",
+      "instance_icon": "Minimal radar-style signal pulse or radiating intelligence node symbol, high contrast and recognizable at small sizes.",
+      "app_icon": "Same radar signal symbol centered on a dark field for mobile install clarity and strong icon contrast.",
+      "favicon": "Single-color radar pulse mark centered on dark background for high tab visibility.",
+      "owner_profile_image": "Professional headshot with neutral background and strong lighting conveying authority and continuity with existing public presence."
     },
-    "invite_message_template": "I’m opening a dedicated community space for tracking propaganda networks and influence operations. It’s designed for researchers, journalists, and serious observers who want durable, source-driven signal beyond fast-moving social feeds.\n\nIf you’d like, I can send you an invite link.",
-    "core_hashtags": [
-      "Disinformation",
-      "OSINT",
-      "Propaganda",
-      "InformationWarfare"
-    ]
-  },
 
-  "visual_asset_direction": {
-    "thumbnail_banner": "Dark strategic map or network diagram with connected nodes representing propaganda actors and narrative flows, with a few highlighted signal paths suggesting real-time monitoring.",
-    "instance_icon": "Simple radar or signal-scan symbol suggesting detection of hidden propaganda networks.",
-    "app_icon": "Bold radar pulse mark on a dark field representing monitoring influence operations.",
-    "favicon": "Minimal single-color radar pulse or signal wave icon with strong contrast for tab visibility.",
-    "owner_profile_image": "Face-forward portrait with dark or neutral background matching investigative intelligence tone."
-  },
+    "launch_content": {
+      "posts": {
+        "welcome": "This is the live signal space for tracking strategy, national security developments, and reputational conflict shaping global power. Here you will see sources, context, and real-time analysis as events unfold across the security landscape.\n\nParticipants here often bring field experience, research, or closely tracked information. Source material, corrections, and contextual additions are especially valuable contributions.\n\nIf you are new, start by introducing yourself and sharing the area of security or strategy you follow most closely.",
+        "how_to_participate": "This space works best when participants bring signal.\n\nShare primary sources, relevant reporting, or informed context that adds to the developing picture. Questions and corrections are welcome — the goal is better shared understanding of events as they unfold.\n\nBring context, not just takes.",
+        "mobile_apps": "For the best experience, install a Mastodon app on your phone.\n\nRecommended apps:\n• Ivory (iOS)\n• Ice Cubes (iOS)\n• Tusky (Android)\n\nOnce installed, simply sign in using your Security Brief account."
+      },
+      "invite_message_template": "I’ve launched a new real-time briefing space called The Security Brief where analysts, journalists, and researchers track strategy, national security, and reputational conflict together.\n\nYou can join the ongoing signal here:\nhttps://securitybrief.jasonjaysmart.com",
+      "core_hashtags": [
+        "strategy",
+        "nationalsecurity",
+        "informationwarfare",
+        "geopolitics",
+        "authoritarianism"
+      ]
+    },
 
-  "blueprint_created_at": "2026-03-07T00:00:00Z",
-  "phase_a_completed_at": "2026-03-07T00:05:00Z"
+    "provisioning": {
+      "instance_domain": "securitybrief.jasonjaysmart.com",
+      "instance_slug": "securitybrief",
+      "instance_display_name": "The Security Brief",
+      "instance_tagline": "A signal space for analysts, journalists, and operators tracking strategy, national security, and reputational warfare in real time.",
+
+      "domain_type": "External subdomain — brand continuity",
+      "domain_candidate": "securitybrief.jasonjaysmart.com",
+
+      "owner_username": "jasonjaysmart",
+      "owner_handle": "@jasonjaysmart@securitybrief.jasonjaysmart.com",
+
+      "owner_email": "jason@jaysonjaysmart.com",
+      "mastodon_admin_email": "jason@jaysonjaysmart.com"
+    },
+
+    "creator_context": {
+      "focus": "STRATEGY, NATIONAL SECURITY, & REPUTATIONAL POLITICS",
+      "inferred_archetype": "journalist_analyst",
+      "primary_content_mode": "analysis",
+      "publishing_cadence": "event-driven",
+      "platform_posture": "multi-platform",
+      "audience_relationship": "source-driven",
+      "monetization_presence": "unknown",
+      "brand_strength": "strong",
+      "mission_domain_clarity": "high"
+    },
+
+    "collaborator_seeding_strategy": {
+      "seed_type": "expert_sources",
+      "recommended_first_participants": "analysts, journalists, OSINT researchers, policy experts already working on national security and geopolitical strategy",
+      "rationale": "Early signal density comes from domain experts who already track developments and can contribute sources, corrections, and contextual analysis."
+    },
+
+    "provisioning_status": {
+      "domain_availability_checked": false,
+      "dns_verified": false,
+      "instance_created": false
+    },
+
+    "blueprint_metadata": {
+      "blueprint_version": null,
+      "generated_at": null,
+      "creator_archetype": null
+    }
+  }
 }
