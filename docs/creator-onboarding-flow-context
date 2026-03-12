@@ -813,36 +813,97 @@ without harming trust.
 
 ⸻
 
-9G — Blueprint JSON Field Mapping Contract
+9G — Blueprint JSON Field Mapping Contract (Authoritative)
 
-The Blueprint JSON is the complete provisioning artifact produced by the onboarding flow.
+The Blueprint JSON is the complete machine-readable provisioning artifact produced by the onboarding flow.
 
-The Blueprint Summary shown to the creator (9D) is a subset of this JSON object.
+The Blueprint Summary shown to the creator (9D) is a human-readable subset of this object.
 
-The JSON must contain both:
+The JSON contains both:
   1.  Creator-visible identity configuration
   2.  System provisioning and onboarding helpers
 
+This JSON object is used by:
+
+• provisioning infrastructure
+• dashboard onboarding
+• analytics systems
+• resume links
+
 The structure defined here must never change during export.
 
-The JSON must be deterministic and derived only from approved decisions during the flow.
+⸻
 
-Rules:
+JSON Root Object
+
+The Blueprint JSON must always export as one deterministic root object:
+
+community_blueprint {
+
+  owner_email
+
+  positioning
+  community_name
+  instance_display_name
+  instance_slug
+
+  domain_type
+  domain_candidate
+
+  short_description
+  instance_tagline
+  header_line
+
+  owner_username
+  owner_handle
+  owner_bio
+
+  long_description
+  welcome_announcement
+
+  visual_asset_direction { ... }
+
+  launch_content { ... }
+
+  provisioning { ... }
+
+  creator_context { ... }
+
+  collaborator_seeding_strategy { ... }
+
+  provisioning_status { ... }
+
+  blueprint_metadata { ... }
+
+}
+
+No fields may appear outside this object.
+
+⸻
+
+Determinism Rules (strict)
+
+The export process must follow these rules:
 
 • No regenerated text during export
 • No transcript content
 • No recomputation of fields
 • No structural variation between sessions
 
-All text fields must match the values generated earlier in the flow.
+Every value must originate from approved decisions during the flow.
+
+The export step must only serialize stored values.
 
 ⸻
 
 Core Identity Fields
 
+These fields are derived directly from approved steps.
+
 owner_email
 
 positioning
+
 community_name
 instance_display_name
 instance_slug
@@ -861,8 +922,6 @@ owner_bio
 long_description
 welcome_announcement
 
-⸻
-
 Instance Display Name
 
 instance_display_name
@@ -870,21 +929,19 @@ instance_display_name
 This is the Mastodon server name displayed in:
 
 • server branding
-• instance directory listings
-• mobile app headers
+• instance directories
+• mobile headers
 • invite previews
 
 Deterministic rule:
 
-instance_display_name must equal:
+instance_display_name = community_name
 
-community_name
-
-This value maps directly to:
+Mapping target:
 
 Mastodon → Admin → Branding → Server name
 
-It must never be regenerated later.
+This value must never be regenerated later.
 
 ⸻
 
@@ -894,23 +951,19 @@ instance_tagline
 
 This maps to the Mastodon server description.
 
-Appears in:
+Displayed in:
 
 • instance directories
-• instance preview cards
-• some Mastodon onboarding screens
+• preview cards
+• onboarding screens
 
 Deterministic rule:
 
-instance_tagline must equal:
-
-short_description
+instance_tagline = short_description
 
 Mapping target:
 
 Mastodon → Admin → Branding → Server description
-
-This value is never regenerated.
 
 ⸻
 
@@ -918,22 +971,24 @@ Launch Content (not shown during onboarding)
 
 launch_content {
 
-posts {
-welcome
-how_to_participate
-mobile_apps
+  posts {
+
+    welcome
+    how_to_participate
+    mobile_apps
+
+  }
+
+  invite_message_template
+
+  core_hashtags
+
 }
-
-invite_message_template
-
-core_hashtags
-}
-
 Purpose
 
 These provide ready-to-paste launch helpers used after provisioning.
 
-They are displayed inside the dashboard onboarding guide, not in the Blueprint Summary.
+They are shown inside the dashboard onboarding guide, not the Blueprint Summary.
 
 ⸻
 
@@ -941,47 +996,47 @@ Visual Asset Direction
 
 visual_asset_direction {
 
-thumbnail_banner
-instance_icon
-app_icon
-favicon
-owner_profile_image
+  thumbnail_banner
+  instance_icon
+  app_icon
+  favicon
+  owner_profile_image
 
 }
 
-These values contain descriptive guidance text generated during onboarding.
+These contain descriptive guidance text generated during onboarding.
 
 They are reused in:
 
-• dashboard onboarding checklist
-• setup instructions
+• dashboard setup instructions
 • asset upload prompts
+• onboarding checklists
+
+These fields contain direction only, never file URLs.
 
 ⸻
 
 Provisioning Helper Fields
 
-These fields assist the infrastructure provisioning system.
-
 provisioning {
 
-instance_domain
-instance_slug
-instance_display_name
-instance_tagline
+  instance_domain
+  instance_slug
+  instance_display_name
+  instance_tagline
 
-domain_type
-domain_candidate
+  domain_type
+  domain_candidate
 
-owner_username
-owner_handle
+  owner_username
+  owner_handle
 
-owner_email
-mastodon_admin_email
+  owner_email
+  mastodon_admin_email
 
 }
 
-Provisioning mapping rules
+Provisioning mapping rules:
 
 instance_domain = domain_candidate
 
@@ -991,15 +1046,14 @@ instance_tagline = short_description
 
 mastodon_admin_email = owner_email
 
-owner_handle must always be derived from:
+Handle construction rule:
 
-@owner_username@domain_candidate
+owner_handle = @owner_username@domain_candidate
 
 Provisioning scripts may use either:
 
-owner_username
-or
-owner_handle
+• owner_username
+• owner_handle
 
 depending on infrastructure implementation.
 
@@ -1009,18 +1063,18 @@ Creator Context Object (internal)
 
 creator_context {
 
-focus
+  focus
 
-inferred_archetype
+  inferred_archetype
 
-primary_content_mode
-publishing_cadence
-platform_posture
-audience_relationship
+  primary_content_mode
+  publishing_cadence
+  platform_posture
+  audience_relationship
 
-monetization_presence
-brand_strength
-mission_domain_clarity
+  monetization_presence
+  brand_strength
+  mission_domain_clarity
 
 }
 
@@ -1040,11 +1094,11 @@ Collaborator Seeding Strategy
 
 collaborator_seeding_strategy {
 
-seed_type
+  seed_type
 
-recommended_first_participants
+  recommended_first_participants
 
-rationale
+  rationale
 
 }
 
@@ -1058,13 +1112,15 @@ Provisioning Status Block (system controlled)
 
 provisioning_status {
 
-domain_availability_checked: false
-dns_verified: false
-instance_created: false
+  domain_availability_checked: false
+  dns_verified: false
+  instance_created: false
 
 }
 
-The LLM must always initialize these fields to false.
+Initialization rule
+
+The onboarding system must always initialize these fields to false.
 
 They are updated later by the provisioning backend.
 
@@ -1074,49 +1130,29 @@ Blueprint Metadata
 
 blueprint_metadata {
 
-blueprint_version
-generated_at
-creator_archetype
+  blueprint_version
+  generated_at
+  creator_archetype
 
 }
 
-These values are populated by the backend system.
+Population rules:
+
+These values are set by the backend system, not the onboarding flow.
 
 The LLM must include the object but leave values null.
 
-Example
+Example:
 
 blueprint_metadata {
-blueprint_version: null
-generated_at: null
-creator_archetype: null
+  blueprint_version: null
+  generated_at: null
+  creator_archetype: null
 }
-
-⸻
-
-Determinism Rules
-
-All JSON values must be reproducible from the completed onboarding flow.
-
-The export step must never generate new content.
-
-The JSON must not contain:
-
-• transcript text
-• user prompts
-• chat responses
-• regenerated descriptions
-
-Every field must originate from:
-
-• approved creator decisions
-• deterministic generation specs defined earlier in the flow
-
-⸻
 
 Domain Storage Rule
 
-domain_type must always store the full string, not an option label.
+domain_type must store the full descriptive string, never an option label.
 
 Valid values:
 
@@ -1129,6 +1165,40 @@ Never store:
 Option A
 Option B
 Option C
+
+Domain Candidate Rule
+
+domain_candidate always stores the fully constructed domain chosen in Step 3.
+
+Examples:
+
+securitybrief.commonshub.social
+intel.jasonjaysmart.com
+securitybrief.com
+
+his value is never regenerated later.
+
+⸻
+
+Export Contract
+
+When the system receives the command:
+
+EXPORT ARTIFACTS
+
+the system must output three code blocks:
+
+1️⃣ Blueprint JSON
+2️⃣ Diagnostic Transcript
+3️⃣ Outcome JSON
+
+The first code block must contain exactly one object:
+
+community_blueprint { ... }
+
+No explanatory text may appear inside the code block.
+
+The export must only serialize stored values.
 
 ⸻
 
