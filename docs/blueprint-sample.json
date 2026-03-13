@@ -17,6 +17,32 @@
 
     "owner_username": "jasonjaysmart",
     "owner_handle": "@jasonjaysmart@securitybrief.jasonjaysmart.com",
+    "owner_profile_links": [
+  {
+    "label": "Website",
+    "url": "https://jasonjaysmart.com",
+    "priority": 1,
+    "verification_candidate": true
+  },
+  {
+    "label": "YouTube",
+    "url": "https://www.youtube.com/@JasonJaySmart",
+    "priority": 2,
+    "verification_candidate": false
+  },
+  {
+    "label": "Substack",
+    "url": "https://substack.com/@jasonjaysmart",
+    "priority": 3,
+    "verification_candidate": false
+  },
+  {
+    "label": "Kyiv Post",
+    "url": "https://www.kyivpost.com/authors/5",
+    "priority": 4,
+    "verification_candidate": false
+  }
+],
 
     "owner_bio": "I am a national security analyst reporting from Kyiv on Russia’s war and the structures behind authoritarian power. My work connects real-time developments with historical and strategic context. I host this space to provide a continuous briefing for people tracking war, strategy, and reputational conflict.",
 
