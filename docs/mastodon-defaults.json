@@ -64,33 +64,39 @@
       "notes": "Use the Website field first because it is the strongest candidate for Mastodon profile verification."
     }
   ],
-  "blueprint_fields": [
-    {
-      "label": "Owner bio",
-      "source": "blueprint.owner_bio",
-      "presentation": "textarea",
-      "size": "large",
-      "copyable": true
-    },
-    {
-      "label": "Profile links",
-      "source": "blueprint.owner_profile_links",
-      "presentation": "key_value_list",
-      "size": "large",
-      "copyable": false,
-      "sort_by": "priority",
-      "item_label_field": "label",
-      "item_value_field": "url"
-    },
-    {
-      "label": "Profile image guidance",
-      "source": "blueprint.visual_asset_direction.owner_profile_image",
-      "presentation": "textarea",
-      "size": "large",
-      "copyable": true
-    }
-  ]
-},
+"blueprint_fields": [
+  {
+    "label": "Owner bio",
+    "source": "blueprint.owner_bio",
+    "presentation": "textarea",
+    "size": "large",
+    "copyable": true
+  },
+  {
+    "label": "Profile links",
+    "source": "blueprint.owner_profile_links",
+    "presentation": "key_value_list",
+    "size": "large",
+    "copyable": false,
+    "sort_by": "priority",
+    "item_label_field": "label",
+    "item_value_field": "url"
+  },
+  {
+    "label": "Profile image guidance",
+    "source": "blueprint.visual_asset_direction.owner_profile_image",
+    "presentation": "structured_info",
+    "size": "large",
+    "copyable": false
+  },
+  {
+    "label": "Header image guidance",
+    "source": "blueprint.visual_asset_direction.owner_header_image",
+    "presentation": "structured_info",
+    "size": "large",
+    "copyable": false
+  }
+],
   {
   "step_number": 3,
   "step_id": "community_branding_settings",
