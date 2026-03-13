@@ -51,7 +51,7 @@
     "label": "Open profile settings"
   }
 ],
-    "settings_recommendations": {},
+    "settings_recommendations": [],
     "blueprint_fields": [
       {
         "label": "Owner bio",
@@ -134,7 +134,7 @@
     "label": "Open discovery settings"
   }
 ],
-    "settings_recommendations": {},
+    "settings_recommendations": [],
     "blueprint_fields": [
       {
         "label": "Core hashtags",
@@ -158,7 +158,7 @@
     "label": "Open home feed"
   }
 ],
-    "settings_recommendations": {},
+    "settings_recommendations": [],
     "blueprint_fields": [
       {
         "label": "Welcome post",
@@ -195,7 +195,7 @@
     "label": "Open announcement settings"
   }
 ],
-    "settings_recommendations": {},
+    "settings_recommendations": [],
     "blueprint_fields": [
       {
         "label": "Welcome announcement",
@@ -218,7 +218,7 @@
     "label": "Open invite settings"
   }
 ],
-    "settings_recommendations": {},
+    "settings_recommendations": [],
     "blueprint_fields": [
       {
         "label": "Invite message template",
