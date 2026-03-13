@@ -39,7 +39,7 @@
     }
   ]
 },
- {
+{
   "step_number": 2,
   "step_id": "owner_profile_settings",
   "title": "Owner Profile Settings",
@@ -49,9 +49,21 @@
     {
       "path": "/settings/profile",
       "label": "Open profile settings"
+    },
+    {
+      "path": "/settings/verification",
+      "label": "Open verification settings"
     }
   ],
-  "settings_recommendations": [],
+  "settings_recommendations": [
+    {
+      "label": "Extra fields order",
+      "value": "priority_ascending",
+      "display_value": "Website first, then remaining links in priority order",
+      "ui_control": "informational",
+      "notes": "Use the Website field first because it is the strongest candidate for Mastodon profile verification."
+    }
+  ],
   "blueprint_fields": [
     {
       "label": "Owner bio",
@@ -65,7 +77,10 @@
       "source": "blueprint.owner_profile_links",
       "presentation": "key_value_list",
       "size": "large",
-      "copyable": false
+      "copyable": false,
+      "sort_by": "priority",
+      "item_label_field": "label",
+      "item_value_field": "url"
     },
     {
       "label": "Profile image guidance",
