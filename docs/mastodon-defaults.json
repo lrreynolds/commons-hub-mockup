@@ -39,29 +39,43 @@
     }
   ]
 },
-  {
-    "step_number": 2,
-    "step_id": "owner_profile_settings",
-    "title": "Owner Profile Settings",
-    "summary": "Complete your profile so the space feels hosted and credible.",
-    "helper_text": "Complete the tasks below in Mastodon, save changes on every affected page, then click Done.",
-   "deep_links": [
-  {
-    "path": "/settings/profile",
-    "label": "Open profile settings"
-  }
-],
-    "settings_recommendations": [],
-    "blueprint_fields": [
-      {
-        "label": "Owner bio",
-        "source": "blueprint.owner_bio",
-        "presentation": "textarea",
-        "size": "large",
-        "copyable": true
-      }
-    ]
-  },
+ {
+  "step_number": 2,
+  "step_id": "owner_profile_settings",
+  "title": "Owner Profile Settings",
+  "summary": "Complete your profile so the space feels hosted and credible.",
+  "helper_text": "Complete the tasks below in Mastodon, save changes on every affected page, then click Done.",
+  "deep_links": [
+    {
+      "path": "/settings/profile",
+      "label": "Open profile settings"
+    }
+  ],
+  "settings_recommendations": [],
+  "blueprint_fields": [
+    {
+      "label": "Owner bio",
+      "source": "blueprint.owner_bio",
+      "presentation": "textarea",
+      "size": "large",
+      "copyable": true
+    },
+    {
+      "label": "Profile links",
+      "source": "blueprint.owner_profile_links",
+      "presentation": "key_value_list",
+      "size": "large",
+      "copyable": false
+    },
+    {
+      "label": "Profile image guidance",
+      "source": "blueprint.visual_asset_direction.owner_profile_image",
+      "presentation": "textarea",
+      "size": "large",
+      "copyable": true
+    }
+  ]
+},
   {
   "step_number": 3,
   "step_id": "community_branding_settings",
