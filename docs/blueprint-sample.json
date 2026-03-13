@@ -50,13 +50,41 @@
 
     "welcome_announcement": "This is the live signal space for tracking strategy, national security developments, and reputational conflict shaping global power. Here you will see sources, context, and real-time analysis as events unfold across the security landscape.\n\nParticipants here often bring field experience, research, or closely tracked information. Source material, corrections, and contextual additions are especially valuable contributions.\n\nIf you are new, start by introducing yourself and sharing the area of security or strategy you follow most closely.",
 
-    "visual_asset_direction": {
-      "thumbnail_banner": "Dark geopolitical map with subtle grid lines and a bright signal line cutting across Eastern Europe, conveying real-time monitoring of conflict and strategy. Center safe area (1200×320) kept clear for header readability.",
-      "instance_icon": "Minimal radar-style signal pulse or radiating intelligence node symbol, high contrast and recognizable at small sizes.",
-      "app_icon": "Same radar signal symbol centered on a dark field for mobile install clarity and strong icon contrast.",
-      "favicon": "Single-color radar pulse mark centered on dark background for high tab visibility.",
-      "owner_profile_image": "Professional headshot with neutral background and strong lighting conveying authority and continuity with existing public presence."
-    },
+  "visual_asset_direction": {
+  "thumbnail_banner": {
+    "guidance": "Dark geopolitical map with subtle grid lines and a bright signal line cutting across Eastern Europe, conveying real-time monitoring of conflict and strategy. Center safe area kept clear for header readability.",
+    "recommended_size": "1600x500",
+    "recommended_formats": ["png", "jpg"],
+    "notes": "Primary community banner direction. This can usually be reused or lightly adapted for the owner profile header image to maintain visual continuity."
+  },
+  "instance_icon": {
+    "guidance": "Minimal radar-style signal pulse or radiating intelligence node symbol, high contrast and recognizable at small sizes.",
+    "recommended_size": "1024x1024",
+    "recommended_formats": ["png"]
+  },
+  "app_icon": {
+    "guidance": "Same radar signal symbol centered on a dark field for mobile install clarity and strong icon contrast.",
+    "recommended_size": "1024x1024",
+    "recommended_formats": ["png"]
+  },
+  "favicon": {
+    "guidance": "Single-color radar pulse mark centered on dark background for high tab visibility.",
+    "recommended_size": "512x512",
+    "recommended_formats": ["png"]
+  },
+  "owner_profile_image": {
+    "guidance": "Professional headshot with neutral background and strong lighting conveying authority and continuity with existing public presence.",
+    "recommended_size": "800x800",
+    "recommended_formats": ["png", "jpg"],
+    "notes": "Use a square image with the face centered and clearly readable at small sizes."
+  },
+  "owner_header_image": {
+    "guidance": "Reuse or adapt the main community banner so the owner profile and the site identity feel visually linked.",
+    "recommended_size": "1500x500",
+    "recommended_formats": ["png", "jpg"],
+    "notes": "Usually best derived from the community banner artwork. Avoid small text near edges and keep important visual elements centered enough to survive cropping."
+  }
+},
 
     "launch_content": {
       "posts": {
