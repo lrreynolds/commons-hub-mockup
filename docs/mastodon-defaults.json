@@ -33,8 +33,7 @@
           "label": "Invite request text",
           "source": {
             "type": "template",
-            "template": "This space launches in small cohorts.\n\nIf your work is in this field and you’d like to join, contact:\n{{blueprint.owner_email}}"
-          },
+           "template": "This space launches in small cohorts.\n\nIf your work is in this field and you’d like to join, contact:\n{{blueprint.owner.email}}"
           "render": {
             "component": "text_block",
             "variant": "textarea",
@@ -74,7 +73,7 @@
           "label": "Owner bio",
           "source": {
             "type": "blueprint_path",
-            "path": "owner_bio"
+            "path": "owner.bio"
           },
           "render": {
             "component": "text_block",
@@ -87,7 +86,7 @@
           "label": "Profile links",
           "source": {
             "type": "blueprint_path",
-            "path": "owner_profile_links"
+            "path": "owner.profile_links"
           },
           "render": {
             "component": "key_value_list",
@@ -102,7 +101,7 @@
           "label": "Profile image guidance",
           "source": {
             "type": "blueprint_path",
-            "path": "visual_asset_direction.owner_profile_image"
+            "path": "assets.owner_profile_image"
           },
           "render": {
             "component": "structured_info",
@@ -120,7 +119,7 @@
           "label": "Header image guidance",
           "source": {
             "type": "blueprint_path",
-            "path": "visual_asset_direction.owner_header_image"
+             "path": "assets.owner_header_image"
           },
           "render": {
             "component": "structured_info",
@@ -166,7 +165,7 @@
           "label": "Community name",
           "source": {
             "type": "blueprint_path",
-            "path": "community_name"
+            "path": "community.name"
           },
           "render": {
             "component": "text_block",
@@ -179,7 +178,7 @@
           "label": "Header line",
           "source": {
             "type": "blueprint_path",
-            "path": "header_line"
+            "path": "community.header_line"
           },
           "render": {
             "component": "text_block",
@@ -192,7 +191,7 @@
           "label": "Short description",
           "source": {
             "type": "blueprint_path",
-            "path": "short_description"
+            "path": "community.descriptions.short"
           },
           "render": {
             "component": "text_block",
@@ -205,7 +204,7 @@
           "label": "Long description / about text",
           "source": {
             "type": "blueprint_path",
-            "path": "long_description"
+            "path": "community.descriptions.long"
           },
           "render": {
             "component": "text_block",
@@ -238,7 +237,7 @@
           "label": "Core hashtags",
           "source": {
             "type": "blueprint_path",
-            "path": "launch_content.core_hashtags"
+            "path": "launch.core_hashtags"
           },
           "render": {
             "component": "text_block",
@@ -268,7 +267,7 @@
           "label": "Welcome post",
           "source": {
             "type": "blueprint_path",
-            "path": "launch_content.posts.welcome"
+            "path": "launch.posts.welcome"
           },
           "render": {
             "component": "text_block",
@@ -281,7 +280,7 @@
           "label": "How to participate post",
           "source": {
             "type": "blueprint_path",
-            "path": "launch_content.posts.how_to_participate"
+            "path": "launch.posts.how_to_participate"
           },
           "render": {
             "component": "text_block",
@@ -294,7 +293,7 @@
           "label": "Mobile apps post",
           "source": {
             "type": "blueprint_path",
-            "path": "launch_content.posts.mobile_apps"
+            "path": "launch.posts.mobile_apps"
           },
           "render": {
             "component": "text_block",
@@ -323,7 +322,7 @@
           "label": "Welcome announcement",
           "source": {
             "type": "blueprint_path",
-            "path": "welcome_announcement"
+            "path": "launch.announcement.welcome"
           },
           "render": {
             "component": "text_block",
@@ -352,7 +351,7 @@
           "label": "Invite message template",
           "source": {
             "type": "blueprint_path",
-            "path": "launch_content.invite_message_template"
+            "path": "launch.invite_message_template"
           },
           "render": {
             "component": "text_block",
