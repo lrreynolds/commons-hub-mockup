@@ -5,70 +5,53 @@
   "description": "Commonshub standard defaults for Mastodon-backed communities.",
   "created_at": "2026-03-07T00:00:00Z",
 
-  "deep_links": {
-    "login": "/auth/sign_in",
-    "profile": "/settings/profile",
-    "verification": "/settings/verification",
-    "registrations": "/admin/settings/registrations",
-    "branding": "/admin/settings/branding",
-    "about": "/admin/settings/about",
-    "discovery": "/admin/settings/discovery",
-    "invites": "/admin/invites",
-    "announcements": "/admin/announcements",
-    "rules": "/admin/rules",
-    "tags": "/admin/tags",
-    "home": "/home",
-    "accounts_local": "/admin/accounts?origin=local",
-    "reports": "/admin/reports",
-    "roles": "/admin/roles",
-    "limited_instances": "/admin/instances?limited=1"
-  },
-
   "launch_setup_steps": [
-  {
-    "step_number": 1,
-    "step_id": "registration_settings",
-    "title": "Registration Settings",
-    "summary": "Start with an invite-only space so your first cohort sets the tone.",
-    "helper_text": "Complete the tasks below in Mastodon, save changes on every affected page, then click Done.",
-    "deep_links": [
-      {
-        "key": "registrations",
-        "label": "Open registration settings"
-      }
-    ],
-    "defaults": {
-      "who_can_sign_up": {
-        "value": "nobody",
-        "label": "Nobody can sign up",
-        "ui_control": "select",
-        "notes": "Recommended launch default for a closed first cohort."
-      }
-    },
-    "blueprint_fields": [
-      {
-        "label": "Invite request text",
-        "source": "custom",
-        "value_template": "This space launches in small cohorts.\n\nIf your work is in this field and you’d like to join, contact:\n{{blueprint.owner_email}}",
-        "presentation": "textarea",
-        "size": "large",
-        "copyable": true
-      }
-    ]
-  },
+{
+  "step_number": 1,
+  "step_id": "registration_settings",
+  "title": "Registration Settings",
+  "summary": "Start with an invite-only space so your first cohort sets the tone.",
+  "helper_text": "Complete the tasks below in Mastodon, save changes on every affected page, then click Done.",
+  "deep_links": [
+    {
+      "path": "/admin/settings/registrations",
+      "label": "Open registration settings"
+    }
+  ],
+  "settings_recommendations": [
+    {
+      "label": "Who can sign up",
+      "value": "nobody",
+      "display_value": "Nobody can sign up",
+      "ui_control": "select",
+      "dashboard_recommendation": "Start closed for the initial launch cohort.",
+      "notes": "Use a fully closed registration setting during launch. Invite links handle initial access while the community tone and moderation baseline are established."
+    }
+  ],
+  "blueprint_fields": [
+    {
+      "label": "Invite request text",
+      "source": "custom",
+      "value_template": "This space launches in small cohorts.\n\nIf your work is in this field and you’d like to join, contact:\n{{blueprint.owner_email}}",
+      "presentation": "textarea",
+      "size": "large",
+      "copyable": true
+    }
+  ]
+},
   {
     "step_number": 2,
     "step_id": "owner_profile_settings",
     "title": "Owner Profile Settings",
     "summary": "Complete your profile so the space feels hosted and credible.",
     "helper_text": "Complete the tasks below in Mastodon, save changes on every affected page, then click Done.",
-    "deep_links": [
-      {
-        "key": "profile",
-        "label": "Open profile settings"
-      }
-    ],
-    "defaults": {},
+   "deep_links": [
+  {
+    "path": "/settings/profile",
+    "label": "Open profile settings"
+  }
+],
+    "settings_recommendations": {},
     "blueprint_fields": [
       {
         "label": "Owner bio",
@@ -80,76 +63,78 @@
     ]
   },
   {
-    "step_number": 3,
-    "step_id": "community_branding_settings",
-    "title": "Community Branding Settings",
-    "summary": "Apply branding and description so the space reads like your intended room.",
-    "helper_text": "Complete the tasks below in Mastodon, save changes on every affected page, then click Done.",
-    "deep_links": [
-      {
-        "key": "branding",
-        "label": "Open branding settings"
-      },
-      {
-        "key": "about",
-        "label": "Open about settings"
-      }
-    ],
-    "defaults": {
-      "landing_page": {
-        "value": "local_feed",
-        "label": "Local feed",
-        "ui_control": "select"
-      }
+  "step_number": 3,
+  "step_id": "community_branding_settings",
+  "title": "Community Branding Settings",
+  "summary": "Apply branding and description so the space reads like your intended room.",
+  "helper_text": "Complete the tasks below in Mastodon, save changes on every affected page, then click Done.",
+  "deep_links": [
+    {
+      "path": "/admin/settings/branding",
+      "label": "Open branding settings"
     },
-    "blueprint_fields": [
-      {
-        "label": "Community name",
-        "source": "blueprint.community_name",
-        "presentation": "textarea",
-        "size": "compact",
-        "copyable": true
-      },
-      {
-        "label": "Header line",
-        "source": "blueprint.header_line",
-        "presentation": "textarea",
-        "size": "compact",
-        "copyable": true
-      },
-      {
-        "label": "Short description",
-        "source": "blueprint.short_description",
-        "presentation": "textarea",
-        "size": "compact",
-        "copyable": true
-      },
-      {
-        "label": "Long description / about text",
-        "source": "blueprint.long_description",
-        "presentation": "textarea",
-        "size": "large",
-        "copyable": true
-      }
-    ]
-  },
+    {
+      "path": "/admin/settings/about",
+      "label": "Open about settings"
+    }
+  ],
+  "settings_recommendations": [
+    {
+      "label": "Landing page",
+      "value": "local_feed",
+      "display_value": "Local feed",
+      "ui_control": "select",
+      "notes": "Visitors land on the Local feed so they immediately see live signal."
+    }
+  ],
+  "blueprint_fields": [
+    {
+      "label": "Community name",
+      "source": "blueprint.community_name",
+      "presentation": "textarea",
+      "size": "compact",
+      "copyable": true
+    },
+    {
+      "label": "Header line",
+      "source": "blueprint.header_line",
+      "presentation": "textarea",
+      "size": "compact",
+      "copyable": true
+    },
+    {
+      "label": "Short description",
+      "source": "blueprint.short_description",
+      "presentation": "textarea",
+      "size": "compact",
+      "copyable": true
+    },
+    {
+      "label": "Long description / about text",
+      "source": "blueprint.long_description",
+      "presentation": "textarea",
+      "size": "large",
+      "copyable": true
+    }
+  ]
+},
   {
     "step_number": 4,
     "step_id": "rules_discovery_settings",
     "title": "Rules & Discovery Settings",
     "summary": "Set rules, recommended follows, and core hashtags.",
     "helper_text": "Complete the tasks below in Mastodon, save changes on every affected page, then click Done.",
-    "deep_links": [
-      {
-        "key": "rules",
-        "label": "Open rules settings"
-      },
-      {
-        "key": "discovery",
-        "label": "Open discovery settings"
-      }
-    ],
-    "defaults": {},
+ "deep_links": [
+  {
+    "path": "/admin/rules",
+    "label": "Open rules settings"
+  },
+  {
+    "path": "/admin/settings/discovery",
+    "label": "Open discovery settings"
+  }
+],
+    "settings_recommendations": {},
     "blueprint_fields": [
       {
         "label": "Core hashtags",
@@ -167,13 +152,13 @@
     "title": "Create and Pin Posts",
     "summary": "Create your welcome and participation posts, publish them, then pin the key post(s).",
     "helper_text": "Complete the tasks below in Mastodon, save changes on every affected page, then click Done.",
-    "deep_links": [
-      {
-        "key": "home",
-        "label": "Open home feed"
-      }
-    ],
-    "defaults": {},
+   "deep_links": [
+  {
+    "path": "/home",
+    "label": "Open home feed"
+  }
+],
+    "settings_recommendations": {},
     "blueprint_fields": [
       {
         "label": "Welcome post",
@@ -204,13 +189,13 @@
     "title": "Manage Announcements",
     "summary": "This banner explains the space to new visitors.",
     "helper_text": "Complete the tasks below in Mastodon, save changes on every affected page, then click Done.",
-    "deep_links": [
-      {
-        "key": "announcements",
-        "label": "Open announcement settings"
-      }
-    ],
-    "defaults": {},
+   "deep_links": [
+  {
+    "path": "/admin/announcements",
+    "label": "Open announcement settings"
+  }
+],
+    "settings_recommendations": {},
     "blueprint_fields": [
       {
         "label": "Welcome announcement",
@@ -227,13 +212,13 @@
     "title": "Manage Invite Links",
     "summary": "Create links for collaborators and your first cohort.",
     "helper_text": "Complete the tasks below in Mastodon, save changes on every affected page, then click Done.",
-    "deep_links": [
-      {
-        "key": "invites",
-        "label": "Open invite settings"
-      }
-    ],
-    "defaults": {},
+  "deep_links": [
+  {
+    "path": "/admin/invites",
+    "label": "Open invite settings"
+  }
+],
+    "settings_recommendations": {},
     "blueprint_fields": [
       {
         "label": "Invite message template",
@@ -245,29 +230,6 @@
     ]
   }
 ],
-
-  "registration_defaults": {
-    "version": "1.0",
-    "who_can_sign_up": {
-      "value": "nobody",
-      "label": "Nobody can sign up",
-      "dashboard_recommendation": "Start closed for the initial launch cohort.",
-      "notes": "Use a fully closed registration setting during launch. Invite links handle initial access while the community tone and moderation baseline are established."
-    },
-    "require_reason_to_join": false,
-    "minimum_age_requirement": "",
-    "fields_render_order": [
-      "who_can_sign_up",
-      "require_reason_to_join",
-      "minimum_age_requirement",
-      "custom_message_when_signups_are_not_available"
-    ]
-  },
-
-  "branding_defaults": {
-    "landing_page": "local_feed",
-    "notes": "Visitors land on the Local feed so they immediately see live signal."
-  },
 
   "rules_template": {
     "version": "1.0",
