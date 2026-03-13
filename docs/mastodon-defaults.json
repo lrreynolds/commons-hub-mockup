@@ -1,271 +1,369 @@
 {
-  "mastodon_defaults_version": "1.1",
+  "mastodon_defaults_version": "1.2",
   "platform": "mastodon",
   "mastodon_target_version": "4.5.7",
   "description": "Commonshub standard defaults for Mastodon-backed communities.",
   "created_at": "2026-03-07T00:00:00Z",
 
   "launch_setup_steps": [
-{
-  "step_number": 1,
-  "step_id": "registration_settings",
-  "title": "Registration Settings",
-  "summary": "Start with an invite-only space so your first cohort sets the tone.",
-  "helper_text": "Complete the tasks below in Mastodon, save changes on every affected page, then click Done.",
-  "deep_links": [
     {
-      "path": "/admin/settings/registrations",
-      "label": "Open registration settings"
-    }
-  ],
-  "settings_recommendations": [
-    {
-      "label": "Who can sign up",
-      "value": "nobody",
-      "display_value": "Nobody can sign up",
-      "ui_control": "select",
-      "dashboard_recommendation": "Start closed for the initial launch cohort.",
-      "notes": "Use a fully closed registration setting during launch. Invite links handle initial access while the community tone and moderation baseline are established."
-    }
-  ],
-  "blueprint_fields": [
-    {
-      "label": "Invite request text",
-      "source": "custom",
-      "value_template": "This space launches in small cohorts.\n\nIf your work is in this field and you’d like to join, contact:\n{{blueprint.owner_email}}",
-      "presentation": "textarea",
-      "size": "large",
-      "copyable": true
-    }
-  ]
-},
-{
-  "step_number": 2,
-  "step_id": "owner_profile_settings",
-  "title": "Owner Profile Settings",
-  "summary": "Complete your profile so the space feels hosted and credible.",
-  "helper_text": "Complete the tasks below in Mastodon, save changes on every affected page, then click Done.",
-  "deep_links": [
-    {
-      "path": "/settings/profile",
-      "label": "Open profile settings"
+      "step_number": 1,
+      "step_id": "registration_settings",
+      "title": "Registration Settings",
+      "summary": "Start with an invite-only space so your first cohort sets the tone.",
+      "helper_text": "Complete the tasks below in Mastodon, save changes on every affected page, then click Done.",
+      "deep_links": [
+        {
+          "path": "/admin/settings/registrations",
+          "label": "Open registration settings"
+        }
+      ],
+      "settings_recommendations": [
+        {
+          "label": "Who can sign up",
+          "value": "nobody",
+          "display_value": "Nobody can sign up",
+          "ui_control": "select",
+          "dashboard_recommendation": "Start closed for the initial launch cohort.",
+          "notes": "Use a fully closed registration setting during launch. Invite links handle initial access while the community tone and moderation baseline are established."
+        }
+      ],
+      "blueprint_fields": [
+        {
+          "label": "Invite request text",
+          "source": {
+            "type": "template",
+            "template": "This space launches in small cohorts.\n\nIf your work is in this field and you’d like to join, contact:\n{{blueprint.owner_email}}"
+          },
+          "render": {
+            "component": "text_block",
+            "variant": "textarea",
+            "size": "large",
+            "copyable": true
+          }
+        }
+      ]
     },
     {
-      "path": "/settings/verification",
-      "label": "Open verification settings"
-    }
-  ],
-  "settings_recommendations": [
-    {
-      "label": "Extra fields order",
-      "value": "priority_ascending",
-      "display_value": "Website first, then remaining links in priority order",
-      "ui_control": "informational",
-      "notes": "Use the Website field first because it is the strongest candidate for Mastodon profile verification."
-    }
-  ],
-"blueprint_fields": [
-  {
-    "label": "Owner bio",
-    "source": "blueprint.owner_bio",
-    "presentation": "textarea",
-    "size": "large",
-    "copyable": true
-  },
-  {
-    "label": "Profile links",
-    "source": "blueprint.owner_profile_links",
-    "presentation": "key_value_list",
-    "size": "large",
-    "copyable": false,
-    "sort_by": "priority",
-    "item_label_field": "label",
-    "item_value_field": "url"
-  },
-  {
-    "label": "Profile image guidance",
-    "source": "blueprint.visual_asset_direction.owner_profile_image",
-    "presentation": "structured_info",
-    "size": "large",
-    "copyable": false
-  },
-  {
-    "label": "Header image guidance",
-    "source": "blueprint.visual_asset_direction.owner_header_image",
-    "presentation": "structured_info",
-    "size": "large",
-    "copyable": false
-  }
-]
-},
-  {
-  "step_number": 3,
-  "step_id": "community_branding_settings",
-  "title": "Community Branding Settings",
-  "summary": "Apply branding and description so the space reads like your intended room.",
-  "helper_text": "Complete the tasks below in Mastodon, save changes on every affected page, then click Done.",
-  "deep_links": [
-    {
-      "path": "/admin/settings/branding",
-      "label": "Open branding settings"
+      "step_number": 2,
+      "step_id": "owner_profile_settings",
+      "title": "Owner Profile Settings",
+      "summary": "Complete your profile so the space feels hosted and credible.",
+      "helper_text": "Complete the tasks below in Mastodon, save changes on every affected page, then click Done.",
+      "deep_links": [
+        {
+          "path": "/settings/profile",
+          "label": "Open profile settings"
+        },
+        {
+          "path": "/settings/verification",
+          "label": "Open verification settings"
+        }
+      ],
+      "settings_recommendations": [
+        {
+          "label": "Extra fields order",
+          "value": "priority_ascending",
+          "display_value": "Website first, then remaining links in priority order",
+          "ui_control": "informational",
+          "notes": "Use the Website field first because it is the strongest candidate for Mastodon profile verification."
+        }
+      ],
+      "blueprint_fields": [
+        {
+          "label": "Owner bio",
+          "source": {
+            "type": "blueprint_path",
+            "path": "owner_bio"
+          },
+          "render": {
+            "component": "text_block",
+            "variant": "textarea",
+            "size": "large",
+            "copyable": true
+          }
+        },
+        {
+          "label": "Profile links",
+          "source": {
+            "type": "blueprint_path",
+            "path": "owner_profile_links"
+          },
+          "render": {
+            "component": "key_value_list",
+            "size": "large",
+            "copyable": false,
+            "sort_by": "priority",
+            "item_label_field": "label",
+            "item_value_field": "url"
+          }
+        },
+        {
+          "label": "Profile image guidance",
+          "source": {
+            "type": "blueprint_path",
+            "path": "visual_asset_direction.owner_profile_image"
+          },
+          "render": {
+            "component": "structured_info",
+            "size": "large",
+            "copyable": false,
+            "fields": [
+              { "label": "Guidance", "key": "guidance" },
+              { "label": "Recommended size", "key": "recommended_size" },
+              { "label": "Recommended formats", "key": "recommended_formats" },
+              { "label": "Notes", "key": "notes" }
+            ]
+          }
+        },
+        {
+          "label": "Header image guidance",
+          "source": {
+            "type": "blueprint_path",
+            "path": "visual_asset_direction.owner_header_image"
+          },
+          "render": {
+            "component": "structured_info",
+            "size": "large",
+            "copyable": false,
+            "fields": [
+              { "label": "Guidance", "key": "guidance" },
+              { "label": "Recommended size", "key": "recommended_size" },
+              { "label": "Recommended formats", "key": "recommended_formats" },
+              { "label": "Notes", "key": "notes" }
+            ]
+          }
+        }
+      ]
     },
     {
-      "path": "/admin/settings/about",
-      "label": "Open about settings"
+      "step_number": 3,
+      "step_id": "community_branding_settings",
+      "title": "Community Branding Settings",
+      "summary": "Apply branding and description so the space reads like your intended room.",
+      "helper_text": "Complete the tasks below in Mastodon, save changes on every affected page, then click Done.",
+      "deep_links": [
+        {
+          "path": "/admin/settings/branding",
+          "label": "Open branding settings"
+        },
+        {
+          "path": "/admin/settings/about",
+          "label": "Open about settings"
+        }
+      ],
+      "settings_recommendations": [
+        {
+          "label": "Landing page",
+          "value": "local_feed",
+          "display_value": "Local feed",
+          "ui_control": "select",
+          "notes": "Visitors land on the Local feed so they immediately see live signal."
+        }
+      ],
+      "blueprint_fields": [
+        {
+          "label": "Community name",
+          "source": {
+            "type": "blueprint_path",
+            "path": "community_name"
+          },
+          "render": {
+            "component": "text_block",
+            "variant": "textarea",
+            "size": "compact",
+            "copyable": true
+          }
+        },
+        {
+          "label": "Header line",
+          "source": {
+            "type": "blueprint_path",
+            "path": "header_line"
+          },
+          "render": {
+            "component": "text_block",
+            "variant": "textarea",
+            "size": "compact",
+            "copyable": true
+          }
+        },
+        {
+          "label": "Short description",
+          "source": {
+            "type": "blueprint_path",
+            "path": "short_description"
+          },
+          "render": {
+            "component": "text_block",
+            "variant": "textarea",
+            "size": "compact",
+            "copyable": true
+          }
+        },
+        {
+          "label": "Long description / about text",
+          "source": {
+            "type": "blueprint_path",
+            "path": "long_description"
+          },
+          "render": {
+            "component": "text_block",
+            "variant": "textarea",
+            "size": "large",
+            "copyable": true
+          }
+        }
+      ]
+    },
+    {
+      "step_number": 4,
+      "step_id": "rules_discovery_settings",
+      "title": "Rules & Discovery Settings",
+      "summary": "Set rules, recommended follows, and core hashtags.",
+      "helper_text": "Complete the tasks below in Mastodon, save changes on every affected page, then click Done.",
+      "deep_links": [
+        {
+          "path": "/admin/rules",
+          "label": "Open rules settings"
+        },
+        {
+          "path": "/admin/settings/discovery",
+          "label": "Open discovery settings"
+        }
+      ],
+      "settings_recommendations": [],
+      "blueprint_fields": [
+        {
+          "label": "Core hashtags",
+          "source": {
+            "type": "blueprint_path",
+            "path": "launch_content.core_hashtags"
+          },
+          "render": {
+            "component": "text_block",
+            "variant": "textarea",
+            "size": "large",
+            "copyable": true,
+            "join_with": "\n"
+          }
+        }
+      ]
+    },
+    {
+      "step_number": 5,
+      "step_id": "create_and_pin_posts",
+      "title": "Create and Pin Posts",
+      "summary": "Create your welcome and participation posts, publish them, then pin the key post(s).",
+      "helper_text": "Complete the tasks below in Mastodon, save changes on every affected page, then click Done.",
+      "deep_links": [
+        {
+          "path": "/home",
+          "label": "Open home feed"
+        }
+      ],
+      "settings_recommendations": [],
+      "blueprint_fields": [
+        {
+          "label": "Welcome post",
+          "source": {
+            "type": "blueprint_path",
+            "path": "launch_content.posts.welcome"
+          },
+          "render": {
+            "component": "text_block",
+            "variant": "textarea",
+            "size": "large",
+            "copyable": true
+          }
+        },
+        {
+          "label": "How to participate post",
+          "source": {
+            "type": "blueprint_path",
+            "path": "launch_content.posts.how_to_participate"
+          },
+          "render": {
+            "component": "text_block",
+            "variant": "textarea",
+            "size": "large",
+            "copyable": true
+          }
+        },
+        {
+          "label": "Mobile apps post",
+          "source": {
+            "type": "blueprint_path",
+            "path": "launch_content.posts.mobile_apps"
+          },
+          "render": {
+            "component": "text_block",
+            "variant": "textarea",
+            "size": "large",
+            "copyable": true
+          }
+        }
+      ]
+    },
+    {
+      "step_number": 6,
+      "step_id": "manage_announcements",
+      "title": "Manage Announcements",
+      "summary": "This banner explains the space to new visitors.",
+      "helper_text": "Complete the tasks below in Mastodon, save changes on every affected page, then click Done.",
+      "deep_links": [
+        {
+          "path": "/admin/announcements",
+          "label": "Open announcement settings"
+        }
+      ],
+      "settings_recommendations": [],
+      "blueprint_fields": [
+        {
+          "label": "Welcome announcement",
+          "source": {
+            "type": "blueprint_path",
+            "path": "welcome_announcement"
+          },
+          "render": {
+            "component": "text_block",
+            "variant": "textarea",
+            "size": "large",
+            "copyable": true
+          }
+        }
+      ]
+    },
+    {
+      "step_number": 7,
+      "step_id": "manage_invite_links",
+      "title": "Manage Invite Links",
+      "summary": "Create links for collaborators and your first cohort.",
+      "helper_text": "Complete the tasks below in Mastodon, save changes on every affected page, then click Done.",
+      "deep_links": [
+        {
+          "path": "/admin/invites",
+          "label": "Open invite settings"
+        }
+      ],
+      "settings_recommendations": [],
+      "blueprint_fields": [
+        {
+          "label": "Invite message template",
+          "source": {
+            "type": "blueprint_path",
+            "path": "launch_content.invite_message_template"
+          },
+          "render": {
+            "component": "text_block",
+            "variant": "textarea",
+            "size": "large",
+            "copyable": true
+          }
+        }
+      ]
     }
   ],
-  "settings_recommendations": [
-    {
-      "label": "Landing page",
-      "value": "local_feed",
-      "display_value": "Local feed",
-      "ui_control": "select",
-      "notes": "Visitors land on the Local feed so they immediately see live signal."
-    }
-  ],
-  "blueprint_fields": [
-    {
-      "label": "Community name",
-      "source": "blueprint.community_name",
-      "presentation": "textarea",
-      "size": "compact",
-      "copyable": true
-    },
-    {
-      "label": "Header line",
-      "source": "blueprint.header_line",
-      "presentation": "textarea",
-      "size": "compact",
-      "copyable": true
-    },
-    {
-      "label": "Short description",
-      "source": "blueprint.short_description",
-      "presentation": "textarea",
-      "size": "compact",
-      "copyable": true
-    },
-    {
-      "label": "Long description / about text",
-      "source": "blueprint.long_description",
-      "presentation": "textarea",
-      "size": "large",
-      "copyable": true
-    }
-  ]
-},
-  {
-    "step_number": 4,
-    "step_id": "rules_discovery_settings",
-    "title": "Rules & Discovery Settings",
-    "summary": "Set rules, recommended follows, and core hashtags.",
-    "helper_text": "Complete the tasks below in Mastodon, save changes on every affected page, then click Done.",
- "deep_links": [
-  {
-    "path": "/admin/rules",
-    "label": "Open rules settings"
-  },
-  {
-    "path": "/admin/settings/discovery",
-    "label": "Open discovery settings"
-  }
-],
-    "settings_recommendations": [],
-    "blueprint_fields": [
-      {
-        "label": "Core hashtags",
-        "source": "blueprint.launch_content.core_hashtags",
-        "presentation": "textarea",
-        "size": "large",
-        "copyable": true,
-        "join_with": "\n"
-      }
-    ]
-  },
-  {
-    "step_number": 5,
-    "step_id": "create_and_pin_posts",
-    "title": "Create and Pin Posts",
-    "summary": "Create your welcome and participation posts, publish them, then pin the key post(s).",
-    "helper_text": "Complete the tasks below in Mastodon, save changes on every affected page, then click Done.",
-   "deep_links": [
-  {
-    "path": "/home",
-    "label": "Open home feed"
-  }
-],
-    "settings_recommendations": [],
-    "blueprint_fields": [
-      {
-        "label": "Welcome post",
-        "source": "blueprint.launch_content.posts.welcome",
-        "presentation": "textarea",
-        "size": "large",
-        "copyable": true
-      },
-      {
-        "label": "How to participate post",
-        "source": "blueprint.launch_content.posts.how_to_participate",
-        "presentation": "textarea",
-        "size": "large",
-        "copyable": true
-      },
-      {
-        "label": "Mobile apps post",
-        "source": "blueprint.launch_content.posts.mobile_apps",
-        "presentation": "textarea",
-        "size": "large",
-        "copyable": true
-      }
-    ]
-  },
-  {
-    "step_number": 6,
-    "step_id": "manage_announcements",
-    "title": "Manage Announcements",
-    "summary": "This banner explains the space to new visitors.",
-    "helper_text": "Complete the tasks below in Mastodon, save changes on every affected page, then click Done.",
-   "deep_links": [
-  {
-    "path": "/admin/announcements",
-    "label": "Open announcement settings"
-  }
-],
-    "settings_recommendations": [],
-    "blueprint_fields": [
-      {
-        "label": "Welcome announcement",
-        "source": "blueprint.welcome_announcement",
-        "presentation": "textarea",
-        "size": "large",
-        "copyable": true
-      }
-    ]
-  },
-  {
-    "step_number": 7,
-    "step_id": "manage_invite_links",
-    "title": "Manage Invite Links",
-    "summary": "Create links for collaborators and your first cohort.",
-    "helper_text": "Complete the tasks below in Mastodon, save changes on every affected page, then click Done.",
-  "deep_links": [
-  {
-    "path": "/admin/invites",
-    "label": "Open invite settings"
-  }
-],
-    "settings_recommendations": [],
-    "blueprint_fields": [
-      {
-        "label": "Invite message template",
-        "source": "blueprint.launch_content.invite_message_template",
-        "presentation": "textarea",
-        "size": "large",
-        "copyable": true
-      }
-    ]
-  }
-],
 
   "rules_template": {
     "version": "1.0",
