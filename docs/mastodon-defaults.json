@@ -24,6 +24,228 @@
     "limited_instances": "/admin/instances?limited=1"
   },
 
+  "launch_setup_steps": [
+  {
+    "step_number": 1,
+    "step_id": "registration_settings",
+    "title": "Registration Settings",
+    "summary": "Start with an invite-only space so your first cohort sets the tone.",
+    "helper_text": "Complete the tasks below in Mastodon, save changes on every affected page, then click Done.",
+    "deep_links": [
+      {
+        "key": "registrations",
+        "label": "Open registration settings"
+      }
+    ],
+    "defaults": {
+      "who_can_sign_up": {
+        "value": "nobody",
+        "label": "Nobody can sign up",
+        "ui_control": "select",
+        "notes": "Recommended launch default for a closed first cohort."
+      }
+    },
+    "blueprint_fields": [
+      {
+        "label": "Invite request text",
+        "source": "custom",
+        "value_template": "This space launches in small cohorts.\n\nIf your work is in this field and you’d like to join, contact:\n{{blueprint.owner_email}}",
+        "presentation": "textarea",
+        "size": "large",
+        "copyable": true
+      }
+    ]
+  },
+  {
+    "step_number": 2,
+    "step_id": "owner_profile_settings",
+    "title": "Owner Profile Settings",
+    "summary": "Complete your profile so the space feels hosted and credible.",
+    "helper_text": "Complete the tasks below in Mastodon, save changes on every affected page, then click Done.",
+    "deep_links": [
+      {
+        "key": "profile",
+        "label": "Open profile settings"
+      }
+    ],
+    "defaults": {},
+    "blueprint_fields": [
+      {
+        "label": "Owner bio",
+        "source": "blueprint.owner_bio",
+        "presentation": "textarea",
+        "size": "large",
+        "copyable": true
+      }
+    ]
+  },
+  {
+    "step_number": 3,
+    "step_id": "community_branding_settings",
+    "title": "Community Branding Settings",
+    "summary": "Apply branding and description so the space reads like your intended room.",
+    "helper_text": "Complete the tasks below in Mastodon, save changes on every affected page, then click Done.",
+    "deep_links": [
+      {
+        "key": "branding",
+        "label": "Open branding settings"
+      },
+      {
+        "key": "about",
+        "label": "Open about settings"
+      }
+    ],
+    "defaults": {
+      "landing_page": {
+        "value": "local_feed",
+        "label": "Local feed",
+        "ui_control": "select"
+      }
+    },
+    "blueprint_fields": [
+      {
+        "label": "Community name",
+        "source": "blueprint.community_name",
+        "presentation": "textarea",
+        "size": "compact",
+        "copyable": true
+      },
+      {
+        "label": "Header line",
+        "source": "blueprint.header_line",
+        "presentation": "textarea",
+        "size": "compact",
+        "copyable": true
+      },
+      {
+        "label": "Short description",
+        "source": "blueprint.short_description",
+        "presentation": "textarea",
+        "size": "compact",
+        "copyable": true
+      },
+      {
+        "label": "Long description / about text",
+        "source": "blueprint.long_description",
+        "presentation": "textarea",
+        "size": "large",
+        "copyable": true
+      }
+    ]
+  },
+  {
+    "step_number": 4,
+    "step_id": "rules_discovery_settings",
+    "title": "Rules & Discovery Settings",
+    "summary": "Set rules, recommended follows, and core hashtags.",
+    "helper_text": "Complete the tasks below in Mastodon, save changes on every affected page, then click Done.",
+    "deep_links": [
+      {
+        "key": "rules",
+        "label": "Open rules settings"
+      },
+      {
+        "key": "discovery",
+        "label": "Open discovery settings"
+      }
+    ],
+    "defaults": {},
+    "blueprint_fields": [
+      {
+        "label": "Core hashtags",
+        "source": "blueprint.launch_content.core_hashtags",
+        "presentation": "textarea",
+        "size": "large",
+        "copyable": true,
+        "join_with": "\n"
+      }
+    ]
+  },
+  {
+    "step_number": 5,
+    "step_id": "create_and_pin_posts",
+    "title": "Create and Pin Posts",
+    "summary": "Create your welcome and participation posts, publish them, then pin the key post(s).",
+    "helper_text": "Complete the tasks below in Mastodon, save changes on every affected page, then click Done.",
+    "deep_links": [
+      {
+        "key": "home",
+        "label": "Open home feed"
+      }
+    ],
+    "defaults": {},
+    "blueprint_fields": [
+      {
+        "label": "Welcome post",
+        "source": "blueprint.launch_content.posts.welcome",
+        "presentation": "textarea",
+        "size": "large",
+        "copyable": true
+      },
+      {
+        "label": "How to participate post",
+        "source": "blueprint.launch_content.posts.how_to_participate",
+        "presentation": "textarea",
+        "size": "large",
+        "copyable": true
+      },
+      {
+        "label": "Mobile apps post",
+        "source": "blueprint.launch_content.posts.mobile_apps",
+        "presentation": "textarea",
+        "size": "large",
+        "copyable": true
+      }
+    ]
+  },
+  {
+    "step_number": 6,
+    "step_id": "manage_announcements",
+    "title": "Manage Announcements",
+    "summary": "This banner explains the space to new visitors.",
+    "helper_text": "Complete the tasks below in Mastodon, save changes on every affected page, then click Done.",
+    "deep_links": [
+      {
+        "key": "announcements",
+        "label": "Open announcement settings"
+      }
+    ],
+    "defaults": {},
+    "blueprint_fields": [
+      {
+        "label": "Welcome announcement",
+        "source": "blueprint.welcome_announcement",
+        "presentation": "textarea",
+        "size": "large",
+        "copyable": true
+      }
+    ]
+  },
+  {
+    "step_number": 7,
+    "step_id": "manage_invite_links",
+    "title": "Manage Invite Links",
+    "summary": "Create links for collaborators and your first cohort.",
+    "helper_text": "Complete the tasks below in Mastodon, save changes on every affected page, then click Done.",
+    "deep_links": [
+      {
+        "key": "invites",
+        "label": "Open invite settings"
+      }
+    ],
+    "defaults": {},
+    "blueprint_fields": [
+      {
+        "label": "Invite message template",
+        "source": "blueprint.launch_content.invite_message_template",
+        "presentation": "textarea",
+        "size": "large",
+        "copyable": true
+      }
+    ]
+  }
+],
+
   "registration_defaults": {
     "version": "1.0",
     "who_can_sign_up": {
