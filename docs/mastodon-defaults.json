@@ -34,6 +34,7 @@
           "source": {
             "type": "template",
            "template": "This space launches in small cohorts.\n\nIf your work is in this field and you’d like to join, contact:\n{{blueprint.owner.email}}"
+          },
           "render": {
             "component": "text_block",
             "variant": "textarea",
