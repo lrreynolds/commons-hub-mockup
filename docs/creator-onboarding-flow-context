@@ -2861,6 +2861,103 @@ Use:
 
 Do not ask for new input.
 
+1B) Owner Identity Mode (context-driven)
+
+Determine whether the primary account represents:
+
+• an individual host
+• an institutional account
+
+owner_identity_mode ∈ {
+  personal_host
+  institutional_host
+}
+
+Default
+
+personal_host
+
+This preserves the creator-first experience.
+
+⸻
+
+Institutional host detection
+
+Switch to institutional_host when:
+
+• host_type = institutional
+• links reference an organization domain
+• focus clearly describes an organizational initiative
+• the creator explicitly indicates the space represents an organization
+
+Examples:
+
+research lab
+nonprofit initiative
+media organization
+professional society
+campaign office
+government office
+
+⸻
+
+Behavior when institutional_host
+
+The primary account may represent:
+
+• the organization
+• the initiative
+• the editorial desk
+• the research lab
+
+Username priority becomes:
+
+1. organization name
+2. mission domain shorthand
+3. initiative name
+
+Examples
+
+@ieee@roboticslab.org
+@climatewatch@climatewatch.org
+@defensebrief@strategicsignal.org
+@press@investigations.org
+
+⸻
+
+Bio adjustment rule
+
+When institutional_host:
+
+The bio should be written in institutional voice:
+
+• describe the organization
+• describe the mission
+• describe what the account publishes
+
+Avoid first-person language.
+
+Example shape
+
+"The research desk for Robotics Systems Lab.  
+Tracking autonomous systems, robotics policy, and field research."
+
+⸻
+
+Creator preservation rule
+
+If the host identity appears personal or creator-driven,
+remain in personal_host mode even if the project itself is institutional.
+
+Example
+
+A journalist running a policy community.
+
+In that case:
+
+Use the creator’s personal identity as the primary account.
+
+
 ⸻
 
 2) Handle formation (deterministic)
