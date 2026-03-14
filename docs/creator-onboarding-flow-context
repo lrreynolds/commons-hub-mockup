@@ -975,6 +975,14 @@ blueprint.owner.profile_links
 = inferred and normalized public links when available
 = [] if none are available
 
+Export requirement
+
+blueprint.owner.profile_links must always be present in the final Blueprint JSON.
+
+If no links are available, export:
+
+blueprint.owner.profile_links = []
+
 ⸻
 
 Community Mapping
@@ -1970,8 +1978,8 @@ This keeps the flow frictionless and provisioning-safe.
 
 Use:
 
-instance_slug from Step 2 
-and the selected Domain type
+blueprint.community.slug from Step 2
+and the selected domain path
 
 to construct the real instance domain.
 
@@ -1981,17 +1989,18 @@ If selected path = commonshub_subdomain
 
 Construct:
 
-[instance_slug].commonshub.social
+[blueprint.community.slug].commonshub.social
 
 Display:
 
-Locked: [instance_slug].commonshub.social
+Locked: [blueprint.community.slug].commonshub.social
 Domain type: Commonshub subdomain — fastest launch
 
 Set:
 
-domain_type: Commonshub subdomain — fastest launch
-domain_candidate: [instance_slug].commonshub.social
+blueprint.domain.type = Commonshub subdomain — fastest launch
+blueprint.domain.candidate = [blueprint.community.slug].commonshub.social
+blueprint.domain.instance_domain = blueprint.domain.candidate
 
 Advance immediately to Step 4.
 
@@ -2020,8 +2029,9 @@ Domain type: External subdomain — brand continuity
 
 Set:
 
-domain_type: External subdomain — brand continuity
-domain_candidate: [domain]
+blueprint.domain.type = External subdomain — brand continuity
+blueprint.domain.candidate = [domain]
+blueprint.domain.instance_domain = blueprint.domain.candidate
 
 Advance immediately to Step 4.
 
@@ -2049,8 +2059,9 @@ Domain type: Custom domain — standalone identity
 
 Set:
 
-domain_type: Custom domain — standalone identity
-domain_candidate: [domain]
+blueprint.domain.type = Custom domain — standalone identity
+blueprint.domain.candidate = [domain]
+blueprint.domain.instance_domain = blueprint.domain.candidate
 
 Advance immediately to Step 4.
 
@@ -2740,8 +2751,7 @@ Do not ask for new input.
 2) Handle formation (deterministic)
 
 • owner_username = the username portion only (no leading @, no domain)
-• owner_handle = @{owner_username}@{domain_candidate} (display)
-
+• blueprint.owner.handle = @{blueprint.owner.username}@{blueprint.domain.candidate}
 Username selection priority
   1.  Existing primary public handle
   2.  Real name (natural spacing removed)
@@ -2772,13 +2782,13 @@ Reject:
 Domain binding (from Step 3)
 
 Commonshub subdomain →
-@owner_username@[instance_slug].commonshub.social
+@owner_username@[blueprint.domain.candidate]
 
 External subdomain →
-@owner_username@[domain_candidate]
+@owner_username@[blueprint.domain.candidate]
 
 Custom domain →
-@owner_username@[domain_candidate]
+@owner_username@[blueprint.domain.candidate]
 
 No variation.
 
@@ -2855,10 +2865,10 @@ No explanations.
 7) Output format
 
 Owner username:
-[owner_username]
+[blueprint.owner.username]
 
 Owner handle:
-@owner_username@[domain_candidate]
+[blueprint.owner.handle]
 
 Owner bio:
 [3 sentences max]
@@ -2887,9 +2897,9 @@ AFTER APPROVAL ONLY
 
 Write directly:
 
-owner_username
-owner_handle (derived)
-owner_bio
+blueprint.owner.username
+blueprint.owner.handle
+blueprint.owner.bio
 
 No regeneration later.
 
