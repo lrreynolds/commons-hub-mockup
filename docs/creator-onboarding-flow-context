@@ -144,17 +144,45 @@ A valid name must:
 username@community
 
 Avoid:
-  • institutions
-  • reports
-  • operations
-  • think-tanks
-  • publications
+  • generic corporate language
+  • vague strategy terms
+  • bureaucratic phrasing
+
+Naming model depends on host type.
+
+Creator-first model (default)
 
 Prefer:
   • a room
   • a circle
   • a signal node
   • a field of activity
+
+Examples:
+The Briefing Room
+Signal Desk
+The Intelligence Circle
+Climate Watch
+
+Institutional host model
+
+When the host is clearly an organization, nonprofit, campaign, research group, or professional society, the name may instead reflect:
+
+  • the mission domain
+  • the institutional identity
+  • the working initiative
+
+Examples:
+Digital Freedom Network
+Ukraine Defense Watch
+Open Climate Institute
+Robotics Systems Lab
+
+In institutional cases the name should still remain:
+
+  • speakable
+  • domain-friendly
+  • handle-friendly
 
 Mission-Specific Naming Bias
 
