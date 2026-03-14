@@ -1879,7 +1879,7 @@ If a domain is detected → show 3 options.
 
 If an existing root domain is detected, store:
 
-creator_root_domain: [domain]
+detected_root_domain
 
 If no domain is detected → show only 2 options.
 
@@ -2739,7 +2739,7 @@ Use:
 
 • locked domain from Step 3
 • community_name (display form)
-• instance_slug
+• blueprint.community.slug
 • creator context
 • detected public identity
 • real-world name recognition (when present)
@@ -2801,8 +2801,9 @@ Before showing the bio, output:
 Your primary identity inside this space
 
 Locked: [owner_username]
-Owner handle: 
-@owner_username@[domain_candidate]
+
+Owner handle:
+[blueprint.owner.handle]
 
 This is the emotional confirmation moment.
 
