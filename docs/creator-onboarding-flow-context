@@ -471,7 +471,7 @@ Locked: [final value]
 
 Step 2 special-case:
 Locked: [community name]
-Instance slug: [instance_slug]
+Instance slug: [blueprint.community.slug]
 
 Step 3:
 Locked: [full domain]
@@ -1910,13 +1910,11 @@ Example: jasonjaysmart.com
 Then show three options:
 
 Option A — Commonshub subdomain
-[instance_slug].commonshub.social
 
-Option B — Subdomain of your existing site
-[instance_slug].jasonjaysmart.com
+[blueprint.community.slug].commonshub.social
+[blueprint.community.slug].jasonjaysmart.com
+example: [blueprint.community.slug].com / .social / .community
 
-Option C — Full custom domain
-example: [instance_slug].com / .social / .community
 ⸻
 
 2) Recommendation
