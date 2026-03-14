@@ -480,7 +480,7 @@ Step 4:
 Locked: [header line]
 
 Step 5 → the owner username
-Locked: [owner_username]
+Locked: [blueprint.owner.username]
 
 ⸻
 
@@ -1892,19 +1892,16 @@ Option A — Commonshub subdomain
 Fastest launch.
 No external setup required.
 
-[instance_slug].commonshub.social
-
-Option B — Full custom domain
-
-Standalone long-term identity.
-
-Examples:
-[instance_slug].com
-[instance_slug].social
-[instance_slug].community
-
 If you already own a domain you want to use,
 tell me and I’ll generate options for it.
+
+[blueprint.community.slug].commonshub.social
+[blueprint.community.slug].com
+[blueprint.community.slug].social
+[blueprint.community.slug].community
+
+[blueprint.community.slug].jasonjaysmart.com
+example: [blueprint.community.slug].com / .social / .community
 
 Case B — Domain detected
 
