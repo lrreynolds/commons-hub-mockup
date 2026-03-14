@@ -520,7 +520,7 @@ It must be:
 • copy-paste usable
 • infrastructure-mappable
 
-It contains only the configuration and assets required to provision the community.
+It contains only the configuration and asset direction required to provision the community.
 
 Operational launch helpers (posts, hashtags, invite templates) are not shown here and are stored only in the Blueprint JSON.
 
@@ -531,40 +531,40 @@ Output order (fixed — never change)
 COMMUNITY BLUEPRINT
 
 Owner email:
-[owner_email]
+[blueprint.owner.email]
 
 Positioning:
-[approved positioning label + name]
+[blueprint.positioning]
 
 Community name:
-[final name]
+[blueprint.community.name]
 
 Instance slug:
-[instance_slug]
+[blueprint.community.slug]
 
 Domain type:
-[domain_type]
+[blueprint.domain.type]
 
 Domain candidate:
-[domain_candidate]
+[blueprint.domain.candidate]
 
 Short description:
-[one-sentence purpose — Mastodon directory]
+[blueprint.community.descriptions.short]
 
 Header line:
-[public header line used in invites and the site header]
+[blueprint.community.header_line]
 
 Owner username:
-[owner_username]
+[blueprint.owner.username]
 
 Owner handle:
-@owner_username@[domain_candidate]
+[blueprint.owner.handle]
 
 Owner bio:
-[first-person identity statement]
+[blueprint.owner.bio]
 
 Long description:
-[About page text]
+[blueprint.community.descriptions.long]
 
 ⸻
 
@@ -591,19 +591,22 @@ These assets will be requested during setup.
 You can prepare them now or upload them later in the dashboard.
 
 Thumbnail banner (1600×500):
-[visual concept + safe area guidance]
+[blueprint.assets.thumbnail_banner.guidance]
 
 Instance icon (1024×1024 source):
-[visual concept]
+[blueprint.assets.instance_icon.guidance]
 
 App icon (1024×1024 source):
-[visual concept]
+[blueprint.assets.app_icon.guidance]
 
 Favicon (512×512 source):
-[visual concept]
+[blueprint.assets.favicon.guidance]
 
 Owner profile image:
-[visual concept]
+[blueprint.assets.owner_profile_image.guidance]
+
+Owner header image:
+[blueprint.assets.owner_header_image.guidance]
 
 ⸻
 
@@ -820,8 +823,8 @@ The Blueprint JSON is the complete machine-readable provisioning artifact produc
 The Blueprint Summary shown to the creator (9D) is a human-readable subset of this object.
 
 The JSON contains both:
-  1.  Creator-visible identity configuration
-  2.  System provisioning and onboarding helpers
+  1. Creator-visible identity configuration
+  2. System provisioning and onboarding helpers
 
 This JSON object is used by:
 
@@ -838,46 +841,99 @@ JSON Root Object
 
 The Blueprint JSON must always export as one deterministic root object:
 
-community_blueprint {
+{
+  "blueprint": {
+    "positioning": ...,
 
-  owner_email
+    "owner": {
+      "email": ...,
+      "username": ...,
+      "handle": ...,
+      "bio": ...,
+      "profile_links": [...]
+    },
 
-  positioning
-  community_name
-  instance_display_name
-  instance_slug
+    "community": {
+      "name": ...,
+      "display_name": ...,
+      "slug": ...,
+      "header_line": ...,
+      "descriptions": {
+        "short": ...,
+        "tagline": ...,
+        "long": ...
+      }
+    },
 
-  domain_type
-  domain_candidate
+    "domain": {
+      "type": ...,
+      "candidate": ...,
+      "instance_domain": ...
+    },
 
-  short_description
-  instance_tagline
-  header_line
+    "assets": {
+      "thumbnail_banner": ...,
+      "instance_icon": ...,
+      "app_icon": ...,
+      "favicon": ...,
+      "owner_profile_image": ...,
+      "owner_header_image": ...
+    },
 
-  owner_username
-  owner_handle
-  owner_bio
+    "launch": {
+      "announcement": {
+        "welcome": ...
+      },
+      "posts": {
+        "welcome": ...,
+        "how_to_participate": ...,
+        "mobile_apps": ...
+      },
+      "invite_message_template": ...,
+      "core_hashtags": [...]
+    },
 
-  long_description
-  welcome_announcement
+    "provisioning": {
+      "instance_domain": ...,
+      "instance_slug": ...,
+      "instance_display_name": ...,
+      "instance_tagline": ...,
+      "mastodon_admin_email": ...
+    },
 
-  visual_asset_direction
+    "creator_context": {
+      "focus": ...,
+      "inferred_archetype": ...,
+      "primary_content_mode": ...,
+      "publishing_cadence": ...,
+      "platform_posture": ...,
+      "audience_relationship": ...,
+      "monetization_presence": ...,
+      "brand_strength": ...,
+      "mission_domain_clarity": ...
+    },
 
-  launch_content
+    "collaborator_seeding_strategy": {
+      "seed_type": ...,
+      "recommended_first_participants": ...,
+      "rationale": ...
+    },
 
-  provisioning
+    "provisioning_status": {
+      "domain_availability_checked": false,
+      "dns_verified": false,
+      "instance_created": false
+    },
 
-  creator_context
-
-  collaborator_seeding_strategy
-
-  provisioning_status
-
-  blueprint_metadata
-
+    "metadata": {
+      "blueprint_version": null,
+      "generated_at": null,
+      "creator_archetype": null
+    }
+  }
 }
 
-No fields may appear outside this object.
+No fields may appear outside the "blueprint" object.
 
 ⸻
 
@@ -896,287 +952,216 @@ The export step must only serialize stored values.
 
 ⸻
 
-Core Identity Fields
+Core Identity Field Mapping
 
-These fields are derived directly from approved steps.
+The onboarding flow must populate the Blueprint JSON as follows:
 
-owner_email
+blueprint.positioning
+= approved Step 1 positioning value
 
-positioning
+blueprint.owner.email
+= owner_email collected in Step 0
 
-community_name
-instance_display_name
-instance_slug
+blueprint.owner.username
+= locked owner username from Step 5
 
-domain_type
-domain_candidate
+blueprint.owner.handle
+= @ + blueprint.owner.username + @ + blueprint.domain.candidate
 
-short_description
-instance_tagline
-header_line
+blueprint.owner.bio
+= approved owner bio from Step 5
 
-owner_username
-owner_handle
-owner_bio
-
-long_description
-welcome_announcement
-
-Instance Display Name
-
-instance_display_name
-
-This is the Mastodon server name displayed in:
-
-• server branding
-• instance directories
-• mobile headers
-• invite previews
-
-Deterministic rule:
-
-instance_display_name = community_name
-
-Mapping target:
-
-Mastodon → Admin → Branding → Server name
-
-This value must never be regenerated later.
+blueprint.owner.profile_links
+= inferred and normalized public links when available
+= [] if none are available
 
 ⸻
 
-Instance Tagline
+Community Mapping
 
-instance_tagline
+blueprint.community.name
+= approved community name from Step 2
 
-This maps to the Mastodon server description.
+blueprint.community.display_name
+= blueprint.community.name
 
-Displayed in:
+blueprint.community.slug
+= deterministic slug derived from approved community name in Step 2
 
-• instance directories
-• preview cards
-• onboarding screens
+blueprint.community.header_line
+= approved Step 4 header line
 
-Deterministic rule:
+blueprint.community.descriptions.short
+= approved short description from Step 1
 
-instance_tagline = short_description
+blueprint.community.descriptions.tagline
+= blueprint.community.descriptions.short
 
-Mapping target:
-
-Mastodon → Admin → Branding → Server description
-
-⸻
-
-Launch Content (not shown during onboarding)
-
-launch_content {
-
-  posts {
-
-    welcome
-    how_to_participate
-    mobile_apps
-
-  }
-
-  invite_message_template
-
-  core_hashtags
-
-}
-Purpose
-
-These provide ready-to-paste launch helpers used after provisioning.
-
-They are shown inside the dashboard onboarding guide, not the Blueprint Summary.
+blueprint.community.descriptions.long
+= auto-generated long description from approved decisions
 
 ⸻
 
-Visual Asset Direction
+Domain Mapping
 
-visual_asset_direction {
+blueprint.domain.type
+must store exactly one of:
 
-  thumbnail_banner
-  instance_icon
-  app_icon
-  favicon
-  owner_profile_image
+• Commonshub subdomain — fastest launch
+• External subdomain — brand continuity
+• Custom domain — standalone identity
 
+Never store:
+• Option A
+• Option B
+• Option C
+
+blueprint.domain.candidate
+= final approved fully formed domain from Step 3
+
+blueprint.domain.instance_domain
+= blueprint.domain.candidate
+
+⸻
+
+Assets Mapping
+
+blueprint.assets.thumbnail_banner
+= generated visual direction object
+
+blueprint.assets.instance_icon
+= generated visual direction object
+
+blueprint.assets.app_icon
+= generated visual direction object
+
+blueprint.assets.favicon
+= generated visual direction object
+
+blueprint.assets.owner_profile_image
+= generated visual direction object
+
+blueprint.assets.owner_header_image
+= generated visual direction object
+
+Each asset object contains guidance only, never uploaded file URLs.
+
+Recommended nested asset structure:
+
+{
+  "guidance": "...",
+  "recommended_size": "...",
+  "recommended_formats": [...],
+  "notes": "..."
 }
 
-These contain descriptive guidance text generated during onboarding.
-
-They are reused in:
-
-• dashboard setup instructions
-• asset upload prompts
-• onboarding checklists
-
-These fields contain direction only, never file URLs.
+Fields may be omitted only when not applicable.
 
 ⸻
 
-Provisioning Helper Fields
+Launch Mapping
 
-provisioning {
+blueprint.launch.announcement.welcome
+= auto-generated welcome announcement
 
-  instance_domain
-  instance_slug
-  instance_display_name
-  instance_tagline
+blueprint.launch.posts.welcome
+= generated welcome post
 
-  domain_type
-  domain_candidate
+blueprint.launch.posts.how_to_participate
+= generated participation post
 
-  owner_username
-  owner_handle
+blueprint.launch.posts.mobile_apps
+= generated mobile apps post
 
-  owner_email
-  mastodon_admin_email
+blueprint.launch.invite_message_template
+= generated invite message template
 
-}
+blueprint.launch.core_hashtags
+= generated hashtag array
 
-Provisioning mapping rules:
+These values are stored for dashboard onboarding and launch helpers.
+They are not shown in the Blueprint Summary unless explicitly requested.
 
-instance_domain = domain_candidate
+⸻
 
-instance_display_name = community_name
+Provisioning Mapping
 
-instance_tagline = short_description
+blueprint.provisioning.instance_domain
+= blueprint.domain.candidate
 
-mastodon_admin_email = owner_email
+blueprint.provisioning.instance_slug
+= blueprint.community.slug
 
-Handle construction rule:
+blueprint.provisioning.instance_display_name
+= blueprint.community.display_name
 
-owner_handle = @owner_username@domain_candidate
+blueprint.provisioning.instance_tagline
+= blueprint.community.descriptions.tagline
 
-Provisioning scripts may use either:
+blueprint.provisioning.mastodon_admin_email
+= blueprint.owner.email
 
-• owner_username
-• owner_handle
-
-depending on infrastructure implementation.
+No additional provisioning fields are required in the exported Blueprint JSON.
 
 ⸻
 
 Creator Context Object (internal)
 
-creator_context {
-
-  focus
-
-  inferred_archetype
-
-  primary_content_mode
-  publishing_cadence
-  platform_posture
-  audience_relationship
-
-  monetization_presence
-  brand_strength
+blueprint.creator_context = {
+  focus,
+  inferred_archetype,
+  primary_content_mode,
+  publishing_cadence,
+  platform_posture,
+  audience_relationship,
+  monetization_presence,
+  brand_strength,
   mission_domain_clarity
-
 }
 
-Purpose
-
-Supports:
-
-• dashboard onboarding hints
-• collaborator seeding guidance
-• future automation
-
-This object is never shown to the creator.
+This object is never shown to the creator in the Blueprint Summary.
 
 ⸻
 
 Collaborator Seeding Strategy
 
-collaborator_seeding_strategy {
-
-  seed_type
-
-  recommended_first_participants
-
+blueprint.collaborator_seeding_strategy = {
+  seed_type,
+  recommended_first_participants,
   rationale
-
 }
 
-Values are derived from creator_context.
-
-This object supports the post-provisioning onboarding guide.
+Values are derived from creator context and approved positioning.
 
 ⸻
 
 Provisioning Status Block (system controlled)
 
-provisioning_status {
-
-  domain_availability_checked: false
-  dns_verified: false
+blueprint.provisioning_status = {
+  domain_availability_checked: false,
+  dns_verified: false,
   instance_created: false
-
 }
 
-Initialization rule
+Initialization rule:
 
-The onboarding system must always initialize these fields to false.
+The onboarding flow must always initialize these fields to false.
 
 They are updated later by the provisioning backend.
 
 ⸻
 
-Blueprint Metadata
+Metadata Block
 
-blueprint_metadata {
-
-  blueprint_version
-  generated_at
-  creator_archetype
-
+blueprint.metadata = {
+  blueprint_version: null,
+  generated_at: null,
+  creator_archetype: null
 }
-
-Population rules:
 
 These values are set by the backend system, not the onboarding flow.
 
 The LLM must include the object but leave values null.
-
-Example:
-
-blueprint_metadata {
-  blueprint_version: null
-  generated_at: null
-  creator_archetype: null
-}
-
-Domain Storage Rule
-
-domain_type must store the full descriptive string, never an option label.
-
-Valid values:
-
-Commonshub subdomain — fastest launch
-External subdomain — brand continuity
-Custom domain — standalone identity
-
-Never store:
-
-Option A
-Option B
-Option C
-
-Domain Candidate Rule
-
-domain_candidate always stores the fully constructed domain chosen in Step 3.
-
-Examples:
-
-securitybrief.commonshub.social
-intel.jasonjaysmart.com
-securitybrief.com
-
-This value is never regenerated later.
 
 ⸻
 
@@ -1194,7 +1179,9 @@ the system must output three code blocks:
 
 The first code block must contain exactly one object:
 
-community_blueprint { ... }
+{
+  "blueprint": { ... }
+}
 
 No explanatory text may appear inside the code block.
 
@@ -1812,14 +1799,15 @@ Store both deterministically.
 
 Write:
 
-community_name: editorial form
-instance_slug: derived slug
+blueprint.community.name = editorial form
+blueprint.community.display_name = blueprint.community.name
+blueprint.community.slug = derived slug
 
 These values are never regenerated later.
 
 All domain construction in Step 3 must use:
 
-instance_slug
+blueprint.community.slug
 
 Never the display name.
 
