@@ -450,6 +450,93 @@ If confidence is low → default to independent_writer.
 
 No user confirmation.
 
+8H — Host Type Classification (internal, deterministic)
+
+Purpose
+
+Detect whether the onboarding host is acting as:
+
+• an individual creator
+• an institutional entity
+
+This classification affects tone, naming bias, and collaborator seeding.
+
+It does not change the onboarding steps.
+
+⸻
+
+host_type ∈ {
+  creator
+  institutional
+}
+
+Default
+
+creator
+
+The flow is always creator-first unless clear institutional signals exist.
+
+⸻
+
+Institutional Signals
+
+The host should be classified as institutional when the focus or links indicate:
+
+• a nonprofit organization
+• a research institute or academic lab
+• a media organization
+• a campaign or advocacy group
+• a professional society
+• a civic or government office
+
+Signals may include:
+
+• organization domain names (.org / .gov / .edu)
+• institutional language in focus
+• known organizations in provided links
+• multi-author publishing patterns
+• explicit organizational identity
+
+⸻
+
+Behavioral Effects
+
+When host_type = institutional:
+
+Step 1 — Positioning
+• language may reference an initiative or program
+• participants may include staff, researchers, or stakeholders
+
+Step 2 — Naming
+• institutional naming model becomes valid
+• mission-domain names may replace room metaphors
+
+Step 3 — Domain
+• stronger bias toward custom domains or external subdomains
+
+Step 4 — Header Line
+• may describe a monitoring or mission domain rather than a beat
+
+Step 5 — Owner Profile
+• may represent an organizational account rather than a personal host
+
+Collaborator seeding strategy
+• first participants may include staff, researchers, or members.
+
+⸻
+
+Creator Preservation Rule
+
+Even when host_type = institutional:
+
+The system must still preserve:
+
+• speakable names
+• human editorial tone
+• conversational framing
+
+This prevents institutional language from becoming bureaucratic.
+
 ⸻
 
 
