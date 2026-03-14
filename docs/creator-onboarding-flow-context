@@ -2020,9 +2020,6 @@ tell me and I’ll generate options for it.
 [blueprint.community.slug].social
 [blueprint.community.slug].community
 
-[blueprint.community.slug].jasonjaysmart.com
-example: [blueprint.community.slug].com / .social / .community
-
 Case B — Domain detected
 
 Example: jasonjaysmart.com
@@ -3042,11 +3039,17 @@ Hard constraints
 Max 3 sentences.
 
 Must answer:
-  1.  Who this is
-  2.  What gives authority
-  3.  Why this space exists
+  1. Who this is
+  2. What gives authority
+  3. Why this space exists
 
-Written in first person.
+Voice rules
+
+If owner_identity_mode = personal_host
+→ write in first person.
+
+If owner_identity_mode = institutional_host
+→ write in institutional voice (third person).
 
 Voice
 
