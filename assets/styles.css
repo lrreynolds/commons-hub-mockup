@@ -1,634 +1,943 @@
-/* =========================================================
-   Commonshub Mock — Base Design Tokens
-   ========================================================= */
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 
+<title>Commonshub — Turn comments into community</title>
+<link rel="canonical" href="https://thecommonshub.com/" />
+
+<!-- Primary SEO description -->
+<meta name="description" content="Turn comments into community. A single, ongoing conversation for your audience — on your domain — with built-in funding and no extra content to produce.">
+
+<!-- Open Graph -->
+<meta property="og:site_name" content="Commonshub">
+<meta property="og:title" content="Turn comments into community.">
+<meta property="og:description" content="A single, ongoing conversation for your audience — on your domain — with built-in funding and no extra content to produce.">
+<meta property="og:url" content="https://thecommonshub.com/">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://thecommonshub.com/og/og-preview.jpg?v=2">
+<meta property="og:image:alt" content="Commonshub — Turn comments into community">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:type" content="image/jpeg">
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Turn comments into community.">
+<meta name="twitter:description" content="Your audience. Your domain. Your rules. No ads. No algorithms.">
+<meta name="twitter:image" content="https://thecommonshub.com/og/og-preview.jpg?v=2">
+<meta name="twitter:image:alt" content="Commonshub — Turn comments into community">
+
+<!-- Theme color -->
+<meta name="theme-color" content="#1f6f4a">
+
+<!-- Favicon -->
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon.png" sizes="32x32">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+<style>
 :root{
-  /* Surfaces */
   --bg:#f4f7f5;
   --card:#ffffff;
-  --card2:#fbfcfb;
-
-  /* Text */
   --text:#102018;
   --muted:#50665a;
-
-  /* Lines / borders */
   --line:#d8e1db;
-  --border: var(--line); /* alias so either name works */
 
-  /* Brand */
-  --accent:#215f43;
-  --accent2:#0f5132;
-
-  /* Buttons */
-  --btn: var(--accent);
+  --btn:#1f6f4a;
   --btnText:#ffffff;
 
-  /* Pills */
-  --pill:#eef4f0;
-
-  /* Effects */
-  --shadow: 0 18px 50px rgba(16,32,24,.12);
-  --radius:18px;
-  --radius2:14px;
-
-  /* Font */
-  --font: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial,
-          "Apple Color Emoji","Segoe UI Emoji";
+  --band:#eef3ef;
+  --shadow: 0 10px 30px rgba(16,32,24,.06);
 }
 
 *{ box-sizing:border-box; }
 
 body{
+  font-family: system-ui, -apple-system, Segoe UI, sans-serif;
   margin:0;
-  font-family:var(--font);
-  line-height:1.35;
+  line-height:1.5;
+  background:var(--bg);
   color:var(--text);
-
-  /* Default background (neutral, calm) */
-  background:
-    radial-gradient(1000px 520px at 20% 0%, rgba(31,111,74,.14) 0%, rgba(31,111,74,0) 62%),
-    radial-gradient(900px 520px at 80% 10%, rgba(15,81,50,.10) 0%, rgba(15,81,50,0) 62%),
-    var(--bg);
 }
 
-/* =========================================================
-   Layout: Sidebar + Stage
-   ========================================================= */
+/* ===== HERO LAYOUT ===== */
 
-.wrap{
-  max-width:1180px;
-  margin: 0 auto;
-  padding: 22px 16px 22px;
-  display:grid;
-  grid-template-columns: 300px 1fr;
-  gap:16px;
-  min-height: 100vh;
-  align-items:start;
-}
-
-.sidebar{
-  position:sticky;
-  top:16px;
-  align-self:start;
-  background: rgba(255,255,255,.7);
-  border:1px solid var(--line);
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
-  padding:14px;
-  backdrop-filter: blur(10px);
-}
-
-.brand{
+.hero{
+  padding:80px 18px 70px;
   display:flex;
-  align-items:center;
-  gap:10px;
-  padding:10px 10px 12px;
-  border-bottom:1px solid var(--line);
-  margin-bottom:12px;
+  justify-content:center;
 }
 
-.dot{
-  width:12px;
-  height:12px;
-  border-radius:999px;
-  background: var(--accent);
-  box-shadow: 0 0 0 4px rgba(31,111,74,.14);
-}
-
-.brand b{font-size:15px}
-.brand span{
-  display:block;
-  font-size:12px;
-  color:var(--muted);
-  margin-top:2px
-}
-
-/* Sidebar nav */
-.nav{
-  display:flex;
-  flex-direction:column;
-  gap:8px;
-  margin-top:10px;
-}
-
-.nav .navItem{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:10px;
-  text-decoration:none;
-
+.heroInner{
   width:100%;
-  background: rgba(255,255,255,.85);
-  border:1px solid var(--line);
-  color:var(--text);
-  padding:10px 10px;
-  border-radius: 12px;
+  max-width:960px;
+  margin:0 auto;
+  padding:0 56px;
 }
 
-.nav .navItem.active{
-  border-color: rgba(31,111,74,.55);
-  box-shadow: 0 0 0 3px rgba(31,111,74,.10) inset;
+@media (max-width:640px){
+  .hero{ padding:64px 16px 56px; }
+  .heroInner{ padding:0 22px; }
 }
 
-.nav .navItem small{ color:var(--muted); }
+/* ===== TYPE ===== */
 
-.hint{
+.hero h1{
+  font-size:clamp(36px,5vw,54px);
+  line-height:1.03;
+  letter-spacing:-0.03em;
+  font-weight:900;
+  margin:0;
+  text-wrap: balance; /* ok if ignored */
+  opacity:0;
+  animation: riseFade 520ms ease-out forwards;
+}
+
+.hero .sub{
   margin-top:14px;
-  padding:10px;
-  border-radius: 12px;
-  background: rgba(31,111,74,.06);
-  border:1px dashed rgba(31,111,74,.25);
+  font-size:18px;
   color:var(--muted);
-  font-size:12px;
+  max-width:780px;
+  opacity:0;
+  animation: riseFade 520ms ease-out forwards;
+  animation-delay:90ms;
 }
 
-.hint b{ color:var(--text); }
+@media (max-width:640px){
+  .hero .sub{ font-size:16px; }
+}
 
-/* Stage */
-.stage{
-  background: rgba(255,255,255,.7);
+.hero .sub b{ color:var(--text); }
+
+/* ===== BEFORE / AFTER PANEL ===== */
+
+.beforeAfterSection{
+  margin:36px auto 0;   /* centers it */
+  margin-top:34px;
+  padding:26px 26px;
+  background:var(--band);
   border:1px solid var(--line);
-  border-radius: var(--radius);
+  border-radius:28px;
   box-shadow: var(--shadow);
-  overflow:hidden;
-  backdrop-filter: blur(10px);
+
+  /* ↓ THIS is the key change */
+  width:88%;                     /* creates visible side margins */
+  max-width:820px;              /* keeps it elegant on large screens */
+
+  opacity:0;
+  animation: riseFade 560ms ease-out forwards;
+  animation-delay:170ms;
 }
 
-.topbar{
+.beforeAfterGrid{
+  display:grid;
+  gap:18px;
+  grid-template-columns: 1fr auto 1fr;
+  align-items:center;              /* ensures visual centering */
+}
+
+.beforeAfterLabel{
+  font-size:12px;
+  letter-spacing:0.14em;
+  font-weight:900;
+  color:rgba(16,32,24,.65);
+  margin:0 0 10px;
+}
+
+.beforeBox{
+  background:var(--card);
+  border:1px solid var(--line);
+  border-radius:14px;
+  padding:10px 12px;
+  font-size:13px;
+  color:rgba(16,32,24,.78);
+  margin-bottom:10px;
+}
+
+.beforeBox:last-child{ margin-bottom:0; }
+
+.arrowWrap{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+
+.arrow{
+  width:42px;
+  height:42px;
+  border-radius:999px;
+  background:rgba(31,111,74,.08);
+  border:1px solid rgba(31,111,74,.18);
   display:flex;
   align-items:center;
-  justify-content:space-between;
-  padding:14px 16px;
-  border-bottom:1px solid var(--line);
-  background: rgba(255,255,255,.75);
+  justify-content:center;
+  font-size:22px;
+  font-weight:900;
+  color:var(--btn);
 }
 
-.topbar .left{ display:flex; align-items:center; gap:10px; }
+/* MOBILE: stack + full width */
+@media (max-width:760px){
 
-.logoMark{
+  .beforeAfterSection{
+    width:100%;
+    max-width:none;
+    margin:32px 0 0;      /* remove auto-centering gap */
+    padding:24px 18px;
+  }
+
+  /* MOBILE: stack BEFORE/AFTER */
+  .beforeAfterGrid{
+    grid-template-columns:1fr;
+    gap:0; 
+  }
+
+  /* BEFORE / AFTER: add a visual break when stacked */
+  .beforeAfterGrid > div:first-child{
+    padding-bottom:14px;
+    margin-bottom:14px;
+    border-bottom:1px solid rgba(16,32,24,.12);
+  }
+
+  .beforeAfterGrid > div:last-child{
+    padding-top:4px;
+  }
+
+  .beforeAfterExplain strong{
+    display:block;
+  }
+
+  .beforeAfterExplain strong:first-child{
+    margin-bottom:2px; /* tiny breathing room after "Before:" line */
+  }
+
+
+  /* Engines: slightly smaller copy on mobile */
+  #how .benefitGrid .benefit p{
+    font-size:13px;
+    line-height:1.35;
+  }
+
+  /* Optional: slightly smaller engine titles on mobile */
+  #how .benefit h3.engineTitle{
+    font-size:1.05rem !important;
+  }
+
+  .arrowWrap{
+    display:none;
+  }
+
+  /* keep your existing mobile override */
+  .afterCard{
+    transform:none;
+  }
+}
+  
+@media (max-width:760px){
+  .afterCard{ transform:none; }
+}
+
+.feedItem{
+  display:flex;
+  gap:10px;
+  padding:10px 8px;
+  border-radius:14px;
+
+  opacity:0;
+  animation: riseFade 520ms ease-out forwards;
+}
+
+.feedItem + .feedItem{
+  border-top:1px solid rgba(216,225,219,.7);
+}
+
+.feedItem:nth-of-type(1){ animation-delay:220ms; }
+.feedItem:nth-of-type(2){ animation-delay:300ms; }
+.feedItem:nth-of-type(3){ animation-delay:380ms; }
+
+.avatar{
   width:28px;
   height:28px;
-  border-radius:10px;
-  background: linear-gradient(135deg, rgba(31,111,74,1), rgba(31,111,74,.20));
-  border:1px solid rgba(31,111,74,.25);
+  border-radius:50%;
+  background:#cfd7d1;
+  flex-shrink:0;
+  margin-top:2px;
 }
 
-.topbar .meta b{ display:block; font-size:14px }
-.topbar .meta span{ display:block; font-size:12px; color:var(--muted) }
-
-.chip{
-  font-size:12px;
-  color:var(--muted);
-  background: var(--pill);
-  border:1px solid var(--line);
-  padding:6px 10px;
-  border-radius:999px;
-  white-space:nowrap;
-}
-
-.content{ padding:14px 18px 18px; }
-.center{ max-width:860px; margin:0 auto; }
-
-/* =========================================================
-   Common Components
-   ========================================================= */
-
-.header{
-  display:flex;
-  align-items:flex-end;
-  justify-content:space-between;
-  margin-bottom:12px;
-  gap:12px;
-}
-
-.header h1, .header h2{ margin:0; font-size:18px; }
-.header p{ margin:8px 0 0; color:var(--muted); font-size:12px }
-
-.card{
-  background: var(--card);
-  border:1px solid var(--line);
-  border-radius: var(--radius2);
-  padding:14px;
-}
-
-.card h3{ margin:0 0 8px; font-size:14px }
-
-.muted{ color:var(--muted); font-size:12px }
-
-.list{ display:flex; flex-direction:column; gap:10px; margin-top:10px; }
-
-.item{
-  padding:10px 10px;
-  border-radius: 12px;
-  border:1px solid var(--line);
-  background: var(--card2);
-}
-
-.item b{ font-size:13px }
-.item div{ margin-top:4px }
-
-.note{
-  margin-top:12px;
-  padding:10px;
-  border-radius: 12px;
-  background: rgba(31,111,74,.06);
-  border:1px solid rgba(31,111,74,.18);
-  color:var(--muted);
-  font-size:12px;
-}
-
-.note b{ color:var(--text) }
-
-.footerBar{
-  display:flex;
-  gap:10px;
-  margin-top:14px;
-  flex-wrap:wrap;
-}
-
-.primary{
-  flex:1;
-  background: var(--btn);
-  color: var(--btnText);
-  border:none;
-  border-radius: 14px;
-  padding:12px 14px;
-  font-weight:900;
-  cursor:pointer;
-  min-width:220px;
-  text-align:center;
-  text-decoration:none;
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  box-shadow: 0 6px 18px rgba(31,111,74,.35);
-}
-
-.secondary{
-  background:#ffffff;
-  color:var(--text);
-  border:1px solid var(--line);
-  border-radius: 14px;
-  padding:12px 14px;
-  font-weight:900;
-  cursor:pointer;
-  width:160px;
-  text-align:center;
-  text-decoration:none;
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-}
-
-.editBadge{
-  display:inline-flex;
-  align-items:center;
-  gap:6px;
-  font-size:11px;
-  color: var(--muted);
-  border:1px solid var(--line);
-  background: rgba(255,255,255,.6);
-  padding:3px 8px;
-  border-radius:999px;
-  margin-left:8px;
-  white-space:nowrap;
-}
-.editBadge b{ color: var(--text); font-weight:800; }
-
-/* Forms */
-.field{ margin-top:12px; }
-
-label{
-  display:block;
-  font-size:12px;
-  color:var(--muted);
-  margin-bottom:6px;
-}
-
-input[type="text"], input[type="email"], textarea, select{
-  width:100%;
-  border-radius: 14px;
-  border:1px solid var(--line);
-  background:#ffffff;
-  color: var(--text);
-  padding:12px 12px;
-  font-size:14px;
-  outline:none;
-}
-
-textarea{ min-height:110px; resize:vertical }
-
-/* =========================================================
-   Progress Bar
-   ========================================================= */
-
-.progress{
-  display:flex;
-  gap:8px;
-  margin-top:12px;
-  align-items:center;
-  color:var(--muted);
-  font-size:12px;
-}
-
-.bar{
-  flex:1;
-  height:8px;
-  border-radius:999px;
-  background: rgba(31,111,74,.08);
-  border:1px solid rgba(31,111,74,.12);
-  overflow:hidden;
-}
-
-.bar > div{
-  height:100%;
-  background: rgba(31,111,74,.70);
-}
-
-/* =========================================================
-   Flow Mode (setup / funding / provisioning)
-   Purpose: make it feel like you stepped into a short “journey”
-   ========================================================= */
-
-/* Hide sidebar / menu toggle only on pages that actually include .flowRoot */
-body.flow .flowRoot .sidebar{ display:none; }
-body.flow .flowRoot .wrap{ grid-template-columns:1fr; }
-body.flow .flowRoot .stage{ width:100%; }
-body.flow .flowRoot #navToggle{ display:none !important; }
-
-/* =========================================================
-   FLOW MODE (SAFE)
-   Only affects pages that include: <div class="flowRoot">
-   ========================================================= */
-
-.flowRoot{
-  min-height: 100vh;
-  padding: 22px 0;
-  background:
-    radial-gradient(1200px 700px at 20% 0%, rgba(31,111,74,.10), transparent 60%),
-    radial-gradient(900px 600px at 85% 15%, rgba(31,111,74,.07), transparent 55%),
-    linear-gradient(to bottom, rgba(31,111,74,.05) 0%, rgba(245,247,245,1) 70%);
-}
-
-/* The stage should feel like a panel sitting on the canvas */
-.flowRoot .stage{
-  border: 1px solid rgba(0,0,0,.06);
-  box-shadow: 0 18px 70px rgba(0,0,0,.08);
-}
-
-
-/* Flow banner + step chip (only apply if you use these classes) */
-.flowRoot .flowBanner{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:12px;
-  padding:10px 12px;
-  border-radius:14px;
-  border:1px solid rgba(31,111,74,.18);
-  background: rgba(31,111,74,.06);
-  margin-bottom:14px;
-}
-.flowRoot .flowBanner b{ font-weight:900; }
-
-.flowRoot .stepChip{
-  display:inline-flex;
-  align-items:center;
-  gap:8px;
-  padding:6px 10px;
-  border-radius:999px;
-  border:1px solid rgba(31,111,74,.22);
-  background: rgba(31,111,74,.08);
-  font-weight:900;
+.feedName{
   font-size:13px;
+  font-weight:800;
+  margin:0;
 }
 
-/* Make “Return to dashboard” / start over slightly quieter */
-.flowRoot .exitLink,
-.flowRoot a[data-reset]{
-  opacity: .82;
-}
-.flowRoot .exitLink:hover,
-.flowRoot a[data-reset]:hover{
-  opacity: 1;
+.feedText{
+  font-size:13px;
+  color:var(--muted);
+  margin-top:2px;
+  line-height:1.35;
 }
 
-/* Shimmer / motion for progress fill (flow only) */
-.flowRoot .progress .bar > div{
-  background: linear-gradient(90deg, var(--accent), rgba(31,111,74,0.65), var(--accent));
-  background-size: 200% 100%;
-  animation: flowPulse 3s ease-in-out infinite;
-}
-@keyframes flowPulse{
-  0%{ background-position: 0% 50%; }
-  50%{ background-position: 100% 50%; }
-  100%{ background-position: 0% 50%; }
+.beforeAfterExplain{
+  margin-top:14px;                 /* was 16px */
+  font-size:14px;
+  text-align:center;
+  color:var(--muted);
 }
 
-/* Primary CTA “forward” arrow (only if you add .forward) */
-.flowRoot .primary.forward::after{
-  content:" →";
+.beforeAfterTagline{
+  margin-top:6px;                  /* NEW: pulls it up a touch */
+  font-size: 1.15rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  text-align:center;
+  color:var(--btn);
+}
+/* ===== BENEFITS ===== */
+
+.benefitGrid{
+  margin-top: 2.4rem;
+  display:grid;
+  gap:18px;
+  grid-template-columns: 1fr;
+  opacity:0;
+  animation: riseFade 560ms ease-out forwards;
+  animation-delay:250ms;
+}
+
+@media (min-width:760px){
+  .benefitGrid{ grid-template-columns: repeat(3, 1fr); }
+}
+
+.benefit{
+  background:var(--card);
+  border:1px solid var(--line);
+  border-radius:18px;
+  padding: 1.2rem 1.25rem 1.25rem;  /* reduce top padding */
+  height: 100%;
+}
+
+.benefit h3{
+  font-size: 1.38rem;
+  line-height: 1.25;
+  font-weight: 650; /* or 600 if you prefer */
+  letter-spacing: -0.01em;
+  margin-top: 0;
+  margin-bottom: 0.35rem;
+}
+
+.benefit p{
+  margin:0;
+  color:var(--muted);
+  font-size:14px;
+  line-height:1.45;
+}
+.benefit.isPrimary{
+  background: #f3efe2;
+  border: 1.8px solid rgba(185, 151, 72, 0.45); /* gold outline */
+  box-shadow: 0 14px 38px rgba(16,32,24,.10);
+}
+  .benefit.isPrimary h3{
+  font-size: 1.42rem;
+}
+  .benefit.newCommunity{
+  background: linear-gradient(
+    180deg,
+    rgba(31,111,74,0.10),
+    rgba(31,111,74,0.04)
+  );
+  border: 1.8px solid rgba(31,111,74,.32);
+}
+
+/* ===== PROMISE + CTA ===== */
+
+.heroPromise{
   font-weight:900;
+  color:var(--btn);
+  text-align:center;
+  /* margin:26px auto 18px; */
+  margin-top: 1.6rem;
+  font-size:18px;
 }
 
-/* =========================================================
-   Funding “list looks like rows” helper (optional)
-   ========================================================= */
-.fundingCard .list{ gap:0 !important; }
-.fundingCard .list .item{
-  background: transparent !important;
-  border: none !important;
-  border-radius: 0 !important;
-  padding: 12px 0 !important;
-}
-.fundingCard .list .item + .item{
-  border-top: 1px solid rgba(16,32,24,.08) !important;
+@media (max-width:640px){
+  .heroPromise{ font-size:16px; }
 }
 
-/* =========================
-   Dashboard theme (place-like)
-   Apply ONLY when <body class="dashboard">
-   ========================= */
-
-body.dashboard{
-  /* Dark “room” */
-  --bg:#46524d;
-
-  /* On dark surfaces */
-  --dashText:#e9f2ec;
-  --dashMuted: rgba(233,242,236,.70);
-  --dashBorder: rgba(233,242,236,.14);
-
-  /* Card surfaces (still light) */
-  --card: rgba(255,255,255,.94);
-  --card2: rgba(255,255,255,.88);
-
-  /* Card text (dark) */
-  --cardText:#0f1713;
-  --cardMuted: rgba(15,23,19,.70);
-
-  /* Make borders on light cards consistent */
-  --line: rgba(15,23,19,.10);
+.heroBottomCta{
+  display:flex;
+  justify-content:center;
+  opacity:0;
+  animation: riseFade 520ms ease-out forwards;
+  animation-delay:320ms;
 }
 
-body.dashboard{
-  background: var(--bg);
-  color: var(--dashText);
+.cta{
+  display:inline-block;
+  padding:14px 22px;
+  background:var(--btn);
+  color:var(--btnText);
+  border-radius:16px;
+  font-weight:900;
+  text-decoration:none;
+  will-change: transform;
+  animation: ctaBreathe 2.8s ease-in-out 1.2s infinite;
 }
 
-body.dashboard .header{
-  padding-bottom:14px;
-  margin-bottom:18px;
-  border-bottom:1px solid var(--dashBorder);
+@media (hover:hover){
+  .cta:hover{ transform: translateY(-1px); }
 }
 
-/* Stage + topbar read as UI chrome on dark */
-body.dashboard .stage{
-   background: rgba(255,255,255,.10);
-  border: 1px solid var(--dashBorder);
-  box-shadow: 0 22px 60px rgba(0,0,0,.28);
-  backdrop-filter: blur(14px);
-}
-body.dashboard .topbar{
-  background: rgba(255,255,255,.12);
-  border-bottom: 1px solid var(--dashBorder);
-}
-body.dashboard .topbar .chip{
-  font-weight:700;
+/* ===== ANIMATIONS ===== */
+
+@keyframes riseFade{
+  from { opacity:0; transform:translateY(10px); filter: blur(1px); }
+  to   { opacity:1; transform:translateY(0);    filter: blur(0); }
 }
 
-/* Cards are light "panels" */
-body.dashboard .card{
+@keyframes ctaBreathe{
+  0%,100% { transform: translateY(0);   box-shadow: 0 6px 18px rgba(16,32,24,.10); }
+  50%     { transform: translateY(-1px); box-shadow: 0 10px 26px rgba(16,32,24,.14); }
+}
+
+  .reveal {
+  opacity: 0;
+  transform: translateY(12px);
+  transition:
+    opacity 600ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 600ms cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, transform;
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal--slow {
+  transition-duration: 750ms;
+}
+
+.reveal--delay-1 { transition-delay: 90ms; }
+.reveal--delay-2 { transition-delay: 180ms; }
+.reveal--delay-3 { transition-delay: 270ms; }
+.reveal--delay-4 { transition-delay: 360ms; }
+
+/* Respect Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce){
+  .hero h1,
+  .hero .sub,
+  .beforeAfterSection,
+  .benefitGrid,
+  .heroBottomCta,
+  .feedItem,
+  .cta{
+    animation:none !important;
+    opacity:1 !important;
+    transform:none !important;
+    filter:none !important;
+  }
+}
+.sectionCta{
+  display:flex;
+  justify-content:flex-end;
+  margin-top:28px;
+}
+
+.secondaryCta{
+  padding:12px 18px;
+  font-size:14px;
+  border-radius:14px;
+  background:transparent;
+  color:var(--btn);
+  border:1px solid rgba(31,111,74,.35);
+  animation:none;           /* no breathing on secondary */
+}
+
+@media (hover:hover){
+  .secondaryCta:hover{
+    background:rgba(31,111,74,.06);
+    transform:translateY(-1px);
+  }
+}
+
+@media (max-width:640px){
+  .sectionCta{
+    justify-content:center;
+  }
+} 
+  .heroBottomCtaRow{
+  gap:14px;
+  align-items:center;
+}
+
+.secondaryCta{
+  background:transparent;
+  color:var(--btn);
+  border:1px solid rgba(31,111,74,.35);
+  animation:none;
+}
+
+@media (max-width:640px){
+  .heroBottomCtaRow{
+    flex-direction:column;
+  }
+  .heroBottomCtaRow .cta{
+    width:100%;
+    text-align:center;
+  }
+}
+/* Respect the creator’s existing content layer */
+.contentLayer{
   background: var(--card);
-  color: var(--cardText);
-  border: 1px solid rgba(255,255,255,.18);
-}
-
-
-/* Chips and secondary buttons should be subtle but readable */
-body.dashboard .chip{
-  background: rgba(255,255,255,.10);
-  border: 1px solid var(--dashBorder);
-  color: var(--dashText);
-}
-
-body.dashboard .secondary{
-  background: rgba(255,255,255,.10);
-  border: 1px solid var(--dashBorder);
-  color: var(--dashText);
-}
-
-body.dashboard #fundingLiveActions .secondary{
-  background: #ffffff;
-  color: var(--cardText);
   border: 1px solid var(--line);
 }
 
-body.dashboard #fundingLiveActions{
+.contentLayer strong,
+.contentLayer .layerTitle{
+  color: var(--text);
+  font-weight: 800;
+}
+
+.contentLayer .layerMeta{
+  color: rgba(16,32,24,.72); /* soft, but not “diminished” */
+  font-weight: 600;
+}
+
+.contentLayer .layerNote{
+  color: var(--muted);
+  font-size: 13px;
+}
+  /* SECTION HEADLINE — prevent awkward last-word wrap */
+#how h2{
+  max-width: 18ch;
+  margin-left: auto;
+  margin-right: auto;
+  text-wrap: balance;
+}
+
+/* YOUR CONTENT BOX — stronger, not bigger than NEW */
+.yourContent strong{
+  font-size: 15px;
+  font-weight: 800;
+}
+
+.yourContent .muted{
+  font-size: 14px;
+}
+
+/* NEW COMMUNITY — make it the internal hero */
+.newCommunity .title{
+  font-size: 18px;
+  font-weight: 900;
+  letter-spacing: -0.01em;
+}
+
+/* ENGINE TITLES — reduce visual weight */
+.engineTitle{
+  font-size: 17px;
+  font-weight: 800;
+}
+
+/* COMMONSHUB TITLE — keep authoritative */
+.commonshubTitle{
+  font-size: 20px;
+  font-weight: 900;
+  letter-spacing: -0.01em;
+}
+
+/* --- Engine titles: override the existing .benefit h3 rule --- */
+.benefit h3.engineTitle{
+  font-size: 1.15rem !important;
+  line-height: 1.2 !important;
+  font-weight: 750 !important;
+  letter-spacing: -0.01em !important;
+  margin-bottom: 0.45rem !important;
+}
+
+/* --- Your content: make it feel deliberate (not wimpy) --- */
+.benefit.yourContent strong{
+  font-size: 1.05rem;
+  font-weight: 850;
+}
+
+/* --- New community: make the internal title the hero --- */
+.newCommunity .title{
+  font-size: 1.25rem;
+  font-weight: 900;
+  letter-spacing: -0.01em;
+}
+  /* utility */
+.muted{ color: var(--muted); }
+
+/* center the HOW section headline reliably */
+#how h2{
+  max-width: 28ch;
+  margin: 0 auto 14px;
+  text-align: center;
+  text-wrap: balance;
+}
+
+/* center the content layer so it doesn't feel "wimpy" */
+.benefit.yourContent{
+  text-align: center;
+}
+.benefit.yourContent strong{
+  display:block;
+  font-size: 1.05rem;
+  font-weight: 900;
+  margin-bottom: 4px;
+}
+.benefit.yourContent .muted{
+  display:block;
+  font-size: 0.95rem;
+  margin-bottom: 4px;
+}
+.benefit.yourContent .note{
+  font-size: 0.95rem;
+}
+
+/* reduce engine body copy size a hair */
+.engineCopy{
+  font-size: 13.5px;
+  line-height: 1.4;
+  color: var(--muted);
+}
+.engineCopy b{ color: var(--text); }
+
+/* commonshub copy: tighter and balanced */
+.commonCopy{
+  font-size: 14px;
+  line-height: 1.4;
+  color: var(--muted);
+  margin: 0.35rem 0 0;
+}
+@media (max-width:760px){
+  #how p.engineCopy{
+    font-size:12px !important;
+    line-height:1.32 !important;
+  }
+  #how h3.engineTitle{
+    font-size:1.05rem !important;
+  }
+}
+  .powerLine{
+ margin: 36px auto 18px;
+  max-width: 720px;
+  text-align: center;
+  font-size: 18px;
+  line-height: 1.35;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  color: var(--text);
+}
+
+@media (max-width:640px){
+  .powerLine{
+    font-size:16px;
+    padding: 0 10px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<section class="hero">
+  <div class="heroInner">
+
+    <h1>Turn comments into community.</h1>
+ <p class="sub">
+      A <b>single</b>, ongoing conversation for the people who care about your work —
+not comments that reset every time you <b>publish</b>.
+    </p>
+    <p class="sub">
+      A <b>chronological feed</b> for your audience —
+      with <b>built-in community funding</b> —
+      and <b>no extra content</b> to produce.
+    </p>
+
+    <!-- BEFORE / AFTER VISUAL -->
+    <div class="beforeAfterSection">
+
+      <div class="beforeAfterGrid">
+
+        <!-- BEFORE -->
+        <div>
+          <div class="beforeAfterLabel">BEFORE</div>
+
+          <div class="beforeBox">YouTube Comments</div>
+          <div class="beforeBox">Substack Replies</div>
+          <div class="beforeBox">Twitter Threads</div>
+        </div>
+
+        <!-- ARROW -->
+        <div class="arrowWrap">
+          <div class="arrow">→</div>
+        </div>
+
+        <!-- AFTER -->
+        <div>
+          <div class="beforeAfterLabel">AFTER</div>
+
+          <div class="afterCard">
+
+            <div class="feedItem">
+              <div class="avatar"></div>
+              <div>
+                <div class="feedName">Alex</div>
+                <div class="feedText">
+                  This episode hit hard. Especially the part about sustainable communities.
+                </div>
+              </div>
+            </div>
+
+            <div class="feedItem">
+              <div class="avatar"></div>
+              <div>
+                <div class="feedName">Jordan</div>
+                <div class="feedText">
+                  Same here. I love having one place to continue the conversation.
+                </div>
+              </div>
+            </div>
+
+            <div class="feedItem">
+              <div class="avatar"></div>
+              <div>
+                <div class="feedName">You</div>
+                <div class="feedText">
+                  Appreciate that. This is exactly why we built this space.
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+
+      <div class="beforeAfterExplain">
+        <strong>Before:</strong> comments that reset with every post.
+        <strong>After:</strong> a shared conversation that compounds over time.
+      </div>
+
+      <div class="beforeAfterTagline">
+        From scattered threads to shared community.
+      </div>
+
+    </div>
+
+  <!-- BENEFITS -->
+<div class="benefitGrid">
+
+  <div class="benefit reveal reveal--delay-1">
+    <h3>Real conversations</h3>
+    <p>
+      One shared feed. No algorithmic distortion. No reset.
+      Your audience talks with you — and each other — openly.
+    </p>
+  </div>
+
+  <div class="benefit reveal reveal--delay-2">
+    <h3>No extra work</h3>
+    <p>
+      Keep publishing on YouTube or Substack.
+      Just share your link. Conversations happen here.
+    </p>
+  </div>
+
+  <div class="benefit reveal reveal--delay-3">
+    <h3>Sustainable by design</h3>
+    <p>
+      Built-in community funding keeps it healthy —
+      without ads, algorithms, or platform extraction.
+    </p>
+  </div>
+
+</div>
+
+<p class="powerLine reveal reveal--slow reveal--delay-2">
+  One place for your audience, collaborators, and sources — <b>under your control</b> —
+  that cannot be throttled, shadow-banned, or shut down.
+</p>
+
+<p class="heroPromise reveal reveal--delay-3">
+  No ads • No algorithms • Community funded
+</p>
+
+<div class="heroBottomCta heroBottomCtaRow reveal reveal--delay-4">
+  <a class="cta" href="guided-onboarding-mockup-v2.html">Start Your Community</a>
+  <a class="cta secondaryCta" href="#how">See how it works</a>
+</div>
+  </div>
+</section>
+<section id="how" class="hero" style="padding-top:40px; padding-bottom:20px;">
+  <div class="heroInner">
+
+    <div class="beforeAfterSection" style="max-width:820px; margin-top:0;">
+
+      <h2 style="
+        font-size:clamp(26px,3.2vw,34px);
+        line-height:1.15;
+        letter-spacing:-0.02em;
+        margin:0 0 14px;
+        text-align:center;
+      ">
+        Built on proven infrastructure — not another platform
+      </h2>
+
+      <p class="sub" style="text-align:center; margin:0 auto 26px; max-width:640px;">
+        Commonshub connects a <b>chronological social layer</b> with a
+        <b>native funding engine</b> — and we handle the hosting,
+        setup, and integration.
+      </p>
+
+<!-- STACKED ARCHITECTURE (THE "SANDWICH") -->
+<div style="
+  margin-top:4px;
   display:flex;
-  gap:10px;
+  flex-direction:column;
+  gap:10px;              /* <-- this is the sandwich tightness */
+">
+
+  <!-- EXISTING CONTENT (EXTERNAL / SUBORDINATE) -->
+<div class="benefit yourContent">
+  <strong>Your content (already exists)</strong>
+  <span class="muted">YouTube • Substack • Podcast</span>
+  <div class="note muted">Keep publishing exactly as you do today. <b style="color:var(--text);">Nothing changes.</b></div>
+</div>
+<div style="
+  display:flex;
   align-items:center;
-  justify-content:space-between;
-}
+  justify-content:center;
+  margin:2px 0;
+">
+  <div style="
+    height:1px;
+    width:100%;
+    background:rgba(16,32,24,.12);
+  "></div>
 
-/* muted inside the dark dashboard chrome */
-body.dashboard .topbar .muted,
-body.dashboard .header .muted{
-  color: rgba(233,242,236,.82);
-}
+  <div style="
+    padding:0 10px;
+    font-weight:900;
+    font-size:14px;
+    color:rgba(16,32,24,.55);
+  ">+</div>
 
-body.dashboard .header h2{
-  font-size:20px;
-  font-weight:900;
-  letter-spacing:-.01em;
-}
+  <div style="
+    height:1px;
+    width:100%;
+    background:rgba(16,32,24,.12);
+  "></div>
+</div>
+  <!-- WHAT'S NEW (THE PRODUCT) -->
+  <div class="benefit newCommunity" style="
+    text-align:center;
+    margin:0;            /* critical */
+    padding:12px 14px;
+    box-shadow: 0 10px 26px rgba(16,32,24,.06);
+  ">
+    <div style="display:inline-flex; align-items:center; gap:10px; margin-bottom:6px;">
+      <span style="
+        display:inline-flex;
+        align-items:center;
+        padding:4px 10px;
+        border-radius:999px;
+        background:rgba(31,111,74,.10);
+        border:1px solid rgba(31,111,74,.18);
+        color:var(--btn);
+        font-weight:900;
+        font-size:12px;
+        letter-spacing:.06em;
+        text-transform:uppercase;
+      ">NEW · YOU OWN THIS</span>
 
-body.dashboard .card + .card{
-  margin-top:18px;
-}
+      <span class="title">Your independent community</span>
+    </div>
 
-/* muted inside light cards stays dark-muted */
-body.dashboard .card .muted{
-  color: var(--cardMuted);
-}
+    <div style="color:var(--muted); font-size:14px; line-height:1.35;">
+      A shared, ongoing conversation on your own domain — with <b style="color:var(--text);">funding built in</b>.
+    </div>
 
-/* =========================================================
-   Plan grid + Responsive
-   ========================================================= */
+    <div style="margin-top:8px; color:rgba(16,32,24,.68); font-size:13px;">
+      Your domain • Your audience • Your rules • No ads • No algorithms
+    </div>
+  </div>
 
-.planGrid{
-  display:grid;
-  grid-template-columns: 1fr 1fr;
-  gap:12px;
-  align-items:start;
-}
+  <!-- ENGINES (2-UP) -->
+ <div class="benefitGrid" style="
+  margin-top:0;
+  grid-template-columns:1fr 1fr;
+  gap:14px;
+">
 
-@media (max-width: 860px){
-  .planGrid{ grid-template-columns: 1fr; }
-}
+  <div class="benefit" style="text-align:center;">
+    <h3 class="engineTitle">Social media engine</h3>
+    <p class="engineCopy">
+      Mastodon — a proven, open network used by millions.
+      <b>No</b> ads or algorithm.
+    </p>
+  </div>
 
-@media (max-width: 1020px){
-  .wrap{ grid-template-columns:1fr; }
-  .sidebar{ position:relative; top:auto; }
-}
+  <div class="benefit" style="text-align:center;">
+    <h3 class="engineTitle">Funding &amp; payments engine</h3>
+    <p class="engineCopy">
+      Stripe — memberships, tips, and donations.<br>
+      Money goes <b>directly</b> to you.
+    </p>
+  </div>
 
-/* =========================
-   Dashboard sidebar tuning
-   ========================= */
+</div>
 
-body.dashboard .sidebar{
-  background: rgba(0,0,0,.28);
-  border: 1px solid var(--dashBorder);
-  box-shadow: inset 0 1px 0 rgba(255,255,255,.04);
-  backdrop-filter: blur(12px);
-}
+<div class="benefit isPrimary" style="
+  margin-top:0;
+  text-align:center;
+  padding:1.1rem 1.25rem 1.2rem;
+">
+  <h3 class="commonshubTitle">Commonshub — managed infrastructure</h3>
+  <p class="commonCopy">
+    We handle setup, hosting, updates, and Stripe integration.
+  </p>
+  <p class="commonCopy">
+    Runs on your domain. Under <b>your control</b>.
+  </p>
+</div>
+</div>
+</div>
+</section>
 
-body.dashboard .brand{
-  border-bottom: 1px solid var(--dashBorder);
-}
+</body>
+  <script>
+  (function () {
+    const els = document.querySelectorAll(".reveal");
+    if (!els.length) return;
 
-body.dashboard .brand b{
-  color: var(--dashText);
-}
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+            observer.unobserve(entry.target);
+          }
+        }
+      },
+      { threshold: 0.15 }
+    );
 
-body.dashboard .brand span{
-  color: var(--dashMuted);
-}
-
-/* Sidebar hint becomes quiet banner */
-body.dashboard .hint{
-  background: rgba(255,255,255,.06);
-  border: 1px dashed var(--dashBorder);
-  color: var(--dashMuted);
-}
-
-/* Sidebar links */
-body.dashboard .sidebar a{
-  color: var(--dashText);
-}
-body.dashboard .wrap{
-  grid-template-columns: 1fr;
-  max-width: 900px;
-}
-
-/* Dashboard canvas (override) — keep this LAST */
-body.dashboard{
-  background:
-    radial-gradient(1200px 600px at 30% 0%, rgba(31,111,74,.05), transparent 70%),
-    radial-gradient(1000px 600px at 80% 10%, rgba(31,111,74,.04), transparent 70%),
-    var(--bg);
-}
-body.dashboard #fundingLiveActions a.secondary,
-body.dashboard #fundingLiveActions button.secondary{
-  background:#ffffff;
-  color:var(--cardText);
-  border:1px solid rgba(15,23,19,.14);
-}
-/* Invite CTA buttons inside light cards */
-body.dashboard .card .secondary{
-  background:#ffffff;
-  color:var(--cardText);
-  border:1px solid var(--line);
-}
+    els.forEach((el) => observer.observe(el));
+  })();
+</script>
+</html>
