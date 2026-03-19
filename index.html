@@ -1,16 +1,16 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
 
-<title>Commonshub — Turn comments into community</title>
-<link rel="canonical" href="https://thecommonshub.com/" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
 
-<!-- Primary SEO description -->
-<meta name="description" content="Turn comments into community. A single, ongoing conversation for your audience — on your domain — with built-in funding and no extra content to produce.">
+  <title>Commonshub — Digital Sovereignty Infrastructure</title>
 
-<!-- Open Graph -->
+  <meta name="description"
+  content="Commonshub provides digital sovereignty infrastructure for creators, organizations, and public-interest communities — independent conversation spaces on your own domain without ads or algorithms.">
+
+  <!-- Open Graph -->
 <meta property="og:site_name" content="Commonshub">
 <meta property="og:title" content="Turn comments into community.">
 <meta property="og:description" content="A single, ongoing conversation for your audience — on your domain — with built-in funding and no extra content to produce.">
@@ -37,8 +37,12 @@
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="/favicon.png" sizes="32x32">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-
 <style>
+  #csh-root {
+  all: initial;
+  font-family: system-ui, -apple-system, Segoe UI, sans-serif;
+}
+
 :root{
   --bg:#f4f7f5;
   --card:#ffffff;
@@ -75,13 +79,9 @@ body{
   width:100%;
   max-width:960px;
   margin:0 auto;
-  padding:0 56px;
+  padding:0 24px;
 }
 
-@media (max-width:640px){
-  .hero{ padding:64px 16px 56px; }
-  .heroInner{ padding:0 22px; }
-}
 
 /* ===== TYPE ===== */
 
@@ -114,50 +114,6 @@ body{
 
 /* ===== BEFORE / AFTER PANEL ===== */
 
-.beforeAfterSection{
-  margin:36px auto 0;   /* centers it */
-  margin-top:34px;
-  padding:26px 26px;
-  background:var(--band);
-  border:1px solid var(--line);
-  border-radius:28px;
-  box-shadow: var(--shadow);
-
-  /* ↓ THIS is the key change */
-  width:88%;                     /* creates visible side margins */
-  max-width:820px;              /* keeps it elegant on large screens */
-
-  opacity:0;
-  animation: riseFade 560ms ease-out forwards;
-  animation-delay:170ms;
-}
-
-.beforeAfterGrid{
-  display:grid;
-  gap:18px;
-  grid-template-columns: 1fr auto 1fr;
-  align-items:center;              /* ensures visual centering */
-}
-
-.beforeAfterLabel{
-  font-size:12px;
-  letter-spacing:0.14em;
-  font-weight:900;
-  color:rgba(16,32,24,.65);
-  margin:0 0 10px;
-}
-
-.beforeBox{
-  background:var(--card);
-  border:1px solid var(--line);
-  border-radius:14px;
-  padding:10px 12px;
-  font-size:13px;
-  color:rgba(16,32,24,.78);
-  margin-bottom:10px;
-}
-
-.beforeBox:last-child{ margin-bottom:0; }
 
 .arrowWrap{
   display:flex;
@@ -179,62 +135,6 @@ body{
   color:var(--btn);
 }
 
-/* MOBILE: stack + full width */
-@media (max-width:760px){
-
-  .beforeAfterSection{
-    width:100%;
-    max-width:none;
-    margin:32px 0 0;      /* remove auto-centering gap */
-    padding:24px 18px;
-  }
-
-  /* MOBILE: stack BEFORE/AFTER */
-  .beforeAfterGrid{
-    grid-template-columns:1fr;
-    gap:0; 
-  }
-
-  /* BEFORE / AFTER: add a visual break when stacked */
-  .beforeAfterGrid > div:first-child{
-    padding-bottom:14px;
-    margin-bottom:14px;
-    border-bottom:1px solid rgba(16,32,24,.12);
-  }
-
-  .beforeAfterGrid > div:last-child{
-    padding-top:4px;
-  }
-
-  .beforeAfterExplain strong{
-    display:block;
-  }
-
-  .beforeAfterExplain strong:first-child{
-    margin-bottom:2px; /* tiny breathing room after "Before:" line */
-  }
-
-
-  /* Engines: slightly smaller copy on mobile */
-  #how .benefitGrid .benefit p{
-    font-size:13px;
-    line-height:1.35;
-  }
-
-  /* Optional: slightly smaller engine titles on mobile */
-  #how .benefit h3.engineTitle{
-    font-size:1.05rem !important;
-  }
-
-  .arrowWrap{
-    display:none;
-  }
-
-  /* keep your existing mobile override */
-  .afterCard{
-    transform:none;
-  }
-}
   
 @media (max-width:760px){
   .afterCard{ transform:none; }
@@ -441,7 +341,6 @@ body{
   .beforeAfterSection,
   .benefitGrid,
   .heroBottomCta,
-  .feedItem,
   .cta{
     animation:none !important;
     opacity:1 !important;
@@ -525,29 +424,6 @@ body{
   margin-left: auto;
   margin-right: auto;
   text-wrap: balance;
-}
-
-/* YOUR CONTENT BOX — stronger, not bigger than NEW */
-.yourContent strong{
-  font-size: 15px;
-  font-weight: 800;
-}
-
-.yourContent .muted{
-  font-size: 14px;
-}
-
-/* NEW COMMUNITY — make it the internal hero */
-.newCommunity .title{
-  font-size: 18px;
-  font-weight: 900;
-  letter-spacing: -0.01em;
-}
-
-/* ENGINE TITLES — reduce visual weight */
-.engineTitle{
-  font-size: 17px;
-  font-weight: 800;
 }
 
 /* COMMONSHUB TITLE — keep authoritative */
@@ -649,295 +525,870 @@ body{
     padding: 0 10px;
   }
 }
-</style>
-</head>
 
-<body>
+.panelShell{
+  width:100%;
+  max-width:1100px;
+  margin:28px auto;
+  padding:34px 34px 38px;
+  background:var(--band);
+  border:1px solid var(--line);
+  border-radius:32px;
+  box-shadow:var(--shadow);
+  overflow:hidden;
+}
 
-<section class="hero">
-  <div class="heroInner">
+.hostPanel{
+  position:relative;
+}
 
-    <h1>Turn comments into community.</h1>
- <p class="sub">
-      A <b>single</b>, ongoing conversation for the people who care about your work —
-not comments that reset every time you <b>publish</b>.
-    </p>
-    <p class="sub">
-      A <b>chronological feed</b> for your audience —
-      with <b>built-in community funding</b> —
-      and <b>no extra content</b> to produce.
-    </p>
+.hostPanel::after{
+  content:"";
+  position:absolute;
+  right:18px;
+  top:78px;
+  width:40px;
+  height:44px;
+  pointer-events:none;
+  background:linear-gradient(to right, rgba(238,243,239,0), rgba(238,243,239,1));
+}
 
-    <!-- BEFORE / AFTER VISUAL -->
-    <div class="beforeAfterSection">
+@media (min-width:760px){
+  .hostPanel::after{
+    display:none;
+  }
+}
 
-      <div class="beforeAfterGrid">
+@media (max-width:900px){
+  .panelShell{
+    margin:24px auto;
+    padding:24px 18px 28px;
+    border-radius:24px;
+  }
 
-        <!-- BEFORE -->
-        <div>
-          <div class="beforeAfterLabel">BEFORE</div>
+  .hostPanel{
+    margin:0 auto;
+    padding:24px 18px 28px;
+    border-radius:24px;
+  }
 
-          <div class="beforeBox">YouTube Channel</div>
-          <div class="beforeBox">Substack Comments</div>
-          <div class="beforeBox">Spotify Feed</div>
-        </div>
+  .architectureSection{
+    margin:24px auto;
+  }
+}
 
-        <!-- ARROW -->
-        <div class="arrowWrap">
-          <div class="arrow">→</div>
-        </div>
+.hostPanelIntro{
+  max-width:760px;
+  margin:0 auto 18px;
+  text-align:center;
+  font-size:18px;
+  line-height:1.45;
+  color:var(--muted);
+}
 
-        <!-- AFTER -->
-        <div>
-          <div class="beforeAfterLabel">AFTER</div>
+.hostSection{
+  max-width:920px;
+  margin:0 auto;
+  text-align:center;
+}
 
-          <div class="afterCard">
+.hostHeadline{
+  font-size: clamp(20px,2.2vw,26px);
+  font-weight:650;
+  letter-spacing:-0.015em;
+  line-height:1.2;
+  margin-bottom:10px;
+}
 
-            <div class="feedItem">
-              <div class="avatar"></div>
-              <div>
-                <div class="feedName">Alex</div>
-                <div class="feedText">
-                  This episode hit hard. Especially the part about sustainable communities.
-                </div>
-              </div>
-            </div>
+.hostIntro{
+  max-width:760px;
+  margin:0 auto 12px;
+  font-size:17px;
+  line-height:1.45;
+  color:var(--muted);
+}
 
-            <div class="feedItem">
-              <div class="avatar"></div>
-              <div>
-                <div class="feedName">Jordan</div>
-                <div class="feedText">
-                  Same here. I love having one place to continue the conversation.
-                </div>
-              </div>
-            </div>
+.hostBenefits{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:22px;
+  margin-top:30px;
+}
 
-            <div class="feedItem">
-              <div class="avatar"></div>
-              <div>
-                <div class="feedName">You</div>
-                <div class="feedText">
-                  Appreciate that. This is exactly why we built this space.
-                </div>
-              </div>
-            </div>
+.benefitGrid{
+  grid-template-columns:1fr;
+}
 
-          </div>
-        </div>
+.communityFeature{
+  padding:16px;
+}
 
-      </div>
+.hostBenefit{
+  padding:20px 18px;
+}
 
-      <div class="beforeAfterExplain">
-        <strong>Before:</strong> comments that reset with every post.
-        <strong>After:</strong> a shared conversation that compounds over time.
-      </div>
+.hostExample{
+  margin-top:24px;
+  font-size:15px;
+  line-height:1.45;
+  color:var(--muted);
+}
 
-      <div class="beforeAfterTagline">
-        From scattered threads to shared community.
-      </div>
+.hostBenefit{
+  background:var(--card);
+  padding:24px 22px;
+  border-radius:18px;
+  border:1px solid var(--line);
+  text-align:center;
+  height:100%;
+}
 
-    </div>
+@media (max-width:640px){
+  .hostIntro{
+    font-size:16px;
+  }
+}
 
-  <!-- BENEFITS -->
-<div class="benefitGrid">
+.hostBenefit h3{
+font-size:1.4rem;
+line-height:1.2;
+margin:0 0 10px;
+}
 
-  <div class="benefit reveal reveal--delay-1">
-    <h3>Real conversations</h3>
-    <p>
-      One shared feed. No algorithmic distortion. No reset.
-      Your audience talks with you — and each other — openly.
-    </p>
-  </div>
+.hostBenefit p{
+margin:0;
+font-size:15px;
+line-height:1.45;
+color:var(--muted);
+}
 
-  <div class="benefit reveal reveal--delay-2">
-    <h3>No extra work</h3>
-    <p>
-      Keep publishing on YouTube or Substack.
-      Just share your link. Conversations happen here.
-    </p>
-  </div>
-
-  <div class="benefit reveal reveal--delay-3">
-    <h3>Sustainable by design</h3>
-    <p>
-      Built-in community funding keeps it healthy —
-      without ads, algorithms, or platform extraction.
-    </p>
-  </div>
-
-</div>
-
-<p class="powerLine reveal reveal--slow reveal--delay-2">
-  One place for your audience, collaborators, and sources — <b>under your control</b> —
-  that cannot be throttled, shadow-banned, or shut down.
-</p>
-
-<p class="heroPromise reveal reveal--delay-3">
-  No ads • No algorithms • Community funded
-</p>
-
-<div class="heroBottomCta heroBottomCtaRow reveal reveal--delay-4">
-  <a class="cta" href="guided-onboarding-mockup-v2.html">Start Your Community</a>
-  <a class="cta secondaryCta" href="#how">See how it works</a>
-</div>
-  </div>
-</section>
-<section id="how" class="hero" style="padding-top:40px; padding-bottom:20px;">
-  <div class="heroInner">
-
-    <div class="beforeAfterSection" style="max-width:820px; margin-top:0;">
-
-      <h2 style="
-        font-size:clamp(26px,3.2vw,34px);
-        line-height:1.15;
-        letter-spacing:-0.02em;
-        margin:0 0 14px;
-        text-align:center;
-      ">
-        Built on proven infrastructure — not another platform
-      </h2>
-
-      <p class="sub" style="text-align:center; margin:0 auto 26px; max-width:640px;">
-        Commonshub connects a <b>chronological social layer</b> with a
-        <b>native funding engine</b> — and we handle the hosting,
-        setup, and integration.
-      </p>
-
-<!-- STACKED ARCHITECTURE (THE "SANDWICH") -->
-<div style="
-  margin-top:4px;
+.archStack{
   display:flex;
   flex-direction:column;
-  gap:10px;              /* <-- this is the sandwich tightness */
-">
+  gap:8px;
+  margin-top:28px;
+  max-width:720px;
+}
 
-  <!-- EXISTING CONTENT (EXTERNAL / SUBORDINATE) -->
-<div class="benefit yourContent">
-  <strong>Your content (already exists)</strong>
-  <span class="muted">YouTube • Substack • Podcast</span>
-  <div class="note muted">Keep publishing exactly as you do today. <b style="color:var(--text);">Nothing changes.</b></div>
-</div>
-<div style="
+.archCard{
+  padding:18px 16px;
+  border-radius:20px;
+  border:1px solid var(--line);
+  background:var(--card);
+  position:relative;
+}
+
+.archCommunity{
+  border:1.6px solid rgba(31,111,74,.35);
+  background:rgba(31,111,74,0.08);
+}
+
+.architectureSection .archStack{
+  margin-left:auto;
+  margin-right:auto;
+}
+
+.archFlowLabel{
+  text-align:center;
+  font-size:13px;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  color:var(--muted);
+  margin-bottom:10px;
+}
+
+.archThin{
+  padding:16px;
+  border-radius:16px;
+  border:1px solid var(--line);
+  background:var(--card);
+}
+
+.archThin h3{
+  font-size:18px;
+  margin:0 0 6px;
+}
+
+.archThin p{
+  margin:0;
+  font-size:14px;
+  color:var(--muted);
+}
+
+.communityFeatures{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:18px;
+  margin-top:16px;
+}
+
+.communityFeature{
+  text-align:center;
+  padding:18px;
+  border-radius:14px;
+  background:white;
+  border:1px solid rgba(0,0,0,.08);
+}
+
+.communityFeature h4{
+  margin:6px 0 6px;
+  font-size:16px;
+}
+
+.communityFeature p{
+  font-size:13px;
+  line-height:1.4;
+  color:var(--muted);
+}
+
+.icon{
+  font-size:22px;
+}
+
+.communityTag{
+  margin-top:16px;
+  font-weight:700;
+  color:var(--btn);
+  text-align:center;
+}
+
+.communityPlatform{
+  margin-top:10px;
+  padding:26px 26px 28px;
+  border-radius:24px;
+  border:1px solid rgba(31,111,74,.28);
+  background:rgba(31,111,74,.05);
+}
+
+.platformTitle{
+  text-align:center;
+  font-size:18px;
+  font-weight:800;
+  margin-bottom:16px;
+  letter-spacing:-0.01em;
+}
+
+.archInfra{
+  margin-top:12px;
+  padding:16px 20px;
+  border-radius:14px;
+  border:1px solid var(--line);
+  background:rgba(31,111,74,0.04);
+}
+
+.archInfra p{
+  margin:4px 0;
+  font-size:14px;
+}
+
+.archArrow{
+  text-align:center;
+  font-size:18px;
+  color:var(--muted);
+  margin:4px 0 2px;
+}
+
+/* ===== COMMUNITY CATEGORY SELECTOR ===== */
+.hostTabs{
+  display:flex;
+  gap:18px;
+  justify-content:flex-start;
+  align-items:center;
+  overflow-x:auto;
+  overflow-y:hidden;
+  -webkit-overflow-scrolling:touch;
+  padding:0 10px 8px;
+  margin:0 0 16px;
+  scrollbar-width:none;
+  position:relative;
+  white-space:nowrap;
+  user-select:none;
+  -webkit-user-select:none;
+  scroll-snap-type:x proximity;
+}
+
+.hostTabs::-webkit-scrollbar{
+  display:none;
+}
+
+.hostTab{
+  flex:0 0 auto;
+  display:flex;
+  align-items:center;
+  gap:8px;
+  padding:6px 2px 10px;
+  border:none;
+  background:none;
+  border-radius:0;
+  color:var(--muted);
+  font-size:14px;
+  font-weight:650;
+  white-space:nowrap;
+  position:relative;
+  scroll-snap-align:start;
+}
+
+.hostTab::after{
+  content:"";
+  position:absolute;
+  left:0;
+  right:0;
+  bottom:0;
+  height:3px;
+  border-radius:999px;
+  background:transparent;
+}
+
+
+
+.hostTab:hover{
+  transform:translateY(-1px);
+  border-color:rgba(31,111,74,.28);
+}
+
+
+
+
+.hostTabIcon{
   display:flex;
   align-items:center;
   justify-content:center;
-  margin:2px 0;
-">
-  <div style="
-    height:1px;
-    width:100%;
-    background:rgba(16,32,24,.12);
-  "></div>
+  height:28px;
+  margin:2px 0 2px;
+}
 
-  <div style="
-    padding:0 10px;
-    font-weight:900;
-    font-size:14px;
-    color:rgba(16,32,24,.55);
-  ">+</div>
+.hostTabIcon svg{
+  width:18px;
+  height:18px;
+  stroke-width:2;
+}
 
-  <div style="
-    height:1px;
-    width:100%;
-    background:rgba(16,32,24,.12);
-  "></div>
+.hostTabLabel{
+  font-size:16px;
+  line-height:1.05;
+  font-weight:800;
+  letter-spacing:-0.01em;
+}
+
+.hostTabMeta{
+  font-size:12.5px;
+  font-weight:600;
+  opacity:.8;
+}
+
+.hostTab.active{
+  color:var(--btn);
+}
+
+.hostTab.active::after{
+  background:var(--btn);
+}
+
+.hostTab.active .hostTabMeta{
+  color:rgba(255,255,255,.85);
+}
+
+.hostExplain{
+  text-align:center;
+  font-size:clamp(24px, 3vw, 34px);
+  line-height:1.15;
+  font-weight:800;
+  letter-spacing:-0.02em;
+  color:var(--text);
+  margin:0 0 12px;
+}
+
+.hostExplain h2{
+  font-size: clamp(26px,3vw,32px);
+  font-weight:700;
+  letter-spacing:-0.02em;
+  line-height:1.2;
+  text-align:center;
+  margin:0 0 16px 0;
+}
+/* mobile stack */
+
+
+@media (max-width:900px){
+  .hostTabs{
+    grid-template-columns:1fr;
+  }
+}
+
+
+
+
+
+
+@media (max-width: 640px) {
+
+  .communityFeatures{
+  grid-template-columns:1fr;
+}
+
+.hostBenefits{
+  grid-template-columns:1fr;
+}
+
+
+.panelShell{
+    margin:28px auto;
+  }
+
+.heroInner{
+    padding:0 18px;
+  }
+
+.hostTabs{
+  display:flex;
+  gap:16px;
+  overflow-x:auto;
+  overflow-y:hidden;
+  -webkit-overflow-scrolling:touch;
+  padding:0 4px 10px;
+  margin:0 0 14px;
+  white-space:nowrap;
+  scrollbar-width:none;
+}
+
+.hostTabs::-webkit-scrollbar{
+  display:none;
+}
+
+.hostTab{
+  flex:0 0 auto;
+  padding:6px 2px 10px;
+  font-size:15px;
+}
+
+.hostTabIcon{
+  transform:scale(.95);
+}
+
+.hero h1{
+  font-size:34px;
+  line-height:1.1;
+}
+
+.hero .sub{
+  font-size:16px;
+  line-height:1.55;
+}
+
+.heroPromise{
+  font-size:15px;
+  margin-top:14px;
+}
+
+.hostPanel{
+  padding:22px 18px;
+}
+
+.hostContent h3{
+  font-size:22px;
+}
+
+.featureGrid{
+  flex-direction:column;
+}
+
+.featureCard{
+  padding:18px 16px;
+}
+
+.featureCard h4{
+  font-size:18px;
+}
+
+.featureCard p{
+  font-size:15px;
+}
+
+.hostExplain{
+  font-size:22px;
+  margin-bottom:14px;
+}
+
+.hostPanelIntro{
+  font-size:16px;
+}
+
+.hostExplain h2{
+  font-size:24px;
+  line-height:1.25;
+}
+
+.communityPlatform{
+  padding:22px 18px;
+}
+
+.archCard{
+  padding:18px 16px;
+}
+
+.archThin{
+  padding:16px;
+}
+
+}
+
+.hostTabs,
+.hostTab,
+.hostTab *{
+  user-select:none;
+  -webkit-user-select:none;
+}
+</style>
+</head>
+<body>
+<div id="csh-root">
+  <section class="hero"style="padding-bottom:0px;">
+    <div class="heroInner">
+
+      <h1>
+        Experience Digital Sovereignty
+      </h1>
+
+      <p class="sub">
+        Most online communities live on platforms they do not control.
+        Algorithms shape visibility. Advertising shapes incentives.
+        Everyone subject to the whims of platform owners.
+      </p>
+
+     <p class="sub">
+        What appears to be reach often isn’t real engagement — and rarely leads to lasting relationships.
+      </p>
+
+      <p class="sub">
+        Commonshub provides <b>independent community infrastructure</b>
+        for people and organizations that want to establish lasting conversations and relationships around their work.
+      </p>
+      <p class="heroPromise">
+        No ads • No algorithms • Your Rules • Self Funding Enabled
+      </p>
+    </div>
+  </section>
+
+  <section class="hero" style="padding-top:0px; padding-bottom:28px;">
+    <div class="heroInner">
+
+      <section class="hostPanel panelShell">
+       <div class="hostExplain">
+        <h2 id="hostExplainText"></h2>
+      </div> 
+      <div class="hostTabsWrap"> 
+        <div class="hostTabs">
+          <button class="hostTab active" data-host="creators">
+            <span class="hostTabIcon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="2"/>
+                <path d="M16 12a4 4 0 0 0-4-4"/>
+                <path d="M18 12a6 6 0 0 0-6-6"/>
+              </svg>
+            </span>
+            <span class="hostTabLabel">Creators</span>
+          </button>
+
+          <button class="hostTab" data-host="media">   
+            <span class="hostTabIcon">
+             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="9"/>
+              <path d="M10 8.8L15.5 12L10 15.2V8.8Z" fill="currentColor" stroke="none"/>
+            </svg>
+          </span>
+          <span class="hostTabLabel">Media</span>
+        </button>
+
+        <button class="hostTab" data-host="research">
+          <span class="hostTabIcon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="2"/>
+              <ellipse cx="12" cy="12" rx="8" ry="3"/>
+              <ellipse cx="12" cy="12" rx="3" ry="8"/>
+            </svg>
+          </span>
+          <span class="hostTabLabel">Research</span>
+        </button>
+
+        <button class="hostTab" data-host="nonprofits">  
+          <span class="hostTabIcon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 21s-7-4.5-9-9a5 5 0 0 1 9-3 5 5 0 0 1 9 3c-2 4.5-9 9-9 9z"/>
+            </svg>
+          </span>
+          <span class="hostTabLabel">Nonprofits</span>
+        </button>
+
+        <button class="hostTab" data-host="government">
+          <span class="hostTabIcon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 10h18"/>
+              <path d="M5 10v8"/>
+              <path d="M9 10v8"/>
+              <path d="M15 10v8"/>
+              <path d="M19 10v8"/>
+              <path d="M2 10l10-6 10 6"/>
+              <path d="M2 18h20"/>
+            </svg>
+          </span>
+          <span class="hostTabLabel">Government</span>
+        </button>
+
+        <button class="hostTab" data-host="societies">
+
+          <span class="hostTabIcon">
+           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="5" cy="12" r="2"/>
+            <circle cx="12" cy="5" r="2"/>
+            <circle cx="19" cy="12" r="2"/>
+            <circle cx="12" cy="19" r="2"/>
+            <line x1="7" y1="12" x2="10" y2="6"/>
+            <line x1="14" y1="6" x2="17" y2="12"/>
+            <line x1="17" y1="12" x2="14" y2="18"/>
+            <line x1="10" y1="18" x2="7" y2="12"/>
+          </svg>
+        </span>
+        <span class="hostTabLabel">Professional</span>
+        </button>
+    </div>
+  </div>
+
+  <div id="hostContent"></div>
 </div>
-  <!-- WHAT'S NEW (THE PRODUCT) -->
+
+</section>
+
+<section class="beforeAfterSection" style="margin-top:20px;">
+  <div class="heroInner">
+
+  <h2 style="
+    font-size:clamp(26px,3.2vw,34px);
+    line-height:1.15;
+    letter-spacing:-0.02em;
+    margin:0 0 14px;
+    text-align:center;
+  ">
+    Built on proven infrastructure — not another platform
+  </h2>
+
+  <p class="sub" style="text-align:center; margin:0 auto 24px; max-width:640px;">
+    Commonshub combines an <b>chronological social engine</b> with a
+    <b>native funding engine</b> — powered by trusted technologies and fully managed for you.
+  </p>
+
+  <!-- CORE PRODUCT -->
   <div class="benefit newCommunity" style="
     text-align:center;
-    margin:0;            /* critical */
-    padding:12px 14px;
-    box-shadow: 0 10px 26px rgba(16,32,24,.06);
+    margin-bottom:12px;
+    padding:14px 16px;
   ">
-    <div style="display:inline-flex; align-items:center; gap:10px; margin-bottom:6px;">
-      <span style="
-        display:inline-flex;
-        align-items:center;
-        padding:4px 10px;
-        border-radius:999px;
-        background:rgba(31,111,74,.10);
-        border:1px solid rgba(31,111,74,.18);
-        color:var(--btn);
-        font-weight:900;
-        font-size:12px;
-        letter-spacing:.06em;
-        text-transform:uppercase;
-      ">NEW · YOU OWN THIS</span>
+    <div class="title">Your independent community</div>
 
-      <span class="title">Your independent community</span>
+    <div style="color:var(--muted); font-size:14px; margin-top:6px;">
+      A shared, ongoing conversation on your own domain — with
+      <b style="color:var(--text);">funding built in</b>.
     </div>
 
-    <div style="color:var(--muted); font-size:14px; line-height:1.35;">
-      A shared, ongoing conversation on your own domain — with <b style="color:var(--text);">funding built in</b>.
-    </div>
-
-    <div style="margin-top:8px; color:rgba(16,32,24,.68); font-size:13px;">
+    <div style="margin-top:8px; font-size:13px; color:rgba(16,32,24,.68);">
       Your domain • Your audience • Your rules • No ads • No algorithms
     </div>
   </div>
 
-  <!-- ENGINES (2-UP) -->
- <div class="benefitGrid" style="
-  margin-top:0;
-  grid-template-columns:1fr 1fr;
-  gap:14px;
-">
+  <!-- TWO ENGINES -->
+  <div class="benefitGrid" style="
+    margin-top:0;
+    grid-template-columns:1fr 1fr;
+    gap:14px;
+  ">
 
-  <div class="benefit" style="text-align:center;">
-    <h3 class="engineTitle">Social media engine</h3>
-    <p class="engineCopy">
-      Mastodon — a proven, open network used by millions.
-      <b>No</b> ads or algorithm.
-    </p>
+    <div class="benefit" style="text-align:center;">
+      <h3 class="engineTitle">Social Engine (Mastodon)</h3>
+      <p class="engineCopy">
+        A proven, open-source, standards-based, decentralized, twitter-like social media network used by millions.<br>
+        <b>No ads. No algorithms. Self Moderated.</b><br>
+      </p>
+    </div>
+
+    <div class="benefit" style="text-align:center;">
+      <h3 class="engineTitle">Funding engine (Stripe)</h3>
+      <p class="engineCopy">
+       The global payments infrastructure used by millions of businesses.
+Memberships, tips, and donations built in.<br>
+        <b>Money deposited directly to your account</b>.
+      </p>
+    </div>
+
   </div>
 
-  <div class="benefit" style="text-align:center;">
-    <h3 class="engineTitle">Funding &amp; payments engine</h3>
-    <p class="engineCopy">
-      Stripe — memberships, tips, and donations.<br>
-      Money goes <b>directly</b> to you.
+  <!-- INFRASTRUCTURE -->
+  <div class="benefit isPrimary" style="
+    margin-top:12px;
+    text-align:center;
+  ">
+    <h3 class="commonshubTitle">Managed, secure infrastructure</h3>
+
+    <p class="commonCopy">
+      Hosted on scalable, production-grade systems.<br>
+      Deployed outside U.S. platform ecosystems.
+    </p>
+
+    <p class="commonCopy">
+      We handle setup, updates, and reliability — you stay focused on your community.
     </p>
   </div>
+ </div>
+</section>
+<section class="hero" style="padding-top:40px">
 
-</div>
+  <div class="heroInner">
 
-<div class="benefit isPrimary" style="
-  margin-top:0;
-  text-align:center;
-  padding:1.1rem 1.25rem 1.2rem;
-">
-  <h3 class="commonshubTitle">Commonshub — managed infrastructure</h3>
-  <p class="commonCopy">
-    We handle setup, hosting, updates, and Stripe integration.
-  </p>
-  <p class="commonCopy">
-    Runs on your domain. Under <b>your control</b>.
-  </p>
-</div>
-</div>
-</div>
+    <h2 style="text-align:center">
+      Build your community on infrastructure you control
+    </h2>
+
+    <p class="sub" style="text-align:center">
+      Commonshub handles setup, hosting, updates,
+      and payment infrastructure so you can focus on the people
+      and ideas that matter.
+    </p>
+
+    <div class="heroBottomCta" style="margin-top:26px;">
+      <a class="cta" href="start.html">
+        Start a Community
+      </a>
+    </div>
+
+  </div>
 </section>
 
-</body>
-  <script>
-  (function () {
-    const els = document.querySelectorAll(".reveal");
-    if (!els.length) return;
+<script>
+  const explain = {
+  creators: "YouTubers • Podcasters • Writers",
+  media: "Newsrooms • Journalists • Publications",
+  research: "Universities • Labs • Think Tanks",
+  nonprofits: "NGOs • Advocacy • Foundations",
+  government: "Cities • Agencies • Public Offices",
+  societies: "Associations • Member Networks"
+};
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        for (const entry of entries) {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("is-visible");
-            observer.unobserve(entry.target);
-          }
+document.addEventListener("DOMContentLoaded", () => {
+
+  initReveal();
+  loadArchitecture();
+
+  const tabs = document.querySelectorAll(".hostTab");
+  const explainEl = document.getElementById("hostExplainText");
+
+  const defaultHost = "creators";
+
+  // initialize page state
+  if (explainEl) {
+    explainEl.textContent = explain[defaultHost];
+  }
+
+  loadHost(defaultHost);
+
+  tabs.forEach(tab => {
+    if (tab.dataset.host === defaultHost) {
+      tab.classList.add("active");
+    }
+  });
+
+  // tab switching
+  tabs.forEach(tab => {
+
+    tab.addEventListener("click", () => {
+
+      const host = tab.dataset.host;
+
+      // update active tab
+      tabs.forEach(t => t.classList.remove("active"));
+      tab.classList.add("active");
+
+      // update explainer
+      if (explainEl) {
+        explainEl.textContent = explain[host];
+      }
+
+      // load panel
+      loadHost(host);
+
+    });
+
+  });
+
+});
+
+
+function loadHost(host) {
+
+  fetch(`hosts/${host}.html`)
+    .then(res => {
+      if (!res.ok) {
+        throw new Error(`Failed to load hosts/${host}.html`);
+      }
+      return res.text();
+    })
+    .then(html => {
+      const mount = document.getElementById("hostContent");
+      if (!mount) return;
+
+      mount.innerHTML = html;
+
+      // run reveal on injected content
+      initReveal();
+    })
+    .catch(err => console.error(err));
+}
+
+
+function initReveal() {
+
+  const els = document.querySelectorAll(".reveal");
+  if (!els.length) return;
+
+  const observer = new IntersectionObserver(
+    entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-visible");
+          observer.unobserve(entry.target);
         }
-      },
-      { threshold: 0.15 }
-    );
+      });
+    },
+    { threshold: 0.15 }
+  );
 
-    els.forEach((el) => observer.observe(el));
-  })();
+  els.forEach(el => {
+    if (!el.dataset.revealBound) {
+      el.dataset.revealBound = "1";
+      observer.observe(el);
+    }
+  });
+
+}
+
+
+function loadArchitecture() {
+
+  const mount = document.getElementById("architecture");
+  if (!mount) return;
+
+  fetch("architecture.html")
+    .then(res => {
+      if (!res.ok) {
+        throw new Error(`Failed to load architecture.html`);
+      }
+      return res.text();
+    })
+    .then(html => {
+      mount.innerHTML = html;
+      initReveal();
+    })
+    .catch(err => console.error(err));
+
+}
 </script>
+  </div>
+</body>
 </html>
