@@ -381,6 +381,7 @@
 
                   <div class="msg">
                     <p>We’ve generated a default based on your existing presence. You can adjust it if needed.</p>
+                    <p><span class="muted">You can refine this later — this is just your starting point.</span></p>
                   </div>
 
                 </div>
@@ -394,7 +395,9 @@
 
                   <div>
                     <div class="fieldLabel">Owner bio</div>
-                    <textarea class="inputField">I am a national security analyst reporting on Russia’s war and the structures behind authoritarian power. My work connects real-time developments with historical and strategic context.</textarea>
+                    <textarea class="inputField" style="min-height:140px;">
+                      I’m a national security analyst reporting on Russia’s war against Ukraine and the structures of authoritarian power. My work connects real-time developments with historical and strategic context. I host this space to maintain an ongoing briefing with serious participants tracking these issues.
+                    </textarea>
                   </div>
 
                   <a class="continueBtn" href="onboarding-08-review.html">Continue →</a>
@@ -410,46 +413,46 @@
     </div>
   </div>
 </body>
- <script>
-    const choiceItems = document.querySelectorAll('.choiceItem');
-    const textarea = document.querySelector('.inputField');
-    const label = document.querySelector('.fieldLabel');
+<script>
+  const choiceItems = document.querySelectorAll('.choiceItem');
+  const textarea = document.querySelector('.inputField');
+  const label = document.querySelector('.fieldLabel');
 
-    function getSelectedButtonValue() {
-      const active = document.querySelector('.choiceItem.active .choiceValue');
-      return active ? active.textContent.trim() : '';
+  function getSelectedButtonValue() {
+    const active = document.querySelector('.choiceItem.active .choiceValue');
+    return active ? active.textContent.trim() : '';
+  }
+
+  choiceItems.forEach(item => {
+    item.addEventListener('click', () => {
+      choiceItems.forEach(i => i.classList.remove('active'));
+      item.classList.add('active');
+
+      const value = item.querySelector('.choiceValue')?.textContent.trim() || '';
+      textarea.value = value;
+      label.textContent = 'Selected (edit if needed)';
+    });
+  });
+
+  textarea.addEventListener('input', () => {
+    const selectedValue = getSelectedButtonValue();
+
+    if (!selectedValue) {
+      label.textContent = textarea.value.trim() ? 'Edited value' : 'Selected (edit if needed)';
+      return;
     }
 
-    choiceItems.forEach(item => {
-      item.addEventListener('click', () => {
-        choiceItems.forEach(i => i.classList.remove('active'));
-        item.classList.add('active');
-
-        const value = item.querySelector('.choiceValue')?.textContent.trim() || '';
-        textarea.value = value;
-        label.textContent = 'Selected (edit if needed)';
-      });
-    });
-
-    textarea.addEventListener('input', () => {
-      const selectedValue = getSelectedButtonValue();
-
-      if (!selectedValue) {
-        label.textContent = textarea.value.trim() ? 'Edited value' : 'Selected (edit if needed)';
-        return;
-      }
-
-      if (textarea.value.trim() !== selectedValue) {
-        document.querySelectorAll('.choiceItem').forEach(i => i.classList.remove('active'));
-        label.textContent = textarea.value.trim() ? 'Edited value' : 'Selected (edit if needed)';
-      } else {
-        label.textContent = 'Selected (edit if needed)';
-      }
-    });
-
-    const recommended = document.querySelector('.choiceItem .choiceBadge')?.closest('.choiceItem');
-    if (recommended) {
-      recommended.classList.add('active');
+    if (textarea.value.trim() !== selectedValue) {
+      document.querySelectorAll('.choiceItem').forEach(i => i.classList.remove('active'));
+      label.textContent = textarea.value.trim() ? 'Edited value' : 'Selected (edit if needed)';
+    } else {
+      label.textContent = 'Selected (edit if needed)';
     }
-  </script>
+  });
+
+  const recommended = document.querySelector('.choiceItem .choiceBadge')?.closest('.choiceItem');
+  if (recommended) {
+    recommended.classList.add('active');
+  }
+</script>
 </html>
