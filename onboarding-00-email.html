@@ -119,6 +119,9 @@
       outline:none;
     }
 
+    input.inputField{
+      min-height:60px;
+    }
     .inputField:focus{
       border-color:rgba(31,111,74,.28);
       box-shadow:0 0 0 3px rgba(31,111,74,.08);
@@ -292,7 +295,7 @@
                       <span>Step 0</span>
                     </div>
                     <p><b>Hi — ready to design your community?</b></p>
-                    <p>What email should own the server?</p>
+                    <p>First, what email should own the server?</p>
                     <p>(This is where we’ll send your login link when it’s live.)</p>
                   </div>
 
@@ -304,7 +307,7 @@
 
                 <div class="inputBar">
                   <div class="fieldLabel">Admin email</div>
-                  <textarea class="inputField" placeholder="name@example.com"></textarea>
+                 <input class="inputField" type="email" placeholder="name@example.com" />
                   <a class="continueBtn" href="onboarding-01-focus.html">Continue →</a>
                 </div>
 
