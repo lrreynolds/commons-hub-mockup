@@ -434,17 +434,36 @@
   </div>
 </body>
 <script>
-  const textarea = document.querySelector('.inputField')
-const label = document.querySelector('.fieldLabel')
+  const textarea = document.querySelector('.inputField');
+  const label = document.querySelector('.fieldLabel');
+  const choiceItems = document.querySelectorAll('.choiceItem');
 
-const originalValue = textarea.value
+  let selectedValue = textarea.value.trim();
 
-textarea.addEventListener('input', () => {
-  if (textarea.value !== originalValue) {
-    label.textContent = 'Edited value'
-  } else {
-    label.textContent = 'Selected (edit if needed)'
+  function updateLabel() {
+    if (textarea.value.trim() === selectedValue) {
+      label.textContent = 'Selected (edit if needed)';
+    } else {
+      label.textContent = 'Edited value';
+    }
   }
-})
+
+  choiceItems.forEach(item => {
+    item.addEventListener('click', () => {
+      choiceItems.forEach(i => i.classList.remove('active'));
+      item.classList.add('active');
+
+      const value = item.querySelector('.choiceValue')?.innerText.trim() || '';
+      textarea.value = value;
+      selectedValue = value;
+      updateLabel();
+      textarea.focus();
+    });
+  });
+
+  textarea.addEventListener('input', updateLabel);
+
+  // set initial state
+  updateLabel();
 </script>
 </html>
