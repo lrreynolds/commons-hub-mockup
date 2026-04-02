@@ -433,4 +433,18 @@
     </div>
   </div>
 </body>
+<script>
+  const textarea = document.querySelector('.inputField')
+const label = document.querySelector('.fieldLabel')
+
+const originalValue = textarea.value
+
+textarea.addEventListener('input', () => {
+  if (textarea.value !== originalValue) {
+    label.textContent = 'Edited value'
+  } else {
+    label.textContent = 'Selected (edit if needed)'
+  }
+})
+</script>
 </html>
