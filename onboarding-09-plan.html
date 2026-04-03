@@ -120,12 +120,12 @@
 
     input.inputField{
       min-height:60px;
-       text-align: left;
+      text-align: left;
     }
 
     textarea.inputField {
-  text-align: left;
-}
+      text-align: left;
+    }
     .inputField:focus{
       border-color:rgba(31,111,74,.28);
       box-shadow:0 0 0 3px rgba(31,111,74,.08);
@@ -341,132 +341,95 @@
             <div class="logoMark"></div>
             <div class="meta">
               <b>Set up your community</b>
-              <span>Choose a simple plan</span>
+              <span>Choose a plan</span>
             </div>
           </div>
           <div class="chip">Step 1 of 4</div>
         </div>
 
-        <div class="content">
-          <div class="center">
+        <div class="header">
+          <div>
+            <h2>Pick a plan</h2>
+            <p>Your domain choice is already set. Choose monthly or annual billing to continue.</p>
+          </div>
+          <div class="chip">Launch billing</div>
+        </div>
 
-            <div class="flowBanner">
-              <div>
-                <b>Pick a plan</b>
-                <div class="muted" style="margin-top:6px;">
-                  Start simple. You can upgrade as your community grows.
+        <div class="progress">
+          <span>Billing</span>
+          <div class="bar"><div style="width:55%"></div></div>
+          <span>~2 minutes</span>
+        </div>
+
+        <div class="card" style="margin-top:14px;">
+          <div class="list" style="gap:14px;">
+
+            <div class="msg system" style="margin:0;">
+              <div class="metaLine">
+                <span><b>Selected setup</b></span>
+                <span>Custom plan</span>
+              </div>
+              <p><b>Community address:</b> securitybrief.jasonjaysmart.com</p>
+              <p><b>Why this plan:</b> You chose to launch on your own domain/subdomain.</p>
+            </div>
+
+            <div class="msg" style="margin:0;">
+              <p><b>Custom plan includes</b></p>
+              <div class="list" style="margin-top:10px;">
+                <div class="item">
+                  <b>Your own domain</b>
+                  <div class="muted">Launch on a branded custom domain or subdomain</div>
+                </div>
+                <div class="item">
+                  <b>Branded email</b>
+                  <div class="muted">Use email tied to your domain identity</div>
+                </div>
+                <div class="item">
+                  <b>Hosted community</b>
+                  <div class="muted">Managed Mastodon-based infrastructure</div>
+                </div>
+                <div class="item">
+                  <b>Built-in funding</b>
+                  <div class="muted">Memberships and one-time support</div>
+                </div>
+                <div class="item">
+                  <b>Backups + monitoring</b>
+                  <div class="muted">Included from launch</div>
                 </div>
               </div>
-              <div class="stepChip">5-minute setup</div>
             </div>
 
-            <div class="progress">
-              <span>Setup</span>
-              <div class="bar"><div style="width:25%"></div></div>
-              <span>~2 minutes</span>
-            </div>
+            <div class="msg" style="margin:0;">
+              <p><b>Choose billing</b></p>
 
-            <div class="card" style="margin-top:14px;">
-
-              <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px;">
-
-                <!-- Starter Plan -->
-                <button class="choiceItem active" type="button">
-                  <div style="display:flex; flex-direction:column; gap:10px;">
-
-                    <div class="choiceTop">
-                      <span class="choiceValue">Starter</span>
-                    </div>
-
-                    <div style="font-size:26px; font-weight:900;">
-                      $24.99<span style="font-size:14px; font-weight:600;">/mo</span>
-                    </div>
-
-                    <div class="muted" style="font-size:13px;">
-                      or $249.99/year
-                    </div>
-
-                    <div class="msg" style="margin:0;">
-                      <p><b>Commons subdomain</b></p>
-                      <p class="muted">securitybrief.commonshub.social</p>
-                    </div>
-
-                    <div class="msg" style="margin:0;">
-                      <p>Hosted Mastodon community</p>
-                      <p class="muted">Fully managed</p>
-                    </div>
-
-                    <div class="msg" style="margin:0;">
-                      <p>Basic funding tools</p>
-                      <p class="muted">Memberships + tips</p>
-                    </div>
-
-                    <div class="msg" style="margin:0;">
-                      <p>Backups + monitoring</p>
-                    </div>
-
-                    <div class="msg system" style="margin:0;">
-                      <p>Best for getting started quickly with no setup overhead.</p>
-                    </div>
-
+              <div class="list" style="margin-top:10px; gap:12px;">
+                <button type="button" class="choiceItem active" data-price="$39.99/mo">
+                  <div class="choiceTop">
+                    <span class="choiceValue">Monthly — $39.99/mo</span>
                   </div>
+                  <div class="muted" style="margin-top:6px;">Flexible monthly billing</div>
                 </button>
 
-                <!-- Growth Plan -->
-                <button class="choiceItem" type="button">
-                  <div style="display:flex; flex-direction:column; gap:10px;">
-
-                    <div class="choiceTop">
-                      <span class="choiceValue">Growth</span>
-                      <span class="choiceBadge">Recommended</span>
-                    </div>
-
-                    <div style="font-size:26px; font-weight:900;">
-                      $39.99<span style="font-size:14px; font-weight:600;">/mo</span>
-                    </div>
-
-                    <div class="muted" style="font-size:13px;">
-                      or $399.99/year
-                    </div>
-
-                    <div class="msg" style="margin:0;">
-                      <p><b>Custom domain or subdomain</b></p>
-                      <p class="muted">securitybrief.jasonjaysmart.com</p>
-                    </div>
-
-                    <div class="msg" style="margin:0;">
-                      <p>Everything in Starter</p>
-                    </div>
-
-                    <div class="msg" style="margin:0;">
-                      <p>Domain setup guidance</p>
-                      <p class="muted">We help or do it with you</p>
-                    </div>
-
-                    <div class="msg" style="margin:0;">
-                      <p>Priority support</p>
-                    </div>
-
-                    <div class="msg system" style="margin:0;">
-                      <p>Best for branded communities and existing audiences.</p>
-                    </div>
-
+                <button type="button" class="choiceItem" data-price="$399.99/yr">
+                  <div class="choiceTop">
+                    <span class="choiceValue">Annual — $399.99/yr</span>
+                    <span class="choiceBadge">Save more</span>
                   </div>
+                  <div class="muted" style="margin-top:6px;">Equivalent to about $33.33/mo billed annually</div>
                 </button>
-
               </div>
-
-              <div class="msg system" style="margin-top:16px;">
-                <p><b>Simple billing:</b> pay monthly or yearly. Cancel anytime.</p>
-              </div>
-
-              <div style="display:flex; gap:12px; margin-top:12px;">
-                <a class="secondary" href="onboarding-08-review.html" style="flex:1;">Back</a>
-                <a class="continueBtn" href="onboarding-10-domain.html" style="flex:2;">Continue →</a>
-              </div>
-
             </div>
 
+            <div class="msg system" style="margin:0;">
+              <p><b>Capacity can scale later.</b></p>
+              <p class="muted">You’ll be able to upgrade storage, media capacity, and higher-usage tiers later from your dashboard once the community is live.</p>
+            </div>
+
+          </div>
+
+          <div class="footerBar">
+            <a class="secondary" href="onboarding-08-review.html">Back</a>
+            <a class="primary forward" href="billing-details.html">Continue</a>
           </div>
         </div>
 
