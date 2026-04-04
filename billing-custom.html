@@ -408,14 +408,14 @@
                   <p><b>Choose billing</b></p>
 
                   <div class="list" style="margin-top:10px; gap:12px;">
-                    <button type="button" class="choiceItem active" data-price="$39.99/mo">
+                    <button type="button" class="choiceItem active" data-billing="monthly" data-price="$39.99/mo">
                       <div class="choiceTop">
                         <span class="choiceValue">Monthly — $39.99/mo</span>
                       </div>
                       <div class="muted" style="margin-top:6px;">Flexible monthly billing</div>
                     </button>
 
-                    <button type="button" class="choiceItem" data-price="$399.99/yr">
+                    <button type="button" class="choiceItem" data-billing="annual" data-price="$399.99/yr">
                       <div class="choiceTop">
                         <span class="choiceValue">Annual — $399.99/yr</span>
                         <span class="choiceBadge">Save more</span>
@@ -434,7 +434,7 @@
 
               <div class="footerBar">
                 <a class="secondary" href="onboarding-08-review.html">Back</a>
-                <a class="primary forward" href="dashboard.html">Continue</a>
+                <a id="continueToStripe" class="primary forward" href="#">Continue</a>
               </div>
             </div>
 
@@ -444,5 +444,39 @@
       </main>
     </div>
   </div>
+ <script>
+  const STRIPE_LINKS = {
+    custom: {
+      monthly: "https://buy.stripe.com/test_6oUeVdehV5R58HH4SP8AE01",
+      annual: "https://buy.stripe.com/test_8x24gz0r51APe21clh8AE02"
+    }
+  };
+
+  const billingButtons = document.querySelectorAll('.choiceItem[data-billing]');
+  const continueBtn = document.getElementById('continueToStripe');
+
+  function getSelectedBilling() {
+    const active = document.querySelector('.choiceItem[data-billing].active');
+    return active ? active.dataset.billing : 'monthly';
+  }
+
+  billingButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      billingButtons.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+    });
+  });
+
+  continueBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+
+    const billing = getSelectedBilling();
+    const stripeLink = STRIPE_LINKS.custom[billing];
+
+    if (stripeLink) {
+      window.location.href = stripeLink;
+    }
+  });
+</script>
 </body>
 </html>
