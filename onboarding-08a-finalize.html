@@ -260,6 +260,10 @@
       flex-shrink:0;
     }
 
+    .primary.is-disabled,
+    .primary[style*="pointer-events: none"]{
+      box-shadow:none;
+    }
 
     @media (max-width: 1100px){
       .flowRail{
@@ -427,32 +431,43 @@
 
                 <div class="inputBar">
                   <div class="fieldLabel">Registrar</div>
-                  <select class="inputField" style="min-height:60px;">
-                    <option>GoDaddy</option>
-                    <option>Cloudflare</option>
-                    <option>Namecheap</option>
-                    <option>Squarespace</option>
-                    <option>Wix</option>
-                    <option>Hostinger</option>
-                    <option>IONOS</option>
-                    <option>Bluehost</option>
-                    <option>Other</option>
-                    <option>I don’t know</option>
+                  <select id="registrarSelect" class="inputField" style="min-height:60px;">
+                    <option value="godaddy" selected>GoDaddy</option>
+                    <option value="cloudflare">Cloudflare</option>
+                    <option value="namecheap">Namecheap</option>
+                    <option value="squarespace">Squarespace</option>
+                    <option value="wix">Wix</option>
+                    <option value="hostinger">Hostinger</option>
+                    <option value="ionos">IONOS</option>
+                    <option value="bluehost">Bluehost</option>
+                    <option value="other">Other</option>
+                    <option value="unknown">I don’t know</option>
                   </select>
                 </div>
 
-                <div class="msg system" style="margin:0;">
+                <div id="registrarMessage" class="msg system" style="margin:0;">
                   <div class="metaLine">
                     <span><b>Registrar support</b></span>
-                    <span>GoDaddy selected</span>
+                    <span id="registrarStatus">GoDaddy selected</span>
                   </div>
-                  <p><b>Good news:</b> for some major registrars like GoDaddy, we may be able to help with DNS setup during provisioning.</p>
-                  <p class="muted">You’ll still confirm the final address now. DNS setup happens after billing while the server is being provisioned.</p>
+                  <p id="registrarBody">
+                    <b>Good news:</b> for some major registrars like GoDaddy, we may be able to help with DNS setup during provisioning.
+                  </p>
+                  <p id="registrarNote" class="muted">
+                    You’ll still confirm the final address now. DNS setup happens after billing while the server is being provisioned.
+                  </p>
                 </div>
 
-                <div class="msg" style="margin:0;">
-                  <p><b>Custom domain path</b></p>
-                  <p>You are responsible for controlling this domain or subdomain. If you continue with this address, Commonshub will use it as your final launch target.</p>
+                <div id="domainControlWrap" class="msg" style="margin:0; display:none;">
+                  <p><b>Before you continue</b></p>
+                  <p id="domainControlText">
+                    You are responsible for controlling this domain or subdomain and being able to update its DNS records.
+                  </p>
+
+                  <label style="display:flex; gap:10px; align-items:flex-start; margin-top:12px; font-size:14px; color:var(--text);">
+                    <input id="domainControlCheck" type="checkbox" style="margin-top:3px;">
+                    <span>I control this domain or can get its DNS records changed.</span>
+                  </label>
                 </div>
 
                 <div class="msg system" style="margin:0;">
@@ -464,7 +479,7 @@
 
               <div class="footerBar">
                 <a class="secondary" href="onboarding-08-review.html">Back</a>
-                <a class="primary forward" href="billing-custom.html">Continue</a>
+                <a id="continueBtn" class="primary forward" href="billing-custom.html">Continue</a>
               </div>
             </div>
 
@@ -474,5 +489,73 @@
       </main>
     </div>
   </div>
+  <script>
+    const registrarSelect = document.getElementById('registrarSelect');
+    const registrarStatus = document.getElementById('registrarStatus');
+    const registrarBody = document.getElementById('registrarBody');
+    const registrarNote = document.getElementById('registrarNote');
+
+    const domainControlWrap = document.getElementById('domainControlWrap');
+    const domainControlText = document.getElementById('domainControlText');
+    const domainControlCheck = document.getElementById('domainControlCheck');
+
+    const continueBtn = document.getElementById('continueBtn');
+
+    const supportedRegistrars = new Set([
+      'godaddy',
+      'cloudflare',
+      'namecheap',
+      'squarespace',
+      'wix',
+      'hostinger',
+      'ionos',
+      'bluehost'
+    ]);
+
+    function updateContinueState() {
+      const val = registrarSelect.value;
+      const needsAck = (val === 'other' || val === 'unknown');
+
+      if (!needsAck || domainControlCheck.checked) {
+        continueBtn.style.pointerEvents = 'auto';
+        continueBtn.style.opacity = '1';
+      } else {
+        continueBtn.style.pointerEvents = 'none';
+        continueBtn.style.opacity = '.55';
+      }
+    }
+
+    function updateRegistrarState() {
+      const val = registrarSelect.value;
+      domainControlCheck.checked = false;
+
+      if (supportedRegistrars.has(val)) {
+        const label = registrarSelect.options[registrarSelect.selectedIndex].text;
+        registrarStatus.textContent = label + ' selected';
+        registrarBody.innerHTML = '<b>Good news:</b> for some major registrars like ' + label + ', we may be able to help with DNS setup during provisioning.';
+        registrarNote.textContent = 'You’ll still confirm the final address now. DNS setup happens after billing while the server is being provisioned.';
+        domainControlWrap.style.display = 'none';
+      } else if (val === 'other') {
+        registrarStatus.textContent = 'Manual setup likely';
+        registrarBody.innerHTML = '<b>Heads up:</b> if your registrar is not one of our supported providers, you may need to add DNS records manually during setup.';
+        registrarNote.textContent = 'We’ll still use this address if you confirm it now, but DNS changes may need to be completed by you after billing.';
+        domainControlWrap.style.display = 'block';
+        domainControlText.textContent = 'Because your registrar is not listed, you may be responsible for updating DNS records yourself.';
+      } else if (val === 'unknown') {
+        registrarStatus.textContent = 'Ownership check needed';
+        registrarBody.innerHTML = '<b>Please confirm:</b> Commonshub can only use this address if you control the domain or can get its DNS records changed.';
+        registrarNote.textContent = 'If you are not sure who manages this domain, it may be safer to switch to a Commonshub address before continuing.';
+        domainControlWrap.style.display = 'block';
+        domainControlText.textContent = 'If you do not know who manages this domain, you may not be able to complete setup for this address.';
+      }
+
+      updateContinueState();
+    }
+
+    registrarSelect.addEventListener('change', updateRegistrarState);
+    domainControlCheck.addEventListener('change', updateContinueState);
+
+    updateRegistrarState();
+  </script>
 </body>
 </html>
