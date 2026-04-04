@@ -335,6 +335,7 @@
   <div class="flowRoot">
     <div class="wrap">
       <main class="stage">
+
         <div class="topbar">
           <div class="left">
             <div class="logoMark"></div>
@@ -361,128 +362,127 @@
 
             <div class="progress">
               <span>Address setup</span>
-              <div class="bar"><div style="width:28%"></div></div>
+              <div class="bar"><div style="width:34%"></div></div>
               <span>~2 minutes</span>
             </div>
 
             <div class="card" style="margin-top:14px;">
-              <div class="consoleShell">
+              <div class="list" style="gap:14px;">
 
-                <div class="consoleStream">
-                  <div class="msg system">
-                    <div class="metaLine">
-                      <span><b>Blueprint summary</b></span>
-                      <span>Ready to continue</span>
-                    </div>
-                    <p><b>Community:</b> The Security Brief</p>
-                    <p><b>Positioning:</b> A working room for researchers, journalists, and operators analyzing power, propaganda, and geopolitical strategy.</p>
-                    <p><b>Header line:</b> Real-Time Security Briefings</p>
+                <div class="msg system" style="margin:0;">
+                  <div class="metaLine">
+                    <span><b>Blueprint summary</b></span>
+                    <span>Ready to continue</span>
                   </div>
-
-                  <div class="msg system">
-                    <div class="metaLine">
-                      <span><b>Current address choice</b></span>
-                      <span>From your Blueprint</span>
-                    </div>
-                    <p><b>Current type:</b> Custom domain / subdomain</p>
-                    <p><b>Current choice:</b> securitybrief.jasonjaysmart.com</p>
-                  </div>
-
-                  <div class="msg">
-                    <p><b>You can keep this choice or switch now.</b></p>
-                    <p>We’ll confirm the final address before billing so nothing changes unexpectedly after purchase.</p>
-                  </div>
+                  <p><b>Community:</b> The Security Brief</p>
+                  <p><b>Positioning:</b> A working room for researchers, journalists, and operators analyzing power, propaganda, and geopolitical strategy.</p>
+                  <p><b>Header line:</b> Real-Time Security Briefings</p>
                 </div>
 
-                <div class="msg" style="margin-bottom:0;">
-                  <div style="display:flex; flex-direction:column; gap:12px;">
-
-                    <button type="button" class="choiceItem addressMode active" data-mode="custom">
-                      <div class="choiceTop">
-                        <span class="choiceValue">Use your own domain</span>
-                        <span class="choiceBadge">Current choice</span>
-                      </div>
-                      <div class="muted" style="margin-top:6px;">
-                        securitybrief.jasonjaysmart.com
-                      </div>
-                    </button>
-
-                    <button type="button" class="choiceItem addressMode" data-mode="commons">
-                      <div class="choiceTop">
-                        <span class="choiceValue">Use a Commonshub address</span>
-                      </div>
-                      <div class="muted" style="margin-top:6px;">
-                        Simplest launch path on a Commonshub subdomain
-                      </div>
-                    </button>
-
+                <div class="msg system" style="margin:0;">
+                  <div class="metaLine">
+                    <span><b>Current address choice</b></span>
+                    <span>From your Blueprint</span>
                   </div>
+                  <p><b>Current type:</b> Custom domain / subdomain</p>
+                  <p><b>Current choice:</b> securitybrief.jasonjaysmart.com</p>
                 </div>
 
-                <div id="customPanel" class="inputBar">
-                  <div class="fieldLabel">Custom domain or subdomain</div>
-                  <input class="inputField" id="customDomainField" value="securitybrief.jasonjaysmart.com" />
-
-                  <div class="fieldLabel">Registrar</div>
-                  <input class="inputField" id="registrarField" placeholder="e.g. GoDaddy, Squarespace, Cloudflare" value="GoDaddy" />
-
-                  <div class="msg system" style="margin:0;">
-                    <p><b>Custom domain path</b></p>
-                    <p>We’ll confirm the final address now. DNS setup happens after billing during provisioning.</p>
-                  </div>
-                </div>
-
-                <div id="commonsPanel" class="inputBar" style="display:none;">
-                  <div class="fieldLabel">Commonshub subdomain</div>
-                  <input class="inputField" id="commonsField" value="securitybrief.commonshub.social" />
-
-                  <div class="msg system" style="margin:0;">
-                    <p><b>Availability check</b></p>
-                    <p>This name will be checked and locked before billing so your address is stable before purchase.</p>
-                  </div>
-                </div>
-
-                <div class="footerBar">
-                  <a class="secondary" href="onboarding-08-review.html">Back</a>
-                  <a class="primary forward" id="continueLink" href="billing-custom.html">Continue</a>
+                <div class="msg" style="margin:0;">
+                  <p><b>You can keep this choice or switch now.</b></p>
+                  <p>We’ll confirm the final address before billing so nothing changes unexpectedly after purchase.</p>
                 </div>
 
               </div>
             </div>
 
+            <div class="card" style="margin-top:14px;">
+              <div class="list" style="gap:14px;">
+
+                <div class="choiceItem" style="margin:0;">
+                  <div class="choiceTop">
+                    <span class="choiceValue">Use your own domain</span>
+                    <span class="choiceBadge">Previous choice</span>
+                  </div>
+                  <div class="muted" style="margin-top:6px;">securitybrief.jasonjaysmart.com</div>
+                </div>
+
+                <button type="button" class="choiceItem active" style="margin:0;">
+                  <div class="choiceTop">
+                    <span class="choiceValue">Use a Commonshub address</span>
+                    <span class="choiceBadge">Selected</span>
+                  </div>
+                  <div class="muted" style="margin-top:6px;">Simplest launch path on a Commonshub subdomain</div>
+                </button>
+
+              </div>
+            </div>
+
+            <div class="card" style="margin-top:14px;">
+              <div class="list" style="gap:14px;">
+
+                <div class="msg system" style="margin:0;">
+                  <div class="metaLine">
+                    <span><b>Commonshub address check</b></span>
+                    <span>Required before billing</span>
+                  </div>
+                  <p><b>Requested address:</b> securitybrief.commonshub.social</p>
+                  <p style="color:#b42318;"><b>Status:</b> Unavailable — this address has already been taken.</p>
+                </div>
+
+                <div class="inputBar">
+                  <div class="fieldLabel">Choose a Commonshub subdomain</div>
+                  <input class="inputField" value="securitybrief" />
+                  <div class="muted">Final address: <b>securitybrief.commonshub.social</b></div>
+                  <a class="secondary" href="#" style="width:100%; max-width:none;">Check availability</a>
+                </div>
+
+                <div class="msg" style="margin:0;">
+                  <p><b>Available alternatives</b></p>
+
+                  <div class="list" style="margin-top:10px; gap:12px;">
+                    <button type="button" class="choiceItem">
+                      <div class="choiceTop">
+                        <span class="choiceValue">thesecuritybrief.commonshub.social</span>
+                      </div>
+                      <div class="muted" style="margin-top:6px;">Closest match</div>
+                    </button>
+
+                    <button type="button" class="choiceItem active">
+                      <div class="choiceTop">
+                        <span class="choiceValue">securitybriefhq.commonshub.social</span>
+                        <span class="choiceBadge">Available</span>
+                      </div>
+                      <div class="muted" style="margin-top:6px;">Selected replacement</div>
+                    </button>
+
+                    <button type="button" class="choiceItem">
+                      <div class="choiceTop">
+                        <span class="choiceValue">securitybrieflive.commonshub.social</span>
+                      </div>
+                      <div class="muted" style="margin-top:6px;">Alternative</div>
+                    </button>
+                  </div>
+                </div>
+
+                <div class="msg system" style="margin:0;">
+                  <p><b>Final address now set to:</b> securitybriefhq.commonshub.social</p>
+                  <p class="muted">This confirmed address is what will carry into billing and provisioning.</p>
+                </div>
+
+              </div>
+
+              <div class="footerBar">
+                <a class="secondary" href="onboarding-08-review.html">Back</a>
+                <a class="primary forward" href="billing-commons.html">Continue</a>
+              </div>
+            </div>
+
           </div>
         </div>
+
       </main>
     </div>
   </div>
-
-  <script>
-    const modeButtons = document.querySelectorAll('.addressMode');
-    const customPanel = document.getElementById('customPanel');
-    const commonsPanel = document.getElementById('commonsPanel');
-    const continueLink = document.getElementById('continueLink');
-
-    function setMode(mode) {
-      modeButtons.forEach(btn => {
-        btn.classList.toggle('active', btn.dataset.mode === mode);
-      });
-
-      if (mode === 'custom') {
-        customPanel.style.display = 'flex';
-        commonsPanel.style.display = 'none';
-        continueLink.href = 'billing-custom.html';
-      } else {
-        customPanel.style.display = 'none';
-        commonsPanel.style.display = 'flex';
-        continueLink.href = 'billing-commons.html';
-      }
-    }
-
-    modeButtons.forEach(btn => {
-      btn.addEventListener('click', () => setMode(btn.dataset.mode));
-    });
-
-    setMode('custom');
-  </script>
 </body>
 </html>
