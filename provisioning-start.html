@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Commonshub — Launching your community</title>
+  <link rel="stylesheet" href="assets/styles.css" />
+
+  <style>
+    .statusDot{
+      width:10px;
+      height:10px;
+      border-radius:50%;
+      background:#1f6f4a;
+      display:inline-block;
+      margin-right:8px;
+    }
+
+    .statusDot.pending{
+      background:#d0d5dd;
+    }
+
+    .statusDot.active{
+      background:#f59e0b;
+    }
+
+    .statusDot.done{
+      background:#1f6f4a;
+    }
+
+    .stepRow{
+      display:flex;
+      align-items:flex-start;
+      gap:10px;
+      font-size:14px;
+      color:var(--text);
+    }
+
+    .stepRow + .stepRow{
+      margin-top:10px;
+    }
+
+    .permissionBox{
+      border:1px solid var(--line);
+      border-radius:18px;
+      padding:16px;
+      background:#fff;
+    }
+
+    .hidden{
+      display:none;
+    }
+  </style>
+</head>
+
+<body class="flow">
+  <div class="flowRoot">
+    <div class="wrap">
+      <main class="stage">
+
+        <!-- TOP -->
+        <div class="topbar">
+          <div class="left">
+            <div class="logoMark"></div>
+            <div class="meta">
+              <b>Setting up your community</b>
+              <span>This usually takes a few minutes</span>
+            </div>
+          </div>
+          <div class="chip">Provisioning</div>
+        </div>
+
+        <div class="content">
+          <div class="center">
+
+            <!-- HEADER -->
+            <div class="flowBanner">
+              <div>
+                <b>Your community is launching 🚀</b>
+                <div class="muted" style="margin-top:6px;">
+                  We’re setting everything up now. You’ll get access as soon as it’s ready.
+                </div>
+              </div>
+              <div class="stepChip">In progress</div>
+            </div>
+
+            <!-- PROGRESS -->
+            <div class="progress">
+              <span>Provisioning</span>
+              <div class="bar"><div style="width:25%"></div></div>
+              <span>~2–5 minutes</span>
+            </div>
+
+            <!-- MAIN CARD -->
+            <div class="card" style="margin-top:14px;">
+              <div class="list" style="gap:14px;">
+
+                <!-- CONFIRMATION -->
+                <div class="msg system" style="margin:0;">
+                  <div class="metaLine">
+                    <span><b>Payment confirmed</b></span>
+                    <span>Success</span>
+                  </div>
+                  <p>Your subscription is active and your community setup has started.</p>
+                </div>
+
+                <!-- SUMMARY -->
+                <div class="msg" style="margin:0;">
+                  <p><b>What we’re setting up</b></p>
+                  <div class="list" style="margin-top:10px;">
+                    <div class="stepRow">
+                      <span class="statusDot active"></span>
+                      <span>Provisioning your server</span>
+                    </div>
+                    <div class="stepRow">
+                      <span class="statusDot pending"></span>
+                      <span>Configuring your community</span>
+                    </div>
+                    <div class="stepRow">
+                      <span class="statusDot pending"></span>
+                      <span>Connecting your domain</span>
+                    </div>
+                    <div class="stepRow">
+                      <span class="statusDot pending"></span>
+                      <span>Preparing your dashboard access</span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- DOMAIN -->
+                <div class="msg system" style="margin:0;">
+                  <p><b>Community address</b></p>
+                  <p>securitybrief.jasonjaysmart.com</p>
+                </div>
+
+                <!-- DNS PERMISSION -->
+                <div id="dnsSection" class="permissionBox">
+                  <p><b>Speed up your setup</b></p>
+                  <p class="muted" style="margin-top:6px;">
+                    We can configure your DNS records automatically to get your community live faster.
+                  </p>
+
+                  <div style="margin-top:12px;">
+                    <label style="display:flex; gap:10px; align-items:flex-start;">
+                      <input id="dnsConsent" type="checkbox" style="margin-top:3px;">
+                      <span>I’d like Commonshub to help configure DNS automatically</span>
+                    </label>
+                  </div>
+
+                  <div id="dnsHelp" class="hidden" style="margin-top:12px;">
+                    <div class="msg system" style="margin:0;">
+                      <p><b>Next step</b></p>
+                      <p class="muted">
+                        We’ll guide you through connecting your registrar securely during setup.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- FALLBACK -->
+                <div class="msg" style="margin:0;">
+                  <p><b>Prefer to do it yourself?</b></p>
+                  <p class="muted">
+                    No problem — we’ll provide step-by-step DNS instructions once your server is ready.
+                  </p>
+                </div>
+
+              </div>
+
+              <!-- FOOTER -->
+              <div class="footerBar">
+                <a class="secondary" href="dashboard.html">Go to dashboard</a>
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+
+      </main>
+    </div>
+  </div>
+
+<script>
+  const dnsCheckbox = document.getElementById('dnsConsent');
+  const dnsHelp = document.getElementById('dnsHelp');
+
+  dnsCheckbox.addEventListener('change', () => {
+    dnsHelp.classList.toggle('hidden', !dnsCheckbox.checked);
+  });
+</script>
+
+</body>
+</html>
