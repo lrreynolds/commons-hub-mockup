@@ -558,7 +558,7 @@
   const domainControlText = document.getElementById('domainControlText');
   const domainControlCheck = document.getElementById('domainControlCheck');
 
-  const continueBtn = document.getElementById('continueBtn');
+ const continueBtn = document.getElementById('continueCustom');
 
   const supportedRegistrars = new Set([
     'godaddy',
@@ -571,18 +571,16 @@
     'bluehost'
   ]);
 
-  function updateContinueState() {
-    const val = registrarSelect.value;
-    const needsAck = (val === 'other' || val === 'unknown');
+ function updateContinueState() {
+  const val = registrarSelect.value;
+  const needsAck = (val === 'other' || val === 'unknown');
 
-    if (!needsAck || domainControlCheck.checked) {
-      continueBtn.style.pointerEvents = 'auto';
-      continueBtn.style.opacity = '1';
-    } else {
-      continueBtn.style.pointerEvents = 'none';
-      continueBtn.style.opacity = '.55';
-    }
+  if (!needsAck || domainControlCheck.checked) {
+    continueBtn.classList.remove('is-disabled');
+  } else {
+    continueBtn.classList.add('is-disabled');
   }
+}
 
   function updateRegistrarState() {
     const val = registrarSelect.value;
