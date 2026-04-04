@@ -196,43 +196,46 @@
                     <span><b>Payment confirmed</b></span>
                     <span>Success</span>
                   </div>
-                  <p>Your subscription is active and your community setup has started.</p>
+                  <p><b>Your community launch has started.</b></p>
+                  <p class="muted">We’re provisioning your server now.</p>
                 </div>
 
                 <div class="msg" style="margin:0;">
-                  <p><b>What we’re setting up</b></p>
+                  <p><b>Launch status</b></p>
                   <div class="list" style="margin-top:10px;">
                     <div class="stepRow">
+                      <span class="statusDot done"></span>
+                      <span>Payment confirmed</span>
+                    </div>
+                    <div class="stepRow">
                       <span class="statusDot active"></span>
-                      <span>Provisioning your server</span>
+                      <span>Server provisioning started</span>
                     </div>
                     <div class="stepRow">
                       <span class="statusDot"></span>
-                      <span>Configuring your community</span>
-                    </div>
-                    <div class="stepRow">
-                      <span class="statusDot"></span>
-                      <span>Connecting your domain</span>
-                    </div>
-                    <div class="stepRow">
-                      <span class="statusDot"></span>
-                      <span>Preparing your dashboard access</span>
+                      <span><b>DNS setup required</b></span>
                     </div>
                   </div>
                 </div>
 
-                <div class="msg system" style="margin:0;">
-                  <p><b>Community address</b></p>
-                  <p>securitybrief.jasonjaysmart.com</p>
-                </div>
-
                 <div class="msg" style="margin:0;">
-                  <p><b>DNS record needed for this address</b></p>
-                  <p class="muted" style="margin-top:6px;">
-                    This is the record that must exist for your community to resolve at the chosen address.
+                  <p><b>Next step: connect your domain</b></p>
+
+                  <p style="margin-top:6px;">
+                    To launch at<br>
+                    <b>securitybrief.jasonjaysmart.com</b>
                   </p>
 
-                  <div class="list" style="margin-top:12px; gap:12px;">
+                  <p class="muted" style="margin-top:6px;">
+                    Add this DNS record in the domain:
+                  </p>
+
+                  <p style="margin-top:4px;">
+                    👉 <b>jasonjaysmart.com</b>
+                  </p>
+
+                  <div class="list" style="margin-top:14px; gap:12px;">
+
                     <div class="dnsRecordRow">
                       <div class="dnsRecordGrid">
                         <div>
@@ -241,9 +244,9 @@
                         </div>
                         <div>
                           <div class="dnsRecordLabel">Host / Name</div>
-                          <div class="dnsRecordValue" id="copyHostValue">securitybrief</div>
+                          <div class="dnsRecordValue" id="copyHost">securitybrief</div>
                         </div>
-                        <button class="copyBtn" type="button" data-copy="copyHostValue">Copy</button>
+                        <button class="copyBtn" data-copy="copyHost">Copy</button>
                       </div>
                     </div>
 
@@ -251,105 +254,127 @@
                       <div class="dnsRecordGrid">
                         <div>
                           <div class="dnsRecordLabel">Points to</div>
-                          <div class="dnsRecordValue" id="copyTargetValue">launch.commonshub.social</div>
+                          <div class="dnsRecordValue" id="copyTarget">
+                            exo-de-fra-1-nlb-1.commonshub.social
+                          </div>
                         </div>
                         <div></div>
-                        <button class="copyBtn" type="button" data-copy="copyTargetValue">Copy</button>
+                        <button class="copyBtn" data-copy="copyTarget">Copy</button>
                       </div>
                     </div>
+
+                  </div>
+
+                  <div style="margin-top:12px;">
+                    <a class="secondary" href="https://godaddy.com" target="_blank">
+                      Open GoDaddy →
+                    </a>
                   </div>
                 </div>
 
                 <div class="msg" style="margin:0;">
-                  <p><b>How do you want to handle DNS setup?</b></p>
+                  <p><b>Want Commonshub to handle this for you?</b></p>
+
                   <p class="muted" style="margin-top:6px;">
-                    Because your registrar is GoDaddy, Commonshub can configure the required DNS records automatically if you authorize access.
+                    We can configure these DNS records automatically if you authorize access through your registrar.
+                    You’ll log in directly — we won’t need your credentials.
                   </p>
 
-                  <div class="dnsChoice" style="margin-top:12px;">
-                    <button type="button" id="dnsAutoBtn" class="dnsOption active">
-                      <div class="dnsOptionTitle">Configure DNS automatically</div>
-                      <div class="dnsOptionText">
-                        You’ll authorize Commonshub through GoDaddy and we’ll configure the required records for you.
-                      </div>
-                    </button>
-
-                    <button type="button" id="dnsManualBtn" class="dnsOption">
-                      <div class="dnsOptionTitle">I’ll update DNS manually</div>
-                      <div class="dnsOptionText">
-                        You can copy these values now or later in your dashboard and add the DNS records yourself.
-                      </div>
-                    </button>
-                  </div>
+                  <button id="autoDnsBtn" class="choiceItem" style="margin-top:12px;">
+                    <div class="choiceTop">
+                      <span class="choiceValue">Configure DNS automatically</span>
+                    </div>
+                    <div class="muted" style="margin-top:6px;">
+                      Sign in to your registrar and authorize Commonshub to add the required records.
+                    </div>
+                  </button>
                 </div>
 
-                <div id="dnsAutoHelp" class="helperBlock">
-                  <p><b>Automatic setup path</b></p>
+                <div id="autoDnsSection" class="msg system hidden" style="margin:0;">
+                  <p><b>Automatic DNS setup</b></p>
+
                   <p class="muted" style="margin-top:6px;">
-                    In the dashboard, you’ll be prompted to authorize Commonshub through GoDaddy so we can add the required DNS records automatically.
+                    You’ll sign in to your registrar and authorize Commonshub to configure DNS for this address.
                   </p>
+
+                  <a class="primary" href="#">
+                    Authorize with GoDaddy →
+                  </a>
                 </div>
 
-                <div id="dnsManualHelp" class="helperBlock hidden">
-                  <p><b>Manual setup path</b></p>
-                  <p class="muted" style="margin-top:6px;">
-                    In the dashboard, these DNS values will remain available for copy/paste. Once your records are live, Commonshub will verify the connection automatically.
-                  </p>
+                <div class="footerBar">
+                  <a class="primary forward" href="dashboard.html">Continue to dashboard</a>
                 </div>
 
-              </div>
-
-              <div class="footerBar">
-                <a class="primary forward" href="dashboard.html">Continue to dashboard</a>
               </div>
 
             </div>
-
           </div>
-        </div>
 
-      </main>
+        </main>
+      </div>
     </div>
-  </div>
 
-  <script>
-    const dnsAutoBtn = document.getElementById('dnsAutoBtn');
-    const dnsManualBtn = document.getElementById('dnsManualBtn');
-    const dnsAutoHelp = document.getElementById('dnsAutoHelp');
-    const dnsManualHelp = document.getElementById('dnsManualHelp');
+    <script>
+      const dnsAutoBtn = document.getElementById('dnsAutoBtn');
+      const dnsManualBtn = document.getElementById('dnsManualBtn');
+      const dnsAutoHelp = document.getElementById('dnsAutoHelp');
+      const dnsManualHelp = document.getElementById('dnsManualHelp');
 
-    function setDnsMode(mode) {
-      const isAuto = mode === 'auto';
+      function setDnsMode(mode) {
+        const isAuto = mode === 'auto';
 
-      dnsAutoBtn.classList.toggle('active', isAuto);
-      dnsManualBtn.classList.toggle('active', !isAuto);
+        dnsAutoBtn.classList.toggle('active', isAuto);
+        dnsManualBtn.classList.toggle('active', !isAuto);
 
-      dnsAutoHelp.classList.toggle('hidden', !isAuto);
-      dnsManualHelp.classList.toggle('hidden', isAuto);
-    }
+        dnsAutoHelp.classList.toggle('hidden', !isAuto);
+        dnsManualHelp.classList.toggle('hidden', isAuto);
+      }
 
-    dnsAutoBtn.addEventListener('click', () => setDnsMode('auto'));
-    dnsManualBtn.addEventListener('click', () => setDnsMode('manual'));
+      dnsAutoBtn.addEventListener('click', () => setDnsMode('auto'));
+      dnsManualBtn.addEventListener('click', () => setDnsMode('manual'));
 
-    document.querySelectorAll('.copyBtn').forEach(btn => {
-      btn.addEventListener('click', async () => {
-        const targetId = btn.getAttribute('data-copy');
-        const el = document.getElementById(targetId);
-        const text = el ? el.textContent.trim() : '';
+      document.querySelectorAll('.copyBtn').forEach(btn => {
+        btn.addEventListener('click', async () => {
+          const targetId = btn.getAttribute('data-copy');
+          const el = document.getElementById(targetId);
+          const text = el ? el.textContent.trim() : '';
 
-        if (!text) return;
+          if (!text) return;
 
-        try {
-          await navigator.clipboard.writeText(text);
-          const oldText = btn.textContent;
-          btn.textContent = 'Copied';
-          setTimeout(() => btn.textContent = oldText, 1200);
-        } catch (e) {
-          btn.textContent = 'Copy failed';
-          setTimeout(() => btn.textContent = 'Copy', 1200);
-        }
+          try {
+            await navigator.clipboard.writeText(text);
+            const oldText = btn.textContent;
+            btn.textContent = 'Copied';
+            setTimeout(() => btn.textContent = oldText, 1200);
+          } catch (e) {
+            btn.textContent = 'Copy failed';
+            setTimeout(() => btn.textContent = 'Copy', 1200);
+          }
+        });
       });
-    });
-  </script>
-</body>
-</html>
+    </script>
+    <script>
+      const autoBtn = document.getElementById('autoDnsBtn');
+      const autoSection = document.getElementById('autoDnsSection');
+
+      autoBtn.addEventListener('click', () => {
+        autoBtn.classList.add('active');
+        autoSection.classList.remove('hidden');
+      });
+
+      document.querySelectorAll('.copyBtn').forEach(btn => {
+        btn.addEventListener('click', async () => {
+          const id = btn.getAttribute('data-copy');
+          const text = document.getElementById(id).textContent.trim();
+
+          await navigator.clipboard.writeText(text);
+
+          const old = btn.textContent;
+          btn.textContent = "Copied";
+          setTimeout(() => btn.textContent = old, 1000);
+        });
+      });
+    </script>
+  </body>
+  </html>
