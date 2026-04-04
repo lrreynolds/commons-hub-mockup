@@ -403,7 +403,7 @@
             <div class="card" style="margin-top:14px;">
               <div class="list" style="gap:14px;">
 
-                <button type="button" class="choiceItem active" style="margin:0;">
+                <button type="button" id="modeCustom" class="choiceItem active" style="margin:0;">
                   <div class="choiceTop">
                     <span class="choiceValue">Use your own domain</span>
                     <span class="choiceBadge">Selected</span>
@@ -411,151 +411,305 @@
                   <div class="muted" style="margin-top:6px;">Launch on a branded custom domain or subdomain</div>
                 </button>
 
-                <div class="choiceItem" style="margin:0;">
+                <button type="button" id="modeCommons" class="choiceItem" style="margin:0;">
                   <div class="choiceTop">
                     <span class="choiceValue">Use a Commonshub address</span>
                   </div>
                   <div class="muted" style="margin-top:6px;">Simplest launch path on a Commonshub subdomain</div>
-                </div>
+                </button>
 
               </div>
             </div>
 
-            <div class="card" style="margin-top:14px;">
+            <div id="customSection">
+              <div class="card" style="margin-top:14px;">
+                <div class="list" style="gap:14px;">
+
+                  <div class="inputBar">
+                    <div class="fieldLabel">Custom domain or subdomain</div>
+                    <input id="customDomainField" class="inputField" value="securitybrief.jasonjaysmart.com" />
+                    <div id="customDomainHint" class="muted">Looks like a valid domain or subdomain.</div>
+                  </div>
+
+                  <div class="inputBar">
+                    <div class="fieldLabel">Registrar</div>
+                    <select id="registrarSelect" class="inputField" style="min-height:60px;">
+                      <option value="godaddy" selected>GoDaddy</option>
+                      <option value="cloudflare">Cloudflare</option>
+                      <option value="namecheap">Namecheap</option>
+                      <option value="squarespace">Squarespace</option>
+                      <option value="wix">Wix</option>
+                      <option value="hostinger">Hostinger</option>
+                      <option value="ionos">IONOS</option>
+                      <option value="bluehost">Bluehost</option>
+                      <option value="other">Other</option>
+                      <option value="unknown">I don’t know</option>
+                    </select>
+                  </div>
+
+                  <div id="registrarMessage" class="msg system" style="margin:0;">
+                    <div class="metaLine">
+                      <span><b>Registrar support</b></span>
+                      <span id="registrarStatus">GoDaddy selected</span>
+                    </div>
+                    <p id="registrarBody">
+                      <b>Good news:</b> for some major registrars like GoDaddy, we may be able to help with DNS setup during provisioning.
+                    </p>
+                    <p id="registrarNote" class="muted">
+                      You’ll still confirm the final address now. DNS setup happens after billing while the server is being provisioned.
+                    </p>
+                  </div>
+
+                  <div id="domainControlWrap" class="msg" style="margin:0; display:none;">
+                    <p><b>Before you continue</b></p>
+                    <p id="domainControlText">
+                      You are responsible for controlling this domain or subdomain and being able to update its DNS records.
+                    </p>
+
+                    <label style="display:flex; gap:10px; align-items:flex-start; margin-top:12px; font-size:14px; color:var(--text);">
+                      <input id="domainControlCheck" type="checkbox" style="margin-top:3px;">
+                      <span>I control this domain or can get its DNS records changed.</span>
+                    </label>
+                  </div>
+
+                  <div class="msg system" style="margin:0;">
+                    <p><b>Final address now set to:</b> securitybrief.jasonjaysmart.com</p>
+                    <p class="muted">Billing and provisioning will proceed using this confirmed address.</p>
+                  </div>
+
+                </div>
+
+                <div class="footerBar">
+                  <a class="secondary" href="onboarding-08-review.html">Back</a>
+                  <a id="continueCustom" class="primary forward" href="billing-custom.html">Continue</a>
+                </div>
+              </div>
+            </div>
+            <div id="commonsSection" style="display:none;">
+             <div class="card" style="margin-top:14px;">
               <div class="list" style="gap:14px;">
 
-                <div class="inputBar">
-                  <div class="fieldLabel">Custom domain or subdomain</div>
-                  <input class="inputField" value="securitybrief.jasonjaysmart.com" />
-                </div>
-
-                <div class="inputBar">
-                  <div class="fieldLabel">Registrar</div>
-                  <select id="registrarSelect" class="inputField" style="min-height:60px;">
-                    <option value="godaddy" selected>GoDaddy</option>
-                    <option value="cloudflare">Cloudflare</option>
-                    <option value="namecheap">Namecheap</option>
-                    <option value="squarespace">Squarespace</option>
-                    <option value="wix">Wix</option>
-                    <option value="hostinger">Hostinger</option>
-                    <option value="ionos">IONOS</option>
-                    <option value="bluehost">Bluehost</option>
-                    <option value="other">Other</option>
-                    <option value="unknown">I don’t know</option>
-                  </select>
-                </div>
-
-                <div id="registrarMessage" class="msg system" style="margin:0;">
+                <div class="msg system" style="margin:0;">
                   <div class="metaLine">
-                    <span><b>Registrar support</b></span>
-                    <span id="registrarStatus">GoDaddy selected</span>
+                    <span><b>Commonshub address check</b></span>
+                    <span>Required before billing</span>
                   </div>
-                  <p id="registrarBody">
-                    <b>Good news:</b> for some major registrars like GoDaddy, we may be able to help with DNS setup during provisioning.
-                  </p>
-                  <p id="registrarNote" class="muted">
-                    You’ll still confirm the final address now. DNS setup happens after billing while the server is being provisioned.
-                  </p>
+                  <p><b>Requested address:</b> securitybrief.commonshub.social</p>
+                  <p style="color:#b42318;"><b>Status:</b> Unavailable — this address has already been taken.</p>
                 </div>
 
-                <div id="domainControlWrap" class="msg" style="margin:0; display:none;">
-                  <p><b>Before you continue</b></p>
-                  <p id="domainControlText">
-                    You are responsible for controlling this domain or subdomain and being able to update its DNS records.
-                  </p>
+                <div class="inputBar">
+                  <div class="fieldLabel">Choose a Commonshub subdomain</div>
+                  <input class="inputField" value="securitybrief" />
+                  <div class="muted">Final address: <b>securitybrief.commonshub.social</b></div>
+                  <a class="secondary" href="#" style="width:100%; max-width:none;">Check availability</a>
+                </div>
 
-                  <label style="display:flex; gap:10px; align-items:flex-start; margin-top:12px; font-size:14px; color:var(--text);">
-                    <input id="domainControlCheck" type="checkbox" style="margin-top:3px;">
-                    <span>I control this domain or can get its DNS records changed.</span>
-                  </label>
+                <div class="msg" style="margin:0;">
+                  <p><b>Available alternatives</b></p>
+
+                  <div class="list" style="margin-top:10px; gap:12px;">
+                    <button type="button" class="choiceItem commonsPreset" data-value="thesecuritybrief.commonshub.social">
+                      <div class="choiceTop">
+                        <span class="choiceValue">thesecuritybrief.commonshub.social</span>
+                      </div>
+                    </button>
+
+                    <button type="button" class="choiceItem commonsPreset active" data-value="securitybriefhq.commonshub.social">
+                      <div class="choiceTop">
+                        <span class="choiceValue">securitybriefhq.commonshub.social</span>
+                        <span class="choiceBadge">Available</span>
+                      </div>
+                    </button>
+                  </div>
+
+                  <div class="inputBar">
+                    <div id="commonsFieldLabel" class="fieldLabel">Selected (edit if needed)</div>
+                    <input id="commonsField" class="inputField" value="securitybriefhq.commonshub.social" />
+                  </div>
                 </div>
 
                 <div class="msg system" style="margin:0;">
-                  <p><b>Final address now set to:</b> securitybrief.jasonjaysmart.com</p>
-                  <p class="muted">Billing and provisioning will proceed using this confirmed address.</p>
+                  <p><b>Final address now set to:</b> securitybriefhq.commonshub.social</p>
+                  <p class="muted">This confirmed address is what will carry into billing and provisioning.</p>
                 </div>
 
               </div>
 
               <div class="footerBar">
                 <a class="secondary" href="onboarding-08-review.html">Back</a>
-                <a id="continueBtn" class="primary forward" href="billing-custom.html">Continue</a>
+                <a id="continueCommons" class="primary forward" href="billing-commons.html">Continue</a>
               </div>
             </div>
-
           </div>
         </div>
+      </div>
 
-      </main>
-    </div>
+    </main>
   </div>
-  <script>
-    const registrarSelect = document.getElementById('registrarSelect');
-    const registrarStatus = document.getElementById('registrarStatus');
-    const registrarBody = document.getElementById('registrarBody');
-    const registrarNote = document.getElementById('registrarNote');
+</div>
+<script>
+  const registrarSelect = document.getElementById('registrarSelect');
+  const registrarStatus = document.getElementById('registrarStatus');
+  const registrarBody = document.getElementById('registrarBody');
+  const registrarNote = document.getElementById('registrarNote');
 
-    const domainControlWrap = document.getElementById('domainControlWrap');
-    const domainControlText = document.getElementById('domainControlText');
-    const domainControlCheck = document.getElementById('domainControlCheck');
+  const domainControlWrap = document.getElementById('domainControlWrap');
+  const domainControlText = document.getElementById('domainControlText');
+  const domainControlCheck = document.getElementById('domainControlCheck');
 
-    const continueBtn = document.getElementById('continueBtn');
+  const continueBtn = document.getElementById('continueBtn');
 
-    const supportedRegistrars = new Set([
-      'godaddy',
-      'cloudflare',
-      'namecheap',
-      'squarespace',
-      'wix',
-      'hostinger',
-      'ionos',
-      'bluehost'
-    ]);
+  const supportedRegistrars = new Set([
+    'godaddy',
+    'cloudflare',
+    'namecheap',
+    'squarespace',
+    'wix',
+    'hostinger',
+    'ionos',
+    'bluehost'
+  ]);
 
-    function updateContinueState() {
-      const val = registrarSelect.value;
-      const needsAck = (val === 'other' || val === 'unknown');
+  function updateContinueState() {
+    const val = registrarSelect.value;
+    const needsAck = (val === 'other' || val === 'unknown');
 
-      if (!needsAck || domainControlCheck.checked) {
-        continueBtn.style.pointerEvents = 'auto';
-        continueBtn.style.opacity = '1';
-      } else {
-        continueBtn.style.pointerEvents = 'none';
-        continueBtn.style.opacity = '.55';
-      }
+    if (!needsAck || domainControlCheck.checked) {
+      continueBtn.style.pointerEvents = 'auto';
+      continueBtn.style.opacity = '1';
+    } else {
+      continueBtn.style.pointerEvents = 'none';
+      continueBtn.style.opacity = '.55';
+    }
+  }
+
+  function updateRegistrarState() {
+    const val = registrarSelect.value;
+    domainControlCheck.checked = false;
+
+    if (supportedRegistrars.has(val)) {
+      const label = registrarSelect.options[registrarSelect.selectedIndex].text;
+      registrarStatus.textContent = label + ' selected';
+      registrarBody.innerHTML = '<b>Good news:</b> for some major registrars like ' + label + ', we may be able to help with DNS setup during provisioning.';
+      registrarNote.textContent = 'You’ll still confirm the final address now. DNS setup happens after billing while the server is being provisioned.';
+      domainControlWrap.style.display = 'none';
+    } else if (val === 'other') {
+      registrarStatus.textContent = 'Manual setup likely';
+      registrarBody.innerHTML = '<b>Heads up:</b> if your registrar is not one of our supported providers, you may need to add DNS records manually during setup.';
+      registrarNote.textContent = 'We’ll still use this address if you confirm it now, but DNS changes may need to be completed by you after billing.';
+      domainControlWrap.style.display = 'block';
+      domainControlText.textContent = 'Because your registrar is not listed, you may be responsible for updating DNS records yourself.';
+    } else if (val === 'unknown') {
+      registrarStatus.textContent = 'Ownership check needed';
+      registrarBody.innerHTML = '<b>Please confirm:</b> Commonshub can only use this address if you control the domain or can get its DNS records changed.';
+      registrarNote.textContent = 'If you are not sure who manages this domain, it may be safer to switch to a Commonshub address before continuing.';
+      domainControlWrap.style.display = 'block';
+      domainControlText.textContent = 'If you do not know who manages this domain, you may not be able to complete setup for this address.';
     }
 
-    function updateRegistrarState() {
-      const val = registrarSelect.value;
-      domainControlCheck.checked = false;
+    updateContinueState();
+  }
 
-      if (supportedRegistrars.has(val)) {
-        const label = registrarSelect.options[registrarSelect.selectedIndex].text;
-        registrarStatus.textContent = label + ' selected';
-        registrarBody.innerHTML = '<b>Good news:</b> for some major registrars like ' + label + ', we may be able to help with DNS setup during provisioning.';
-        registrarNote.textContent = 'You’ll still confirm the final address now. DNS setup happens after billing while the server is being provisioned.';
-        domainControlWrap.style.display = 'none';
-      } else if (val === 'other') {
-        registrarStatus.textContent = 'Manual setup likely';
-        registrarBody.innerHTML = '<b>Heads up:</b> if your registrar is not one of our supported providers, you may need to add DNS records manually during setup.';
-        registrarNote.textContent = 'We’ll still use this address if you confirm it now, but DNS changes may need to be completed by you after billing.';
-        domainControlWrap.style.display = 'block';
-        domainControlText.textContent = 'Because your registrar is not listed, you may be responsible for updating DNS records yourself.';
-      } else if (val === 'unknown') {
-        registrarStatus.textContent = 'Ownership check needed';
-        registrarBody.innerHTML = '<b>Please confirm:</b> Commonshub can only use this address if you control the domain or can get its DNS records changed.';
-        registrarNote.textContent = 'If you are not sure who manages this domain, it may be safer to switch to a Commonshub address before continuing.';
-        domainControlWrap.style.display = 'block';
-        domainControlText.textContent = 'If you do not know who manages this domain, you may not be able to complete setup for this address.';
-      }
+  registrarSelect.addEventListener('change', updateRegistrarState);
+  domainControlCheck.addEventListener('change', updateContinueState);
 
-      updateContinueState();
+  updateRegistrarState();
+</script>
+<script>
+  const modeCustom = document.getElementById('modeCustom');
+  const modeCommons = document.getElementById('modeCommons');
+
+  const customSection = document.getElementById('customSection');
+  const commonsSection = document.getElementById('commonsSection');
+
+  function setMode(mode) {
+    const isCustom = mode === 'custom';
+
+    modeCustom.classList.toggle('active', isCustom);
+    modeCommons.classList.toggle('active', !isCustom);
+
+    const customBadge = modeCustom.querySelector('.choiceBadge');
+    const commonsBadge = modeCommons.querySelector('.choiceBadge');
+
+    if (customBadge) customBadge.remove();
+    if (commonsBadge) commonsBadge.remove();
+
+    const badge = document.createElement('span');
+    badge.className = 'choiceBadge';
+    badge.textContent = 'Selected';
+
+    if (isCustom) {
+      modeCustom.querySelector('.choiceTop').appendChild(badge);
+      customSection.style.display = '';
+      commonsSection.style.display = 'none';
+    } else {
+      modeCommons.querySelector('.choiceTop').appendChild(badge);
+      customSection.style.display = 'none';
+      commonsSection.style.display = '';
+    }
+  }
+
+  modeCustom.addEventListener('click', () => setMode('custom'));
+  modeCommons.addEventListener('click', () => setMode('commons'));
+</script>
+<script>
+  const commonsField = document.getElementById('commonsField');
+  const commonsFieldLabel = document.getElementById('commonsFieldLabel');
+  const commonsPresets = document.querySelectorAll('.commonsPreset');
+
+  function getActiveCommonsValue() {
+    const active = document.querySelector('.commonsPreset.active');
+    return active ? active.dataset.value.trim() : '';
+  }
+
+  commonsPresets.forEach(btn => {
+    btn.addEventListener('click', () => {
+      commonsPresets.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      commonsField.value = btn.dataset.value;
+      commonsFieldLabel.textContent = 'Selected (edit if needed)';
+    });
+  });
+
+  commonsField.addEventListener('input', () => {
+    const activeValue = getActiveCommonsValue();
+    const currentValue = commonsField.value.trim();
+
+    if (!activeValue) {
+      commonsFieldLabel.textContent = currentValue ? 'Edited value' : 'Selected (edit if needed)';
+      return;
     }
 
-    registrarSelect.addEventListener('change', updateRegistrarState);
-    domainControlCheck.addEventListener('change', updateContinueState);
+    if (currentValue !== activeValue) {
+      commonsPresets.forEach(b => b.classList.remove('active'));
+      commonsFieldLabel.textContent = currentValue ? 'Edited value' : 'Selected (edit if needed)';
+    } else {
+      commonsFieldLabel.textContent = 'Selected (edit if needed)';
+    }
+  });
+</script>
+<script>
+  const customField = document.getElementById('customDomainField');
+  const customHint = document.getElementById('customDomainHint');
 
-    updateRegistrarState();
-  </script>
+  function looksLikeHost(value) {
+    const v = value.trim();
+    if (!v) return false;
+    if (v.includes('http://') || v.includes('https://')) return false;
+    if (v.includes('/')) return false;
+    return /^[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(v);
+  }
+
+  customField.addEventListener('input', () => {
+    if (looksLikeHost(customField.value)) {
+      customHint.textContent = 'Looks like a valid domain or subdomain.';
+      customHint.style.color = '';
+    } else {
+      customHint.textContent = 'Enter a domain or subdomain only — not a full URL.';
+      customHint.style.color = '#b42318';
+    }
+  });
+</script>
 </body>
 </html>
