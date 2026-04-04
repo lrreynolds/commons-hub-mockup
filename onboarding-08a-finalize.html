@@ -354,7 +354,7 @@
               <div>
                 <b>Finalize your community address</b>
                 <div class="muted" style="margin-top:6px;">
-                  We’ve pre-filled your previous choice. You can keep it or switch directions before continuing.
+                  Confirm the exact address you want to use before choosing billing.
                 </div>
               </div>
               <div class="stepChip">Address confirmation</div>
@@ -399,21 +399,20 @@
             <div class="card" style="margin-top:14px;">
               <div class="list" style="gap:14px;">
 
-                <div class="choiceItem" style="margin:0;">
-                  <div class="choiceTop">
-                    <span class="choiceValue">Use your own domain</span>
-                    <span class="choiceBadge">Previous choice</span>
-                  </div>
-                  <div class="muted" style="margin-top:6px;">securitybrief.jasonjaysmart.com</div>
-                </div>
-
                 <button type="button" class="choiceItem active" style="margin:0;">
                   <div class="choiceTop">
-                    <span class="choiceValue">Use a Commonshub address</span>
+                    <span class="choiceValue">Use your own domain</span>
                     <span class="choiceBadge">Selected</span>
                   </div>
-                  <div class="muted" style="margin-top:6px;">Simplest launch path on a Commonshub subdomain</div>
+                  <div class="muted" style="margin-top:6px;">Launch on a branded custom domain or subdomain</div>
                 </button>
+
+                <div class="choiceItem" style="margin:0;">
+                  <div class="choiceTop">
+                    <span class="choiceValue">Use a Commonshub address</span>
+                  </div>
+                  <div class="muted" style="margin-top:6px;">Simplest launch path on a Commonshub subdomain</div>
+                </div>
 
               </div>
             </div>
@@ -421,60 +420,51 @@
             <div class="card" style="margin-top:14px;">
               <div class="list" style="gap:14px;">
 
-                <div class="msg system" style="margin:0;">
-                  <div class="metaLine">
-                    <span><b>Commonshub address check</b></span>
-                    <span>Required before billing</span>
-                  </div>
-                  <p><b>Requested address:</b> securitybrief.commonshub.social</p>
-                  <p style="color:#b42318;"><b>Status:</b> Unavailable — this address has already been taken.</p>
+                <div class="inputBar">
+                  <div class="fieldLabel">Custom domain or subdomain</div>
+                  <input class="inputField" value="securitybrief.jasonjaysmart.com" />
                 </div>
 
                 <div class="inputBar">
-                  <div class="fieldLabel">Choose a Commonshub subdomain</div>
-                  <input class="inputField" value="securitybrief" />
-                  <div class="muted">Final address: <b>securitybrief.commonshub.social</b></div>
-                  <a class="secondary" href="#" style="width:100%; max-width:none;">Check availability</a>
-                </div>
-
-                <div class="msg" style="margin:0;">
-                  <p><b>Available alternatives</b></p>
-
-                  <div class="list" style="margin-top:10px; gap:12px;">
-                    <button type="button" class="choiceItem">
-                      <div class="choiceTop">
-                        <span class="choiceValue">thesecuritybrief.commonshub.social</span>
-                      </div>
-                      <div class="muted" style="margin-top:6px;">Closest match</div>
-                    </button>
-
-                    <button type="button" class="choiceItem active">
-                      <div class="choiceTop">
-                        <span class="choiceValue">securitybriefhq.commonshub.social</span>
-                        <span class="choiceBadge">Available</span>
-                      </div>
-                      <div class="muted" style="margin-top:6px;">Selected replacement</div>
-                    </button>
-
-                    <button type="button" class="choiceItem">
-                      <div class="choiceTop">
-                        <span class="choiceValue">securitybrieflive.commonshub.social</span>
-                      </div>
-                      <div class="muted" style="margin-top:6px;">Alternative</div>
-                    </button>
-                  </div>
+                  <div class="fieldLabel">Registrar</div>
+                  <select class="inputField" style="min-height:60px;">
+                    <option>GoDaddy</option>
+                    <option>Cloudflare</option>
+                    <option>Namecheap</option>
+                    <option>Squarespace</option>
+                    <option>Wix</option>
+                    <option>Hostinger</option>
+                    <option>IONOS</option>
+                    <option>Bluehost</option>
+                    <option>Other</option>
+                    <option>I don’t know</option>
+                  </select>
                 </div>
 
                 <div class="msg system" style="margin:0;">
-                  <p><b>Final address now set to:</b> securitybriefhq.commonshub.social</p>
-                  <p class="muted">This confirmed address is what will carry into billing and provisioning.</p>
+                  <div class="metaLine">
+                    <span><b>Registrar support</b></span>
+                    <span>GoDaddy selected</span>
+                  </div>
+                  <p><b>Good news:</b> for some major registrars like GoDaddy, we may be able to help with DNS setup during provisioning.</p>
+                  <p class="muted">You’ll still confirm the final address now. DNS setup happens after billing while the server is being provisioned.</p>
+                </div>
+
+                <div class="msg" style="margin:0;">
+                  <p><b>Custom domain path</b></p>
+                  <p>You are responsible for controlling this domain or subdomain. If you continue with this address, Commonshub will use it as your final launch target.</p>
+                </div>
+
+                <div class="msg system" style="margin:0;">
+                  <p><b>Final address now set to:</b> securitybrief.jasonjaysmart.com</p>
+                  <p class="muted">Billing and provisioning will proceed using this confirmed address.</p>
                 </div>
 
               </div>
 
               <div class="footerBar">
                 <a class="secondary" href="onboarding-08-review.html">Back</a>
-                <a class="primary forward" href="billing-commons.html">Continue</a>
+                <a class="primary forward" href="billing-custom.html">Continue</a>
               </div>
             </div>
 
