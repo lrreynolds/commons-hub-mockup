@@ -13,6 +13,45 @@
       --console-border:rgba(31,111,74,.14);
     }
 
+
+    .appHeader{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:12px;
+      margin-bottom:18px;
+    }
+
+    .appBrand{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      font-size:15px;
+      font-weight:900;
+      color:var(--text);
+    }
+
+    .appMark{
+      width:22px;
+      height:22px;
+      display:block;
+    }
+
+    @media (max-width:640px){
+      .appHeader{
+        margin-bottom:14px;
+      }
+
+      .appBrand{
+        font-size:14px;
+      }
+
+      .appMark{
+        width:20px;
+        height:20px;
+      }
+    }
+
     .consoleShell{
       display:flex;
       flex-direction:column;
@@ -218,36 +257,36 @@
     }
 
     @media (max-width: 640px){
-  .flowBanner{
-    flex-direction:column;
-    align-items:flex-start;
-    gap:8px;
-  }
+      .flowBanner{
+        flex-direction:column;
+        align-items:flex-start;
+        gap:8px;
+      }
 
-  .flowBanner .stepChip{
-    align-self:flex-start;
-  }
-       .consoleStream{
-    padding:12px;
-    border-radius:16px;
-  }
-  .consoleShell{
-    gap:10px;
-  }
-  .msg{
-    padding:12px;
-    border-radius:14px;
-  }
+      .flowBanner .stepChip{
+        align-self:flex-start;
+      }
+      .consoleStream{
+        padding:12px;
+        border-radius:16px;
+      }
+      .consoleShell{
+        gap:10px;
+      }
+      .msg{
+        padding:12px;
+        border-radius:14px;
+      }
 
-  .inputBar{
-    padding:12px;
-    border-radius:16px;
-    gap:10px;
-  }
-        .inputField{
-    font-size:16px;
-  }
-}
+      .inputBar{
+        padding:12px;
+        border-radius:16px;
+        gap:10px;
+      }
+      .inputField{
+        font-size:16px;
+      }
+    }
 
 
   </style>
@@ -256,13 +295,11 @@
   <div class="flowRoot">
     <div class="wrap">
       <main class="stage">
-        <div class="topbar">
-          <div class="left">
-            <div class="logoMark"></div>
-            <div class="meta">
-              <b>Guided onboarding</b>
-              <span>Blueprint generation → approval → provisioning token → launch setup</span>
-            </div>
+        
+        <div class="appHeader">
+          <div class="appBrand">
+            <img src="assets/commonshub-mark.svg" alt="" class="appMark">
+            <span>Commonshub</span>
           </div>
           <div class="chip">Step 0</div>
         </div>
@@ -271,8 +308,8 @@
           <div class="center">
             <div class="flowBanner">
               <div>
-                <b>Commonshub guided onboarding</b>
-                <div class="muted" style="margin-top:6px;">Start a new community setup by assigning the server owner email.</div>
+                <b>Admin email</b>
+                <div class="muted" style="margin-top:6px;">Assign the server owner email for this community.</div>
               </div>
               <div class="stepChip">Email intake</div>
             </div>
@@ -299,14 +336,14 @@
                   </div>
 
                   <div class="msg">
-        
+                    
                     <p>Enter the email address that should own the server and receive the future login link.</p>
                   </div>
                 </div>
 
                 <div class="inputBar">
                   <div class="fieldLabel">Admin email</div>
-                 <input class="inputField" type="email" placeholder="name@example.com" />
+                  <input class="inputField" type="email" placeholder="name@example.com" />
                   <a class="continueBtn" href="onboarding-01-focus.html">Continue →</a>
                 </div>
 
