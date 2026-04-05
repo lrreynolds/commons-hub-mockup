@@ -38,10 +38,11 @@
       padding:64px 24px 80px;
     }
 
-    .heroTop{
+.heroTop{
   position: relative;
   overflow: hidden;
-  padding-top: 8px;
+  padding-top: 4px;
+  padding-bottom: 14px;
 }
 
 .heroField{
@@ -64,7 +65,20 @@
 .heroIntro{
   position: relative;
   z-index: 1;
-  text-align: left;
+  max-width: 860px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.heroIntro .lede{
+  max-width: 760px;
+  margin: 0 auto 22px;
+}
+
+.heroIntro > p:not(.lede){
+  max-width: 760px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .heroMark{
