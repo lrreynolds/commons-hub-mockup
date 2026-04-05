@@ -141,6 +141,18 @@
       display:none;
     }
 
+.dnsRecordValue {
+  font-size:14px;
+  color:var(--text);
+  word-break:break-word;
+  overflow-wrap:anywhere;
+}
+
+.dnsRecordValue.targetValue {
+  word-break:normal;
+  overflow-wrap:normal;
+}
+
     @media (max-width: 760px){
       .dnsRecordGrid{
         grid-template-columns:1fr;
@@ -218,89 +230,77 @@
                   </div>
                 </div>
 
-                <div class="msg" style="margin:0;">
-                  <p><b>Next step: connect your domain</b></p>
+               <div class="msg" style="margin:0;">
+  <p><b>Next step: connect your domain</b></p>
 
-                  <p style="margin-top:6px;">
-                    To launch at<br>
-                    <b>securitybrief.jasonjaysmart.com</b>
-                  </p>
+  <p style="margin-top:6px;">
+    To launch at<br>
+    <b>securitybrief.jasonjaysmart.com</b>
+  </p>
 
-                  <p class="muted" style="margin-top:6px;">
-                    Add this DNS record in the domain:
-                  </p>
+  <p class="muted" style="margin-top:6px;">
+    Add this DNS record in the domain:
+  </p>
 
-                  <p style="margin-top:4px;">
-                    👉 <b>jasonjaysmart.com</b>
-                  </p>
+  <p style="margin-top:4px;">
+    👉 <b>jasonjaysmart.com</b>
+  </p>
+</div>
 
-                  <div class="list" style="margin-top:14px; gap:12px;">
+<div id="manualDnsSection" class="msg" style="margin:0;">
+  <p><b>DNS record required</b></p>
 
-                    <div class="dnsRecordRow">
-                      <div class="dnsRecordGrid">
-                        <div>
-                          <div class="dnsRecordLabel">Type</div>
-                          <div class="dnsRecordValue">CNAME</div>
-                        </div>
-                        <div>
-                          <div class="dnsRecordLabel">Host / Name</div>
-                          <div class="dnsRecordValue" id="copyHost">securitybrief</div>
-                        </div>
-                        <button class="copyBtn" data-copy="copyHost">Copy</button>
-                      </div>
-                    </div>
+  <div class="list" style="margin-top:14px; gap:12px;">
 
-                    <div class="dnsRecordRow">
-                      <div class="dnsRecordGrid">
-                        <div>
-                          <div class="dnsRecordLabel">Points to</div>
-                          <div class="dnsRecordValue" id="copyTarget">
-                            exo-de-fra-1-nlb-1.commonshub.social
-                          </div>
-                        </div>
-                        <div></div>
-                        <button class="copyBtn" data-copy="copyTarget">Copy</button>
-                      </div>
-                    </div>
+    <div class="dnsRecordRow">
+      <div class="dnsRecordGrid">
+        <div>
+          <div class="dnsRecordLabel">Type</div>
+          <div class="dnsRecordValue">CNAME</div>
+        </div>
+        <div>
+          <div class="dnsRecordLabel">Host / Name</div>
+          <div class="dnsRecordValue" id="copyHost">securitybrief</div>
+        </div>
+        <button class="copyBtn" data-copy="copyHost">Copy</button>
+      </div>
+    </div>
 
-                  </div>
+    <div class="dnsRecordRow">
+      <div class="dnsRecordGrid">
+        <div>
+          <div class="dnsRecordLabel">Points to</div>
+          <div class="dnsRecordValue targetValue" id="copyTarget">exo-de-fra-1-nlb-1.commonshub.social</div>
+        </div>
+        <div></div>
+        <button class="copyBtn" data-copy="copyTarget">Copy</button>
+      </div>
+    </div>
 
-                  <div style="margin-top:12px;">
-                    <a class="secondary" href="https://godaddy.com" target="_blank">
-                      Open GoDaddy →
-                    </a>
-                  </div>
-                </div>
+  </div>
 
-                <div class="msg" style="margin:0;">
-                  <p><b>Want Commonshub to handle this for you?</b></p>
+  <div class="footerBar" style="margin-top:14px;">
+    <a class="secondary" href="https://godaddy.com" target="_blank">Open GoDaddy</a>
+    <button id="showAutoDns" type="button" class="primary">Let Commonshub configure DNS</button>
+  </div>
 
-                  <p class="muted" style="margin-top:6px;">
-                    We can configure these DNS records automatically if you authorize access through your registrar.
-                    You’ll log in directly — we won’t need your credentials.
-                  </p>
+  <p class="muted" style="margin-top:12px;">
+    You can also continue to the dashboard and come back to this there.
+  </p>
+</div>
 
-                  <button id="autoDnsBtn" class="choiceItem" style="margin-top:12px;">
-                    <div class="choiceTop">
-                      <span class="choiceValue">Configure DNS automatically</span>
-                    </div>
-                    <div class="muted" style="margin-top:6px;">
-                      Sign in to your registrar and authorize Commonshub to add the required records.
-                    </div>
-                  </button>
-                </div>
+<div id="autoDnsSection" class="msg system hidden" style="margin:0;">
+  <p><b>Let Commonshub configure DNS</b></p>
 
-                <div id="autoDnsSection" class="msg system hidden" style="margin:0;">
-                  <p><b>Automatic DNS setup</b></p>
+  <p class="muted" style="margin-top:6px;">
+    You’ll sign in to GoDaddy and authorize Commonshub to add the required DNS records. We won’t need your credentials.
+  </p>
 
-                  <p class="muted" style="margin-top:6px;">
-                    You’ll sign in to your registrar and authorize Commonshub to configure DNS for this address.
-                  </p>
-
-                  <a class="primary" href="#">
-                    Authorize with GoDaddy →
-                  </a>
-                </div>
+  <div class="footerBar" style="margin-top:14px;">
+    <button id="showManualDns" type="button" class="secondary">Do it manually instead</button>
+    <a class="primary forward" href="#">Authorize with GoDaddy</a>
+  </div>
+</div>
 
                 <div class="footerBar">
                   <a class="primary forward" href="dashboard.html">Continue to dashboard</a>
@@ -376,5 +376,39 @@
         });
       });
     </script>
+    <script>
+  const showAutoDns = document.getElementById('showAutoDns');
+  const showManualDns = document.getElementById('showManualDns');
+  const manualDnsSection = document.getElementById('manualDnsSection');
+  const autoDnsSection = document.getElementById('autoDnsSection');
+
+  showAutoDns.addEventListener('click', () => {
+    manualDnsSection.classList.add('hidden');
+    autoDnsSection.classList.remove('hidden');
+  });
+
+  showManualDns.addEventListener('click', () => {
+    autoDnsSection.classList.add('hidden');
+    manualDnsSection.classList.remove('hidden');
+  });
+
+  document.querySelectorAll('.copyBtn').forEach(btn => {
+    btn.addEventListener('click', async () => {
+      const id = btn.getAttribute('data-copy');
+      const text = document.getElementById(id).textContent.trim();
+
+      try {
+        await navigator.clipboard.writeText(text);
+        const old = btn.textContent;
+        btn.textContent = 'Copied';
+        setTimeout(() => btn.textContent = old, 1000);
+      } catch {
+        const old = btn.textContent;
+        btn.textContent = 'Copy failed';
+        setTimeout(() => btn.textContent = old, 1000);
+      }
+    });
+  });
+</script>
   </body>
   </html>
