@@ -11,17 +11,17 @@
   content="Commonshub provides digital sovereignty infrastructure for creators, organizations, and public-interest communities — independent conversation spaces on your own domain without ads or algorithms.">
 
   <!-- Open Graph -->
-<meta property="og:site_name" content="Commonshub">
-<meta property="og:title" content="Create Your Own Online Community.">
-<meta property="og:description" content="Your domain. Your rules. No ads. No algorithms. Funding Enabled.">
-<meta property="og:url" content="https://thecommonshub.com/">
-<meta property="og:type" content="website">
-<meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://thecommonshub.com/og/og-preview.jpg?v=2">
-<meta property="og:image:alt" content="Commonshub — Turn comments into community">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
-<meta property="og:image:type" content="image/jpeg">
+  <meta property="og:site_name" content="Commonshub">
+  <meta property="og:title" content="Create Your Own Online Community.">
+  <meta property="og:description" content="Your domain. Your rules. No ads. No algorithms. Funding Enabled.">
+  <meta property="og:url" content="https://thecommonshub.com/">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:image" content="https://thecommonshub.com/og/og-preview.jpg?v=2">
+  <meta property="og:image:alt" content="Commonshub — Turn comments into community">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:type" content="image/jpeg">
 
 <!-- Twitter -->
 <meta name="twitter:card" content="summary_large_image">
@@ -39,33 +39,33 @@
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <style>
   #csh-root {
-  all: initial;
-  font-family: system-ui, -apple-system, Segoe UI, sans-serif;
-}
+    all: initial;
+    font-family: system-ui, -apple-system, Segoe UI, sans-serif;
+  }
 
-:root{
-  --bg:#f4f7f5;
-  --card:#ffffff;
-  --text:#102018;
-  --muted:#50665a;
-  --line:#d8e1db;
+  :root{
+    --bg:#f4f7f5;
+    --card:#ffffff;
+    --text:#102018;
+    --muted:#50665a;
+    --line:#d8e1db;
 
-  --btn:#1f6f4a;
-  --btnText:#ffffff;
+    --btn:#1f6f4a;
+    --btnText:#ffffff;
 
-  --band:#eef3ef;
-  --shadow: 0 10px 30px rgba(16,32,24,.06);
-}
+    --band:#eef3ef;
+    --shadow: 0 10px 30px rgba(16,32,24,.06);
+  }
 
-*{ box-sizing:border-box; }
+  *{ box-sizing:border-box; }
 
-body{
-  font-family: system-ui, -apple-system, Segoe UI, sans-serif;
-  margin:0;
-  line-height:1.5;
-  background:var(--bg);
-  color:var(--text);
-}
+  body{
+    font-family: system-ui, -apple-system, Segoe UI, sans-serif;
+    margin:0;
+    line-height:1.5;
+    background:var(--bg);
+    color:var(--text);
+  }
 
 /* ===== HERO LAYOUT ===== */
 
@@ -126,17 +126,17 @@ body{
 }
 
 .heroField{
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  pointer-events: none;
-  opacity: 0.16;
+  position:absolute;
+  inset:-40px 0 -10px 0;
+  z-index:1;
+  pointer-events:none;
+  opacity:.55;
   background:
-    radial-gradient(circle at 50% 20%, rgba(31,111,74,0.10), transparent 32%),
-    radial-gradient(circle at 62% 24%, rgba(31,111,74,0.08), transparent 18%),
-    radial-gradient(circle at 40% 34%, rgba(31,111,74,0.07), transparent 22%),
-    radial-gradient(circle at 52% 48%, rgba(31,111,74,0.05), transparent 28%);
-  filter: blur(8px);
+  radial-gradient(circle at 50% 14%, rgba(31,111,74,.14), transparent 20%),
+  radial-gradient(circle at 42% 24%, rgba(31,111,74,.10), transparent 24%),
+  radial-gradient(circle at 60% 26%, rgba(31,111,74,.09), transparent 22%),
+  radial-gradient(circle at 50% 40%, rgba(31,111,74,.06), transparent 34%);
+  filter: blur(18px);
 }
 
 @media (max-width:640px){
@@ -168,7 +168,7 @@ body{
   color:var(--btn);
 }
 
-  
+
 @media (max-width:760px){
   .afterCard{ transform:none; }
 }
@@ -272,10 +272,10 @@ body{
   border: 1.8px solid rgba(185, 151, 72, 0.45); /* gold outline */
   box-shadow: 0 14px 38px rgba(16,32,24,.10);
 }
-  .benefit.isPrimary h3{
+.benefit.isPrimary h3{
   font-size: 1.42rem;
 }
-  .benefit.newCommunity{
+.benefit.newCommunity{
   background: linear-gradient(
     180deg,
     rgba(31,111,74,0.10),
@@ -335,12 +335,12 @@ body{
   50%     { transform: translateY(-1px); box-shadow: 0 10px 26px rgba(16,32,24,.14); }
 }
 
-  .reveal {
+.reveal {
   opacity: 0;
   transform: translateY(12px);
   transition:
-    opacity 600ms cubic-bezier(0.22, 1, 0.36, 1),
-    transform 600ms cubic-bezier(0.22, 1, 0.36, 1);
+  opacity 600ms cubic-bezier(0.22, 1, 0.36, 1),
+  transform 600ms cubic-bezier(0.22, 1, 0.36, 1);
   will-change: opacity, transform;
 }
 
@@ -409,7 +409,7 @@ body{
     justify-content:center;
   }
 } 
-  .heroBottomCtaRow{
+.heroBottomCtaRow{
   gap:14px;
   align-items:center;
 }
@@ -462,7 +462,7 @@ body{
   color: var(--muted);
   font-size: 13px;
 }
-  /* SECTION HEADLINE — prevent awkward last-word wrap */
+/* SECTION HEADLINE — prevent awkward last-word wrap */
 #how h2{
   max-width: 18ch;
   margin-left: auto;
@@ -498,7 +498,7 @@ body{
   font-weight: 900;
   letter-spacing: -0.01em;
 }
-  /* utility */
+/* utility */
 .muted{ color: var(--muted); }
 
 /* center the HOW section headline reliably */
@@ -552,15 +552,15 @@ body{
     font-size:1.05rem !important;
   }
 }
-  .powerLine{
+.powerLine{
  margin: 36px auto 18px;
-  max-width: 720px;
-  text-align: center;
-  font-size: 18px;
-  line-height: 1.35;
-  font-weight: 800;
-  letter-spacing: -0.01em;
-  color: var(--text);
+ max-width: 720px;
+ text-align: center;
+ font-size: 18px;
+ line-height: 1.35;
+ font-weight: 800;
+ letter-spacing: -0.01em;
+ color: var(--text);
 }
 
 @media (max-width:640px){
@@ -694,16 +694,16 @@ body{
 }
 
 .hostBenefit h3{
-font-size:1.4rem;
-line-height:1.2;
-margin:0 0 10px;
+  font-size:1.4rem;
+  line-height:1.2;
+  margin:0 0 10px;
 }
 
 .hostBenefit p{
-margin:0;
-font-size:15px;
-line-height:1.45;
-color:var(--muted);
+  margin:0;
+  font-size:15px;
+  line-height:1.45;
+  color:var(--muted);
 }
 
 .archStack{
@@ -967,112 +967,112 @@ color:var(--muted);
 @media (max-width: 640px) {
 
   .communityFeatures{
-  grid-template-columns:1fr;
-}
+    grid-template-columns:1fr;
+  }
 
-.hostBenefits{
-  grid-template-columns:1fr;
-}
+  .hostBenefits{
+    grid-template-columns:1fr;
+  }
 
 
-.panelShell{
+  .panelShell{
     margin:28px auto;
   }
 
-.heroInner{
+  .heroInner{
     padding:0 18px;
   }
 
-.hostTabs{
-  display:flex;
-  gap:16px;
-  overflow-x:auto;
-  overflow-y:hidden;
-  -webkit-overflow-scrolling:touch;
-  padding:0 4px 10px;
-  margin:0 0 14px;
-  white-space:nowrap;
-  scrollbar-width:none;
-}
+  .hostTabs{
+    display:flex;
+    gap:16px;
+    overflow-x:auto;
+    overflow-y:hidden;
+    -webkit-overflow-scrolling:touch;
+    padding:0 4px 10px;
+    margin:0 0 14px;
+    white-space:nowrap;
+    scrollbar-width:none;
+  }
 
-.hostTabs::-webkit-scrollbar{
-  display:none;
-}
+  .hostTabs::-webkit-scrollbar{
+    display:none;
+  }
 
-.hostTab{
-  flex:0 0 auto;
-  padding:6px 2px 10px;
-  font-size:15px;
-}
+  .hostTab{
+    flex:0 0 auto;
+    padding:6px 2px 10px;
+    font-size:15px;
+  }
 
-.hostTabIcon{
-  transform:scale(.95);
-}
+  .hostTabIcon{
+    transform:scale(.95);
+  }
 
-.hero h1{
-  font-size:34px;
-  line-height:1.1;
-}
+  .hero h1{
+    font-size:34px;
+    line-height:1.1;
+  }
 
-.hero .sub{
-  font-size:16px;
-  line-height:1.55;
-}
+  .hero .sub{
+    font-size:16px;
+    line-height:1.55;
+  }
 
-.heroPromise{
-  font-size:15px;
-  margin-top:14px;
-}
+  .heroPromise{
+    font-size:15px;
+    margin-top:14px;
+  }
 
-.hostPanel{
-  padding:22px 18px;
-}
+  .hostPanel{
+    padding:22px 18px;
+  }
 
-.hostContent h3{
-  font-size:22px;
-}
+  .hostContent h3{
+    font-size:22px;
+  }
 
-.featureGrid{
-  flex-direction:column;
-}
+  .featureGrid{
+    flex-direction:column;
+  }
 
-.featureCard{
-  padding:18px 16px;
-}
+  .featureCard{
+    padding:18px 16px;
+  }
 
-.featureCard h4{
-  font-size:18px;
-}
+  .featureCard h4{
+    font-size:18px;
+  }
 
-.featureCard p{
-  font-size:15px;
-}
+  .featureCard p{
+    font-size:15px;
+  }
 
-.hostExplain{
-  font-size:22px;
-  margin-bottom:14px;
-}
+  .hostExplain{
+    font-size:22px;
+    margin-bottom:14px;
+  }
 
-.hostPanelIntro{
-  font-size:16px;
-}
+  .hostPanelIntro{
+    font-size:16px;
+  }
 
-.hostExplain h2{
-  font-size:24px;
-  line-height:1.25;
-}
+  .hostExplain h2{
+    font-size:24px;
+    line-height:1.25;
+  }
 
-.communityPlatform{
-  padding:22px 18px;
-}
+  .communityPlatform{
+    padding:22px 18px;
+  }
 
-.archCard{
-  padding:18px 16px;
-}
+  .archCard{
+    padding:18px 16px;
+  }
 
-.archThin{
-  padding:16px;
-}
+  .archThin{
+    padding:16px;
+  }
 
 }
 
@@ -1085,137 +1085,137 @@ color:var(--muted);
 </style>
 </head>
 <body>
-<div id="csh-root">
-  <section class="hero"style="padding-bottom:0px;">
-    <div class="heroField" aria-hidden="true"></div>
-    <div class="heroInner">
-      <div class="heroMark" aria-hidden="true">
-  <img src="assets/commonshub-mark.svg" alt="" />
-</div>
+  <div id="csh-root">
+    <section class="hero"style="padding-bottom:0px;">
+      <div class="heroField" aria-hidden="true"></div>
+      <div class="heroInner">
+        <div class="heroMark" aria-hidden="true">
+          <img src="assets/commonshub-mark.svg" alt="" />
+        </div>
 
-      <h1>
-        Experience Digital Sovereignty
-      </h1>
+        <h1>
+          Experience Digital Sovereignty
+        </h1>
 
-      <p class="sub">
-        Most online communities live on platforms they do not control.
-        Algorithms shape visibility. Advertising shapes incentives.
-        Everyone subject to the whims of platform owners.
-      </p>
+        <p class="sub">
+          Most online communities live on platforms they do not control.
+          Algorithms shape visibility. Advertising shapes incentives.
+          Everyone subject to the whims of platform owners.
+        </p>
 
-     <p class="sub">
-        What appears to be reach often isn’t real engagement — and rarely leads to lasting relationships.
-      </p>
+        <p class="sub">
+          What appears to be reach often isn’t real engagement — and rarely leads to lasting relationships.
+        </p>
 
-      <p class="sub">
-        Commonshub provides <b>independent community infrastructure</b>
-        for people and organizations that want to establish lasting conversations and relationships around their work.
-      </p>
-      <p class="heroPromise">
-        No ads • No algorithms • Your Rules • Self Funding Enabled
-      </p>
-    </div>
-  </section>
+        <p class="sub">
+          Commonshub provides <b>independent community infrastructure</b>
+          for people and organizations that want to establish lasting conversations and relationships around their work.
+        </p>
+        <p class="heroPromise">
+          No ads • No algorithms • Your Rules • Self Funding Enabled
+        </p>
+      </div>
+    </section>
 
-  <section class="hero" style="padding-top:0px; padding-bottom:28px;">
-    <div class="heroInner">
+    <section class="hero" style="padding-top:0px; padding-bottom:28px;">
+      <div class="heroInner">
 
-      <section class="hostPanel panelShell">
-       <div class="hostExplain">
-        <h2 id="hostExplainText"></h2>
-      </div> 
-      <div class="hostTabsWrap"> 
-        <div class="hostTabs">
-          <button class="hostTab active" data-host="creators">
+        <section class="hostPanel panelShell">
+         <div class="hostExplain">
+          <h2 id="hostExplainText"></h2>
+        </div> 
+        <div class="hostTabsWrap"> 
+          <div class="hostTabs">
+            <button class="hostTab active" data-host="creators">
+              <span class="hostTabIcon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="2"/>
+                  <path d="M16 12a4 4 0 0 0-4-4"/>
+                  <path d="M18 12a6 6 0 0 0-6-6"/>
+                </svg>
+              </span>
+              <span class="hostTabLabel">Creators</span>
+            </button>
+
+            <button class="hostTab" data-host="media">   
+              <span class="hostTabIcon">
+               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="9"/>
+                <path d="M10 8.8L15.5 12L10 15.2V8.8Z" fill="currentColor" stroke="none"/>
+              </svg>
+            </span>
+            <span class="hostTabLabel">Media</span>
+          </button>
+
+          <button class="hostTab" data-host="research">
             <span class="hostTabIcon">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <circle cx="12" cy="12" r="2"/>
-                <path d="M16 12a4 4 0 0 0-4-4"/>
-                <path d="M18 12a6 6 0 0 0-6-6"/>
+                <ellipse cx="12" cy="12" rx="8" ry="3"/>
+                <ellipse cx="12" cy="12" rx="3" ry="8"/>
               </svg>
             </span>
-            <span class="hostTabLabel">Creators</span>
+            <span class="hostTabLabel">Research</span>
           </button>
 
-          <button class="hostTab" data-host="media">   
+          <button class="hostTab" data-host="nonprofits">  
+            <span class="hostTabIcon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 21s-7-4.5-9-9a5 5 0 0 1 9-3 5 5 0 0 1 9 3c-2 4.5-9 9-9 9z"/>
+              </svg>
+            </span>
+            <span class="hostTabLabel">Nonprofits</span>
+          </button>
+
+          <button class="hostTab" data-host="government">
+            <span class="hostTabIcon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M3 10h18"/>
+                <path d="M5 10v8"/>
+                <path d="M9 10v8"/>
+                <path d="M15 10v8"/>
+                <path d="M19 10v8"/>
+                <path d="M2 10l10-6 10 6"/>
+                <path d="M2 18h20"/>
+              </svg>
+            </span>
+            <span class="hostTabLabel">Government</span>
+          </button>
+
+          <button class="hostTab" data-host="societies">
+
             <span class="hostTabIcon">
              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <circle cx="12" cy="12" r="9"/>
-              <path d="M10 8.8L15.5 12L10 15.2V8.8Z" fill="currentColor" stroke="none"/>
+              <circle cx="5" cy="12" r="2"/>
+              <circle cx="12" cy="5" r="2"/>
+              <circle cx="19" cy="12" r="2"/>
+              <circle cx="12" cy="19" r="2"/>
+              <line x1="7" y1="12" x2="10" y2="6"/>
+              <line x1="14" y1="6" x2="17" y2="12"/>
+              <line x1="17" y1="12" x2="14" y2="18"/>
+              <line x1="10" y1="18" x2="7" y2="12"/>
             </svg>
           </span>
-          <span class="hostTabLabel">Media</span>
+          <span class="hostTabLabel">Professional</span>
         </button>
-
-        <button class="hostTab" data-host="research">
-          <span class="hostTabIcon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <circle cx="12" cy="12" r="2"/>
-              <ellipse cx="12" cy="12" rx="8" ry="3"/>
-              <ellipse cx="12" cy="12" rx="3" ry="8"/>
-            </svg>
-          </span>
-          <span class="hostTabLabel">Research</span>
-        </button>
-
-        <button class="hostTab" data-host="nonprofits">  
-          <span class="hostTabIcon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M12 21s-7-4.5-9-9a5 5 0 0 1 9-3 5 5 0 0 1 9 3c-2 4.5-9 9-9 9z"/>
-            </svg>
-          </span>
-          <span class="hostTabLabel">Nonprofits</span>
-        </button>
-
-        <button class="hostTab" data-host="government">
-          <span class="hostTabIcon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M3 10h18"/>
-              <path d="M5 10v8"/>
-              <path d="M9 10v8"/>
-              <path d="M15 10v8"/>
-              <path d="M19 10v8"/>
-              <path d="M2 10l10-6 10 6"/>
-              <path d="M2 18h20"/>
-            </svg>
-          </span>
-          <span class="hostTabLabel">Government</span>
-        </button>
-
-        <button class="hostTab" data-host="societies">
-
-          <span class="hostTabIcon">
-           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="5" cy="12" r="2"/>
-            <circle cx="12" cy="5" r="2"/>
-            <circle cx="19" cy="12" r="2"/>
-            <circle cx="12" cy="19" r="2"/>
-            <line x1="7" y1="12" x2="10" y2="6"/>
-            <line x1="14" y1="6" x2="17" y2="12"/>
-            <line x1="17" y1="12" x2="14" y2="18"/>
-            <line x1="10" y1="18" x2="7" y2="12"/>
-          </svg>
-        </span>
-        <span class="hostTabLabel">Professional</span>
-        </button>
+      </div>
     </div>
-  </div>
 
-  <div id="hostContent"></div>
-</div>
+    <div id="hostContent"></div>
+  </div>
 
 </section>
 
 <section class="beforeAfterSection" style="margin-top:20px;">
   <div class="heroInner">
 
-  <h2 style="
+    <h2 style="
     font-size:clamp(26px,3.2vw,34px);
     line-height:1.15;
     letter-spacing:-0.02em;
     margin:0 0 14px;
     text-align:center;
-  ">
+    ">
     Built on proven infrastructure — not another platform
   </h2>
 
@@ -1226,65 +1226,65 @@ color:var(--muted);
 
   <!-- CORE PRODUCT -->
   <div class="benefit newCommunity" style="
-    text-align:center;
-    margin-bottom:12px;
-    padding:14px 16px;
+  text-align:center;
+  margin-bottom:12px;
+  padding:14px 16px;
   ">
-    <div class="title">Your independent community</div>
+  <div class="title">Your independent community</div>
 
-    <div style="color:var(--muted); font-size:14px; margin-top:6px;">
-      A shared, ongoing conversation on your own domain — with
-      <b style="color:var(--text);">funding built in</b>.
-    </div>
-
-    <div style="margin-top:8px; font-size:13px; color:rgba(16,32,24,.68);">
-      Your domain • Your audience • Your rules • No ads • No algorithms
-    </div>
+  <div style="color:var(--muted); font-size:14px; margin-top:6px;">
+    A shared, ongoing conversation on your own domain — with
+    <b style="color:var(--text);">funding built in</b>.
   </div>
 
-  <!-- TWO ENGINES -->
-  <div class="benefitGrid" style="
-    margin-top:0;
-    grid-template-columns:1fr 1fr;
-    gap:14px;
-  ">
-
-    <div class="benefit" style="text-align:center;">
-      <h3 class="engineTitle">Social Engine (Mastodon)</h3>
-      <p class="engineCopy">
-        A proven, open-source, standards-based, decentralized, twitter-like social media network used by millions.<br>
-        <b>No ads. No algorithms. Self Moderated.</b><br>
-      </p>
-    </div>
-
-    <div class="benefit" style="text-align:center;">
-      <h3 class="engineTitle">Funding engine (Stripe)</h3>
-      <p class="engineCopy">
-       The global payments infrastructure used by millions of businesses.
-Memberships, tips, and donations built in.<br>
-        <b>Money deposited directly to your account</b>.
-      </p>
-    </div>
-
+  <div style="margin-top:8px; font-size:13px; color:rgba(16,32,24,.68);">
+    Your domain • Your audience • Your rules • No ads • No algorithms
   </div>
+</div>
 
-  <!-- INFRASTRUCTURE -->
-  <div class="benefit isPrimary" style="
-    margin-top:12px;
-    text-align:center;
-  ">
-    <h3 class="commonshubTitle">Managed, secure infrastructure</h3>
+<!-- TWO ENGINES -->
+<div class="benefitGrid" style="
+margin-top:0;
+grid-template-columns:1fr 1fr;
+gap:14px;
+">
 
-    <p class="commonCopy">
-      Hosted on scalable, production-grade systems.<br>
-      Deployed outside U.S. platform ecosystems.
-    </p>
+<div class="benefit" style="text-align:center;">
+  <h3 class="engineTitle">Social Engine (Mastodon)</h3>
+  <p class="engineCopy">
+    A proven, open-source, standards-based, decentralized, twitter-like social media network used by millions.<br>
+    <b>No ads. No algorithms. Self Moderated.</b><br>
+  </p>
+</div>
 
-    <p class="commonCopy">
-      We handle setup, updates, and reliability — you stay focused on your community.
-    </p>
-  </div>
- </div>
+<div class="benefit" style="text-align:center;">
+  <h3 class="engineTitle">Funding engine (Stripe)</h3>
+  <p class="engineCopy">
+   The global payments infrastructure used by millions of businesses.
+   Memberships, tips, and donations built in.<br>
+   <b>Money deposited directly to your account</b>.
+ </p>
+</div>
+
+</div>
+
+<!-- INFRASTRUCTURE -->
+<div class="benefit isPrimary" style="
+margin-top:12px;
+text-align:center;
+">
+<h3 class="commonshubTitle">Managed, secure infrastructure</h3>
+
+<p class="commonCopy">
+  Hosted on scalable, production-grade systems.<br>
+  Deployed outside U.S. platform ecosystems.
+</p>
+
+<p class="commonCopy">
+  We handle setup, updates, and reliability — you stay focused on your community.
+</p>
+</div>
+</div>
 </section>
 <section class="hero" style="padding-top:40px">
 
@@ -1305,8 +1305,8 @@ Memberships, tips, and donations built in.<br>
         Start a Community
       </a>
       <a class="secondaryCta" href="digital-sovereignty.html">
-  What is Digital Sovereignty?
-</a>
+        What is Digital Sovereignty?
+      </a>
     </div>
 
   </div>
@@ -1314,66 +1314,66 @@ Memberships, tips, and donations built in.<br>
 
 <script>
   const explain = {
-  creators: "YouTubers • Podcasters • Writers",
-  media: "Newsrooms • Journalists • Publications",
-  research: "Universities • Labs • Think Tanks",
-  nonprofits: "NGOs • Advocacy • Foundations",
-  government: "Cities • Agencies • Public Offices",
-  societies: "Associations • Member Networks"
-};
+    creators: "YouTubers • Podcasters • Writers",
+    media: "Newsrooms • Journalists • Publications",
+    research: "Universities • Labs • Think Tanks",
+    nonprofits: "NGOs • Advocacy • Foundations",
+    government: "Cities • Agencies • Public Offices",
+    societies: "Associations • Member Networks"
+  };
 
-document.addEventListener("DOMContentLoaded", () => {
+  document.addEventListener("DOMContentLoaded", () => {
 
-  initReveal();
-  loadArchitecture();
+    initReveal();
+    loadArchitecture();
 
-  const tabs = document.querySelectorAll(".hostTab");
-  const explainEl = document.getElementById("hostExplainText");
+    const tabs = document.querySelectorAll(".hostTab");
+    const explainEl = document.getElementById("hostExplainText");
 
-  const defaultHost = "creators";
+    const defaultHost = "creators";
 
   // initialize page state
-  if (explainEl) {
-    explainEl.textContent = explain[defaultHost];
-  }
-
-  loadHost(defaultHost);
-
-  tabs.forEach(tab => {
-    if (tab.dataset.host === defaultHost) {
-      tab.classList.add("active");
+    if (explainEl) {
+      explainEl.textContent = explain[defaultHost];
     }
-  });
+
+    loadHost(defaultHost);
+
+    tabs.forEach(tab => {
+      if (tab.dataset.host === defaultHost) {
+        tab.classList.add("active");
+      }
+    });
 
   // tab switching
-  tabs.forEach(tab => {
+    tabs.forEach(tab => {
 
-    tab.addEventListener("click", () => {
+      tab.addEventListener("click", () => {
 
-      const host = tab.dataset.host;
+        const host = tab.dataset.host;
 
       // update active tab
-      tabs.forEach(t => t.classList.remove("active"));
-      tab.classList.add("active");
+        tabs.forEach(t => t.classList.remove("active"));
+        tab.classList.add("active");
 
       // update explainer
-      if (explainEl) {
-        explainEl.textContent = explain[host];
-      }
+        if (explainEl) {
+          explainEl.textContent = explain[host];
+        }
 
       // load panel
-      loadHost(host);
+        loadHost(host);
+
+      });
 
     });
 
   });
 
-});
 
+  function loadHost(host) {
 
-function loadHost(host) {
-
-  fetch(`hosts/${host}.html`)
+    fetch(`hosts/${host}.html`)
     .then(res => {
       if (!res.ok) {
         throw new Error(`Failed to load hosts/${host}.html`);
@@ -1390,42 +1390,42 @@ function loadHost(host) {
       initReveal();
     })
     .catch(err => console.error(err));
-}
+  }
 
 
-function initReveal() {
+  function initReveal() {
 
-  const els = document.querySelectorAll(".reveal");
-  if (!els.length) return;
+    const els = document.querySelectorAll(".reveal");
+    if (!els.length) return;
 
-  const observer = new IntersectionObserver(
-    entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("is-visible");
-          observer.unobserve(entry.target);
-        }
-      });
-    },
-    { threshold: 0.15 }
-  );
+    const observer = new IntersectionObserver(
+      entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.15 }
+      );
 
-  els.forEach(el => {
-    if (!el.dataset.revealBound) {
-      el.dataset.revealBound = "1";
-      observer.observe(el);
-    }
-  });
+    els.forEach(el => {
+      if (!el.dataset.revealBound) {
+        el.dataset.revealBound = "1";
+        observer.observe(el);
+      }
+    });
 
-}
+  }
 
 
-function loadArchitecture() {
+  function loadArchitecture() {
 
-  const mount = document.getElementById("architecture");
-  if (!mount) return;
+    const mount = document.getElementById("architecture");
+    if (!mount) return;
 
-  fetch("architecture.html")
+    fetch("architecture.html")
     .then(res => {
       if (!res.ok) {
         throw new Error(`Failed to load architecture.html`);
@@ -1438,8 +1438,8 @@ function loadArchitecture() {
     })
     .catch(err => console.error(err));
 
-}
+  }
 </script>
-  </div>
+</div>
 </body>
 </html>
