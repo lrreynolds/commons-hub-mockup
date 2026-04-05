@@ -38,6 +38,67 @@
       padding:64px 24px 80px;
     }
 
+    .heroTop{
+  position: relative;
+  overflow: hidden;
+  padding-top: 8px;
+}
+
+.heroField{
+  position:absolute;
+  inset:-60px -8% auto -8%;
+  height:280px;
+  z-index:0;
+  pointer-events:none;
+  opacity:.58;
+  background:
+    radial-gradient(circle at 49% 11%, rgba(31,111,74,.13), transparent 16%),
+    radial-gradient(circle at 43% 21%, rgba(31,111,74,.10), transparent 20%),
+    radial-gradient(circle at 58% 23%, rgba(31,111,74,.09), transparent 19%),
+    radial-gradient(circle at 47% 34%, rgba(31,111,74,.06), transparent 27%),
+    radial-gradient(circle at 56% 37%, rgba(31,111,74,.05), transparent 25%);
+  filter: blur(20px);
+  transform: translateY(-8px);
+}
+
+.heroIntro{
+  position: relative;
+  z-index: 1;
+  text-align: left;
+}
+
+.heroMark{
+  display:flex;
+  justify-content:center;
+  margin:0 auto 18px;
+}
+
+.heroMark img{
+  width:72px;
+  height:72px;
+  display:block;
+}
+
+@media (max-width:760px){
+  .heroTop{
+    padding-top: 0;
+  }
+
+  .heroField{
+    height:220px;
+    opacity:.52;
+  }
+
+  .heroMark{
+    margin-bottom:16px;
+  }
+
+  .heroMark img{
+    width:60px;
+    height:60px;
+  }
+}
+
     h1{
       font-size:clamp(38px,5vw,56px);
       line-height:1.02;
@@ -160,17 +221,27 @@
 </head>
 
 <body>
-  <main class="wrap">
+<main class="wrap">
 
-    <h1>What is Digital Sovereignty?</h1>
+  <section class="heroTop">
+    <div class="heroField" aria-hidden="true"></div>
 
-    <p class="lede">
-      Digital sovereignty means <strong>you own the relationship with your community</strong> — not a platform, not an algorithm, and not a company whose incentives are misaligned with yours.
-    </p>
+    <div class="heroIntro">
+      <div class="heroMark" aria-hidden="true">
+        <img src="assets/commonshub-mark.svg" alt="">
+      </div>
 
-    <p>
-      There is no intermediary shaping visibility, no system deciding who sees what, and no external incentives distorting how people interact. You and your community connect directly, on infrastructure you control.
-    </p>
+      <h1>What is Digital Sovereignty?</h1>
+
+      <p class="lede">
+        Digital sovereignty means <strong>you own the relationship with your community</strong> — not a platform, not an algorithm, and not a company whose incentives are misaligned with yours.
+      </p>
+
+      <p>
+        There is no intermediary shaping visibility, no system deciding who sees what, and no external incentives distorting how people interact. You and your community connect directly, on infrastructure you control.
+      </p>
+    </div>
+  </section>
 
     <!-- CORE IDEA -->
     <div class="band">
