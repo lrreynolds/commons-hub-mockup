@@ -13,6 +13,49 @@
       --console-border:rgba(31,111,74,.14);
     }
 
+    .appHeader{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      margin: 10px 0 18px;
+      padding-bottom:12px;
+      border-bottom:1px solid var(--line);
+    }
+
+    .appBrand{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      font-size:16px;       /* slightly larger */
+      font-weight:900;
+      color:var(--text);
+    }
+
+    .appMark{
+      width:26px;
+      height:26px;
+      display:block;
+    }
+
+    .stage{
+      padding-top:14px;
+    }
+
+    @media (max-width:640px){
+      .appHeader{
+        margin-bottom:14px;
+      }
+
+      .appBrand{
+        font-size:14px;
+      }
+
+      .appMark{
+        width:20px;
+        height:20px;
+      }
+    }
+
     .consoleShell{
       display:flex;
       flex-direction:column;
@@ -144,6 +187,11 @@
       margin-top:4px;
     }
 
+    .subtle{
+      font-weight:600;
+      color:var(--muted);
+    }
+
     .subtleRow{
       display:flex;
       justify-content:space-between;
@@ -201,61 +249,6 @@
       border-color:rgba(31,111,74,.18);
     }
 
-    .choiceItem{
-      width:100%;
-      text-align:left;
-      border:1px solid var(--line);
-      background:#fff;
-      border-radius:18px;
-      padding:14px 16px;
-      cursor:pointer;
-      transition:.18s ease;
-      display:block;
-    }
-
-    .choiceItem:hover{
-      border-color:rgba(31,111,74,.22);
-      background:rgba(31,111,74,.025);
-    }
-
-    .choiceItem.active{
-      background:rgba(31,111,74,.04);
-      border:2px solid #1f6f4a;
-      box-shadow:0 0 0 3px rgba(31,111,74,.08);
-    }
-
-    .choiceTop{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:12px;
-    }
-
-    .choiceValue{
-      font-size:15px;
-      font-weight:900;
-      line-height:1.3;
-      word-break:break-word;
-      flex:1;
-      color:var(--text);
-    }
-
-    .choiceBadge{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      border:1px solid rgba(31,111,74,.22);
-      background:#fff;
-      color:#1f6f4a;
-      border-radius:999px;
-      padding:4px 8px;
-      font-size:11px;
-      font-weight:800;
-      white-space:nowrap;
-      flex-shrink:0;
-    }
-
-
     @media (max-width: 1100px){
       .flowRail{
         grid-template-columns:repeat(2, minmax(0,1fr));
@@ -302,25 +295,6 @@
       .inputField{
         font-size:16px;
       }
-
-      .choiceItem{
-        padding:12px 14px;
-        border-radius:14px;
-      }
-
-      .choiceTop{
-        align-items:flex-start;
-        gap:10px;
-      }
-
-      .choiceValue{
-        font-size:14px;
-      }
-
-      .choiceBadge{
-        font-size:10px;
-        padding:4px 7px;
-      }
     }
 
 
@@ -330,25 +304,15 @@
   <div class="flowRoot">
     <div class="wrap">
       <main class="stage">
-        <div class="topbar">
-          <div class="left">
-            <div class="logoMark"></div>
-            <div class="meta">
-              <b>Guided onboarding</b>
-              <span>Blueprint generation → approval → provisioning token → launch setup</span>
-            </div>
-          </div>
-          <div class="chip">Step 4</div>
-        </div>
-
         <div class="content">
           <div class="center">
-            <div class="flowBanner">
-              <div>
-                <b>Commonshub guided onboarding</b>
-                <div class="muted" style="margin-top:6px;">Choose the name people will use to refer to the space.</div>
+
+            <div class="appHeader">
+              <div class="appBrand">
+                <img src="assets/commonshub-mark.svg" alt="" class="appMark">
+                <span>Commonshub — Onboarding</span>
               </div>
-              <div class="stepChip">Community name</div>
+              <div class="chip">Step 4</div>
             </div>
 
             <div class="progress">
@@ -426,55 +390,54 @@
 
               </div>
             </div>
-
           </div>
         </div>
       </main>
     </div>
   </div>
-</body>
-<script>
-  const textarea = document.querySelector('.inputField');
-  const label = document.querySelector('.fieldLabel');
-  const choiceItems = document.querySelectorAll('.choiceItem');
+  <script>
+    const textarea = document.querySelector('.inputField');
+    const label = document.querySelector('.fieldLabel');
+    const choiceItems = document.querySelectorAll('.choiceItem');
 
-  function getActiveChoice() {
-    return document.querySelector('.choiceItem.active');
-  }
-
-  function getChoiceValue(choice) {
-    return choice?.querySelector('.choiceValue')?.innerText.trim() || '';
-  }
-
-  function updateStateFromField() {
-    const activeChoice = getActiveChoice();
-    const activeValue = getChoiceValue(activeChoice);
-    const fieldValue = textarea.value.trim();
-
-    if (activeChoice && fieldValue !== activeValue) {
-      activeChoice.classList.remove('active');
+    function getActiveChoice() {
+      return document.querySelector('.choiceItem.active');
     }
 
-    if (getActiveChoice()) {
-      label.textContent = 'Selected (edit if needed)';
-    } else {
-      label.textContent = 'Edited value';
+    function getChoiceValue(choice) {
+      return choice?.querySelector('.choiceValue')?.innerText.trim() || '';
     }
-  }
 
-  choiceItems.forEach(item => {
-    item.addEventListener('click', () => {
-      choiceItems.forEach(i => i.classList.remove('active'));
-      item.classList.add('active');
+    function updateStateFromField() {
+      const activeChoice = getActiveChoice();
+      const activeValue = getChoiceValue(activeChoice);
+      const fieldValue = textarea.value.trim();
 
-      textarea.value = getChoiceValue(item);
-      label.textContent = 'Selected (edit if needed)';
-      textarea.focus();
+      if (activeChoice && fieldValue !== activeValue) {
+        activeChoice.classList.remove('active');
+      }
+
+      if (getActiveChoice()) {
+        label.textContent = 'Selected (edit if needed)';
+      } else {
+        label.textContent = 'Edited value';
+      }
+    }
+
+    choiceItems.forEach(item => {
+      item.addEventListener('click', () => {
+        choiceItems.forEach(i => i.classList.remove('active'));
+        item.classList.add('active');
+
+        textarea.value = getChoiceValue(item);
+        label.textContent = 'Selected (edit if needed)';
+        textarea.focus();
+      });
     });
-  });
 
-  textarea.addEventListener('input', updateStateFromField);
+    textarea.addEventListener('input', updateStateFromField);
 
-  updateStateFromField();
-</script>
+    updateStateFromField();
+  </script>
+</body>
 </html>
