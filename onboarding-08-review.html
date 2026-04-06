@@ -13,6 +13,49 @@
       --console-border:rgba(31,111,74,.14);
     }
 
+    .appHeader{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      margin: 10px 0 18px;
+      padding-bottom:12px;
+      border-bottom:1px solid var(--line);
+    }
+
+    .appBrand{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      font-size:16px;       /* slightly larger */
+      font-weight:900;
+      color:var(--text);
+    }
+
+    .appMark{
+      width:26px;
+      height:26px;
+      display:block;
+    }
+
+    .stage{
+      padding-top:14px;
+    }
+
+    @media (max-width:640px){
+      .appHeader{
+        margin-bottom:14px;
+      }
+
+      .appBrand{
+        font-size:14px;
+      }
+
+      .appMark{
+        width:20px;
+        height:20px;
+      }
+    }
+
     .consoleShell{
       display:flex;
       flex-direction:column;
@@ -120,12 +163,7 @@
 
     input.inputField{
       min-height:60px;
-       text-align: left;
     }
-
-    textarea.inputField {
-  text-align: left;
-}
     .inputField:focus{
       border-color:rgba(31,111,74,.28);
       box-shadow:0 0 0 3px rgba(31,111,74,.08);
@@ -147,6 +185,11 @@
       text-align:center;
       text-decoration:none;
       margin-top:4px;
+    }
+
+    .subtle{
+      font-weight:600;
+      color:var(--muted);
     }
 
     .subtleRow{
@@ -260,7 +303,6 @@
       flex-shrink:0;
     }
 
-
     @media (max-width: 1100px){
       .flowRail{
         grid-template-columns:repeat(2, minmax(0,1fr));
@@ -307,25 +349,6 @@
       .inputField{
         font-size:16px;
       }
-
-      .choiceItem{
-        padding:12px 14px;
-        border-radius:14px;
-      }
-
-      .choiceTop{
-        align-items:flex-start;
-        gap:10px;
-      }
-
-      .choiceValue{
-        font-size:14px;
-      }
-
-      .choiceBadge{
-        font-size:10px;
-        padding:4px 7px;
-      }
     }
 
 
@@ -335,25 +358,15 @@
   <div class="flowRoot">
     <div class="wrap">
       <main class="stage">
-        <div class="topbar">
-          <div class="left">
-            <div class="logoMark"></div>
-            <div class="meta">
-              <b>Guided onboarding</b>
-              <span>Blueprint generation → approval → provisioning token → launch setup</span>
-            </div>
-          </div>
-          <div class="chip">Final step</div>
-        </div>
-
         <div class="content">
           <div class="center">
-            <div class="flowBanner">
-              <div>
-                <b>Commonshub guided onboarding</b>
-                <div class="muted" style="margin-top:6px;">Review your setup and decide whether to launch now or return later.</div>
+
+            <div class="appHeader">
+              <div class="appBrand">
+                <img src="assets/commonshub-mark.svg" alt="" class="appMark">
+                <span>Commonshub — Onboarding</span>
               </div>
-              <div class="stepChip">Review &amp; decide</div>
+              <div class="chip">Final Step</div>
             </div>
 
             <div class="progress">
@@ -429,5 +442,47 @@
       </main>
     </div>
   </div>
+  <script>
+    const choiceItems = document.querySelectorAll('.choiceItem');
+    const textarea = document.querySelector('.inputField');
+    const label = document.querySelector('.fieldLabel');
+
+    function getSelectedButtonValue() {
+      const active = document.querySelector('.choiceItem.active .choiceValue');
+      return active ? active.textContent.trim() : '';
+    }
+
+    choiceItems.forEach(item => {
+      item.addEventListener('click', () => {
+        choiceItems.forEach(i => i.classList.remove('active'));
+        item.classList.add('active');
+
+        const value = item.querySelector('.choiceValue')?.textContent.trim() || '';
+        textarea.value = value;
+        label.textContent = 'Selected (edit if needed)';
+      });
+    });
+
+    textarea.addEventListener('input', () => {
+      const selectedValue = getSelectedButtonValue();
+
+      if (!selectedValue) {
+        label.textContent = textarea.value.trim() ? 'Edited value' : 'Selected (edit if needed)';
+        return;
+      }
+
+      if (textarea.value.trim() !== selectedValue) {
+        document.querySelectorAll('.choiceItem').forEach(i => i.classList.remove('active'));
+        label.textContent = textarea.value.trim() ? 'Edited value' : 'Selected (edit if needed)';
+      } else {
+        label.textContent = 'Selected (edit if needed)';
+      }
+    });
+
+    const recommended = document.querySelector('.choiceItem .choiceBadge')?.closest('.choiceItem');
+    if (recommended) {
+      recommended.classList.add('active');
+    }
+  </script>
 </body>
 </html>
