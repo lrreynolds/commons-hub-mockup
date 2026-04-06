@@ -13,6 +13,49 @@
       --console-border:rgba(31,111,74,.14);
     }
 
+    .appHeader{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      margin: 10px 0 18px;
+      padding-bottom:12px;
+      border-bottom:1px solid var(--line);
+    }
+
+    .appBrand{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      font-size:16px;       /* slightly larger */
+      font-weight:900;
+      color:var(--text);
+    }
+
+    .appMark{
+      width:26px;
+      height:26px;
+      display:block;
+    }
+
+    .stage{
+      padding-top:14px;
+    }
+
+    @media (max-width:640px){
+      .appHeader{
+        margin-bottom:14px;
+      }
+
+      .appBrand{
+        font-size:14px;
+      }
+
+      .appMark{
+        width:20px;
+        height:20px;
+      }
+    }
+
     .consoleShell{
       display:flex;
       flex-direction:column;
@@ -144,6 +187,11 @@
       margin-top:4px;
     }
 
+    .subtle{
+      font-weight:600;
+      color:var(--muted);
+    }
+
     .subtleRow{
       display:flex;
       justify-content:space-between;
@@ -218,36 +266,36 @@
     }
 
     @media (max-width: 640px){
-  .flowBanner{
-    flex-direction:column;
-    align-items:flex-start;
-    gap:8px;
-  }
+      .flowBanner{
+        flex-direction:column;
+        align-items:flex-start;
+        gap:8px;
+      }
 
-  .flowBanner .stepChip{
-    align-self:flex-start;
-  }
-       .consoleStream{
-    padding:12px;
-    border-radius:16px;
-  }
-  .consoleShell{
-    gap:10px;
-  }
-  .msg{
-    padding:12px;
-    border-radius:14px;
-  }
+      .flowBanner .stepChip{
+        align-self:flex-start;
+      }
+      .consoleStream{
+        padding:12px;
+        border-radius:16px;
+      }
+      .consoleShell{
+        gap:10px;
+      }
+      .msg{
+        padding:12px;
+        border-radius:14px;
+      }
 
-  .inputBar{
-    padding:12px;
-    border-radius:16px;
-    gap:10px;
-  }
-        .inputField{
-    font-size:16px;
-  }
-}
+      .inputBar{
+        padding:12px;
+        border-radius:16px;
+        gap:10px;
+      }
+      .inputField{
+        font-size:16px;
+      }
+    }
 
 
   </style>
@@ -256,25 +304,15 @@
   <div class="flowRoot">
     <div class="wrap">
       <main class="stage">
-        <div class="topbar">
-          <div class="left">
-            <div class="logoMark"></div>
-            <div class="meta">
-              <b>Guided onboarding</b>
-              <span>Blueprint generation → approval → provisioning token → launch setup</span>
-            </div>
-          </div>
-          <div class="chip">Step 2</div>
-        </div>
-
         <div class="content">
           <div class="center">
-            <div class="flowBanner">
-              <div>
-                <b>Commonshub guided onboarding</b>
-                <div class="muted" style="margin-top:6px;">Add public links that help shape better defaults for the Blueprint.</div>
+
+            <div class="appHeader">
+              <div class="appBrand">
+                <img src="assets/commonshub-mark.svg" alt="" class="appMark">
+                <span>Commonshub — Onboarding</span>
               </div>
-              <div class="stepChip">Links intake</div>
+              <div class="chip">Step 1</div>
             </div>
 
             <div class="progress">
@@ -319,7 +357,6 @@
 
               </div>
             </div>
-
           </div>
         </div>
       </main>
