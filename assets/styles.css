@@ -577,6 +577,7 @@ backdrop-filter:blur(14px);
 body.dashboard .topbar{
 background:rgba(255,255,255,.12);
 border-bottom:1px solid var(--dashBorder);
+ padding:16px 18px;
 }
 
 
