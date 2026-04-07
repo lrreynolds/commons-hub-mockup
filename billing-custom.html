@@ -13,6 +13,49 @@
       --console-border:rgba(31,111,74,.14);
     }
 
+    .appHeader{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      margin: 10px 0 18px;
+      padding-bottom:12px;
+      border-bottom:1px solid var(--line);
+    }
+
+    .appBrand{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      font-size:16px;       /* slightly larger */
+      font-weight:900;
+      color:var(--text);
+    }
+
+    .appMark{
+      width:26px;
+      height:26px;
+      display:block;
+    }
+
+    .stage{
+      padding-top:14px;
+    }
+
+    @media (max-width:640px){
+      .appHeader{
+        margin-bottom:14px;
+      }
+
+      .appBrand{
+        font-size:14px;
+      }
+
+      .appMark{
+        width:20px;
+        height:20px;
+      }
+    }
+
     .consoleShell{
       display:flex;
       flex-direction:column;
@@ -120,11 +163,6 @@
 
     input.inputField{
       min-height:60px;
-      text-align: left;
-    }
-
-    textarea.inputField {
-      text-align: left;
     }
     .inputField:focus{
       border-color:rgba(31,111,74,.28);
@@ -147,6 +185,11 @@
       text-align:center;
       text-decoration:none;
       margin-top:4px;
+    }
+
+    .subtle{
+      font-weight:600;
+      color:var(--muted);
     }
 
     .subtleRow{
@@ -260,7 +303,6 @@
       flex-shrink:0;
     }
 
-
     @media (max-width: 1100px){
       .flowRail{
         grid-template-columns:repeat(2, minmax(0,1fr));
@@ -307,25 +349,6 @@
       .inputField{
         font-size:16px;
       }
-
-      .choiceItem{
-        padding:12px 14px;
-        border-radius:14px;
-      }
-
-      .choiceTop{
-        align-items:flex-start;
-        gap:10px;
-      }
-
-      .choiceValue{
-        font-size:14px;
-      }
-
-      .choiceBadge{
-        font-size:10px;
-        padding:4px 7px;
-      }
     }
 
 
@@ -335,31 +358,16 @@
   <div class="flowRoot">
     <div class="wrap">
       <main class="stage">
-
-        <div class="topbar">
-          <div class="left">
-            <div class="logoMark"></div>
-            <div class="meta">
-              <b>Set up your community</b>
-              <span>Choose a plan</span>
-            </div>
-          </div>
-          <div class="chip">Step 1 of 4</div>
-        </div>
-
         <div class="content">
           <div class="center">
 
-            <div class="flowBanner">
-              <div>
-                <b>Pick a plan</b>
-                <div class="muted" style="margin-top:6px;">
-                  Your domain choice is already set. Choose monthly or annual billing to continue.
-                </div>
+            <div class="appHeader">
+              <div class="appBrand">
+                <img src="assets/commonshub-mark.svg" alt="" class="appMark">
+                <span>Commonshub — Onboarding</span>
               </div>
-              <div class="stepChip">Launch billing</div>
+              <div class="chip">Step 1</div>
             </div>
-
             <div class="progress">
               <span>Billing</span>
               <div class="bar"><div style="width:55%"></div></div>
@@ -440,11 +448,11 @@
 
           </div>
         </div>
-
-      </main>
-    </div>
+      </div>
+    </main>
   </div>
- <script>
+</div>
+<script>
   const STRIPE_LINKS = {
     custom: {
       monthly: "https://buy.stripe.com/test_6oUeVdehV5R58HH4SP8AE01",
