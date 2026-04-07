@@ -79,9 +79,9 @@ margin-bottom:12px;
 }
 
 .brandMark{
-width:28px;
-height:28px;
-display:block;
+  width:30px;
+  height:30px;
+  display:block;
 }
 
 .dot{
@@ -218,7 +218,7 @@ background:rgba(255,255,255,.75);
 .topbar .left{
 display:flex;
 align-items:center;
-gap:10px;
+gap:12px;
 }
 
 .logoMark{
