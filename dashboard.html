@@ -14,183 +14,218 @@
           <img class="brandMark" src="assets/commonshub-mark-light.svg" alt="Commonshub">
           <div class="meta">
            <b>Commonshub — Dashboard</b>
-          </div>
-        </div>
+         </div>
+       </div>
 
-        <div class="appTabs">
-          <button class="appTab active" type="button">Community</button>
-          <button class="appTab" type="button">Financial</button>
-          <button class="appTab" type="button">Account</button>
-        </div>
+       <div class="appTabs">
+        <button class="appTab active" type="button">Community</button>
+        <button class="appTab" type="button">Financial</button>
+        <button class="appTab" type="button">Account</button>
       </div>
+    </div>
 
-      <div class="content">
-        <div class="center">
+    <div class="content">
+      <div class="center">
 
-          <div class="header dashboardHero">
-            <div>
-              <h2>The Security Brief</h2>
-              <p id="headerSubcopy" class="headerMeta">
-                <span id="headerDomain">securitybrief.jasonjaysmart.com</span>
+        <div class="header dashboardHero">
+          <div>
+            <h2>The Security Brief</h2>
+            <p id="headerSubcopy" class="headerMeta">
+              <span id="headerDomain">securitybrief.jasonjaysmart.com</span>
+              <span>·</span>
+              <span id="headerServerStatus" class="status running">Running</span>
+
+              <span id="dnsPendingWrap" class="dnsMeta">
                 <span>·</span>
-                <span id="headerServerStatus" class="status running">Running</span>
+                <span class="status pending">DNS pending</span>
+                <button class="secondary dnsCheckBtn" id="checkDnsBtn" type="button">
+                  Check DNS
+                </button>
+              </span>
 
-                <span id="dnsPendingWrap" class="dnsMeta" style="display:none;">
-                  <span>·</span>
-                  <span class="status pending">DNS pending</span>
-                  <button class="secondary dnsCheckBtn" id="checkDnsBtn" type="button">
-                    Check DNS
-                  </button>
-                </span>
+              <span id="dnsVerifiedWrap" class="dnsMeta" style="display:none;">
+                <span>·</span>
+                <span class="status verified">DNS verified</span>
+              </span>
+            </p>
+          </div>
+        </div>
 
-                <span id="dnsVerifiedWrap" class="dnsMeta" style="display:none;">
-                  <span>·</span>
-                  <span class="status verified">DNS verified</span>
-                </span>
-              </p>
+        <section id="communityDashboard" style="scroll-margin-top:90px;">
+
+         <div class="card overviewCard" style="opacity:.92;">
+          <div class="overviewHeader">
+            <div>
+              <h3>Community status</h3>
+              <div class="muted">Current health, launch state, and anything needing attention.</div>
             </div>
           </div>
 
-              <section id="communityDashboard" style="scroll-margin-top:90px;">
+          <div id="dnsPendingCard" class="note" style="margin-top:14px;">
+            <b>DNS pending:</b> Your server is running, but your domain is not connected yet. Add the DNS record below to make <b>securitybrief.jasonjaysmart.com</b> go live.
+          </div>
 
-           <div class="card overviewCard" style="opacity:.92;">
-              <div class="overviewHeader">
-                <div>
-                  <h3>Community status</h3>
-                  <div class="muted">Current health, launch state, and anything needing attention.</div>
-                </div>
-              </div>
+          <div id="dnsVerifiedCard" class="note" style="margin-top:14px; display:none;">
+            <b>DNS verified:</b> Your domain is connected and your community is live.
+          </div>
 
-              <div class="note" style="margin-top:14px;">
-                Your server is running. You can optionally review branding, welcome content, and launch details before inviting members.
-              </div>
-
-              <div class="footerBar" style="margin-top:12px;">
-                <a class="primary" href="launch-setup.html">Review launch details</a>
-              </div>
+          <div id="dnsSetupCard" class="card" style="margin-top:14px; padding:12px;">
+            <h3 style="margin:0 0 8px;">DNS record required</h3>
+            <div class="muted" style="margin-bottom:10px;">
+              Add this record in the domain: <b>jasonjaysmart.com</b>
             </div>
 
-            <div class="card" style="margin-top:14px;">
-              <h3>Infrastructure</h3>
-
-              <div class="serviceTabs" style="margin-top:14px;">
-                <button class="serviceTab active" type="button" data-service-tab="mastodon">
-                  Mastodon
-                </button>
-                <button class="serviceTab" type="button" data-service-tab="stripe">
-                  Stripe
-                </button>
-              </div>
-
-              <div class="servicePanel active" id="servicePanelMastodon" data-service-panel="mastodon">
-                <div class="item" style="margin-top:12px;">
-                  <b>Mastodon server</b>
-                  <div class="muted">Version 4.5.7</div>
-                </div>
-
-                <div class="metricsRow metersRow" style="margin-top:14px;">
-                  <div class="metricCard meterCard">
-                    <div class="metricLabel">Database</div>
-                    <div class="fillMeter" aria-hidden="true">
-                      <div class="fillTicks">
-                        <span></span><span></span><span></span>
-                      </div>
-                      <div class="fillWater" style="height:42%;"></div>
-                      <div class="fillValue">42%</div>
-                    </div>
-                    <div class="metricSub">0.84 GB / 2 GB</div>
-                  </div>
-
-                  <div class="metricCard meterCard">
-                    <div class="metricLabel">Media</div>
-                    <div class="fillMeter" aria-hidden="true">
-                      <div class="fillTicks">
-                        <span></span><span></span><span></span>
-                      </div>
-                      <div class="fillWater" style="height:18%;"></div>
-                      <div class="fillValue">18%</div>
-                    </div>
-                    <div class="metricSub">3.6 GB / 20 GB</div>
-                  </div>
-
-                  <div class="metricCard meterCard">
-                    <div class="metricLabel">Uptime</div>
-                    <div class="fillMeter" aria-hidden="true">
-                      <div class="fillTicks">
-                        <span></span><span></span><span></span>
-                      </div>
-                      <div class="fillWater uptimeWater" style="height:99.98%;"></div>
-                      <div class="fillValue">99.98%</div>
-                    </div>
-                    <div class="metricSub">Past 30 days</div>
-                  </div>
-                </div>
-
-                <div class="footerBar" style="margin-top:14px; gap:12px;">
-                  <a class="secondary" href="hosting-details.html" style="flex:1; justify-content:center;">
-                    Manage capacity
-                  </a>
-                </div>
-              </div>
-
-              <div class="servicePanel" id="servicePanelStripe" data-service-panel="stripe" style="display:none;">
-                <div class="item" style="margin-top:12px;">
-                  <b>Stripe status</b>
-                  <div class="muted">Not connected · Community funding unavailable</div>
-                </div>
-
-                <div class="metricsRow metersRow" style="margin-top:14px;">
-                  <div class="metricCard meterCard">
-                    <div class="metricLabel">Monthly support</div>
-                    <div class="fillMeter" aria-hidden="true">
-                      <div class="fillTicks">
-                        <span></span><span></span><span></span>
-                      </div>
-                      <div class="fillWater" style="height:0%;"></div>
-                      <div class="fillValue">$0</div>
-                    </div>
-                    <div class="metricSub">This month</div>
-                  </div>
-
-                  <div class="metricCard meterCard">
-                    <div class="metricLabel">Goal progress</div>
-                    <div class="fillMeter" aria-hidden="true">
-                      <div class="fillTicks">
-                        <span></span><span></span><span></span>
-                      </div>
-                      <div class="fillWater" style="height:0%;"></div>
-                      <div class="fillValue">0%</div>
-                    </div>
-                    <div class="metricSub">Current goal</div>
-                  </div>
-
-                  <div class="metricCard meterCard">
-                    <div class="metricLabel">Campaign</div>
-                    <div class="fillMeter" aria-hidden="true">
-                      <div class="fillTicks">
-                        <span></span><span></span><span></span>
-                      </div>
-                      <div class="fillWater" style="height:35%;"></div>
-                      <div class="fillValue">14d</div>
-                    </div>
-                    <div class="metricSub">Ends in</div>
-                  </div>
-                </div>
-
-                <div class="footerBar" style="margin-top:14px; gap:12px;">
-                  <a class="secondary" href="funding-start.html" style="flex:1; justify-content:center;">
-                    Financial details
-                  </a>
-                </div>
-              </div>
+            <div class="item">
+              <b>Type</b>
+              <div class="muted">CNAME</div>
             </div>
 
-          </section>
+            <div class="item" style="margin-top:10px;">
+              <b>Host / Name</b>
+              <div class="muted">securitybrief</div>
+            </div>
 
+            <div class="item" style="margin-top:10px;">
+              <b>Points to</b>
+              <div class="muted">exo-de-fra-1-nlb-1.commonshub.social</div>
+            </div>
+
+            <div class="footerBar" style="margin-top:12px;">
+              <a class="secondary" href="hosting-details.html" style="flex:1; justify-content:center;">
+                Manual DNS setup
+              </a>
+              <a class="secondary" href="dns-authorization.html" style="flex:1; justify-content:center;">
+                Automated DNS setup
+              </a>
+            </div>
+          </div>
+
+          <div class="footerBar" style="margin-top:12px;">
+           <a class="primary" href="launch-setup.html">Review launch details</a>
+         </div>
+       </div>
+
+       <div class="card" style="margin-top:14px;">
+        <h3>Infrastructure</h3>
+
+        <div class="serviceTabs" style="margin-top:14px;">
+          <button class="serviceTab active" type="button" data-service-tab="mastodon">
+            Mastodon
+          </button>
+          <button class="serviceTab" type="button" data-service-tab="stripe">
+            Stripe
+          </button>
+        </div>
+
+        <div class="servicePanel active" id="servicePanelMastodon" data-service-panel="mastodon">
+          <div class="item" style="margin-top:12px;">
+            <b>Mastodon server</b>
+            <div class="muted">Version 4.5.7</div>
+          </div>
+
+          <div class="metricsRow metersRow" style="margin-top:14px;">
+            <div class="metricCard meterCard">
+              <div class="metricLabel">Database</div>
+              <div class="fillMeter" aria-hidden="true">
+                <div class="fillTicks">
+                  <span></span><span></span><span></span>
+                </div>
+                <div class="fillWater" style="height:42%;"></div>
+                <div class="fillValue">42%</div>
+              </div>
+              <div class="metricSub">0.84 GB / 2 GB</div>
+            </div>
+
+            <div class="metricCard meterCard">
+              <div class="metricLabel">Media</div>
+              <div class="fillMeter" aria-hidden="true">
+                <div class="fillTicks">
+                  <span></span><span></span><span></span>
+                </div>
+                <div class="fillWater" style="height:18%;"></div>
+                <div class="fillValue">18%</div>
+              </div>
+              <div class="metricSub">3.6 GB / 20 GB</div>
+            </div>
+
+            <div class="metricCard meterCard">
+              <div class="metricLabel">Uptime</div>
+              <div class="fillMeter" aria-hidden="true">
+                <div class="fillTicks">
+                  <span></span><span></span><span></span>
+                </div>
+                <div class="fillWater uptimeWater" style="height:99.98%;"></div>
+                <div class="fillValue">99.98%</div>
+              </div>
+              <div class="metricSub">Past 30 days</div>
+            </div>
+          </div>
+
+          <div class="footerBar" style="margin-top:14px; gap:12px;">
+            <a class="secondary" href="hosting-details.html" style="flex:1; justify-content:center;">
+              Manage capacity
+            </a>
+          </div>
+        </div>
+
+        <div class="servicePanel" id="servicePanelStripe" data-service-panel="stripe" style="display:none;">
+          <div class="item" style="margin-top:12px;">
+            <b>Stripe status</b>
+            <div class="muted">Not connected · Community funding unavailable</div>
+          </div>
+
+          <div class="metricsRow metersRow" style="margin-top:14px;">
+            <div class="metricCard meterCard">
+              <div class="metricLabel">Monthly support</div>
+              <div class="fillMeter" aria-hidden="true">
+                <div class="fillTicks">
+                  <span></span><span></span><span></span>
+                </div>
+                <div class="fillWater" style="height:0%;"></div>
+                <div class="fillValue">$0</div>
+              </div>
+              <div class="metricSub">This month</div>
+            </div>
+
+            <div class="metricCard meterCard">
+              <div class="metricLabel">Goal progress</div>
+              <div class="fillMeter" aria-hidden="true">
+                <div class="fillTicks">
+                  <span></span><span></span><span></span>
+                </div>
+                <div class="fillWater" style="height:0%;"></div>
+                <div class="fillValue">0%</div>
+              </div>
+              <div class="metricSub">Current goal</div>
+            </div>
+
+            <div class="metricCard meterCard">
+              <div class="metricLabel">Campaign</div>
+              <div class="fillMeter" aria-hidden="true">
+                <div class="fillTicks">
+                  <span></span><span></span><span></span>
+                </div>
+                <div class="fillWater" style="height:35%;"></div>
+                <div class="fillValue">14d</div>
+              </div>
+              <div class="metricSub">Ends in</div>
+            </div>
+          </div>
+
+          <div class="footerBar" style="margin-top:14px; gap:12px;">
+            <a class="secondary" href="funding-start.html" style="flex:1; justify-content:center;">
+              Financial details
+            </a>
+          </div>
         </div>
       </div>
-    </main>
+
+    </section>
+
   </div>
-  <script src="assets/app.js"></script>
+</div>
+</main>
+</div>
+<script src="assets/app.js"></script>
 </body>
 </html>                
