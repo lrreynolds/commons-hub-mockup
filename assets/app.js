@@ -126,15 +126,26 @@ domainTypeValue === "custom_domain"
 }
 
 function renderDnsState() {
+const dnsPendingCard = document.getElementById("dnsPendingCard");
+const dnsVerifiedCard = document.getElementById("dnsVerifiedCard");
+const dnsSetupCard = document.getElementById("dnsSetupCard");
+
 dnsPendingWrap.style.display = "none";
 dnsVerifiedWrap.style.display = "none";
+
+if (dnsPendingCard) dnsPendingCard.style.display = "none";
+if (dnsVerifiedCard) dnsVerifiedCard.style.display = "none";
+if (dnsSetupCard) dnsSetupCard.style.display = "none";
 
 if (!needsDns(domainType)) return;
 
 if (dnsStatus === "verified") {
 dnsVerifiedWrap.style.display = "inline-flex";
+if (dnsVerifiedCard) dnsVerifiedCard.style.display = "block";
 } else {
 dnsPendingWrap.style.display = "inline-flex";
+if (dnsPendingCard) dnsPendingCard.style.display = "block";
+if (dnsSetupCard) dnsSetupCard.style.display = "block";
 }
 }
 
