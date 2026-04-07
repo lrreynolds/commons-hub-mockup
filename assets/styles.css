@@ -111,9 +111,10 @@ gap:18px;
 
 .appTabs{
   display:flex;
-  justify-content:center;
-  gap:6px;
+  justify-content:flex-start;
+  gap:8px;
   flex-wrap:wrap;
+  padding-left:8px;
 }
 
 .appTab{
@@ -574,10 +575,10 @@ box-shadow:0 22px 60px rgba(0,0,0,.28);
 backdrop-filter:blur(14px);
 }
 
-body.dashboard .topbar{
-background:rgba(255,255,255,.12);
-border-bottom:1px solid var(--dashBorder);
- padding:16px 18px;
+body.dashboard .topbar .left{
+  display:flex;
+  align-items:center;
+  gap:12px;
 }
 
 
@@ -589,15 +590,12 @@ body.dashboard .topbar .left{
 
 body.dashboard .topbar .meta b{
   display:block;
-  font-size:15px;
+  font-size:16px;
   line-height:1.1;
 }
 
 body.dashboard .topbar .meta span{
-  display:block;
-  font-size:12px;
-  line-height:1.15;
-  margin-top:2px;
+  display:none;
 }
 
 body.dashboard .chip{
