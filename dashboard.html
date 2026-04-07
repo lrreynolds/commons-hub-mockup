@@ -11,7 +11,7 @@
     <main class="stage">
       <div class="topbar appTopbar">
         <div class="left">
-          <div class="logoMark"></div>
+         <img class="brandMark" src="assets/commonshub-mark.svg">
           <div class="meta">
             <b>Commonshub</b>
             <span>Community operations</span>
@@ -102,94 +102,258 @@
                 </div>
               </div>
 <!-- Primary actions: Visit + Invite + Mastodon access -->
-<div class="footerBar" id="primaryActions" style="margin-top:14px; gap:12px;">
-  <!-- Visit community -->
-  <a class="primary" id="visitCommunityBtn"
-  href="community.html"
-  style="flex:1; justify-content:center;">
-  Visit community (Mastodon)
-</a>
-<!-- Sign in (shown by default) -->
-<a class="secondary" id="mastodonLoginBtn"
-href="mastodon-login.html"
-style="flex:1; justify-content:center;">
-Sign in to Mastodon
-</a>
-<!-- Dashboard (hidden initially) -->
-<a class="secondary" id="mastodonAdminBtn"
-href="mastodon-admin.html"
-target="_blank" rel="noopener"
-style="flex:1; justify-content:center; display:none;">
-Mastodon dashboard
-</a>
-<!-- Invite -->
-<button class="secondary" id="copyInviteBtn"
-type="button"
-style="flex:1; justify-content:center;">
-Copy invite link
-</button>
-</div>
-<div class="muted" id="mastodonHint"
-style="margin-top:10px; font-size:13px;">
-Sign in first, then you can open the Mastodon dashboard.
-</div>
-<!-- Guided manual setup (deep links + copy pack) -->
-<div class="card" id="guidedSetupCard" style="margin-top:14px;">
-  <h3 style="margin:0 0 6px;">Guided setup checklist</h3>
-  <div class="muted" style="margin-top:2px;">
-    Commonshub provides recommended copy + direct links. Paste/apply changes in Mastodon.
-    When you mark a step done, we hide the copy (because Mastodon is the source of truth).
-  </div>
-  <div class="note" style="margin-top:12px;">
-    <b>Tip:</b> Open each Mastodon link in a new tab, paste the suggested copy, save, then come back here and mark it done.
-  </div>
-  <div id="setupChecklist" style="margin-top:12px;"></div>
-</div>
-<!-- Invite link stays hidden unless the user wants it -->
-<div class="field" id="inviteField" style="margin-top:12px; display:none;">
-  <label>Invite link</label>
-  <input
-  id="inviteLink"
-  type="text"
-  value="https://mycommunity.commonshub.social/invite/abc123"
-  readonly
-  />
-  <div class="muted" style="margin-top:6px;">
-    Share this link wherever your audience already is (Substack, YouTube, email, etc.).
-  </div>
-</div>
-<!-- Community funding block (zen) -->
-<div class="fundingCard" style="margin-top:14px;">
-  <h3 style="margin:0 0 6px;">Community funding</h3>
-  <div class="muted" id="fundingSubcopy">
-    Optional. Participation is always free.
-  </div>
-  <div class="muted" style="margin-top:10px; font-size:13px;">
-    <a href="funding-start.html" style="color:inherit; text-decoration:none;">
-      Manage community funding
-    </a>
-  </div>
-  <div class="field" id="fundingLinkField" style="margin-top:12px; display:none;">
-    <label>Community funding link</label>
-    <input
-    id="fundingLinkInput"
-    type="text"
-    value="https://mycommunity.commonshub.social/funding"
-    readonly
-    />
-    <div class="muted" style="margin-top:6px;">
-      Share this link anywhere. (This page also invites people to join your community.)
+<body class="dashboard" data-domain-type="external_subdomain" data-dns-status="pending">
+<div class="wrap">
+<main class="stage">
+
+<!-- ========================= -->
+<!-- TOP APP BAR -->
+<!-- ========================= -->
+
+<div class="topbar appTopbar">
+  <div class="left">
+    <div class="logoMark"></div>
+    <div class="meta">
+      <b>Commonshub</b>
+      <span>Community operations</span>
     </div>
   </div>
+
+  <div class="appTabs">
+    <button class="appTab active">Community</button>
+    <button class="appTab">Support</button>
+    <button class="appTab">Account</button>
+  </div>
+
+  <div class="topbarActions">
+    <div class="chip">Owner</div>
+  </div>
+</div>
+
+<div class="content">
+<div class="center">
+
+<!-- ========================= -->
+<!-- HEADER -->
+<!-- ========================= -->
+
+<div class="header dashboardHero">
+<div>
+<h2>The Security Brief</h2>
+
+<p id="headerSubcopy" class="headerMeta">
+<span id="headerDomain">securitybrief.jasonjaysmart.com</span>
+<span>·</span>
+<span id="headerServerStatus" class="status running">Running</span>
+
+<span id="dnsPendingWrap" class="dnsMeta" style="display:none;">
+<span>·</span>
+<span class="status pending">DNS pending</span>
+<button class="secondary dnsCheckBtn" id="checkDnsBtn">
+Check DNS
+</button>
+</span>
+
+<span id="dnsVerifiedWrap" class="dnsMeta" style="display:none;">
+<span>·</span>
+<span class="status verified">DNS verified</span>
+</span>
+
+</p>
+</div>
+</div>
+
+<!-- ========================= -->
+<!-- PRE SETUP -->
+<!-- ========================= -->
+
+<div id="preSetup">
+
+<section id="status">
+
+<!-- Overview Card -->
+
+<div class="card overviewCard">
+<div class="overviewHeader">
+<div>
+<h3>Community overview</h3>
+<div class="muted">
+Monitor launch status, system health, and key actions.
 </div>
 </div>
 </div>
+
+<div class="note">
+<b>Next:</b> Add your branding, purpose, and welcome post. About 5 minutes.
+</div>
+
+<div class="footerBar">
+<a class="primary" href="launch-setup.html">
+Continue setup
+</a>
+
+<a class="secondary" href="hosting-details.html">
+Domain & hosting
+</a>
+</div>
+</div>
+
+
+<!-- ========================= -->
+<!-- SERVICES (RESTORED) -->
+<!-- ========================= -->
+
+<div class="card" style="margin-top:14px;">
+
+<h3>Services</h3>
+
+<div class="serviceTabs">
+
+<button class="serviceTab active"
+data-service-tab="mastodon">
+Mastodon
+</button>
+
+<button class="serviceTab"
+data-service-tab="stripe">
+Stripe
+</button>
+
+</div>
+
+
+<!-- ========================= -->
+<!-- MASTODON PANEL -->
+<!-- ========================= -->
+
+<div class="servicePanel active"
+id="servicePanelMastodon"
+data-service-panel="mastodon">
+
+<div class="item">
+<b>Mastodon server</b>
+<div class="muted">
+Version 4.5.7
+</div>
+</div>
+
+
+<div class="metricsRow metersRow">
+
+<div class="metricCard meterCard">
+<div class="metricLabel">Database</div>
+<div class="fillMeter">
+<div class="fillTicks">
+<span></span>
+<span></span>
+<span></span>
+</div>
+<div class="fillWater" style="height:42%"></div>
+<div class="fillValue">42%</div>
+</div>
+<div class="metricSub">0.84 GB / 2 GB</div>
+</div>
+
+<div class="metricCard meterCard">
+<div class="metricLabel">Media</div>
+<div class="fillMeter">
+<div class="fillTicks">
+<span></span>
+<span></span>
+<span></span>
+</div>
+<div class="fillWater" style="height:18%"></div>
+<div class="fillValue">18%</div>
+</div>
+<div class="metricSub">3.6 GB / 20 GB</div>
+</div>
+
+<div class="metricCard meterCard">
+<div class="metricLabel">Uptime</div>
+<div class="fillMeter">
+<div class="fillTicks">
+<span></span>
+<span></span>
+<span></span>
+</div>
+<div class="fillWater uptimeWater" style="height:99.98%"></div>
+<div class="fillValue">99.98%</div>
+</div>
+<div class="metricSub">Past 30 days</div>
+</div>
+
+</div>
+
+<div class="footerBar">
+<a class="secondary"
+href="hosting-details.html"
+style="flex:1;">
+Mastodon details
+</a>
+</div>
+
+</div>
+
+
+<!-- ========================= -->
+<!-- STRIPE PANEL -->
+<!-- ========================= -->
+
+<div class="servicePanel"
+id="servicePanelStripe"
+data-service-panel="stripe"
+style="display:none;">
+
+<div class="item">
+<b>Stripe service</b>
+<div class="muted">
+Not connected · Community funding unavailable
+</div>
+</div>
+
+<div class="metricsRow metersRow">
+
+<div class="metricCard meterCard">
+<div class="metricLabel">Monthly support</div>
+<div class="fillMeter">
+<div class="fillWater" style="height:0%"></div>
+<div class="fillValue">$0</div>
+</div>
+<div class="metricSub">This month</div>
+</div>
+
+<div class="metricCard meterCard">
+<div class="metricLabel">Goal progress</div>
+<div class="fillMeter">
+<div class="fillWater" style="height:0%"></div>
+<div class="fillValue">0%</div>
+</div>
+<div class="metricSub">Current goal</div>
+</div>
+
+<div class="metricCard meterCard">
+<div class="metricLabel">Campaign</div>
+<div class="fillMeter">
+<div class="fillWater" style="height:35%"></div>
+<div class="fillValue">14d</div>
+</div>
+<div class="metricSub">Ends in</div>
+</div>
+
+</div>
+
+<div class="footerBar">
+<a class="secondary"
+href="funding-start.html"
+style="flex:1;">
+Stripe details
+</a>
+</div>
+
+</div>
+
 </div>
 </section>
-</div>
-</div>
-</div>
-</main>
 </div>
 <script src="assets/app.js"></script>
 </body>
