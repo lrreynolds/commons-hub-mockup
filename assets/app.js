@@ -288,26 +288,17 @@ function setupContinueSetup() {
     let targetStep = null;
 
     steps.forEach((step) => {
-      step.classList.remove("open");
-
-      if (step.dataset.completed === "true") {
-        step.classList.add("done");
-        step.classList.remove("locked");
-      } else {
-        step.classList.remove("done");
-
-        if (!targetStep) {
-          targetStep = step;
-          step.classList.remove("locked");
-        } else {
-          step.classList.add("locked");
-        }
+      if (!targetStep && step.dataset.completed !== "true") {
+        targetStep = step;
       }
     });
 
     if (!targetStep) return;
 
-    openSetupStep(targetStep);
+    const toggleLink = targetStep.querySelector(".stepToggleLink");
+    if (!toggleLink) return;
+
+    toggleLink.click();
     targetStep.scrollIntoView({ behavior: "smooth", block: "start" });
   });
 }
