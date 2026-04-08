@@ -116,6 +116,10 @@ const showManualDns = document.getElementById("showManualDns");
 const autoDnsSection = document.getElementById("autoDnsSection");
 const authorizeDnsBtn = document.getElementById("authorizeDnsBtn");
 
+const visitCommunityBtn = document.getElementById("visitCommunityBtn");
+const viewHubBtn = document.getElementById("viewHubBtn");
+const generateInviteBtn = document.getElementById("generateInviteBtn");
+
 if (!dnsPendingWrap || !dnsVerifiedWrap || !checkDnsBtn) return;
 
 let domainType =
@@ -135,6 +139,16 @@ domainTypeValue === "custom_domain"
 );
 }
 
+function setQuickActions(enabled) {
+  [visitCommunityBtn, viewHubBtn, generateInviteBtn].forEach(btn => {
+    if (!btn) return;
+
+    btn.style.pointerEvents = enabled ? "auto" : "none";
+    btn.style.opacity = enabled ? "1" : ".45";
+    btn.classList.toggle("disabled", !enabled);
+  });
+}
+
 function renderDnsState() {
   dnsPendingWrap.style.display = "none";
   dnsVerifiedWrap.style.display = "none";
@@ -146,10 +160,12 @@ function renderDnsState() {
 
   if (!needsDns(domainType)) return;
 
-  if (dnsStatus === "verified") {
-    dnsVerifiedWrap.style.display = "inline-flex";
-    if (dnsVerifiedCard) dnsVerifiedCard.style.display = "block";
-  } else {
+ if (dnsStatus === "verified") {
+  dnsVerifiedWrap.style.display = "inline-flex";
+  if (dnsVerifiedCard) dnsVerifiedCard.style.display = "block";
+  setQuickActions(true);
+} else {
+  setQuickActions(false);
     dnsPendingWrap.style.display = "inline-flex";
     if (dnsPendingCard) dnsPendingCard.style.display = "block";
     if (dnsSetupCard) dnsSetupCard.style.display = "block";
