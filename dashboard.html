@@ -90,12 +90,44 @@
               <div class="muted">exo-de-fra-1-nlb-1.commonshub.social</div>
             </div>
 
-            <div class="footerBar" style="margin-top:12px;">
-              <a class="secondary" href="hosting-details.html" style="flex:1; justify-content:center;">
+            <div class="footerBar dnsActionBar" style="margin-top:12px;">
+              <button id="manualDnsLoginBtn" type="button" class="secondary dnsModeBtn" style="flex:1; justify-content:center;">
                 Manual DNS setup
-              </a>
-              <a class="secondary" href="dns-authorization.html" style="flex:1; justify-content:center;">
+              </button>
+
+              <button id="showAutoDns" type="button" class="secondary dnsModeBtn" style="flex:1; justify-content:center;">
                 Automated DNS setup
+              </button>
+            </div>
+          </div>
+
+          <div id="autoDnsSection" class="card" style="margin-top:14px; padding:12px; display:none;">
+            <h3 style="margin:0 0 8px;">Automated DNS setup</h3>
+
+            <div class="note" style="margin-top:10px;">
+              We can do this automatically if you authorize us through your registrar.
+            </div>
+
+            <div class="list" style="margin-top:12px; gap:10px;">
+              <div class="item">
+                <b>1. We will fully automate the required DNS records</b>
+              </div>
+              <div class="item">
+                <b>2. You need to log in and grant authorization</b>
+              </div>
+              <div class="item">
+                <b>3. Your credentials remain private</b>
+                <div class="muted">You log in directly with your registrar. Commonshub does not need your password.</div>
+              </div>
+            </div>
+
+            <div class="footerBar dnsActionBar" style="margin-top:12px;">
+              <button id="showManualDns" type="button" class="secondary dnsModeBtn" style="flex:1; justify-content:center;">
+                Manual DNS setup
+              </button>
+
+              <a id="authorizeDnsBtn" class="secondary dnsModeBtn" href="#" target="_blank" rel="noopener noreferrer" style="flex:1; justify-content:center;">
+                Authorize DNS setup
               </a>
             </div>
           </div>
