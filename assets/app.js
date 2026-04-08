@@ -282,12 +282,25 @@ function setupContinueSetup() {
   if (!btn) return;
 
   btn.addEventListener("click", () => {
-    const firstStep = document.querySelector(".setupStep");
+    const steps = Array.from(document.querySelectorAll(".setupStep"));
+    const firstStep = steps[0];
     if (!firstStep) return;
 
-    firstStep.classList.remove("locked");
-    firstStep.classList.add("open");
+    steps.forEach((step, index) => {
+      step.classList.remove("open");
 
+      if (step.dataset.completed === "true") {
+        step.classList.add("done");
+        step.classList.remove("locked");
+      } else if (index === 0) {
+        step.classList.remove("locked");
+      } else {
+        step.classList.add("locked");
+        step.classList.remove("done");
+      }
+    });
+
+    firstStep.classList.add("open");
     firstStep.scrollIntoView({ behavior: "smooth", block: "start" });
   });
 }
@@ -735,6 +748,17 @@ setToggleLabel(step);
 }
 
 function closeOtherOpenSteps(currentStep) {
+function openNextStep(currentStep) {
+  const currentIndex = steps.indexOf(currentStep);
+  const nextStep = steps[currentIndex + 1];
+
+  if (!nextStep) return;
+
+  nextStep.classList.remove("locked");
+  openStep(nextStep);
+
+  nextStep.scrollIntoView({ behavior: "smooth", block: "start" });
+}
 steps.forEach((step) => {
 if (step !== currentStep && step.classList.contains("open")) {
 step.classList.remove("open");
@@ -828,10 +852,11 @@ step.dataset.completed = "true";
 syncStepUi(step);
 
 if (doneBtn) {
-doneBtn.addEventListener("click", () => {
-step.dataset.completed = "true";
-markStepDone(step);
-});
+  doneBtn.addEventListener("click", () => {
+    step.dataset.completed = "true";
+    markStepDone(step);
+    openNextStep(step);
+  });
 }
 
 step.querySelectorAll(".stepToggleLink").forEach((toggleLink) => {
