@@ -276,6 +276,22 @@ setTimeout(() => window.location.reload(), 150);
 // ----------------------------
 // 5) Guided setup checklist
 // ----------------------------
+
+function setupContinueSetup() {
+  const btn = document.getElementById("continueSetupBtn");
+  if (!btn) return;
+
+  btn.addEventListener("click", () => {
+    const firstStep = document.querySelector(".setupStep");
+    if (!firstStep) return;
+
+    firstStep.classList.remove("locked");
+    firstStep.classList.add("open");
+
+    firstStep.scrollIntoView({ behavior: "smooth", block: "start" });
+  });
+}
+
 function setupChecklist() {
 const checklistEl = document.getElementById("setupChecklist");
 if (!checklistEl) return;
@@ -740,6 +756,11 @@ function updateProgress() {
 const completed = document.querySelectorAll(".setupStep.done").length;
 const percent = (completed / TOTAL_STEPS) * 100;
 const nextStep = Math.min(completed + 1, TOTAL_STEPS);
+const attentionCard = document.getElementById("setupAttentionCard");
+
+if (completed === TOTAL_STEPS && attentionCard) {
+  attentionCard.style.display = "none";
+}
 
 progressBar.style.width = `${percent}%`;
 progressText.textContent =
@@ -851,4 +872,5 @@ setupResetHandlers();
 setupFundingUi();
 setupServiceTabs();
 setupLaunchSteps();
+setupContinueSetup();
 })();
