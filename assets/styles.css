@@ -728,6 +728,22 @@ body.dashboard .status.verified{
 color:#3cc37a;
 }
 
+.dnsActionBar{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:14px;
+}
+
+.dnsModeBtn{
+  min-height:58px;
+  width:100%;
+}
+
+@media (max-width:760px){
+  .dnsActionBar{
+    grid-template-columns:1fr;
+  }
+}
 
 
 /* =========================================================
