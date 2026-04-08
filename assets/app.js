@@ -756,7 +756,7 @@ function updateProgress() {
 const completed = document.querySelectorAll(".setupStep.done").length;
 const percent = (completed / TOTAL_STEPS) * 100;
 const nextStep = Math.min(completed + 1, TOTAL_STEPS);
-const attentionCard = document.getElementById("setupAttentionCard");
+const attentionCard = document.getElementById("launchAttentionCard");
 
 if (completed === TOTAL_STEPS && attentionCard) {
   attentionCard.style.display = "none";
