@@ -140,89 +140,92 @@ domainTypeValue === "custom_domain"
 }
 
 function setQuickActions(enabled) {
-  [visitCommunityBtn, viewHubBtn, generateInviteBtn].forEach(btn => {
-    if (!btn) return;
+[visitCommunityBtn, viewHubBtn, generateInviteBtn].forEach(btn => {
+if (!btn) return;
 
-    btn.style.pointerEvents = enabled ? "auto" : "none";
-    btn.style.opacity = enabled ? "1" : ".45";
-    btn.classList.toggle("disabled", !enabled);
-  });
+btn.style.pointerEvents = enabled ? "auto" : "none";
+btn.style.opacity = enabled ? "1" : ".45";
+btn.classList.toggle("disabled", !enabled);
+});
 }
 
 function renderDnsState() {
-  dnsPendingWrap.style.display = "none";
-  dnsVerifiedWrap.style.display = "none";
+dnsPendingWrap.style.display = "none";
+dnsVerifiedWrap.style.display = "none";
 
-  if (dnsPendingCard) dnsPendingCard.style.display = "none";
-  if (dnsVerifiedCard) dnsVerifiedCard.style.display = "none";
-  if (dnsSetupCard) dnsSetupCard.style.display = "none";
-  if (autoDnsSection) autoDnsSection.style.display = "none";
+if (dnsPendingCard) dnsPendingCard.style.display = "none";
+if (dnsVerifiedCard) dnsVerifiedCard.style.display = "none";
+if (dnsSetupCard) dnsSetupCard.style.display = "none";
+if (autoDnsSection) autoDnsSection.style.display = "none";
 
-  if (!needsDns(domainType)) return;
-
- if (dnsStatus === "verified") {
-  dnsVerifiedWrap.style.display = "inline-flex";
-  if (dnsVerifiedCard) dnsVerifiedCard.style.display = "block";
+if (!needsDns(domainType)) {
   setQuickActions(true);
+  return;
+}
+
+if (dnsStatus === "verified") {
+dnsVerifiedWrap.style.display = "inline-flex";
+if (dnsVerifiedCard) dnsVerifiedCard.style.display = "block";
+setQuickActions(true);
 } else {
-  setQuickActions(false);
-    dnsPendingWrap.style.display = "inline-flex";
-    if (dnsPendingCard) dnsPendingCard.style.display = "block";
-    if (dnsSetupCard) dnsSetupCard.style.display = "block";
-  }
+setQuickActions(false);
+dnsPendingWrap.style.display = "inline-flex";
+if (dnsPendingCard) dnsPendingCard.style.display = "block";
+if (dnsSetupCard) dnsSetupCard.style.display = "block";
+}
 }
 
 const registrarLoginUrl = "https://sso.godaddy.com/?app=oos&realm=idp&path=%2Fproducts";
 const dnsAuthorizationUrl = "https://example.com/dns/authorize/godaddy"; // replace later
 
 function showManualSection() {
-  if (dnsSetupCard) dnsSetupCard.style.display = "block";
-  if (autoDnsSection) autoDnsSection.style.display = "none";
+if (dnsSetupCard) dnsSetupCard.style.display = "block";
+if (autoDnsSection) autoDnsSection.style.display = "none";
 }
 
 function showAutoSection() {
-  if (dnsSetupCard) dnsSetupCard.style.display = "none";
-  if (autoDnsSection) autoDnsSection.style.display = "block";
+if (dnsSetupCard) dnsSetupCard.style.display = "none";
+if (autoDnsSection) autoDnsSection.style.display = "block";
 }
 
 function openRegistrarLogin() {
-  if (registrarLoginUrl && registrarLoginUrl !== "#") {
-    window.open(registrarLoginUrl, "_blank", "noopener,noreferrer");
-  } else {
-    alert("Please log in to your registrar manually and add the DNS record shown above.");
-  }
+if (registrarLoginUrl && registrarLoginUrl !== "#") {
+window.open(registrarLoginUrl, "_blank", "noopener,noreferrer");
+} else {
+alert("Please log in to your registrar manually and add the DNS record shown above.");
+}
 }
 
 if (showAutoDns) {
-  showAutoDns.addEventListener("click", () => {
-    showAutoSection();
-  });
+showAutoDns.addEventListener("click", () => {
+showAutoSection();
+});
 }
 
 if (showManualDns) {
-  showManualDns.addEventListener("click", () => {
-    showManualSection();
-    openRegistrarLogin();
-  });
+showManualDns.addEventListener("click", () => {
+showManualSection();
+openRegistrarLogin();
+});
 }
 
 if (manualDnsLoginBtn) {
-  manualDnsLoginBtn.addEventListener("click", () => {
-    showManualSection();
-    openRegistrarLogin();
-  });
+manualDnsLoginBtn.addEventListener("click", () => {
+showManualSection();
+openRegistrarLogin();
+});
 }
 
 if (authorizeDnsBtn) {
-  authorizeDnsBtn.addEventListener("click", (event) => {
-    event.preventDefault();
+authorizeDnsBtn.addEventListener("click", (event) => {
+event.preventDefault();
 
-    if (dnsAuthorizationUrl && dnsAuthorizationUrl !== "#") {
-      window.open(dnsAuthorizationUrl, "_blank", "noopener,noreferrer");
-    } else {
-      alert("Authorization link is not set yet.");
-    }
-  });
+if (dnsAuthorizationUrl && dnsAuthorizationUrl !== "#") {
+window.open(dnsAuthorizationUrl, "_blank", "noopener,noreferrer");
+} else {
+alert("Authorization link is not set yet.");
+}
+});
 }
 
 checkDnsBtn.addEventListener("click", () => {
@@ -656,182 +659,182 @@ activateTab(initial);
 // ----------------------------
 
 function setupLaunchSteps() {
-  const TOTAL_STEPS = 7;
-  const steps = Array.from(document.querySelectorAll(".setupStep"));
-  const progressBar = document.getElementById("progressBar");
-  const progressText = document.getElementById("progressText");
-  const progressPercent = document.getElementById("progressPercent");
+const TOTAL_STEPS = 7;
+const steps = Array.from(document.querySelectorAll(".setupStep"));
+const progressBar = document.getElementById("progressBar");
+const progressText = document.getElementById("progressText");
+const progressPercent = document.getElementById("progressPercent");
 
-  if (!steps.length || !progressBar || !progressText || !progressPercent) return;
+if (!steps.length || !progressBar || !progressText || !progressPercent) return;
 
 function setToggleLabel(step) {
-  const toggleLinks = step.querySelectorAll(".stepToggleLink");
-  if (!toggleLinks.length) return;
+const toggleLinks = step.querySelectorAll(".stepToggleLink");
+if (!toggleLinks.length) return;
 
-  let label = "Setup";
-  if (step.classList.contains("open")) {
-    label = "Close";
-  } else if (step.dataset.completed === "true") {
-    label = "Manage";
-  }
+let label = "Setup";
+if (step.classList.contains("open")) {
+label = "Close";
+} else if (step.dataset.completed === "true") {
+label = "Manage";
+}
 
-  toggleLinks.forEach((link) => {
-    link.textContent = label;
-  });
+toggleLinks.forEach((link) => {
+link.textContent = label;
+});
 }
 
 function syncStepUi(step) {
-  const textWrap = step.querySelector(".stepTextWrap");
-  const doneBtn = step.querySelector(".doneBtn");
-  const copyBtn = step.querySelector(".copyBtn");
-  const helper = step.querySelector(".stepHelper");
+const textWrap = step.querySelector(".stepTextWrap");
+const doneBtn = step.querySelector(".doneBtn");
+const copyBtn = step.querySelector(".copyBtn");
+const helper = step.querySelector(".stepHelper");
 
 if (step.classList.contains("open")) {
 
-  if (step.dataset.completed === "true") {
+if (step.dataset.completed === "true") {
 
-    if (textWrap) textWrap.classList.add("is-hidden");
-    if (doneBtn) doneBtn.style.display = "none";
-    if (copyBtn) copyBtn.style.display = "none";
-    if (helper) helper.style.display = "none";
-
-  } else {
-
-    if (textWrap) textWrap.classList.remove("is-hidden");
-    if (doneBtn) doneBtn.style.display = "";
-    if (copyBtn) copyBtn.style.display = "";
-    if (helper) helper.style.display = "";
-
-  }
+if (textWrap) textWrap.classList.add("is-hidden");
+if (doneBtn) doneBtn.style.display = "none";
+if (copyBtn) copyBtn.style.display = "none";
+if (helper) helper.style.display = "none";
 
 } else {
 
-  if (textWrap) textWrap.classList.add("is-hidden");
-  if (doneBtn) doneBtn.style.display = "";
-  if (copyBtn) copyBtn.style.display = "";
-  if (helper) helper.style.display = "";
+if (textWrap) textWrap.classList.remove("is-hidden");
+if (doneBtn) doneBtn.style.display = "";
+if (copyBtn) copyBtn.style.display = "";
+if (helper) helper.style.display = "";
 
 }
-  setToggleLabel(step);
+
+} else {
+
+if (textWrap) textWrap.classList.add("is-hidden");
+if (doneBtn) doneBtn.style.display = "";
+if (copyBtn) copyBtn.style.display = "";
+if (helper) helper.style.display = "";
+
+}
+setToggleLabel(step);
 }
 
 function closeOtherOpenSteps(currentStep) {
-  steps.forEach((step) => {
-    if (step !== currentStep && step.classList.contains("open")) {
-      step.classList.remove("open");
+steps.forEach((step) => {
+if (step !== currentStep && step.classList.contains("open")) {
+step.classList.remove("open");
 
-      if (step.dataset.completed === "true") {
-        step.classList.add("done");
-        step.classList.remove("locked");
-      } else {
-        step.classList.add("locked");
-        step.classList.remove("done");
-      }
+if (step.dataset.completed === "true") {
+step.classList.add("done");
+step.classList.remove("locked");
+} else {
+step.classList.add("locked");
+step.classList.remove("done");
+}
 
-      syncStepUi(step);
-    }
-  });
+syncStepUi(step);
+}
+});
 }
 
 function updateProgress() {
-  const completed = document.querySelectorAll(".setupStep.done").length;
-  const percent = (completed / TOTAL_STEPS) * 100;
-  const nextStep = Math.min(completed + 1, TOTAL_STEPS);
+const completed = document.querySelectorAll(".setupStep.done").length;
+const percent = (completed / TOTAL_STEPS) * 100;
+const nextStep = Math.min(completed + 1, TOTAL_STEPS);
 
-  progressBar.style.width = `${percent}%`;
-  progressText.textContent =
-    completed === TOTAL_STEPS
-      ? "All steps complete"
-      : `Step ${nextStep} of ${TOTAL_STEPS}`;
-  progressPercent.textContent = `${Math.round(percent)}% complete`;
+progressBar.style.width = `${percent}%`;
+progressText.textContent =
+completed === TOTAL_STEPS
+? "All steps complete"
+: `Step ${nextStep} of ${TOTAL_STEPS}`;
+progressPercent.textContent = `${Math.round(percent)}% complete`;
 }
 
 function markStepDone(step) {
-  const textWrap = step.querySelector(".stepTextWrap");
+const textWrap = step.querySelector(".stepTextWrap");
 
-  step.dataset.completed = "true";
+step.dataset.completed = "true";
 
-  if (textWrap) {
-    textWrap.classList.add("is-hidden");
-  }
+if (textWrap) {
+textWrap.classList.add("is-hidden");
+}
 
-  step.classList.remove("locked", "open");
-  step.classList.add("done");
+step.classList.remove("locked", "open");
+step.classList.add("done");
 
-  syncStepUi(step);
-  updateProgress();
+syncStepUi(step);
+updateProgress();
 }
 
 function openStep(step) {
-  closeOtherOpenSteps(step);
+closeOtherOpenSteps(step);
 
-  step.classList.remove("locked", "open");
-  step.classList.add("open");
+step.classList.remove("locked", "open");
+step.classList.add("open");
 
-  if (step.dataset.completed === "true") {
-    step.classList.add("done");
-  } else {
-    step.classList.remove("done");
-  }
+if (step.dataset.completed === "true") {
+step.classList.add("done");
+} else {
+step.classList.remove("done");
+}
 
-  syncStepUi(step);
+syncStepUi(step);
 }
 
 function closeStep(step) {
-  step.classList.remove("open");
+step.classList.remove("open");
 
-  if (step.dataset.completed === "true") {
-    step.classList.add("done");
-    step.classList.remove("locked");
-  } else {
-    step.classList.add("locked");
-    step.classList.remove("done");
-  }
-
-  syncStepUi(step);
+if (step.dataset.completed === "true") {
+step.classList.add("done");
+step.classList.remove("locked");
+} else {
+step.classList.add("locked");
+step.classList.remove("done");
 }
 
-  steps.forEach((step) => {
-    const doneBtn = step.querySelector(".doneBtn");
-    const toggleLink = step.querySelector(".stepToggleLink");
-    const copyBtn = step.querySelector(".copyBtn");
-    const textArea = step.querySelector("textarea");
+syncStepUi(step);
+}
 
-    if (step.classList.contains("done")) {
-      step.dataset.completed = "true";
-    }
+steps.forEach((step) => {
+const doneBtn = step.querySelector(".doneBtn");
+const toggleLink = step.querySelector(".stepToggleLink");
+const copyBtn = step.querySelector(".copyBtn");
+const textArea = step.querySelector("textarea");
 
-    syncStepUi(step);
+if (step.classList.contains("done")) {
+step.dataset.completed = "true";
+}
 
-    if (doneBtn) {
-      doneBtn.addEventListener("click", () => {
-        step.dataset.completed = "true";
-        markStepDone(step);
-      });
-    }
+syncStepUi(step);
+
+if (doneBtn) {
+doneBtn.addEventListener("click", () => {
+step.dataset.completed = "true";
+markStepDone(step);
+});
+}
 
 step.querySelectorAll(".stepToggleLink").forEach((toggleLink) => {
-  toggleLink.addEventListener("click", (e) => {
-    e.preventDefault();
+toggleLink.addEventListener("click", (e) => {
+e.preventDefault();
 
-    if (step.classList.contains("open")) {
-      closeStep(step);
-    } else {
-      openStep(step);
-    }
-  });
+if (step.classList.contains("open")) {
+closeStep(step);
+} else {
+openStep(step);
+}
+});
 });
 
 
-    if (copyBtn && textArea) {
-      copyBtn.addEventListener("click", async () => {
-        const ok = await copyText(textArea.value.trim());
-        flashButtonText(copyBtn, ok ? "Copied" : "Copy failed");
-      });
-    }
-  });
+if (copyBtn && textArea) {
+copyBtn.addEventListener("click", async () => {
+const ok = await copyText(textArea.value.trim());
+flashButtonText(copyBtn, ok ? "Copied" : "Copy failed");
+});
+}
+});
 
-  updateProgress();
+updateProgress();
 }
 
 
