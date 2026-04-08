@@ -106,6 +106,16 @@ const dnsPendingWrap = document.getElementById("dnsPendingWrap");
 const dnsVerifiedWrap = document.getElementById("dnsVerifiedWrap");
 const checkDnsBtn = document.getElementById("checkDnsBtn");
 
+const dnsPendingCard = document.getElementById("dnsPendingCard");
+const dnsVerifiedCard = document.getElementById("dnsVerifiedCard");
+const dnsSetupCard = document.getElementById("dnsSetupCard");
+
+const manualDnsLoginBtn = document.getElementById("manualDnsLoginBtn");
+const showAutoDns = document.getElementById("showAutoDns");
+const showManualDns = document.getElementById("showManualDns");
+const autoDnsSection = document.getElementById("autoDnsSection");
+const authorizeDnsBtn = document.getElementById("authorizeDnsBtn");
+
 if (!dnsPendingWrap || !dnsVerifiedWrap || !checkDnsBtn) return;
 
 let domainType =
@@ -114,8 +124,8 @@ body.dataset.domainType ||
 "commonshub_subdomain";
 
 let dnsStatus =
-storage.get("commonshub_dns_status") ||
 body.dataset.dnsStatus ||
+storage.get("commonshub_dns_status") ||
 "not_applicable";
 
 function needsDns(domainTypeValue) {
@@ -126,27 +136,77 @@ domainTypeValue === "custom_domain"
 }
 
 function renderDnsState() {
-const dnsPendingCard = document.getElementById("dnsPendingCard");
-const dnsVerifiedCard = document.getElementById("dnsVerifiedCard");
-const dnsSetupCard = document.getElementById("dnsSetupCard");
+  dnsPendingWrap.style.display = "none";
+  dnsVerifiedWrap.style.display = "none";
 
-dnsPendingWrap.style.display = "none";
-dnsVerifiedWrap.style.display = "none";
+  if (dnsPendingCard) dnsPendingCard.style.display = "none";
+  if (dnsVerifiedCard) dnsVerifiedCard.style.display = "none";
+  if (dnsSetupCard) dnsSetupCard.style.display = "none";
+  if (autoDnsSection) autoDnsSection.style.display = "none";
 
-if (dnsPendingCard) dnsPendingCard.style.display = "none";
-if (dnsVerifiedCard) dnsVerifiedCard.style.display = "none";
-if (dnsSetupCard) dnsSetupCard.style.display = "none";
+  if (!needsDns(domainType)) return;
 
-if (!needsDns(domainType)) return;
-
-if (dnsStatus === "verified") {
-dnsVerifiedWrap.style.display = "inline-flex";
-if (dnsVerifiedCard) dnsVerifiedCard.style.display = "block";
-} else {
-dnsPendingWrap.style.display = "inline-flex";
-if (dnsPendingCard) dnsPendingCard.style.display = "block";
-if (dnsSetupCard) dnsSetupCard.style.display = "block";
+  if (dnsStatus === "verified") {
+    dnsVerifiedWrap.style.display = "inline-flex";
+    if (dnsVerifiedCard) dnsVerifiedCard.style.display = "block";
+  } else {
+    dnsPendingWrap.style.display = "inline-flex";
+    if (dnsPendingCard) dnsPendingCard.style.display = "block";
+    if (dnsSetupCard) dnsSetupCard.style.display = "block";
+  }
 }
+
+const registrarLoginUrl = "https://sso.godaddy.com/?app=oos&realm=idp&path=%2Fproducts";
+const dnsAuthorizationUrl = "https://example.com/dns/authorize/godaddy"; // replace later
+
+function showManualSection() {
+  if (dnsSetupCard) dnsSetupCard.style.display = "block";
+  if (autoDnsSection) autoDnsSection.style.display = "none";
+}
+
+function showAutoSection() {
+  if (dnsSetupCard) dnsSetupCard.style.display = "none";
+  if (autoDnsSection) autoDnsSection.style.display = "block";
+}
+
+function openRegistrarLogin() {
+  if (registrarLoginUrl && registrarLoginUrl !== "#") {
+    window.open(registrarLoginUrl, "_blank", "noopener,noreferrer");
+  } else {
+    alert("Please log in to your registrar manually and add the DNS record shown above.");
+  }
+}
+
+if (showAutoDns) {
+  showAutoDns.addEventListener("click", () => {
+    showAutoSection();
+  });
+}
+
+if (showManualDns) {
+  showManualDns.addEventListener("click", () => {
+    showManualSection();
+    openRegistrarLogin();
+  });
+}
+
+if (manualDnsLoginBtn) {
+  manualDnsLoginBtn.addEventListener("click", () => {
+    showManualSection();
+    openRegistrarLogin();
+  });
+}
+
+if (authorizeDnsBtn) {
+  authorizeDnsBtn.addEventListener("click", (event) => {
+    event.preventDefault();
+
+    if (dnsAuthorizationUrl && dnsAuthorizationUrl !== "#") {
+      window.open(dnsAuthorizationUrl, "_blank", "noopener,noreferrer");
+    } else {
+      alert("Authorization link is not set yet.");
+    }
+  });
 }
 
 checkDnsBtn.addEventListener("click", () => {
