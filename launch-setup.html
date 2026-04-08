@@ -13,43 +13,67 @@
 
     <main class="stage">
 
-    <div class="topbar appTopbar">
-  <div class="left">
-    <img class="brandMark" src="assets/commonshub-mark-light.svg" alt="Commonshub">
-    <div class="meta">
-      <b>Commonshub — Mastodon Community Settings</b>
-    </div>
-  </div>
+      <div class="topbar appTopbar">
+        <div class="left">
+          <img class="brandMark" src="assets/commonshub-mark-light.svg" alt="Commonshub">
+          <div class="meta">
+            <b>Commonshub — Mastodon Community Settings</b>
+          </div>
+        </div>
 
-  <div class="topbarActions">
-    <a class="secondary" href="https://securitybrief.jasonjaysmart.com/hub" target="_blank" rel="noopener" style="width:auto;">
-      View hub page
-    </a>
-    <a class="secondary" href="dashboard.html" style="width:auto;">
-      Back to dashboard
-    </a>
-  </div>
-</div>
+        <div class="topbarActions">
+          <a class="secondary" href="https://securitybrief.jasonjaysmart.com/hub" target="_blank" rel="noopener" style="width:auto;">
+            View hub page
+          </a>
+          <a class="secondary" href="dashboard.html" style="width:auto;">
+            Back to dashboard
+          </a>
+        </div>
+      </div>
 
       <div class="content">
         <div class="center">
 
-        <div class="header dashboardHero">
-  <div>
-    <h2>Review and finalize your community</h2>
-    <p id="headerSubcopy">
-      Commonshub has prefilled much of your setup. Review the key areas, add final assets, and make any last-minute edits before inviting your first cohort.
-    </p>
-  </div>
-</div>
+          <div class="header dashboardHero">
+            <div>
+              <h2>Review and finalize your community</h2>
+              <p id="headerSubcopy">
+                Complete the remaining launch tasks, then return anytime to adjust settings and assets.
+              </p>
+            </div>
+          </div>        
+
+          <div id="launchAttentionCard" class="card overviewCard">
+            <div class="overviewHeader">
+              <div>
+                <h3>Needs attention before launch</h3>
+                <div class="muted">
+                  Your server is live, but a few launch details still need review before you begin inviting members.
+                </div>
+              </div>
+            </div>
+
+            <div class="note" style="margin-top:14px;">
+              <b>Next:</b> Review key settings, confirm branding and profile details, then check the hub page before sharing invites.
+            </div>
+
+            <div class="footerBar" style="margin-top:12px;">
+              <a class="primary" href="https://securitybrief.jasonjaysmart.com/hub" target="_blank" rel="noopener">
+                Review hub page
+              </a>
+              <a class="secondary" href="dashboard.html" style="width:auto;">
+                Back to dashboard
+              </a>
+            </div>
+          </div>
+
           <section class="card setupCard">
 
             <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap;">
               <div>
-                <h3>Launch setup</h3>
-                <div class="muted">Open the step, make the changes in Mastodon, save changes on every affected page, then click Done.</div>
+                <h3>Setup categories</h3>
+                <div class="muted">Review each area, make any needed changes, and return later anytime to fine-tune your community.</div>
               </div>
-
               <div class="progressMeta">
                 <b id="progressText">Step 1 of 7</b>
                 <div class="muted" id="progressPercent">0% complete</div>
@@ -817,52 +841,52 @@
       </a>
     </div>
 
-<div class="setupActions">
-  <a class="secondary" href="https://securitybrief.jasonjaysmart.com/admin/invites" target="_blank" style="width:auto;">
-    Open invite settings
-  </a>
-</div>
-
-<div class="stepPasteGroup large">
-  <div class="fieldHeader">
-    <label>Invite link settings</label>
-  </div>
-
-  <div class="card" style="padding:12px 14px;">
-
-    <div><b>Recommended settings for early cohorts</b></div>
-
-    <div class="muted" style="margin-top:6px;">
-      Set a limited number of uses and a short expiration window so invite links do not spread unintentionally.
+    <div class="setupActions">
+      <a class="secondary" href="https://securitybrief.jasonjaysmart.com/admin/invites" target="_blank" style="width:auto;">
+        Open invite settings
+      </a>
     </div>
 
-    <div style="margin-top:12px;"><b>Max number of uses</b></div>
-    <div class="muted" style="margin-top:4px;">
-      You can set invites from <b>1–100 uses</b>.
-      <br><br>
-      Suggested defaults:
-      <br>• 1–5 uses → direct invitations
-      <br>• 10–25 uses → small cohorts
-      <br>• 50–100 uses → public sharing
-    </div>
+    <div class="stepPasteGroup large">
+      <div class="fieldHeader">
+        <label>Invite link settings</label>
+      </div>
 
-    <div style="margin-top:12px;"><b>Expire after</b></div>
-    <div class="muted" style="margin-top:4px;">
-      Invite links can expire between <b>30 minutes and 1 week</b>.
-      <br><br>
-      Suggested defaults:
-      <br>• 1–6 hours → private messages
-      <br>• 24 hours → email invites
-      <br>• 3–7 days → newsletter or article links
-    </div>
+      <div class="card" style="padding:12px 14px;">
 
-    <div style="margin-top:12px;"><b>Optional</b></div>
-    <div class="muted" style="margin-top:4px;">
-      Enable <b>"Invite to follow your account"</b> so new members automatically follow you when they join.
-    </div>
+        <div><b>Recommended settings for early cohorts</b></div>
 
-  </div>
-</div>
+        <div class="muted" style="margin-top:6px;">
+          Set a limited number of uses and a short expiration window so invite links do not spread unintentionally.
+        </div>
+
+        <div style="margin-top:12px;"><b>Max number of uses</b></div>
+        <div class="muted" style="margin-top:4px;">
+          You can set invites from <b>1–100 uses</b>.
+          <br><br>
+          Suggested defaults:
+          <br>• 1–5 uses → direct invitations
+          <br>• 10–25 uses → small cohorts
+          <br>• 50–100 uses → public sharing
+        </div>
+
+        <div style="margin-top:12px;"><b>Expire after</b></div>
+        <div class="muted" style="margin-top:4px;">
+          Invite links can expire between <b>30 minutes and 1 week</b>.
+          <br><br>
+          Suggested defaults:
+          <br>• 1–6 hours → private messages
+          <br>• 24 hours → email invites
+          <br>• 3–7 days → newsletter or article links
+        </div>
+
+        <div style="margin-top:12px;"><b>Optional</b></div>
+        <div class="muted" style="margin-top:4px;">
+          Enable <b>"Invite to follow your account"</b> so new members automatically follow you when they join.
+        </div>
+
+      </div>
+    </div>
 
 
 
@@ -891,7 +915,7 @@
 <div class="setupStepDoneBar">
  <div class="setupStepDoneRow">
   <span class="doneSummary">Invite links generated and ready to share.</span>
- </div>
+</div>
 </div>
 </div>
 </div>
