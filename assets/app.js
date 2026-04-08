@@ -283,25 +283,32 @@ function setupContinueSetup() {
 
   btn.addEventListener("click", () => {
     const steps = Array.from(document.querySelectorAll(".setupStep"));
-    const firstStep = steps[0];
-    if (!firstStep) return;
+    if (!steps.length) return;
 
-    steps.forEach((step, index) => {
+    let targetStep = null;
+
+    steps.forEach((step) => {
       step.classList.remove("open");
 
       if (step.dataset.completed === "true") {
         step.classList.add("done");
         step.classList.remove("locked");
-      } else if (index === 0) {
-        step.classList.remove("locked");
       } else {
-        step.classList.add("locked");
         step.classList.remove("done");
+
+        if (!targetStep) {
+          targetStep = step;
+          step.classList.remove("locked");
+        } else {
+          step.classList.add("locked");
+        }
       }
     });
 
-    firstStep.classList.add("open");
-    firstStep.scrollIntoView({ behavior: "smooth", block: "start" });
+    if (!targetStep) return;
+
+    openSetupStep(targetStep);
+    targetStep.scrollIntoView({ behavior: "smooth", block: "start" });
   });
 }
 
@@ -748,32 +755,36 @@ setToggleLabel(step);
 }
 
 function closeOtherOpenSteps(currentStep) {
+  steps.forEach((step) => {
+    if (step !== currentStep && step.classList.contains("open")) {
+      step.classList.remove("open");
+
+      if (step.dataset.completed === "true") {
+        step.classList.add("done");
+        step.classList.remove("locked");
+      } else {
+        step.classList.add("locked");
+        step.classList.remove("done");
+      }
+
+      syncStepUi(step);
+    }
+  });
+}
+
 function openNextStep(currentStep) {
   const currentIndex = steps.indexOf(currentStep);
-  const nextStep = steps[currentIndex + 1];
 
-  if (!nextStep) return;
+  for (let i = currentIndex + 1; i < steps.length; i++) {
+    const nextStep = steps[i];
 
-  nextStep.classList.remove("locked");
-  openStep(nextStep);
-
-  nextStep.scrollIntoView({ behavior: "smooth", block: "start" });
-}
-steps.forEach((step) => {
-if (step !== currentStep && step.classList.contains("open")) {
-step.classList.remove("open");
-
-if (step.dataset.completed === "true") {
-step.classList.add("done");
-step.classList.remove("locked");
-} else {
-step.classList.add("locked");
-step.classList.remove("done");
-}
-
-syncStepUi(step);
-}
-});
+    if (nextStep.dataset.completed !== "true") {
+      nextStep.classList.remove("locked");
+      openSetupStep(nextStep);
+      nextStep.scrollIntoView({ behavior: "smooth", block: "start" });
+      return;
+    }
+  }
 }
 
 function updateProgress() {
@@ -810,19 +821,19 @@ syncStepUi(step);
 updateProgress();
 }
 
-function openStep(step) {
-closeOtherOpenSteps(step);
+function openSetupStep(step) {
+  closeOtherOpenSteps(step);
 
-step.classList.remove("locked", "open");
-step.classList.add("open");
+  step.classList.remove("locked", "open");
+  step.classList.add("open");
 
-if (step.dataset.completed === "true") {
-step.classList.add("done");
-} else {
-step.classList.remove("done");
-}
+  if (step.dataset.completed === "true") {
+    step.classList.add("done");
+  } else {
+    step.classList.remove("done");
+  }
 
-syncStepUi(step);
+  syncStepUi(step);
 }
 
 function closeStep(step) {
@@ -866,7 +877,7 @@ e.preventDefault();
 if (step.classList.contains("open")) {
 closeStep(step);
 } else {
-openStep(step);
+openSetupStep(step);
 }
 });
 });
