@@ -176,7 +176,7 @@ function renderDnsState() {
   if (quickActionsCard) quickActionsCard.style.display = "none";
 
   if (!needsDns(domainType)) {
-    setTabsEnabled(false);
+    setTabsEnabled(true);
     setQuickActions(true);
     if (reviewLaunchWrap) reviewLaunchWrap.style.display = "flex";
     if (quickActionsCard) quickActionsCard.style.display = "block";
@@ -194,6 +194,7 @@ function renderDnsState() {
     setQuickActions(true);
 
   } else {
+    setTabsEnabled(false);
     setQuickActions(false);
 
     dnsPendingWrap.style.display = "inline-flex";
