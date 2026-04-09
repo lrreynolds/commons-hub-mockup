@@ -178,7 +178,7 @@ function renderDnsState() {
   if (!needsDns(domainType)) {
     setTabsEnabled(true);
     setQuickActions(true);
-    if (reviewLaunchWrap) reviewLaunchWrap.style.display = "flex";
+    if (reviewLaunchWrap) reviewLaunchWrap.style.display = "block";
     if (quickActionsCard) quickActionsCard.style.display = "block";
     return;
   }
@@ -188,7 +188,7 @@ function renderDnsState() {
     dnsVerifiedWrap.style.display = "inline-flex";
     if (dnsVerifiedCard) dnsVerifiedCard.style.display = "block";
 
-    if (reviewLaunchWrap) reviewLaunchWrap.style.display = "flex";
+    if (reviewLaunchWrap) reviewLaunchWrap.style.display = "block";
     if (quickActionsCard) quickActionsCard.style.display = "block";
 
     setQuickActions(true);
