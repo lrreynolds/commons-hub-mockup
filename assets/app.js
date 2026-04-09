@@ -123,6 +123,10 @@ const visitCommunityBtn = document.getElementById("visitCommunityBtn");
 const viewHubBtn = document.getElementById("viewHubBtn");
 const generateInviteBtn = document.getElementById("generateInviteBtn");
 
+const communityTab = document.getElementById("communityTab");
+const financialTab = document.getElementById("financialTab");
+const accountTab = document.getElementById("accountTab");
+
 if (!dnsPendingWrap || !dnsVerifiedWrap || !checkDnsBtn) return;
 
 let domainType =
@@ -134,6 +138,13 @@ let dnsStatus =
 body.dataset.dnsStatus ||
 storage.get("commonshub_dns_status") ||
 "not_applicable";
+
+function setTabsEnabled(enabled) {
+  [communityTab, financialTab, accountTab].forEach(tab => {
+    if (!tab) return;
+    tab.classList.toggle("disabled", !enabled);
+  });
+}
 
 function needsDns(domainTypeValue) {
 return (
@@ -165,6 +176,7 @@ function renderDnsState() {
   if (quickActionsCard) quickActionsCard.style.display = "none";
 
   if (!needsDns(domainType)) {
+    setTabsEnabled(false);
     setQuickActions(true);
     if (reviewLaunchWrap) reviewLaunchWrap.style.display = "flex";
     if (quickActionsCard) quickActionsCard.style.display = "block";
@@ -172,6 +184,7 @@ function renderDnsState() {
   }
 
   if (dnsStatus === "verified") {
+    setTabsEnabled(true);
     dnsVerifiedWrap.style.display = "inline-flex";
     if (dnsVerifiedCard) dnsVerifiedCard.style.display = "block";
 
