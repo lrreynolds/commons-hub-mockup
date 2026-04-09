@@ -926,10 +926,50 @@
 
         You can join the ongoing signal here:
       https://securitybrief.jasonjaysmart.com</textarea>
-    </div>
-    
+    </div> 
+  </div>
+<div class="stepPasteGroup large">
+  <div class="fieldHeader">
+    <label>Hub page invite option</label>
   </div>
 
+  <div class="card" style="padding:12px 14px;">
+    <div><b>Show invite action on the hub page</b></div>
+    <div class="muted" style="margin-top:6px;">
+      Decide whether visitors should be able to request or generate invites directly from your hub page.
+    </div>
+
+    <div class="list" style="margin-top:12px; gap:10px;">
+      <label class="item" style="display:flex; gap:10px; align-items:flex-start; cursor:pointer;">
+        <input type="radio" name="hubInviteMode" checked />
+        <div>
+          <b>Off</b>
+          <div class="muted">Do not show any invite action on the hub page. Owner generates invites manually in Mastodon.</div>
+        </div>
+      </label>
+
+      <label class="item" style="display:flex; gap:10px; align-items:flex-start; cursor:pointer;">
+        <input type="radio" name="hubInviteMode" />
+        <div>
+          <b>Manual request flow</b>
+          <div class="muted">Show interest / request access on the hub page, but do not generate invites automatically.</div>
+        </div>
+      </label>
+
+      <label class="item" style="display:flex; gap:10px; align-items:flex-start; cursor:pointer;">
+        <input type="radio" name="hubInviteMode" />
+        <div>
+          <b>Automatic invite generation</b>
+          <div class="muted">Allow Commonshub to generate invites from the hub page. Best only when you want low-friction growth.</div>
+        </div>
+      </label>
+    </div>
+
+    <div class="note" style="margin-top:12px;">
+      <b>Later option:</b> Hub page invite access can also be placed behind a contribution requirement if you want supporters to unlock access first.
+    </div>
+  </div>
+</div>
   <div class="setupActions">
     <button class="primary doneBtn" type="button">Done</button>
   </div>
