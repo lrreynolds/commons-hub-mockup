@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Commonshub — Community Support Settings</title>
+  <link rel="stylesheet" href="assets/styles.css" />
+</head>
+
+<body class="dashboard">
+
+  <div class="wrap">
+
+    <main class="stage">
+
+<div class="topbar appTopbar">
+  <div class="left">
+    <img class="brandMark" src="assets/commonshub-mark-light.svg" alt="Commonshub">
+    <div class="meta">
+      <b>Commonshub — Financial</b>
+    </div>
+  </div>
+
+  <div class="topbarActions">
+    <a class="secondary" href="https://securitybrief.jasonjaysmart.com/hub" target="_blank" rel="noopener" style="width:auto;">
+      View hub page
+    </a>
+    <a class="secondary" href="dashboard.html" style="width:auto;">
+      Back to dashboard
+    </a>
+  </div>
+</div>
+
+<div class="content">
+  <div class="center">
+
+    <div class="header dashboardHero">
+      <div>
+        <h2>Community Support Settings</h2>
+        <p id="headerSubcopy">
+          Connect Stripe, manage support options, and configure how members can contribute.
+        </p>
+      </div>
+    </div>
+
+    <div id="financialAttentionCard" class="card overviewCard">
+      <div class="overviewHeader">
+        <div>
+          <h3>Connect Stripe to enable community support</h3>
+          <div class="muted">
+            Payments go directly to your Stripe account. Once connected, you can configure monthly, yearly, and one-time support options.
+          </div>
+        </div>
+      </div>
+
+      <div class="note" style="margin-top:14px;">
+        <b>Next:</b> Connect Stripe first, then configure how your community can support your work.
+      </div>
+
+      <div class="footerBar" style="margin-top:12px;">
+        <a id="connectStripeBtn" class="primary" href="funding-start.html">
+          Connect Stripe
+        </a>
+      </div>
+    </div>
+
+    <section class="card" style="margin-top:14px;">
+      <div class="overviewHeader">
+        <div>
+          <h3>Stripe connection</h3>
+          <div class="muted">This connects Commonshub to your Stripe account for memberships, one-time support, and future campaigns.</div>
+        </div>
+      </div>
+
+      <div class="item" style="margin-top:12px;">
+        <b>Status</b>
+        <div id="stripeConnectionStatus" class="muted">Not connected</div>
+      </div>
+
+      <div class="footerBar" style="margin-top:12px;">
+        <a id="stripeManageBtn" class="secondary" href="funding-start.html" style="width:auto;">
+          Connect Stripe
+        </a>
+      </div>
+    </section>
+
+    <section id="communitySupportCard" class="card" style="margin-top:14px; opacity:.65;">
+      <div class="overviewHeader">
+        <div>
+          <h3>Community support</h3>
+          <div class="muted">Choose which contribution types you want to offer to your community.</div>
+        </div>
+      </div>
+
+      <div class="list" style="margin-top:12px;">
+        <div class="item">
+          <b>Monthly contributions</b>
+          <div class="muted">Allow recurring monthly support.</div>
+        </div>
+
+        <div class="item">
+          <b>Yearly contributions</b>
+          <div class="muted">Allow recurring annual support.</div>
+        </div>
+
+        <div class="item">
+          <b>One-time contributions</b>
+          <div class="muted">Allow one-time support or tips.</div>
+        </div>
+
+        <div class="item">
+          <b>Require contribution to join</b>
+          <div class="muted">Optional. Gate community access behind a contribution.</div>
+        </div>
+      </div>
+
+      <div class="note" style="margin-top:12px;">
+        Connect Stripe to unlock these settings.
+      </div>
+    </section>
+
+    <section class="card" style="margin-top:14px; opacity:.65;">
+      <div class="overviewHeader">
+        <div>
+          <h3>Campaigns</h3>
+          <div class="muted">Create focused fundraising campaigns for projects, goals, or special initiatives.</div>
+        </div>
+      </div>
+
+      <div class="note" style="margin-top:12px;">
+        <b>Coming later:</b> Launch, manage, and review active or completed campaigns.
+      </div>
+    </section>
+
+  </div>
+</div>
+</div>
+</div>
+</main>
+</div>
+<script src="assets/app.js"></script>
+</body>
+</html>
