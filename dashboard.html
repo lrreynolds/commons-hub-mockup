@@ -17,12 +17,12 @@
          </div>
        </div>
 
-     <div class="appTabs">
-  <a class="appTab active" href="dashboard.html">Status</a>
-  <a class="appTab" href="launch-setup.html">Community</a>
-  <a class="appTab" href="financial.html">Financial</a>
-  <a class="appTab" href="account.html">Account</a>
-</div>
+       <div class="appTabs">
+        <a class="appTab active" href="dashboard.html">Status</a>
+        <a class="appTab" href="launch-setup.html">Community</a>
+        <a class="appTab" href="financial.html">Financial</a>
+        <a class="appTab" href="account.html">Account</a>
+      </div>
     </div>
 
     <div class="content">
@@ -133,139 +133,139 @@
             </div>
           </div>
 
-          <div class="footerBar" style="margin-top:12px;">
-           <a class="primary" href="launch-setup.html">Review launch details</a>
-         </div>
-         <div id="quickActionsCard" class="card" style="margin-top:14px;">
-          <h3>Quick actions</h3>
-
-          <div class="footerBar" style="margin-top:12px; gap:12px;">
-            <a id="visitCommunityBtn" class="secondary" href="https://securitybrief.jasonjaysmart.com" style="flex:1;">Visit community</a>
-            <a id="viewHubBtn" class="secondary" href="https://securitybrief.jasonjaysmart.com/hub" style="flex:1;">View hub page</a>
-            <a id="generateInviteBtn" class="secondary" href="#" style="flex:1;">Generate invite</a>
+          <div id="reviewLaunchWrap" class="footerBar" style="margin-top:12px; display:none;">
+            <a class="primary" href="launch-setup.html">Review launch details</a>
           </div>
-        </div>
-      </div>
+          <div id="quickActionsCard" class="card" style="margin-top:14px; display:none;">
+            <h3>Quick actions</h3>
 
-      <div class="card" style="margin-top:14px;">
-        <h3>Infrastructure</h3>
-
-        <div class="serviceTabs" style="margin-top:14px;">
-          <button class="serviceTab active" type="button" data-service-tab="mastodon">
-            Mastodon
-          </button>
-          <button class="serviceTab" type="button" data-service-tab="stripe">
-            Stripe
-          </button>
-        </div>
-
-        <div class="servicePanel active" id="servicePanelMastodon" data-service-panel="mastodon">
-          <div class="item" style="margin-top:12px;">
-            <b>Mastodon server</b>
-            <div class="muted">Version 4.5.7</div>
-          </div>
-
-          <div class="metricsRow metersRow" style="margin-top:14px;">
-            <div class="metricCard meterCard">
-              <div class="metricLabel">Database</div>
-              <div class="fillMeter" aria-hidden="true">
-                <div class="fillTicks">
-                  <span></span><span></span><span></span>
-                </div>
-                <div class="fillWater" style="height:42%;"></div>
-                <div class="fillValue">42%</div>
-              </div>
-              <div class="metricSub">0.84 GB / 2 GB</div>
+            <div class="footerBar" style="margin-top:12px; gap:12px;">
+              <a id="visitCommunityBtn" class="secondary" href="https://securitybrief.jasonjaysmart.com" style="flex:1;">Visit community</a>
+              <a id="viewHubBtn" class="secondary" href="https://securitybrief.jasonjaysmart.com/hub" style="flex:1;">View hub page</a>
+              <a id="generateInviteBtn" class="secondary" href="#" style="flex:1;">Generate invite</a>
             </div>
-
-            <div class="metricCard meterCard">
-              <div class="metricLabel">Media</div>
-              <div class="fillMeter" aria-hidden="true">
-                <div class="fillTicks">
-                  <span></span><span></span><span></span>
-                </div>
-                <div class="fillWater" style="height:18%;"></div>
-                <div class="fillValue">18%</div>
-              </div>
-              <div class="metricSub">3.6 GB / 20 GB</div>
-            </div>
-
-            <div class="metricCard meterCard">
-              <div class="metricLabel">Uptime</div>
-              <div class="fillMeter" aria-hidden="true">
-                <div class="fillTicks">
-                  <span></span><span></span><span></span>
-                </div>
-                <div class="fillWater uptimeWater" style="height:99.98%;"></div>
-                <div class="fillValue">99.98%</div>
-              </div>
-              <div class="metricSub">Past 30 days</div>
-            </div>
-          </div>
-
-          <div class="footerBar" style="margin-top:14px; gap:12px;">
-            <a class="secondary" href="hosting-details.html" style="flex:1; justify-content:center;">
-              Manage capacity
-            </a>
           </div>
         </div>
 
-        <div class="servicePanel" id="servicePanelStripe" data-service-panel="stripe" style="display:none;">
-          <div class="item" style="margin-top:12px;">
-            <b>Stripe status</b>
-            <div class="muted">Not connected · Community funding unavailable</div>
+        <div class="card" style="margin-top:14px;">
+          <h3>Infrastructure</h3>
+
+          <div class="serviceTabs" style="margin-top:14px;">
+            <button class="serviceTab active" type="button" data-service-tab="mastodon">
+              Mastodon
+            </button>
+            <button class="serviceTab" type="button" data-service-tab="stripe">
+              Stripe
+            </button>
           </div>
 
-          <div class="metricsRow metersRow" style="margin-top:14px;">
-            <div class="metricCard meterCard">
-              <div class="metricLabel">Monthly support</div>
-              <div class="fillMeter" aria-hidden="true">
-                <div class="fillTicks">
-                  <span></span><span></span><span></span>
-                </div>
-                <div class="fillWater" style="height:0%;"></div>
-                <div class="fillValue">$0</div>
-              </div>
-              <div class="metricSub">This month</div>
+          <div class="servicePanel active" id="servicePanelMastodon" data-service-panel="mastodon">
+            <div class="item" style="margin-top:12px;">
+              <b>Mastodon server</b>
+              <div class="muted">Version 4.5.7</div>
             </div>
 
-            <div class="metricCard meterCard">
-              <div class="metricLabel">Goal progress</div>
-              <div class="fillMeter" aria-hidden="true">
-                <div class="fillTicks">
-                  <span></span><span></span><span></span>
+            <div class="metricsRow metersRow" style="margin-top:14px;">
+              <div class="metricCard meterCard">
+                <div class="metricLabel">Database</div>
+                <div class="fillMeter" aria-hidden="true">
+                  <div class="fillTicks">
+                    <span></span><span></span><span></span>
+                  </div>
+                  <div class="fillWater" style="height:42%;"></div>
+                  <div class="fillValue">42%</div>
                 </div>
-                <div class="fillWater" style="height:0%;"></div>
-                <div class="fillValue">0%</div>
+                <div class="metricSub">0.84 GB / 2 GB</div>
               </div>
-              <div class="metricSub">Current goal</div>
+
+              <div class="metricCard meterCard">
+                <div class="metricLabel">Media</div>
+                <div class="fillMeter" aria-hidden="true">
+                  <div class="fillTicks">
+                    <span></span><span></span><span></span>
+                  </div>
+                  <div class="fillWater" style="height:18%;"></div>
+                  <div class="fillValue">18%</div>
+                </div>
+                <div class="metricSub">3.6 GB / 20 GB</div>
+              </div>
+
+              <div class="metricCard meterCard">
+                <div class="metricLabel">Uptime</div>
+                <div class="fillMeter" aria-hidden="true">
+                  <div class="fillTicks">
+                    <span></span><span></span><span></span>
+                  </div>
+                  <div class="fillWater uptimeWater" style="height:99.98%;"></div>
+                  <div class="fillValue">99.98%</div>
+                </div>
+                <div class="metricSub">Past 30 days</div>
+              </div>
             </div>
 
-            <div class="metricCard meterCard">
-              <div class="metricLabel">Campaign</div>
-              <div class="fillMeter" aria-hidden="true">
-                <div class="fillTicks">
-                  <span></span><span></span><span></span>
-                </div>
-                <div class="fillWater" style="height:35%;"></div>
-                <div class="fillValue">14d</div>
-              </div>
-              <div class="metricSub">Ends in</div>
+            <div class="footerBar" style="margin-top:14px; gap:12px;">
+              <a class="secondary" href="hosting-details.html" style="flex:1; justify-content:center;">
+                Manage capacity
+              </a>
             </div>
           </div>
 
-          <div class="footerBar" style="margin-top:14px; gap:12px;">
-            <a class="secondary" href="funding-start.html" style="flex:1; justify-content:center;">
-              Financial details
-            </a>
+          <div class="servicePanel" id="servicePanelStripe" data-service-panel="stripe" style="display:none;">
+            <div class="item" style="margin-top:12px;">
+              <b>Stripe status</b>
+              <div class="muted">Not connected · Community funding unavailable</div>
+            </div>
+
+            <div class="metricsRow metersRow" style="margin-top:14px;">
+              <div class="metricCard meterCard">
+                <div class="metricLabel">Monthly support</div>
+                <div class="fillMeter" aria-hidden="true">
+                  <div class="fillTicks">
+                    <span></span><span></span><span></span>
+                  </div>
+                  <div class="fillWater" style="height:0%;"></div>
+                  <div class="fillValue">$0</div>
+                </div>
+                <div class="metricSub">This month</div>
+              </div>
+
+              <div class="metricCard meterCard">
+                <div class="metricLabel">Goal progress</div>
+                <div class="fillMeter" aria-hidden="true">
+                  <div class="fillTicks">
+                    <span></span><span></span><span></span>
+                  </div>
+                  <div class="fillWater" style="height:0%;"></div>
+                  <div class="fillValue">0%</div>
+                </div>
+                <div class="metricSub">Current goal</div>
+              </div>
+
+              <div class="metricCard meterCard">
+                <div class="metricLabel">Campaign</div>
+                <div class="fillMeter" aria-hidden="true">
+                  <div class="fillTicks">
+                    <span></span><span></span><span></span>
+                  </div>
+                  <div class="fillWater" style="height:35%;"></div>
+                  <div class="fillValue">14d</div>
+                </div>
+                <div class="metricSub">Ends in</div>
+              </div>
+            </div>
+
+            <div class="footerBar" style="margin-top:14px; gap:12px;">
+              <a class="secondary" href="funding-start.html" style="flex:1; justify-content:center;">
+                Financial details
+              </a>
+            </div>
           </div>
         </div>
-      </div>
 
-    </section>
+      </section>
 
+    </div>
   </div>
-</div>
 </main>
 </div>
 <script src="assets/app.js"></script>
