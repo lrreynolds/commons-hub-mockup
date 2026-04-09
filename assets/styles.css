@@ -139,6 +139,12 @@ gap:18px;
   color:var(--dashText);
 }
 
+.appTab.disabled {
+  opacity: .45;
+  pointer-events: none;
+  cursor: default;
+}
+
 .topbarActions{
 display:flex;
 align-items:center;
