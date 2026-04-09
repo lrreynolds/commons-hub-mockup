@@ -106,6 +106,9 @@ const dnsPendingWrap = document.getElementById("dnsPendingWrap");
 const dnsVerifiedWrap = document.getElementById("dnsVerifiedWrap");
 const checkDnsBtn = document.getElementById("checkDnsBtn");
 
+const reviewLaunchWrap = document.getElementById("reviewLaunchWrap");
+const quickActionsCard = document.getElementById("quickActionsCard");
+
 const dnsPendingCard = document.getElementById("dnsPendingCard");
 const dnsVerifiedCard = document.getElementById("dnsVerifiedCard");
 const dnsSetupCard = document.getElementById("dnsSetupCard");
@@ -150,29 +153,40 @@ btn.classList.toggle("disabled", !enabled);
 }
 
 function renderDnsState() {
-dnsPendingWrap.style.display = "none";
-dnsVerifiedWrap.style.display = "none";
+  dnsPendingWrap.style.display = "none";
+  dnsVerifiedWrap.style.display = "none";
 
-if (dnsPendingCard) dnsPendingCard.style.display = "none";
-if (dnsVerifiedCard) dnsVerifiedCard.style.display = "none";
-if (dnsSetupCard) dnsSetupCard.style.display = "none";
-if (autoDnsSection) autoDnsSection.style.display = "none";
+  if (dnsPendingCard) dnsPendingCard.style.display = "none";
+  if (dnsVerifiedCard) dnsVerifiedCard.style.display = "none";
+  if (dnsSetupCard) dnsSetupCard.style.display = "none";
+  if (autoDnsSection) autoDnsSection.style.display = "none";
 
-if (!needsDns(domainType)) {
-  setQuickActions(true);
-  return;
-}
+  if (reviewLaunchWrap) reviewLaunchWrap.style.display = "none";
+  if (quickActionsCard) quickActionsCard.style.display = "none";
 
-if (dnsStatus === "verified") {
-dnsVerifiedWrap.style.display = "inline-flex";
-if (dnsVerifiedCard) dnsVerifiedCard.style.display = "block";
-setQuickActions(true);
-} else {
-setQuickActions(false);
-dnsPendingWrap.style.display = "inline-flex";
-if (dnsPendingCard) dnsPendingCard.style.display = "block";
-if (dnsSetupCard) dnsSetupCard.style.display = "block";
-}
+  if (!needsDns(domainType)) {
+    setQuickActions(true);
+    if (reviewLaunchWrap) reviewLaunchWrap.style.display = "flex";
+    if (quickActionsCard) quickActionsCard.style.display = "block";
+    return;
+  }
+
+  if (dnsStatus === "verified") {
+    dnsVerifiedWrap.style.display = "inline-flex";
+    if (dnsVerifiedCard) dnsVerifiedCard.style.display = "block";
+
+    if (reviewLaunchWrap) reviewLaunchWrap.style.display = "flex";
+    if (quickActionsCard) quickActionsCard.style.display = "block";
+
+    setQuickActions(true);
+
+  } else {
+    setQuickActions(false);
+
+    dnsPendingWrap.style.display = "inline-flex";
+    if (dnsPendingCard) dnsPendingCard.style.display = "block";
+    if (dnsSetupCard) dnsSetupCard.style.display = "block";
+  }
 }
 
 const registrarLoginUrl = "https://sso.godaddy.com/?app=oos&realm=idp&path=%2Fproducts";
