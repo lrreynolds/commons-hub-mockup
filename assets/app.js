@@ -720,6 +720,9 @@ const progressBar = document.getElementById("progressBar");
 const progressText = document.getElementById("progressText");
 const progressPercent = document.getElementById("progressPercent");
 
+const attentionCard = document.getElementById("launchAttentionCard");
+const communityReadyCard = document.getElementById("communityReadyCard");
+
 if (!steps.length || !progressBar || !progressText || !progressPercent) return;
 
 function setToggleLabel(step) {
@@ -812,8 +815,12 @@ const percent = (completed / TOTAL_STEPS) * 100;
 const nextStep = Math.min(completed + 1, TOTAL_STEPS);
 const attentionCard = document.getElementById("launchAttentionCard");
 
-if (completed === TOTAL_STEPS && attentionCard) {
-  attentionCard.style.display = "none";
+if (completed === TOTAL_STEPS) {
+  if (attentionCard) attentionCard.style.display = "none";
+  if (communityReadyCard) communityReadyCard.style.display = "block";
+} else {
+  if (attentionCard) attentionCard.style.display = "block";
+  if (communityReadyCard) communityReadyCard.style.display = "none";
 }
 
 progressBar.style.width = `${percent}%`;
