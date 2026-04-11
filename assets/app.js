@@ -1058,96 +1058,117 @@ setupFinancialState();
 renderPrototypeControls();
 }
 
-  notConnectedBtn?.addEventListener("click", (e) => {
-    e.preventDefault();
-    storage.set("commonshub_stripe_status", "not_connected");
-    showNotConnected();
-    setupCommunitySupportControls();
-  });
+notConnectedBtn?.addEventListener("click", (e) => {
+e.preventDefault();
+storage.set("commonshub_stripe_status", "not_connected");
+showNotConnected();
+setupCommunitySupportControls();
+});
 
-  connectedBtn?.addEventListener("click", (e) => {
-    e.preventDefault();
-    storage.set("commonshub_stripe_status", "connected");
-    showConnected();
-    setupCommunitySupportControls();
-  });
+connectedBtn?.addEventListener("click", (e) => {
+e.preventDefault();
+storage.set("commonshub_stripe_status", "connected");
+showConnected();
+setupCommunitySupportControls();
+});
 
-  restrictedBtn?.addEventListener("click", (e) => {
-    e.preventDefault();
-    storage.set("commonshub_stripe_status", "incomplete");
-    showRestricted();
-    setupCommunitySupportControls();
-  });
+restrictedBtn?.addEventListener("click", (e) => {
+e.preventDefault();
+storage.set("commonshub_stripe_status", "incomplete");
+showRestricted();
+setupCommunitySupportControls();
+});
 
 renderPrototypeControls();
 }
 
 function setupCommunitySupportControls() {
-  const supportCard = document.getElementById("communitySupportCard");
-  if (!supportCard) return;
+const supportCard = document.getElementById("communitySupportCard");
+if (!supportCard) return;
 
-  const monthlyToggle = document.getElementById("monthlySupportToggle");
-  const yearlyToggle = document.getElementById("yearlySupportToggle");
-  const oneTimeToggle = document.getElementById("oneTimeSupportToggle");
-  const requireContributionToggle = document.getElementById("requireContributionToggle");
+const monthlyToggle = document.getElementById("monthlySupportToggle");
+const yearlyToggle = document.getElementById("yearlySupportToggle");
+const oneTimeToggle = document.getElementById("oneTimeSupportToggle");
+const requireContributionToggle = document.getElementById("requireContributionToggle");
 
-  const supportHubActions = document.getElementById("supportHubActions");
-  const supportLockedNote = document.getElementById("supportLockedNote");
+const supportHubActions = document.getElementById("supportHubActions");
+const supportLockedNote = document.getElementById("supportLockedNote");
 
-  const monthlyAmount = document.getElementById("monthlyAmount");
-  const yearlyAmount = document.getElementById("yearlyAmount");
-  const oneTimeAmount = document.getElementById("oneTimeAmount");
+const monthlyAmount = document.getElementById("monthlyAmount");
+const yearlyAmount = document.getElementById("yearlyAmount");
+const oneTimeAmount = document.getElementById("oneTimeAmount");
 
-  function stripeStatus() {
-    return storage.get("commonshub_stripe_status") || "not_connected";
-  }
+const monthlyFields = document.getElementById("monthlyFields");
+const yearlyFields = document.getElementById("yearlyFields");
+const oneTimeFields = document.getElementById("oneTimeFields");
 
-  function supportEnabled() {
-    return !!(
-      monthlyToggle?.checked ||
-      yearlyToggle?.checked ||
-      oneTimeToggle?.checked
-    );
-  }
+function stripeStatus() {
+return storage.get("commonshub_stripe_status") || "not_connected";
+}
 
-  function setInputsEnabled(enabled) {
-    [
-      monthlyToggle,
-      yearlyToggle,
-      oneTimeToggle,
-      requireContributionToggle,
-      monthlyAmount,
-      yearlyAmount,
-      oneTimeAmount
-    ].forEach((el) => {
-      if (!el) return;
-      el.disabled = !enabled;
-    });
-  }
+function supportEnabled() {
+return !!(
+monthlyToggle?.checked ||
+yearlyToggle?.checked ||
+oneTimeToggle?.checked
+);
+}
 
-  function renderSupportUi() {
-    const connected = stripeStatus() === "connected";
+function setInputsEnabled(enabled) {
+[
+monthlyToggle,
+yearlyToggle,
+oneTimeToggle,
+requireContributionToggle,
+monthlyAmount,
+yearlyAmount,
+oneTimeAmount
+].forEach((el) => {
+if (!el) return;
+el.disabled = !enabled;
+});
+}
 
-    setInputsEnabled(connected);
+function renderSupportUi() {
+const connected = stripeStatus() === "connected";
 
-    supportCard.style.opacity = connected ? "1" : ".65";
-    supportCard.style.pointerEvents = connected ? "auto" : "none";
+setInputsEnabled(connected);
 
-    if (supportLockedNote) {
-      supportLockedNote.style.display = connected ? "none" : "block";
-    }
+supportCard.style.opacity = connected ? "1" : ".65";
+supportCard.style.pointerEvents = connected ? "auto" : "none";
 
-    if (supportHubActions) {
-      supportHubActions.style.display =
-        connected && supportEnabled() ? "block" : "none";
-    }
-  }
+if (supportLockedNote) {
+supportLockedNote.style.display = connected ? "none" : "block";
+}
 
-  [monthlyToggle, yearlyToggle, oneTimeToggle, requireContributionToggle].forEach((toggle) => {
-    toggle?.addEventListener("change", renderSupportUi);
-  });
+if (monthlyFields) {
+monthlyFields.style.display =
+connected && monthlyToggle?.checked ? "block" : "none";
+}
 
-  renderSupportUi();
+if (yearlyFields) {
+yearlyFields.style.display =
+connected && yearlyToggle?.checked ? "block" : "none";
+}
+
+if (oneTimeFields) {
+oneTimeFields.style.display =
+connected && oneTimeToggle?.checked ? "block" : "none";
+}
+
+if (supportHubActions) {
+supportHubActions.style.display =
+connected && supportEnabled() ? "block" : "none";
+}
+
+
+}
+
+[monthlyToggle, yearlyToggle, oneTimeToggle, requireContributionToggle].forEach((toggle) => {
+toggle?.addEventListener("change", renderSupportUi);
+});
+
+renderSupportUi();
 }
 
 // ----------------------------
