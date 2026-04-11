@@ -1169,6 +1169,80 @@ toggle?.addEventListener("change", renderSupportUi);
 renderSupportUi();
 }
 
+function setupContributionGateControl() {
+  const badge = document.getElementById("joinPolicyBadge");
+  const warning = document.getElementById("joinPolicyWarning");
+
+  const enableBtn = document.getElementById("enableContributionGateBtn");
+  const cancelBtn = document.getElementById("cancelContributionGateBtn");
+  const confirmBtn = document.getElementById("confirmContributionGateBtn");
+  const disableBtn = document.getElementById("disableContributionGateBtn");
+
+  if (!badge || !enableBtn || !cancelBtn || !confirmBtn || !disableBtn) return;
+
+  const KEY = "commonshub_contribution_required_to_join";
+
+  function isEnabled() {
+    return storage.get(KEY) === "1";
+  }
+
+  function render(confirming = false) {
+    const enabled = isEnabled();
+
+    if (enabled) {
+      badge.textContent = "Contribution required";
+      warning.style.display = "none";
+
+      enableBtn.style.display = "none";
+      cancelBtn.style.display = "none";
+      confirmBtn.style.display = "none";
+      disableBtn.style.display = "inline-flex";
+      return;
+    }
+
+    badge.textContent = "Open access";
+
+    if (confirming) {
+      warning.style.display = "block";
+      enableBtn.style.display = "none";
+      cancelBtn.style.display = "inline-flex";
+      confirmBtn.style.display = "inline-flex";
+      disableBtn.style.display = "none";
+    } else {
+      warning.style.display = "none";
+      enableBtn.style.display = "inline-flex";
+      cancelBtn.style.display = "none";
+      confirmBtn.style.display = "none";
+      disableBtn.style.display = "none";
+    }
+  }
+
+  enableBtn.addEventListener("click", (e) => {
+    e.preventDefault();
+    render(true);
+  });
+
+  cancelBtn.addEventListener("click", (e) => {
+    e.preventDefault();
+    render(false);
+  });
+
+  confirmBtn.addEventListener("click", (e) => {
+    e.preventDefault();
+    storage.set(KEY, "1");
+    render(false);
+  });
+
+  disableBtn.addEventListener("click", (e) => {
+    e.preventDefault();
+    storage.remove(KEY);
+    render(false);
+  });
+
+  render(false);
+}
+
+
 // ----------------------------
 // Init
 // ----------------------------
@@ -1186,4 +1260,5 @@ setupContinueSetup();
 setupFinancialState();
 setupFinancialPrototypeControls();
 setupCommunitySupportControls();
+setupContributionGateControl();
 })();
