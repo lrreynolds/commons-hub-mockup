@@ -920,6 +920,104 @@ flashButtonText(copyBtn, ok ? "Copied" : "Copy failed");
 updateProgress();
 }
 
+function setupFinancialState() {
+  const status =
+    storage.get("commonshub_stripe_status") || "not_connected";
+
+  const attentionCard = document.getElementById("financialAttentionCard");
+  const readyCard = document.getElementById("financialReadyCard");
+
+  const title = document.getElementById("financialAttentionTitle");
+  const text = document.getElementById("financialAttentionText");
+  const note = document.getElementById("financialAttentionNote");
+  const connectBtn = document.getElementById("connectStripeBtn");
+
+  const supportCard = document.getElementById("communitySupportCard");
+  const campaignsCard = document.getElementById("campaignsCard");
+
+  if (!supportCard) return;
+
+  function setCardEnabled(card, enabled) {
+    if (!card) return;
+    card.style.opacity = enabled ? "1" : ".65";
+    card.style.pointerEvents = enabled ? "auto" : "none";
+  }
+
+  function showAttention(show) {
+    if (attentionCard) attentionCard.style.display = show ? "block" : "block";
+  }
+
+  if (readyCard) readyCard.style.display = "none";
+
+  if (status === "not_connected") {
+    if (title) title.textContent = "Connect Stripe to enable community support";
+    if (text) {
+      text.textContent =
+        "Payments go directly to your Stripe account. Once connected, you can configure monthly, yearly, and one-time support options.";
+    }
+    if (note) {
+      note.innerHTML =
+        "<b>Next:</b> Connect Stripe first, then configure how your community can support your work.";
+    }
+    if (connectBtn) {
+      connectBtn.textContent = "Connect Stripe";
+      connectBtn.href = "connect-stripe.html";
+    }
+
+    setCardEnabled(supportCard, false);
+    setCardEnabled(campaignsCard, false);
+    return;
+  }
+
+  if (status === "incomplete") {
+    if (title) title.textContent = "Finish Stripe setup";
+    if (text) {
+      text.textContent =
+        "Your Stripe setup was started but not completed yet. Finish onboarding to unlock community support settings.";
+    }
+    if (note) {
+      note.innerHTML =
+        "<b>Next:</b> Resume Stripe setup and complete the remaining steps.";
+    }
+    if (connectBtn) {
+      connectBtn.textContent = "Resume Stripe setup";
+      connectBtn.href = "connect-stripe.html";
+    }
+
+    setCardEnabled(supportCard, false);
+    setCardEnabled(campaignsCard, false);
+    return;
+  }
+
+  if (status === "pending_review") {
+    if (title) title.textContent = "Stripe connected — review in progress";
+    if (text) {
+      text.textContent =
+        "Stripe has your information, but the account may still need review or additional details before support can go live.";
+    }
+    if (note) {
+      note.innerHTML =
+        "<b>Next:</b> Check Stripe status and complete any remaining verification steps if requested.";
+    }
+    if (connectBtn) {
+      connectBtn.textContent = "Check Stripe status";
+      connectBtn.href = "connect-stripe.html";
+    }
+
+    setCardEnabled(supportCard, false);
+    setCardEnabled(campaignsCard, false);
+    return;
+  }
+
+  if (status === "connected") {
+    if (attentionCard) attentionCard.style.display = "none";
+    if (readyCard) readyCard.style.display = "block";
+
+    setCardEnabled(supportCard, true);
+    setCardEnabled(campaignsCard, false);
+  }
+}
+
 
 // ----------------------------
 // Init
@@ -935,4 +1033,5 @@ setupFundingUi();
 setupServiceTabs();
 setupLaunchSteps();
 setupContinueSetup();
+setupFinancialState();
 })();
