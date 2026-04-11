@@ -13,107 +13,126 @@
 
     <main class="stage">
 
-<div class="topbar appTopbar">
-  <div class="left">
-    <img class="brandMark" src="assets/commonshub-mark-light.svg" alt="Commonshub">
-    <div class="meta">
-      <b>Commonshub — Financial</b>
-    </div>
-  </div>
-
-<div class="appTabs">
-  <a class="appTab" href="dashboard.html">Status</a>
-  <a class="appTab" href="launch-setup.html">Community</a>
-  <a class="appTab active" href="financial.html">Financial</a>
-  <a class="appTab" href="account.html">Account</a>
-</div>
-</div>
-
-<div class="content">
-  <div class="center">
-
-    <div class="header dashboardHero">
-      <div>
-        <h2>Community Support Settings</h2>
-        <p id="headerSubcopy">
-          Connect Stripe, manage support options, and configure how members can contribute.
-        </p>
-      </div>
-    </div>
-
-    <div id="financialAttentionCard" class="card overviewCard">
-      <div class="overviewHeader">
-        <div>
-          <h3>Connect Stripe to enable community support</h3>
-          <div class="muted">
-            Payments go directly to your Stripe account. Once connected, you can configure monthly, yearly, and one-time support options.
+      <div class="topbar appTopbar">
+        <div class="left">
+          <img class="brandMark" src="assets/commonshub-mark-light.svg" alt="Commonshub">
+          <div class="meta">
+            <b>Commonshub — Financial</b>
           </div>
         </div>
+
+        <div class="appTabs">
+          <a class="appTab" href="dashboard.html">Status</a>
+          <a class="appTab" href="launch-setup.html">Community</a>
+          <a class="appTab active" href="financial.html">Financial</a>
+          <a class="appTab" href="account.html">Account</a>
+        </div>
       </div>
 
-      <div class="note" style="margin-top:14px;">
-        <b>Next:</b> Connect Stripe first, then configure how your community can support your work.
-      </div>
+      <div class="content">
+        <div class="center">
 
-      <div class="footerBar" style="margin-top:12px;">
-        <a id="connectStripeBtn" class="primary" href="connect-stripe.html">
-          Connect Stripe
-        </a>
+          <div class="header dashboardHero">
+            <div>
+              <h2>Community Support Settings</h2>
+              <p id="headerSubcopy">
+                Connect Stripe, manage support options, and configure how members can contribute.
+              </p>
+            </div>
+          </div>
+
+          <div id="financialAttentionCard" class="card overviewCard">
+            <div class="overviewHeader">
+             <div class="overviewHeader">
+              <div>
+                <h3 id="financialAttentionTitle">Connect Stripe to enable community support</h3>
+                <div id="financialAttentionText" class="muted">
+                  Payments go directly to your Stripe account. Once connected, you can configure monthly, yearly, and one-time support options.
+                </div>
+              </div>
+            </div>
+
+            <div id="financialAttentionNote" class="note" style="margin-top:14px;">
+              <b>Next:</b> Connect Stripe first, then configure how your community can support your work.
+            </div>
+
+            <div class="footerBar" style="margin-top:12px;">
+              <a id="connectStripeBtn" class="primary" href="connect-stripe.html">
+                Connect Stripe
+              </a>
+            </div>
+          </div>
+          <div id="financialReadyCard" class="card overviewCard" style="display:none;">
+            <div class="overviewHeader">
+              <div>
+                <h3>Stripe is connected</h3>
+                <div class="muted">
+                  Community support is ready to configure. Choose which support options to offer and whether contributions are required before access is granted.
+                </div>
+              </div>
+            </div>
+
+            <div class="footerBar" style="margin-top:12px; gap:12px;">
+              <a class="secondary" href="https://securitybrief.jasonjaysmart.com/hub" target="_blank" rel="noopener" style="flex:1;">
+                View hub page
+              </a>
+              <a class="primary" href="#" style="flex:1;">
+                Configure support
+              </a>
+            </div>
+          </div>
+          <section id="communitySupportCard" class="card" style="margin-top:14px; opacity:.65;">
+            <div class="overviewHeader">
+              <div>
+                <h3>Community support</h3>
+                <div class="muted">Choose which contribution types you want to offer to your community.</div>
+              </div>
+            </div>
+
+            <div class="list" style="margin-top:12px;">
+              <div class="item">
+                <b>Monthly contributions</b>
+                <div class="muted">Allow recurring monthly support.</div>
+              </div>
+
+              <div class="item">
+                <b>Yearly contributions</b>
+                <div class="muted">Allow recurring annual support.</div>
+              </div>
+
+              <div class="item">
+                <b>One-time contributions</b>
+                <div class="muted">Allow one-time support or tips.</div>
+              </div>
+
+              <div class="item">
+                <b>Require contribution to join</b>
+                <div class="muted">Optional. Gate community access behind a contribution.</div>
+              </div>
+            </div>
+
+            <div class="note" style="margin-top:12px;">
+              Connect Stripe to unlock these settings.
+            </div>
+          </section>
+
+          <section id="campaignsCard" class="card" style="margin-top:14px; opacity:.65;">
+            <div class="overviewHeader">
+              <div>
+                <h3>Campaigns</h3>
+                <div class="muted">Create focused fundraising campaigns for projects, goals, or special initiatives.</div>
+              </div>
+            </div>
+
+            <div class="note" style="margin-top:12px;">
+              <b>Coming later:</b> Launch, manage, and review active or completed campaigns.
+            </div>
+          </section>
+
+        </div>
       </div>
     </div>
-
-    <section id="communitySupportCard" class="card" style="margin-top:14px; opacity:.65;">
-      <div class="overviewHeader">
-        <div>
-          <h3>Community support</h3>
-          <div class="muted">Choose which contribution types you want to offer to your community.</div>
-        </div>
-      </div>
-
-      <div class="list" style="margin-top:12px;">
-        <div class="item">
-          <b>Monthly contributions</b>
-          <div class="muted">Allow recurring monthly support.</div>
-        </div>
-
-        <div class="item">
-          <b>Yearly contributions</b>
-          <div class="muted">Allow recurring annual support.</div>
-        </div>
-
-        <div class="item">
-          <b>One-time contributions</b>
-          <div class="muted">Allow one-time support or tips.</div>
-        </div>
-
-        <div class="item">
-          <b>Require contribution to join</b>
-          <div class="muted">Optional. Gate community access behind a contribution.</div>
-        </div>
-      </div>
-
-      <div class="note" style="margin-top:12px;">
-        Connect Stripe to unlock these settings.
-      </div>
-    </section>
-
-    <section class="card" style="margin-top:14px; opacity:.65;">
-      <div class="overviewHeader">
-        <div>
-          <h3>Campaigns</h3>
-          <div class="muted">Create focused fundraising campaigns for projects, goals, or special initiatives.</div>
-        </div>
-      </div>
-
-      <div class="note" style="margin-top:12px;">
-        <b>Coming later:</b> Launch, manage, and review active or completed campaigns.
-      </div>
-    </section>
-
   </div>
-</div>
-</div>
-</div>
 </main>
 </div>
 <script src="assets/app.js"></script>
