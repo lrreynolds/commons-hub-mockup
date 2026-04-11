@@ -84,10 +84,16 @@
         </div>
 
         <section id="communitySupportCard" class="card" style="margin-top:14px; opacity:.65;">
-          <div class="overviewHeader">
+          <div class="overviewHeader" style="display:flex; justify-content:space-between; align-items:flex-start; gap:12px; flex-wrap:wrap;">
             <div>
               <h3>Community support</h3>
               <div class="muted">Choose which contribution types you want to offer to your community.</div>
+            </div>
+
+            <div id="supportHubActions" style="display:none;">
+              <a class="secondary" href="https://securitybrief.jasonjaysmart.com/hub" target="_blank" rel="noopener" style="width:auto;">
+                View hub page
+              </a>
             </div>
           </div>
 
@@ -194,25 +200,24 @@
             <div class="item">
               <div style="display:flex; justify-content:space-between; align-items:flex-start; gap:12px; flex-wrap:wrap;">
                 <div>
-                  <b>Join access policy</b>
-                  <div class="muted">
-                    Decide whether invites are issued freely or only after a qualifying contribution is completed.
-                  </div>
+                  <b>Join policy</b>
+                  <div class="muted">Free invites or contribution required.</div>
                 </div>
                 <span id="joinPolicyBadge" class="chip">Open access</span>
               </div>
 
               <div id="joinPolicyDefaultNote" class="note" style="margin-top:10px;">
-                <b>Default:</b> Invites can be issued without requiring payment.
+                <b>Default:</b> Invites do not require payment.
               </div>
 
               <div id="joinPolicyDependencyNote" class="note" style="display:none; margin-top:10px;">
-                Turn on at least one contribution option above before enabling contribution-gated invites.
+                Turn on at least one contribution option above first.
               </div>
 
               <div id="joinPolicyWarning" class="note" style="display:none; margin-top:12px;">
-                <b>Important:</b> New invites will only be issued after a qualifying contribution is completed through any enabled support option.
+                <b>Important:</b> New invites will require a qualifying contribution.
               </div>
+
               <div class="footerBar" style="margin-top:12px; gap:10px; justify-content:flex-start; flex-wrap:wrap;">
                 <a id="enableContributionGateBtn" class="secondary" href="#" style="width:auto; padding:10px 14px;">
                   Require contribution
@@ -231,17 +236,7 @@
 
           </div>
 
-          <div id="supportHubActions" style="display:none;">
-            <div class="note" style="margin-top:12px;">
-              <b>Live on hub page:</b> At least one support option is enabled, so you can review how community support will appear publicly.
-            </div>
-
-            <div class="footerBar" style="margin-top:12px;">
-              <a class="secondary" href="https://securitybrief.jasonjaysmart.com/hub" target="_blank" rel="noopener">
-                View hub page
-              </a>
-            </div>
-          </div>
+          
 
           <div id="supportLockedNote" class="note" style="margin-top:12px;">
             Connect Stripe to unlock these settings.
