@@ -65,57 +65,114 @@
         <div id="financialReadyCard" class="card overviewCard" style="display:none;">
           <div class="overviewHeader">
             <div>
-              <h3>Stripe is connected</h3>
-              <div class="muted">
+              <h3 id="financialReadyTitle">Stripe is connected</h3>
+              <div id="financialReadyText" class="muted">
                 Community support is ready to configure. Choose which support options to offer and whether contributions are required before access is granted.
               </div>
             </div>
           </div>
 
-          <div class="footerBar" style="margin-top:12px; gap:12px;">
-            <a class="secondary" href="https://securitybrief.jasonjaysmart.com/hub" target="_blank" rel="noopener" style="flex:1;">
-              View hub page
-            </a>
-            <a class="primary" href="#" style="flex:1;">
+          <div class="note" style="margin-top:14px;">
+            <b>Next:</b> Turn on at least one support option to make community support visible on your hub page.
+          </div>
+
+          <div class="footerBar" style="margin-top:12px;">
+            <a id="configureSupportBtn" class="primary" href="#communitySupportCard">
               Configure support
             </a>
           </div>
         </div>
 
         <section id="communitySupportCard" class="card" style="margin-top:14px; opacity:.65;">
-          <div class="overviewHeader">
-            <div>
-              <h3>Community support</h3>
-              <div class="muted">Choose which contribution types you want to offer to your community.</div>
-            </div>
-          </div>
+  <div class="overviewHeader">
+    <div>
+      <h3>Community support</h3>
+      <div class="muted">Choose which contribution types you want to offer to your community.</div>
+    </div>
+  </div>
 
-          <div class="list" style="margin-top:12px;">
-            <div class="item">
-              <b>Monthly contributions</b>
-              <div class="muted">Allow recurring monthly support.</div>
-            </div>
+  <div class="list" style="margin-top:12px; gap:12px;">
 
-            <div class="item">
-              <b>Yearly contributions</b>
-              <div class="muted">Allow recurring annual support.</div>
-            </div>
+    <div class="item">
+      <div style="display:flex; justify-content:space-between; align-items:flex-start; gap:12px; flex-wrap:wrap;">
+        <div>
+          <b>Monthly contributions</b>
+          <div class="muted">Allow recurring monthly support.</div>
+        </div>
+        <label style="margin:0;">
+          <input id="monthlySupportToggle" type="checkbox">
+        </label>
+      </div>
 
-            <div class="item">
-              <b>One-time contributions</b>
-              <div class="muted">Allow one-time support or tips.</div>
-            </div>
+      <div class="field" style="margin-top:10px;">
+        <label>Default monthly amount</label>
+        <input id="monthlyAmount" type="text" value="$2" />
+      </div>
+    </div>
 
-            <div class="item">
-              <b>Require contribution to join</b>
-              <div class="muted">Optional. Gate community access behind a contribution.</div>
-            </div>
-          </div>
+    <div class="item">
+      <div style="display:flex; justify-content:space-between; align-items:flex-start; gap:12px; flex-wrap:wrap;">
+        <div>
+          <b>Yearly contributions</b>
+          <div class="muted">Allow recurring annual support.</div>
+        </div>
+        <label style="margin:0;">
+          <input id="yearlySupportToggle" type="checkbox">
+        </label>
+      </div>
 
-          <div class="note" style="margin-top:12px;">
-            Connect Stripe to unlock these settings.
-          </div>
-        </section>
+      <div class="field" style="margin-top:10px;">
+        <label>Default yearly amount</label>
+        <input id="yearlyAmount" type="text" value="$20" />
+      </div>
+    </div>
+
+    <div class="item">
+      <div style="display:flex; justify-content:space-between; align-items:flex-start; gap:12px; flex-wrap:wrap;">
+        <div>
+          <b>One-time contributions</b>
+          <div class="muted">Allow one-time support or tips.</div>
+        </div>
+        <label style="margin:0;">
+          <input id="oneTimeSupportToggle" type="checkbox">
+        </label>
+      </div>
+
+      <div class="field" style="margin-top:10px;">
+        <label>Default one-time amount</label>
+        <input id="oneTimeAmount" type="text" value="$10" />
+      </div>
+    </div>
+
+    <div class="item">
+      <div style="display:flex; justify-content:space-between; align-items:flex-start; gap:12px; flex-wrap:wrap;">
+        <div>
+          <b>Require contribution to join</b>
+          <div class="muted">Optional. Gate community access behind a contribution.</div>
+        </div>
+        <label style="margin:0;">
+          <input id="requireContributionToggle" type="checkbox">
+        </label>
+      </div>
+    </div>
+  </div>
+
+  <div id="supportHubActions" style="display:none;">
+    <div class="note" style="margin-top:12px;">
+      <b>Live on hub page:</b> At least one support option is enabled, so you can review how community support will appear publicly.
+    </div>
+
+    <div class="footerBar" style="margin-top:12px;">
+      <a class="secondary" href="https://securitybrief.jasonjaysmart.com/hub" target="_blank" rel="noopener">
+        View hub page
+      </a>
+    </div>
+  </div>
+
+  <div id="supportLockedNote" class="note" style="margin-top:12px;">
+    Connect Stripe to unlock these settings.
+  </div>
+</section>
 
         <section id="campaignsCard" class="card" style="margin-top:14px; opacity:.65;">
           <div class="overviewHeader">
