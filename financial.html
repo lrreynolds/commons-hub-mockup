@@ -96,6 +96,42 @@
             <div class="item">
               <div style="display:flex; justify-content:space-between; align-items:flex-start; gap:12px; flex-wrap:wrap;">
                 <div>
+                  <b>Join access policy</b>
+                  <div class="muted">
+                    Decide whether invites are issued freely or only after a contribution is made.
+                  </div>
+                </div>
+                <span id="joinPolicyBadge" class="chip">Open access</span>
+              </div>
+
+              <div class="note" style="margin-top:10px;">
+                <b>Default:</b> Invites can be issued without requiring payment.
+              </div>
+
+              <div id="joinPolicyWarning" class="note" style="display:none; margin-top:12px;">
+                <b>Important:</b> Enabling this means new invites are only issued after a qualifying contribution is completed.
+                This changes the access model of your community and should only be used intentionally.
+              </div>
+
+              <div class="footerBar" style="margin-top:12px; gap:12px; flex-wrap:wrap;">
+                <a id="enableContributionGateBtn" class="secondary" href="#">
+                  Enable contribution-gated invites
+                </a>
+                <a id="cancelContributionGateBtn" class="secondary" href="#" style="display:none;">
+                  Cancel
+                </a>
+                <a id="confirmContributionGateBtn" class="primary" href="#" style="display:none;">
+                  Confirm and enable
+                </a>
+                <a id="disableContributionGateBtn" class="secondary" href="#" style="display:none;">
+                  Turn off contribution-gated invites
+                </a>
+              </div>
+            </div>
+
+            <div class="item">
+              <div style="display:flex; justify-content:space-between; align-items:flex-start; gap:12px; flex-wrap:wrap;">
+                <div>
                   <b>Monthly contributions</b>
                   <div class="muted">Allow recurring monthly support.</div>
                 </div>
@@ -112,112 +148,116 @@
               </div>
             </div>
 
-              <div class="item">
-                <div style="display:flex; justify-content:space-between; align-items:flex-start; gap:12px; flex-wrap:wrap;">
-                  <div>
-                    <b>Yearly contributions</b>
-                    <div class="muted">Allow recurring annual support.</div>
-                  </div>
-                  <label style="margin:0;">
-                    <input id="yearlySupportToggle" type="checkbox">
-                  </label>
-                </div>
-
-                <div id="yearlyFields" style="display:none; margin-top:10px;">
-                  <div class="field">
-                    <label>Default yearly amount</label>
-                    <input id="yearlyAmount" type="text" value="$20" />
-                  </div>
-                </div>
-              </div>
-
-                <div class="item">
-                  <div style="display:flex; justify-content:space-between; align-items:flex-start; gap:12px; flex-wrap:wrap;">
-                    <div>
-                      <b>One-time contributions</b>
-                      <div class="muted">Allow one-time support or tips.</div>
-                    </div>
-                    <label style="margin:0;">
-                      <input id="oneTimeSupportToggle" type="checkbox">
-                    </label>
-                  </div>
-
-                  <div id="oneTimeFields" style="display:none; margin-top:10px;">
-                    <div class="field">
-                      <label>Default one-time amount</label>
-                      <input id="oneTimeAmount" type="text" value="$10" />
-                    </div>
-                  </div>
-                </div>
-
-                <div class="item">
-                  <div style="display:flex; justify-content:space-between; align-items:flex-start; gap:12px; flex-wrap:wrap;">
-                    <div>
-                      <b>Require contribution to join</b>
-                      <div class="muted">Optional. Gate community access behind a contribution.</div>
-                    </div>
-                    <label style="margin:0;">
-                      <input id="requireContributionToggle" type="checkbox">
-                    </label>
-                  </div>
-                </div>
-              </div>
-
-              <div id="supportHubActions" style="display:none;">
-                <div class="note" style="margin-top:12px;">
-                  <b>Live on hub page:</b> At least one support option is enabled, so you can review how community support will appear publicly.
-                </div>
-
-                <div class="footerBar" style="margin-top:12px;">
-                  <a class="secondary" href="https://securitybrief.jasonjaysmart.com/hub" target="_blank" rel="noopener">
-                    View hub page
-                  </a>
-                </div>
-              </div>
-
-              <div id="supportLockedNote" class="note" style="margin-top:12px;">
-                Connect Stripe to unlock these settings.
-              </div>
-            </section>
-
-            <section id="campaignsCard" class="card" style="margin-top:14px; opacity:.65;">
-              <div class="overviewHeader">
+            <div class="item">
+              <div style="display:flex; justify-content:space-between; align-items:flex-start; gap:12px; flex-wrap:wrap;">
                 <div>
-                  <h3>Campaigns</h3>
-                  <div class="muted">Create focused fundraising campaigns for projects, goals, or special initiatives.</div>
+                  <b>Yearly contributions</b>
+                  <div class="muted">Allow recurring annual support.</div>
                 </div>
+                <label style="margin:0;">
+                  <input id="yearlySupportToggle" type="checkbox">
+                </label>
+              </div>
+
+              <div id="yearlyFields" style="display:none; margin-top:10px;">
+                <div class="field">
+                  <label>Default yearly amount</label>
+                  <input id="yearlyAmount" type="text" value="$20" />
+                </div>
+              </div>
+            </div>
+
+            <div class="item">
+              <div style="display:flex; justify-content:space-between; align-items:flex-start; gap:12px; flex-wrap:wrap;">
+                <div>
+                  <b>One-time contributions</b>
+                  <div class="muted">Allow one-time support or tips.</div>
+                </div>
+                <label style="margin:0;">
+                  <input id="oneTimeSupportToggle" type="checkbox">
+                </label>
+              </div>
+
+              <div id="oneTimeFields" style="display:none; margin-top:10px;">
+                <div class="field">
+                  <label>Default one-time amount</label>
+                  <input id="oneTimeAmount" type="text" value="$10" />
+                </div>
+              </div>
+            </div>
+
+            <div class="item" id="campaignsSetupBlock">
+              <div style="display:flex; justify-content:space-between; align-items:flex-start; gap:12px; flex-wrap:wrap;">
+                <div>
+                  <b>Campaigns</b>
+                  <div class="muted">
+                    Create focused fundraising campaigns for projects, goals, or special initiatives.
+                  </div>
+                </div>
+                <span class="chip" style="opacity:.75;">Coming later</span>
               </div>
 
               <div class="note" style="margin-top:12px;">
-                <b>Coming later:</b> Launch, manage, and review active or completed campaigns.
+                Campaigns are not part of the first release of community support, but this is where they will be configured.
               </div>
-            </section>
+            </div>
+            
 
-            <section class="card" style="margin-top:14px;">
-              <div class="overviewHeader">
-                <div>
-                  <h3>Prototype controls</h3>
-                  <div class="muted">Use these to simulate Stripe states without opening the console.</div>
-                </div>
+            <div id="supportHubActions" style="display:none;">
+              <div class="note" style="margin-top:12px;">
+                <b>Live on hub page:</b> At least one support option is enabled, so you can review how community support will appear publicly.
               </div>
 
-              <div class="footerBar" style="margin-top:12px; gap:12px;">
-                <a class="secondary" href="#" id="simulateStripeNotConnected" style="flex:1;">
-                  Simulate not connected
-                </a>
-                <a class="secondary" href="#" id="simulateStripeConnected" style="flex:1;">
-                  Simulate connected
-                </a>
-                <a class="secondary" href="#" id="simulateStripeRestricted" style="flex:1;">
-                  Simulate needs more info
+              <div class="footerBar" style="margin-top:12px;">
+                <a class="secondary" href="https://securitybrief.jasonjaysmart.com/hub" target="_blank" rel="noopener">
+                  View hub page
                 </a>
               </div>
-            </section>
+            </div>
 
-          </div>
+            <div id="supportLockedNote" class="note" style="margin-top:12px;">
+              Connect Stripe to unlock these settings.
+            </div>
+          </section>
+
+          <section id="campaignsCard" class="card" style="margin-top:14px; opacity:.65;">
+            <div class="overviewHeader">
+              <div>
+                <h3>Campaigns</h3>
+                <div class="muted">Create focused fundraising campaigns for projects, goals, or special initiatives.</div>
+              </div>
+            </div>
+
+            <div class="note" style="margin-top:12px;">
+              <b>Coming later:</b> Launch, manage, and review active or completed campaigns.
+            </div>
+          </section>
+
+          <section class="card" style="margin-top:14px;">
+            <div class="overviewHeader">
+              <div>
+                <h3>Prototype controls</h3>
+                <div class="muted">Use these to simulate Stripe states without opening the console.</div>
+              </div>
+            </div>
+
+            <div class="footerBar" style="margin-top:12px; gap:12px;">
+              <a class="secondary" href="#" id="simulateStripeNotConnected" style="flex:1;">
+                Simulate not connected
+              </a>
+              <a class="secondary" href="#" id="simulateStripeConnected" style="flex:1;">
+                Simulate connected
+              </a>
+              <a class="secondary" href="#" id="simulateStripeRestricted" style="flex:1;">
+                Simulate needs more info
+              </a>
+            </div>
+          </section>
+
         </div>
-      </main>
-    </div>
-    <script src="assets/app.js"></script>
-  </body>
-  </html>
+      </div>
+    </main>
+  </div>
+  <script src="assets/app.js"></script>
+</body>
+</html>
