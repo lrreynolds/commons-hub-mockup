@@ -1018,6 +1018,82 @@ function setupFinancialState() {
   }
 }
 
+function setupFinancialPrototypeControls() {
+  const notConnectedBtn = document.getElementById("simulateStripeNotConnected");
+  const connectedBtn = document.getElementById("simulateStripeConnected");
+  const restrictedBtn = document.getElementById("simulateStripeRestricted");
+
+  if (!notConnectedBtn && !connectedBtn && !restrictedBtn) return;
+
+  const attentionCard = document.getElementById("financialAttentionCard");
+  const readyCard = document.getElementById("financialReadyCard");
+  const supportCard = document.getElementById("communitySupportCard");
+  const campaignsCard = document.getElementById("campaignsCard");
+  const attentionTitle = document.getElementById("financialAttentionTitle");
+  const attentionText = document.getElementById("financialAttentionText");
+  const attentionNote = document.getElementById("financialAttentionNote");
+  const connectBtn = document.getElementById("connectStripeBtn");
+
+  function setLocked(locked) {
+    if (supportCard) supportCard.style.opacity = locked ? ".65" : "1";
+    if (campaignsCard) campaignsCard.style.opacity = locked ? ".65" : "1";
+  }
+
+  function showNotConnected() {
+    if (attentionCard) attentionCard.style.display = "block";
+    if (readyCard) readyCard.style.display = "none";
+    if (attentionTitle) attentionTitle.textContent = "Connect Stripe to enable community support";
+    if (attentionText) {
+      attentionText.textContent = "Payments go directly to your Stripe account. Once connected, you can configure monthly, yearly, and one-time support options.";
+    }
+    if (attentionNote) {
+      attentionNote.innerHTML = "<b>Next:</b> Connect Stripe first, then configure how your community can support your work.";
+    }
+    if (connectBtn) {
+      connectBtn.textContent = "Connect Stripe";
+      connectBtn.setAttribute("href", "connect-stripe.html");
+    }
+    setLocked(true);
+  }
+
+  function showConnected() {
+    if (attentionCard) attentionCard.style.display = "none";
+    if (readyCard) readyCard.style.display = "block";
+    setLocked(false);
+  }
+
+  function showRestricted() {
+    if (attentionCard) attentionCard.style.display = "block";
+    if (readyCard) readyCard.style.display = "none";
+    if (attentionTitle) attentionTitle.textContent = "Stripe connected — more information required";
+    if (attentionText) {
+      attentionText.textContent = "Your Stripe account has been created, but Stripe still needs additional information before payouts and support settings are fully available.";
+    }
+    if (attentionNote) {
+      attentionNote.innerHTML = "<b>Next:</b> Return to Stripe and complete the remaining requirements.";
+    }
+    if (connectBtn) {
+      connectBtn.textContent = "Resume Stripe setup";
+      connectBtn.setAttribute("href", "connect-stripe.html");
+    }
+    setLocked(true);
+  }
+
+  notConnectedBtn?.addEventListener("click", (e) => {
+    e.preventDefault();
+    showNotConnected();
+  });
+
+  connectedBtn?.addEventListener("click", (e) => {
+    e.preventDefault();
+    showConnected();
+  });
+
+  restrictedBtn?.addEventListener("click", (e) => {
+    e.preventDefault();
+    showRestricted();
+  });
+}
 
 // ----------------------------
 // Init
@@ -1034,4 +1110,5 @@ setupServiceTabs();
 setupLaunchSteps();
 setupContinueSetup();
 setupFinancialState();
+setupFinancialPrototypeControls();
 })();
