@@ -1058,22 +1058,96 @@ setupFinancialState();
 renderPrototypeControls();
 }
 
-notConnectedBtn?.addEventListener("click", (e) => {
-e.preventDefault();
-setStripeState("not_connected");
-});
+  notConnectedBtn?.addEventListener("click", (e) => {
+    e.preventDefault();
+    storage.set("commonshub_stripe_status", "not_connected");
+    showNotConnected();
+    setupCommunitySupportControls();
+  });
 
-connectedBtn?.addEventListener("click", (e) => {
-e.preventDefault();
-setStripeState("connected");
-});
+  connectedBtn?.addEventListener("click", (e) => {
+    e.preventDefault();
+    storage.set("commonshub_stripe_status", "connected");
+    showConnected();
+    setupCommunitySupportControls();
+  });
 
-restrictedBtn?.addEventListener("click", (e) => {
-e.preventDefault();
-setStripeState("incomplete");
-});
+  restrictedBtn?.addEventListener("click", (e) => {
+    e.preventDefault();
+    storage.set("commonshub_stripe_status", "incomplete");
+    showRestricted();
+    setupCommunitySupportControls();
+  });
 
 renderPrototypeControls();
+}
+
+function setupCommunitySupportControls() {
+  const supportCard = document.getElementById("communitySupportCard");
+  if (!supportCard) return;
+
+  const monthlyToggle = document.getElementById("monthlySupportToggle");
+  const yearlyToggle = document.getElementById("yearlySupportToggle");
+  const oneTimeToggle = document.getElementById("oneTimeSupportToggle");
+  const requireContributionToggle = document.getElementById("requireContributionToggle");
+
+  const supportHubActions = document.getElementById("supportHubActions");
+  const supportLockedNote = document.getElementById("supportLockedNote");
+
+  const monthlyAmount = document.getElementById("monthlyAmount");
+  const yearlyAmount = document.getElementById("yearlyAmount");
+  const oneTimeAmount = document.getElementById("oneTimeAmount");
+
+  function stripeStatus() {
+    return storage.get("commonshub_stripe_status") || "not_connected";
+  }
+
+  function supportEnabled() {
+    return !!(
+      monthlyToggle?.checked ||
+      yearlyToggle?.checked ||
+      oneTimeToggle?.checked
+    );
+  }
+
+  function setInputsEnabled(enabled) {
+    [
+      monthlyToggle,
+      yearlyToggle,
+      oneTimeToggle,
+      requireContributionToggle,
+      monthlyAmount,
+      yearlyAmount,
+      oneTimeAmount
+    ].forEach((el) => {
+      if (!el) return;
+      el.disabled = !enabled;
+    });
+  }
+
+  function renderSupportUi() {
+    const connected = stripeStatus() === "connected";
+
+    setInputsEnabled(connected);
+
+    supportCard.style.opacity = connected ? "1" : ".65";
+    supportCard.style.pointerEvents = connected ? "auto" : "none";
+
+    if (supportLockedNote) {
+      supportLockedNote.style.display = connected ? "none" : "block";
+    }
+
+    if (supportHubActions) {
+      supportHubActions.style.display =
+        connected && supportEnabled() ? "block" : "none";
+    }
+  }
+
+  [monthlyToggle, yearlyToggle, oneTimeToggle, requireContributionToggle].forEach((toggle) => {
+    toggle?.addEventListener("change", renderSupportUi);
+  });
+
+  renderSupportUi();
 }
 
 // ----------------------------
