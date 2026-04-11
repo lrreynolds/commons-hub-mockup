@@ -140,10 +140,10 @@ storage.get("commonshub_dns_status") ||
 "not_applicable";
 
 function setTabsEnabled(enabled) {
-  [communityTab, financialTab, accountTab].forEach(tab => {
-    if (!tab) return;
-    tab.classList.toggle("disabled", !enabled);
-  });
+[communityTab, financialTab, accountTab].forEach(tab => {
+if (!tab) return;
+tab.classList.toggle("disabled", !enabled);
+});
 }
 
 function needsDns(domainTypeValue) {
@@ -164,43 +164,43 @@ btn.classList.toggle("disabled", !enabled);
 }
 
 function renderDnsState() {
-  dnsPendingWrap.style.display = "none";
-  dnsVerifiedWrap.style.display = "none";
+dnsPendingWrap.style.display = "none";
+dnsVerifiedWrap.style.display = "none";
 
-  if (dnsPendingCard) dnsPendingCard.style.display = "none";
-  if (dnsVerifiedCard) dnsVerifiedCard.style.display = "none";
-  if (dnsSetupCard) dnsSetupCard.style.display = "none";
-  if (autoDnsSection) autoDnsSection.style.display = "none";
+if (dnsPendingCard) dnsPendingCard.style.display = "none";
+if (dnsVerifiedCard) dnsVerifiedCard.style.display = "none";
+if (dnsSetupCard) dnsSetupCard.style.display = "none";
+if (autoDnsSection) autoDnsSection.style.display = "none";
 
-  if (reviewLaunchWrap) reviewLaunchWrap.style.display = "none";
-  if (quickActionsCard) quickActionsCard.style.display = "none";
+if (reviewLaunchWrap) reviewLaunchWrap.style.display = "none";
+if (quickActionsCard) quickActionsCard.style.display = "none";
 
-  if (!needsDns(domainType)) {
-    setTabsEnabled(true);
-    setQuickActions(true);
-    if (reviewLaunchWrap) reviewLaunchWrap.style.display = "block";
-    if (quickActionsCard) quickActionsCard.style.display = "block";
-    return;
-  }
+if (!needsDns(domainType)) {
+setTabsEnabled(true);
+setQuickActions(true);
+if (reviewLaunchWrap) reviewLaunchWrap.style.display = "block";
+if (quickActionsCard) quickActionsCard.style.display = "block";
+return;
+}
 
-  if (dnsStatus === "verified") {
-    setTabsEnabled(true);
-    dnsVerifiedWrap.style.display = "inline-flex";
-    if (dnsVerifiedCard) dnsVerifiedCard.style.display = "block";
+if (dnsStatus === "verified") {
+setTabsEnabled(true);
+dnsVerifiedWrap.style.display = "inline-flex";
+if (dnsVerifiedCard) dnsVerifiedCard.style.display = "block";
 
-    if (reviewLaunchWrap) reviewLaunchWrap.style.display = "block";
-    if (quickActionsCard) quickActionsCard.style.display = "block";
+if (reviewLaunchWrap) reviewLaunchWrap.style.display = "block";
+if (quickActionsCard) quickActionsCard.style.display = "block";
 
-    setQuickActions(true);
+setQuickActions(true);
 
-  } else {
-    setTabsEnabled(false);
-    setQuickActions(false);
+} else {
+setTabsEnabled(false);
+setQuickActions(false);
 
-    dnsPendingWrap.style.display = "inline-flex";
-    if (dnsPendingCard) dnsPendingCard.style.display = "block";
-    if (dnsSetupCard) dnsSetupCard.style.display = "block";
-  }
+dnsPendingWrap.style.display = "inline-flex";
+if (dnsPendingCard) dnsPendingCard.style.display = "block";
+if (dnsSetupCard) dnsSetupCard.style.display = "block";
+}
 }
 
 const registrarLoginUrl = "https://sso.godaddy.com/?app=oos&realm=idp&path=%2Fproducts";
@@ -306,29 +306,29 @@ setTimeout(() => window.location.reload(), 150);
 // ----------------------------
 
 function setupContinueSetup() {
-  const btn = document.getElementById("continueSetupBtn");
-  if (!btn) return;
+const btn = document.getElementById("continueSetupBtn");
+if (!btn) return;
 
-  btn.addEventListener("click", () => {
-    const steps = Array.from(document.querySelectorAll(".setupStep"));
-    if (!steps.length) return;
+btn.addEventListener("click", () => {
+const steps = Array.from(document.querySelectorAll(".setupStep"));
+if (!steps.length) return;
 
-    let targetStep = null;
+let targetStep = null;
 
-    steps.forEach((step) => {
-      if (!targetStep && step.dataset.completed !== "true") {
-        targetStep = step;
-      }
-    });
+steps.forEach((step) => {
+if (!targetStep && step.dataset.completed !== "true") {
+targetStep = step;
+}
+});
 
-    if (!targetStep) return;
+if (!targetStep) return;
 
-    const toggleLink = targetStep.querySelector(".stepToggleLink");
-    if (!toggleLink) return;
+const toggleLink = targetStep.querySelector(".stepToggleLink");
+if (!toggleLink) return;
 
-    toggleLink.click();
-    targetStep.scrollIntoView({ behavior: "smooth", block: "start" });
-  });
+toggleLink.click();
+targetStep.scrollIntoView({ behavior: "smooth", block: "start" });
+});
 }
 
 function setupChecklist() {
@@ -777,36 +777,36 @@ setToggleLabel(step);
 }
 
 function closeOtherOpenSteps(currentStep) {
-  steps.forEach((step) => {
-    if (step !== currentStep && step.classList.contains("open")) {
-      step.classList.remove("open");
+steps.forEach((step) => {
+if (step !== currentStep && step.classList.contains("open")) {
+step.classList.remove("open");
 
-      if (step.dataset.completed === "true") {
-        step.classList.add("done");
-        step.classList.remove("locked");
-      } else {
-        step.classList.add("locked");
-        step.classList.remove("done");
-      }
+if (step.dataset.completed === "true") {
+step.classList.add("done");
+step.classList.remove("locked");
+} else {
+step.classList.add("locked");
+step.classList.remove("done");
+}
 
-      syncStepUi(step);
-    }
-  });
+syncStepUi(step);
+}
+});
 }
 
 function openNextStep(currentStep) {
-  const currentIndex = steps.indexOf(currentStep);
+const currentIndex = steps.indexOf(currentStep);
 
-  for (let i = currentIndex + 1; i < steps.length; i++) {
-    const nextStep = steps[i];
+for (let i = currentIndex + 1; i < steps.length; i++) {
+const nextStep = steps[i];
 
-    if (nextStep.dataset.completed !== "true") {
-      nextStep.classList.remove("locked");
-      openSetupStep(nextStep);
-      nextStep.scrollIntoView({ behavior: "smooth", block: "start" });
-      return;
-    }
-  }
+if (nextStep.dataset.completed !== "true") {
+nextStep.classList.remove("locked");
+openSetupStep(nextStep);
+nextStep.scrollIntoView({ behavior: "smooth", block: "start" });
+return;
+}
+}
 }
 
 function updateProgress() {
@@ -816,11 +816,11 @@ const nextStep = Math.min(completed + 1, TOTAL_STEPS);
 const attentionCard = document.getElementById("launchAttentionCard");
 
 if (completed === TOTAL_STEPS) {
-  if (attentionCard) attentionCard.style.display = "none";
-  if (communityReadyCard) communityReadyCard.style.display = "block";
+if (attentionCard) attentionCard.style.display = "none";
+if (communityReadyCard) communityReadyCard.style.display = "block";
 } else {
-  if (attentionCard) attentionCard.style.display = "block";
-  if (communityReadyCard) communityReadyCard.style.display = "none";
+if (attentionCard) attentionCard.style.display = "block";
+if (communityReadyCard) communityReadyCard.style.display = "none";
 }
 
 progressBar.style.width = `${percent}%`;
@@ -848,18 +848,18 @@ updateProgress();
 }
 
 function openSetupStep(step) {
-  closeOtherOpenSteps(step);
+closeOtherOpenSteps(step);
 
-  step.classList.remove("locked", "open");
-  step.classList.add("open");
+step.classList.remove("locked", "open");
+step.classList.add("open");
 
-  if (step.dataset.completed === "true") {
-    step.classList.add("done");
-  } else {
-    step.classList.remove("done");
-  }
+if (step.dataset.completed === "true") {
+step.classList.add("done");
+} else {
+step.classList.remove("done");
+}
 
-  syncStepUi(step);
+syncStepUi(step);
 }
 
 function closeStep(step) {
@@ -889,11 +889,11 @@ step.dataset.completed = "true";
 syncStepUi(step);
 
 if (doneBtn) {
-  doneBtn.addEventListener("click", () => {
-    step.dataset.completed = "true";
-    markStepDone(step);
-    openNextStep(step);
-  });
+doneBtn.addEventListener("click", () => {
+step.dataset.completed = "true";
+markStepDone(step);
+openNextStep(step);
+});
 }
 
 step.querySelectorAll(".stepToggleLink").forEach((toggleLink) => {
@@ -921,178 +921,159 @@ updateProgress();
 }
 
 function setupFinancialState() {
-  const status =
-    storage.get("commonshub_stripe_status") || "not_connected";
+const status =
+storage.get("commonshub_stripe_status") || "not_connected";
 
-  const attentionCard = document.getElementById("financialAttentionCard");
-  const readyCard = document.getElementById("financialReadyCard");
+const attentionCard = document.getElementById("financialAttentionCard");
+const readyCard = document.getElementById("financialReadyCard");
 
-  const title = document.getElementById("financialAttentionTitle");
-  const text = document.getElementById("financialAttentionText");
-  const note = document.getElementById("financialAttentionNote");
-  const connectBtn = document.getElementById("connectStripeBtn");
+const title = document.getElementById("financialAttentionTitle");
+const text = document.getElementById("financialAttentionText");
+const note = document.getElementById("financialAttentionNote");
+const connectBtn = document.getElementById("connectStripeBtn");
 
-  const supportCard = document.getElementById("communitySupportCard");
-  const campaignsCard = document.getElementById("campaignsCard");
+const supportCard = document.getElementById("communitySupportCard");
+const campaignsCard = document.getElementById("campaignsCard");
 
-  if (!supportCard) return;
+if (!supportCard) return;
+if (attentionCard) attentionCard.style.display = "block";
+if (readyCard) readyCard.style.display = "none";
 
-  function setCardEnabled(card, enabled) {
-    if (!card) return;
-    card.style.opacity = enabled ? "1" : ".65";
-    card.style.pointerEvents = enabled ? "auto" : "none";
-  }
+function setCardEnabled(card, enabled) {
+if (!card) return;
+card.style.opacity = enabled ? "1" : ".65";
+card.style.pointerEvents = enabled ? "auto" : "none";
+}
 
-  function showAttention(show) {
-    if (attentionCard) attentionCard.style.display = show ? "block" : "block";
-  }
+function showAttention(show) {
+if (attentionCard) attentionCard.style.display = show ? "block" : "block";
+}
 
-  if (readyCard) readyCard.style.display = "none";
+if (readyCard) readyCard.style.display = "none";
 
-  if (status === "not_connected") {
-    if (title) title.textContent = "Connect Stripe to enable community support";
-    if (text) {
-      text.textContent =
-        "Payments go directly to your Stripe account. Once connected, you can configure monthly, yearly, and one-time support options.";
-    }
-    if (note) {
-      note.innerHTML =
-        "<b>Next:</b> Connect Stripe first, then configure how your community can support your work.";
-    }
-    if (connectBtn) {
-      connectBtn.textContent = "Connect Stripe";
-      connectBtn.href = "connect-stripe.html";
-    }
+if (status === "not_connected") {
+if (title) title.textContent = "Connect Stripe to enable community support";
+if (text) {
+text.textContent =
+"Payments go directly to your Stripe account. Once connected, you can configure monthly, yearly, and one-time support options.";
+}
+if (note) {
+note.innerHTML =
+"<b>Next:</b> Connect Stripe first, then configure how your community can support your work.";
+}
+if (connectBtn) {
+connectBtn.textContent = "Connect Stripe";
+connectBtn.href = "connect-stripe.html";
+}
 
-    setCardEnabled(supportCard, false);
-    setCardEnabled(campaignsCard, false);
-    return;
-  }
+setCardEnabled(supportCard, false);
+setCardEnabled(campaignsCard, false);
+return;
+}
 
-  if (status === "incomplete") {
-    if (title) title.textContent = "Finish Stripe setup";
-    if (text) {
-      text.textContent =
-        "Your Stripe setup was started but not completed yet. Finish onboarding to unlock community support settings.";
-    }
-    if (note) {
-      note.innerHTML =
-        "<b>Next:</b> Resume Stripe setup and complete the remaining steps.";
-    }
-    if (connectBtn) {
-      connectBtn.textContent = "Resume Stripe setup";
-      connectBtn.href = "connect-stripe.html";
-    }
+if (status === "incomplete") {
+if (title) title.textContent = "Finish Stripe setup";
+if (text) {
+text.textContent =
+"Your Stripe setup was started but not completed yet. Finish onboarding to unlock community support settings.";
+}
+if (note) {
+note.innerHTML =
+"<b>Next:</b> Resume Stripe setup and complete the remaining steps.";
+}
+if (connectBtn) {
+connectBtn.textContent = "Resume Stripe setup";
+connectBtn.href = "connect-stripe.html";
+}
 
-    setCardEnabled(supportCard, false);
-    setCardEnabled(campaignsCard, false);
-    return;
-  }
+setCardEnabled(supportCard, false);
+setCardEnabled(campaignsCard, false);
+return;
+}
 
-  if (status === "pending_review") {
-    if (title) title.textContent = "Stripe connected — review in progress";
-    if (text) {
-      text.textContent =
-        "Stripe has your information, but the account may still need review or additional details before support can go live.";
-    }
-    if (note) {
-      note.innerHTML =
-        "<b>Next:</b> Check Stripe status and complete any remaining verification steps if requested.";
-    }
-    if (connectBtn) {
-      connectBtn.textContent = "Check Stripe status";
-      connectBtn.href = "connect-stripe.html";
-    }
+if (status === "pending_review") {
+if (title) title.textContent = "Stripe connected — review in progress";
+if (text) {
+text.textContent =
+"Stripe has your information, but the account may still need review or additional details before support can go live.";
+}
+if (note) {
+note.innerHTML =
+"<b>Next:</b> Check Stripe status and complete any remaining verification steps if requested.";
+}
+if (connectBtn) {
+connectBtn.textContent = "Check Stripe status";
+connectBtn.href = "connect-stripe.html";
+}
 
-    setCardEnabled(supportCard, false);
-    setCardEnabled(campaignsCard, false);
-    return;
-  }
+setCardEnabled(supportCard, false);
+setCardEnabled(campaignsCard, false);
+return;
+}
 
-  if (status === "connected") {
-    if (attentionCard) attentionCard.style.display = "none";
-    if (readyCard) readyCard.style.display = "block";
+if (status === "connected") {
+if (attentionCard) attentionCard.style.display = "none";
+if (readyCard) readyCard.style.display = "block";
 
-    setCardEnabled(supportCard, true);
-    setCardEnabled(campaignsCard, false);
-  }
+setCardEnabled(supportCard, true);
+setCardEnabled(campaignsCard, false);
+return;
+}
 }
 
 function setupFinancialPrototypeControls() {
-  const notConnectedBtn = document.getElementById("simulateStripeNotConnected");
-  const connectedBtn = document.getElementById("simulateStripeConnected");
-  const restrictedBtn = document.getElementById("simulateStripeRestricted");
+const notConnectedBtn = document.getElementById("simulateStripeNotConnected");
+const connectedBtn = document.getElementById("simulateStripeConnected");
+const restrictedBtn = document.getElementById("simulateStripeRestricted");
 
-  if (!notConnectedBtn && !connectedBtn && !restrictedBtn) return;
+if (!notConnectedBtn && !connectedBtn && !restrictedBtn) return;
 
-  const attentionCard = document.getElementById("financialAttentionCard");
-  const readyCard = document.getElementById("financialReadyCard");
-  const supportCard = document.getElementById("communitySupportCard");
-  const campaignsCard = document.getElementById("campaignsCard");
-  const attentionTitle = document.getElementById("financialAttentionTitle");
-  const attentionText = document.getElementById("financialAttentionText");
-  const attentionNote = document.getElementById("financialAttentionNote");
-  const connectBtn = document.getElementById("connectStripeBtn");
+const BUTTONS = [
+{ el: notConnectedBtn, state: "not_connected", label: "Not connected" },
+{ el: connectedBtn, state: "connected", label: "Connected" },
+{ el: restrictedBtn, state: "incomplete", label: "Needs more info" },
+];
 
-  function setLocked(locked) {
-    if (supportCard) supportCard.style.opacity = locked ? ".65" : "1";
-    if (campaignsCard) campaignsCard.style.opacity = locked ? ".65" : "1";
-  }
+function renderPrototypeControls() {
+const currentState =
+storage.get("commonshub_stripe_status") || "not_connected";
 
-  function showNotConnected() {
-    if (attentionCard) attentionCard.style.display = "block";
-    if (readyCard) readyCard.style.display = "none";
-    if (attentionTitle) attentionTitle.textContent = "Connect Stripe to enable community support";
-    if (attentionText) {
-      attentionText.textContent = "Payments go directly to your Stripe account. Once connected, you can configure monthly, yearly, and one-time support options.";
-    }
-    if (attentionNote) {
-      attentionNote.innerHTML = "<b>Next:</b> Connect Stripe first, then configure how your community can support your work.";
-    }
-    if (connectBtn) {
-      connectBtn.textContent = "Connect Stripe";
-      connectBtn.setAttribute("href", "connect-stripe.html");
-    }
-    setLocked(true);
-  }
+BUTTONS.forEach(({ el, state, label }) => {
+if (!el) return;
 
-  function showConnected() {
-    if (attentionCard) attentionCard.style.display = "none";
-    if (readyCard) readyCard.style.display = "block";
-    setLocked(false);
-  }
+const isActive = currentState === state;
 
-  function showRestricted() {
-    if (attentionCard) attentionCard.style.display = "block";
-    if (readyCard) readyCard.style.display = "none";
-    if (attentionTitle) attentionTitle.textContent = "Stripe connected — more information required";
-    if (attentionText) {
-      attentionText.textContent = "Your Stripe account has been created, but Stripe still needs additional information before payouts and support settings are fully available.";
-    }
-    if (attentionNote) {
-      attentionNote.innerHTML = "<b>Next:</b> Return to Stripe and complete the remaining requirements.";
-    }
-    if (connectBtn) {
-      connectBtn.textContent = "Resume Stripe setup";
-      connectBtn.setAttribute("href", "connect-stripe.html");
-    }
-    setLocked(true);
-  }
+el.textContent = isActive ? `Current: ${label}` : `Simulate ${label.toLowerCase()}`;
 
-  notConnectedBtn?.addEventListener("click", (e) => {
-    e.preventDefault();
-    showNotConnected();
-  });
+el.classList.remove("primary", "secondary");
+el.classList.add(isActive ? "primary" : "secondary");
 
-  connectedBtn?.addEventListener("click", (e) => {
-    e.preventDefault();
-    showConnected();
-  });
+el.style.flex = "1";
+});
+}
 
-  restrictedBtn?.addEventListener("click", (e) => {
-    e.preventDefault();
-    showRestricted();
-  });
+function setStripeState(nextState) {
+storage.set("commonshub_stripe_status", nextState);
+setupFinancialState();
+renderPrototypeControls();
+}
+
+notConnectedBtn?.addEventListener("click", (e) => {
+e.preventDefault();
+setStripeState("not_connected");
+});
+
+connectedBtn?.addEventListener("click", (e) => {
+e.preventDefault();
+setStripeState("connected");
+});
+
+restrictedBtn?.addEventListener("click", (e) => {
+e.preventDefault();
+setStripeState("incomplete");
+});
+
+renderPrototypeControls();
 }
 
 // ----------------------------
