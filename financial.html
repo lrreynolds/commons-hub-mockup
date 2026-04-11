@@ -93,42 +93,7 @@
 
           <div class="list" style="margin-top:12px; gap:12px;">
 
-            <div class="item">
-              <div style="display:flex; justify-content:space-between; align-items:flex-start; gap:12px; flex-wrap:wrap;">
-                <div>
-                  <b>Join access policy</b>
-                  <div class="muted">
-                    Decide whether invites are issued freely or only after a contribution is made.
-                  </div>
-                </div>
-                <span id="joinPolicyBadge" class="chip">Open access</span>
-              </div>
-
-              <div class="note" style="margin-top:10px;">
-                <b>Default:</b> Invites can be issued without requiring payment.
-              </div>
-
-              <div id="joinPolicyWarning" class="note" style="display:none; margin-top:12px;">
-                <b>Important:</b> Enabling this means new invites are only issued after a qualifying contribution is completed.
-                This changes the access model of your community and should only be used intentionally.
-              </div>
-
-              <div class="footerBar" style="margin-top:12px; gap:12px; flex-wrap:wrap;">
-                <a id="enableContributionGateBtn" class="secondary" href="#">
-                  Enable contribution-gated invites
-                </a>
-                <a id="cancelContributionGateBtn" class="secondary" href="#" style="display:none;">
-                  Cancel
-                </a>
-                <a id="confirmContributionGateBtn" class="primary" href="#" style="display:none;">
-                  Confirm and enable
-                </a>
-                <a id="disableContributionGateBtn" class="secondary" href="#" style="display:none;">
-                  Turn off contribution-gated invites
-                </a>
-              </div>
-            </div>
-
+            <!-- Monthly -->
             <div class="item">
               <div style="display:flex; justify-content:space-between; align-items:flex-start; gap:12px; flex-wrap:wrap;">
                 <div>
@@ -148,6 +113,7 @@
               </div>
             </div>
 
+            <!-- Yearly -->
             <div class="item">
               <div style="display:flex; justify-content:space-between; align-items:flex-start; gap:12px; flex-wrap:wrap;">
                 <div>
@@ -167,6 +133,7 @@
               </div>
             </div>
 
+            <!-- One-time -->
             <div class="item">
               <div style="display:flex; justify-content:space-between; align-items:flex-start; gap:12px; flex-wrap:wrap;">
                 <div>
@@ -186,65 +153,127 @@
               </div>
             </div>
 
-            <div class="item" id="campaignsSetupBlock">
+            <!-- Campaigns -->
+            <div class="item">
               <div style="display:flex; justify-content:space-between; align-items:flex-start; gap:12px; flex-wrap:wrap;">
                 <div>
                   <b>Campaigns</b>
-                  <div class="muted">
-                    Create focused fundraising campaigns for projects, goals, or special initiatives.
-                  </div>
+                  <div class="muted">Create focused fundraising campaigns for projects, goals, or special initiatives.</div>
                 </div>
-                <span class="chip" style="opacity:.75;">Coming later</span>
+                <label style="margin:0;">
+                  <input id="campaignSupportToggle" type="checkbox">
+                </label>
               </div>
 
-              <div class="note" style="margin-top:12px;">
-                Campaigns are not part of the first release of community support, but this is where they will be configured.
+              <div id="campaignFields" style="display:none; margin-top:10px;">
+                <div class="field">
+                  <label>Campaign title</label>
+                  <input id="campaignTitle" type="text" placeholder="Help fund our first year" />
+                </div>
+
+                <div class="field" style="margin-top:10px;">
+                  <label>Description <span class="muted">(optional)</span></label>
+                  <textarea id="campaignDescription" rows="4" placeholder="Explain what this campaign supports and why it matters."></textarea>
+                </div>
+
+                <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:10px;">
+                  <div class="field">
+                    <label>Goal amount <span class="muted">(optional)</span></label>
+                    <input id="campaignGoalAmount" type="text" placeholder="$500" />
+                  </div>
+
+                  <div class="field">
+                    <label>End date <span class="muted">(optional)</span></label>
+                    <input id="campaignEndDate" type="date" />
+                  </div>
+                </div>
               </div>
             </div>
 
-
-            <div id="supportHubActions" style="display:none;">
-              <div class="note" style="margin-top:12px;">
-                <b>Live on hub page:</b> At least one support option is enabled, so you can review how community support will appear publicly.
+            <!-- Join access policy -->
+            <div class="item">
+              <div style="display:flex; justify-content:space-between; align-items:flex-start; gap:12px; flex-wrap:wrap;">
+                <div>
+                  <b>Join access policy</b>
+                  <div class="muted">
+                    Decide whether invites are issued freely or only after a qualifying contribution is completed.
+                  </div>
+                </div>
+                <span id="joinPolicyBadge" class="chip">Open access</span>
               </div>
 
-              <div class="footerBar" style="margin-top:12px;">
-                <a class="secondary" href="https://securitybrief.jasonjaysmart.com/hub" target="_blank" rel="noopener">
-                  View hub page
+              <div id="joinPolicyDefaultNote" class="note" style="margin-top:10px;">
+                <b>Default:</b> Invites can be issued without requiring payment.
+              </div>
+
+              <div id="joinPolicyDependencyNote" class="note" style="display:none; margin-top:10px;">
+                Turn on at least one contribution option above before enabling contribution-gated invites.
+              </div>
+
+              <div id="joinPolicyWarning" class="note" style="display:none; margin-top:12px;">
+                <b>Important:</b> New invites will only be issued after a qualifying contribution is completed through any enabled support option.
+              </div>
+
+              <div class="footerBar" style="margin-top:12px; gap:12px; flex-wrap:wrap;">
+                <a id="enableContributionGateBtn" class="secondary" href="#">
+                  Enable contribution-gated invites
+                </a>
+                <a id="cancelContributionGateBtn" class="secondary" href="#" style="display:none;">
+                  Cancel
+                </a>
+                <a id="confirmContributionGateBtn" class="primary" href="#" style="display:none;">
+                  Confirm and enable
+                </a>
+                <a id="disableContributionGateBtn" class="secondary" href="#" style="display:none;">
+                  Turn off contribution-gated invites
                 </a>
               </div>
             </div>
 
-            <div id="supportLockedNote" class="note" style="margin-top:12px;">
-              Connect Stripe to unlock these settings.
-            </div>
-          </section>
+          </div>
 
-          <section class="card" style="margin-top:14px;">
-            <div class="overviewHeader">
-              <div>
-                <h3>Prototype controls</h3>
-                <div class="muted">Use these to simulate Stripe states without opening the console.</div>
-              </div>
+          <div id="supportHubActions" style="display:none;">
+            <div class="note" style="margin-top:12px;">
+              <b>Live on hub page:</b> At least one support option is enabled, so you can review how community support will appear publicly.
             </div>
 
-            <div class="footerBar" style="margin-top:12px; gap:12px;">
-              <a class="secondary" href="#" id="simulateStripeNotConnected" style="flex:1;">
-                Simulate not connected
-              </a>
-              <a class="secondary" href="#" id="simulateStripeConnected" style="flex:1;">
-                Simulate connected
-              </a>
-              <a class="secondary" href="#" id="simulateStripeRestricted" style="flex:1;">
-                Simulate needs more info
+            <div class="footerBar" style="margin-top:12px;">
+              <a class="secondary" href="https://securitybrief.jasonjaysmart.com/hub" target="_blank" rel="noopener">
+                View hub page
               </a>
             </div>
-          </section>
+          </div>
 
-        </div>
+          <div id="supportLockedNote" class="note" style="margin-top:12px;">
+            Connect Stripe to unlock these settings.
+          </div>
+        </section>
+
+        <section class="card" style="margin-top:14px;">
+          <div class="overviewHeader">
+            <div>
+              <h3>Prototype controls</h3>
+              <div class="muted">Use these to simulate Stripe states without opening the console.</div>
+            </div>
+          </div>
+
+          <div class="footerBar" style="margin-top:12px; gap:12px;">
+            <a class="secondary" href="#" id="simulateStripeNotConnected" style="flex:1;">
+              Simulate not connected
+            </a>
+            <a class="secondary" href="#" id="simulateStripeConnected" style="flex:1;">
+              Simulate connected
+            </a>
+            <a class="secondary" href="#" id="simulateStripeRestricted" style="flex:1;">
+              Simulate needs more info
+            </a>
+          </div>
+        </section>
+
       </div>
-    </main>
-  </div>
-  <script src="assets/app.js"></script>
+    </div>
+  </main>
+</div>
+<script src="assets/app.js"></script>
 </body>
 </html>
