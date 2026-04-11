@@ -1022,64 +1022,62 @@ return;
 }
 
 function setupFinancialPrototypeControls() {
-const notConnectedBtn = document.getElementById("simulateStripeNotConnected");
-const connectedBtn = document.getElementById("simulateStripeConnected");
-const restrictedBtn = document.getElementById("simulateStripeRestricted");
+  const notConnectedBtn = document.getElementById("simulateStripeNotConnected");
+  const connectedBtn = document.getElementById("simulateStripeConnected");
+  const restrictedBtn = document.getElementById("simulateStripeRestricted");
 
-if (!notConnectedBtn && !connectedBtn && !restrictedBtn) return;
+  if (!notConnectedBtn && !connectedBtn && !restrictedBtn) return;
 
-const BUTTONS = [
-{ el: notConnectedBtn, state: "not_connected", label: "Not connected" },
-{ el: connectedBtn, state: "connected", label: "Connected" },
-{ el: restrictedBtn, state: "incomplete", label: "Needs more info" },
-];
+  const BUTTONS = [
+    { el: notConnectedBtn, state: "not_connected", label: "Not connected" },
+    { el: connectedBtn, state: "connected", label: "Connected" },
+    { el: restrictedBtn, state: "incomplete", label: "Needs more info" },
+  ];
 
-function renderPrototypeControls() {
-const currentState =
-storage.get("commonshub_stripe_status") || "not_connected";
+  function renderPrototypeControls() {
+    const currentState =
+      storage.get("commonshub_stripe_status") || "not_connected";
 
-BUTTONS.forEach(({ el, state, label }) => {
-if (!el) return;
+    BUTTONS.forEach(({ el, state, label }) => {
+      if (!el) return;
 
-const isActive = currentState === state;
+      const isActive = currentState === state;
 
-el.textContent = isActive ? `Current: ${label}` : `Simulate ${label.toLowerCase()}`;
+      el.textContent = isActive
+        ? `Current: ${label}`
+        : `Simulate ${label.toLowerCase()}`;
 
-el.classList.remove("primary", "secondary");
-el.classList.add(isActive ? "primary" : "secondary");
+      el.classList.remove("primary", "secondary");
+      el.classList.add(isActive ? "primary" : "secondary");
+      el.style.flex = "1";
+    });
+  }
 
-el.style.flex = "1";
-});
-}
+  notConnectedBtn?.addEventListener("click", (e) => {
+    e.preventDefault();
+    storage.set("commonshub_stripe_status", "not_connected");
+    setupFinancialState();
+    setupCommunitySupportControls();
+    renderPrototypeControls();
+  });
 
-function setStripeState(nextState) {
-storage.set("commonshub_stripe_status", nextState);
-setupFinancialState();
-renderPrototypeControls();
-}
+  connectedBtn?.addEventListener("click", (e) => {
+    e.preventDefault();
+    storage.set("commonshub_stripe_status", "connected");
+    setupFinancialState();
+    setupCommunitySupportControls();
+    renderPrototypeControls();
+  });
 
-notConnectedBtn?.addEventListener("click", (e) => {
-e.preventDefault();
-storage.set("commonshub_stripe_status", "not_connected");
-showNotConnected();
-setupCommunitySupportControls();
-});
+  restrictedBtn?.addEventListener("click", (e) => {
+    e.preventDefault();
+    storage.set("commonshub_stripe_status", "incomplete");
+    setupFinancialState();
+    setupCommunitySupportControls();
+    renderPrototypeControls();
+  });
 
-connectedBtn?.addEventListener("click", (e) => {
-e.preventDefault();
-storage.set("commonshub_stripe_status", "connected");
-showConnected();
-setupCommunitySupportControls();
-});
-
-restrictedBtn?.addEventListener("click", (e) => {
-e.preventDefault();
-storage.set("commonshub_stripe_status", "incomplete");
-showRestricted();
-setupCommunitySupportControls();
-});
-
-renderPrototypeControls();
+  renderPrototypeControls();
 }
 
 function setupCommunitySupportControls() {
@@ -1187,4 +1185,5 @@ setupLaunchSteps();
 setupContinueSetup();
 setupFinancialState();
 setupFinancialPrototypeControls();
+setupCommunitySupportControls();
 })();
