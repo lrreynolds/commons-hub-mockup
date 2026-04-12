@@ -1361,6 +1361,39 @@ function setupServerThumbnailUpload() {
   }
 }
 
+function setupFaviconAndAppIconUploads() {
+  const favInput = document.getElementById('faviconUpload');
+  const favPreview = document.getElementById('faviconPreview');
+  if (favInput && favPreview) {
+    favInput.addEventListener('change', () => {
+      const file = favInput.files && favInput.files[0];
+      if (!file) return;
+      const url = URL.createObjectURL(file);
+      favPreview.textContent = '';
+      favPreview.style.backgroundImage = `url("${url}")`;
+      favPreview.style.backgroundSize = 'cover';
+      favPreview.style.backgroundPosition = 'center';
+      favPreview.style.backgroundRepeat = 'no-repeat';
+    });
+  }
+
+  const appInput = document.getElementById('appIconUpload');
+  const appPreview = document.getElementById('appIconPreview');
+  if (appInput && appPreview) {
+    appInput.addEventListener('change', () => {
+      const file = appInput.files && appInput.files[0];
+      if (!file) return;
+      const url = URL.createObjectURL(file);
+      appPreview.textContent = '';
+      appPreview.style.backgroundImage = `url("${url}")`;
+      appPreview.style.backgroundSize = 'cover';
+      appPreview.style.backgroundPosition = 'center';
+      appPreview.style.backgroundRepeat = 'no-repeat';
+      setupFaviconAndAppIconUploads();
+    });
+  }
+}
+
 // ----------------------------
 // Init
 // ----------------------------
