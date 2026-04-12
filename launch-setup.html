@@ -441,137 +441,162 @@
     </div>
 
   </div>
-
   <div class="stepPasteGroup large">
     <div class="fieldHeader">
-      <label>Server thumbnail guidance</label>
+      <label>Server thumbnail</label>
     </div>
 
     <div class="card" style="padding:12px 14px;">
       <div><b>Guidance</b></div>
       <div class="muted" style="margin-top:4px;">
-        Use the main community banner artwork as the base. Compose it into a Mastodon server thumbnail that includes the header line at the top and a clear CTA at the bottom so the preview feels alive and recognizable.
+        Use the main community banner artwork (1600×500) or upload another banner.  We will compose the server thumbnail from this banner automatically.
       </div>
 
-      <div style="margin-top:10px;"><b>Recommended source banner</b></div>
-      <div class="muted" style="margin-top:4px;">1600x500 png or jpg</div>
+      <div style="margin-top:10px;"><b>Recommended size</b></div>
+      <div class="muted" style="margin-top:4px;">1600×500 (banner), composed thumbnail uses 1600×800 ratio</div>
 
-      <div style="margin-top:10px;"><b>Recommended composed thumbnail</b></div>
-      <div class="muted" style="margin-top:4px;">1600x800 png or jpg</div>
-
-      <div style="margin-top:10px;"><b>Use this header line</b></div>
-      <div class="muted" style="margin-top:4px;">Real-Time Security Briefings</div>
+      <div style="margin-top:10px;"><b>Recommended formats</b></div>
+      <div class="muted" style="margin-top:4px;">png, jpg</div>
 
       <div style="margin-top:10px;"><b>Notes</b></div>
       <div class="muted" style="margin-top:4px;">
-        Keep the top area readable for the header line and reserve a bottom band for a short CTA. This image should visually connect the server identity with the owner profile header.
+        If you leave this blank, the header banner will be used.  You can upload a different banner below and preview the composed thumbnail.
+      </div>
+
+      <!-- Preview and upload controls -->
+      <div style="margin-top:14px;">
+        <div id="serverThumbnailPreview" style="
+        width:100%;
+        height:150px;
+        border-radius:14px;
+        border:1px solid var(--line);
+        background:#eef3ef;
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        color:var(--muted);
+        font-size:12px;
+        overflow:hidden;
+        ">
+        Thumbnail preview
+      </div>
+
+      <div style="margin-top:10px; display:flex; gap:10px; align-items:center; flex-wrap:wrap;">
+        <label class="secondary" style="width:auto; cursor:pointer;">
+          Upload banner
+          <input id="serverBannerUpload" type="file" accept="image/*" hidden>
+        </label>
+        <span class="muted">1600×500 banner (png, jpg)</span>
       </div>
     </div>
   </div>
+</div>
 
-  <div class="stepPasteGroup large">
-    <div class="fieldHeader">
-      <label>Favicon guidance</label>
-    </div>
+</div>
 
-    <div class="card" style="padding:12px 14px;">
-      <div><b>Guidance</b></div>
-      <div class="muted" style="margin-top:4px;">
-        Use a single-color radar pulse mark centered on a dark background for strong tab visibility.
-      </div>
-
-      <div style="margin-top:10px;"><b>Recommended size</b></div>
-      <div class="muted" style="margin-top:4px;">512x512</div>
-
-      <div style="margin-top:10px;"><b>Recommended formats</b></div>
-      <div class="muted" style="margin-top:4px;">png</div>
-    </div>
+<div class="stepPasteGroup large">
+  <div class="fieldHeader">
+    <label>Favicon guidance</label>
   </div>
 
-  <div class="stepPasteGroup large">
-    <div class="fieldHeader">
-      <label>App icon guidance</label>
+  <div class="card" style="padding:12px 14px;">
+    <div><b>Guidance</b></div>
+    <div class="muted" style="margin-top:4px;">
+      Use a single-color radar pulse mark centered on a dark background for strong tab visibility.
     </div>
 
-    <div class="card" style="padding:12px 14px;">
-      <div><b>Guidance</b></div>
-      <div class="muted" style="margin-top:4px;">
-        Use the same radar signal symbol centered on a dark field for mobile install clarity and strong icon contrast.
-      </div>
+    <div style="margin-top:10px;"><b>Recommended size</b></div>
+    <div class="muted" style="margin-top:4px;">512x512</div>
 
-      <div style="margin-top:10px;"><b>Recommended size</b></div>
-      <div class="muted" style="margin-top:4px;">1024x1024</div>
+    <div style="margin-top:10px;"><b>Recommended formats</b></div>
+    <div class="muted" style="margin-top:4px;">png</div>
+  </div>
+</div>
 
-      <div style="margin-top:10px;"><b>Recommended formats</b></div>
-      <div class="muted" style="margin-top:4px;">png</div>
-    </div>
+<div class="stepPasteGroup large">
+  <div class="fieldHeader">
+    <label>App icon guidance</label>
   </div>
 
-
-  <div class="stepPasteGroup large">
-    <div class="fieldHeader">
-      <label>Privacy policy suggestion</label>
-      <button class="secondary copyBtn" type="button">Copy text</button>
+  <div class="card" style="padding:12px 14px;">
+    <div><b>Guidance</b></div>
+    <div class="muted" style="margin-top:4px;">
+      Use the same radar signal symbol centered on a dark field for mobile install clarity and strong icon contrast.
     </div>
 
-    <div class="stepTextWrap">
-      <textarea readonly>Privacy Policy
+    <div style="margin-top:10px;"><b>Recommended size</b></div>
+    <div class="muted" style="margin-top:4px;">1024x1024</div>
 
-        This community is operated by Commonshub in partnership with The Security Brief team.
+    <div style="margin-top:10px;"><b>Recommended formats</b></div>
+    <div class="muted" style="margin-top:4px;">png</div>
+  </div>
+</div>
 
-        We are committed to minimal data collection and transparent operation.
 
-        1. What We Collect
-        When you create an account, we store:
-        - The information you provide (username, email, profile details)
-        - Your posts and media
-        - Basic technical logs necessary to operate the service
-
-        2. How Your Data Is Used
-        Your data is used only to:
-        - Provide and maintain the service
-        - Enable federation with other servers
-        - Support moderation and community safety
-        - Prevent abuse and spam
-
-        We do not sell your data.
-        We do not run advertising.
-        We do not use behavioral tracking.
-
-        3. Public Content
-        Public posts are publicly accessible and may be copied, indexed, or shared by other servers in the Fediverse.
-
-        4. Media Storage & Backups
-        Media and posts may be stored and backed up on infrastructure used to operate this service.
-
-        5. Federation
-        Because this is a federated service:
-        - Content may be delivered to other servers
-        - Content from other servers may appear here
-
-        Servers that present safety or policy risks may be blocked.
-
-        6. Data Retention
-        If you delete your account, your profile data will be removed.
-        Some content may remain in backups or on federated servers.
-
-        7. Cookies & Analytics
-        Only essential technical functions are used to keep the service running.
-        No advertising or cross-site tracking is used.
-
-        8. Service Hosting
-        This service is hosted in:
-        [HOSTING COUNTRY]
-
-        9. Contact
-        For privacy questions or data requests, contact:
-      jason@jaysonjaysmart.com</textarea>
-    </div>
+<div class="stepPasteGroup large">
+  <div class="fieldHeader">
+    <label>Privacy policy suggestion</label>
+    <button class="secondary copyBtn" type="button">Copy text</button>
   </div>
 
-  <div class="setupActions">
-    <button class="primary doneBtn" type="button">Done</button>
+  <div class="stepTextWrap">
+    <textarea readonly>Privacy Policy
+
+      This community is operated by Commonshub in partnership with The Security Brief team.
+
+      We are committed to minimal data collection and transparent operation.
+
+      1. What We Collect
+      When you create an account, we store:
+      - The information you provide (username, email, profile details)
+      - Your posts and media
+      - Basic technical logs necessary to operate the service
+
+      2. How Your Data Is Used
+      Your data is used only to:
+      - Provide and maintain the service
+      - Enable federation with other servers
+      - Support moderation and community safety
+      - Prevent abuse and spam
+
+      We do not sell your data.
+      We do not run advertising.
+      We do not use behavioral tracking.
+
+      3. Public Content
+      Public posts are publicly accessible and may be copied, indexed, or shared by other servers in the Fediverse.
+
+      4. Media Storage & Backups
+      Media and posts may be stored and backed up on infrastructure used to operate this service.
+
+      5. Federation
+      Because this is a federated service:
+      - Content may be delivered to other servers
+      - Content from other servers may appear here
+
+      Servers that present safety or policy risks may be blocked.
+
+      6. Data Retention
+      If you delete your account, your profile data will be removed.
+      Some content may remain in backups or on federated servers.
+
+      7. Cookies & Analytics
+      Only essential technical functions are used to keep the service running.
+      No advertising or cross-site tracking is used.
+
+      8. Service Hosting
+      This service is hosted in:
+      [HOSTING COUNTRY]
+
+      9. Contact
+      For privacy questions or data requests, contact:
+    jason@jaysonjaysmart.com</textarea>
   </div>
+</div>
+
+<div class="setupActions">
+  <button class="primary doneBtn" type="button">Done</button>
+</div>
 </div>
 
 
