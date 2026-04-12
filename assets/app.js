@@ -1215,55 +1215,67 @@ function setupContributionGateControl() {
     return storage.get(KEY) === "1";
   }
 
-  function render(confirming = false) {
-    const enabled = isEnabled();
-    const eligible = hasQualifyingPath();
+function render(confirming = false) {
+  const enabled = isEnabled();
+  const eligible = hasQualifyingPath();
 
-    badge.textContent = enabled ? "Contribution required" : "Open access";
+  if (enabled) {
+    badge.textContent = "Invite after contribution";
+    badge.style.display = "inline-flex";
 
-    defaultNote.style.display = enabled ? "none" : "block";
-    dependencyNote.style.display = !enabled && !eligible ? "block" : "none";
+    defaultNote.style.display = "none";
+    dependencyNote.style.display = "none";
+    warning.style.display = "block";
 
-    if (enabled) {
-      warning.style.display = "none";
-      enableBtn.style.display = "none";
-      cancelBtn.style.display = "none";
-      confirmBtn.style.display = "none";
-      disableBtn.style.display = "inline-flex";
-      return;
-    }
-
-    if (!eligible) {
-      warning.style.display = "none";
-      enableBtn.style.display = "inline-flex";
-      enableBtn.classList.add("disabled");
-      enableBtn.style.pointerEvents = "none";
-      enableBtn.style.opacity = ".45";
-
-      cancelBtn.style.display = "none";
-      confirmBtn.style.display = "none";
-      disableBtn.style.display = "none";
-      return;
-    }
-
-    enableBtn.classList.remove("disabled");
-    enableBtn.style.pointerEvents = "auto";
-    enableBtn.style.opacity = "1";
-
-    if (confirming) {
-      warning.style.display = "block";
-      enableBtn.style.display = "none";
-      cancelBtn.style.display = "inline-flex";
-      confirmBtn.style.display = "inline-flex";
-      disableBtn.style.display = "none";
-    } else {
-      warning.style.display = "none";
-      enableBtn.style.display = "inline-flex";
-      cancelBtn.style.display = "none";
-      confirmBtn.style.display = "none";
-      disableBtn.style.display = "none";
-    }
+    enableBtn.style.display = "none";
+    cancelBtn.style.display = "none";
+    confirmBtn.style.display = "none";
+    disableBtn.style.display = "inline-flex";
+    return;
   }
+
+  badge.textContent = "Invite after contribution";
+  badge.style.display = "none";
+
+  defaultNote.style.display = "block";
+  dependencyNote.style.display = !eligible ? "block" : "none";
+
+  if (!eligible) {
+    warning.style.display = "none";
+
+    enableBtn.style.display = "inline-flex";
+    enableBtn.classList.add("disabled");
+    enableBtn.style.pointerEvents = "none";
+    enableBtn.style.opacity = ".45";
+
+    cancelBtn.style.display = "none";
+    confirmBtn.style.display = "none";
+    disableBtn.style.display = "none";
+    return;
+  }
+
+  enableBtn.classList.remove("disabled");
+  enableBtn.style.pointerEvents = "auto";
+  enableBtn.style.opacity = "1";
+
+  if (confirming) {
+    defaultNote.style.display = "none";
+    dependencyNote.style.display = "none";
+    warning.style.display = "block";
+
+    enableBtn.style.display = "none";
+    cancelBtn.style.display = "inline-flex";
+    confirmBtn.style.display = "inline-flex";
+    disableBtn.style.display = "none";
+  } else {
+    warning.style.display = "none";
+
+    enableBtn.style.display = "inline-flex";
+    cancelBtn.style.display = "none";
+    confirmBtn.style.display = "none";
+    disableBtn.style.display = "none";
+  }
+}
 
   enableBtn.addEventListener("click", (e) => {
     e.preventDefault();
