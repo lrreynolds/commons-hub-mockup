@@ -1,0 +1,488 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+
+  <title>Broad Reach. Loyal Supporters. — Commonshub</title>
+
+  <meta name="description"
+    content="Use publishing platforms for reach. Add Commonshub for better conversation, stronger community, and direct support.">
+
+  <meta property="og:site_name" content="Commonshub">
+  <meta property="og:title" content="Broad Reach. Loyal Supporters.">
+  <meta property="og:description" content="Use publishing platforms for reach. Add Commonshub for better conversation, stronger community, and direct support.">
+  <meta property="og:type" content="website">
+  <meta name="theme-color" content="#1f6f4a">
+
+  <style>
+    :root{
+      --bg:#f4f7f5;
+      --card:#ffffff;
+      --text:#102018;
+      --muted:#50665a;
+      --line:#d8e1db;
+      --btn:#1f6f4a;
+      --btnText:#ffffff;
+      --band:#eef3ef;
+      --shadow:0 10px 30px rgba(16,32,24,.06);
+      --radius:22px;
+    }
+
+    *{ box-sizing:border-box; }
+
+    body{
+      margin:0;
+      font-family:system-ui,-apple-system,Segoe UI,sans-serif;
+      background:var(--bg);
+      color:var(--text);
+      line-height:1.55;
+    }
+
+    a{ color:inherit; }
+
+    .wrap{
+      max-width:980px;
+      margin:0 auto;
+      padding:0 24px;
+    }
+
+    .topbar{
+      position:sticky;
+      top:0;
+      z-index:20;
+      backdrop-filter:blur(8px);
+      background:rgba(244,247,245,.92);
+      border-bottom:1px solid rgba(16,32,24,.08);
+    }
+
+    .topbarInner{
+      min-height:68px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:18px;
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      text-decoration:none;
+      font-weight:900;
+      letter-spacing:-0.02em;
+    }
+
+    .brand img{
+      width:34px;
+      height:34px;
+      display:block;
+    }
+
+    .nav{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      flex-wrap:wrap;
+    }
+
+    .navLink{
+      text-decoration:none;
+      color:var(--muted);
+      font-weight:700;
+      font-size:14px;
+      padding:8px 10px;
+      border-radius:12px;
+    }
+
+    .navLink:hover{
+      background:rgba(31,111,74,.06);
+      color:var(--btn);
+    }
+
+    .btn{
+      display:inline-block;
+      padding:14px 22px;
+      border-radius:16px;
+      font-weight:900;
+      text-decoration:none;
+      font-size:16px;
+      border:1px solid transparent;
+    }
+
+    .primary{
+      background:var(--btn);
+      color:var(--btnText);
+    }
+
+    .secondary{
+      border-color:rgba(31,111,74,.3);
+      color:var(--btn);
+      background:transparent;
+    }
+
+    .heroTop{
+      position:relative;
+      overflow:hidden;
+      padding:26px 0 18px;
+    }
+
+    .heroField{
+      position:absolute;
+      inset:-60px -8% auto -8%;
+      height:300px;
+      z-index:0;
+      pointer-events:none;
+      opacity:.58;
+      background:
+        radial-gradient(circle at 49% 11%, rgba(31,111,74,.13), transparent 16%),
+        radial-gradient(circle at 43% 21%, rgba(31,111,74,.10), transparent 20%),
+        radial-gradient(circle at 58% 23%, rgba(31,111,74,.09), transparent 19%),
+        radial-gradient(circle at 47% 34%, rgba(31,111,74,.06), transparent 27%),
+        radial-gradient(circle at 56% 37%, rgba(31,111,74,.05), transparent 25%);
+      filter:blur(20px);
+      transform:translateY(-8px);
+    }
+
+    .heroIntro{
+      position:relative;
+      z-index:1;
+      text-align:center;
+      padding:26px 0 8px;
+    }
+
+    .heroMark{
+      display:flex;
+      justify-content:center;
+      margin:0 auto 18px;
+    }
+
+    .heroMark img{
+      width:72px;
+      height:72px;
+      display:block;
+    }
+
+    .eyebrow{
+      display:inline-block;
+      margin:0 0 12px;
+      font-size:13px;
+      font-weight:800;
+      letter-spacing:.05em;
+      text-transform:uppercase;
+      color:var(--btn);
+    }
+
+    h1{
+      font-size:clamp(38px,5vw,58px);
+      line-height:1.02;
+      letter-spacing:-0.03em;
+      margin:0 0 14px;
+      font-weight:900;
+    }
+
+    .lede{
+      font-size:21px;
+      max-width:760px;
+      margin:0 auto 18px;
+      color:var(--muted);
+    }
+
+    .heroSupport{
+      max-width:760px;
+      margin:0 auto;
+      font-size:18px;
+      color:var(--muted);
+    }
+
+    .powerLine{
+      margin:28px auto 12px;
+      max-width:760px;
+      text-align:center;
+      font-size:20px;
+      line-height:1.35;
+      font-weight:850;
+      letter-spacing:-0.01em;
+      color:var(--text);
+    }
+
+    .ctaRow{
+      display:flex;
+      gap:14px;
+      justify-content:center;
+      flex-wrap:wrap;
+      margin-top:28px;
+    }
+
+    .section{
+      margin-top:56px;
+    }
+
+    h2{
+      font-size:clamp(28px,3vw,36px);
+      line-height:1.1;
+      margin:0 0 14px;
+      font-weight:850;
+      letter-spacing:-0.02em;
+      text-align:center;
+    }
+
+    .sectionIntro{
+      max-width:760px;
+      margin:0 auto 22px;
+      font-size:18px;
+      color:var(--muted);
+      text-align:center;
+    }
+
+    .band{
+      background:var(--band);
+      border:1px solid var(--line);
+      border-radius:28px;
+      box-shadow:var(--shadow);
+      padding:28px 24px;
+    }
+
+    .diagramBlock + .diagramBlock{
+      margin-top:18px;
+    }
+
+    .diagramCard{
+      background:var(--card);
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      padding:20px;
+    }
+
+    .diagramCard h3{
+      margin:0 0 8px;
+      font-size:24px;
+      line-height:1.2;
+      letter-spacing:-0.02em;
+      font-weight:850;
+    }
+
+    .diagramCard p{
+      margin:0 0 14px;
+      font-size:16px;
+      color:var(--muted);
+    }
+
+    .svgWrap{
+      background:#f0f3f1;
+      border:1px solid var(--line);
+      border-radius:18px;
+      overflow:auto;
+    }
+
+    .caption{
+      margin-top:12px;
+      font-size:14px;
+      color:var(--muted);
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:18px;
+      margin-top:20px;
+    }
+
+    .card{
+      background:var(--card);
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      padding:20px;
+    }
+
+    .card h3{
+      margin:0 0 10px;
+      font-size:22px;
+      font-weight:800;
+    }
+
+    .card p{
+      margin:0;
+      font-size:16px;
+      color:var(--muted);
+    }
+
+    .statement{
+      margin-top:22px;
+      text-align:center;
+      font-size:20px;
+      line-height:1.35;
+      font-weight:850;
+      color:var(--text);
+    }
+
+    .statement span{
+      display:block;
+      margin-top:6px;
+      font-size:16px;
+      font-weight:600;
+      color:var(--muted);
+    }
+
+    .footerCta{
+      margin-top:30px;
+      text-align:center;
+    }
+
+    @media (max-width:760px){
+      .wrap{ padding:0 18px; }
+      .nav{ display:none; }
+      .grid{ grid-template-columns:1fr; }
+      .heroMark img{ width:60px; height:60px; }
+      .lede{ font-size:19px; }
+      .heroSupport, .sectionIntro{ font-size:17px; }
+      .ctaRow .btn{ width:100%; text-align:center; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="topbar">
+    <div class="wrap topbarInner">
+      <a class="brand" href="index.html">
+        <img src="assets/commonshub-mark.svg" alt="">
+        <span>Commonshub</span>
+      </a>
+
+      <nav class="nav">
+        <a class="navLink" href="index.html">Home</a>
+        <a class="navLink" href="digital-sovereignty.html">What is Digital Sovereignty?</a>
+        <a class="btn secondary" href="index.html">Start a Community</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="heroTop">
+      <div class="heroField" aria-hidden="true"></div>
+
+      <div class="heroIntro">
+        <div class="heroMark" aria-hidden="true">
+          <img src="assets/commonshub-mark.svg" alt="">
+        </div>
+
+        <div class="eyebrow">Broad reach. Loyal supporters.</div>
+
+        <h1>Get the best of both worlds.</h1>
+
+        <p class="lede">
+          Keep using publishing platforms for reach and discovery. Add Commonshub to build a loyal community with better conversation, greater continuity, and direct support.
+        </p>
+
+        <p class="heroSupport">
+          This is not about replacing YouTube, Spotify, or Substack. It is about adding the community layer they do not provide.
+        </p>
+
+        <div class="powerLine">
+          Broad reach is good. Loyal supporters are better.
+        </div>
+
+        <div class="ctaRow">
+          <a class="btn primary" href="guided-onboarding-mockup-v2.html">Start a community</a>
+          <a class="btn secondary" href="index.html">Back to homepage</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>The one-two punch</h2>
+      <p class="sectionIntro">
+        First show where Commonshub fits relative to other platforms. Then show how it works together with the publishing platforms people already use.
+      </p>
+
+      <div class="band">
+        <div class="diagramBlock">
+          <div class="diagramCard">
+            <h3>1. Where Commonshub fits</h3>
+            <p>
+              Most platforms give you reach, comments, or discovery. Commonshub is where owned relationship and higher-quality conversation come together.
+            </p>
+            <div class="svgWrap">
+              <div style="padding:22px; color:var(--muted); font-weight:700;">
+                Replace this block with your positioning SVG.
+              </div>
+            </div>
+            <div class="caption">
+              Suggested heading for SVG: <strong>Commonshub in relation to other platforms</strong>
+            </div>
+          </div>
+        </div>
+
+        <div class="diagramBlock">
+          <div class="diagramCard">
+            <h3>2. How Commonshub works with publishing platforms</h3>
+            <p>
+              Use the publishing platforms for what they are good at: broad reach, discovery, and content distribution. Then add Commonshub for conversation, privacy, continuity, and support.
+            </p>
+            <div class="svgWrap">
+              <div style="padding:22px; color:var(--muted); font-weight:700;">
+                Replace this block with your best-of-both-worlds funnel SVG.
+              </div>
+            </div>
+            <div class="caption">
+              Suggested heading for SVG: <strong>Publishing platforms + Commonshub = broad reach + loyal supporters</strong>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Why this framing works</h2>
+      <p class="sectionIntro">
+        It answers the most common objection right away: why build another community when you already have followers? Because you are not starting over. You are adding the missing layer that helps part of your audience become a real community.
+      </p>
+
+      <div class="grid">
+        <div class="card">
+          <h3>What publishing platforms are good for</h3>
+          <p>
+            Broad reach, discovery, and publishing written, video, and audio content. They help people find you.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>What Commonshub adds</h3>
+          <p>
+            Owned relationship, better conversation, continuity beyond comment threads, and direct financial support from a smaller, more engaged core.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>Why this is better for builders</h3>
+          <p>
+            You stop relying entirely on rented attention. You build something more durable, more direct, and more economically sustainable.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>Why this is better for members</h3>
+          <p>
+            A calmer, more respectful place to participate. No ads. No algorithmic manipulation. Better signal and more meaningful continuity.
+          </p>
+        </div>
+      </div>
+
+      <div class="statement">
+        Use the publishing platforms for reach. Add Commonshub for community and support.
+        <span>
+          Better for builders. Better for members. Better for the community itself.
+        </span>
+      </div>
+
+      <div class="footerCta">
+        <div class="ctaRow">
+          <a class="btn primary" href="guided-onboarding-mockup-v2.html">Start a community</a>
+          <a class="btn secondary" href="digital-sovereignty.html">What is Digital Sovereignty?</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+</body>
+</html>
