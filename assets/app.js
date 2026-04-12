@@ -1307,6 +1307,43 @@ function render(confirming = false) {
   render(false);
 }
 
+function setupGraphicAssetUploads() {
+  const profileInput = document.getElementById("profileImageUpload");
+  const profilePreview = document.getElementById("profileImagePreview");
+
+  const headerInput = document.getElementById("headerImageUpload");
+  const headerPreview = document.getElementById("headerImagePreview");
+
+  if (profileInput && profilePreview) {
+    profileInput.addEventListener("change", () => {
+      const file = profileInput.files && profileInput.files[0];
+      if (!file) return;
+
+      const url = URL.createObjectURL(file);
+      profilePreview.textContent = "";
+      profilePreview.style.backgroundImage = `url("${url}")`;
+      profilePreview.style.backgroundSize = "cover";
+      profilePreview.style.backgroundPosition = "center";
+      profilePreview.style.backgroundRepeat = "no-repeat";
+    });
+  }
+
+  if (headerInput && headerPreview) {
+    headerInput.addEventListener("change", () => {
+      const file = headerInput.files && headerInput.files[0];
+      if (!file) return;
+
+      const url = URL.createObjectURL(file);
+      headerPreview.textContent = "";
+      headerPreview.style.backgroundImage = `url("${url}")`;
+      headerPreview.style.backgroundSize = "cover";
+      headerPreview.style.backgroundPosition = "center";
+      headerPreview.style.backgroundRepeat = "no-repeat";
+    });
+  }
+}
+
+
 // ----------------------------
 // Init
 // ----------------------------
@@ -1325,4 +1362,5 @@ setupFinancialState();
 setupFinancialPrototypeControls();
 setupCommunitySupportControls();
 setupContributionGateControl();
+setupGraphicAssetUploads();
 })();
