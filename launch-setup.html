@@ -494,9 +494,10 @@
 
 </div>
 
+<!-- Favicon upload -->
 <div class="stepPasteGroup large">
   <div class="fieldHeader">
-    <label>Favicon guidance</label>
+    <label>Favicon</label>
   </div>
 
   <div class="card" style="padding:12px 14px;">
@@ -506,16 +507,42 @@
     </div>
 
     <div style="margin-top:10px;"><b>Recommended size</b></div>
-    <div class="muted" style="margin-top:4px;">512x512</div>
+    <div class="muted" style="margin-top:4px;">512×512</div>
 
     <div style="margin-top:10px;"><b>Recommended formats</b></div>
     <div class="muted" style="margin-top:4px;">png</div>
+
+    <div style="margin-top:14px;">
+      <div id="faviconPreview" style="
+      width:64px;
+      height:64px;
+      border-radius:8px;
+      border:1px solid var(--line);
+      background:#eef3ef;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      color:var(--muted);
+      font-size:12px;
+      overflow:hidden;">
+      Preview
+    </div>
+
+    <div style="margin-top:10px; display:flex; gap:10px; align-items:center; flex-wrap:wrap;">
+      <label class="secondary" style="width:auto; cursor:pointer;">
+        Upload favicon
+        <input id="faviconUpload" type="file" accept="image/*" hidden />
+      </label>
+      <span class="muted">512×512 (png)</span>
+    </div>
   </div>
 </div>
+</div>
 
+<!-- App icon upload -->
 <div class="stepPasteGroup large">
   <div class="fieldHeader">
-    <label>App icon guidance</label>
+    <label>App icon</label>
   </div>
 
   <div class="card" style="padding:12px 14px;">
@@ -525,12 +552,38 @@
     </div>
 
     <div style="margin-top:10px;"><b>Recommended size</b></div>
-    <div class="muted" style="margin-top:4px;">1024x1024</div>
+    <div class="muted" style="margin-top:4px;">1024×1024</div>
 
     <div style="margin-top:10px;"><b>Recommended formats</b></div>
     <div class="muted" style="margin-top:4px;">png</div>
+
+    <div style="margin-top:14px;">
+      <div id="appIconPreview" style="
+      width:100px;
+      height:100px;
+      border-radius:20px;
+      border:1px solid var(--line);
+      background:#eef3ef;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      color:var(--muted);
+      font-size:12px;
+      overflow:hidden;">
+      Preview
+    </div>
+
+    <div style="margin-top:10px; display:flex; gap:10px; align-items:center; flex-wrap:wrap;">
+      <label class="secondary" style="width:auto; cursor:pointer;">
+        Upload icon
+        <input id="appIconUpload" type="file" accept="image/*" hidden />
+      </label>
+      <span class="muted">1024×1024 (png)</span>
+    </div>
   </div>
 </div>
+</div>
+
 
 
 <div class="stepPasteGroup large">
