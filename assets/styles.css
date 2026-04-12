@@ -618,6 +618,14 @@ color:var(--dashText);
 font-weight:700;
 }
 
+body.dashboard .chip.strong{
+  background: #e4f1e9;
+  color: #1f6f4a;
+  border: 1px solid #9fc3ad;
+  font-weight: 700;
+  opacity: 1;
+}
+
 body.dashboard .header{
 padding-bottom:14px;
 margin-bottom:18px;
