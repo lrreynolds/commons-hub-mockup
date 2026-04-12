@@ -348,12 +348,19 @@
       color:var(--muted);
     }
 
-    .svgWrap{
-      background:#f0f3f1;
-      border:1px solid var(--line);
-      border-radius:18px;
-      overflow:auto;
-    }
+.svgWrap{
+  background:#f0f3f1;
+  border:1px solid var(--line);
+  border-radius:18px;
+  overflow:hidden;
+  padding:14px;
+}
+
+.svgWrap img{
+  display:block;
+  width:100%;
+  height:auto;
+}
 
     .caption{
       margin-top:12px;
@@ -485,9 +492,7 @@
               Most platforms give you reach, comments, or discovery. Commonshub is where owned relationship and higher-quality conversation come together.
             </p>
             <div class="svgWrap">
-              <div style="padding:22px; color:var(--muted); font-weight:700;">
-                <img src="assets/positioning.svg" alt="">
-              </div>
+                <img src="assets/positioning.svg" alt="">           
             </div>
             <div class="caption">
               Suggested heading for SVG: <strong>Commonshub in relation to other platforms</strong>
@@ -502,9 +507,7 @@
               Use the publishing platforms for what they are good at: broad reach, discovery, and content distribution. Then add Commonshub for conversation, privacy, continuity, and support.
             </p>
             <div class="svgWrap">
-              <div style="padding:22px; color:var(--muted); font-weight:700;">
                  <img src="assets/funnel.svg" alt="">
-              </div>
             </div>
             <div class="caption">
               Suggested heading for SVG: <strong>Publishing platforms + Commonshub = broad reach + loyal supporters</strong>
@@ -559,7 +562,7 @@
 
       <div class="footerCta">
         <div class="ctaRow">
-          <a class="btn primary" href="guided-onboarding-mockup-v2.html">Start a community</a>
+          <a class="btn primary" href="prototype-preview.html">Start a community</a>
           <a class="btn secondary" href="digital-sovereignty.html">What is Digital Sovereignty?</a>
         </div>
       </div>
