@@ -47,9 +47,7 @@
       padding:0 24px;
     }
 
-    /* ===== SHARED SITE NAV ===== */
-
-.siteNav{
+ .siteNav{
   position: sticky;
   top: 0;
   z-index: 50;
@@ -106,7 +104,13 @@
 
 .siteNavLink:hover{
   background: rgba(31,111,74,.06);
-  color: var(--btn);
+  color: var(--accent);
+}
+
+.siteNavActions{
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
 .siteNavCta{
@@ -116,7 +120,7 @@
   min-height: 44px;
   padding: 0 18px;
   border-radius: 16px;
-  background: var(--btn);
+  background: var(--accent);
   color: #fff;
   font-weight: 900;
   font-size: 15px;
@@ -127,24 +131,84 @@
 
 .siteNavCta:hover{
   background: #185c3d;
+  color: #fff;
+}
+
+.menuToggle{
+  display: none;
+  width: 44px;
+  height: 44px;
+  border: 1px solid rgba(31,111,74,.22);
+  border-radius: 14px;
+  background: #fff;
+  padding: 0;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 4px;
+  cursor: pointer;
+}
+
+.menuToggle span{
+  width: 18px;
+  height: 2px;
+  background: var(--text);
+  border-radius: 999px;
+  display: block;
+}
+
+.mobileMenu{
+  display: none;
+  max-width: 1040px;
+  margin: 0 auto;
+  padding: 0 18px 16px;
+}
+
+.mobileMenu.open{
+  display: block;
+}
+
+.mobileMenuLink,
+.mobileMenuCta{
+  display: block;
+  text-decoration: none;
+  border-radius: 14px;
+  padding: 14px 16px;
+  margin-top: 10px;
+  font-weight: 750;
+}
+
+.mobileMenuLink{
+  background: #fff;
+  color: var(--text);
+  border: 1px solid var(--line);
+}
+
+.mobileMenuCta{
+  background: var(--accent);
+  color: #fff;
+  font-weight: 900;
 }
 
 @media (max-width: 900px){
   .siteNavInner{
     grid-template-columns: auto auto;
     justify-content: space-between;
+    padding: 0 16px;
   }
 
   .siteNavLinks{
     display: none;
   }
+
+  .menuToggle{
+    display: inline-flex;
+  }
 }
 
-@media (max-width: 520px){
-  .siteNavInner{
-    min-height: 60px;
-    padding: 0 14px;
-    gap: 12px;
+@media (max-width: 640px){
+  .siteNavCta{
+    display: none;
   }
 
   .siteBrand{
@@ -156,66 +220,13 @@
     height: 28px;
   }
 
-  .siteNavCta{
-    min-height: 40px;
+  .siteNavInner{
+    min-height: 60px;
     padding: 0 14px;
-    border-radius: 14px;
-    font-size: 14px;
-  }
-}
-
-    .svgWrap{
-  background:#f0f3f1;
-  border:1px solid var(--line);
-  border-radius:18px;
-  overflow:hidden;
-}
-
-.svgWrap img{
-  display:block;
-  width:100%;
-  height:auto;
-}
-
-@media (max-width:900px){
-  .siteNavInner{
-    min-height:64px;
-    padding:0 16px;
   }
 
-  .siteNavLinks{
-    display:none;
-  }
-
-  .siteNavCta{
-    min-height:44px;
-    padding:0 16px;
-    font-size:15px;
-  }
-
-  .siteBrand{
-    font-size:17px;
-  }
-
-  .siteBrand img{
-    width:30px;
-    height:30px;
-  }
-}
-
-@media (max-width:520px){
-  .siteNavInner{
-    gap:12px;
-  }
-
-  .siteBrand span{
-    font-size:16px;
-  }
-
-  .siteNavCta{
-    padding:0 14px;
-    font-size:14px;
-    border-radius:14px;
+  .mobileMenu{
+    padding: 0 14px 14px;
   }
 }
 
@@ -477,10 +488,26 @@
 
     <nav class="siteNavLinks">
       <a class="siteNavLink" href="index.html">Home</a>
+      <a class="siteNavLink" href="best-of-both.html">Why add Commonshub?</a>
       <a class="siteNavLink" href="digital-sovereignty.html">What is Digital Sovereignty?</a>
     </nav>
 
-    <a class="siteNavCta" href="prototype-preview.html">Start a Community</a>
+    <div class="siteNavActions">
+      <a class="siteNavCta" href="prototype-preview.html">Start a Community</a>
+
+      <button class="menuToggle" type="button" aria-expanded="false" aria-controls="mobileMenu" aria-label="Open navigation menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </div>
+
+  <div class="mobileMenu" id="mobileMenu">
+    <a class="mobileMenuLink" href="index.html">Home</a>
+    <a class="mobileMenuLink" href="best-of-both.html">Why add Commonshub?</a>
+    <a class="mobileMenuLink" href="digital-sovereignty.html">What is Digital Sovereignty?</a>
+    <a class="mobileMenuCta" href="prototype-preview.html">Start a Community</a>
   </div>
 </header>
 
@@ -606,6 +633,16 @@
       </div>
     </section>
   </main>
+<script>
+  const menuToggle = document.querySelector('.menuToggle');
+  const mobileMenu = document.getElementById('mobileMenu');
 
+  if (menuToggle && mobileMenu) {
+    menuToggle.addEventListener('click', () => {
+      const isOpen = mobileMenu.classList.toggle('open');
+      menuToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    });
+  }
+</script>
 </body>
 </html>
