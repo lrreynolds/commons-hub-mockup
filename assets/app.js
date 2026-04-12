@@ -1343,6 +1343,23 @@ function setupGraphicAssetUploads() {
   }
 }
 
+function setupServerThumbnailUpload() {
+  const bannerInput = document.getElementById('serverBannerUpload');
+  const thumbnailPreview = document.getElementById('serverThumbnailPreview');
+
+  if (bannerInput && thumbnailPreview) {
+    bannerInput.addEventListener('change', () => {
+      const file = bannerInput.files && bannerInput.files[0];
+      if (!file) return;
+      const url = URL.createObjectURL(file);
+      thumbnailPreview.textContent = '';
+      thumbnailPreview.style.backgroundImage = `url("${url}")`;
+      thumbnailPreview.style.backgroundSize = 'cover';
+      thumbnailPreview.style.backgroundPosition = 'center';
+      thumbnailPreview.style.backgroundRepeat = 'no-repeat';
+    });
+  }
+}
 
 // ----------------------------
 // Init
@@ -1363,4 +1380,5 @@ setupFinancialPrototypeControls();
 setupCommunitySupportControls();
 setupContributionGateControl();
 setupGraphicAssetUploads();
+setupServerThumbnailUpload();
 })();
