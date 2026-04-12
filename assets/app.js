@@ -1220,7 +1220,7 @@ function render(confirming = false) {
   const eligible = hasQualifyingPath();
 
   if (enabled) {
-    badge.textContent = "Invite after contribution";
+    badge.textContent = "Enabled";
     badge.style.display = "inline-flex";
 
     defaultNote.style.display = "none";
