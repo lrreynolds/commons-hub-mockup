@@ -1,233 +1,209 @@
-<div class="content">
-  <div class="center">
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Commonshub — Account</title>
+  <link rel="stylesheet" href="assets/styles.css" />
+</head>
 
-    <div class="header dashboardHero">
-      <div>
-        <h2>Account settings</h2>
-        <p id="headerSubcopy">
-          Manage your Commonshub account, security, billing, and team access.
-        </p>
-      </div>
-    </div>
+<body class="dashboard">
 
+  <div class="wrap">
 
-    <!-- Account Owner -->
-    <section class="card" style="margin-bottom:14px;">
-      <div class="overviewHeader">
-        <div>
-          <h3>Account owner</h3>
-          <div class="muted">
-            Update your name, email, and sign-in details.
+    <main class="stage">
+
+      <div class="topbar appTopbar">
+        <div class="left">
+          <img class="brandMark" src="assets/commonshub-mark-light.svg" alt="Commonshub">
+          <div class="meta">
+            <b>Commonshub — Account</b>
           </div>
         </div>
-      </div>
 
-      <div class="list" style="margin-top:12px;">
-        <div class="item">
-          <b>Name</b>
-          <div>Jason Jay Smart</div>
-        </div>
-
-        <div class="item">
-          <b>Email</b>
-          <div>jason@jaysonjaysmart.com</div>
-        </div>
-
-        <div class="item">
-          <b>Sign-in method</b>
-          <div>Email + password</div>
+        <div class="appTabs">
+          <a class="appTab" href="dashboard.html">Status</a>
+          <a class="appTab" href="launch-setup.html">Community</a>
+          <a class="appTab" href="financial.html">Financial</a>
+          <a class="appTab active" href="account.html">Account</a>
         </div>
       </div>
 
-      <div class="footerBar">
-        <button class="secondary">Edit profile</button>
-        <button class="secondary">Change email</button>
-      </div>
-    </section>
 
+      <div class="content">
+        <div class="center">
 
-
-    <!-- Security -->
-    <section class="card" style="margin-bottom:14px;">
-      <div class="overviewHeader">
-        <div>
-          <h3>Security</h3>
-          <div class="muted">
-            Manage password, two-factor authentication, and active sessions.
+          <div class="header dashboardHero">
+            <div>
+              <h2>Account settings</h2>
+              <p id="headerSubcopy">
+                Manage your Commonshub account, security, billing, and team access.
+              </p>
+            </div>
           </div>
+
+
+          <!-- Account Owner -->
+          <section class="card" style="margin-bottom:14px;">
+            <div class="overviewHeader">
+              <div>
+                <h3>Account owner</h3>
+                <div class="muted">
+                  Update your name, email, and sign-in details.
+                </div>
+              </div>
+            </div>
+
+            <div class="list" style="margin-top:12px;">
+              <div class="item">
+                <b>Name</b>
+                <div>Jason Jay Smart</div>
+              </div>
+
+              <div class="item">
+                <b>Email</b>
+                <div>jason@jaysonjaysmart.com</div>
+              </div>
+
+              <div class="item">
+                <b>Sign-in method</b>
+                <div>Email + password</div>
+              </div>
+            </div>
+
+            <div class="footerBar">
+              <button class="secondary">Edit profile</button>
+              <button class="secondary">Change email</button>
+            </div>
+          </section>
+
+
+
+          <!-- Security -->
+          <section class="card" style="margin-bottom:14px;">
+            <div class="overviewHeader">
+              <div>
+                <h3>Security</h3>
+                <div class="muted">
+                  Manage password, two-factor authentication, and active sessions.
+                </div>
+              </div>
+            </div>
+
+            <div class="list" style="margin-top:12px;">
+              <div class="item">
+                <b>Password</b>
+                <div>Last updated 30 days ago</div>
+              </div>
+
+              <div class="item">
+                <b>Two-factor authentication</b>
+                <div>Not enabled</div>
+              </div>
+
+              <div class="item">
+                <b>Active sessions</b>
+                <div>1 active device</div>
+              </div>
+            </div>
+
+            <div class="footerBar">
+              <button class="secondary">Change password</button>
+              <button class="secondary">Enable 2FA</button>
+              <button class="secondary">View sessions</button>
+            </div>
+          </section>
+
+
+
+          <!-- Billing -->
+          <section class="card" style="margin-bottom:14px;">
+            <div class="overviewHeader">
+              <div>
+                <h3>Billing</h3>
+                <div class="muted">
+                  View your plan, payment method, and invoices.
+                </div>
+              </div>
+            </div>
+
+            <div class="list" style="margin-top:12px;">
+              <div class="item">
+                <b>Plan</b>
+                <div>Creator — $19/month</div>
+              </div>
+
+              <div class="item">
+                <b>Billing status</b>
+                <div>Active</div>
+              </div>
+
+              <div class="item">
+                <b>Next renewal</b>
+                <div>May 12, 2026</div>
+              </div>
+            </div>
+
+            <div class="footerBar">
+              <button class="secondary">Manage billing</button>
+              <button class="secondary">View invoices</button>
+              <button class="secondary">Change plan</button>
+            </div>
+          </section>
+
+
+
+          <!-- Team Access -->
+          <section class="card" style="margin-bottom:14px;">
+            <div class="overviewHeader">
+              <div>
+                <h3>Team access</h3>
+                <div class="muted">
+                  Invite collaborators and manage account roles.
+                </div>
+              </div>
+            </div>
+
+            <div class="list" style="margin-top:12px;">
+              <div class="item">
+                <b>Jason Jay Smart</b>
+                <div class="muted">Owner</div>
+              </div>
+            </div>
+
+            <div class="footerBar">
+              <button class="secondary">Invite teammate</button>
+              <button class="secondary">Manage roles</button>
+            </div>
+          </section>
+
+
+
+          <!-- Danger Zone -->
+          <section class="card" style="border:1px solid #e2b4b4;">
+            <div class="overviewHeader">
+              <div>
+                <h3>Danger zone</h3>
+                <div class="muted">
+                  Transfer ownership, disconnect services, or close this account.
+                </div>
+              </div>
+            </div>
+
+            <div class="footerBar">
+              <button class="secondary">Transfer ownership</button>
+              <button class="secondary">Disconnect services</button>
+              <button class="secondary">Delete account</button>
+            </div>
+          </section>
+
+
         </div>
       </div>
 
-      <div class="list" style="margin-top:12px;">
-        <div class="item">
-          <b>Password</b>
-          <div>Last updated 30 days ago</div>
-        </div>
-
-        <div class="item">
-          <b>Two-factor authentication</b>
-          <div>Not enabled</div>
-        </div>
-
-        <div class="item">
-          <b>Active sessions</b>
-          <div>1 active device</div>
-        </div>
-      </div>
-
-      <div class="footerBar">
-        <button class="secondary">Change password</button>
-        <button class="secondary">Enable 2FA</button>
-        <button class="secondary">View sessions</button>
-      </div>
-    </section>
-
-
-
-    <!-- Billing -->
-    <section class="card" style="margin-bottom:14px;">
-      <div class="overviewHeader">
-        <div>
-          <h3>Billing</h3>
-          <div class="muted">
-            View your plan, payment method, and invoices.
-          </div>
-        </div>
-      </div>
-
-      <div class="list" style="margin-top:12px;">
-        <div class="item">
-          <b>Plan</b>
-          <div>Creator — $19/month</div>
-        </div>
-
-        <div class="item">
-          <b>Billing status</b>
-          <div>Active</div>
-        </div>
-
-        <div class="item">
-          <b>Next renewal</b>
-          <div>May 12, 2026</div>
-        </div>
-      </div>
-
-      <div class="footerBar">
-        <button class="secondary">Manage billing</button>
-        <button class="secondary">View invoices</button>
-        <button class="secondary">Change plan</button>
-      </div>
-    </section>
-
-
-
-    <!-- Team Access -->
-    <section class="card" style="margin-bottom:14px;">
-      <div class="overviewHeader">
-        <div>
-          <h3>Team access</h3>
-          <div class="muted">
-            Invite collaborators and manage account roles.
-          </div>
-        </div>
-      </div>
-
-      <div class="list" style="margin-top:12px;">
-        <div class="item">
-          <b>Jason Jay Smart</b>
-          <div class="muted">Owner</div>
-        </div>
-
-        <div class="item">
-          <b>Lou Reynolds</b>
-          <div class="muted">Admin</div>
-        </div>
-      </div>
-
-      <div class="footerBar">
-        <button class="secondary">Invite teammate</button>
-        <button class="secondary">Manage roles</button>
-      </div>
-    </section>
-
-
-
-    <!-- Connected Services Summary -->
-    <section class="card" style="margin-bottom:14px;">
-      <div class="overviewHeader">
-        <div>
-          <h3>Connected services</h3>
-          <div class="muted">
-            Overview of your community and integrations.
-          </div>
-        </div>
-      </div>
-
-      <div class="list" style="margin-top:12px;">
-        <div class="item">
-          <b>Community</b>
-          <div>The Security Brief</div>
-        </div>
-
-        <div class="item">
-          <b>Domain</b>
-          <div>securitybrief.jasonjaysmart.com</div>
-        </div>
-
-        <div class="item">
-          <b>Mastodon</b>
-          <div>Connected</div>
-        </div>
-
-        <div class="item">
-          <b>Stripe</b>
-          <div>Connected</div>
-        </div>
-      </div>
-
-      <div class="footerBar">
-        <a class="secondary" href="dashboard.html">View status</a>
-        <a class="secondary" href="launch-setup.html">Community settings</a>
-        <a class="secondary" href="financial.html">Financial settings</a>
-      </div>
-    </section>
-
-
-
-    <!-- Danger Zone -->
-    <section class="card" style="border:1px solid #e2b4b4;">
-      <div class="overviewHeader">
-        <div>
-          <h3>Danger zone</h3>
-          <div class="muted">
-            Transfer ownership, disconnect services, or close this account.
-          </div>
-        </div>
-      </div>
-
-      <div class="list" style="margin-top:12px;">
-        <div class="item">
-          <b>Transfer ownership</b>
-          <div class="muted">Move this account to another owner</div>
-        </div>
-
-        <div class="item">
-          <b>Disconnect services</b>
-          <div class="muted">Unlink Mastodon and Stripe</div>
-        </div>
-
-        <div class="item">
-          <b>Delete account</b>
-          <div class="muted">Remove this Commonshub account permanently</div>
-        </div>
-      </div>
-
-      <div class="footerBar">
-        <button class="secondary">Transfer ownership</button>
-        <button class="secondary">Disconnect services</button>
-        <button class="secondary">Delete account</button>
-      </div>
-    </section>
-
+    </main>
   </div>
-</div>
+
+<script src="assets/app.js"></script>
+</body>
+</html>
