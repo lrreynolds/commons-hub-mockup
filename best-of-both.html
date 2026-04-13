@@ -357,7 +357,7 @@
   /* ===== SHARED CONTENT BLOCKS ===== */
 
   .section{
-    margin-top:56px;
+    margin-top:72px;
   }
 
   .band{
@@ -425,13 +425,14 @@
 
   /* ===== SHARED SVG / IMAGE WRAPPERS ===== */
 
-  .svgWrap{
-    background:#f0f3f1;
-    border:1px solid var(--line);
-    border-radius:18px;
-    overflow:hidden;
-    padding:14px;
-  }
+ .svgWrap{
+  background:#f7faf8;
+  border:1px solid var(--line);
+  border-radius:20px;
+  overflow:hidden;
+  padding:28px;
+  margin-top:18px;
+}
 
   .svgWrap img{
     display:block;
@@ -472,6 +473,11 @@
     .heroMark{ margin-bottom:16px; }
     .heroMark img{ width:60px; height:60px; }
     .ctaRow .btn{ width:100%; text-align:center; }
+    .svgWrap{ padding:16px; }
+    .diagramCard{ padding:20px 16px; }
+    .diagramCard p{ font-size:16px; 
+    .section{ margin-top:56px; }
+    .band{ padding:18px 14px 20px; border-radius:22px; }             
   }
 
   @media (max-width:520px){
@@ -499,6 +505,31 @@
       padding:0 10px;
     }
   }
+
+   .diagramBlock + .diagramBlock{
+  margin-top:26px;
+}
+
+.diagramCard{
+  background:rgba(255,255,255,.42);
+  border:1px solid rgba(16,32,24,.08);
+  border-radius:22px;
+  padding:30px;
+}
+
+.diagramCard h3{
+  font-size:clamp(24px,2.6vw,30px);
+  line-height:1.15;
+  letter-spacing:-0.02em;
+  margin:0 0 12px;
+}
+
+.diagramCard p{
+  max-width:860px;
+  margin:0;
+  font-size:17px;
+  line-height:1.55;
+}
 </style>
 </head>
 <body>
@@ -562,18 +593,18 @@
     </section>
 
     <section class="section">
-      <h2>How Does Commonshub Fit</h2>
-      <p class="sectionIntro">
-       Commomshub is uniguely positioned and complements existing publishing platforms.
-      </p>
+  <h2>How Commonshub fits</h2>
+<p class="sectionIntro">
+  Commonshub complements existing publishing platforms by adding the community layer they do not provide.
+</p>
 
       <div class="band">
         <div class="diagramBlock">
           <div class="diagramCard">
-            <h3>Commonshub Positioning</h3>
-            <p>
-              Most platforms give you reach at the expense of relationships. Commonshub is where owned relationship and higher-quality conversation come together.
-            </p>
+           <h3>Where Commonshub fits</h3>
+<p>
+  Most platforms optimize for reach, visibility, or discovery. Commonshub is where owned relationship and higher-quality conversation come together.
+</p>
             <div class="svgWrap">
                 <img src="assets/positioning.svg" alt="">           
             </div>
@@ -582,10 +613,10 @@
 
         <div class="diagramBlock">
           <div class="diagramCard">
-            <h3>Commonshub complements existing publishing platforms</h3>
-            <p>
-              Use the publishing platforms for what they are good at: broad reach, discovery, and content distribution. Then add Commonshub for conversation, privacy, continuity, and support.
-            </p>
+           <h3>How Commonshub works alongside publishing platforms</h3>
+<p>
+  Use publishing platforms for reach, discovery, and content distribution. Then add Commonshub for conversation, continuity, privacy, and direct support.
+</p>
             <div class="svgWrap">
                  <img src="assets/funnel.svg" alt="">
             </div>
@@ -596,9 +627,9 @@
 
     <section class="section">
       <h2>Why this framing works</h2>
-      <p class="sectionIntro">
-        It answers the most common objection right away: why build another community when you already have followers? Because you are not starting over. You are adding the missing layer that helps part of your audience become a real community.
-      </p>
+     <p class="sectionIntro">
+  It answers the obvious question: why build another community when you already have followers? Because you are not starting over. You are adding the missing layer that helps part of your audience become a real community.
+</p>
 
       <div class="grid">
         <div class="card">
