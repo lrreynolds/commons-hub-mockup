@@ -75,6 +75,8 @@ Commonshub Mock — Base Design Tokens
 
 html{
   color-scheme: light;
+  background: var(--surface-page);
+  color: var(--text-primary);
 }
 
 body{
