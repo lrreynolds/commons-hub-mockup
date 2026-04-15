@@ -75,21 +75,6 @@
   --font-sans:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
 }
   
-  /*
-  :root{
-    --bg:#f4f7f5;
-    --card:#ffffff;
-    --text:#102018;
-    --muted:#50665a;
-    --line:#d8e1db;
-    --accent:#1f6f4a;
-    --btn:#1f6f4a;
-    --btnText:#ffffff;
-    --band:#eef3ef;
-    --shadow:0 10px 30px rgba(16,32,24,.06);
-    --radius:22px;
-  }
-  */
 
   html{
     color-scheme: light;
@@ -1151,7 +1136,7 @@
   z-index: 50;
   backdrop-filter: blur(8px);
   background: rgba(244,247,245,.92);
-  border-bottom: 1px solid rgba(16,32,24,.08);
+  border-bottom: 1px solid var(--line);
 }
 
 .siteNavInner{
@@ -1201,7 +1186,7 @@
 }
 
 .siteNavLink:hover{
-  background: rgba(31,111,74,.06);
+  background: var(--accent-soft);
   color: var(--accent);
 }
 
@@ -1218,8 +1203,8 @@
   min-height: 44px;
   padding: 0 18px;
   border-radius: 16px;
-  background: var(--accent);
-  color: #fff;
+  background: var(--btn);
+  color: var(--btnText);
   font-weight: 900;
   font-size: 15px;
   text-decoration: none;
@@ -1228,8 +1213,8 @@
 }
 
 .siteNavCta:hover{
-  background: #185c3d;
-  color: #fff;
+  background: var(--accent-hover);
+  color: var(--btnText);
 }
 
 .menuToggle{
@@ -1238,7 +1223,7 @@
   height: 44px;
   border: 1px solid rgba(31,111,74,.22);
   border-radius: 14px;
-  background: #fff;
+  background: var(--card);
   padding: 0;
   align-items: center;
   justify-content: center;
@@ -1277,14 +1262,14 @@
 }
 
 .mobileMenuLink{
-  background: #fff;
+  background: var(--card);
   color: var(--text);
   border: 1px solid var(--line);
 }
 
 .mobileMenuCta{
-  background: var(--accent);
-  color: #fff;
+  background: var(--btn);
+  color: var(--btnText);
   font-weight: 900;
 }
 
