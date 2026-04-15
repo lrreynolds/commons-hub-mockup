@@ -3,6 +3,7 @@ Commonshub Mock — Base Design Tokens
 ========================================================= */
 
 :root{
+    color-scheme: light;
   /* Brand */
   --accent: #1f6f4a;
   --accent-hover: #185c3d;
