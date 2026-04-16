@@ -71,6 +71,17 @@
   --radius-sm:14px;
   --radius-md:18px;
   --radius-lg:22px;
+  --radius-panel: 32px;
+
+  --surface-soft: rgba(31,111,74,.05);
+  --surface-soft-2: rgba(31,111,74,.08);
+  --surface-warm: #f3efe2;
+
+  --border-accent: rgba(31,111,74,.28);
+  --border-accent-strong: rgba(31,111,74,.32);
+  --border-warm: rgba(185,151,72,.45);
+
+  --shadow-soft: 0 14px 38px rgba(16,32,24,.10);
 
   --font-sans:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
 }
@@ -311,21 +322,24 @@
   font-size:14px;
   line-height:1.45;
 }
+
 .benefit.isPrimary{
-  background: #f3efe2;
-  border: 1.8px solid rgba(185, 151, 72, 0.45); /* gold outline */
-  box-shadow: 0 14px 38px rgba(16,32,24,.10);
+  background: var(--surface-warm);
+  border: 1.8px solid var(--border-warm);
+  box-shadow: var(--shadow-soft);
 }
+
 .benefit.isPrimary h3{
   font-size: 1.42rem;
 }
+
 .benefit.newCommunity{
   background: linear-gradient(
     180deg,
-    rgba(31,111,74,0.10),
-    rgba(31,111,74,0.04)
+    rgba(31,111,74,.10),
+    rgba(31,111,74,.04)
   );
-  border: 1.8px solid rgba(31,111,74,.32);
+  border: 1.8px solid var(--border-accent-strong);
 }
 
 /* ===== PROMISE + CTA ===== */
@@ -622,7 +636,7 @@
   padding:34px 34px 38px;
   background:var(--band);
   border:1px solid var(--line);
-  border-radius:32px;
+  border-radius:var(--radius-panel);
   box-shadow:var(--shadow);
   overflow:hidden;
 }
@@ -768,8 +782,8 @@
 }
 
 .archCommunity{
-  border:1.6px solid rgba(31,111,74,.35);
-  background:rgba(31,111,74,0.08);
+  border:1.6px solid var(--border-accent-strong);
+  background:var(--surface-soft-2);
 }
 
 .architectureSection .archStack{
@@ -815,8 +829,8 @@
   text-align:center;
   padding:18px;
   border-radius:14px;
-  background:white;
-  border:1px solid rgba(0,0,0,.08);
+  background:var(--card);
+  border:1px solid var(--line);
 }
 
 .communityFeature h4{
@@ -845,8 +859,8 @@
   margin-top:10px;
   padding:26px 26px 28px;
   border-radius:24px;
-  border:1px solid rgba(31,111,74,.28);
-  background:rgba(31,111,74,.05);
+  border:1px solid var(--border-accent);
+  background:var(--surface-soft);
 }
 
 .platformTitle{
@@ -862,7 +876,7 @@
   padding:16px 20px;
   border-radius:14px;
   border:1px solid var(--line);
-  background:rgba(31,111,74,0.04);
+  background:var(--surface-soft);
 }
 
 .archInfra p{
