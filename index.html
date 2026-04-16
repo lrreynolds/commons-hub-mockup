@@ -445,19 +445,9 @@
   margin-top:28px;
 }
 
-.secondaryCta{
-  padding:12px 18px;
-  font-size:14px;
-  border-radius:14px;
-  background:transparent;
-  color:var(--btn);
-  border:1px solid rgba(31,111,74,.35);
-  animation:none;           /* no breathing on secondary */
-}
-
 @media (hover:hover){
   .secondaryCta:hover{
-    background:rgba(31,111,74,.06);
+    background:var(--accent-soft);
     transform:translateY(-1px);
   }
 }
@@ -473,9 +463,12 @@
 }
 
 .secondaryCta{
+  padding:12px 18px;
+  font-size:14px;
+  border-radius:14px;
   background:transparent;
   color:var(--btn);
-  border:1px solid rgba(31,111,74,.35);
+  border:1px solid var(--border-accent);
   animation:none;
 }
 
@@ -520,13 +513,6 @@
 .contentLayer .layerNote{
   color: var(--muted);
   font-size: 13px;
-}
-/* SECTION HEADLINE — prevent awkward last-word wrap */
-#how h2{
-  max-width: 18ch;
-  margin-left: auto;
-  margin-right: auto;
-  text-wrap: balance;
 }
 
 /* COMMONSHUB TITLE — keep authoritative */
@@ -716,18 +702,6 @@
   grid-template-columns:repeat(3,1fr);
   gap:22px;
   margin-top:30px;
-}
-
-.benefitGrid{
-  grid-template-columns:1fr;
-}
-
-.communityFeature{
-  padding:16px;
-}
-
-.hostBenefit{
-  padding:20px 18px;
 }
 
 .hostExample{
@@ -946,9 +920,8 @@
 
 .hostTab:hover{
   transform:translateY(-1px);
-  border-color:rgba(31,111,74,.28);
+  color:var(--accent);
 }
-
 
 
 
