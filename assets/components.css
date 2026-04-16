@@ -97,6 +97,13 @@
   color:rgba(255,255,255,.85);
 }
 
+.hostTabs,
+.hostTab,
+.hostTab *{
+  user-select:none;
+  -webkit-user-select:none;
+}
+
 .hostExplain{
   text-align:center;
   font-size:clamp(24px, 3vw, 34px);
