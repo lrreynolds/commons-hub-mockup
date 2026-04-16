@@ -115,3 +115,97 @@
   text-align:center;
   margin:0 0 16px 0;
 }
+
+/* CTA Styles */
+
+.cta{
+  display:inline-block;
+  padding:14px 22px;
+  background:var(--btn);
+  color:var(--btnText);
+  border-radius:16px;
+  font-weight:900;
+  text-decoration:none;
+  will-change: transform;
+  animation: ctaBreathe 2.8s ease-in-out 1.2s infinite;
+}
+
+.secondaryCta{
+  padding:12px 18px;
+  font-size:14px;
+  border-radius:14px;
+  background:transparent;
+  color:var(--btn);
+  border:1px solid var(--border-accent);
+  animation:none;
+}
+
+.heroBottomCtaRow{
+  gap:14px;
+  align-items:center;
+}
+
+.sectionCta{
+  display:flex;
+  justify-content:flex-end;
+  margin-top:28px;
+}
+
+/*Benefit Styles */
+
+.benefit{
+  background:var(--card);
+  border:1px solid var(--line);
+  border-radius:18px;
+  padding: 1.2rem 1.25rem 1.25rem;  /* reduce top padding */
+  height: 100%;
+}
+
+.benefit h3{
+  font-size: 1.38rem;
+  line-height: 1.25;
+  font-weight: 650; /* or 600 if you prefer */
+  letter-spacing: -0.01em;
+  margin-top: 0;
+  margin-bottom: 0.35rem;
+}
+
+.benefit p{
+  margin:0;
+  color:var(--muted);
+  font-size:14px;
+  line-height:1.45;
+}
+
+.benefit.isPrimary{
+  background: var(--surface-warm);
+  border: 1.8px solid var(--border-warm);
+  box-shadow: var(--shadow-soft);
+}
+
+.benefit.isPrimary h3{
+  font-size: 1.42rem;
+}
+
+.benefit.newCommunity{
+  background: linear-gradient(
+    180deg,
+    rgba(31,111,74,.10),
+    rgba(31,111,74,.04)
+  );
+  border: 1.8px solid var(--border-accent-strong);
+}
+
+/* Panel Styles */
+
+.panelShell{
+  width:100%;
+  max-width:1100px;
+  margin:28px auto;
+  padding:34px 34px 38px;
+  background:var(--band);
+  border:1px solid var(--line);
+  border-radius:var(--radius-panel);
+  box-shadow:var(--shadow);
+  overflow:hidden;
+}
