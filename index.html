@@ -44,46 +44,39 @@
 
 </head>
 <body>
-<header class="siteNav">
-  <div class="siteNavInner">
-    <a class="siteBrand" href="index.html">
-      <img src="assets/commonshub-mark.svg" alt="">
-      <span>Commonshub</span>
-    </a>
+  <header class="siteNav">
+    <div class="siteNavInner">
+      <a class="siteBrand" href="index.html">
+        <img src="assets/commonshub-mark.svg" alt="">
+        <span>Commonshub</span>
+      </a>
 
-    <nav class="siteNavLinks">
-      <a class="siteNavLink isActive" href="index.html">Home</a>
-      <a class="siteNavLink" href="best-of-both.html">Why add Commonshub?</a>
-      <a class="siteNavLink" href="what-is-commonshub.html">What is Commonshub?</a>
-      <a class="siteNavLink" href="about.html">About</a>
-      <a class="siteNavLink" href="pricing.html">Pricing</a>
-    </nav>
+      <nav class="siteNavLinks">
+        <a class="siteNavLink" href="index.html">Home</a>
+        <a class="siteNavLink" href="best-of-both.html">Why Commonshub?</a>
+        <a class="siteNavLink" href="about.html">About</a>
+        <a class="siteNavLink isActive" href="pricing.html">Pricing</a>
+      </nav>
 
-    <div class="siteNavActions">
-      <a class="siteNavCta" href="prototype-preview.html">Start a Community</a>
+      <div class="siteNavActions">
+        <a class="siteNavCta" href="prototype-preview.html">Start a Community</a>
 
-      <button
-        class="menuToggle"
-        type="button"
-        aria-expanded="false"
-        aria-controls="mobileMenu"
-        aria-label="Open navigation menu">
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
+        <button class="menuToggle" type="button" aria-expanded="false" aria-controls="mobileMenu" aria-label="Open navigation menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
     </div>
-  </div>
 
-  <div class="mobileMenu" id="mobileMenu">
-    <a class="mobileMenuLink isActive" href="index.html">Home</a>
-    <a class="mobileMenuLink" href="best-of-both.html">Why add Commonshub?</a>
-    <a class="mobileMenuLink" href="what-is-commonshub.html">What is Commonshub?</a>
-    <a class="mobileMenuLink" href="about.html">About</a>
-    <a class="mobileMenuLink" href="pricing.html">Pricing</a>
-    <a class="mobileMenuCta" href="prototype-preview.html">Start a Community</a>
-  </div>
-</header>
+    <div class="mobileMenu" id="mobileMenu">
+      <a class="mobileMenuLink" href="index.html">Home</a>
+      <a class="mobileMenuLink" href="best-of-both.html">Why Commonshub?</a>
+      <a class="mobileMenuLink" href="about.html">About</a>
+      <a class="mobileMenuLink isActive" href="pricing.html">Pricing</a>
+      <a class="mobileMenuCta" href="prototype-preview.html">Start a Community</a>
+    </div>
+  </header>
   <div id="csh-root">
     <section class="hero hero--brand" style="padding-bottom:0px;">
       <div class="heroField" aria-hidden="true"></div>
@@ -205,7 +198,91 @@
 
 </section>
 
+<section class="beforeAfterSection" style="margin-top:20px;">
+  <div class="heroInner">
 
+    <h2 style="
+    font-size:clamp(26px,3.2vw,34px);
+    line-height:1.15;
+    letter-spacing:-0.02em;
+    margin:0 0 14px;
+    text-align:center;
+    ">
+    Built on proven infrastructure — not another platform
+  </h2>
+
+  <p class="sub" style="text-align:center; margin:0 auto 24px; max-width:640px;">
+    Commonshub combines an <b>chronological social engine</b> with a
+    <b>native funding engine</b> — powered by trusted technologies and fully managed for you.
+  </p>
+
+  <!-- CORE PRODUCT -->
+  <div class="benefit newCommunity" style="
+  text-align:center;
+  margin-bottom:12px;
+  padding:14px 16px;
+  ">
+  <div class="title">Your independent community</div>
+
+  <div style="color:var(--muted); font-size:14px; margin-top:6px;">
+    A shared, ongoing conversation on your own domain — with
+    <b style="color:var(--text);">funding built in</b>.
+  </div>
+
+  <div style="margin-top:8px; font-size:13px; color:rgba(16,32,24,.68);">
+    Your domain • Your audience • Your rules • No ads • No algorithms
+  </div>
+</div>
+
+<!-- TWO ENGINES -->
+<div class="benefitGrid" style="
+margin-top:0;
+grid-template-columns:1fr 1fr;
+gap:14px;
+">
+
+<div class="benefit" style="text-align:center;">
+  <h3 class="engineTitle">Social Engine (Mastodon)</h3>
+  <p class="engineCopy">
+    A proven, open-source, standards-based, decentralized, twitter-like social media network used by millions.<br>
+    <b>No ads. No algorithms. Self Moderated.</b><br>
+  </p>
+</div>
+
+<div class="benefit" style="text-align:center;">
+  <h3 class="engineTitle">Funding engine (Stripe)</h3>
+  <p class="engineCopy">
+   The global payments infrastructure used by millions of businesses.
+   Memberships, tips, and donations built in.<br>
+   <b>Money deposited directly to your account</b>.
+ </p>
+</div>
+
+</div>
+
+<!-- INFRASTRUCTURE -->
+<div class="benefit isPrimary" style="
+margin-top:12px;
+text-align:center;
+">
+<h3 class="commonshubTitle">Managed, secure infrastructure</h3>
+
+<p class="commonCopy">
+  Hosted on scalable, production-grade systems.<br>
+  Deployed outside U.S. platform ecosystems.
+</p>
+<div class="sectionCta" style="justify-content:center; margin-top:18px;">
+  <a class="secondaryCta" href="best-of-both.html">
+    Why add Commonshub if you already have followers?
+  </a>
+</div>
+<p class="commonCopy">
+  We handle setup, updates, and reliability — you stay focused on your community.
+</p>
+</div>
+
+</div>
+</section>
 <section class="hero" style="padding-top:40px">
 
   <div class="heroInner">
@@ -220,19 +297,19 @@
       and ideas that matter.
     </p>
 
-   <div class="heroBottomCta heroBottomCtaRow" style="margin-top:26px;">
-  <a class="cta" href="prototype-preview.html">
-    Start a Community
-  </a>
+    <div class="heroBottomCta heroBottomCtaRow" style="margin-top:26px;">
+      <a class="cta" href="prototype-preview.html">
+        Start a Community
+      </a>
 
-  <a class="secondaryCta" href="best-of-both.html">
-    Why add Commonshub?
-  </a>
+      <a class="secondaryCta" href="best-of-both.html">
+        Why add Commonshub?
+      </a>
 
-  <a class="secondaryCta" href="digital-sovereignty.html">
-    What is Digital Sovereignty?
-  </a>
-</div>
+      <a class="secondaryCta" href="digital-sovereignty.html">
+        What is Digital Sovereignty?
+      </a>
+    </div>
 
   </div>
 </section>
@@ -347,7 +424,7 @@
 
 </script>
 </div>
-  <script>
+<script>
   const menuToggle = document.querySelector('.menuToggle');
   const mobileMenu = document.getElementById('mobileMenu');
 
