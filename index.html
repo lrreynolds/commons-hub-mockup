@@ -151,25 +151,6 @@
 
 /* Unused ??? 
 
-.arrowWrap{
-  display:flex;
-  justify-content:center;
-  align-items:center;
-}
-
-.arrow{
-  width:42px;
-  height:42px;
-  border-radius:999px;
-  background:rgba(31,111,74,.08);
-  border:1px solid rgba(31,111,74,.18);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:22px;
-  font-weight:900;
-  color:var(--btn);
-}
 
 .architectureSection .archStack{
   margin-left:auto;
@@ -183,12 +164,6 @@
   margin-top:16px;
 }
 
-
-*/
-
-@media (max-width:760px){
-  .afterCard{ transform:none; }
-}
 
 .feedItem{
   display:flex;
@@ -231,20 +206,57 @@
 }
 
 .beforeAfterExplain{
-  margin-top:14px;                 /* was 16px */
+  margin-top:14px;                
   font-size:14px;
   text-align:center;
   color:var(--muted);
 }
 
 .beforeAfterTagline{
-  margin-top:6px;                  /* NEW: pulls it up a touch */
+  margin-top:6px;                 
   font-size: 1.15rem;
   font-weight: 600;
   letter-spacing: -0.01em;
   text-align:center;
   color:var(--btn);
 }
+
+
+.hostPanelIntro{
+  max-width:760px;
+  margin:0 auto 18px;
+  text-align:center;
+  font-size:18px;
+  line-height:1.45;
+  color:var(--muted);
+}
+
+.hostSection{
+  max-width:920px;
+  margin:0 auto;
+  text-align:center;
+}
+
+.hostHeadline{
+  font-size: clamp(20px,2.2vw,26px);
+  font-weight:650;
+  letter-spacing:-0.015em;
+  line-height:1.2;
+  margin-bottom:10px;
+}
+
+.hostIntro{
+  max-width:760px;
+  margin:0 auto 12px;
+  font-size:17px;
+  line-height:1.45;
+  color:var(--muted);
+}
+
+*/
+
+
+
 /* ===== BENEFITS ===== */
 
 .benefitGrid{
@@ -518,36 +530,7 @@
 
 
 
-.hostPanelIntro{
-  max-width:760px;
-  margin:0 auto 18px;
-  text-align:center;
-  font-size:18px;
-  line-height:1.45;
-  color:var(--muted);
-}
 
-.hostSection{
-  max-width:920px;
-  margin:0 auto;
-  text-align:center;
-}
-
-.hostHeadline{
-  font-size: clamp(20px,2.2vw,26px);
-  font-weight:650;
-  letter-spacing:-0.015em;
-  line-height:1.2;
-  margin-bottom:10px;
-}
-
-.hostIntro{
-  max-width:760px;
-  margin:0 auto 12px;
-  font-size:17px;
-  line-height:1.45;
-  color:var(--muted);
-}
 
 
 
@@ -603,7 +586,7 @@
 
 
 @media (min-width:760px){
-  
+
   .hostPanel::after{
     display:none;
   }
@@ -619,9 +602,7 @@
     font-size:16px;
   }
 
-  .communityFeatures{
-    grid-template-columns:1fr;
-  }
+ 
 
   .hostBenefits{
     grid-template-columns:1fr;
@@ -685,47 +666,18 @@
     font-size:22px;
   }
 
-  .featureGrid{
-    flex-direction:column;
-  }
-
-  .featureCard{
-    padding:18px 16px;
-  }
-
-  .featureCard h4{
-    font-size:18px;
-  }
-
-  .featureCard p{
-    font-size:15px;
-  }
-
   .hostExplain{
     font-size:22px;
     margin-bottom:14px;
   }
 
-  .hostPanelIntro{
-    font-size:16px;
-  }
+ 
 
   .hostExplain h2{
     font-size:24px;
     line-height:1.25;
   }
 
-  .communityPlatform{
-    padding:22px 18px;
-  }
-
-  .archCard{
-    padding:18px 16px;
-  }
-
-  .archThin{
-    padding:16px;
-  }
 
 }
 
