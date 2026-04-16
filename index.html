@@ -373,8 +373,7 @@
 
 
 
-@media (max-width:760px){
-  .afterCard{ transform:none; }
+@media (min-width: 760px){
 
    .hostPanel::after{
     display:none;
@@ -410,10 +409,6 @@
 .hero .sub{ 
   font-size:16px; 
 }
-
-  .communityFeatures{
-    grid-template-columns:1fr;
-  }
 
  .hostIntro{
     font-size:16px;
@@ -820,7 +815,6 @@ text-align:center;
   document.addEventListener("DOMContentLoaded", () => {
 
     initReveal();
-    loadArchitecture();
 
     const tabs = document.querySelectorAll(".hostTab");
     const explainEl = document.getElementById("hostExplainText");
@@ -915,25 +909,7 @@ text-align:center;
   }
 
 
-  function loadArchitecture() {
 
-    const mount = document.getElementById("architecture");
-    if (!mount) return;
-
-    fetch("architecture.html")
-    .then(res => {
-      if (!res.ok) {
-        throw new Error(`Failed to load architecture.html`);
-      }
-      return res.text();
-    })
-    .then(html => {
-      mount.innerHTML = html;
-      initReveal();
-    })
-    .catch(err => console.error(err));
-
-  }
 </script>
 </div>
   <script>
