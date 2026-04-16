@@ -131,10 +131,7 @@
   to   { opacity:1; transform:translateY(0);    filter: blur(0); }
 }
 
-@keyframes ctaBreathe{
-  0%,100% { transform: translateY(0);   box-shadow: 0 6px 18px rgba(16,32,24,.10); }
-  50%     { transform: translateY(-1px); box-shadow: 0 10px 26px rgba(16,32,24,.14); }
-}
+
 
 .reveal {
   opacity: 0;
@@ -322,13 +319,6 @@
     border-radius:24px;
   }
 
-  .architectureSection{
-    margin:24px auto;
-  }
-
-   .hostTabs{
-    grid-template-columns:1fr;
-  }
 }
 
 @media (min-width: 760px){
@@ -356,10 +346,6 @@
  .hero--brand{
   padding-top: 44px;
   padding-bottom: 38px !important;
-}
-
-.hero .sub{ 
-  font-size:16px; 
 }
 
  .hostIntro{
@@ -403,11 +389,6 @@
 
   .hostTabIcon{
     transform:scale(.95);
-  }
-
-
-  .hostBenefits{
-    grid-template-columns:1fr;
   }
 
   .hero h1{
