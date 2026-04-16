@@ -37,6 +37,9 @@
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="/favicon.png" sizes="32x32">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+<link rel="stylesheet" href="components.css">
+
 <style>
 
  #csh-root {
@@ -865,123 +868,7 @@
   margin:4px 0 2px;
 }
 
-/* ===== COMMUNITY CATEGORY SELECTOR ===== */
-.hostTabs{
-  display:flex;
-  gap:18px;
-  justify-content:flex-start;
-  align-items:center;
-  overflow-x:auto;
-  overflow-y:hidden;
-  -webkit-overflow-scrolling:touch;
-  padding:0 10px 8px;
-  margin:0 0 16px;
-  scrollbar-width:none;
-  position:relative;
-  white-space:nowrap;
-  scroll-snap-type:x proximity;
-}
 
-.hostTabs::-webkit-scrollbar{
-  display:none;
-}
-
-.hostTab{
-  flex:0 0 auto;
-  display:flex;
-  align-items:center;
-  gap:8px;
-  padding:6px 2px 10px;
-  border:none;
-  background:none;
-  border-radius:0;
-  color:var(--muted);
-  font-size:14px;
-  font-weight:650;
-  white-space:nowrap;
-  position:relative;
-  scroll-snap-align:start;
-  cursor:pointer;   /* ← ADD THIS */
-  -webkit-tap-highlight-color: transparent;
-}
-
-.hostTab::after{
-  content:"";
-  position:absolute;
-  left:0;
-  right:0;
-  bottom:0;
-  height:3px;
-  border-radius:999px;
-  background:transparent;
-}
-
-
-
-.hostTab:hover{
-  transform:translateY(-1px);
-  color:var(--accent);
-}
-
-
-
-.hostTabIcon{
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  height:28px;
-  margin:2px 0 2px;
-}
-
-.hostTabIcon svg{
-  width:18px;
-  height:18px;
-  stroke-width:2;
-}
-
-.hostTabLabel{
-  font-size:16px;
-  line-height:1.05;
-  font-weight:800;
-  letter-spacing:-0.01em;
-}
-
-.hostTabMeta{
-  font-size:12.5px;
-  font-weight:600;
-  opacity:.8;
-}
-
-.hostTab.active{
-  color:var(--btn);
-}
-
-.hostTab.active::after{
-  background:var(--btn);
-}
-
-.hostTab.active .hostTabMeta{
-  color:rgba(255,255,255,.85);
-}
-
-.hostExplain{
-  text-align:center;
-  font-size:clamp(24px, 3vw, 34px);
-  line-height:1.15;
-  font-weight:800;
-  letter-spacing:-0.02em;
-  color:var(--text);
-  margin:0 0 12px;
-}
-
-.hostExplain h2{
-  font-size: clamp(26px,3vw,32px);
-  font-weight:700;
-  letter-spacing:-0.02em;
-  line-height:1.2;
-  text-align:center;
-  margin:0 0 16px 0;
-}
 /* mobile stack */
 
 
