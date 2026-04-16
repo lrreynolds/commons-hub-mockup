@@ -879,8 +879,6 @@
   scrollbar-width:none;
   position:relative;
   white-space:nowrap;
-  user-select:none;
-  -webkit-user-select:none;
   scroll-snap-type:x proximity;
 }
 
@@ -903,6 +901,7 @@
   white-space:nowrap;
   position:relative;
   scroll-snap-align:start;
+  cursor:pointer;   /* ← ADD THIS */
 }
 
 .hostTab::after{
