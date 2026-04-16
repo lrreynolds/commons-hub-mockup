@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="en">
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+
+  <title>About — Commonshub</title>
+
+  <meta name="description"
+  content="Learn about Commonshub — why it exists, who is behind it, and how it is helping creators and organizations build independent communities without ads or algorithms.">
+
+  <!-- Open Graph -->
+  <meta property="og:site_name" content="Commonshub">
+  <meta property="og:title" content="About Commonshub">
+  <meta property="og:description" content="A simpler way to build real communities online — without ads or algorithms.">
+  <meta property="og:url" content="https://thecommonshub.com/about.html">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://thecommonshub.com/og/og-preview.jpg?v=2">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="assets/tokens.css">
+  <link rel="stylesheet" href="assets/components.css">
+  <link rel="stylesheet" href="pages/index.css">
+
+</head>
+
+<body>
+
+<header class="siteNav">
+  <div class="siteNavInner">
+    <a class="siteBrand" href="index.html">
+      <img src="assets/commonshub-mark.svg" alt="">
+      <span>Commonshub</span>
+    </a>
+
+    <nav class="siteNavLinks">
+      <a class="siteNavLink" href="index.html">Home</a>
+      <a class="siteNavLink" href="best-of-both.html">Why add Commonshub?</a>
+      <a class="siteNavLink" href="digital-sovereignty.html">What is Digital Sovereignty?</a>
+      <a class="siteNavLink" href="about.html">About</a>
+    </nav>
+
+    <div class="siteNavActions">
+      <a class="siteNavCta" href="prototype-preview.html">Start a Community</a>
+
+      <button class="menuToggle" type="button" aria-expanded="false" aria-controls="mobileMenu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+
+  <div class="mobileMenu" id="mobileMenu">
+    <a class="mobileMenuLink" href="index.html">Home</a>
+    <a class="mobileMenuLink" href="best-of-both.html">Why add Commonshub?</a>
+    <a class="mobileMenuLink" href="digital-sovereignty.html">What is Digital Sovereignty?</a>
+    <a class="mobileMenuLink" href="about.html">About</a>
+    <a class="mobileMenuCta" href="prototype-preview.html">Start a Community</a>
+  </div>
+</header>
+
+<div id="csh-root">
+
+  <!-- HERO -->
+  <section class="hero hero--brand" style="padding-bottom:40px;">
+    <div class="heroField" aria-hidden="true"></div>
+
+    <div class="heroInner">
+
+      <div class="heroMark" aria-hidden="true">
+        <img src="assets/commonshub-mark.svg" alt="">
+      </div>
+
+      <h1>About Commonshub</h1>
+
+      <p class="sub">
+        A simpler way to build real communities online — on infrastructure you control.
+      </p>
+
+    </div>
+  </section>
+
+  <!-- CONTENT -->
+  <section class="hero" style="padding-top:0px;">
+    <div class="heroInner" style="text-align:left; max-width:720px;">
+
+      <!-- Why -->
+      <h2>Why this exists</h2>
+
+      <p class="sub">
+        Online communities have gradually moved onto platforms that optimize for reach, engagement, and advertising.
+      </p>
+
+      <p class="sub">
+        In that environment, conversations become fragmented, visibility is controlled by algorithms, and relationships are shaped by platform incentives.
+      </p>
+
+      <p class="sub">
+        Commonshub exists to offer a different model — one where communities are built around <b>direct connection, continuity, and ownership</b>.
+      </p>
+
+      <!-- POV -->
+      <h2 style="margin-top:32px;">Point of view</h2>
+
+      <p class="sub">
+        There is real value in a <b>self-curated, chronological conversation</b> — where what you see is determined by who you follow, not by an algorithm.
+      </p>
+
+      <p class="sub">
+        That model once existed more widely on the web, and remains one of the simplest and most effective ways to stay connected to the people and ideas that matter.
+      </p>
+
+      <p class="sub">
+        Commonshub is built to preserve and extend that approach, using <b>open standards and open-source technologies</b> wherever possible.
+      </p>
+
+      <!-- Founder -->
+      <h2 style="margin-top:32px;">Who’s behind it</h2>
+
+      <p class="sub">
+        Commonshub was initiated by Lou Reynolds, a longtime builder of internet and publishing systems.
+      </p>
+
+      <p class="sub">
+        In 1989, before the web existed, he founded Electronic Book Technologies, whose DynaText system explored structured documents, styling, linking, and full-text search — concepts that helped shape what later became the modern web.
+      </p>
+
+      <p class="sub">
+        This work led to a long-standing focus on how digital systems can support <b>meaningful communication and lasting relationships</b> — not just distribution.
+      </p>
+
+      <!-- Team -->
+      <h2 style="margin-top:32px;">A global effort</h2>
+
+      <p class="sub">
+        Commonshub is being built by a small, international team of experienced engineers and designers.
+      </p>
+
+      <p class="sub">
+        The project draws heavily on open-source software and widely adopted standards, with the goal of creating infrastructure that works across regions and communities — not tied to any single platform ecosystem or geographic center.
+      </p>
+
+      <!-- Closing -->
+      <h2 style="margin-top:32px;">Looking forward</h2>
+
+      <p class="sub">
+        As more people look for alternatives to centralized platforms, the goal is not to replace them — but to give people a <b>place of their own</b>.
+      </p>
+
+      <p class="sub">
+        Commonshub is part of a broader shift toward a more open, decentralized web — where individuals and organizations can build communities that are durable, self-directed, and aligned with their values.
+      </p>
+
+    </div>
+  </section>
+
+</div>
+
+<script>
+  const menuToggle = document.querySelector('.menuToggle');
+  const mobileMenu = document.getElementById('mobileMenu');
+
+  if (menuToggle && mobileMenu) {
+    menuToggle.addEventListener('click', () => {
+      const isOpen = mobileMenu.classList.toggle('open');
+      menuToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    });
+  }
+</script>
+
+</body>
+</html>
