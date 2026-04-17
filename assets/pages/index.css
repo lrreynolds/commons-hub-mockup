@@ -11,10 +11,15 @@
   max-width:460px;
   text-align:center;
   padding:18px 20px 16px;
-  border:1px solid rgba(16,32,24,.08);
+
+  border:1px solid rgba(16,32,24,.12);
   border-radius:20px;
-  background:rgba(255,255,255,.34);
-  box-shadow:0 6px 20px rgba(16,32,24,.03);
+
+  background:rgba(255,255,255,.55);
+
+  box-shadow:
+    0 8px 24px rgba(16,32,24,.06),
+    0 1px 0 rgba(255,255,255,.6) inset;
 }
 
 .flowTop{
@@ -70,13 +75,6 @@
   font-size:14px;
   color:var(--muted);
   opacity:.6;
-}
-
-.flowConnector{
-  width:2px;
-  height:18px;
-  background:var(--line);
-  border-radius:2px;
 }
 
 .heroPrimaryCta{
