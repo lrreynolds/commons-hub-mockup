@@ -41,6 +41,24 @@
   border-radius:2px;
 }
 
+.heroPrimaryCta{
+  display:flex;
+  justify-content:center;
+  margin-top:22px;
+}
+
+@media (max-width:640px){
+  .heroPrimaryCta{
+    margin-top:18px;
+  }
+
+  .heroPrimaryCta .cta{
+    width:100%;
+    max-width:320px;
+    text-align:center;
+  }
+}
+
 .flowSub{
   font-size:13px;
   color:var(--muted);
