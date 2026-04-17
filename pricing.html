@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Commonshub — Pricing</title>
+  <meta name="description" content="Pricing for Commonshub community infrastructure.">
+
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/favicon.png" sizes="32x32">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+  <link rel="stylesheet" href="assets/tokens.css">
+  <link rel="stylesheet" href="assets/components.css">
+  <link rel="stylesheet" href="assets/layout.css">
+  <link rel="stylesheet" href="assets/pages/pricing.css">
+</head>
+<body>
+<header class="siteNav">
+  <div class="siteNavInner">
+    <a class="siteBrand" href="index.html">
+      <img src="assets/commonshub-mark.svg" alt="">
+      <span>Commonshub</span>
+    </a>
+
+    <nav class="siteNavLinks">
+      <a class="siteNavLink" href="index.html">Home</a>
+      <a class="siteNavLink" href="best-of-both.html">Why Commonshub?</a>
+      <a class="siteNavLink" href="about.html">About</a>
+      <a class="siteNavLink isActive" href="pricing.html">Pricing</a>
+    </nav>
+
+    <div class="siteNavActions">
+      <a class="siteNavCta" href="prototype-preview.html">Start a Community</a>
+
+      <button class="menuToggle" type="button" aria-expanded="false" aria-controls="mobileMenu" aria-label="Open navigation menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </div>
+
+  <div class="mobileMenu" id="mobileMenu">
+    <a class="mobileMenuLink" href="index.html">Home</a>
+    <a class="mobileMenuLink" href="best-of-both.html">Why Commonshub?</a>
+    <a class="mobileMenuLink" href="about.html">About</a>
+    <a class="mobileMenuLink isActive" href="pricing.html">Pricing</a>
+    <a class="mobileMenuCta" href="prototype-preview.html">Start a Community</a>
+  </div>
+</header>
+
+<div id="csh-root">
+  <section class="hero hero--brand pricingHero">
+    <div class="heroField" aria-hidden="true"></div>
+    <div class="heroInner">
+      <div class="heroMark" aria-hidden="true">
+        <img src="assets/commonshub-mark.svg" alt="">
+      </div>
+
+      <h1>Pricing</h1>
+
+      <p class="sub">
+        Commonshub pricing is still being finalized.
+      </p>
+
+      <p class="sub">
+        It will be offered as a monthly or yearly service, with pricing depending in part on whether you use a Commonshub subdomain or your own custom domain or subdomain.
+      </p>
+    </div>
+  </section>
+
+  <section class="hero" style="padding-top:20px;">
+    <div class="heroInner">
+      <div class="panelShell" style="max-width:900px;">
+        <h2 style="text-align:center; margin-top:0;">What’s included</h2>
+
+        <div class="hostBenefits">
+          <div class="hostBenefit">
+            <h3>Guided setup</h3>
+            <p>
+              Automated onboarding and setup for a custom-branded Mastodon community.
+            </p>
+          </div>
+
+          <div class="hostBenefit">
+            <h3>Hub page</h3>
+            <p>
+              A public landing page for your community with clear identity, onboarding, and support options.
+            </p>
+          </div>
+
+          <div class="hostBenefit">
+            <h3>Direct funding</h3>
+            <p>
+              Monthly subscriptions, yearly subscriptions, one-time tips, and fundraising campaigns through Stripe.
+            </p>
+          </div>
+        </div>
+
+        <div class="benefit isPrimary" style="margin-top:18px; text-align:center;">
+          <h3 class="commonshubTitle">Payments go directly to you</h3>
+          <p class="commonCopy">
+            Community support is processed through your Stripe account, with funds deposited directly into your account.
+          </p>
+        </div>
+
+        <div style="margin-top:24px; text-align:center;">
+          <p class="sub" style="margin-top:0;">
+            Hosting, maintenance, updates, and platform reliability are part of the service.
+          </p>
+
+          <div class="heroBottomCta heroBottomCtaRow" style="margin-top:22px;">
+            <a class="cta" href="prototype-preview.html">Start a Community</a>
+            <a class="secondaryCta" href="about.html">About Commonshub</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<script>
+  const menuToggle = document.querySelector('.menuToggle');
+  const mobileMenu = document.getElementById('mobileMenu');
+
+  if (menuToggle && mobileMenu) {
+    menuToggle.addEventListener('click', () => {
+      const isOpen = mobileMenu.classList.toggle('open');
+      menuToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    });
+  }
+</script>
+</body>
+</html>
