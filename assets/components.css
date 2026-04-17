@@ -423,6 +423,7 @@
 }
 
 .siteNavLink{
+  position: relative;
   text-decoration: none;
   color: var(--muted);
   font-weight: 750;
@@ -433,22 +434,22 @@
 }
 
 .siteNavLink:hover{
-  background: var(--accent-soft);
-  color: var(--accent);
+  background: transparent;
+  color: var(--text);
 }
 
 /* ACTIVE STATE */
 .siteNavLink.isActive {
   color: var(--text);
+  font-weight: 800;
 }
 
-/* subtle underline (recommended) */
 .siteNavLink.isActive::after {
   content: "";
   position: absolute;
-  left: 0;
-  bottom: -6px;
-  width: 100%;
+  left: 10px;          /* align with padding */
+  right: 10px;
+  bottom: -4px;
   height: 2px;
   background: var(--btn);
   border-radius: 2px;
