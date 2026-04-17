@@ -1,11 +1,49 @@
 /* ===== HERO FLOW (homepage only) ===== */
 
-.heroFlow{
-  margin: 28px auto 0;
+.heroFlowCard{
   display:flex;
-  flex-direction:column;
-  align-items:center;
-  gap:10px;
+  justify-content:center;
+  margin:22px auto 18px;
+}
+
+.heroFlow{
+  width:100%;
+  max-width:460px;
+  text-align:center;
+  padding:18px 20px 16px;
+  border:1px solid rgba(16,32,24,.08);
+  border-radius:20px;
+  background:rgba(255,255,255,.34);
+  box-shadow:0 6px 20px rgba(16,32,24,.03);
+}
+
+.flowTop{
+  font-size:16px;
+  font-weight:700;
+  color:var(--muted);
+  line-height:1.4;
+}
+
+.flowDivider{
+  width:2px;
+  height:26px;
+  margin:12px auto;
+  background:rgba(16,32,24,.10);
+  border-radius:999px;
+}
+
+.flowBottom{
+  font-size:18px;
+  font-weight:900;
+  color:var(--btn);
+  line-height:1.2;
+}
+
+.flowSub{
+  margin-top:8px;
+  font-size:15px;
+  line-height:1.35;
+  color:var(--muted);
 }
 
 .flowRow{
@@ -48,19 +86,36 @@
 }
 
 @media (max-width:640px){
+  .heroFlowCard{
+    margin:20px auto 16px;
+  }
+
+  .heroFlow{
+    max-width:100%;
+    padding:16px 14px 14px;
+    border-radius:18px;
+  }
+
+  .flowTop{
+    font-size:15px;
+  }
+
+  .flowDivider{
+    height:22px;
+    margin:10px auto;
+  }
+
+  .flowBottom{
+    font-size:17px;
+  }
+
+  .flowSub{
+    font-size:14px;
+    margin-top:6px;
+  }
+
   .heroPrimaryCta{
-    margin-top:18px;
+    margin-top:16px;
+    margin-bottom:18px;
   }
-
-  .heroPrimaryCta .cta{
-    width:100%;
-    max-width:320px;
-    text-align:center;
-  }
-}
-
-.flowSub{
-  font-size:13px;
-  color:var(--muted);
-  text-align:center;
 }
