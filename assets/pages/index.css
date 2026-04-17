@@ -3,7 +3,8 @@
 .heroFlowCard{
   display:flex;
   justify-content:center;
-  margin:22px auto 18px;
+  margin:24px auto 18px;
+  padding:0 12px; /* ensures breathing room on mobile edges */
 }
 
 .heroFlow{
@@ -27,13 +28,14 @@
   font-weight:700;
   color:var(--muted);
   line-height:1.4;
+  letter-spacing:.2px;
 }
 
 .flowDivider{
   width:2px;
   height:26px;
-  margin:12px auto;
-  background:rgba(16,32,24,.10);
+  margin:10px auto 10px;
+  background:rgba(16,32,24,.14);
   border-radius:999px;
 }
 
