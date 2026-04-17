@@ -437,6 +437,23 @@
   color: var(--accent);
 }
 
+/* ACTIVE STATE */
+.siteNavLink.isActive {
+  color: var(--text);
+}
+
+/* subtle underline (recommended) */
+.siteNavLink.isActive::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  width: 100%;
+  height: 2px;
+  background: var(--btn);
+  border-radius: 2px;
+}
+
 .siteNavActions{
   display: flex;
   align-items: center;
