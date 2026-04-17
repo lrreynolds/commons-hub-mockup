@@ -31,12 +31,23 @@
   letter-spacing:.2px;
 }
 
-.flowDivider{
-  width:2px;
-  height:26px;
-  margin:10px auto 10px;
-  background:rgba(16,32,24,.14);
-  border-radius:999px;
+.flowPlusDivider{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  width:34px;
+  height:34px;
+
+  margin:10px auto;
+
+  font-size:16px;
+  font-weight:800;
+
+  color:var(--btn);
+
+  background:rgba(16,32,24,.06);
+  border-radius:50%;
 }
 
 .flowBottom{
