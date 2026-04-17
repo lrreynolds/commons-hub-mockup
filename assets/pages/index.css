@@ -301,7 +301,54 @@
   text-align:center;
 }
 
+/* ===== HERO FLOW (homepage only) ===== */
 
+.heroFlow{
+  margin: 28px auto 0;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:10px;
+}
+
+.flowRow{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  flex-wrap:wrap;
+  justify-content:center;
+}
+
+.flowItem{
+  font-size:14px;
+  font-weight:600;
+  color:var(--muted);
+}
+
+.flowItemStrong{
+  font-size:16px;
+  font-weight:800;
+  color:var(--btn);
+}
+
+.flowPlus{
+  font-size:14px;
+  color:var(--muted);
+  opacity:.6;
+}
+
+.flowConnector{
+  width:2px;
+  height:18px;
+  background:var(--line);
+  border-radius:2px;
+}
+
+.flowSub{
+  font-size:13px;
+  color:var(--muted);
+  text-align:center;
+}
 
 
 /* mobile stack */
