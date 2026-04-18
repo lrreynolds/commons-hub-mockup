@@ -402,7 +402,7 @@
   align-items: center;
   gap: 12px;
   text-decoration: none;
-  color: var(--text);
+  color: var(--btn);
   font-weight: 900;
   font-size: 17px;
   letter-spacing: -0.02em;
