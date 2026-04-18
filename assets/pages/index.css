@@ -101,7 +101,7 @@
 .heroPrimaryCta{
   display:flex;
   justify-content:center;
-  margin-top:22px;
+  margin-top:16px;
 }
 
 @media (max-width:640px){
@@ -134,7 +134,7 @@
   }
 
   .heroPrimaryCta{
-    margin-top:16px;
+    margin-top:14px;
     margin-bottom:18px;
   }
 }
