@@ -400,7 +400,7 @@
 .siteBrand{
   display: inline-flex;
   align-items: center;
-  gap: 6px;
+  gap: 4px;
   text-decoration: none;
   color: var(--btn);
   font-weight: 900;
