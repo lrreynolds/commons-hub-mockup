@@ -4,12 +4,13 @@
   display:flex;
   justify-content:center;
   margin:24px auto 18px;
-  padding:0 12px; /* ensures breathing room on mobile edges */
+  
 }
 
 .heroFlow{
   width:100%;
   max-width:460px;
+   padding:0 12px;
   text-align:center;
   padding:18px 20px 16px;
 
@@ -32,17 +33,21 @@
 }
 
 .flowPlusDivider{
-  width:30px;
-  height:30px;
+  width:34px;
+  height:34px;
 
   margin:8px auto;
 
-  font-size:14px;
+  display:flex;                 /* 👈 key */
+  align-items:center;           /* 👈 vertical center */
+  justify-content:center;       /* 👈 horizontal center */
+
+  font-size:16px;               /* 👈 slightly bigger */
   font-weight:700;
 
   color:var(--btn);
 
-  background:rgba(16,32,24,.04);   /* lighter */
+  background:rgba(16,32,24,.05);
   border-radius:50%;
 }
 
