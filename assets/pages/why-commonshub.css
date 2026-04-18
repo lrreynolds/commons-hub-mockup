@@ -1,7 +1,7 @@
 .wrap{
-  max-width:980px;
+  max-width:1100px;
   margin:0 auto;
-  padding:0 24px;
+  padding:0 24px 64px;
 }
 
 .heroTop{
@@ -153,12 +153,16 @@ strong{
 }
 
 .section{
-  margin-top:48px;
+  margin-top:44px;
 }
 
 .sectionIntro{
   max-width:760px;
-  margin:0 auto 14px;
+  margin:0 auto 12px;
+  font-size:18px;
+  color:var(--muted);
+  text-align:center;
+  line-height:1.5;
 }
 
 .diagramBlock .sectionIntro:last-of-type{
@@ -177,37 +181,39 @@ strong{
 
 .grid{
   display:grid;
-  grid-template-columns:repeat(2,1fr);
+  grid-template-columns:repeat(2, minmax(0, 1fr));
   gap:16px;
-  margin-top:16px;
+  margin-top:18px;
 }
 
 .card{
   background:var(--card);
   border:1px solid var(--line);
- padding:18px 20px;
   border-radius:20px;
+  padding:18px 20px;
 }
 
 .card p{
+  margin:0;
   font-size:15px;
   line-height:1.45;
-  margin:0;
+  color:var(--muted);
 }
 
 .card h3{
-  margin-bottom:10px;
-  font-size:clamp(26px,3vw,32px);
+  margin:0 0 8px;
+  font-size:20px;
+  line-height:1.15;
+  font-weight:850;
 }
 
 .statement{
-  margin-top:18px;
+  margin:18px auto 0;
   text-align:center;
-  font-size:clamp(28px,3vw,34px);
-  line-height:1.25;
-  font-weight:850;
+  font-size:clamp(24px, 3vw, 32px);
+  line-height:1.2;
+  font-weight:900;
   color:var(--text);
-  margin-bottom:36px;
 }
 
 .statement span{
@@ -218,19 +224,21 @@ strong{
   color:var(--muted);
 }
 
+/* tighter grid for the community-principles section */
 .communitySystemGrid{
+  display:grid;
+  grid-template-columns:repeat(2, minmax(0, 1fr));
   gap:14px;
   margin-top:18px;
 }
 
 .communitySystemGrid .card{
-  padding:18px 18px;
-  min-height:auto;
+  padding:16px 18px;
 }
 
 .communitySystemGrid .card h3{
-  font-size:20px;
-  margin-bottom:8px;
+  font-size:18px;
+  margin-bottom:6px;
 }
 
 .communitySystemGrid .card p{
@@ -239,17 +247,19 @@ strong{
 }
 
 .supportGrid{
+  display:grid;
+  grid-template-columns:repeat(2, minmax(0, 1fr));
   gap:14px;
-  margin-top:16px;
+  margin-top:18px;
 }
 
 .supportGrid .card{
-  padding:18px 18px;
+  padding:16px 18px;
 }
 
 .supportGrid .card h3{
-  margin-bottom:8px;
-  font-size:20px;
+  font-size:18px;
+  margin-bottom:6px;
 }
 
 .supportGrid .card p{
@@ -289,24 +299,26 @@ strong{
 }
 
 .svgWrap{
-  max-width:960px;   /* was full width */
+  max-width:920px;          /* not 9600px */
+  margin:16px auto 0;
+  padding:16px;
   background:#f7faf8;
   border:1px solid var(--line);
   border-radius:20px;
   overflow:hidden;
-  margin:18px auto 0;
-  padding:18px;   
 }
 
 .svgWrap img{
   display:block;
-  max-width:900px;
+  width:100%;
+  max-width:860px;
   height:auto;
+  margin:0 auto;
 }
 
 @media (max-width:900px){
   .wrap{
-    padding:0 18px 64px;
+    padding:0 18px 56px;
   }
 
   .grid{
@@ -336,8 +348,13 @@ strong{
     border-radius:22px;
   }
 
+  .section{
+    margin-top:40px;
+  }
+
   .svgWrap{
-    padding:18px;
+    max-width:100%;
+    padding:14px;
   }
 
   .diagramCard{
@@ -370,6 +387,40 @@ strong{
 
   .diagramCard p{
     font-size:16px;
+  }
+
+  .grid,
+  .communitySystemGrid,
+  .supportGrid{
+    grid-template-columns:1fr;
+    gap:14px;
+  }
+
+  .sectionIntro{
+    font-size:17px;
+    margin-bottom:10px;
+  }
+
+  .card{
+    padding:16px;
+  }
+
+  .card h3{
+    font-size:18px;
+  }
+
+  .card p{
+    font-size:15px;
+  }
+
+  .statement{
+    font-size:clamp(22px, 7vw, 30px);
+    margin-top:16px;
+  }
+
+  .svgWrap{
+    padding:12px;
+    border-radius:18px;
   }
 }
 
