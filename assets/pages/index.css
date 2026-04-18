@@ -65,6 +65,13 @@
   color:var(--muted);
 }
 
+.flowSubIntro{
+  margin-bottom:8px;
+  font-size:15px;
+  line-height:1.35;
+  color:var(--muted);
+}
+
 .flowRow{
   display:flex;
   align-items:center;
