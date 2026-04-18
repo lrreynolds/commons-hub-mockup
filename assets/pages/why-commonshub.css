@@ -213,12 +213,12 @@ strong{
 }
 
 .statement{
-  margin:18px auto 0;
+  font-size:28px;
+  line-height:1.3;
+  font-weight:600;        /* ↓ from headline weight */
+  margin:32px auto 48px;  /* adds separation before next section */
+  max-width:720px;
   text-align:center;
-  font-size:clamp(24px, 3vw, 32px);
-  line-height:1.2;
-  font-weight:900;
-  color:var(--text);
 }
 
 .statement span{
