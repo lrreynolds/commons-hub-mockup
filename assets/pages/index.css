@@ -134,9 +134,7 @@
   }
 
   .heroPrimaryCta{
-  display:flex;
-  justify-content:center;
-  margin-top:1px;   /* was ~22px */
+  margin-top:0px;   /* was ~22px */
   margin-bottom:8px; /* tighten the drop into next section */
 }
 }
