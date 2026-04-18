@@ -244,11 +244,9 @@ strong{
   border:1px solid var(--line);
   border-radius:20px;
   overflow:hidden;
-/*  padding:34px; */
-  margin-top:18px;
-  
+  padding:34px;  
   margin:0 auto;
-  padding:12px;      
+    
 }
 
 .svgWrap img{
