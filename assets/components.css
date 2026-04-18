@@ -409,6 +409,11 @@
   white-space: nowrap;
 }
 
+.brandMark{
+  width:26px;
+  height:26px;
+}
+
 .siteBrand img{
   width: 30px;
   height: 30px;
