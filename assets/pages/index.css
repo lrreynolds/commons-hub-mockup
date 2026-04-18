@@ -32,21 +32,17 @@
 }
 
 .flowPlusDivider{
-  display:flex;
-  align-items:center;
-  justify-content:center;
+  width:30px;
+  height:30px;
 
-  width:34px;
-  height:34px;
+  margin:8px auto;
 
-  margin:10px auto;
-
-  font-size:16px;
-  font-weight:800;
+  font-size:14px;
+  font-weight:700;
 
   color:var(--btn);
 
-  background:rgba(16,32,24,.06);
+  background:rgba(16,32,24,.04);   /* lighter */
   border-radius:50%;
 }
 
