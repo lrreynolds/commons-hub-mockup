@@ -304,8 +304,8 @@ strong{
 }
 
 .svgWrap{
-  max-width:700px;
-  margin:32px auto 8px;
+  max-width:600px;
+  margin:24px auto 0;
   padding:10px;
   background:rgba(255,255,255,.6);
   border:1px solid rgba(16,32,24,.06);
