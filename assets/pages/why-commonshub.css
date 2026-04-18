@@ -241,7 +241,7 @@ strong{
 }
 
 .svgWrap{
-  max-width:720px;   /* was full width */
+  max-width:9600px;   /* was full width */
   background:#f7faf8;
   border:1px solid var(--line);
   border-radius:20px;
@@ -252,7 +252,7 @@ strong{
 
 .svgWrap img{
   display:block;
-  width:100%;
+  max-width:900px;
   height:auto;
 }
 
