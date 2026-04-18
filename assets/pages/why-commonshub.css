@@ -289,7 +289,7 @@ strong{
 }
 
 .svgWrap{
-  max-width:9600px;   /* was full width */
+  max-width:960px;   /* was full width */
   background:#f7faf8;
   border:1px solid var(--line);
   border-radius:20px;
