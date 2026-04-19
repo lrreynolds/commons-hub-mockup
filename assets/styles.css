@@ -778,23 +778,26 @@ body.flow.flowDark .secondary{
 }
 
 body.flow.flowDark .guideNote{
-  margin-top:14px;
-  padding:12px 14px;
+  margin-top:12px;
+  padding:10px 12px;
   border-radius:14px;
-  background:rgba(15,23,19,.03);
-  border:1px solid rgba(15,23,19,.08);
+  background:rgba(15,23,19,.025);
+  border:1px solid rgba(15,23,19,.06);
   display:flex;
   flex-direction:column;
-  gap:4px;
+  gap:3px;
+  max-width:520px;
 }
 
 body.flow.flowDark .guideNote b{
+  display:block;
   font-size:12px;
   font-weight:800;
   color:var(--cardText);
 }
 
 body.flow.flowDark .guideNote span{
+  display:block;
   font-size:13px;
   line-height:1.5;
   color:var(--cardMuted);
@@ -841,6 +844,7 @@ body.flow.flowDark .guideNote span{
   }
 
   body.flow.flowDark .guideNote{
+    max-width:none;
     padding:10px 12px;
     border-radius:12px;
     gap:2px;
