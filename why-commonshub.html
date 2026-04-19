@@ -285,6 +285,18 @@ Community is owned.
 
 </section>
   </main>
+  <script>
+  const menuToggle = document.querySelector('.menuToggle');
+  const mobileMenu = document.getElementById('mobileMenu');
+
+  if (menuToggle && mobileMenu) {
+    menuToggle.addEventListener('click', () => {
+      const isOpen = mobileMenu.classList.toggle('open');
+      menuToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    });
+  }
+</script>
+
 </body>
 </html>
     
