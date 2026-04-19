@@ -781,8 +781,8 @@ body.flow.flowDark .guideNote{
   margin-top:14px;
   padding:12px 14px;
   border-radius:14px;
-  background:rgba(31,111,74,.06);
-  border:1px solid rgba(31,111,74,.14);
+  background:rgba(15,23,19,.03);
+  border:1px solid rgba(15,23,19,.08);
   display:flex;
   flex-direction:column;
   gap:4px;
@@ -838,6 +838,21 @@ body.flow.flowDark .guideNote span{
 
   body.flow.flowDark .onboardTitle{
     font-size:24px;
+  }
+
+  body.flow.flowDark .guideNote{
+    padding:10px 12px;
+    border-radius:12px;
+    gap:2px;
+  }
+
+  body.flow.flowDark .guideNote b{
+    font-size:11px;
+  }
+
+  body.flow.flowDark .guideNote span{
+    font-size:13px;
+    line-height:1.45;
   }
 }
 
