@@ -5,257 +5,8 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Commonshub — Guided onboarding</title>
   <link rel="stylesheet" href="assets/styles.css" />
-  <style>
-    :root{
-      --surface:#ffffff;
-      --surface-soft:#f7faf8;
-      --border:rgba(31,111,74,.14);
-      --border-strong:rgba(31,111,74,.2);
-      --focus:rgba(31,111,74,.12);
-    }
-
-    .appHeader{
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      gap:16px;
-      margin:10px 0 18px;
-      padding-bottom:12px;
-      border-bottom:1px solid var(--line);
-    }
-
-    .appBrand{
-      display:flex;
-      align-items:center;
-      gap:10px;
-      font-size:16px;
-      font-weight:900;
-      color:var(--text);
-    }
-
-    .appMark{
-      width:26px;
-      height:26px;
-      display:block;
-      flex:0 0 auto;
-    }
-
-    .progress{
-      display:grid;
-      grid-template-columns:auto 1fr auto;
-      gap:12px;
-      align-items:center;
-      font-size:13px;
-      color:var(--muted);
-    }
-
-    .progress .bar{
-      height:10px;
-      border-radius:999px;
-      background:rgba(31,111,74,.08);
-      overflow:hidden;
-      box-shadow:inset 0 0 0 1px rgba(31,111,74,.08);
-    }
-
-    .progress .bar > div{
-      height:100%;
-      width:8%;
-      border-radius:999px;
-      background:#1f6f4a;
-      box-shadow:0 0 0 1px rgba(255,255,255,.35) inset;
-    }
-
-    .onboardShell{
-      max-width:720px;
-      margin:14px auto 0;
-      border:1px solid var(--line);
-      border-radius:24px;
-      background:var(--surface);
-      padding:30px 32px 28px;
-      box-shadow:0 1px 0 rgba(255,255,255,.7) inset;
-    }
-
-    .onboardIntro{
-      padding-bottom:24px;
-      border-bottom:1px solid var(--line);
-    }
-
-    .eyebrow{
-      display:inline-block;
-      margin:0 0 10px;
-      font-size:12px;
-      line-height:1.2;
-      font-weight:800;
-      letter-spacing:.02em;
-      color:var(--muted);
-      text-transform:none;
-    }
-
-    .onboardIntro h1{
-      margin:0 0 14px;
-      font-size:30px;
-      line-height:1.15;
-      letter-spacing:-0.02em;
-      color:var(--text);
-    }
-
-    .lead{
-      margin:0 0 10px;
-      font-size:17px;
-      line-height:1.5;
-      color:var(--text);
-    }
-
-    .support{
-      margin:0;
-      font-size:14px;
-      line-height:1.55;
-      color:var(--muted);
-      max-width:56ch;
-    }
-
-    .formSection{
-      padding-top:24px;
-      display:flex;
-      flex-direction:column;
-      gap:12px;
-    }
-
-    .fieldLabel{
-      font-size:13px;
-      font-weight:800;
-      color:var(--text);
-    }
-
-    .fieldHelp{
-      margin:-2px 0 4px;
-      font-size:13px;
-      line-height:1.45;
-      color:var(--muted);
-    }
-
-    .inputField{
-      width:100%;
-      height:58px;
-      border:1px solid var(--line);
-      border-radius:16px;
-      padding:0 16px;
-      font:inherit;
-      font-size:16px;
-      color:var(--text);
-      background:#fcfdfc;
-      outline:none;
-      transition:border-color .15s ease, box-shadow .15s ease, background .15s ease;
-    }
-
-    .inputField::placeholder{
-      color:#98a29b;
-    }
-
-    .inputField:focus{
-      border-color:var(--border-strong);
-      box-shadow:0 0 0 4px var(--focus);
-      background:#fff;
-    }
-
-    .actionRow{
-      display:flex;
-      justify-content:flex-end;
-      margin-top:6px;
-    }
-
-    .continueBtn{
-      appearance:none;
-      border:none;
-      border-radius:18px;
-      background:#1f6f4a;
-      color:#fff;
-      font:inherit;
-      font-weight:900;
-      font-size:17px;
-      line-height:1;
-      padding:18px 24px;
-      min-width:220px;
-      text-align:center;
-      text-decoration:none;
-      cursor:pointer;
-      box-shadow:0 10px 18px rgba(31,111,74,.16);
-      transition:transform .15s ease, box-shadow .15s ease, background .15s ease;
-    }
-
-    .continueBtn:hover{
-      transform:translateY(-1px);
-      box-shadow:0 14px 24px rgba(31,111,74,.18);
-    }
-
-    .continueBtn:active{
-      transform:translateY(0);
-    }
-
-    @media (max-width: 640px){
-      .appHeader{
-        margin-bottom:14px;
-      }
-
-      .appBrand{
-        font-size:14px;
-      }
-
-      .appMark{
-        width:20px;
-        height:20px;
-      }
-
-      .progress{
-        grid-template-columns:1fr;
-        gap:8px;
-      }
-
-      .onboardShell{
-        margin-top:12px;
-        padding:20px 18px 18px;
-        border-radius:18px;
-      }
-
-      .onboardIntro{
-        padding-bottom:18px;
-      }
-
-      .onboardIntro h1{
-        font-size:25px;
-      }
-
-      .lead{
-        font-size:16px;
-      }
-
-      .support,
-      .fieldHelp{
-        font-size:14px;
-      }
-
-      .formSection{
-        padding-top:18px;
-      }
-
-      .inputField{
-        height:56px;
-        font-size:16px;
-      }
-
-      .actionRow{
-        margin-top:8px;
-      }
-
-      .continueBtn{
-        width:100%;
-        min-width:0;
-        padding:17px 20px;
-      }
-    }
-  </style>
 </head>
-<body class="flow">
+<body class="flow flowDark">
   <div class="flowRoot">
     <div class="wrap">
       <main class="stage">
@@ -272,21 +23,26 @@
 
             <div class="progress">
               <span>Session start</span>
-              <div class="bar"><div></div></div>
+              <div class="bar"><div style="width:8%"></div></div>
               <span>~1 minute</span>
             </div>
 
-            <section class="onboardShell">
+            <section class="onboardCard">
               <div class="onboardIntro">
                 <p class="eyebrow">Session start</p>
-                <h1>Ready to design your community?</h1>
-                <p class="lead">First, what email should own the server?</p>
-                <p class="support">This is where we’ll send the future login link once the community is live.</p>
+                <h1 class="onboardTitle">Ready to design your community?</h1>
+                <p class="onboardLead">First, what email should own the server?</p>
+                <p class="onboardSupport">
+                  This is where we’ll send the future login link once the community is live.
+                </p>
               </div>
 
               <div class="formSection">
                 <label class="fieldLabel" for="adminEmail">Admin email</label>
-                <p class="fieldHelp">Use the address that should own the server and receive the initial access details.</p>
+                <p class="fieldHelp">
+                  Use the address that should own the server and receive the initial access details.
+                </p>
+
                 <input
                   id="adminEmail"
                   class="inputField"
@@ -296,7 +52,7 @@
                 />
 
                 <div class="actionRow">
-                  <a class="continueBtn" href="onboarding-01-focus.html">Continue →</a>
+                  <a class="primary forward" href="onboarding-01-focus.html">Continue</a>
                 </div>
               </div>
             </section>
