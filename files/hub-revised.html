@@ -145,6 +145,21 @@
             font-weight:600
         }
 
+        .site-header__toggle {
+            display: none;
+            cursor: pointer;
+            color: var(--text);
+            border: 1px solid var(--line);
+            background: #ffffff0d;
+            border-radius: 14px;
+            align-items: center;
+            justify-content: center;
+            width: 44px;
+            height: 44px;
+            padding: 0;
+            font: inherit;
+        }
+
         .site-nav a:hover {
             color:#fff
         }
@@ -156,10 +171,16 @@
         .hero__main {
             min-width: 0;
         }
+
+        .hero__banner {
+    width: min(1180px, 100% - 32px);
+    margin: 0 auto;
+}
+
         .hero__banner img {
             object-fit: cover;
             border: 1px solid var(--line);
-            width: min(1200px, 100% - 32px);
+            width: 100%;
             height: 260px;
             box-shadow: var(--shadow);
             border-radius: 34px;
@@ -182,10 +203,32 @@
         }
 
         .hero__card--split {
-            grid-template-columns: minmax(0, 1fr) 320px;
-            align-items: start;
-            gap: 24px;
-            display:grid
+            display: block;
+        }
+        .hero__headline {
+            margin: 0 0 18px;
+            max-width: 760px;
+            padding-left: 10px;
+        }
+
+      
+
+        .hero__headline-title {
+            margin: 0;
+            color: #fff;
+            font-size: clamp(1.5rem, 3vw, 2.65rem);
+            line-height: 1.02;
+            letter-spacing: -.03em;
+            text-wrap: balance;
+        }
+
+        .hero__headline-rule {
+            width: min(100%, 520px);
+            height: 2px;
+            margin-top: 12px;
+            border-radius: 999px;
+            background: linear-gradient(90deg, #7484ff, #9aa5ff);
+            opacity: .95;
         }
 
         .hero__identity {
@@ -229,6 +272,12 @@
             gap: 12px;
             margin-top: 26px;
             display:flex
+        }
+
+        .hero__cta .button {
+            min-height: 48px;
+            padding: 0 18px;
+            border-radius: 16px;
         }
 
         .button {
@@ -655,7 +704,7 @@
 
 
         @media (max-width: 980px) {
-           .about-grid {
+         .about-grid {
             grid-template-columns:1fr
         }
 
@@ -685,14 +734,18 @@
         }
 
         .site-header__inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
             min-height: auto;
-            padding: 12px 0 10px;
-            gap: 8px;
+            padding: 10px 0;
+            gap: 10px;
         }
 
         .brand {
             gap: 10px;
-            margin-bottom: 6px;
+            margin-bottom: 0;
+            min-width: 0;
         }
 
         .brand__mark {
@@ -708,29 +761,48 @@
 
         .brand__name {
             font-size: 0.98rem;
-            line-height: 1.05;
+            line-height: 1.02;
+        }
+
+        .site-header__toggle {
+            display: inline-flex;
+            flex: 0 0 auto;
         }
 
         .site-nav {
-            gap: 8px 14px;
-            margin-top: 0;
+            display: none;
+            width: 100%;
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 1px solid var(--line);
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+        .site-header.is-open .site-nav {
+            display: flex;
         }
 
         .site-nav a {
-            font-size: 0.88rem;
+            font-size: 0.95rem;
         }
 
         .hero {
-            padding-top: 14px;
+            padding-top: 12px;
         }
 
+    .hero__banner {
+        width: min(1180px, 100% - 20px);
+    }
+
         .hero__banner img {
-            height: 170px;
+            height: 150px;
             border-radius: 24px;
         }
 
         .hero__content {
-            margin-top: -18px;
+            margin-top: -12px;
         }
 
         .hero__card--split {
@@ -739,12 +811,30 @@
 
         .hero__card,
         .section-card {
-            padding: 18px;
+            padding: 16px;
         }
 
         .section {
             margin: 18px auto;
         }
+
+       .hero__headline {
+        padding-left: 6px;
+        margin: 0 0 10px;
+        max-width: 100%;
+    }
+
+    .hero__headline-title {
+        font-size: 1.32rem;
+        line-height: 1.02;
+        letter-spacing: -0.03em;
+        max-width: none;
+    }
+
+    .hero__headline-rule {
+        margin-top: 9px;
+        width: min(100%, 380px);
+    }
 
         .hero__main {
             width: 100%;
@@ -752,16 +842,16 @@
         }
 
         .hero__identity {
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
+            display: grid;
+            grid-template-columns: 84px minmax(0, 1fr);
+            align-items: end;
             gap: 14px;
             width: 100%;
         }
 
         .avatar {
-            width: 92px;
-            height: 92px;
+            width: 84px;
+            height: 84px;
             border-radius: 18px;
         }
 
@@ -771,37 +861,37 @@
         }
 
         .hero__text h1 {
-            font-size: 2.5rem;
-            line-height: 0.95;
+            font-size: 2.15rem;
+            line-height: 0.94;
             letter-spacing: -0.03em;
-            margin: 0 0 8px;
+            margin: 0 0 6px;
         }
 
         .handle {
             display: block;
             width: 100%;
             max-width: 100%;
-            font-size: 1rem;
-            line-height: 1.25;
+            font-size: 0.98rem;
+            line-height: 1.2;
             margin: 0;
             word-break: normal;
             overflow-wrap: anywhere;
         }
 
         .hero__cta {
-            display: flex;
-            flex-direction: column;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
             gap: 10px;
-            margin-top: 18px;
+            margin-top: 14px;
             width: 100%;
         }
 
         .hero__cta .button {
             width: 100%;
-            min-height: 54px;
-            padding: 0 18px;
-            font-size: 1rem;
-            border-radius: 18px;
+            min-height: 46px;
+            padding: 0 14px;
+            font-size: 0.95rem;
+            border-radius: 16px;
             justify-content: center;
             text-align: center;
         }
@@ -817,6 +907,7 @@
             margin: 0.1rem 0 0.8rem;
             overflow-wrap: anywhere;
         }
+
         .section-card p,
         .section-card li,
         .about-richtext,
@@ -928,7 +1019,7 @@
         #signals {
             scroll-margin-top: 108px;
         }
-    } 
+    }
 
     .hero__main,
     .hero__text,
@@ -950,7 +1041,7 @@
 
     <a class="skip-link" href="#content">Skip to content</a>
 
-    <header class="site-header">
+    <header class="site-header" id="siteHeader">
         <div class="wrap site-header__inner">
             <div class="brand">
                 <div class="brand__mark">C</div>
@@ -959,65 +1050,81 @@
                     <div class="brand__name">Community Hub</div>
                 </div>
             </div>
-            <nav class="site-nav" aria-label="Primary">
-                <a href="#about-community">About</a>
-                <a href="#support">Support</a>
-                <a href="#join">Join</a>
-                <a href="#signals">Activity</a>
-            </nav>
+
+            <button
+            class="site-header__toggle"
+            type="button"
+            aria-expanded="false"
+            aria-controls="siteNav"
+            id="siteNavToggle">
+            ☰
+        </button>
+
+        <nav class="site-nav" id="siteNav" aria-label="Primary">
+            <a href="#about-community">About</a>
+            <a href="#support">Support</a>
+            <a href="#join">Join</a>
+            <a href="#signals">Activity</a>
+        </nav>
+    </div>
+</header>
+
+<main id="content">
+
+    <section class="hero">
+         <div class="wrap">
+        <div class="hero__headline">
+            <h2 class="hero__headline-title">Daily Practice for Peak Living</h2>
+            <div class="hero__headline-rule"></div>
         </div>
-    </header>
-
-    <main id="content">
-
-        <section class="hero">
-            <div class="hero__banner">
-                <img src="https://sos-de-fra-1.exo.io/peakx-commons-media/accounts/headers/116/268/797/783/535/969/original/d6c73b80fa348e7c.jpeg" alt="Header image for Peak Experience.">
-            </div>
-            <div class="wrap hero__content">
-                <div class="hero__card hero__card--split">
-                    <div class="hero__main">
-                        <div class="hero__identity">
-                            <img class="avatar" src="https://sos-de-fra-1.exo.io/peakx-commons-media/accounts/avatars/116/268/797/783/535/969/original/45152bf2a39cdb1f.jpeg" alt="Portrait of Lou Reynolds.">
-                            <div class="hero__text">
-                                <h1>Lou Reynolds</h1>
-                                <p class="handle">@lou@social.peakx.com</p>
-                            </div>
+    </div>
+        <div class="hero__banner">
+            <img src="https://sos-de-fra-1.exo.io/peakx-commons-media/accounts/headers/116/268/797/783/535/969/original/d6c73b80fa348e7c.jpeg" alt="Header image for Peak Experience.">
+        </div>
+        <div class="wrap hero__content">
+            <div class="hero__card hero__card--split">
+                <div class="hero__main">
+                    <div class="hero__identity">
+                        <img class="avatar" src="https://sos-de-fra-1.exo.io/peakx-commons-media/accounts/avatars/116/268/797/783/535/969/original/45152bf2a39cdb1f.jpeg" alt="Portrait of Lou Reynolds.">
+                        <div class="hero__text">
+                            <h1>Lou Reynolds</h1>
+                            <p class="handle">@lou@social.peakx.com</p>
                         </div>
+                    </div>
 
 
 
-                        <div class="hero__cta">
-                          <a class="button button--secondary"
-                          href="https://social.peakx.com/@lou"
-                          target="_blank"
-                          rel="noopener">
-                          Visit community
-                      </a>
-
+                    <div class="hero__cta">
                       <a class="button button--secondary"
-                      href="https://peakx.com"
+                      href="https://social.peakx.com/@lou"
                       target="_blank"
                       rel="noopener">
-                      Website
+                      Visit community
                   </a>
 
                   <a class="button button--secondary"
-                  href="#"
+                  href="https://peakx.com"
                   target="_blank"
                   rel="noopener">
-                  YouTube
+                  Website
               </a>
 
               <a class="button button--secondary"
               href="#"
               target="_blank"
               rel="noopener">
-              Substack
+              YouTube
           </a>
-      </div>                    </div>
 
-  </div>
+          <a class="button button--secondary"
+          href="#"
+          target="_blank"
+          rel="noopener">
+          Substack
+      </a>
+  </div>                    </div>
+
+</div>
 </div>
 </section>
 
@@ -1046,118 +1153,118 @@
 </section>
 
 <section class="wrap section hub-actions" aria-label="Support and join">
- <div class="hub-actions__stack">
+   <div class="hub-actions__stack">
 
-   <section class="section-card" id="support">
-    <p class="section-label">Support the community</p>
-    <h2>Support the community</h2>
+     <section class="section-card" id="support">
+        <p class="section-label">Support the community</p>
+        <h2>Support the community</h2>
 
-    <p class="section-intro">
-        Support the ongoing work behind this community.
-    </p>
+        <p class="section-intro">
+            Support the ongoing work behind this community.
+        </p>
 
-    <div class="support-options">
-        <div class="support-option">
-            <div class="support-option__text">
-                <h3>Monthly support</h3>
-                <p>Support this community on an ongoing basis.</p>
-                <p class="support-option__price">$2 / month <span class="support-meta">• recurring</span></p>
+        <div class="support-options">
+            <div class="support-option">
+                <div class="support-option__text">
+                    <h3>Monthly support</h3>
+                    <p>Support this community on an ongoing basis.</p>
+                    <p class="support-option__price">$2 / month <span class="support-meta">• recurring</span></p>
+                </div>
+                <a class="button button--primary" href="#">Support monthly</a>
             </div>
-            <a class="button button--primary" href="#">Support monthly</a>
-        </div>
 
-        <div class="support-option">
-            <div class="support-option__text">
-                <h3>Yearly support</h3>
-                <p>Provide annual support for this community.</p>
-                <p class="support-option__price">$20 / year <span class="support-meta">• recurring</span></p>
+            <div class="support-option">
+                <div class="support-option__text">
+                    <h3>Yearly support</h3>
+                    <p>Provide annual support for this community.</p>
+                    <p class="support-option__price">$20 / year <span class="support-meta">• recurring</span></p>
+                </div>
+                <a class="button button--secondary" href="#">Support yearly</a>
             </div>
-            <a class="button button--secondary" href="#">Support yearly</a>
-        </div>
 
-        <div class="support-option">
-            <div class="support-option__text">
-                <h3>One-time contribution</h3>
-                <p>Make a one-time contribution to support the work.</p>
-                <p class="support-option__price">$10 <span class="support-meta">• one-time</span></p>
+            <div class="support-option">
+                <div class="support-option__text">
+                    <h3>One-time contribution</h3>
+                    <p>Make a one-time contribution to support the work.</p>
+                    <p class="support-option__price">$10 <span class="support-meta">• one-time</span></p>
+                </div>
+                <a class="button button--secondary" href="#">Contribute once</a>
             </div>
-            <a class="button button--secondary" href="#">Contribute once</a>
-        </div>
 
-        <div class="support-option support-option--campaign">
-            <div class="support-option__text">
-                <h3>Community growth campaign</h3>
-                <p>Help fund outreach, hosting, and community development.</p>
+            <div class="support-option support-option--campaign">
+                <div class="support-option__text">
+                    <h3>Community growth campaign</h3>
+                    <p>Help fund outreach, hosting, and community development.</p>
 
-                <div class="campaign-progress">
-                    <div class="campaign-progress__bar">
-                        <div class="campaign-progress__fill" style="width:32%"></div>
-                    </div>
+                    <div class="campaign-progress">
+                        <div class="campaign-progress__bar">
+                            <div class="campaign-progress__fill" style="width:32%"></div>
+                        </div>
 
-                    <div class="campaign-progress__meta">
-                        <span>$640 raised</span>
-                        <span>$2,000 goal</span>
+                        <div class="campaign-progress__meta">
+                            <span>$640 raised</span>
+                            <span>$2,000 goal</span>
+                        </div>
                     </div>
                 </div>
+
+                <a class="button button--secondary" href="#">
+                    Support campaign
+                </a>
             </div>
-
-            <a class="button button--secondary" href="#">
-                Support campaign
-            </a>
         </div>
-    </div>
 
-    <div class="support-manage">
-        Already supporting?
-        <a href="#" class="support-manage__link">Manage your contribution</a>
-    </div>
-</section>
-
-<section class="section-card join-card" id="join" x-data="{ inviteUrl: '', inviteError: '', isInviteLoading: false, async requestInvite() { this.inviteError = ''; this.isInviteLoading = true; try { const response = await fetch('/hub/api/invite', { method: 'POST', headers: { 'Accept': 'application/json' } }); const payload = await response.json(); if (!response.ok || !payload.invite_url) { throw new Error(payload.detail || 'Invite generation is not available right now.'); } this.inviteUrl = payload.invite_url; } catch (error) { this.inviteError = error.message || 'Invite generation is not available right now.'; } finally { this.isInviteLoading = false; } } }">
-    <p class="section-label">Join the Community</p>
-    <h2>Enter Peak Experience</h2>
-    <p class="join-intro">Generate a one-time-use invite to continue.</p>
-
-    <div x-show="!inviteUrl">
-        <button type="button" class="button button--primary" x-on:click="requestInvite()" x-bind:disabled="isInviteLoading">
-            <span x-show="!isInviteLoading">Generate invite link</span>
-            <span x-show="isInviteLoading">Generating invite...</span>
-        </button>
-
-        <div aria-live="polite">
-            <p x-show="inviteError" x-text="inviteError" class="invite-error"></p>
+        <div class="support-manage">
+            Already supporting?
+            <a href="#" class="support-manage__link">Manage your contribution</a>
         </div>
-    </div>
+    </section>
 
-    <template x-if="inviteUrl">
-        <div class="invite-ready">
-            <p class="invite-ready__title">Your invitation is ready</p>
-            <p class="invite-ready__text">Use the button below to continue into the invite flow for this community.</p>
+    <section class="section-card join-card" id="join" x-data="{ inviteUrl: '', inviteError: '', isInviteLoading: false, async requestInvite() { this.inviteError = ''; this.isInviteLoading = true; try { const response = await fetch('/hub/api/invite', { method: 'POST', headers: { 'Accept': 'application/json' } }); const payload = await response.json(); if (!response.ok || !payload.invite_url) { throw new Error(payload.detail || 'Invite generation is not available right now.'); } this.inviteUrl = payload.invite_url; } catch (error) { this.inviteError = error.message || 'Invite generation is not available right now.'; } finally { this.isInviteLoading = false; } } }">
+        <p class="section-label">Join the Community</p>
+        <h2>Enter Peak Experience</h2>
+        <p class="join-intro">Generate a one-time-use invite to continue.</p>
 
-            <div class="invite-preview">
-                <img
-                class="invite-preview__image"
-                src="https://sos-de-fra-1.exo.io/peakx-commons-media/accounts/headers/116/268/797/783/535/969/original/d6c73b80fa348e7c.jpeg"
-                alt="Preview image for Peak Experience invite.">
-                <div class="invite-preview__meta">
-                    <p class="invite-preview__community">Peak Experience</p>
-                    <p class="invite-preview__domain">social.peakx.com</p>
-                </div>
-            </div>
-
-            <div class="invite-ready__actions">
-                <a class="button button--primary button--small" x-bind:href="inviteUrl">Join Peak Experience</a>
-                <button
-                type="button"
-                class="button button--secondary button--small"
-                x-on:click="navigator.clipboard.writeText(inviteUrl)">
-                Copy invite link
+        <div x-show="!inviteUrl">
+            <button type="button" class="button button--primary" x-on:click="requestInvite()" x-bind:disabled="isInviteLoading">
+                <span x-show="!isInviteLoading">Generate invite link</span>
+                <span x-show="isInviteLoading">Generating invite...</span>
             </button>
+
+            <div aria-live="polite">
+                <p x-show="inviteError" x-text="inviteError" class="invite-error"></p>
+            </div>
         </div>
 
-        <p class="invite-ready__note">This is a single-use invite link.</p>
-    </div>
-</template>
+        <template x-if="inviteUrl">
+            <div class="invite-ready">
+                <p class="invite-ready__title">Your invitation is ready</p>
+                <p class="invite-ready__text">Use the button below to continue into the invite flow for this community.</p>
+
+                <div class="invite-preview">
+                    <img
+                    class="invite-preview__image"
+                    src="https://sos-de-fra-1.exo.io/peakx-commons-media/accounts/headers/116/268/797/783/535/969/original/d6c73b80fa348e7c.jpeg"
+                    alt="Preview image for Peak Experience invite.">
+                    <div class="invite-preview__meta">
+                        <p class="invite-preview__community">Peak Experience</p>
+                        <p class="invite-preview__domain">social.peakx.com</p>
+                    </div>
+                </div>
+
+                <div class="invite-ready__actions">
+                    <a class="button button--primary button--small" x-bind:href="inviteUrl">Join Peak Experience</a>
+                    <button
+                    type="button"
+                    class="button button--secondary button--small"
+                    x-on:click="navigator.clipboard.writeText(inviteUrl)">
+                    Copy invite link
+                </button>
+            </div>
+
+            <p class="invite-ready__note">This is a single-use invite link.</p>
+        </div>
+    </template>
 </div>
 </section>
 
@@ -3691,6 +3798,29 @@ ht = po;
 window.Alpine = ht;
 ht.start();
 })();
+</script>
+<script>
+    (() => {
+        const header = document.getElementById('siteHeader');
+        const toggle = document.getElementById('siteNavToggle');
+        const nav = document.getElementById('siteNav');
+
+        if (!header || !toggle || !nav) return;
+
+        toggle.addEventListener('click', () => {
+            const isOpen = header.classList.toggle('is-open');
+            toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+            toggle.textContent = isOpen ? '✕' : '☰';
+        });
+
+        nav.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                header.classList.remove('is-open');
+                toggle.setAttribute('aria-expanded', 'false');
+                toggle.textContent = '☰';
+            });
+        });
+    })();
 </script>
 </body>
 
