@@ -790,6 +790,12 @@ body.flow.flowDark .guideNoteSubtle b{
   color:var(--cardText);
 }
 
+.inputField--links{
+  min-height: 60px;   /* ~2 lines */
+  max-height: 110px;  /* prevents it from becoming a wall */
+  line-height: 1.4;
+}
+
 @media (max-width:760px){
   body.flow.flowDark .onboardTitle{
     font-size:28px;
