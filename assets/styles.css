@@ -796,6 +796,13 @@ body.flow.flowDark .guideNoteSubtle b{
   line-height: 1.4;
 }
 
+.itemHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 6px;
+}
+
 @media (max-width:760px){
   body.flow.flowDark .onboardTitle{
     font-size:28px;
