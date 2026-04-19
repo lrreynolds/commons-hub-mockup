@@ -584,6 +584,240 @@ font-weight:900;
 }
 
 /* =========================================================
+Flow theme — dark app-aligned onboarding
+========================================================= */
+
+body.flow.flowDark{
+  --bg:#46524d;
+  --flowText:#e9f2ec;
+  --flowMuted:rgba(233,242,236,.72);
+  --flowBorder:rgba(233,242,236,.14);
+
+  --card:rgba(255,255,255,.94);
+  --card2:rgba(255,255,255,.88);
+  --cardText:#0f1713;
+  --cardMuted:rgba(15,23,19,.68);
+  --line:rgba(15,23,19,.10);
+
+  color:var(--flowText);
+  background:
+    radial-gradient(1200px 600px at 30% 0%, rgba(31,111,74,.05), transparent 70%),
+    radial-gradient(1000px 600px at 80% 10%, rgba(31,111,74,.04), transparent 70%),
+    var(--bg);
+}
+
+body.flow.flowDark .flowRoot{
+  min-height:100vh;
+  padding:22px 0;
+  background:
+    radial-gradient(1200px 700px at 20% 0%, rgba(255,255,255,.03), transparent 60%),
+    radial-gradient(900px 600px at 85% 15%, rgba(255,255,255,.02), transparent 55%),
+    var(--bg);
+}
+
+body.flow.flowDark .stage{
+  background:rgba(255,255,255,.10);
+  border:1px solid var(--flowBorder);
+  box-shadow:0 22px 60px rgba(0,0,0,.28);
+  backdrop-filter:blur(14px);
+}
+
+body.flow.flowDark .content{
+  padding:18px 20px 22px;
+}
+
+body.flow.flowDark .appHeader{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:16px;
+  margin:4px 0 18px;
+  padding-bottom:14px;
+  border-bottom:1px solid var(--flowBorder);
+}
+
+body.flow.flowDark .appBrand{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  color:var(--flowText);
+  font-size:16px;
+  font-weight:900;
+}
+
+body.flow.flowDark .appMark{
+  width:28px;
+  height:28px;
+  display:block;
+  flex:0 0 auto;
+}
+
+body.flow.flowDark .chip{
+  background:rgba(255,255,255,.10);
+  border:1px solid var(--flowBorder);
+  color:var(--flowText);
+  font-weight:700;
+}
+
+body.flow.flowDark .progress{
+  color:var(--flowMuted);
+  margin-top:0;
+  margin-bottom:14px;
+}
+
+body.flow.flowDark .bar{
+  background:rgba(255,255,255,.08);
+  border:1px solid rgba(255,255,255,.08);
+}
+
+body.flow.flowDark .bar > div{
+  background:linear-gradient(90deg, var(--accent), rgba(76,184,126,.75), var(--accent));
+  background-size:200% 100%;
+  animation:flowPulse 3s ease-in-out infinite;
+}
+
+body.flow.flowDark .onboardCard{
+  background:var(--card);
+  color:var(--cardText);
+  border:1px solid rgba(255,255,255,.18);
+  border-radius:18px;
+  padding:22px;
+}
+
+body.flow.flowDark .onboardIntro{
+  padding-bottom:18px;
+  margin-bottom:18px;
+  border-bottom:1px solid rgba(15,23,19,.10);
+}
+
+body.flow.flowDark .eyebrow{
+  margin:0 0 10px;
+  font-size:12px;
+  font-weight:800;
+  color:var(--cardMuted);
+}
+
+body.flow.flowDark .onboardTitle{
+  margin:0 0 12px;
+  font-size:34px;
+  line-height:1.08;
+  letter-spacing:-.02em;
+  color:var(--cardText);
+}
+
+body.flow.flowDark .onboardLead{
+  margin:0 0 8px;
+  font-size:17px;
+  line-height:1.45;
+  color:var(--cardText);
+}
+
+body.flow.flowDark .onboardSupport{
+  margin:0;
+  font-size:14px;
+  line-height:1.55;
+  color:var(--cardMuted);
+  max-width:58ch;
+}
+
+body.flow.flowDark .formSection{
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+}
+
+body.flow.flowDark .fieldLabel{
+  font-size:13px;
+  font-weight:800;
+  color:var(--cardText);
+}
+
+body.flow.flowDark .fieldHelp{
+  margin:-2px 0 4px;
+  font-size:13px;
+  line-height:1.45;
+  color:var(--cardMuted);
+}
+
+body.flow.flowDark .inputField{
+  width:100%;
+  height:58px;
+  border-radius:14px;
+  border:1px solid rgba(15,23,19,.12);
+  background:#ffffff;
+  color:var(--cardText);
+  padding:0 14px;
+  font-size:16px;
+  outline:none;
+  transition:border-color .15s ease, box-shadow .15s ease;
+}
+
+body.flow.flowDark .inputField::placeholder{
+  color:rgba(15,23,19,.38);
+}
+
+body.flow.flowDark .inputField:focus{
+  border-color:rgba(31,111,74,.35);
+  box-shadow:0 0 0 4px rgba(31,111,74,.10);
+}
+
+body.flow.flowDark .actionRow{
+  display:flex;
+  justify-content:flex-end;
+  gap:12px;
+  margin-top:6px;
+}
+
+body.flow.flowDark .primary{
+  min-width:220px;
+}
+
+body.flow.flowDark .secondary{
+  width:auto;
+  min-width:140px;
+}
+
+@media (max-width:760px){
+  body.flow.flowDark .onboardTitle{
+    font-size:28px;
+  }
+
+  body.flow.flowDark .actionRow{
+    flex-direction:column;
+  }
+
+  body.flow.flowDark .primary,
+  body.flow.flowDark .secondary{
+    width:100%;
+    min-width:0;
+  }
+}
+
+@media (max-width:640px){
+  body.flow.flowDark .content{
+    padding:16px;
+  }
+
+  body.flow.flowDark .appBrand{
+    font-size:14px;
+  }
+
+  body.flow.flowDark .appMark{
+    width:22px;
+    height:22px;
+  }
+
+  body.flow.flowDark .onboardCard{
+    padding:18px;
+    border-radius:16px;
+  }
+
+  body.flow.flowDark .onboardTitle{
+    font-size:24px;
+  }
+}
+
+/* =========================================================
 Funding helper
 ========================================================= */
 
