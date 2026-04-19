@@ -777,6 +777,29 @@ body.flow.flowDark .secondary{
   min-width:140px;
 }
 
+body.flow.flowDark .guideNote{
+  margin-top:14px;
+  padding:12px 14px;
+  border-radius:14px;
+  background:rgba(31,111,74,.06);
+  border:1px solid rgba(31,111,74,.14);
+  display:flex;
+  flex-direction:column;
+  gap:4px;
+}
+
+body.flow.flowDark .guideNote b{
+  font-size:12px;
+  font-weight:800;
+  color:var(--cardText);
+}
+
+body.flow.flowDark .guideNote span{
+  font-size:13px;
+  line-height:1.5;
+  color:var(--cardMuted);
+}
+
 @media (max-width:760px){
   body.flow.flowDark .onboardTitle{
     font-size:28px;
