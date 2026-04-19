@@ -777,30 +777,17 @@ body.flow.flowDark .secondary{
   min-width:140px;
 }
 
-body.flow.flowDark .guideNote{
-  margin-top:12px;
-  padding:10px 12px;
-  border-radius:14px;
-  background:rgba(15,23,19,.025);
-  border:1px solid rgba(15,23,19,.06);
-  display:flex;
-  flex-direction:column;
-  gap:3px;
+body.flow.flowDark .guideNoteSubtle{
+  margin-top:14px;
+  font-size:12px;
+  line-height:1.45;
+  color:var(--cardMuted);
   max-width:520px;
 }
 
-body.flow.flowDark .guideNote b{
-  display:block;
-  font-size:12px;
-  font-weight:800;
+body.flow.flowDark .guideNoteSubtle b{
+  font-weight:700;
   color:var(--cardText);
-}
-
-body.flow.flowDark .guideNote span{
-  display:block;
-  font-size:13px;
-  line-height:1.5;
-  color:var(--cardMuted);
 }
 
 @media (max-width:760px){
@@ -843,21 +830,6 @@ body.flow.flowDark .guideNote span{
     font-size:24px;
   }
 
-  body.flow.flowDark .guideNote{
-    max-width:none;
-    padding:10px 12px;
-    border-radius:12px;
-    gap:2px;
-  }
-
-  body.flow.flowDark .guideNote b{
-    font-size:11px;
-  }
-
-  body.flow.flowDark .guideNote span{
-    font-size:13px;
-    line-height:1.45;
-  }
 }
 
 /* =========================================================
