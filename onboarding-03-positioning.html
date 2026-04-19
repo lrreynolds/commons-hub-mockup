@@ -3,14 +3,13 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Commonshub — Guided onboarding</title>
+  <title>Commonshub — Onboarding</title>
   <link rel="stylesheet" href="assets/styles.css" />
 </head>
 
-<body class="flow">
+<body class="flow flowDark">
   <div class="flowRoot">
     <div class="wrap">
-
       <main class="stage">
         <div class="content">
           <div class="center">
@@ -18,7 +17,7 @@
             <!-- Header -->
             <div class="appHeader">
               <div class="appBrand">
-                <img src="assets/commonshub-mark.svg" alt="" class="appMark">
+                <img src="assets/commonshub-mark-light.svg" alt="" class="appMark">
                 <span>Commonshub — Onboarding</span>
               </div>
               <div class="chip">Step 3</div>
@@ -26,77 +25,78 @@
 
             <!-- Progress -->
             <div class="progress">
-              <span>Guided decisions</span>
               <div class="bar"><div style="width:42%"></div></div>
               <span>~1 minute</span>
             </div>
 
             <!-- Card -->
-            <div class="card" style="margin-top:14px;">
-              <div class="consoleShell">
+            <section class="onboardCard">
 
-                <!-- Stream -->
-                <div class="consoleStream">
+              <div class="onboardIntro">
+                <h1 class="onboardTitle">
+                  Choose the positioning for your space
+                </h1>
 
-                  <!-- Prompt -->
-                  <div class="msg system">
-                    <div class="metaLine">
-                      <span><b>Commonshub</b> · Positioning</span>
-                      <span>Step 3</span>
-                    </div>
-                    <p><b>Choose the positioning for your space</b></p>
-                    <p>This defines who it’s for and what happens there.</p>
+                <p class="onboardLead">
+                  This defines who it’s for and what happens there.
+                </p>
+              </div>
+
+              <!-- Content -->
+              <div class="formSection">
+
+                <div class="list">
+
+                  <div class="item">
+                    <b>Option A</b>
+                    <div>A real-time signal space for analysts tracking authoritarian power, war strategy, and reputational politics.</div>
                   </div>
 
-                  <!-- Options -->
-                  <div class="list">
-
-                    <div class="item">
-                      <b>Option A</b>
-                      <div>A real-time signal space for analysts tracking authoritarian power, war strategy, and reputational politics.</div>
-                    </div>
-
-                    <div class="item">
-                      <b>Option B</b>
-                      <div>An ongoing briefing room for national security professionals following Russia, Ukraine, and global strategic conflict.</div>
-                    </div>
-
-                    <div class="item current">
-                      <div class="itemHeader">
-                        <b>Option C</b>
-                        <span class="pill">Selected</span>
-                      </div>
-                      <div>A working room for researchers, journalists, and operators analyzing power, propaganda, and geopolitical strategy.</div>
-                    </div>
-
-                    <div class="item">
-                      <b>Option D</b>
-                      <div>A signal space for people already working on national security, strategic risk, and authoritarian networks.</div>
-                    </div>
-
+                  <div class="item">
+                    <b>Option B</b>
+                    <div>An ongoing briefing room for national security professionals following Russia, Ukraine, and global strategic conflict.</div>
                   </div>
 
-                  <!-- Recommendation -->
-                  <div class="note">
-                    <b>Recommended:</b> Option A — but Option C works well for a more collaborative, working-room tone.
+                  <div class="item current">
+                    <div class="itemHeader">
+                      <b>Option C</b>
+                      <span class="pill">Selected</span>
+                    </div>
+                    <div>A working room for researchers, journalists, and operators analyzing power, propaganda, and geopolitical strategy.</div>
+                  </div>
+
+                  <div class="item">
+                    <b>Option D</b>
+                    <div>A signal space for people already working on national security, strategic risk, and authoritarian networks.</div>
                   </div>
 
                 </div>
 
-                <!-- Input -->
-                <div class="inputBar">
-                  <div class="fieldLabel">Selected (edit if needed)</div>
+                <div class="note">
+                  <b>Recommended:</b> Option A — but Option C works well for a more collaborative, working-room tone.
+                </div>
+
+                <div>
+                  <label class="fieldLabel">
+                    Selected (edit if needed)
+                  </label>
+
                   <textarea class="inputField">A working room for researchers, journalists, and operators analyzing power, propaganda, and geopolitical strategy.</textarea>
-                  <a class="continueBtn" href="onboarding-04-name.html">Continue →</a>
+                </div>
+
+                <div class="actionRow">
+                  <a class="primary forward" href="onboarding-04-name.html">
+                    Continue
+                  </a>
                 </div>
 
               </div>
-            </div>
+
+            </section>
 
           </div>
         </div>
       </main>
-
     </div>
   </div>
 </body>
