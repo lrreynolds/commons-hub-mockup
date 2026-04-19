@@ -639,15 +639,15 @@ body.flow.flowDark .appHeader{
 body.flow.flowDark .appBrand{
   display:flex;
   align-items:center;
-  gap:12px;
+  gap:10px;
   color:var(--flowText);
   font-size:16px;
   font-weight:900;
 }
 
 body.flow.flowDark .appMark{
-  width:28px;
-  height:28px;
+  width:32px;
+  height:32px;
   display:block;
   flex:0 0 auto;
 }
@@ -800,11 +800,12 @@ body.flow.flowDark .secondary{
 
   body.flow.flowDark .appBrand{
     font-size:14px;
+    gap:8px;
   }
 
   body.flow.flowDark .appMark{
-    width:22px;
-    height:22px;
+    width:24px;
+    height:24px;
   }
 
   body.flow.flowDark .onboardCard{
