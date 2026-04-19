@@ -803,6 +803,18 @@ body.flow.flowDark .guideNoteSubtle b{
   margin-bottom: 6px;
 }
 
+.selectedItem{
+  border:2px solid #1f6f4a;
+  box-shadow:0 0 0 3px rgba(31,111,74,.08);
+  background:rgba(31,111,74,.03);
+}
+
+.selectedItem .pill{
+  border-color:rgba(31,111,74,.22);
+  color:#1f6f4a;
+  background:#f4faf6;
+}
+
 @media (max-width:760px){
   body.flow.flowDark .onboardTitle{
     font-size:28px;
