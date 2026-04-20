@@ -433,6 +433,13 @@ cursor:pointer;
 width:160px;
 }
 
+.primary.is-disabled,
+.secondary.is-disabled{
+  pointer-events:none;
+  opacity:.45;
+  box-shadow:none;
+}
+
 .editBadge{
 display:inline-flex;
 align-items:center;
