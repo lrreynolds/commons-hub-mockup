@@ -272,6 +272,46 @@
       box-shadow:0 8px 16px rgba(0,0,0,.04);
     }
 
+    .previewLaunchArea{
+  display:flex;
+  flex-direction:column;
+  gap:16px;
+  padding-top:4px;
+}
+
+.previewLaunchNote{
+  margin:0;
+  color:#b4bee8;
+  line-height:1.55;
+  max-width:720px;
+}
+
+.previewLaunchBtn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-height:58px;
+  padding:0 22px;
+  border-radius:18px;
+  background:#1f6f4a;
+  color:#fff;
+  text-decoration:none;
+  font-weight:900;
+  font-size:18px;
+  box-shadow:0 10px 20px rgba(31,111,74,.22);
+  align-self:flex-start;
+}
+
+.launchSupport{
+  color:var(--muted);
+  font-size:14px;
+  line-height:1.5;
+}
+
+.launchSupport p{
+  margin:0;
+}
+
     @media (max-width: 900px){
       .previewIdentity{
         flex-direction:column;
@@ -426,27 +466,27 @@
                         <p>Support options can be connected after launch.</p>
                         <div class="previewDisabledBtn">Set up after launch</div>
                       </section>
-                      <section class="previewSection">
-  <p style="margin:0; color:#b4bee8;">
-    This page will become your live community hub.
-    All text, images, and links can be updated at any time after launch.
+<div class="previewLaunchArea">
+  <p class="previewLaunchNote">
+    This page will become your live community hub. You can update text, images, and links at any time after launch.
   </p>
-</section>
+
+  <a class="previewLaunchBtn" href="onboarding-09-launch.html">
+    Launch community →
+  </a>
+</div>
                     </div>
 
                   </div>
                 </section>
 
 <div class="launchSupport">
-  <p>
-    This page is your private preview link. You can return to it anytime before launch.
-  </p>
+  <p>This is your private preview link. You can return to it anytime before launch.</p>
 </div>
 
-                <div class="actionRowSplit">
-                  <a class="secondaryButton" href="#">Email me this preview link</a>
-                  <a class="primary forward" href="provisioning-01-finalize.html">Launch community</a>
-                </div>
+<div class="actionRow">
+  <a class="secondaryButton" href="#">Email me this preview link</a>
+</div>
 
               </div>
             </section>
