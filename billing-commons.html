@@ -45,7 +45,7 @@
 
                 <div class="choiceStack">
 
-                  <button type="button" class="choiceItem active" data-price="$24.99/mo">
+                  <button type="button" class="choiceItem active" data-billing="monthly" data-price="$24.99/mo">
                     <div class="choiceTop">
                       <span class="choiceValue">Monthly — $24.99/mo</span>
                     </div>
@@ -54,7 +54,7 @@
                     </div>
                   </button>
 
-                  <button type="button" class="choiceItem" data-price="$249.99/yr">
+                  <button type="button" class="choiceItem" data-billing="annual" data-price="$249.99/yr">
                     <div class="choiceTop">
                       <span class="choiceValue">Annual — $249.99/yr</span>
                       <span class="choiceBadge">Save more</span>
@@ -73,7 +73,7 @@
 
                 <div class="actionRow actionRowSplit">
                   <a class="secondary" href="domain-confirmation.html">Back</a>
-                  <a class="primary forward" href="billing-details.html">Continue</a>
+                  <a id="continueToStripe" class="primary forward" href="#">Continue</a>
                 </div>
 
               </div>
@@ -87,13 +87,37 @@
   </div>
 
   <script>
-    const choiceItems = document.querySelectorAll('.choiceItem');
+    const STRIPE_LINKS = {
+      commons: {
+        monthly: "https://buy.stripe.com/test_bJe8wP7TxfrFaPPbhd8AE03",
+        annual: "https://buy.stripe.com/test_4gM8wPflZ1AP4rrdpl8AE04"
+      }
+    };
+
+    const choiceItems = document.querySelectorAll('.choiceItem[data-billing]');
+    const continueBtn = document.getElementById('continueToStripe');
+
+    function getSelectedBilling() {
+      const active = document.querySelector('.choiceItem[data-billing].active');
+      return active ? active.dataset.billing : 'monthly';
+    }
 
     choiceItems.forEach(item => {
       item.addEventListener('click', () => {
         choiceItems.forEach(i => i.classList.remove('active'));
         item.classList.add('active');
       });
+    });
+
+    continueBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+
+      const billing = getSelectedBilling();
+      const stripeLink = STRIPE_LINKS.commons[billing];
+
+      if (stripeLink) {
+        window.location.href = stripeLink;
+      }
     });
   </script>
 </body>
