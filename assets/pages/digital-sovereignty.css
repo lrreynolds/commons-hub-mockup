@@ -1,0 +1,24 @@
+.gridWrap{
+  max-width:980px;
+  margin:0 auto;
+  padding:0 18px;
+}
+
+.supportGrid{
+  gap:14px;
+  margin-top:16px;
+}
+
+.supportGrid .card{
+  padding:18px 18px;
+}
+
+.supportGrid .card h3{
+  margin-bottom:8px;
+  font-size:20px;
+}
+
+.supportGrid .card p{
+  font-size:15px;
+  line-height:1.45;
+}
