@@ -116,38 +116,26 @@
 
 </div>
 
-                <div id="commonsSection" style="display:none;">
+               <div id="commonsSection" style="display:none;">
 
-                  <div>
-                    <label class="fieldLabel">Commonshub subdomain</label>
-                    <input id="commonsSlugField" class="inputField" value="securitybrief" />
-                    <p class="fieldHelp">Your final address will be <b id="commonsDerivedAddress">securitybrief.commonshub.social</b></p>
-                  </div>
+  <div>
+    <label class="fieldLabel">Commonshub subdomain</label>
+    <input id="commonsSlugField" class="inputField" value="securitybrief" />
+    <p class="fieldHelp">
+      Your final address will be <b id="commonsDerivedAddress">securitybrief.commonshub.social</b>
+    </p>
+  </div>
 
-                  <div class="actionRow">
-                    <a id="checkCommonsBtn" class="secondary" href="#">Check availability</a>
-                  </div>
+  <div id="commonsStatusNote" class="note">
+    <p><b>Status:</b> Checking availability…</p>
+  </div>
 
-                  <div id="commonsStatusNote" class="note">
-                    <p><b>Status:</b> Check availability before continuing.</p>
-                  </div>
+  <div class="actionRow actionRowSplit">
+    <a id="checkCommonsBtn" class="secondary" href="#" style="display:none;">Check availability</a>
+    <a id="continueCommons" class="primary forward is-disabled" href="billing-commons.html">Continue</a>
+  </div>
 
-                  <div>
-                    <label id="commonsFieldLabel" class="fieldLabel">Confirmed address</label>
-                    <input id="commonsField" class="inputField" value="" placeholder="Available address will appear here" />
-                    <p class="fieldHelp">You can edit the confirmed address if needed, but you must check availability again before continuing.</p>
-                  </div>
-
-                  <div class="note">
-                    <p><b>Final address now set to:</b> <span id="commonsFinalAddress">—</span></p>
-                    <p class="fieldHelp">Billing and provisioning will proceed using this confirmed address.</p>
-                  </div>
-
-                  <div class="actionRow">
-                    <a id="continueCommons" class="primary forward is-disabled" href="billing-commons.html">Continue</a>
-                  </div>
-
-                </div>
+</div>
 
               </div>
 
@@ -159,7 +147,7 @@
     </div>
   </div>
 
- <script>
+<script>
   const modeCustom = document.getElementById('modeCustom');
   const modeCommons = document.getElementById('modeCommons');
   const customSection = document.getElementById('customSection');
@@ -175,13 +163,9 @@
 
   const commonsSlugField = document.getElementById('commonsSlugField');
   const commonsDerivedAddress = document.getElementById('commonsDerivedAddress');
-  const checkCommonsBtn = document.getElementById('checkCommonsBtn');
   const commonsStatusNote = document.getElementById('commonsStatusNote');
-  const commonsField = document.getElementById('commonsField');
-  const commonsFieldLabel = document.getElementById('commonsFieldLabel');
-  const commonsFinalAddress = document.getElementById('commonsFinalAddress');
+  const checkCommonsBtn = document.getElementById('checkCommonsBtn');
   const continueCommons = document.getElementById('continueCommons');
-  const checkRow = document.querySelector('.checkRow');
 
   const supportedRegistrars = new Set([
     'godaddy',
@@ -224,6 +208,13 @@
 
     customSection.style.display = isCustom ? '' : 'none';
     commonsSection.style.display = isCustom ? 'none' : '';
+
+    if (!isCustom) {
+      // auto-check the first time Commons mode is shown
+      if (commonsAvailability === 'unknown') {
+        checkCommonsAvailability();
+      }
+    }
   }
 
   function updateRegistrarSupport() {
@@ -259,17 +250,6 @@
       customHint.style.color = '#b42318';
     }
 
-     const isReady = valid && domainControlCheck.checked;
-
-  setButtonDisabled(continueCustom, !isReady);
-
-  // NEW: visual state
-  if (!domainControlCheck.checked) {
-    checkRow.classList.add('unchecked');
-  } else {
-    checkRow.classList.remove('unchecked');
-  }
-
     setButtonDisabled(continueCustom, !(valid && domainControlCheck.checked));
   }
 
@@ -278,28 +258,11 @@
     commonsDerivedAddress.textContent = slug + '.commonshub.social';
   }
 
-  function resetCommonsState() {
+  function setCommonsNeedsCheck() {
     commonsAvailability = 'unknown';
     commonsStatusNote.innerHTML = '<p><b>Status:</b> Check availability before continuing.</p>';
-    commonsFieldLabel.textContent = 'Confirmed address';
-    commonsField.value = '';
-    commonsFinalAddress.textContent = '—';
+    checkCommonsBtn.style.display = '';
     setButtonDisabled(continueCommons, true);
-  }
-
-  function syncCommonsEditedState() {
-    const value = commonsField.value.trim();
-    commonsFinalAddress.textContent = value || '—';
-
-    if (commonsAvailability === 'available' && value === commonsDerivedAddress.textContent.trim()) {
-      commonsFieldLabel.textContent = 'Confirmed address';
-      setButtonDisabled(continueCommons, false);
-    } else {
-      commonsFieldLabel.textContent = value ? 'Edited value' : 'Confirmed address';
-      commonsAvailability = 'unknown';
-      commonsStatusNote.innerHTML = '<p><b>Status:</b> Check availability again before continuing.</p>';
-      setButtonDisabled(continueCommons, true);
-    }
   }
 
   function checkCommonsAvailability() {
@@ -308,37 +271,40 @@
 
     if (!slug) {
       commonsAvailability = 'unknown';
-      commonsStatusNote.innerHTML = '<p><b>Status:</b> Enter a subdomain before checking availability.</p>';
-      commonsField.value = '';
-      commonsFinalAddress.textContent = '—';
+      commonsStatusNote.innerHTML = '<p><b>Status:</b> Enter a subdomain before continuing.</p>';
+      checkCommonsBtn.style.display = '';
       setButtonDisabled(continueCommons, true);
       return;
     }
 
+    // Mock availability check
     const unavailable = new Set(['securitybrief', 'commonshub', 'admin', 'support']);
     const finalAddress = commonsDerivedAddress.textContent.trim();
 
     if (unavailable.has(slug)) {
       commonsAvailability = 'unavailable';
       commonsStatusNote.innerHTML =
-        '<p><b>Status:</b> <span style="color:#b42318;">' + finalAddress + ' is already taken. Try another subdomain.</span></p>';
-      commonsField.value = '';
-      commonsFinalAddress.textContent = '—';
+        '<p><b>Status:</b> <span style="color:#b42318;">' +
+        finalAddress +
+        ' is already taken. Try another subdomain.</span></p>';
+      checkCommonsBtn.style.display = '';
       setButtonDisabled(continueCommons, true);
     } else {
       commonsAvailability = 'available';
       commonsStatusNote.innerHTML =
-        '<p><b>Status:</b> <span style="color:#027a48;">' + finalAddress + ' is available.</span></p>';
-      commonsField.value = finalAddress;
-      commonsFieldLabel.textContent = 'Confirmed address';
-      commonsFinalAddress.textContent = finalAddress;
+        '<p><b>Status:</b> <span style="color:#027a48;">' +
+        finalAddress +
+        ' is available.</span></p>';
+      checkCommonsBtn.style.display = 'none';
       setButtonDisabled(continueCommons, false);
     }
   }
 
+  // Mode switching
   modeCustom.addEventListener('click', () => setMode('custom'));
   modeCommons.addEventListener('click', () => setMode('commons'));
 
+  // Custom path
   customField.addEventListener('input', () => {
     domainControlCheck.checked = false;
     updateCustomState();
@@ -352,22 +318,21 @@
 
   domainControlCheck.addEventListener('change', updateCustomState);
 
-  commonsSlugField.addEventListener('input', () => {
-    updateCommonsDerivedAddress();
-    resetCommonsState();
-  });
-
-  commonsField.addEventListener('input', syncCommonsEditedState);
-
-  checkCommonsBtn.addEventListener('click', (e) => {
-    e.preventDefault();
-    checkCommonsAvailability();
-  });
-
   continueCustom.addEventListener('click', (e) => {
     if (continueCustom.classList.contains('is-disabled')) {
       e.preventDefault();
     }
+  });
+
+  // Commons path
+  commonsSlugField.addEventListener('input', () => {
+    updateCommonsDerivedAddress();
+    setCommonsNeedsCheck();
+  });
+
+  checkCommonsBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    checkCommonsAvailability();
   });
 
   continueCommons.addEventListener('click', (e) => {
@@ -376,10 +341,11 @@
     }
   });
 
+  // Init
   updateRegistrarSupport();
   updateCustomState();
   updateCommonsDerivedAddress();
-  resetCommonsState();
+  setCommonsNeedsCheck();
   setMode('custom');
 </script>
   
