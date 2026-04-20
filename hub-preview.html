@@ -6,82 +6,40 @@
   <title>Commonshub — Hub page</title>
   <link rel="stylesheet" href="assets/styles.css" />
   <style>
-    .hubShell{
+    .hubPage{
       margin-top:18px;
-      border-radius:28px;
-      overflow:hidden;
-      border:1px solid rgba(255,255,255,.08);
       background:linear-gradient(180deg, #020714 0%, #061028 100%);
-      box-shadow:
-        0 24px 70px rgba(0,0,0,.28),
-        inset 0 1px 0 rgba(255,255,255,.04);
       color:#eef2ff;
+      border-top:1px solid rgba(255,255,255,.08);
+      border-bottom:1px solid rgba(255,255,255,.08);
+      box-shadow:0 24px 70px rgba(0,0,0,.22);
+      overflow:hidden;
     }
 
-    .hubTopbar{
+    .hubOnboardingBar{
       display:flex;
       align-items:center;
       justify-content:space-between;
       gap:18px;
-      padding:16px 22px;
-      border-bottom:1px solid rgba(255,255,255,.08);
+      padding:16px 28px;
       background:rgba(255,255,255,.04);
+      border-bottom:1px solid rgba(255,255,255,.08);
       backdrop-filter:blur(10px);
     }
 
-    .hubTopbarLeft{
-      display:flex;
-      align-items:center;
-      gap:14px;
-      min-width:0;
-    }
-
-    .hubTopbarTitle{
-      min-width:0;
-    }
-
-    .hubTopbarTitle b{
+    .hubOnboardingCopy b{
       display:block;
       font-size:15px;
       line-height:1.2;
       color:#fff;
     }
 
-    .hubTopbarTitle span{
+    .hubOnboardingCopy span{
       display:block;
       margin-top:2px;
       font-size:13px;
-      line-height:1.35;
+      line-height:1.4;
       color:#b8c3ee;
-    }
-
-    .hubTopbarActions{
-      display:flex;
-      align-items:center;
-      gap:10px;
-      flex:0 0 auto;
-    }
-
-    .hubTopbarBtn{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      min-height:42px;
-      padding:0 16px;
-      border-radius:14px;
-      border:1px solid rgba(255,255,255,.14);
-      background:rgba(255,255,255,.04);
-      color:#eef2ff;
-      text-decoration:none;
-      font-weight:800;
-      white-space:nowrap;
-    }
-
-    .hubTopbarBtn.primary{
-      background:#1f6f4a;
-      border-color:transparent;
-      color:#fff;
-      box-shadow:0 10px 20px rgba(31,111,74,.22);
     }
 
     .hubHeroTop{
@@ -247,7 +205,7 @@
 
     .hubSection{
       border:1px solid rgba(120,138,255,.14);
-      background:rgba(10,18,48,.42);
+      background:rgba(10,18,48,.34);
       border-radius:22px;
       padding:24px;
     }
@@ -268,63 +226,38 @@
       margin-bottom:0;
     }
 
-    .hubImageHelp{
+    .hubInfoGrid{
       display:grid;
       grid-template-columns:1fr 1fr;
       gap:18px;
     }
 
-    .hubHelpCard{
+    .hubInfoCard{
       border:1px solid rgba(120,138,255,.14);
-      background:rgba(10,18,48,.42);
+      background:rgba(10,18,48,.34);
       border-radius:22px;
       padding:22px;
     }
 
-    .hubHelpCard h3{
+    .hubInfoCard h3{
       margin:0 0 12px;
       color:#eef2ff;
       font-size:18px;
     }
 
-    .hubHelpCard p{
+    .hubInfoCard p{
       margin:0 0 10px;
       color:#d6ddff;
       line-height:1.5;
     }
 
-    .hubHelpCard p:last-child{
+    .hubInfoCard p:last-child{
       margin-bottom:0;
     }
 
     .hubSpec{
       color:#fff;
       font-weight:800;
-    }
-
-    .hubActionGrid{
-      display:grid;
-      grid-template-columns:repeat(2, minmax(0,1fr));
-      gap:18px;
-    }
-
-    .hubActionCard{
-      border:1px solid rgba(120,138,255,.14);
-      background:rgba(10,18,48,.42);
-      border-radius:22px;
-      padding:22px;
-    }
-
-    .hubActionCard h3{
-      margin:0 0 12px;
-      color:#eef2ff;
-      font-size:18px;
-    }
-
-    .hubActionCard p{
-      margin:0 0 18px;
-      color:#d6ddff;
-      line-height:1.5;
     }
 
     .hubMutedBtn{
@@ -342,40 +275,36 @@
     }
 
     .hubFooter{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:18px;
-      padding:24px 34px 30px;
+      margin-top:8px;
+      padding:28px 34px 34px;
       border-top:1px solid rgba(255,255,255,.08);
-      background:rgba(255,255,255,.03);
+      background:rgba(255,255,255,.025);
     }
 
-    .hubFooterCopy{
-      min-width:0;
-      color:#d6ddff;
+    .hubFooterIntro{
+      margin:0 0 18px;
+      max-width:720px;
     }
 
-    .hubFooterCopy b{
+    .hubFooterIntro b{
       display:block;
-      margin-bottom:4px;
+      margin-bottom:6px;
+      font-size:20px;
       color:#fff;
-      font-size:18px;
     }
 
-    .hubFooterCopy span{
+    .hubFooterIntro span{
       display:block;
       font-size:14px;
-      line-height:1.45;
+      line-height:1.5;
       color:#b4bee8;
-      max-width:640px;
     }
 
     .hubFooterActions{
       display:flex;
       align-items:center;
       gap:12px;
-      flex:0 0 auto;
+      flex-wrap:wrap;
     }
 
     .hubFooterBtn{
@@ -401,16 +330,6 @@
     }
 
     @media (max-width: 980px){
-      .hubTopbar{
-        flex-direction:column;
-        align-items:flex-start;
-      }
-
-      .hubTopbarActions{
-        width:100%;
-        flex-wrap:wrap;
-      }
-
       .hubIdentity{
         flex-direction:column;
         align-items:flex-start;
@@ -421,49 +340,26 @@
         font-size:38px;
       }
 
-      .hubImageHelp,
-      .hubActionGrid{
+      .hubInfoGrid{
         grid-template-columns:1fr;
-      }
-
-      .hubFooter{
-        flex-direction:column;
-        align-items:flex-start;
-      }
-
-      .hubFooterActions{
-        width:100%;
-        flex-direction:column;
-      }
-
-      .hubFooterBtn{
-        width:100%;
       }
     }
 
     @media (max-width: 640px){
-      .hubShell{
+      .hubPage{
         margin-top:14px;
-        border-radius:22px;
       }
 
-      .hubTopbar{
-        padding:14px 16px;
+      .hubOnboardingBar{
+        padding:14px 18px;
       }
 
-      .hubTopbarTitle b{
+      .hubOnboardingCopy b{
         font-size:14px;
       }
 
-      .hubTopbarTitle span{
+      .hubOnboardingCopy span{
         font-size:12px;
-      }
-
-      .hubTopbarBtn{
-        min-height:40px;
-        padding:0 14px;
-        border-radius:12px;
-        font-size:13px;
       }
 
       .hubHeroTop{
@@ -517,25 +413,30 @@
       }
 
       .hubSection,
-      .hubHelpCard,
-      .hubActionCard{
+      .hubInfoCard{
         padding:18px;
         border-radius:18px;
       }
 
       .hubFooter{
-        padding:20px 18px 22px;
+        padding:22px 18px 24px;
       }
 
-      .hubFooterCopy b{
-        font-size:16px;
+      .hubFooterIntro b{
+        font-size:18px;
       }
 
-      .hubFooterCopy span{
+      .hubFooterIntro span{
         font-size:13px;
       }
 
+      .hubFooterActions{
+        flex-direction:column;
+        align-items:stretch;
+      }
+
       .hubFooterBtn{
+        width:100%;
         min-height:52px;
         padding:0 18px;
         font-size:16px;
@@ -564,19 +465,12 @@
               <span>Ready to launch</span>
             </div>
 
-            <section class="hubShell">
+            <section class="hubPage">
 
-              <div class="hubTopbar">
-                <div class="hubTopbarLeft">
-                  <div class="hubTopbarTitle">
-                    <b>Onboarding complete</b>
-                    <span>Add a banner and avatar to make this page yours. You can still edit text and links later.</span>
-                  </div>
-                </div>
-
-                <div class="hubTopbarActions">
-                  <a class="hubTopbarBtn" href="resumeEmail.html">Email me this page</a>
-                  <a class="hubTopbarBtn primary" href="provisioning-01-finalize.html">Launch community →</a>
+              <div class="hubOnboardingBar">
+                <div class="hubOnboardingCopy">
+                  <b>Onboarding complete</b>
+                  <span>Add a banner and avatar to make this page yours. You can still edit text and links later.</span>
                 </div>
               </div>
 
@@ -628,28 +522,26 @@
                   </p>
                 </section>
 
-                <div class="hubImageHelp">
-                  <section class="hubHelpCard">
+                <div class="hubInfoGrid">
+                  <section class="hubInfoCard">
                     <h3>Banner image</h3>
                     <p><span class="hubSpec">Recommended:</span> 1600 × 500 px</p>
                     <p>Use a wide image with a clear focal area and safe margins for text overlays.</p>
                   </section>
 
-                  <section class="hubHelpCard">
+                  <section class="hubInfoCard">
                     <h3>Avatar image</h3>
                     <p><span class="hubSpec">Recommended:</span> 1024 × 1024 px JPG or PNG</p>
                     <p>A centered square image works best. It will be cropped to a circle on the page.</p>
                   </section>
-                </div>
 
-                <div class="hubActionGrid">
-                  <section class="hubActionCard">
+                  <section class="hubInfoCard">
                     <h3>Community Support</h3>
                     <p>Support options can be connected after launch.</p>
                     <div class="hubMutedBtn">Activates after launch</div>
                   </section>
 
-                  <section class="hubActionCard">
+                  <section class="hubInfoCard">
                     <h3>Join</h3>
                     <p>Visitors will be able to request or use an invite after launch.</p>
                     <div class="hubMutedBtn">Activates after launch</div>
@@ -658,7 +550,7 @@
               </div>
 
               <div class="hubFooter">
-                <div class="hubFooterCopy">
+                <div class="hubFooterIntro">
                   <b>This is your Hub page.</b>
                   <span>Upload a banner and avatar now, or launch as-is and refine it later. Everything on this page can still be updated after launch.</span>
                 </div>
