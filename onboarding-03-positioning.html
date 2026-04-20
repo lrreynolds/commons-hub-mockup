@@ -45,45 +45,58 @@
               <!-- Content -->
               <div class="formSection">
 
-                <div class="list">
+                <div class="choiceStack">
 
-                  <div class="item">
-                    <b>Option A</b>
-                    <div>A real-time signal space for analysts tracking authoritarian power, war strategy, and reputational politics.</div>
-                  </div>
+                  <button type="button" class="choiceItem">
+                    <div class="choiceTop">
+                      <span class="choiceValue">Option A</span>
+                      <span class="choiceBadge">Recommended</span>
+                    </div>
+                    <div class="choiceBody">
+                      A real-time signal space for analysts tracking authoritarian power, war strategy, and reputational politics.
+                    </div>
+                  </button>
 
-                  <div class="item">
-                    <b>Option B</b>
-                    <div>An ongoing briefing room for national security professionals following Russia, Ukraine, and global strategic conflict.</div>
-                  </div>
+                  <button type="button" class="choiceItem">
+                    <div class="choiceTop">
+                      <span class="choiceValue">Option B</span>
+                    </div>
+                    <div class="choiceBody">
+                      An ongoing briefing room for national security professionals following Russia, Ukraine, and global strategic conflict.
+                    </div>
+                  </button>
 
-               <div class="item current selectedItem">
-  <div class="itemHeader">
-    <b>Option C</b>
-    <span class="pill">Selected</span>
-  </div>
-  <div>A working room for researchers, journalists, and operators analyzing power, propaganda, and geopolitical strategy.</div>
-</div>
+                  <button type="button" class="choiceItem active">
+                    <div class="choiceTop">
+                      <span class="choiceValue">Option C</span>
+                    </div>
+                    <div class="choiceBody">
+                      A working room for researchers, journalists, and operators analyzing power, propaganda, and geopolitical strategy.
+                    </div>
+                  </button>
 
-                  <div class="item">
-                    <b>Option D</b>
-                    <div>A signal space for people already working on national security, strategic risk, and authoritarian networks.</div>
-                  </div>
+                  <button type="button" class="choiceItem">
+                    <div class="choiceTop">
+                      <span class="choiceValue">Option D</span>
+                    </div>
+                    <div class="choiceBody">
+                      A signal space for people already working on national security, strategic risk, and authoritarian networks.
+                    </div>
+                  </button>
 
                 </div>
-<p class="subtleAction">
-  Not quite right? <a href="#">Generate more options</a>
-</p>
+
+                <p class="subtleAction">
+                  Not quite right? <a href="#">Generate more options</a>
+                </p>
+
                 <div class="note">
                   <b>Recommended:</b> Option A — but Option C works well for a more collaborative, working-room tone.
                 </div>
 
                 <div>
-                  <label class="fieldLabel">
-                    Selected (edit if needed)
-                  </label>
-
-                  <textarea class="inputField">A working room for researchers, journalists, and operators analyzing power, propaganda, and geopolitical strategy.</textarea>
+                  <label class="fieldLabel">Selected (edit if needed)</label>
+                  <textarea class="inputField" id="positioningField">A working room for researchers, journalists, and operators analyzing power, propaganda, and geopolitical strategy.</textarea>
                 </div>
 
                 <div class="actionRow">
@@ -101,5 +114,45 @@
       </main>
     </div>
   </div>
+
+  <script>
+    const field = document.getElementById('positioningField');
+    const label = document.querySelector('.fieldLabel');
+    const choices = document.querySelectorAll('.choiceItem');
+
+    function activeChoice() {
+      return document.querySelector('.choiceItem.active');
+    }
+
+    function choiceText(choice) {
+      return choice?.querySelector('.choiceBody')?.innerText.trim() || '';
+    }
+
+    function syncStateFromField() {
+      const active = activeChoice();
+      const activeValue = choiceText(active);
+      const currentValue = field.value.trim();
+
+      if (active && currentValue !== activeValue) {
+        active.classList.remove('active');
+        label.textContent = 'Edited value';
+      } else {
+        label.textContent = 'Selected (edit if needed)';
+      }
+    }
+
+    choices.forEach(choice => {
+      choice.addEventListener('click', () => {
+        choices.forEach(c => c.classList.remove('active'));
+        choice.classList.add('active');
+        field.value = choiceText(choice);
+        label.textContent = 'Selected (edit if needed)';
+        field.focus();
+      });
+    });
+
+    field.addEventListener('input', syncStateFromField);
+    syncStateFromField();
+  </script>
 </body>
 </html>
