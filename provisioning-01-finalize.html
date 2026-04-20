@@ -6,33 +6,41 @@
   <title>Commonshub — Launch</title>
   <link rel="stylesheet" href="assets/styles.css" />
 </head>
-<body class="flow">
+
+<body class="flow flowDark">
   <div class="flowRoot">
     <div class="wrap">
       <main class="stage">
         <div class="content">
           <div class="center">
 
+            <!-- Header -->
             <div class="appHeader">
               <div class="appBrand">
-                <img src="assets/commonshub-mark.svg" alt="" class="appMark">
+                <img src="assets/commonshub-mark-light.svg" alt="" class="appMark">
                 <span>Commonshub — Launch</span>
               </div>
               <div class="chip">Step 1</div>
             </div>
 
+            <!-- Progress -->
             <div class="progress">
               <div class="bar"><div style="width:25%"></div></div>
               <span>~2 minutes</span>
             </div>
 
+            <!-- Card -->
             <section class="onboardCard">
 
               <div class="onboardIntro">
-                <h1 class="onboardTitle">Confirm the address for your community</h1>
+                <h1 class="onboardTitle">
+                  Confirm the address for your community
+                </h1>
+
                 <p class="onboardLead">
                   You can keep your current choice or switch now before billing.
                 </p>
+
                 <p class="onboardSupport">
                   We’ll confirm the final address before purchase so nothing changes unexpectedly after launch.
                 </p>
@@ -48,7 +56,7 @@
 
                   <button type="button" id="modeCustom" class="choiceItem active">
                     <div class="choiceTop">
-                      <span class="choiceValue">Use your own domain</span>
+                      <span class="choiceValue">Use your own domain or subdomain</span>
                     </div>
                     <div class="choiceBody">
                       Launch on a branded custom domain or subdomain.
@@ -67,126 +75,133 @@
                 </div>
 
                 <div id="customSection">
-                  <div class="inputBar">
 
-                    <div>
-                      <div class="fieldLabel">Custom domain or subdomain</div>
-                      <input id="customDomainField" class="inputField" value="securitybrief.jasonjaysmart.com" />
-                      <div id="customDomainHint" class="fieldHelp">Looks like a valid domain or subdomain.</div>
-                    </div>
-
-                    <div>
-                      <div class="fieldLabel">Registrar</div>
-                      <select id="registrarSelect" class="inputField inputFieldSelect">
-                        <option value="godaddy" selected>GoDaddy</option>
-                        <option value="cloudflare">Cloudflare</option>
-                        <option value="namecheap">Namecheap</option>
-                        <option value="squarespace">Squarespace</option>
-                        <option value="wix">Wix</option>
-                        <option value="hostinger">Hostinger</option>
-                        <option value="ionos">IONOS</option>
-                        <option value="bluehost">Bluehost</option>
-                        <option value="other">Other</option>
-                        <option value="unknown">I don’t know</option>
-                      </select>
-                    </div>
-
-                    <div id="registrarMessage" class="note">
-                      <div class="subtleRow">
-                        <span><b>Registrar support</b></span>
-                        <span id="registrarStatus">GoDaddy selected</span>
-                      </div>
-                      <p id="registrarBody">
-                        <b>Good news:</b> for some major registrars like GoDaddy, we may be able to help with DNS setup during provisioning.
-                      </p>
-                      <p id="registrarNote" class="fieldHelp">
-                        You’ll still confirm the final address now. DNS setup happens after billing while the server is being provisioned.
-                      </p>
-                    </div>
-
-                    <div id="domainControlWrap" class="note" style="display:none;">
-                      <p><b>Before you continue</b></p>
-                      <p id="domainControlText" class="fieldHelp">
-                        You are responsible for controlling this domain or subdomain and being able to update its DNS records.
-                      </p>
-
-                      <label class="checkRow">
-                        <input id="domainControlCheck" type="checkbox">
-                        <span>I control this domain or can get its DNS records changed.</span>
-                      </label>
-                    </div>
-
-                    <div class="note">
-                      <p><b>Final address now set to:</b> <span id="customFinalAddress">securitybrief.jasonjaysmart.com</span></p>
-                      <p class="fieldHelp">Billing and provisioning will proceed using this confirmed address.</p>
-                    </div>
-
-                    <div class="actionRow">
-                      <a id="continueCustom" class="primary forward" href="billing-custom.html">Continue</a>
-                    </div>
-
+                  <div>
+                    <label class="fieldLabel">Custom domain or subdomain</label>
+                    <input id="customDomainField" class="inputField" value="securitybrief.jasonjaysmart.com" />
+                    <p id="customDomainHint" class="fieldHelp">
+                      Looks like a valid domain or subdomain.
+                    </p>
                   </div>
+
+                  <div>
+                    <label class="fieldLabel">Registrar</label>
+                    <select id="registrarSelect" class="inputField">
+                      <option value="godaddy" selected>GoDaddy</option>
+                      <option value="cloudflare">Cloudflare</option>
+                      <option value="namecheap">Namecheap</option>
+                      <option value="squarespace">Squarespace</option>
+                      <option value="wix">Wix</option>
+                      <option value="hostinger">Hostinger</option>
+                      <option value="ionos">IONOS</option>
+                      <option value="bluehost">Bluehost</option>
+                      <option value="other">Other</option>
+                      <option value="unknown">I don’t know</option>
+                    </select>
+                  </div>
+
+                  <div id="registrarMessage" class="note">
+                    <div class="subtleRow">
+                      <span><b>Registrar support</b></span>
+                      <span id="registrarStatus">GoDaddy selected</span>
+                    </div>
+
+                    <p id="registrarBody">
+                      <b>Good news:</b> for some major registrars like GoDaddy, we may be able to help with DNS setup during provisioning.
+                    </p>
+
+                    <p id="registrarNote" class="fieldHelp">
+                      You’ll still confirm the final address now. DNS setup happens after billing while the server is being provisioned.
+                    </p>
+                  </div>
+
+                  <div id="domainControlWrap" class="note" style="display:none;">
+                    <p><b>Before you continue</b></p>
+                    <p id="domainControlText" class="fieldHelp">
+                      You are responsible for controlling this domain or subdomain and being able to update its DNS records.
+                    </p>
+
+                    <label class="checkRow">
+                      <input id="domainControlCheck" type="checkbox">
+                      <span>I control this domain or can get its DNS records changed.</span>
+                    </label>
+                  </div>
+
+                  <div class="note">
+                    <p><b>Final address now set to:</b> <span id="customFinalAddress">securitybrief.jasonjaysmart.com</span></p>
+                    <p class="fieldHelp">Billing and provisioning will proceed using this confirmed address.</p>
+                  </div>
+
+                  <div class="actionRow">
+                    <a id="continueCustom" class="primary forward" href="billing-custom.html">
+                      Continue
+                    </a>
+                  </div>
+
                 </div>
 
                 <div id="commonsSection" style="display:none;">
-                  <div class="inputBar">
 
-                    <div class="note">
-                      <div class="subtleRow">
-                        <span><b>Commonshub address check</b></span>
-                        <span>Required before billing</span>
-                      </div>
-                      <p><b>Requested address:</b> securitybrief.commonshub.social</p>
-                      <p class="fieldHelp" style="color:#b42318;"><b>Status:</b> Unavailable — this address has already been taken.</p>
+                  <div class="note">
+                    <div class="subtleRow">
+                      <span><b>Commonshub address check</b></span>
+                      <span>Required before billing</span>
                     </div>
-
-                    <div>
-                      <div class="fieldLabel">Choose a Commonshub subdomain</div>
-                      <input id="commonsSlugField" class="inputField" value="securitybrief" />
-                      <div class="fieldHelp">Final address: <b id="commonsDerivedAddress">securitybrief.commonshub.social</b></div>
-                    </div>
-
-                    <div class="actionRow">
-                      <a class="secondary" href="#">Check availability</a>
-                    </div>
-
-                    <div>
-                      <div class="fieldLabel">Available alternatives</div>
-
-                      <div class="choiceStack" style="margin-top:10px;">
-                        <button type="button" class="choiceItem commonsPreset" data-value="thesecuritybrief.commonshub.social">
-                          <div class="choiceTop">
-                            <span class="choiceValue">thesecuritybrief.commonshub.social</span>
-                          </div>
-                        </button>
-
-                        <button type="button" class="choiceItem commonsPreset active" data-value="securitybriefhq.commonshub.social">
-                          <div class="choiceTop">
-                            <span class="choiceValue">securitybriefhq.commonshub.social</span>
-                            <span class="choiceBadge">Available</span>
-                          </div>
-                        </button>
-                      </div>
-                    </div>
-
-                    <div>
-                      <div id="commonsFieldLabel" class="fieldLabel">Selected (edit if needed)</div>
-                      <input id="commonsField" class="inputField" value="securitybriefhq.commonshub.social" />
-                    </div>
-
-                    <div class="note">
-                      <p><b>Final address now set to:</b> <span id="commonsFinalAddress">securitybriefhq.commonshub.social</span></p>
-                      <p class="fieldHelp">This confirmed address is what will carry into billing and provisioning.</p>
-                    </div>
-
-                    <div class="actionRow">
-                      <a id="continueCommons" class="primary forward" href="billing-commons.html">Continue</a>
-                    </div>
-
+                    <p><b>Requested address:</b> securitybrief.commonshub.social</p>
+                    <p class="fieldHelp" style="color:#b42318;">
+                      <b>Status:</b> Unavailable — this address has already been taken.
+                    </p>
                   </div>
+
+                  <div>
+                    <label class="fieldLabel">Choose a Commonshub subdomain</label>
+                    <input id="commonsSlugField" class="inputField" value="securitybrief" />
+                    <p class="fieldHelp">Final address: <b id="commonsDerivedAddress">securitybrief.commonshub.social</b></p>
+                  </div>
+
+                  <div class="actionRow">
+                    <a class="secondary" href="#">Check availability</a>
+                  </div>
+
+                  <div>
+                    <label class="fieldLabel">Available alternatives</label>
+
+                    <div class="choiceStack" style="margin-top:10px;">
+                      <button type="button" class="choiceItem commonsPreset" data-value="thesecuritybrief.commonshub.social">
+                        <div class="choiceTop">
+                          <span class="choiceValue">thesecuritybrief.commonshub.social</span>
+                        </div>
+                      </button>
+
+                      <button type="button" class="choiceItem commonsPreset active" data-value="securitybriefhq.commonshub.social">
+                        <div class="choiceTop">
+                          <span class="choiceValue">securitybriefhq.commonshub.social</span>
+                          <span class="choiceBadge">Available</span>
+                        </div>
+                      </button>
+                    </div>
+                  </div>
+
+                  <div>
+                    <label id="commonsFieldLabel" class="fieldLabel">Selected (edit if needed)</label>
+                    <input id="commonsField" class="inputField" value="securitybriefhq.commonshub.social" />
+                  </div>
+
+                  <div class="note">
+                    <p><b>Final address now set to:</b> <span id="commonsFinalAddress">securitybriefhq.commonshub.social</span></p>
+                    <p class="fieldHelp">This confirmed address is what will carry into billing and provisioning.</p>
+                  </div>
+
+                  <div class="actionRow">
+                    <a id="continueCommons" class="primary forward" href="billing-commons.html">
+                      Continue
+                    </a>
+                  </div>
+
                 </div>
 
               </div>
+
             </section>
 
           </div>
