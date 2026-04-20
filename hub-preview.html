@@ -6,79 +6,181 @@
   <title>Commonshub — Onboarding</title>
   <link rel="stylesheet" href="assets/styles.css" />
   <style>
-    .previewWrap{
-      border:1px solid var(--line);
-      border-radius:24px;
+    .hubStage{
+      display:flex;
+      flex-direction:column;
+      gap:18px;
+      padding-bottom:120px;
+    }
+
+    .hubStatusRow{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      color:rgba(233,242,236,.82);
+      font-size:14px;
+      line-height:1.4;
+    }
+
+    .hubStatus{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      font-weight:700;
+    }
+
+    .hubStatusDot{
+      width:10px;
+      height:10px;
+      border-radius:999px;
+      background:#f4a623;
+      box-shadow:0 0 0 4px rgba(244,166,35,.12);
+      flex:0 0 auto;
+    }
+
+    .hubStatusNote{
+      color:rgba(233,242,236,.72);
+    }
+
+    .hubSurface{
+      position:relative;
+      border-radius:28px;
       overflow:hidden;
       background:linear-gradient(180deg, #030816 0%, #07102a 100%);
       color:#eef2ff;
-      box-shadow:inset 0 1px 0 rgba(255,255,255,.04);
+      border:1px solid rgba(255,255,255,.08);
+      box-shadow:
+        0 22px 60px rgba(0,0,0,.28),
+        inset 0 1px 0 rgba(255,255,255,.04);
+      min-height:900px;
     }
 
-    .previewHeroTop{
-      padding:28px 28px 18px;
+    .hubTopMeta{
+      position:absolute;
+      top:18px;
+      left:18px;
+      right:18px;
+      z-index:3;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:12px;
+      pointer-events:none;
+    }
+
+    .hubStatePill{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      min-height:36px;
+      padding:0 14px;
+      border-radius:999px;
+      background:rgba(7,16,42,.76);
+      border:1px solid rgba(255,255,255,.12);
+      color:#eef2ff;
+      font-size:13px;
+      font-weight:800;
+      backdrop-filter:blur(10px);
+      pointer-events:auto;
+    }
+
+    .hubStatePill::before{
+      content:"";
+      width:8px;
+      height:8px;
+      border-radius:999px;
+      background:#f4a623;
+      box-shadow:0 0 0 3px rgba(244,166,35,.12);
+      flex:0 0 auto;
+    }
+
+    .hubPreviewLink{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-height:36px;
+      padding:0 14px;
+      border-radius:999px;
+      background:rgba(7,16,42,.76);
+      border:1px solid rgba(255,255,255,.12);
+      color:#eef2ff;
+      font-size:13px;
+      font-weight:800;
+      text-decoration:none;
+      backdrop-filter:blur(10px);
+      pointer-events:auto;
+    }
+
+    .hubHeroTop{
+      padding:86px 36px 20px;
       border-bottom:1px solid rgba(120,138,255,.16);
-      background:linear-gradient(180deg, rgba(12,20,56,.9) 0%, rgba(6,12,34,.92) 100%);
+      background:linear-gradient(180deg, rgba(12,20,56,.92) 0%, rgba(6,12,34,.94) 100%);
     }
 
-    .previewHeadline{
+    .hubFocusLine{
       margin:0;
       font-size:28px;
-      line-height:1.15;
+      line-height:1.12;
       font-weight:900;
       color:#eef2ff;
+      max-width:760px;
     }
 
-    .previewRule{
+    .hubRule{
       width:100%;
-      max-width:520px;
-      height:3px;
+      max-width:720px;
+      height:4px;
       border-radius:999px;
-      margin-top:14px;
+      margin-top:18px;
       background:linear-gradient(90deg, #8ea0ff 0%, #a8b5ff 100%);
-      opacity:.95;
+      opacity:.96;
     }
 
-    .previewBanner{
+    .hubBanner{
       position:relative;
-      min-height:300px;
+      min-height:320px;
       background:
-        linear-gradient(rgba(4,10,28,.10), rgba(4,10,28,.10)),
+        linear-gradient(rgba(4,10,28,.12), rgba(4,10,28,.12)),
         url("assets/peakx-banner.jpg") center/cover no-repeat;
       border-bottom:1px solid rgba(120,138,255,.14);
     }
 
-    .previewUploadBanner{
+    .hubUploadBanner{
       position:absolute;
-      right:20px;
-      bottom:20px;
+      right:24px;
+      bottom:24px;
       display:inline-flex;
       align-items:center;
       justify-content:center;
+      min-height:48px;
+      padding:0 18px;
       border:1px solid rgba(255,255,255,.16);
-      background:rgba(7,16,42,.72);
+      background:rgba(7,16,42,.76);
       color:#eef2ff;
-      border-radius:14px;
-      padding:10px 14px;
+      border-radius:16px;
       font-weight:800;
       text-decoration:none;
       backdrop-filter:blur(8px);
+      cursor:pointer;
     }
 
-    .previewIdentity{
-      padding:0 28px 28px;
-      margin-top:-44px;
+    .hubIdentity{
       display:flex;
-      gap:20px;
+      gap:22px;
       align-items:flex-end;
+      padding:0 36px;
+      margin-top:-58px;
+      position:relative;
+      z-index:2;
     }
 
-    .previewAvatar{
-      width:128px;
-      height:128px;
+    .hubAvatar{
+      width:132px;
+      height:132px;
       border-radius:999px;
       overflow:hidden;
-      border:3px solid rgba(255,255,255,.14);
+      border:4px solid rgba(255,255,255,.14);
       background:
         radial-gradient(circle at 30% 30%, rgba(255,255,255,.14), rgba(255,255,255,.04)),
         linear-gradient(180deg, #0d1b47 0%, #08122c 100%);
@@ -92,7 +194,7 @@
       padding:14px;
     }
 
-    .previewAvatarPlaceholder{
+    .hubAvatarPlaceholder{
       display:flex;
       flex-direction:column;
       gap:8px;
@@ -103,12 +205,12 @@
       line-height:1.3;
     }
 
-    .previewAvatarPlaceholder b{
+    .hubAvatarPlaceholder b{
       font-size:14px;
       color:#fff;
     }
 
-    .previewUploadAvatar{
+    .hubUploadAvatar{
       display:inline-flex;
       align-items:center;
       justify-content:center;
@@ -120,42 +222,43 @@
       font-size:12px;
       font-weight:800;
       text-decoration:none;
+      cursor:pointer;
     }
 
-    .previewMeta{
+    .hubIdentityMeta{
       min-width:0;
-      padding-bottom:6px;
+      padding-bottom:8px;
     }
 
-    .previewName{
-      margin:0 0 6px;
-      font-size:42px;
-      line-height:1.05;
+    .hubName{
+      margin:0 0 8px;
+      font-size:46px;
+      line-height:1.02;
       font-weight:900;
       color:#eef2ff;
     }
 
-    .previewHandle{
+    .hubHandle{
       margin:0;
-      font-size:16px;
+      font-size:17px;
       color:#b4bee8;
       font-weight:700;
+      word-break:break-word;
     }
 
-    .previewLinks{
+    .hubLinks{
       display:flex;
       flex-wrap:wrap;
       gap:12px;
-      padding:0 28px 28px;
-      margin-top:-2px;
+      padding:26px 36px 30px;
     }
 
-    .previewLinkBtn{
+    .hubLinkBtn{
       display:inline-flex;
       align-items:center;
       justify-content:center;
-      min-height:48px;
-      padding:0 18px;
+      min-height:50px;
+      padding:0 20px;
       border-radius:16px;
       border:1px solid rgba(255,255,255,.12);
       background:rgba(255,255,255,.04);
@@ -164,62 +267,62 @@
       font-weight:800;
     }
 
-    .previewBody{
-      padding:0 28px 28px;
+    .hubBody{
       display:flex;
       flex-direction:column;
       gap:22px;
+      padding:0 36px 150px;
     }
 
-    .previewSection{
+    .hubSection{
       border:1px solid rgba(120,138,255,.14);
       background:rgba(10,18,48,.42);
       border-radius:22px;
       padding:24px;
     }
 
-    .previewSection h3{
+    .hubSection h3{
       margin:0 0 14px;
       font-size:18px;
       color:#eef2ff;
     }
 
-    .previewSection p{
+    .hubSection p{
       margin:0 0 14px;
       color:#d6ddff;
-      line-height:1.55;
+      line-height:1.58;
     }
 
-    .previewSection p:last-child{
+    .hubSection p:last-child{
       margin-bottom:0;
     }
 
-    .previewActionGrid{
+    .hubActionGrid{
       display:grid;
       grid-template-columns:repeat(2, minmax(0,1fr));
-      gap:16px;
+      gap:18px;
     }
 
-    .previewActionCard{
+    .hubActionCard{
       border:1px solid rgba(120,138,255,.14);
       background:rgba(10,18,48,.42);
       border-radius:22px;
       padding:22px;
     }
 
-    .previewActionCard h3{
+    .hubActionCard h3{
       margin:0 0 12px;
       color:#eef2ff;
       font-size:18px;
     }
 
-    .previewActionCard p{
+    .hubActionCard p{
       margin:0 0 18px;
       color:#d6ddff;
       line-height:1.5;
     }
 
-    .previewDisabledBtn{
+    .hubMutedBtn{
       display:inline-flex;
       align-items:center;
       justify-content:center;
@@ -230,154 +333,213 @@
       background:rgba(255,255,255,.05);
       color:#b4bee8;
       font-weight:800;
-      opacity:.75;
+      opacity:.8;
     }
 
-    .launchSupport{
-      color:var(--muted);
-      font-size:14px;
-      line-height:1.5;
-    }
-
-    .launchSupport p{
-      margin:0;
-    }
-
-    .actionRowSplit{
+    .hubStickyBar{
+      position:sticky;
+      bottom:16px;
+      z-index:6;
       display:flex;
-      gap:14px;
-      flex-wrap:wrap;
+      justify-content:center;
+      margin-top:-116px;
+      pointer-events:none;
     }
 
-    .actionRowSplit .secondaryButton{
+    .hubStickyInner{
+      width:min(920px, calc(100% - 24px));
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+      padding:16px 18px;
+      border-radius:22px;
+      background:rgba(7,16,42,.86);
+      border:1px solid rgba(255,255,255,.12);
+      box-shadow:0 18px 40px rgba(0,0,0,.32);
+      backdrop-filter:blur(14px);
+      pointer-events:auto;
+    }
+
+    .hubStickyCopy{
+      min-width:0;
+      color:#d6ddff;
+    }
+
+    .hubStickyCopy b{
+      display:block;
+      margin-bottom:4px;
+      color:#fff;
+      font-size:15px;
+    }
+
+    .hubStickyCopy span{
+      display:block;
+      font-size:14px;
+      line-height:1.45;
+      color:#b4bee8;
+    }
+
+    .hubStickyActions{
+      display:flex;
+      align-items:center;
+      gap:12px;
       flex:0 0 auto;
     }
 
-    .actionRowSplit .primary{
-      flex:1 1 260px;
+    .hubSecondaryAction{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-height:54px;
+      padding:0 18px;
+      border-radius:18px;
+      border:1px solid rgba(255,255,255,.14);
+      background:rgba(255,255,255,.06);
+      color:#eef2ff;
+      text-decoration:none;
+      font-weight:900;
+      white-space:nowrap;
     }
 
- .secondaryButton{
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  min-height:58px;
-  padding:0 22px;
-  border-radius:18px;
-  border:1px solid var(--line);
-  background:#fff;
-  color:var(--text);
-  text-decoration:none;
-  font-weight:900;
-  box-shadow:0 8px 16px rgba(0,0,0,.04);
+    .hubPrimaryAction{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-height:54px;
+      padding:0 24px;
+      border-radius:18px;
+      background:#1f6f4a;
+      color:#fff;
+      text-decoration:none;
+      font-weight:900;
+      font-size:17px;
+      white-space:nowrap;
+      box-shadow:0 10px 20px rgba(31,111,74,.22);
+    }
 
-  margin:0 auto;   /* 👈 THIS fixes it */
-}
-
-.previewLaunchArea{
-  grid-column:1 / -1;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  gap:16px;
-  padding-top:8px;
-  text-align:center;
-}
-
-.previewLaunchNote{
-  margin:0;
-  color:#b4bee8;
-  line-height:1.55;
-  max-width:720px;
-}
-
-.previewLaunchBtn{
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  min-height:58px;
-  padding:0 26px;
-  border-radius:18px;
-  background:#1f6f4a;
-  color:#fff;
-  text-decoration:none;
-  font-weight:900;
-  font-size:18px;
-  box-shadow:0 10px 20px rgba(31,111,74,.22);
-}
-    
-.launchSupport{
-  color:var(--muted);
-  font-size:14px;
-  line-height:1.5;
-  text-align:center;
-}
-
-.launchSupport p{
-  margin:0 auto;
-  max-width:640px;
-}
-
-.actionRow{
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  width:100%;
-}
-
-    @media (max-width: 900px){
-      .previewIdentity{
+    @media (max-width: 980px){
+      .hubIdentity{
         flex-direction:column;
         align-items:flex-start;
-        margin-top:-54px;
+        margin-top:-64px;
       }
 
-      .previewName{
-        font-size:36px;
+      .hubName{
+        font-size:38px;
       }
 
-      .previewActionGrid{
+      .hubActionGrid{
         grid-template-columns:1fr;
+      }
+
+      .hubStickyInner{
+        flex-direction:column;
+        align-items:stretch;
+      }
+
+      .hubStickyActions{
+        width:100%;
+        flex-direction:column;
+      }
+
+      .hubSecondaryAction,
+      .hubPrimaryAction{
+        width:100%;
       }
     }
 
     @media (max-width: 640px){
-      .previewHeroTop,
-      .previewBody,
-      .previewLinks{
-        padding-left:18px;
-        padding-right:18px;
+      .hubStage{
+        gap:14px;
+        padding-bottom:108px;
       }
 
-      .previewIdentity{
-        padding-left:18px;
-        padding-right:18px;
+      .hubHeroTop{
+        padding:74px 18px 18px;
       }
 
-      .previewHeadline{
+      .hubFocusLine{
         font-size:22px;
       }
 
-      .previewName{
-        font-size:28px;
+      .hubRule{
+        margin-top:14px;
       }
 
-      .previewAvatar{
-        width:104px;
-        height:104px;
+      .hubBanner{
+        min-height:240px;
       }
 
-      .previewBanner{
-        min-height:220px;
+      .hubUploadBanner{
+        right:16px;
+        bottom:16px;
+        min-height:44px;
+        padding:0 14px;
+        border-radius:14px;
+        font-size:13px;
       }
 
-      .actionRowSplit{
-        flex-direction:column;
+      .hubIdentity{
+        padding:0 18px;
       }
 
-      .actionRowSplit .primary,
-      .actionRowSplit .secondaryButton{
-        width:100%;
+      .hubAvatar{
+        width:108px;
+        height:108px;
+      }
+
+      .hubName{
+        font-size:30px;
+      }
+
+      .hubHandle{
+        font-size:15px;
+      }
+
+      .hubLinks{
+        padding:20px 18px 24px;
+      }
+
+      .hubBody{
+        padding:0 18px 138px;
+      }
+
+      .hubSection,
+      .hubActionCard{
+        padding:18px;
+        border-radius:18px;
+      }
+
+      .hubTopMeta{
+        top:14px;
+        left:14px;
+        right:14px;
+      }
+
+      .hubStatePill,
+      .hubPreviewLink{
+        min-height:34px;
+        padding:0 12px;
+        font-size:12px;
+      }
+
+      .hubStickyBar{
+        bottom:12px;
+      }
+
+      .hubStickyInner{
+        width:calc(100% - 16px);
+        padding:14px;
+        border-radius:18px;
+      }
+
+      .hubStickyCopy b{
+        font-size:14px;
+      }
+
+      .hubStickyCopy span{
+        font-size:13px;
       }
     }
   </style>
@@ -389,123 +551,115 @@
       <main class="stage">
         <div class="content">
           <div class="center">
+            <div class="hubStage">
 
-            <div class="appHeader">
-              <div class="appBrand">
-                <img src="assets/commonshub-mark-light.svg" alt="" class="appMark">
-                <span>Commonshub — Onboarding</span>
-              </div>
-              <div class="chip">Step 8</div>
-            </div>
-
-            <div class="progress">
-              <div class="bar"><div style="width:100%"></div></div>
-              <span>Ready to launch</span>
-            </div>
-
-            <section class="onboardCard">
-              <div class="onboardIntro">
-                <h1 class="onboardTitle">Your community preview is ready!</h1>
-                <p class="onboardLead">
-                  This is how your community landing page (hub page) can look when your community goes live.
-                </p>
-                <p class="onboardSupport">
-                  You can upload a banner and profile image now, and everything else can still be edited after launch.
-                </p>
+              <div class="appHeader">
+                <div class="appBrand">
+                  <img src="assets/commonshub-mark-light.svg" alt="" class="appMark">
+                  <span>Commonshub — Onboarding</span>
+                </div>
+                <div class="chip">Step 8</div>
               </div>
 
-              <div class="formSection">
+              <div class="progress">
+                <div class="bar"><div style="width:100%"></div></div>
+                <span>Ready to launch</span>
+              </div>
 
-                <section class="previewWrap">
+              <div class="hubStatusRow">
+                <div class="hubStatus">
+                  <span class="hubStatusDot"></span>
+                  <span>Not live yet</span>
+                </div>
+                <div class="hubStatusNote">This page will become your live Hub when you launch.</div>
+              </div>
 
-                  <div class="previewHeroTop">
-                    <h2 class="previewHeadline">Real-Time Security Briefings</h2>
-                    <div class="previewRule"></div>
-                  </div>
+              <section class="hubSurface">
 
-                  <div class="previewBanner">
-                    <label class="previewUploadBanner">
-                      Upload banner
-                      <input type="file" accept="image/*" hidden>
-                    </label>
-                  </div>
+                <div class="hubTopMeta">
+                  <div class="hubStatePill">Pre-launch state</div>
+                  <a class="hubPreviewLink" href="resumeEmail.html">Email preview link</a>
+                </div>
 
-                  <div class="previewIdentity">
-                    <div class="previewAvatar">
-                      <div class="previewAvatarPlaceholder">
-                        <b>Avatar</b>
-                        <span>Upload image</span>
-                        <label class="previewUploadAvatar">
-                          Upload
-                          <input type="file" accept="image/*" hidden>
-                        </label>
-                      </div>
-                    </div>
+                <div class="hubHeroTop">
+                  <h2 class="hubFocusLine">Real-Time Security Briefings</h2>
+                  <div class="hubRule"></div>
+                </div>
 
-                    <div class="previewMeta">
-                      <h2 class="previewName">The Security Brief</h2>
-                      <p class="previewHandle">@jasonjaysmart@securitybrief.jasonjaysmart.com</p>
+                <div class="hubBanner">
+                  <label class="hubUploadBanner">
+                    Upload banner
+                    <input type="file" accept="image/*" hidden>
+                  </label>
+                </div>
+
+                <div class="hubIdentity">
+                  <div class="hubAvatar">
+                    <div class="hubAvatarPlaceholder">
+                      <b>Avatar</b>
+                      <span>Upload image</span>
+                      <label class="hubUploadAvatar">
+                        Upload
+                        <input type="file" accept="image/*" hidden>
+                      </label>
                     </div>
                   </div>
 
-                  <div class="previewLinks">
-                    <a href="#" class="previewLinkBtn">Visit community</a>
-                    <a href="#" class="previewLinkBtn">Website</a>
-                    <a href="#" class="previewLinkBtn">YouTube</a>
-                    <a href="#" class="previewLinkBtn">Substack</a>
+                  <div class="hubIdentityMeta">
+                    <h2 class="hubName">The Security Brief</h2>
+                    <p class="hubHandle">@jasonjaysmart@securitybrief.jasonjaysmart.com</p>
                   </div>
+                </div>
 
-                  <div class="previewBody">
+                <div class="hubLinks">
+                  <a href="#" class="hubLinkBtn">Visit community</a>
+                  <a href="#" class="hubLinkBtn">Website</a>
+                  <a href="#" class="hubLinkBtn">YouTube</a>
+                  <a href="#" class="hubLinkBtn">Substack</a>
+                </div>
 
-                    <section class="previewSection">
-                      <h3>About</h3>
-                      <p>
-                        A working room for researchers, journalists, and operators analyzing power, propaganda, and geopolitical strategy.
-                      </p>
-                      <p>
-                        I’m a national security analyst reporting on Russia’s war against Ukraine and the structures of authoritarian power. My work connects real-time developments with historical and strategic context. I host this space to maintain an ongoing briefing with serious participants tracking these issues.
-                      </p>
+                <div class="hubBody">
+                  <section class="hubSection">
+                    <h3>About</h3>
+                    <p>
+                      A working room for researchers, journalists, and operators analyzing power, propaganda, and geopolitical strategy.
+                    </p>
+                    <p>
+                      I’m a national security analyst reporting on Russia’s war against Ukraine and the structures of authoritarian power. My work connects real-time developments with historical and strategic context. I host this space to maintain an ongoing briefing with serious participants tracking these issues.
+                    </p>
+                  </section>
+
+                  <div class="hubActionGrid">
+                    <section class="hubActionCard">
+                      <h3>Community Support</h3>
+                      <p>Support options can be connected after launch.</p>
+                      <div class="hubMutedBtn">Activates after launch</div>
                     </section>
 
-                 <div class="previewActionGrid">
-                    <section class="previewActionCard">
-    <h3>Community Support</h3>
-    <p>Support options can be connected after launch.</p>
-    <div class="previewDisabledBtn">Set up after launch</div>
-  </section>
-</div>
-  <section class="previewActionCard">
-    <h3>Join</h3>
-    <p>Visitors will be able to request or use an invite after launch.</p>
-    <div class="previewDisabledBtn">Available after launch</div>
-  </section>
-
- 
-
-<div class="previewLaunchArea">
-  <p class="previewLaunchNote">
-    This page will become your live community hub. You can update text, images, and links at any time after launch.
-  </p>
-
-  <a class="previewLaunchBtn" href="provisioning-01-finalize.html">
-    Launch community →
-  </a>
-</div>
-
+                    <section class="hubActionCard">
+                      <h3>Join</h3>
+                      <p>Visitors will be able to request or use an invite after launch.</p>
+                      <div class="hubMutedBtn">Activates after launch</div>
+                    </section>
                   </div>
-                </section>
+                </div>
+              </section>
 
-<div class="launchSupport">
-  <p>This is your community Hub page preview. You can return to it anytime to launch.</p>
-</div>
+              <div class="hubStickyBar">
+                <div class="hubStickyInner">
+                  <div class="hubStickyCopy">
+                    <b>This is your Hub page.</b>
+                    <span>You can still update text, images, and links before or after launch.</span>
+                  </div>
 
-<div class="actionRow">
-  <a class="secondaryButton" href="resumeEmail.html">Email me the preview link</a>
-</div>
-
+                  <div class="hubStickyActions">
+                    <a class="hubSecondaryAction" href="resumeEmail.html">Email me the link</a>
+                    <a class="hubPrimaryAction" href="provisioning-01-finalize.html">Launch community →</a>
+                  </div>
+                </div>
               </div>
-            </section>
 
+            </div>
           </div>
         </div>
       </main>
