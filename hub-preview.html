@@ -3,117 +3,89 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Commonshub — Onboarding</title>
+  <title>Commonshub — Hub page</title>
   <link rel="stylesheet" href="assets/styles.css" />
   <style>
-    .hubStage{
-      display:flex;
-      flex-direction:column;
-      gap:18px;
-      padding-bottom:120px;
-    }
-
-    .hubStatusRow{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:12px;
-      color:rgba(233,242,236,.82);
-      font-size:14px;
-      line-height:1.4;
-    }
-
-    .hubStatus{
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-      font-weight:700;
-    }
-
-    .hubStatusDot{
-      width:10px;
-      height:10px;
-      border-radius:999px;
-      background:#f4a623;
-      box-shadow:0 0 0 4px rgba(244,166,35,.12);
-      flex:0 0 auto;
-    }
-
-    .hubStatusNote{
-      color:rgba(233,242,236,.72);
-    }
-
-    .hubSurface{
-      position:relative;
+    .hubShell{
+      margin-top:18px;
       border-radius:28px;
       overflow:hidden;
-      background:linear-gradient(180deg, #030816 0%, #07102a 100%);
-      color:#eef2ff;
       border:1px solid rgba(255,255,255,.08);
+      background:linear-gradient(180deg, #020714 0%, #061028 100%);
       box-shadow:
-        0 22px 60px rgba(0,0,0,.28),
+        0 24px 70px rgba(0,0,0,.28),
         inset 0 1px 0 rgba(255,255,255,.04);
-      min-height:900px;
-    }
-
-    .hubTopMeta{
-      position:absolute;
-      top:18px;
-      left:18px;
-      right:18px;
-      z-index:3;
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      gap:12px;
-      pointer-events:none;
-    }
-
-    .hubStatePill{
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-      min-height:36px;
-      padding:0 14px;
-      border-radius:999px;
-      background:rgba(7,16,42,.76);
-      border:1px solid rgba(255,255,255,.12);
       color:#eef2ff;
-      font-size:13px;
-      font-weight:800;
-      backdrop-filter:blur(10px);
-      pointer-events:auto;
     }
 
-    .hubStatePill::before{
-      content:"";
-      width:8px;
-      height:8px;
-      border-radius:999px;
-      background:#f4a623;
-      box-shadow:0 0 0 3px rgba(244,166,35,.12);
+    .hubTopbar{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:18px;
+      padding:16px 22px;
+      border-bottom:1px solid rgba(255,255,255,.08);
+      background:rgba(255,255,255,.04);
+      backdrop-filter:blur(10px);
+    }
+
+    .hubTopbarLeft{
+      display:flex;
+      align-items:center;
+      gap:14px;
+      min-width:0;
+    }
+
+    .hubTopbarTitle{
+      min-width:0;
+    }
+
+    .hubTopbarTitle b{
+      display:block;
+      font-size:15px;
+      line-height:1.2;
+      color:#fff;
+    }
+
+    .hubTopbarTitle span{
+      display:block;
+      margin-top:2px;
+      font-size:13px;
+      line-height:1.35;
+      color:#b8c3ee;
+    }
+
+    .hubTopbarActions{
+      display:flex;
+      align-items:center;
+      gap:10px;
       flex:0 0 auto;
     }
 
-    .hubPreviewLink{
+    .hubTopbarBtn{
       display:inline-flex;
       align-items:center;
       justify-content:center;
-      min-height:36px;
-      padding:0 14px;
-      border-radius:999px;
-      background:rgba(7,16,42,.76);
-      border:1px solid rgba(255,255,255,.12);
+      min-height:42px;
+      padding:0 16px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.14);
+      background:rgba(255,255,255,.04);
       color:#eef2ff;
-      font-size:13px;
-      font-weight:800;
       text-decoration:none;
-      backdrop-filter:blur(10px);
-      pointer-events:auto;
+      font-weight:800;
+      white-space:nowrap;
+    }
+
+    .hubTopbarBtn.primary{
+      background:#1f6f4a;
+      border-color:transparent;
+      color:#fff;
+      box-shadow:0 10px 20px rgba(31,111,74,.22);
     }
 
     .hubHeroTop{
-      padding:86px 36px 20px;
+      padding:34px 34px 20px;
       border-bottom:1px solid rgba(120,138,255,.16);
       background:linear-gradient(180deg, rgba(12,20,56,.92) 0%, rgba(6,12,34,.94) 100%);
     }
@@ -129,7 +101,7 @@
 
     .hubRule{
       width:100%;
-      max-width:720px;
+      max-width:760px;
       height:4px;
       border-radius:999px;
       margin-top:18px;
@@ -139,7 +111,7 @@
 
     .hubBanner{
       position:relative;
-      min-height:320px;
+      min-height:340px;
       background:
         linear-gradient(rgba(4,10,28,.12), rgba(4,10,28,.12)),
         url("assets/peakx-banner.jpg") center/cover no-repeat;
@@ -169,7 +141,7 @@
       display:flex;
       gap:22px;
       align-items:flex-end;
-      padding:0 36px;
+      padding:0 34px;
       margin-top:-58px;
       position:relative;
       z-index:2;
@@ -186,7 +158,6 @@
         linear-gradient(180deg, #0d1b47 0%, #08122c 100%);
       box-shadow:0 10px 30px rgba(0,0,0,.35);
       flex:0 0 auto;
-      position:relative;
       display:flex;
       align-items:center;
       justify-content:center;
@@ -250,7 +221,7 @@
       display:flex;
       flex-wrap:wrap;
       gap:12px;
-      padding:26px 36px 30px;
+      padding:26px 34px 30px;
     }
 
     .hubLinkBtn{
@@ -271,7 +242,7 @@
       display:flex;
       flex-direction:column;
       gap:22px;
-      padding:0 36px 150px;
+      padding:0 34px 34px;
     }
 
     .hubSection{
@@ -295,6 +266,40 @@
 
     .hubSection p:last-child{
       margin-bottom:0;
+    }
+
+    .hubImageHelp{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:18px;
+    }
+
+    .hubHelpCard{
+      border:1px solid rgba(120,138,255,.14);
+      background:rgba(10,18,48,.42);
+      border-radius:22px;
+      padding:22px;
+    }
+
+    .hubHelpCard h3{
+      margin:0 0 12px;
+      color:#eef2ff;
+      font-size:18px;
+    }
+
+    .hubHelpCard p{
+      margin:0 0 10px;
+      color:#d6ddff;
+      line-height:1.5;
+    }
+
+    .hubHelpCard p:last-child{
+      margin-bottom:0;
+    }
+
+    .hubSpec{
+      color:#fff;
+      font-weight:800;
     }
 
     .hubActionGrid{
@@ -336,63 +341,49 @@
       opacity:.8;
     }
 
-    .hubStickyBar{
-      position:sticky;
-      bottom:16px;
-      z-index:6;
-      display:flex;
-      justify-content:center;
-      margin-top:-116px;
-      pointer-events:none;
-    }
-
-    .hubStickyInner{
-      width:min(920px, calc(100% - 24px));
+    .hubFooter{
       display:flex;
       align-items:center;
       justify-content:space-between;
-      gap:16px;
-      padding:16px 18px;
-      border-radius:22px;
-      background:rgba(7,16,42,.86);
-      border:1px solid rgba(255,255,255,.12);
-      box-shadow:0 18px 40px rgba(0,0,0,.32);
-      backdrop-filter:blur(14px);
-      pointer-events:auto;
+      gap:18px;
+      padding:24px 34px 30px;
+      border-top:1px solid rgba(255,255,255,.08);
+      background:rgba(255,255,255,.03);
     }
 
-    .hubStickyCopy{
+    .hubFooterCopy{
       min-width:0;
       color:#d6ddff;
     }
 
-    .hubStickyCopy b{
+    .hubFooterCopy b{
       display:block;
       margin-bottom:4px;
       color:#fff;
-      font-size:15px;
+      font-size:18px;
     }
 
-    .hubStickyCopy span{
+    .hubFooterCopy span{
       display:block;
       font-size:14px;
       line-height:1.45;
       color:#b4bee8;
+      max-width:640px;
     }
 
-    .hubStickyActions{
+    .hubFooterActions{
       display:flex;
       align-items:center;
       gap:12px;
       flex:0 0 auto;
     }
 
-    .hubSecondaryAction{
+    .hubFooterBtn{
       display:inline-flex;
       align-items:center;
       justify-content:center;
-      min-height:54px;
-      padding:0 18px;
+      min-height:56px;
+      padding:0 22px;
       border-radius:18px;
       border:1px solid rgba(255,255,255,.14);
       background:rgba(255,255,255,.06);
@@ -402,23 +393,24 @@
       white-space:nowrap;
     }
 
-    .hubPrimaryAction{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      min-height:54px;
-      padding:0 24px;
-      border-radius:18px;
+    .hubFooterBtn.primary{
       background:#1f6f4a;
+      border-color:transparent;
       color:#fff;
-      text-decoration:none;
-      font-weight:900;
-      font-size:17px;
-      white-space:nowrap;
       box-shadow:0 10px 20px rgba(31,111,74,.22);
     }
 
     @media (max-width: 980px){
+      .hubTopbar{
+        flex-direction:column;
+        align-items:flex-start;
+      }
+
+      .hubTopbarActions{
+        width:100%;
+        flex-wrap:wrap;
+      }
+
       .hubIdentity{
         flex-direction:column;
         align-items:flex-start;
@@ -429,34 +421,53 @@
         font-size:38px;
       }
 
+      .hubImageHelp,
       .hubActionGrid{
         grid-template-columns:1fr;
       }
 
-      .hubStickyInner{
+      .hubFooter{
         flex-direction:column;
-        align-items:stretch;
+        align-items:flex-start;
       }
 
-      .hubStickyActions{
+      .hubFooterActions{
         width:100%;
         flex-direction:column;
       }
 
-      .hubSecondaryAction,
-      .hubPrimaryAction{
+      .hubFooterBtn{
         width:100%;
       }
     }
 
     @media (max-width: 640px){
-      .hubStage{
-        gap:14px;
-        padding-bottom:108px;
+      .hubShell{
+        margin-top:14px;
+        border-radius:22px;
+      }
+
+      .hubTopbar{
+        padding:14px 16px;
+      }
+
+      .hubTopbarTitle b{
+        font-size:14px;
+      }
+
+      .hubTopbarTitle span{
+        font-size:12px;
+      }
+
+      .hubTopbarBtn{
+        min-height:40px;
+        padding:0 14px;
+        border-radius:12px;
+        font-size:13px;
       }
 
       .hubHeroTop{
-        padding:74px 18px 18px;
+        padding:26px 18px 18px;
       }
 
       .hubFocusLine{
@@ -502,44 +513,32 @@
       }
 
       .hubBody{
-        padding:0 18px 138px;
+        padding:0 18px 24px;
       }
 
       .hubSection,
+      .hubHelpCard,
       .hubActionCard{
         padding:18px;
         border-radius:18px;
       }
 
-      .hubTopMeta{
-        top:14px;
-        left:14px;
-        right:14px;
+      .hubFooter{
+        padding:20px 18px 22px;
       }
 
-      .hubStatePill,
-      .hubPreviewLink{
-        min-height:34px;
-        padding:0 12px;
-        font-size:12px;
+      .hubFooterCopy b{
+        font-size:16px;
       }
 
-      .hubStickyBar{
-        bottom:12px;
-      }
-
-      .hubStickyInner{
-        width:calc(100% - 16px);
-        padding:14px;
-        border-radius:18px;
-      }
-
-      .hubStickyCopy b{
-        font-size:14px;
-      }
-
-      .hubStickyCopy span{
+      .hubFooterCopy span{
         font-size:13px;
+      }
+
+      .hubFooterBtn{
+        min-height:52px;
+        padding:0 18px;
+        font-size:16px;
       }
     }
   </style>
@@ -551,115 +550,127 @@
       <main class="stage">
         <div class="content">
           <div class="center">
-            <div class="hubStage">
 
-              <div class="appHeader">
-                <div class="appBrand">
-                  <img src="assets/commonshub-mark-light.svg" alt="" class="appMark">
-                  <span>Commonshub — Onboarding</span>
-                </div>
-                <div class="chip">Step 8</div>
+            <div class="appHeader">
+              <div class="appBrand">
+                <img src="assets/commonshub-mark-light.svg" alt="" class="appMark">
+                <span>Commonshub — Onboarding</span>
               </div>
+              <div class="chip">Step 8</div>
+            </div>
 
-              <div class="progress">
-                <div class="bar"><div style="width:100%"></div></div>
-                <span>Ready to launch</span>
-              </div>
+            <div class="progress">
+              <div class="bar"><div style="width:100%"></div></div>
+              <span>Ready to launch</span>
+            </div>
 
-              <div class="hubStatusRow">
-                <div class="hubStatus">
-                  <span class="hubStatusDot"></span>
-                  <span>Not live yet</span>
-                </div>
-                <div class="hubStatusNote">This page will become your live Hub when you launch.</div>
-              </div>
+            <section class="hubShell">
 
-              <section class="hubSurface">
-
-                <div class="hubTopMeta">
-                  <div class="hubStatePill">Pre-launch state</div>
-                  <a class="hubPreviewLink" href="resumeEmail.html">Email preview link</a>
-                </div>
-
-                <div class="hubHeroTop">
-                  <h2 class="hubFocusLine">Real-Time Security Briefings</h2>
-                  <div class="hubRule"></div>
-                </div>
-
-                <div class="hubBanner">
-                  <label class="hubUploadBanner">
-                    Upload banner
-                    <input type="file" accept="image/*" hidden>
-                  </label>
-                </div>
-
-                <div class="hubIdentity">
-                  <div class="hubAvatar">
-                    <div class="hubAvatarPlaceholder">
-                      <b>Avatar</b>
-                      <span>Upload image</span>
-                      <label class="hubUploadAvatar">
-                        Upload
-                        <input type="file" accept="image/*" hidden>
-                      </label>
-                    </div>
-                  </div>
-
-                  <div class="hubIdentityMeta">
-                    <h2 class="hubName">The Security Brief</h2>
-                    <p class="hubHandle">@jasonjaysmart@securitybrief.jasonjaysmart.com</p>
+              <div class="hubTopbar">
+                <div class="hubTopbarLeft">
+                  <div class="hubTopbarTitle">
+                    <b>Onboarding complete</b>
+                    <span>Add a banner and avatar to make this page yours. You can still edit text and links later.</span>
                   </div>
                 </div>
 
-                <div class="hubLinks">
-                  <a href="#" class="hubLinkBtn">Visit community</a>
-                  <a href="#" class="hubLinkBtn">Website</a>
-                  <a href="#" class="hubLinkBtn">YouTube</a>
-                  <a href="#" class="hubLinkBtn">Substack</a>
+                <div class="hubTopbarActions">
+                  <a class="hubTopbarBtn" href="resumeEmail.html">Email me this page</a>
+                  <a class="hubTopbarBtn primary" href="provisioning-01-finalize.html">Launch community →</a>
+                </div>
+              </div>
+
+              <div class="hubHeroTop">
+                <h2 class="hubFocusLine">Real-Time Security Briefings</h2>
+                <div class="hubRule"></div>
+              </div>
+
+              <div class="hubBanner">
+                <label class="hubUploadBanner">
+                  Upload banner
+                  <input type="file" accept="image/*" hidden>
+                </label>
+              </div>
+
+              <div class="hubIdentity">
+                <div class="hubAvatar">
+                  <div class="hubAvatarPlaceholder">
+                    <b>Avatar</b>
+                    <span>Upload image</span>
+                    <label class="hubUploadAvatar">
+                      Upload
+                      <input type="file" accept="image/*" hidden>
+                    </label>
+                  </div>
                 </div>
 
-                <div class="hubBody">
-                  <section class="hubSection">
-                    <h3>About</h3>
-                    <p>
-                      A working room for researchers, journalists, and operators analyzing power, propaganda, and geopolitical strategy.
-                    </p>
-                    <p>
-                      I’m a national security analyst reporting on Russia’s war against Ukraine and the structures of authoritarian power. My work connects real-time developments with historical and strategic context. I host this space to maintain an ongoing briefing with serious participants tracking these issues.
-                    </p>
+                <div class="hubIdentityMeta">
+                  <h2 class="hubName">The Security Brief</h2>
+                  <p class="hubHandle">@jasonjaysmart@securitybrief.jasonjaysmart.com</p>
+                </div>
+              </div>
+
+              <div class="hubLinks">
+                <a href="#" class="hubLinkBtn">Visit community</a>
+                <a href="#" class="hubLinkBtn">Website</a>
+                <a href="#" class="hubLinkBtn">YouTube</a>
+                <a href="#" class="hubLinkBtn">Substack</a>
+              </div>
+
+              <div class="hubBody">
+                <section class="hubSection">
+                  <h3>About</h3>
+                  <p>
+                    A working room for researchers, journalists, and operators analyzing power, propaganda, and geopolitical strategy.
+                  </p>
+                  <p>
+                    I’m a national security analyst reporting on Russia’s war against Ukraine and the structures of authoritarian power. My work connects real-time developments with historical and strategic context. I host this space to maintain an ongoing briefing with serious participants tracking these issues.
+                  </p>
+                </section>
+
+                <div class="hubImageHelp">
+                  <section class="hubHelpCard">
+                    <h3>Banner image</h3>
+                    <p><span class="hubSpec">Recommended:</span> 1600 × 500 px</p>
+                    <p>Use a wide image with a clear focal area and safe margins for text overlays.</p>
                   </section>
 
-                  <div class="hubActionGrid">
-                    <section class="hubActionCard">
-                      <h3>Community Support</h3>
-                      <p>Support options can be connected after launch.</p>
-                      <div class="hubMutedBtn">Activates after launch</div>
-                    </section>
-
-                    <section class="hubActionCard">
-                      <h3>Join</h3>
-                      <p>Visitors will be able to request or use an invite after launch.</p>
-                      <div class="hubMutedBtn">Activates after launch</div>
-                    </section>
-                  </div>
+                  <section class="hubHelpCard">
+                    <h3>Avatar image</h3>
+                    <p><span class="hubSpec">Recommended:</span> 1024 × 1024 px JPG or PNG</p>
+                    <p>A centered square image works best. It will be cropped to a circle on the page.</p>
+                  </section>
                 </div>
-              </section>
 
-              <div class="hubStickyBar">
-                <div class="hubStickyInner">
-                  <div class="hubStickyCopy">
-                    <b>This is your Hub page.</b>
-                    <span>You can still update text, images, and links before or after launch.</span>
-                  </div>
+                <div class="hubActionGrid">
+                  <section class="hubActionCard">
+                    <h3>Community Support</h3>
+                    <p>Support options can be connected after launch.</p>
+                    <div class="hubMutedBtn">Activates after launch</div>
+                  </section>
 
-                  <div class="hubStickyActions">
-                    <a class="hubSecondaryAction" href="resumeEmail.html">Email me the link</a>
-                    <a class="hubPrimaryAction" href="provisioning-01-finalize.html">Launch community →</a>
-                  </div>
+                  <section class="hubActionCard">
+                    <h3>Join</h3>
+                    <p>Visitors will be able to request or use an invite after launch.</p>
+                    <div class="hubMutedBtn">Activates after launch</div>
+                  </section>
                 </div>
               </div>
 
-            </div>
+              <div class="hubFooter">
+                <div class="hubFooterCopy">
+                  <b>This is your Hub page.</b>
+                  <span>Upload a banner and avatar now, or launch as-is and refine it later. Everything on this page can still be updated after launch.</span>
+                </div>
+
+                <div class="hubFooterActions">
+                  <a class="hubFooterBtn" href="resumeEmail.html">Email me this page</a>
+                  <a class="hubFooterBtn primary" href="provisioning-01-finalize.html">Launch community →</a>
+                </div>
+              </div>
+
+            </section>
+
           </div>
         </div>
       </main>
