@@ -3,514 +3,148 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Commonshub — Guided onboarding</title>
+  <title>Commonshub — Onboarding</title>
   <link rel="stylesheet" href="assets/styles.css" />
-  <style>
-    :root{
-      --console-bg:#f7faf8;
-      --console-tint:rgba(31,111,74,.06);
-      --console-tint-2:rgba(31,111,74,.1);
-      --console-border:rgba(31,111,74,.14);
-    }
-
-    .appHeader{
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      margin: 10px 0 18px;
-      padding-bottom:12px;
-      border-bottom:1px solid var(--line);
-    }
-
-    .appBrand{
-      display:flex;
-      align-items:center;
-      gap:10px;
-      font-size:16px;       /* slightly larger */
-      font-weight:900;
-      color:var(--text);
-    }
-
-    .appMark{
-      width:26px;
-      height:26px;
-      display:block;
-    }
-
-    .stage{
-      padding-top:14px;
-    }
-
-    @media (max-width:640px){
-      .appHeader{
-        margin-bottom:14px;
-      }
-
-      .appBrand{
-        font-size:14px;
-      }
-
-      .appMark{
-        width:20px;
-        height:20px;
-      }
-    }
-
-    .consoleShell{
-      display:flex;
-      flex-direction:column;
-      gap:14px;
-    }
-
-    .consoleHeader{
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      gap:12px;
-      padding:4px 2px 0;
-      flex-wrap:wrap;
-    }
-
-    .consoleHeader .title{
-      font-size:13px;
-      color:var(--muted);
-    }
-
-    .consoleHeader .title b{
-      color:var(--text);
-      font-weight:900;
-    }
-
-    .consoleStream{
-      flex:1;
-      border:1px solid var(--line);
-      border-radius:22px;
-      background:linear-gradient(to bottom, rgba(16,32,24,.02), rgba(16,32,24,.005));
-      padding:16px;
-      overflow:auto;
-      box-shadow:inset 0 1px 0 rgba(255,255,255,.7);
-      min-height:180px;
-    }
-
-    .msg{
-      border:1px solid var(--console-border);
-      background:#fff;
-      border-radius:18px;
-      padding:14px 15px;
-      margin-bottom:12px;
-    }
-
-    .msg.system{
-      background:var(--console-bg);
-      border-color:var(--console-tint-2);
-    }
-
-    .metaLine{
-      font-size:12px;
-      color:var(--muted);
-      margin-bottom:8px;
-      display:flex;
-      justify-content:space-between;
-      gap:10px;
-      flex-wrap:wrap;
-    }
-
-    .metaLine b{
-      color:var(--text);
-      font-weight:900;
-    }
-
-    .msg p{
-      margin:0;
-      font-size:14px;
-      line-height:1.45;
-      color:var(--text);
-    }
-
-    .msg p + p{
-      margin-top:9px;
-    }
-
-    .inputBar{
-      border:1px solid var(--line);
-      border-radius:22px;
-      background:#fff;
-      padding:14px;
-      display:flex;
-      flex-direction:column;
-      gap:14px;
-    }
-
-    .fieldLabel{
-      font-size:13px;
-      font-weight:800;
-      color:var(--text);
-      margin-bottom:2px;
-    }
-
-    .inputField{
-      width:100%;
-      min-height:60px;
-      resize:none;
-      border:1px solid var(--line);
-      border-radius:16px;
-      padding:14px 15px;
-      font:inherit;
-      color:var(--text);
-      background:#fcfdfc;
-      outline:none;
-    }
-
-    input.inputField{
-      min-height:60px;
-    }
-    .inputField:focus{
-      border-color:rgba(31,111,74,.28);
-      box-shadow:0 0 0 3px rgba(31,111,74,.08);
-    }
-
-    .continueBtn{
-      appearance:none;
-      border:none;
-      border-radius:18px;
-      background:#1f6f4a;
-      color:#fff;
-      font:inherit;
-      font-weight:900;
-      font-size:17px;
-      padding:16px 18px;
-      cursor:pointer;
-      box-shadow:0 10px 18px rgba(31,111,74,.16);
-      width:100%;
-      text-align:center;
-      text-decoration:none;
-      margin-top:4px;
-    }
-
-    .subtle{
-      font-weight:600;
-      color:var(--muted);
-    }
-
-    .subtleRow{
-      display:flex;
-      justify-content:space-between;
-      gap:10px;
-      align-items:center;
-      flex-wrap:wrap;
-      color:var(--muted);
-      font-size:12px;
-      padding:0 2px;
-    }
-
-    .pill{
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-      border:1px solid var(--line);
-      background:#fff;
-      color:var(--muted);
-      border-radius:999px;
-      padding:8px 12px;
-      font-size:12px;
-      font-weight:700;
-    }
-
-    .flowRail{
-      display:grid;
-      grid-template-columns:repeat(4, minmax(0,1fr));
-      gap:10px;
-      margin-top:14px;
-    }
-
-    .flowRail .node{
-      border:1px solid var(--line);
-      background:#fff;
-      border-radius:16px;
-      padding:12px;
-      min-height:74px;
-    }
-
-    .flowRail .node b{
-      display:block;
-      font-size:13px;
-      margin-bottom:4px;
-    }
-
-    .flowRail .node span{
-      font-size:12px;
-      color:var(--muted);
-      line-height:1.4;
-      display:block;
-    }
-
-    .flowRail .node.current{
-      background:rgba(31,111,74,.06);
-      border-color:rgba(31,111,74,.18);
-    }
-
-       .choiceItem{
-      width:100%;
-      text-align:left;
-      border:1px solid var(--line);
-      background:#fff;
-      border-radius:18px;
-      padding:14px 16px;
-      cursor:pointer;
-      transition:.18s ease;
-      display:block;
-    }
-
-    .choiceItem:hover{
-      border-color:rgba(31,111,74,.22);
-      background:rgba(31,111,74,.025);
-    }
-
-    .choiceItem.active{
-      background:rgba(31,111,74,.04);
-      border:2px solid #1f6f4a;
-      box-shadow:0 0 0 3px rgba(31,111,74,.08);
-    }
-
-    .choiceTop{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:12px;
-    }
-
-    .choiceValue{
-      font-size:15px;
-      font-weight:900;
-      line-height:1.3;
-      word-break:break-word;
-      flex:1;
-      color:var(--text);
-    }
-
-    .choiceBadge{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      border:1px solid rgba(31,111,74,.22);
-      background:#fff;
-      color:#1f6f4a;
-      border-radius:999px;
-      padding:4px 8px;
-      font-size:11px;
-      font-weight:800;
-      white-space:nowrap;
-      flex-shrink:0;
-    }
-
-    @media (max-width: 1100px){
-      .flowRail{
-        grid-template-columns:repeat(2, minmax(0,1fr));
-      }
-    }
-
-    @media (max-width: 720px){
-      .flowRail{
-        grid-template-columns:1fr;
-      }
-
-      .consoleShell{
-        min-height:auto;
-      }
-    }
-
-    @media (max-width: 640px){
-      .flowBanner{
-        flex-direction:column;
-        align-items:flex-start;
-        gap:8px;
-      }
-
-      .flowBanner .stepChip{
-        align-self:flex-start;
-      }
-      .consoleStream{
-        padding:12px;
-        border-radius:16px;
-      }
-      .consoleShell{
-        gap:10px;
-      }
-      .msg{
-        padding:12px;
-        border-radius:14px;
-      }
-
-      .inputBar{
-        padding:12px;
-        border-radius:16px;
-        gap:10px;
-      }
-      .inputField{
-        font-size:16px;
-      }
-
-      .choiceItem{
-        padding:12px 14px;
-        border-radius:14px;
-      }
-
-      .choiceTop{
-        align-items:flex-start;
-        gap:10px;
-      }
-
-      .choiceValue{
-        font-size:14px;
-      }
-
-      .choiceBadge{
-        font-size:10px;
-        padding:4px 7px;
-      }
-    }
-
-
-  </style>
 </head>
-<body class="flow">
+
+<body class="flow flowDark">
   <div class="flowRoot">
     <div class="wrap">
       <main class="stage">
         <div class="content">
           <div class="center">
 
+            <!-- Header -->
             <div class="appHeader">
               <div class="appBrand">
-                <img src="assets/commonshub-mark.svg" alt="" class="appMark">
+                <img src="assets/commonshub-mark-light.svg" alt="" class="appMark">
                 <span>Commonshub — Onboarding</span>
               </div>
               <div class="chip">Step 4</div>
             </div>
 
+            <!-- Progress -->
             <div class="progress">
-              <span>Phase: Guided decisions</span>
               <div class="bar"><div style="width:58%"></div></div>
               <span>~1 minute</span>
             </div>
 
-            <div class="card" style="margin-top:14px;">
-              <div class="consoleShell">
+            <!-- Card -->
+            <section class="onboardCard">
 
-                <div class="consoleStream">
-                  <div class="msg system">
-                    <div class="metaLine">
-                      <span><b>Commonshub</b> · Positioning saved</span>
-                      <span>Saved</span>
+              <div class="onboardIntro">
+                <h1 class="onboardTitle">
+                  Choose the name for your space
+                </h1>
+
+                <p class="onboardLead">
+                  This becomes the public identity of the room and the basis for the instance slug.
+                </p>
+
+                <p class="onboardSupport">
+                  It should feel natural in speech and strong enough to carry the identity of the space over time.
+                </p>
+              </div>
+
+              <div class="formSection">
+
+                <!-- Options -->
+                <div class="choiceStack">
+
+                  <button type="button" class="choiceItem">
+                    <div class="choiceTop">
+                      <span class="choiceValue">Strategic Signals</span>
                     </div>
-                    <p><b>Selected positioning:</b> A working room for researchers, journalists, and operators analyzing power, propaganda, and geopolitical strategy.</p>
-                    <p><b>Short description:</b> A working room for researchers, journalists, and operators tracking geopolitical power, propaganda, and strategic conflict in real time.</p>
-                  </div>
+                  </button>
 
-                  <div class="msg system">
-                    <div class="metaLine">
-                      <span><b>Commonshub</b> · Community name</span>
-                      <span>Step 4</span>
+                  <button type="button" class="choiceItem">
+                    <div class="choiceTop">
+                      <span class="choiceValue">Power &amp; Strategy</span>
                     </div>
-                    <p><b>Choose the name for your space</b></p>
-                    <p>This becomes the public identity of the room and the basis for the instance slug.</p>
-                  </div>
+                  </button>
 
-                  <div class="msg">
-                    <p>It should feel natural in speech and strong enough to carry the identity of the space over time.</p>
-                  </div>
+                  <button type="button" class="choiceItem active">
+                    <div class="choiceTop">
+                      <span class="choiceValue">The Strategic Brief</span>
+                      <span class="choiceBadge">Recommended</span>
+                    </div>
+                  </button>
+
+                  <button type="button" class="choiceItem">
+                    <div class="choiceTop">
+                      <span class="choiceValue">Power &amp; Influence</span>
+                    </div>
+                  </button>
+
                 </div>
 
-                <div class="msg" style="margin-bottom:0;">
-                  <div style="display:flex; flex-direction:column; gap:14px;">
+                <p class="subtleAction">
+                  Not quite right? <a href="#">Generate more options</a>
+                </p>
 
-                    <button type="button" class="choiceItem">
-                      <div class="choiceTop">
-                        <span class="choiceValue">Strategic Signals</span>
-                      </div>
-                    </button>
-
-                    <button type="button" class="choiceItem">
-                      <div class="choiceTop">
-                        <span class="choiceValue">Power &amp; Strategy</span>
-                      </div>
-                    </button>
-
-                    <button type="button" class="choiceItem">
-                      <div class="choiceTop">
-                        <span class="choiceValue">The Strategic Brief</span>
-                        <span class="choiceBadge">Recommended</span>
-                      </div>
-                    </button>
-
-                    <button type="button" class="choiceItem">
-                      <div class="choiceTop">
-                        <span class="choiceValue">Power &amp; Influence</span>
-                      </div>
-                    </button>
-
-                    <div class="msg system" style="margin:0;">
-                      <p><b>Recommendation:</b> The Strategic Brief — it fits the analyst / briefing-room framing and attracts serious participants working in strategy and security.</p>
-                    </div>
-                  </div>
+                <div class="note">
+                  <b>Recommendation:</b> The Strategic Brief — it fits the analyst / briefing-room framing and attracts serious participants working in strategy and security.
                 </div>
 
-                <div class="inputBar">
-                  <div class="fieldLabel">Edited value</div>
-                  <textarea class="inputField">The Security Brief</textarea>
-                  <a class="continueBtn" href="onboarding-05-domain.html">Continue →</a>
+                <div>
+                  <label class="fieldLabel">Selected (edit if needed)</label>
+                  <textarea class="inputField" id="nameField">The Strategic Brief</textarea>
+                </div>
+
+                <div class="actionRow">
+                  <a class="primary forward" href="onboarding-05-domain.html">
+                    Continue
+                  </a>
                 </div>
 
               </div>
-            </div>
+
+            </section>
+
           </div>
         </div>
       </main>
     </div>
   </div>
-  <script>
-    const textarea = document.querySelector('.inputField');
-    const label = document.querySelector('.fieldLabel');
-    const choiceItems = document.querySelectorAll('.choiceItem');
 
-    function getActiveChoice() {
+  <script>
+    const field = document.getElementById('nameField');
+    const label = document.querySelector('.fieldLabel');
+    const choices = document.querySelectorAll('.choiceItem');
+
+    function activeChoice() {
       return document.querySelector('.choiceItem.active');
     }
 
-    function getChoiceValue(choice) {
+    function choiceValue(choice) {
       return choice?.querySelector('.choiceValue')?.innerText.trim() || '';
     }
 
-    function updateStateFromField() {
-      const activeChoice = getActiveChoice();
-      const activeValue = getChoiceValue(activeChoice);
-      const fieldValue = textarea.value.trim();
+    function syncStateFromField() {
+      const active = activeChoice();
+      const activeValue = choiceValue(active);
+      const currentValue = field.value.trim();
 
-      if (activeChoice && fieldValue !== activeValue) {
-        activeChoice.classList.remove('active');
-      }
-
-      if (getActiveChoice()) {
-        label.textContent = 'Selected (edit if needed)';
-      } else {
+      if (active && currentValue !== activeValue) {
+        active.classList.remove('active');
         label.textContent = 'Edited value';
+      } else {
+        label.textContent = 'Selected (edit if needed)';
       }
     }
 
-    choiceItems.forEach(item => {
-      item.addEventListener('click', () => {
-        choiceItems.forEach(i => i.classList.remove('active'));
-        item.classList.add('active');
-
-        textarea.value = getChoiceValue(item);
+    choices.forEach(choice => {
+      choice.addEventListener('click', () => {
+        choices.forEach(c => c.classList.remove('active'));
+        choice.classList.add('active');
+        field.value = choiceValue(choice);
         label.textContent = 'Selected (edit if needed)';
-        textarea.focus();
+        field.focus();
       });
     });
 
-    textarea.addEventListener('input', updateStateFromField);
-
-    updateStateFromField();
+    field.addEventListener('input', syncStateFromField);
+    syncStateFromField();
   </script>
 </body>
 </html>
