@@ -257,20 +257,22 @@
       flex:1 1 260px;
     }
 
-    .secondaryButton{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      min-height:58px;
-      padding:0 22px;
-      border-radius:18px;
-      border:1px solid var(--line);
-      background:#fff;
-      color:var(--text);
-      text-decoration:none;
-      font-weight:900;
-      box-shadow:0 8px 16px rgba(0,0,0,.04);
-    }
+ .secondaryButton{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-height:58px;
+  padding:0 22px;
+  border-radius:18px;
+  border:1px solid var(--line);
+  background:#fff;
+  color:var(--text);
+  text-decoration:none;
+  font-weight:900;
+  box-shadow:0 8px 16px rgba(0,0,0,.04);
+
+  margin:0 auto;   /* 👈 THIS fixes it */
+}
 
 .previewLaunchArea{
   grid-column:1 / -1;
@@ -316,9 +318,11 @@
   max-width:640px;
 }
 
-    .actionRow{
+.actionRow{
   display:flex;
   justify-content:center;
+  align-items:center;
+  width:100%;
 }
 
     @media (max-width: 900px){
