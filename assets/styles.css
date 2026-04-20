@@ -815,6 +815,24 @@ body.flow.flowDark .guideNoteSubtle b{
   background:#f4faf6;
 }
 
+
+.subtleAction{
+  font-size:13px;
+  color:var(--muted);
+  margin:6px 4px 2px;
+}
+
+.subtleAction a{
+  color:var(--text);
+  font-weight:700;
+  text-decoration:none;
+  border-bottom:1px solid rgba(0,0,0,.15);
+}
+
+.subtleAction a:hover{
+  border-bottom-color:rgba(0,0,0,.35);
+}
+
 @media (max-width:760px){
   body.flow.flowDark .onboardTitle{
     font-size:28px;
