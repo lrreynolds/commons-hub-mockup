@@ -5,7 +5,329 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Commonshub — Onboarding</title>
   <link rel="stylesheet" href="assets/styles.css" />
-   <link rel="stylesheet" href="assets/pages/hub-preview.css" />
+  <style>
+    .previewWrap{
+      border:1px solid var(--line);
+      border-radius:24px;
+      overflow:hidden;
+      background:linear-gradient(180deg, #030816 0%, #07102a 100%);
+      color:#eef2ff;
+      box-shadow:inset 0 1px 0 rgba(255,255,255,.04);
+    }
+
+    .previewHeroTop{
+      padding:28px 28px 18px;
+      border-bottom:1px solid rgba(120,138,255,.16);
+      background:linear-gradient(180deg, rgba(12,20,56,.9) 0%, rgba(6,12,34,.92) 100%);
+    }
+
+    .previewHeadline{
+      margin:0;
+      font-size:28px;
+      line-height:1.15;
+      font-weight:900;
+      color:#eef2ff;
+    }
+
+    .previewRule{
+      width:100%;
+      max-width:520px;
+      height:3px;
+      border-radius:999px;
+      margin-top:14px;
+      background:linear-gradient(90deg, #8ea0ff 0%, #a8b5ff 100%);
+      opacity:.95;
+    }
+
+    .previewBanner{
+      position:relative;
+      min-height:300px;
+      background:
+        linear-gradient(rgba(4,10,28,.10), rgba(4,10,28,.10)),
+        url("assets/peakx-banner.jpg") center/cover no-repeat;
+      border-bottom:1px solid rgba(120,138,255,.14);
+    }
+
+    .previewUploadBanner{
+      position:absolute;
+      right:20px;
+      bottom:20px;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      border:1px solid rgba(255,255,255,.16);
+      background:rgba(7,16,42,.72);
+      color:#eef2ff;
+      border-radius:14px;
+      padding:10px 14px;
+      font-weight:800;
+      text-decoration:none;
+      backdrop-filter:blur(8px);
+    }
+
+    .previewIdentity{
+      padding:0 28px 28px;
+      margin-top:-44px;
+      display:flex;
+      gap:20px;
+      align-items:flex-end;
+    }
+
+    .previewAvatar{
+      width:128px;
+      height:128px;
+      border-radius:999px;
+      overflow:hidden;
+      border:3px solid rgba(255,255,255,.14);
+      background:
+        radial-gradient(circle at 30% 30%, rgba(255,255,255,.14), rgba(255,255,255,.04)),
+        linear-gradient(180deg, #0d1b47 0%, #08122c 100%);
+      box-shadow:0 10px 30px rgba(0,0,0,.35);
+      flex:0 0 auto;
+      position:relative;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+      padding:14px;
+    }
+
+    .previewAvatarPlaceholder{
+      display:flex;
+      flex-direction:column;
+      gap:8px;
+      align-items:center;
+      justify-content:center;
+      color:#d6ddff;
+      font-size:13px;
+      line-height:1.3;
+    }
+
+    .previewAvatarPlaceholder b{
+      font-size:14px;
+      color:#fff;
+    }
+
+    .previewUploadAvatar{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      border:1px solid rgba(255,255,255,.14);
+      background:rgba(255,255,255,.08);
+      color:#fff;
+      border-radius:999px;
+      padding:8px 12px;
+      font-size:12px;
+      font-weight:800;
+      text-decoration:none;
+    }
+
+    .previewMeta{
+      min-width:0;
+      padding-bottom:6px;
+    }
+
+    .previewName{
+      margin:0 0 6px;
+      font-size:42px;
+      line-height:1.05;
+      font-weight:900;
+      color:#eef2ff;
+    }
+
+    .previewHandle{
+      margin:0;
+      font-size:16px;
+      color:#b4bee8;
+      font-weight:700;
+    }
+
+    .previewLinks{
+      display:flex;
+      flex-wrap:wrap;
+      gap:12px;
+      padding:0 28px 28px;
+      margin-top:-2px;
+    }
+
+    .previewLinkBtn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-height:48px;
+      padding:0 18px;
+      border-radius:16px;
+      border:1px solid rgba(255,255,255,.12);
+      background:rgba(255,255,255,.04);
+      color:#eef2ff;
+      text-decoration:none;
+      font-weight:800;
+    }
+
+    .previewBody{
+      padding:0 28px 28px;
+      display:flex;
+      flex-direction:column;
+      gap:22px;
+    }
+
+    .previewSection{
+      border:1px solid rgba(120,138,255,.14);
+      background:rgba(10,18,48,.42);
+      border-radius:22px;
+      padding:24px;
+    }
+
+    .previewSection h3{
+      margin:0 0 14px;
+      font-size:18px;
+      color:#eef2ff;
+    }
+
+    .previewSection p{
+      margin:0 0 14px;
+      color:#d6ddff;
+      line-height:1.55;
+    }
+
+    .previewSection p:last-child{
+      margin-bottom:0;
+    }
+
+    .previewActionGrid{
+      display:grid;
+      grid-template-columns:repeat(2, minmax(0,1fr));
+      gap:16px;
+    }
+
+    .previewActionCard{
+      border:1px solid rgba(120,138,255,.14);
+      background:rgba(10,18,48,.42);
+      border-radius:22px;
+      padding:22px;
+    }
+
+    .previewActionCard h3{
+      margin:0 0 12px;
+      color:#eef2ff;
+      font-size:18px;
+    }
+
+    .previewActionCard p{
+      margin:0 0 18px;
+      color:#d6ddff;
+      line-height:1.5;
+    }
+
+    .previewDisabledBtn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-height:46px;
+      padding:0 16px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.10);
+      background:rgba(255,255,255,.05);
+      color:#b4bee8;
+      font-weight:800;
+      opacity:.75;
+    }
+
+    .launchSupport{
+      color:var(--muted);
+      font-size:14px;
+      line-height:1.5;
+    }
+
+    .launchSupport p{
+      margin:0;
+    }
+
+    .actionRowSplit{
+      display:flex;
+      gap:14px;
+      flex-wrap:wrap;
+    }
+
+    .actionRowSplit .secondaryButton{
+      flex:0 0 auto;
+    }
+
+    .actionRowSplit .primary{
+      flex:1 1 260px;
+    }
+
+    .secondaryButton{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-height:58px;
+      padding:0 22px;
+      border-radius:18px;
+      border:1px solid var(--line);
+      background:#fff;
+      color:var(--text);
+      text-decoration:none;
+      font-weight:900;
+      box-shadow:0 8px 16px rgba(0,0,0,.04);
+    }
+
+    @media (max-width: 900px){
+      .previewIdentity{
+        flex-direction:column;
+        align-items:flex-start;
+        margin-top:-54px;
+      }
+
+      .previewName{
+        font-size:36px;
+      }
+
+      .previewActionGrid{
+        grid-template-columns:1fr;
+      }
+    }
+
+    @media (max-width: 640px){
+      .previewHeroTop,
+      .previewBody,
+      .previewLinks{
+        padding-left:18px;
+        padding-right:18px;
+      }
+
+      .previewIdentity{
+        padding-left:18px;
+        padding-right:18px;
+      }
+
+      .previewHeadline{
+        font-size:22px;
+      }
+
+      .previewName{
+        font-size:28px;
+      }
+
+      .previewAvatar{
+        width:104px;
+        height:104px;
+      }
+
+      .previewBanner{
+        min-height:220px;
+      }
+
+      .actionRowSplit{
+        flex-direction:column;
+      }
+
+      .actionRowSplit .primary,
+      .actionRowSplit .secondaryButton{
+        width:100%;
+      }
+    }
+  </style>
 </head>
 
 <body class="flow flowDark">
@@ -29,7 +351,6 @@
             </div>
 
             <section class="onboardCard">
-
               <div class="onboardIntro">
                 <h1 class="onboardTitle">Your community preview is ready</h1>
                 <p class="onboardLead">
@@ -42,83 +363,80 @@
 
               <div class="formSection">
 
-                <section class="hubPreview">
+                <section class="previewWrap">
 
-                  <div class="hubHero">
+                  <div class="previewHeroTop">
+                    <h2 class="previewHeadline">Real-Time Security Briefings</h2>
+                    <div class="previewRule"></div>
+                  </div>
 
-                    <div class="hubBanner placeholder">
-                      <div class="placeholderInner">
-                        <b>Banner image</b>
-                        <span>Upload a banner to complete the preview</span>
-                        <label class="secondaryButton uploadBtn">
-                          Upload banner
+                  <div class="previewBanner">
+                    <label class="previewUploadBanner">
+                      Upload banner
+                      <input type="file" accept="image/*" hidden>
+                    </label>
+                  </div>
+
+                  <div class="previewIdentity">
+                    <div class="previewAvatar">
+                      <div class="previewAvatarPlaceholder">
+                        <b>Avatar</b>
+                        <span>Upload image</span>
+                        <label class="previewUploadAvatar">
+                          Upload
                           <input type="file" accept="image/*" hidden>
                         </label>
                       </div>
                     </div>
 
-                    <div class="hubIdentity">
-                      <div class="hubAvatar placeholder">
-                        <div class="placeholderInner">
-                          <b>Avatar</b>
-                          <span>Upload image</span>
-                          <label class="secondaryButton uploadBtn small">
-                            Upload
-                            <input type="file" accept="image/*" hidden>
-                          </label>
-                        </div>
-                      </div>
-
-                      <div class="hubMeta">
-                        <h2>The Security Brief</h2>
-                        <p class="hubHandle">@jasonjaysmart@securitybrief.jasonjaysmart.com</p>
-                        <p class="hubHeaderLine">Real-Time Security Briefings</p>
-                      </div>
+                    <div class="previewMeta">
+                      <h2 class="previewName">The Security Brief</h2>
+                      <p class="previewHandle">@jasonjaysmart@securitybrief.jasonjaysmart.com</p>
                     </div>
-
                   </div>
 
-                  <div class="hubBody">
+                  <div class="previewLinks">
+                    <a href="#" class="previewLinkBtn">Visit community</a>
+                    <a href="#" class="previewLinkBtn">Website</a>
+                    <a href="#" class="previewLinkBtn">YouTube</a>
+                    <a href="#" class="previewLinkBtn">Substack</a>
+                  </div>
 
-                    <section class="hubSection">
+                  <div class="previewBody">
+
+                    <section class="previewSection">
                       <h3>About</h3>
                       <p>
-                        A working room for researchers, journalists, and operators analyzing power,
-                        propaganda, and geopolitical strategy.
+                        A working room for researchers, journalists, and operators analyzing power, propaganda, and geopolitical strategy.
                       </p>
                       <p>
-                        I’m a national security analyst reporting on Russia’s war against Ukraine and the
-                        structures of authoritarian power. My work connects real-time developments with
-                        historical and strategic context. I host this space to maintain an ongoing briefing
-                        with serious participants tracking these issues.
+                        I’m a national security analyst reporting on Russia’s war against Ukraine and the structures of authoritarian power. My work connects real-time developments with historical and strategic context. I host this space to maintain an ongoing briefing with serious participants tracking these issues.
                       </p>
                     </section>
 
-                    <div class="hubActions">
-                      <section class="hubActionCard disabled">
+                    <div class="previewActionGrid">
+                      <section class="previewActionCard">
                         <h3>Join</h3>
                         <p>Visitors will be able to request or use an invite after launch.</p>
-                        <button class="secondaryButton" disabled>Available after launch</button>
+                        <div class="previewDisabledBtn">Available after launch</div>
                       </section>
 
-                      <section class="hubActionCard disabled">
+                      <section class="previewActionCard">
                         <h3>Community Support</h3>
                         <p>Support options can be connected after launch.</p>
-                        <button class="secondaryButton" disabled>Set up after launch</button>
+                        <div class="previewDisabledBtn">Set up after launch</div>
                       </section>
                     </div>
 
                   </div>
                 </section>
 
-                <div class="launchNote">
-                  <p>
-                    Your preview is saved. You can return to this page later, and all hub page details can be edited after the community is live.
-                  </p>
+                <div class="launchSupport">
+                  <p>Your preview is saved. You can return to this page later, and all hub page details can be edited after the community is live.</p>
                 </div>
 
-                <div class="actionRow actionRow--split">
-                  <a class="secondaryButton" href="onboarding-07-owner-profile.html">Back to edit details</a>
+                <div class="actionRowSplit">
+                  <a class="secondaryButton" href="#">Email me this preview link</a>
                   <a class="primary forward" href="onboarding-09-launch.html">Launch community</a>
                 </div>
 
