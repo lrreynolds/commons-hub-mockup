@@ -41,9 +41,7 @@
 
               <div class="formSection">
 
-                <div class="note">
-                  <b>Current choice:</b> securitybrief.jasonjaysmart.com
-                </div>
+               
 
                 <div class="choiceStack">
 
@@ -67,59 +65,52 @@
 
                 </div>
 
-                <div id="customSection">
+        <div id="customSection">
 
-                  <div>
-                    <label class="fieldLabel">Custom domain or subdomain</label>
-                    <input id="customDomainField" class="inputField" value="securitybrief.jasonjaysmart.com" />
-                    <p id="customDomainHint" class="fieldHelp">
-                      Enter a domain or subdomain only — not a full URL.
-                    </p>
-                  </div>
+  <div>
+    <label class="fieldLabel">Custom domain or subdomain</label>
+    <input id="customDomainField" class="inputField" value="securitybrief.jasonjaysmart.com" />
+    <p id="customDomainHint" class="fieldHelp">
+      Enter a domain or subdomain only — not a full URL.
+    </p>
+  </div>
 
-                  <div>
-                    <label class="fieldLabel">Registrar</label>
-                    <select id="registrarSelect" class="inputField">
-                      <option value="godaddy" selected>GoDaddy</option>
-                      <option value="cloudflare">Cloudflare</option>
-                      <option value="namecheap">Namecheap</option>
-                      <option value="squarespace">Squarespace</option>
-                      <option value="wix">Wix</option>
-                      <option value="hostinger">Hostinger</option>
-                      <option value="ionos">IONOS</option>
-                      <option value="bluehost">Bluehost</option>
-                      <option value="other">Other</option>
-                      <option value="unknown">I don’t know</option>
-                    </select>
-                  </div>
+  <div>
+    <label class="fieldLabel">Registrar</label>
+    <select id="registrarSelect" class="inputField">
+      <option value="godaddy" selected>GoDaddy</option>
+      <option value="cloudflare">Cloudflare</option>
+      <option value="namecheap">Namecheap</option>
+      <option value="squarespace">Squarespace</option>
+      <option value="wix">Wix</option>
+      <option value="hostinger">Hostinger</option>
+      <option value="ionos">IONOS</option>
+      <option value="bluehost">Bluehost</option>
+      <option value="other">Other</option>
+      <option value="unknown">I don’t know</option>
+    </select>
+  </div>
 
-                  <div class="note">
-                    <div class="subtleRow">
-                      <span><b>Registrar support</b></span>
-                      <span id="registrarStatus">GoDaddy selected</span>
-                    </div>
-                    <p id="registrarBody" class="fieldHelp">
-                      For some major registrars, Commonshub may be able to help with DNS setup during provisioning.
-                    </p>
-                  </div>
+  <p id="registrarSupportLine" class="fieldHelp">
+    For some major registrars, Commonshub may be able to help with DNS setup during provisioning.
+  </p>
 
-                  <div>
-                    <label class="checkRow">
-                      <input id="domainControlCheck" type="checkbox">
-                      <span>I control this domain or can get its DNS records changed.</span>
-                    </label>
-                  </div>
+  <p class="fieldHelp">
+    Final address: <b id="customFinalAddress">securitybrief.jasonjaysmart.com</b>
+  </p>
 
-                  <div class="note">
-                    <p><b>Final address now set to:</b> <span id="customFinalAddress">securitybrief.jasonjaysmart.com</span></p>
-                    <p class="fieldHelp">Billing and provisioning will proceed using this confirmed address.</p>
-                  </div>
+  <label class="checkRow">
+    <input id="domainControlCheck" type="checkbox">
+    <span>Billing and provisioning will proceed using this confirmed address.</span>
+  </label>
 
-                  <div class="actionRow">
-                    <a id="continueCustom" class="primary forward is-disabled" href="billing-custom.html">Continue</a>
-                  </div>
+  <div class="actionRow">
+    <a id="continueCustom" class="primary forward is-disabled" href="billing-custom.html">
+      Continue
+    </a>
+  </div>
 
-                </div>
+</div>
 
                 <div id="commonsSection" style="display:none;">
 
@@ -164,207 +155,216 @@
     </div>
   </div>
 
-  <script>
-    const modeCustom = document.getElementById('modeCustom');
-    const modeCommons = document.getElementById('modeCommons');
-    const customSection = document.getElementById('customSection');
-    const commonsSection = document.getElementById('commonsSection');
+ <script>
+  const modeCustom = document.getElementById('modeCustom');
+  const modeCommons = document.getElementById('modeCommons');
+  const customSection = document.getElementById('customSection');
+  const commonsSection = document.getElementById('commonsSection');
 
-    const customField = document.getElementById('customDomainField');
-    const customHint = document.getElementById('customDomainHint');
-    const registrarSelect = document.getElementById('registrarSelect');
-    const registrarStatus = document.getElementById('registrarStatus');
-    const registrarBody = document.getElementById('registrarBody');
-    const domainControlCheck = document.getElementById('domainControlCheck');
-    const customFinalAddress = document.getElementById('customFinalAddress');
-    const continueCustom = document.getElementById('continueCustom');
+  const customField = document.getElementById('customDomainField');
+  const customHint = document.getElementById('customDomainHint');
+  const registrarSelect = document.getElementById('registrarSelect');
+  const registrarSupportLine = document.getElementById('registrarSupportLine');
+  const domainControlCheck = document.getElementById('domainControlCheck');
+  const customFinalAddress = document.getElementById('customFinalAddress');
+  const continueCustom = document.getElementById('continueCustom');
 
-    const commonsSlugField = document.getElementById('commonsSlugField');
-    const commonsDerivedAddress = document.getElementById('commonsDerivedAddress');
-    const checkCommonsBtn = document.getElementById('checkCommonsBtn');
-    const commonsStatusNote = document.getElementById('commonsStatusNote');
-    const commonsField = document.getElementById('commonsField');
-    const commonsFieldLabel = document.getElementById('commonsFieldLabel');
-    const commonsFinalAddress = document.getElementById('commonsFinalAddress');
-    const continueCommons = document.getElementById('continueCommons');
+  const commonsSlugField = document.getElementById('commonsSlugField');
+  const commonsDerivedAddress = document.getElementById('commonsDerivedAddress');
+  const checkCommonsBtn = document.getElementById('checkCommonsBtn');
+  const commonsStatusNote = document.getElementById('commonsStatusNote');
+  const commonsField = document.getElementById('commonsField');
+  const commonsFieldLabel = document.getElementById('commonsFieldLabel');
+  const commonsFinalAddress = document.getElementById('commonsFinalAddress');
+  const continueCommons = document.getElementById('continueCommons');
 
-    const supportedRegistrars = new Set([
-      'godaddy',
-      'cloudflare',
-      'namecheap',
-      'squarespace',
-      'wix',
-      'hostinger',
-      'ionos',
-      'bluehost'
-    ]);
+  const supportedRegistrars = new Set([
+    'godaddy',
+    'cloudflare',
+    'namecheap',
+    'squarespace',
+    'wix',
+    'hostinger',
+    'ionos',
+    'bluehost'
+  ]);
 
-    let commonsAvailability = 'unknown';
+  let commonsAvailability = 'unknown';
 
-    function looksLikeHost(value) {
-      const v = value.trim();
-      if (!v) return false;
-      if (v.includes('http://') || v.includes('https://')) return false;
-      if (v.includes('/')) return false;
-      return /^[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(v);
+  function looksLikeHost(value) {
+    const v = value.trim();
+    if (!v) return false;
+    if (v.includes('http://') || v.includes('https://')) return false;
+    if (v.includes('/')) return false;
+    return /^[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(v);
+  }
+
+  function setButtonDisabled(el, disabled) {
+    if (disabled) {
+      el.classList.add('is-disabled');
+      el.setAttribute('aria-disabled', 'true');
+      el.setAttribute('tabindex', '-1');
+    } else {
+      el.classList.remove('is-disabled');
+      el.removeAttribute('aria-disabled');
+      el.removeAttribute('tabindex');
+    }
+  }
+
+  function setMode(mode) {
+    const isCustom = mode === 'custom';
+
+    modeCustom.classList.toggle('active', isCustom);
+    modeCommons.classList.toggle('active', !isCustom);
+
+    customSection.style.display = isCustom ? '' : 'none';
+    commonsSection.style.display = isCustom ? 'none' : '';
+  }
+
+  function updateRegistrarSupport() {
+    const val = registrarSelect.value;
+    const label = registrarSelect.options[registrarSelect.selectedIndex].text;
+
+    if (supportedRegistrars.has(val)) {
+      registrarSupportLine.textContent =
+        'For some major registrars like ' + label + ', Commonshub may be able to help with DNS setup during provisioning.';
+    } else if (val === 'other') {
+      registrarSupportLine.textContent =
+        'If your registrar is not one of our supported providers, you may need to add DNS records manually during setup.';
+    } else if (val === 'unknown') {
+      registrarSupportLine.textContent =
+        'If you are not sure who manages this domain, make sure you can get its DNS records changed before continuing.';
+    }
+  }
+
+  function updateCustomState() {
+    const value = customField.value.trim();
+    const valid = looksLikeHost(value);
+
+    customFinalAddress.textContent = value || '—';
+
+    if (!value) {
+      customHint.textContent = 'Enter a domain or subdomain only — not a full URL.';
+      customHint.style.color = '';
+    } else if (valid) {
+      customHint.textContent = 'Looks like a valid domain or subdomain.';
+      customHint.style.color = '';
+    } else {
+      customHint.textContent = 'Enter a domain or subdomain only — not a full URL.';
+      customHint.style.color = '#b42318';
     }
 
-    function setButtonDisabled(el, disabled) {
-      if (disabled) {
-        el.classList.add('is-disabled');
-        el.setAttribute('aria-disabled', 'true');
-      } else {
-        el.classList.remove('is-disabled');
-        el.removeAttribute('aria-disabled');
-      }
-    }
+    setButtonDisabled(continueCustom, !(valid && domainControlCheck.checked));
+  }
 
-    function setMode(mode) {
-      const isCustom = mode === 'custom';
-      modeCustom.classList.toggle('active', isCustom);
-      modeCommons.classList.toggle('active', !isCustom);
-      customSection.style.display = isCustom ? '' : 'none';
-      commonsSection.style.display = isCustom ? 'none' : '';
-    }
+  function updateCommonsDerivedAddress() {
+    const slug = commonsSlugField.value.trim() || 'yourname';
+    commonsDerivedAddress.textContent = slug + '.commonshub.social';
+  }
 
-    function updateRegistrarState() {
-      const val = registrarSelect.value;
-      const label = registrarSelect.options[registrarSelect.selectedIndex].text;
-      registrarStatus.textContent = label + ' selected';
+  function resetCommonsState() {
+    commonsAvailability = 'unknown';
+    commonsStatusNote.innerHTML = '<p><b>Status:</b> Check availability before continuing.</p>';
+    commonsFieldLabel.textContent = 'Confirmed address';
+    commonsField.value = '';
+    commonsFinalAddress.textContent = '—';
+    setButtonDisabled(continueCommons, true);
+  }
 
-      if (supportedRegistrars.has(val)) {
-        registrarBody.textContent = 'For some major registrars, Commonshub may be able to help with DNS setup during provisioning.';
-      } else if (val === 'other') {
-        registrarStatus.textContent = 'Manual setup likely';
-        registrarBody.textContent = 'If your registrar is not one of our supported providers, you may need to add DNS records manually during setup.';
-      } else if (val === 'unknown') {
-        registrarStatus.textContent = 'Ownership check needed';
-        registrarBody.textContent = 'If you are not sure who manages this domain, Commonshub can only use this address if you control the domain or can get its DNS records changed.';
-      }
+  function syncCommonsEditedState() {
+    const value = commonsField.value.trim();
+    commonsFinalAddress.textContent = value || '—';
 
-      updateCustomState();
-    }
-
-    function updateCustomState() {
-      const value = customField.value.trim();
-      const valid = looksLikeHost(value);
-      customFinalAddress.textContent = value || '—';
-
-      if (!value) {
-        customHint.textContent = 'Enter a domain or subdomain only — not a full URL.';
-        customHint.style.color = '';
-      } else if (valid) {
-        customHint.textContent = 'Looks like a valid domain or subdomain.';
-        customHint.style.color = '';
-      } else {
-        customHint.textContent = 'Enter a domain or subdomain only — not a full URL.';
-        customHint.style.color = '#b42318';
-      }
-
-      const enabled = valid && domainControlCheck.checked;
-      setButtonDisabled(continueCustom, !enabled);
-    }
-
-    function updateCommonsDerivedAddress() {
-      const slug = commonsSlugField.value.trim() || 'yourname';
-      commonsDerivedAddress.textContent = slug + '.commonshub.social';
-    }
-
-    function resetCommonsState() {
-      commonsAvailability = 'unknown';
-      commonsStatusNote.innerHTML = '<p><b>Status:</b> Check availability before continuing.</p>';
+    if (commonsAvailability === 'available' && value === commonsDerivedAddress.textContent.trim()) {
       commonsFieldLabel.textContent = 'Confirmed address';
+      setButtonDisabled(continueCommons, false);
+    } else {
+      commonsFieldLabel.textContent = value ? 'Edited value' : 'Confirmed address';
+      commonsAvailability = 'unknown';
+      commonsStatusNote.innerHTML = '<p><b>Status:</b> Check availability again before continuing.</p>';
+      setButtonDisabled(continueCommons, true);
+    }
+  }
+
+  function checkCommonsAvailability() {
+    const slug = commonsSlugField.value.trim().toLowerCase();
+    updateCommonsDerivedAddress();
+
+    if (!slug) {
+      commonsAvailability = 'unknown';
+      commonsStatusNote.innerHTML = '<p><b>Status:</b> Enter a subdomain before checking availability.</p>';
       commonsField.value = '';
       commonsFinalAddress.textContent = '—';
       setButtonDisabled(continueCommons, true);
+      return;
     }
 
-    function syncCommonsEditedState() {
-      const value = commonsField.value.trim();
-      commonsFinalAddress.textContent = value || '—';
+    const unavailable = new Set(['securitybrief', 'commonshub', 'admin', 'support']);
+    const finalAddress = commonsDerivedAddress.textContent.trim();
 
-      if (commonsAvailability === 'available' && value === commonsDerivedAddress.textContent.trim()) {
-        commonsFieldLabel.textContent = 'Confirmed address';
-        setButtonDisabled(continueCommons, false);
-      } else {
-        commonsFieldLabel.textContent = value ? 'Edited value' : 'Confirmed address';
-        commonsAvailability = 'unknown';
-        commonsStatusNote.innerHTML = '<p><b>Status:</b> Check availability again before continuing.</p>';
-        setButtonDisabled(continueCommons, true);
-      }
+    if (unavailable.has(slug)) {
+      commonsAvailability = 'unavailable';
+      commonsStatusNote.innerHTML =
+        '<p><b>Status:</b> <span style="color:#b42318;">' + finalAddress + ' is already taken. Try another subdomain.</span></p>';
+      commonsField.value = '';
+      commonsFinalAddress.textContent = '—';
+      setButtonDisabled(continueCommons, true);
+    } else {
+      commonsAvailability = 'available';
+      commonsStatusNote.innerHTML =
+        '<p><b>Status:</b> <span style="color:#027a48;">' + finalAddress + ' is available.</span></p>';
+      commonsField.value = finalAddress;
+      commonsFieldLabel.textContent = 'Confirmed address';
+      commonsFinalAddress.textContent = finalAddress;
+      setButtonDisabled(continueCommons, false);
     }
+  }
 
-    function checkCommonsAvailability() {
-      const slug = commonsSlugField.value.trim().toLowerCase();
-      updateCommonsDerivedAddress();
+  modeCustom.addEventListener('click', () => setMode('custom'));
+  modeCommons.addEventListener('click', () => setMode('commons'));
 
-      if (!slug) {
-        commonsAvailability = 'unknown';
-        commonsStatusNote.innerHTML = '<p><b>Status:</b> Enter a subdomain before checking availability.</p>';
-        commonsField.value = '';
-        commonsFinalAddress.textContent = '—';
-        setButtonDisabled(continueCommons, true);
-        return;
-      }
-
-      const unavailable = new Set(['securitybrief', 'commonshub', 'admin', 'support']);
-      const finalAddress = commonsDerivedAddress.textContent.trim();
-
-      if (unavailable.has(slug)) {
-        commonsAvailability = 'unavailable';
-        commonsStatusNote.innerHTML = '<p><b>Status:</b> <span style="color:#b42318;">' + finalAddress + ' is already taken. Try another subdomain.</span></p>';
-        commonsField.value = '';
-        commonsFinalAddress.textContent = '—';
-        setButtonDisabled(continueCommons, true);
-      } else {
-        commonsAvailability = 'available';
-        commonsStatusNote.innerHTML = '<p><b>Status:</b> <span style="color:#027a48;">' + finalAddress + ' is available.</span></p>';
-        commonsField.value = finalAddress;
-        commonsFieldLabel.textContent = 'Confirmed address';
-        commonsFinalAddress.textContent = finalAddress;
-        setButtonDisabled(continueCommons, false);
-      }
-    }
-
-    modeCustom.addEventListener('click', () => setMode('custom'));
-    modeCommons.addEventListener('click', () => setMode('commons'));
-
-    customField.addEventListener('input', () => {
-      domainControlCheck.checked = false;
-      updateCustomState();
-    });
-
-    domainControlCheck.addEventListener('change', updateCustomState);
-    registrarSelect.addEventListener('change', updateRegistrarState);
-
-    commonsSlugField.addEventListener('input', () => {
-      updateCommonsDerivedAddress();
-      resetCommonsState();
-    });
-
-    commonsField.addEventListener('input', syncCommonsEditedState);
-
-    checkCommonsBtn.addEventListener('click', (e) => {
-      e.preventDefault();
-      checkCommonsAvailability();
-    });
-
-    continueCustom.addEventListener('click', (e) => {
-      if (continueCustom.classList.contains('is-disabled')) {
-        e.preventDefault();
-      }
-    });
-
-    continueCommons.addEventListener('click', (e) => {
-      if (continueCommons.classList.contains('is-disabled')) {
-        e.preventDefault();
-      }
-    });
-
-    updateRegistrarState();
+  customField.addEventListener('input', () => {
+    domainControlCheck.checked = false;
     updateCustomState();
+  });
+
+  registrarSelect.addEventListener('change', () => {
+    domainControlCheck.checked = false;
+    updateRegistrarSupport();
+    updateCustomState();
+  });
+
+  domainControlCheck.addEventListener('change', updateCustomState);
+
+  commonsSlugField.addEventListener('input', () => {
     updateCommonsDerivedAddress();
     resetCommonsState();
-  </script>
+  });
+
+  commonsField.addEventListener('input', syncCommonsEditedState);
+
+  checkCommonsBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    checkCommonsAvailability();
+  });
+
+  continueCustom.addEventListener('click', (e) => {
+    if (continueCustom.classList.contains('is-disabled')) {
+      e.preventDefault();
+    }
+  });
+
+  continueCommons.addEventListener('click', (e) => {
+    if (continueCommons.classList.contains('is-disabled')) {
+      e.preventDefault();
+    }
+  });
+
+  updateRegistrarSupport();
+  updateCustomState();
+  updateCommonsDerivedAddress();
+  resetCommonsState();
+  setMode('custom');
+</script>
 </body>
 </html>
