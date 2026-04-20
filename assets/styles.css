@@ -917,6 +917,25 @@ body.flow.flowDark .guideNoteSubtle b{
   border-bottom-color:rgba(0,0,0,.35);
 }
 
+.checkRow {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  font-size: 14px;
+  color: var(--text);
+    margin-top: 18px;
+  padding-top: 12px;
+  border-top: 1px solid var(--line);
+}
+
+.checkRow.unchecked {
+  color: #b54708; /* warm warning, not harsh red */
+}
+
+.checkRow input {
+  margin-top: 3px;
+}
+
 @media (max-width:640px){
   .choiceItem{
     padding:12px 14px;
