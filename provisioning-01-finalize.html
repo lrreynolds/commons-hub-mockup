@@ -105,7 +105,7 @@
 
 <label class="checkRow">
   <input id="domainControlCheck" type="checkbox">
-  <span>I control this domain or can get its DNS records changed.</span>
+ <span>I confirm I control this domain or can get its DNS records changed.</span>
 </label>
 
   <div class="actionRow">
@@ -181,6 +181,7 @@
   const commonsFieldLabel = document.getElementById('commonsFieldLabel');
   const commonsFinalAddress = document.getElementById('commonsFinalAddress');
   const continueCommons = document.getElementById('continueCommons');
+  const checkRow = document.querySelector('.checkRow');
 
   const supportedRegistrars = new Set([
     'godaddy',
@@ -257,6 +258,17 @@
       customHint.textContent = 'Enter a domain or subdomain only — not a full URL.';
       customHint.style.color = '#b42318';
     }
+
+     const isReady = valid && domainControlCheck.checked;
+
+  setButtonDisabled(continueCustom, !isReady);
+
+  // NEW: visual state
+  if (!domainControlCheck.checked) {
+    checkRow.classList.add('unchecked');
+  } else {
+    checkRow.classList.remove('unchecked');
+  }
 
     setButtonDisabled(continueCustom, !(valid && domainControlCheck.checked));
   }
@@ -370,5 +382,6 @@
   resetCommonsState();
   setMode('custom');
 </script>
+  
 </body>
 </html>
