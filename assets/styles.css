@@ -440,6 +440,20 @@ width:160px;
   box-shadow:none;
 }
 
+.actionRowSplit {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.actionRowSplit .secondary {
+  flex: 0 0 auto;
+}
+
+.actionRowSplit .primary {
+  flex: 1 1 240px;
+}
+
 .editBadge{
 display:inline-flex;
 align-items:center;
