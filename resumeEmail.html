@@ -3,434 +3,176 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Commonshub — Guided onboarding</title>
+  <title>Commonshub — Launch Email Sample</title>
   <link rel="stylesheet" href="assets/styles.css" />
   <style>
-    :root{
-      --console-bg:#f7faf8;
-      --console-tint:rgba(31,111,74,.06);
-      --console-tint-2:rgba(31,111,74,.1);
-      --console-border:rgba(31,111,74,.14);
-    }
-/* ===============================
-   Resume Email
-================================ */
-
-.resumeEmail{
-  max-width:720px;
-  margin:0 auto;
-}
-
-.resumeEmailHeader{
-  display:flex;
-  align-items:center;
-  gap:10px;
-  margin-bottom:14px;
-}
-
-.resumeEmailMark{
-  width:24px;
-  height:24px;
-  display:block;
-}
-
-.resumeEmailTitle{
-  font-weight:900;
-  font-size:16px;
-  color:var(--text);
-}
-
-.resumeEmailCard{
-  border:1px solid var(--line);
-  border-radius:22px;
-  background:#fff;
-  padding:22px;
-}
-
-.resumeEmailMeta{
-  font-size:12px;
-  color:var(--muted);
-  margin-bottom:18px;
-  display:flex;
-  flex-direction:column;
-  gap:4px;
-}
-
-.resumeEmailBody{
-  display:flex;
-  flex-direction:column;
-  gap:14px;
-}
-
-/* ===============================
-   OG Resume Token Card
-================================ */
-
-.resumeTokenCard{
-  display:block;
-  border:1px solid var(--line);
-  border-radius:18px;
-  padding:18px;
-  background:linear-gradient(
-    to bottom,
-    rgba(31,111,74,.05),
-    rgba(31,111,74,.015)
-  );
-  text-decoration:none;
-  color:inherit;
-  transition:.18s ease;
-}
-
-.resumeTokenCard:hover{
-  border-color:rgba(31,111,74,.35);
-  box-shadow:0 8px 20px rgba(31,111,74,.08);
-}
-
-.resumeTokenTop{
-  display:flex;
-  align-items:center;
-  gap:8px;
-  font-size:12px;
-  color:var(--muted);
-  margin-bottom:8px;
-}
-
-.resumeTokenTop img{
-  width:14px;
-  height:14px;
-  display:block;
-}
-
-.resumeTokenTitle{
-  font-weight:900;
-  font-size:16px;
-  color:var(--text);
-}
-
-.resumeTokenDesc{
-  font-size:13px;
-  color:var(--muted);
-  margin-top:4px;
-}
-
-.resumeTokenCTA{
-  margin-top:10px;
-  font-weight:900;
-  color:#1f6f4a;
-}
-
-/* ===============================
-   Footer bits
-================================ */
-
-.resumeDivider{
-  height:1px;
-  background:var(--line);
-  margin:8px 0;
-}
-
-.resumeFootnote{
-  font-size:12px;
-  color:var(--muted);
-}
-
-.resumeEmailBody ol{
-  margin:0 0 0 18px;
-  padding:0;
-}
-
-.resumeEmailBody li{
-  margin-bottom:6px;
-  line-height:1.4;
-}
-    .appHeader{
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      margin: 10px 0 18px;
-      padding-bottom:12px;
-      border-bottom:1px solid var(--line);
+    .resumeEmail{
+      max-width:760px;
+      margin:0 auto;
     }
 
-    .appBrand{
+    .resumeEmailHeader{
       display:flex;
       align-items:center;
       gap:10px;
-      font-size:16px;       /* slightly larger */
-      font-weight:900;
-      color:var(--text);
+      margin-bottom:14px;
     }
 
-    .appMark{
-      width:26px;
-      height:26px;
+    .resumeEmailMark{
+      width:24px;
+      height:24px;
       display:block;
     }
 
-    .stage{
-      padding-top:14px;
+    .resumeEmailTitle{
+      font-weight:900;
+      font-size:16px;
+      color:var(--flowText);
+    }
+
+    .resumeEmailCard{
+      border:1px solid rgba(255,255,255,.10);
+      border-radius:22px;
+      background:rgba(7,16,42,.78);
+      padding:22px;
+      box-shadow:0 18px 40px rgba(0,0,0,.22);
+      backdrop-filter:blur(10px);
+    }
+
+    .resumeEmailMeta{
+      font-size:12px;
+      color:rgba(233,242,236,.72);
+      margin-bottom:18px;
+      display:flex;
+      flex-direction:column;
+      gap:4px;
+      padding-bottom:14px;
+      border-bottom:1px solid rgba(255,255,255,.08);
+    }
+
+    .resumeEmailMeta b{
+      color:#fff;
+    }
+
+    .resumeEmailBody{
+      display:flex;
+      flex-direction:column;
+      gap:14px;
+      color:#d6ddff;
+    }
+
+    .resumeEmailBody p{
+      margin:0;
+      line-height:1.55;
+    }
+
+    .resumeEmailBody h3{
+      margin:2px 0 0;
+      font-size:16px;
+      color:#fff;
+    }
+
+    .resumeTokenCard{
+      display:block;
+      border:1px solid rgba(255,255,255,.10);
+      border-radius:18px;
+      padding:16px;
+      background:rgba(255,255,255,.03);
+      text-decoration:none;
+      color:inherit;
+      transition:.18s ease;
+    }
+
+    .resumeTokenCard:hover{
+      border-color:rgba(255,255,255,.20);
+      box-shadow:0 10px 22px rgba(0,0,0,.18);
+      transform:translateY(-1px);
+    }
+
+    .resumeTokenTop{
+      display:flex;
+      align-items:center;
+      gap:8px;
+      font-size:12px;
+      color:rgba(233,242,236,.72);
+      margin-bottom:10px;
+    }
+
+    .resumeTokenTop img{
+      width:14px;
+      height:14px;
+      display:block;
+    }
+
+    .resumeTokenThumb{
+      display:block;
+      width:100%;
+      height:auto;
+      margin:0 0 14px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.08);
+      background:#111;
+    }
+
+    .resumeTokenTitle{
+      font-weight:900;
+      font-size:18px;
+      color:#fff;
+    }
+
+    .resumeTokenDesc{
+      font-size:14px;
+      color:#b8c3ee;
+      margin-top:6px;
+      line-height:1.5;
+    }
+
+    .resumeTokenCTA{
+      margin-top:12px;
+      font-weight:900;
+      color:#7cc89a;
+    }
+
+    .resumeDivider{
+      height:1px;
+      background:rgba(255,255,255,.08);
+      margin:8px 0;
+    }
+
+    .resumeFootnote{
+      font-size:12px;
+      color:rgba(233,242,236,.64);
+    }
+
+    .resumeEmailBody ol{
+      margin:0 0 0 18px;
+      padding:0;
+      color:#d6ddff;
+    }
+
+    .resumeEmailBody li{
+      margin-bottom:6px;
+      line-height:1.45;
     }
 
     @media (max-width:640px){
-      .appHeader{
-        margin-bottom:14px;
+      .resumeEmailCard{
+        padding:16px;
+        border-radius:18px;
       }
 
-      .appBrand{
-        font-size:14px;
-      }
-
-      .appMark{
-        width:20px;
-        height:20px;
-      }
-    }
-
-    .consoleShell{
-      display:flex;
-      flex-direction:column;
-      gap:14px;
-    }
-
-    .consoleHeader{
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      gap:12px;
-      padding:4px 2px 0;
-      flex-wrap:wrap;
-    }
-
-    .consoleHeader .title{
-      font-size:13px;
-      color:var(--muted);
-    }
-
-    .consoleHeader .title b{
-      color:var(--text);
-      font-weight:900;
-    }
-
-    .consoleStream{
-      flex:1;
-      border:1px solid var(--line);
-      border-radius:22px;
-      background:linear-gradient(to bottom, rgba(16,32,24,.02), rgba(16,32,24,.005));
-      padding:16px;
-      overflow:auto;
-      box-shadow:inset 0 1px 0 rgba(255,255,255,.7);
-      min-height:180px;
-    }
-
-    .msg{
-      border:1px solid var(--console-border);
-      background:#fff;
-      border-radius:18px;
-      padding:14px 15px;
-      margin-bottom:12px;
-    }
-
-    .msg.system{
-      background:var(--console-bg);
-      border-color:var(--console-tint-2);
-    }
-
-    .metaLine{
-      font-size:12px;
-      color:var(--muted);
-      margin-bottom:8px;
-      display:flex;
-      justify-content:space-between;
-      gap:10px;
-      flex-wrap:wrap;
-    }
-
-    .metaLine b{
-      color:var(--text);
-      font-weight:900;
-    }
-
-    .msg p{
-      margin:0;
-      font-size:14px;
-      line-height:1.45;
-      color:var(--text);
-    }
-
-    .msg p + p{
-      margin-top:9px;
-    }
-
-    .inputBar{
-      border:1px solid var(--line);
-      border-radius:22px;
-      background:#fff;
-      padding:14px;
-      display:flex;
-      flex-direction:column;
-      gap:14px;
-    }
-
-    .fieldLabel{
-      font-size:13px;
-      font-weight:800;
-      color:var(--text);
-      margin-bottom:2px;
-    }
-
-    .inputField{
-      width:100%;
-      min-height:60px;
-      resize:none;
-      border:1px solid var(--line);
-      border-radius:16px;
-      padding:14px 15px;
-      font:inherit;
-      color:var(--text);
-      background:#fcfdfc;
-      outline:none;
-    }
-
-    input.inputField{
-      min-height:60px;
-    }
-    .inputField:focus{
-      border-color:rgba(31,111,74,.28);
-      box-shadow:0 0 0 3px rgba(31,111,74,.08);
-    }
-
-    .continueBtn{
-      appearance:none;
-      border:none;
-      border-radius:18px;
-      background:#1f6f4a;
-      color:#fff;
-      font:inherit;
-      font-weight:900;
-      font-size:17px;
-      padding:16px 18px;
-      cursor:pointer;
-      box-shadow:0 10px 18px rgba(31,111,74,.16);
-      width:100%;
-      text-align:center;
-      text-decoration:none;
-      margin-top:4px;
-    }
-
-    .subtle{
-      font-weight:600;
-      color:var(--muted);
-    }
-
-    .subtleRow{
-      display:flex;
-      justify-content:space-between;
-      gap:10px;
-      align-items:center;
-      flex-wrap:wrap;
-      color:var(--muted);
-      font-size:12px;
-      padding:0 2px;
-    }
-
-    .pill{
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-      border:1px solid var(--line);
-      background:#fff;
-      color:var(--muted);
-      border-radius:999px;
-      padding:8px 12px;
-      font-size:12px;
-      font-weight:700;
-    }
-
-    .flowRail{
-      display:grid;
-      grid-template-columns:repeat(4, minmax(0,1fr));
-      gap:10px;
-      margin-top:14px;
-    }
-
-    .flowRail .node{
-      border:1px solid var(--line);
-      background:#fff;
-      border-radius:16px;
-      padding:12px;
-      min-height:74px;
-    }
-
-    .flowRail .node b{
-      display:block;
-      font-size:13px;
-      margin-bottom:4px;
-    }
-
-    .flowRail .node span{
-      font-size:12px;
-      color:var(--muted);
-      line-height:1.4;
-      display:block;
-    }
-
-    .flowRail .node.current{
-      background:rgba(31,111,74,.06);
-      border-color:rgba(31,111,74,.18);
-    }
-
-    @media (max-width: 1100px){
-      .flowRail{
-        grid-template-columns:repeat(2, minmax(0,1fr));
-      }
-    }
-
-    @media (max-width: 720px){
-      .flowRail{
-        grid-template-columns:1fr;
-      }
-
-      .consoleShell{
-        min-height:auto;
-      }
-    }
-
-    @media (max-width: 640px){
-      .flowBanner{
-        flex-direction:column;
-        align-items:flex-start;
-        gap:8px;
-      }
-
-      .flowBanner .stepChip{
-        align-self:flex-start;
-      }
-      .consoleStream{
-        padding:12px;
+      .resumeTokenCard{
+        padding:14px;
         border-radius:16px;
       }
-      .consoleShell{
-        gap:10px;
-      }
-      .msg{
-        padding:12px;
-        border-radius:14px;
-      }
 
-      .inputBar{
-        padding:12px;
-        border-radius:16px;
-        gap:10px;
-      }
-      .inputField{
-        font-size:16px;
+      .resumeTokenThumb{
+        border-radius:12px;
       }
     }
-
-
   </style>
 </head>
-<body class="flow">
+<body class="flow flowDark">
   <div class="flowRoot">
     <div class="wrap">
       <main class="stage">
@@ -440,9 +182,9 @@
             <div class="resumeEmail">
 
               <div class="resumeEmailHeader">
-                <img src="assets/commonshub-mark.svg" class="resumeEmailMark" />
+                <img src="assets/commonshub-mark-light.svg" class="resumeEmailMark" alt="">
                 <div class="resumeEmailTitle">
-                  Commonshub — Resume Email Sample
+                  Commonshub — Launch Email Sample
                 </div>
               </div>
 
@@ -451,7 +193,7 @@
                 <div class="resumeEmailMeta">
                   <div><b>From:</b> Commonshub</div>
                   <div><b>To:</b> jason@jaysmart.com</div>
-                  <div><b>Subject:</b> Continue your Commonshub setup</div>
+                  <div><b>Subject:</b> Your Hub page is ready to launch</div>
                 </div>
 
                 <div class="resumeEmailBody">
@@ -459,32 +201,37 @@
                   <p>Hi Jason,</p>
 
                   <p>
-                    We saved your progress for <b>The Security Brief</b> so you can return
-                    without starting over.
+                    Your Hub page for <b>The Security Brief</b> is ready.
                   </p>
 
                   <p>
-                    Your setup is ready for the next step:
-                    <b>confirming your final address, then continuing to billing and provisioning.</b>
+                    You can return to it anytime to upload a banner or avatar, review your page,
+                    and launch your community when you’re ready.
                   </p>
 
                   <a href="provisioning-01-finalize.html" class="resumeTokenCard">
 
                     <div class="resumeTokenTop">
-                      <img src="assets/commonshub-mark.svg" />
-                      <span>Secure resume link</span>
+                      <img src="assets/commonshub-mark-light.svg" alt="">
+                      <span>Hub page link preview</span>
                     </div>
 
+                    <img
+                      src="og/jason-thumbnail.jpg"
+                      alt="Preview of The Security Brief Hub page"
+                      class="resumeTokenThumb"
+                    />
+
                     <div class="resumeTokenTitle">
-                      Resume your Commonshub setup
+                      Launch your community
                     </div>
 
                     <div class="resumeTokenDesc">
-                      Continue where you left off and finalize your community before launch
+                      Return to your Hub page, make any last updates, and continue to launch.
                     </div>
 
                     <div class="resumeTokenCTA">
-                      Continue setup →
+                      Open your Hub page →
                     </div>
 
                   </a>
@@ -494,14 +241,13 @@
                   <h3>What happens next</h3>
 
                   <ol>
-                    <li>Confirm your final community address</li>
-                    <li>Complete billing</li>
-                    <li>Begin provisioning your community</li>
+                    <li>Review your Hub page</li>
+                    <li>Add a banner or avatar if you want</li>
+                    <li>Launch your community</li>
                   </ol>
 
                   <p class="resumeFootnote">
-                    This secure link is unique to you and allows you to safely continue
-                    from where you left off.
+                    This link is unique to you and takes you back to your Hub page so you can continue from where you left off.
                   </p>
 
                 </div>
