@@ -548,6 +548,12 @@
   font-size:14px;
 }
 
+.siteFooterLegal{
+  font-size:12px;
+  color:var(--muted);
+  margin-top:6px;
+}
+
 .heroHelp{
   margin-top:14px;
   font-size:14px;
