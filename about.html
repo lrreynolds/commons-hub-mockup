@@ -192,6 +192,14 @@ content="Learn why Commonshub exists, who is behind it, and how it helps creator
   </section>
 
 </div>
+      <div id="footer-placeholder"></div>
+        <script>
+  fetch('partials/footer.html')
+    .then(res => res.text())
+    .then(html => {
+      document.getElementById('footer-placeholder').innerHTML = html;
+    });
+</script>
 
 <script>
   const menuToggle = document.querySelector('.menuToggle');
