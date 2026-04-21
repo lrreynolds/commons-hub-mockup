@@ -548,6 +548,32 @@
   font-size:14px;
 }
 
+.heroHelp{
+  margin-top:14px;
+  font-size:14px;
+  color:var(--muted);
+  text-align:center;
+}
+
+.heroHelp a{
+  color:var(--accent);
+  text-decoration:none;
+  font-weight:700;
+}
+
+.bottomHelp{
+  margin-top:14px;
+  text-align:center;
+  font-size:14px;
+  color:var(--muted);
+}
+
+.bottomHelp a{
+  color:var(--accent);
+  text-decoration:none;
+  font-weight:700;
+}
+
 .menuToggle{
   display: none;
   width: 44px;
