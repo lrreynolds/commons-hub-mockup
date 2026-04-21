@@ -512,7 +512,7 @@
 .siteFooter{
   border-top:1px solid rgba(16,32,24,.08);
   margin-top:56px;
-  padding:28px 20px 40px;
+  padding:48px 20px 32px;
   background:#f6f8f6;
 }
 
@@ -566,6 +566,15 @@
   color:var(--muted);
   margin-top:6px;
   opacity: 0.6;
+}
+
+.siteFooter a {
+  font-weight: 700;
+  opacity: 0.85;
+}
+
+.siteFooter a:hover {
+  opacity: 1;
 }
 
 .heroHelp{
