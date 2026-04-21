@@ -337,78 +337,73 @@ text-align:center;
     societies: "Associations • Member Networks"
   };
 
-  document.addEventListener("DOMContentLoaded", () => {
+  const validHosts = Object.keys(explain);
 
+  function getInitialHost() {
+    const params = new URLSearchParams(window.location.search);
+    const host = params.get("host");
+    return validHosts.includes(host) ? host : "creators";
+  }
+
+  function setActiveTab(host) {
+    const tabs = document.querySelectorAll(".hostTab");
+    tabs.forEach(tab => {
+      tab.classList.toggle("active", tab.dataset.host === host);
+    });
+  }
+
+  function updateExplain(host) {
+    const explainEl = document.getElementById("hostExplainText");
+    if (explainEl) {
+      explainEl.textContent = explain[host];
+    }
+  }
+
+  function updateUrl(host) {
+    const url = new URL(window.location);
+    url.searchParams.set("host", host);
+    window.history.replaceState({}, "", url);
+  }
+
+  document.addEventListener("DOMContentLoaded", () => {
     initReveal();
 
     const tabs = document.querySelectorAll(".hostTab");
-    const explainEl = document.getElementById("hostExplainText");
+    const initialHost = getInitialHost();
 
-    const defaultHost = "creators";
-
-  // initialize page state
-    if (explainEl) {
-      explainEl.textContent = explain[defaultHost];
-    }
-
-    loadHost(defaultHost);
+    updateExplain(initialHost);
+    setActiveTab(initialHost);
+    loadHost(initialHost);
 
     tabs.forEach(tab => {
-      if (tab.dataset.host === defaultHost) {
-        tab.classList.add("active");
-      }
-    });
-
-  // tab switching
-    tabs.forEach(tab => {
-
       tab.addEventListener("click", () => {
-
         const host = tab.dataset.host;
-
-      // update active tab
-        tabs.forEach(t => t.classList.remove("active"));
-        tab.classList.add("active");
-
-      // update explainer
-        if (explainEl) {
-          explainEl.textContent = explain[host];
-        }
-
-      // load panel
+        setActiveTab(host);
+        updateExplain(host);
         loadHost(host);
-
+        updateUrl(host);
       });
-
     });
-
   });
 
-
   function loadHost(host) {
-
     fetch(`hosts/${host}.html`)
-    .then(res => {
-      if (!res.ok) {
-        throw new Error(`Failed to load hosts/${host}.html`);
-      }
-      return res.text();
-    })
-    .then(html => {
-      const mount = document.getElementById("hostContent");
-      if (!mount) return;
-
-      mount.innerHTML = html;
-
-      // run reveal on injected content
-      initReveal();
-    })
-    .catch(err => console.error(err));
+      .then(res => {
+        if (!res.ok) {
+          throw new Error(`Failed to load hosts/${host}.html`);
+        }
+        return res.text();
+      })
+      .then(html => {
+        const mount = document.getElementById("hostContent");
+        if (!mount) return;
+        mount.innerHTML = html;
+        initReveal();
+      })
+      .catch(err => console.error(err));
   }
 
-
   function initReveal() {
-
     const els = document.querySelectorAll(".reveal");
     if (!els.length) return;
 
@@ -422,29 +417,13 @@ text-align:center;
         });
       },
       { threshold: 0.15 }
-      );
+    );
 
     els.forEach(el => {
       if (!el.dataset.revealBound) {
         el.dataset.revealBound = "1";
         observer.observe(el);
       }
-    });
-
-  }
-
-
-
-</script>
-</div>
-<script>
-  const menuToggle = document.querySelector('.menuToggle');
-  const mobileMenu = document.getElementById('mobileMenu');
-
-  if (menuToggle && mobileMenu) {
-    menuToggle.addEventListener('click', () => {
-      const isOpen = mobileMenu.classList.toggle('open');
-      menuToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
     });
   }
 </script>
