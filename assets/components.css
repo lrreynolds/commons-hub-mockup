@@ -509,6 +509,45 @@
   color: var(--btnText);
 }
 
+.siteFooter{
+  border-top:1px solid rgba(16,32,24,.08);
+  margin-top:56px;
+  padding:28px 20px 40px;
+  background:#f6f8f6;
+}
+
+.siteFooterInner{
+  max-width:1180px;
+  margin:0 auto;
+  display:grid;
+  gap:14px;
+  text-align:center;
+}
+
+.siteFooterBrand{
+  font-weight:900;
+  color:var(--text);
+}
+
+.siteFooterLinks{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:14px;
+}
+
+.siteFooterLinks a,
+.siteFooterContact a{
+  color:var(--accent);
+  text-decoration:none;
+  font-weight:700;
+}
+
+.siteFooterContact{
+  color:var(--muted);
+  font-size:14px;
+}
+
 .menuToggle{
   display: none;
   width: 44px;
