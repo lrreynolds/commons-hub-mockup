@@ -9,7 +9,6 @@
   <meta name="description"
   content="Find answers, learn how Commonshub works, and get help setting up or managing your community.">
 
-  <!-- Open Graph -->
   <meta property="og:site_name" content="Commonshub">
   <meta property="og:title" content="Support — Commonshub">
   <meta property="og:description" content="Find answers, learn how Commonshub works, and get help setting up your community.">
@@ -19,33 +18,171 @@
   <meta property="og:image:alt" content="Own your community. No ads, no algorithms, your domain, funding built in.">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
+  <meta property="og:image:type" content="image/png">
 
-  <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Support — Commonshub">
   <meta name="twitter:description" content="Find answers and get help setting up your Commonshub community.">
   <meta name="twitter:image" content="https://thecommonshub.com/og/og-preview.png?v=3">
+  <meta name="twitter:image:alt" content="Own your community. No ads, no algorithms, your domain, funding built in.">
 
   <meta name="theme-color" content="#1f6f4a">
 
-  <!-- Favicon -->
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
   <link rel="icon" href="/favicon.png" sizes="32x32">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
-  <!-- Styles -->
   <link rel="stylesheet" href="assets/tokens.css">
   <link rel="stylesheet" href="assets/components.css">
   <link rel="stylesheet" href="assets/layout.css">
-</head>
 
+  <style>
+    .supportHero{
+      padding-bottom:32px;
+    }
+
+    .supportShell{
+      max-width:980px;
+      margin:0 auto;
+    }
+
+    .supportSection + .supportSection{
+      margin-top:30px;
+      padding-top:30px;
+      border-top:1px solid var(--line);
+    }
+
+    .supportSection h2{
+      text-align:center;
+      margin-top:0;
+      margin-bottom:12px;
+    }
+
+    .supportIntro{
+      text-align:center;
+      max-width:760px;
+      margin:0 auto 24px;
+      color:var(--muted);
+    }
+
+    .faqList{
+      display:grid;
+      gap:14px;
+    }
+
+    .faqItem{
+      background:#fff;
+      border:1px solid var(--line);
+      border-radius:22px;
+      padding:20px 22px;
+    }
+
+    .faqItem h3{
+      margin:0 0 10px;
+      font-size:28px;
+      line-height:1.15;
+    }
+
+    .faqItem p{
+      margin:0;
+      color:var(--muted);
+      font-size:18px;
+      line-height:1.55;
+    }
+
+    .supportSteps{
+      display:grid;
+      grid-template-columns:repeat(3, minmax(0,1fr));
+      gap:14px;
+    }
+
+    .supportStep{
+      background:#fff;
+      border:1px solid var(--line);
+      border-radius:22px;
+      padding:22px;
+      text-align:center;
+    }
+
+    .supportStep h3{
+      margin:0 0 10px;
+    }
+
+    .supportStep p{
+      margin:0;
+      color:var(--muted);
+    }
+
+    .supportHelp{
+      text-align:center;
+      margin-top:22px;
+    }
+
+    .supportHelp .sub{
+      margin-top:0;
+    }
+
+    .supportHelpNote{
+      margin-top:12px;
+      color:var(--muted);
+      font-size:14px;
+    }
+
+    .supportFaqNote{
+      margin-top:20px;
+      text-align:center;
+      color:var(--muted);
+      font-size:14px;
+    }
+
+    @media (max-width: 860px){
+      .supportSteps{
+        grid-template-columns:1fr;
+      }
+
+      .faqItem h3{
+        font-size:24px;
+      }
+
+      .faqItem p{
+        font-size:17px;
+      }
+    }
+
+    @media (max-width: 640px){
+      .faqItem{
+        padding:18px;
+        border-radius:18px;
+      }
+
+      .supportStep{
+        padding:18px;
+        border-radius:18px;
+      }
+
+      .faqItem h3{
+        font-size:20px;
+      }
+
+      .faqItem p{
+        font-size:16px;
+      }
+    }
+  </style>
+</head>
 <body>
 
 <header class="siteNav">
   <div class="siteNavInner">
     <a class="siteBrand" href="index.html">
-      <svg class="brandMark" viewBox="0 0 1024 1024">
+      <svg class="brandMark" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg">
         <path d="M344.436 437.527C385.566 437.527 418.909 404.185 418.909 363.055C418.909 321.924 385.566 288.582 344.436 288.582C303.306 288.582 269.963 321.924 269.963 363.055C269.963 404.185 303.306 437.527 344.436 437.527Z" fill="currentColor"/>
+        <path d="M539.927 363.055C586.199 363.055 623.709 325.544 623.709 279.273C623.709 233.001 586.199 195.491 539.927 195.491C493.656 195.491 456.146 233.001 456.146 279.273C456.146 325.544 493.656 363.055 539.927 363.055Z" fill="currentColor"/>
+        <path d="M716.8 414.255C739.935 414.255 758.691 395.499 758.691 372.364C758.691 349.228 739.935 330.473 716.8 330.473C693.664 330.473 674.909 349.228 674.909 372.364C674.909 395.499 693.664 414.255 716.8 414.255Z" fill="currentColor"/>
+        <path d="M269.963 633.018C300.811 633.018 325.818 608.011 325.818 577.164C325.818 546.316 300.811 521.309 269.963 521.309C239.116 521.309 214.109 546.316 214.109 577.164C214.109 608.011 239.116 633.018 269.963 633.018Z" fill="currentColor"/>
+        <path d="M381.673 777.309C399.667 777.309 414.254 762.722 414.254 744.727C414.254 726.733 399.667 712.145 381.673 712.145C363.678 712.145 349.091 726.733 349.091 744.727C349.091 762.722 363.678 777.309 381.673 777.309Z" fill="currentColor"/>
+        <path d="M549.236 893.673C580.084 893.673 605.091 868.666 605.091 837.818C605.091 806.971 580.084 781.964 549.236 781.964C518.389 781.964 493.382 806.971 493.382 837.818C493.382 868.666 518.389 893.673 549.236 893.673Z" fill="currentColor"/>
+        <path d="M688.873 828.509C709.438 828.509 726.109 811.838 726.109 791.273C726.109 770.708 709.438 754.036 688.873 754.036C668.308 754.036 651.636 770.708 651.636 791.273C651.636 811.838 668.308 828.509 688.873 828.509Z" fill="currentColor"/>
       </svg>
       <span>Commonshub</span>
     </a>
@@ -60,8 +197,10 @@
     <div class="siteNavActions">
       <a class="siteNavCta" href="prototype-preview.html">Start a Community</a>
 
-      <button class="menuToggle" type="button" aria-expanded="false" aria-controls="mobileMenu">
-        <span></span><span></span><span></span>
+      <button class="menuToggle" type="button" aria-expanded="false" aria-controls="mobileMenu" aria-label="Open navigation menu">
+        <span></span>
+        <span></span>
+        <span></span>
       </button>
     </div>
   </div>
@@ -75,10 +214,9 @@
   </div>
 </header>
 
-<main class="wrap">
+<div id="csh-root">
 
-  <!-- HERO -->
-  <section class="hero hero--brand" style="padding-bottom:30px;">
+  <section class="hero hero--brand supportHero">
     <div class="heroField" aria-hidden="true"></div>
 
     <div class="heroInner">
@@ -93,126 +231,112 @@
       </p>
 
       <p class="sub" style="font-size:14px;">
-        This page is evolving as we learn from real users.
+        This page will expand over time with more FAQs, walkthroughs, and how-to videos.
       </p>
     </div>
   </section>
 
-  <!-- FAQ -->
-  <section class="section">
-    <h2>Frequently asked questions</h2>
+  <section class="hero" style="padding-top:20px;">
+    <div class="heroInner">
+      <div class="panelShell supportShell">
 
-    <div class="gridWrap">
-      <div class="grid supportGrid">
-
-        <div class="card">
-          <h3>What is Commonshub?</h3>
-          <p>
-            Commonshub gives you your own online community on your own domain — with no ads, no algorithms, and funding built in.
+        <section class="supportSection" style="padding-top:0; border-top:none;">
+          <h2>Frequently asked questions</h2>
+          <p class="supportIntro">
+            A few quick answers to the questions people are most likely to ask first.
           </p>
-        </div>
 
-        <div class="card">
-          <h3>Do I need a custom domain?</h3>
-          <p>
-            No. You can start with a Commonshub subdomain or use your own domain if you prefer.
-          </p>
-        </div>
+          <div class="faqList">
+            <div class="faqItem">
+              <h3>What is Commonshub?</h3>
+              <p>
+                Commonshub gives you your own online community on your own domain — with no ads, no algorithms, and funding built in.
+              </p>
+            </div>
 
-        <div class="card">
-          <h3>Does this replace my Substack or YouTube?</h3>
-          <p>
-            No. Use those for reach. Use Commonshub for the shared conversation that builds your community.
-          </p>
-        </div>
+            <div class="faqItem">
+              <h3>Do I need a custom domain?</h3>
+              <p>
+                No. You can start with a Commonshub subdomain or use your own domain if you prefer.
+              </p>
+            </div>
 
-        <div class="card">
-          <h3>How does funding work?</h3>
-          <p>
-            Funding is powered by Stripe. Members can subscribe, tip, or contribute — and payments go directly to you.
-          </p>
-        </div>
+            <div class="faqItem">
+              <h3>Does this replace my Substack or YouTube?</h3>
+              <p>
+                No. Use those for reach. Use Commonshub for the shared conversation that builds your community.
+              </p>
+            </div>
 
-        <div class="card">
-          <h3>Is it hard to set up?</h3>
-          <p>
-            No. Setup is guided and we handle the infrastructure, hosting, and updates for you.
-          </p>
-        </div>
+            <div class="faqItem">
+              <h3>How does funding work?</h3>
+              <p>
+                Funding is powered by Stripe. Members can subscribe, tip, or contribute — and payments go directly to you.
+              </p>
+            </div>
 
-        <div class="card">
-          <h3>Who owns the community?</h3>
-          <p>
-            You do. Your domain, your members, your relationship.
+            <div class="faqItem">
+              <h3>Is it hard to set up?</h3>
+              <p>
+                No. Setup is guided and we handle the infrastructure, hosting, and updates for you.
+              </p>
+            </div>
+
+            <div class="faqItem">
+              <h3>Who owns the community?</h3>
+              <p>
+                You do. Your domain, your members, your relationship.
+              </p>
+            </div>
+          </div>
+
+          <p class="supportFaqNote">
+            More detailed setup and operational questions will be added here as the product evolves.
           </p>
-        </div>
+        </section>
+
+        <section class="supportSection">
+          <h2>How it works</h2>
+          <p class="supportIntro">
+            The basic flow is simple and designed to get you up and running without technical overhead.
+          </p>
+
+          <div class="supportSteps">
+            <div class="supportStep">
+              <h3>Create your community</h3>
+              <p>Step-by-step onboarding and setup.</p>
+            </div>
+
+            <div class="supportStep">
+              <h3>Invite your first members</h3>
+              <p>Start small and build real interaction.</p>
+            </div>
+
+            <div class="supportStep">
+              <h3>Set up funding</h3>
+              <p>Connect Stripe and enable direct support.</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="supportSection">
+          <h2>Still need help?</h2>
+          <p class="supportIntro">
+            We’re happy to help — just reach out.
+          </p>
+
+          <div class="supportHelp">
+            <a class="cta" href="mailto:support@thecommonshub.com">Email support</a>
+            <p class="supportHelpNote">We usually respond within a day.</p>
+          </div>
+        </section>
 
       </div>
     </div>
   </section>
 
-  <!-- GETTING STARTED -->
-  <section class="section">
-    <h2>Getting started</h2>
+</div>
 
-    <p class="sectionIntro">
-      Creating your community is straightforward:
-    </p>
-
-    <ol style="max-width:520px; margin:0 auto; line-height:1.6;">
-      <li>Create your community</li>
-      <li>Choose your domain</li>
-      <li>Invite a small group to start</li>
-      <li>Find your voice and posting rhythm</li>
-    </ol>
-  </section>
-
-  <!-- VIDEOS -->
-  <section class="section">
-    <h2>How it works</h2>
-
-    <div class="gridWrap">
-      <div class="grid supportGrid">
-
-        <div class="card">
-          <h3>Create your community</h3>
-          <p>Step-by-step onboarding and setup.</p>
-        </div>
-
-        <div class="card">
-          <h3>Invite your first members</h3>
-          <p>Start small and build real interaction.</p>
-        </div>
-
-        <div class="card">
-          <h3>Set up funding</h3>
-          <p>Connect Stripe and enable direct support.</p>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- CONTACT -->
-  <section class="section" style="text-align:center;">
-    <h2>Still need help?</h2>
-
-    <p class="sectionIntro">
-      We’re happy to help — just reach out.
-    </p>
-
-    <a href="mailto:support@thecommonshub.com" class="cta">
-      Email support →
-    </a>
-
-    <p class="sub" style="margin-top:10px;">
-      We usually respond within a day.
-    </p>
-  </section>
-
-</main>
-
-<!-- FOOTER -->
 <div id="footer-placeholder"></div>
 
 <script>
@@ -223,7 +347,6 @@
     });
 </script>
 
-<!-- MOBILE MENU -->
 <script>
   const menuToggle = document.querySelector('.menuToggle');
   const mobileMenu = document.getElementById('mobileMenu');
