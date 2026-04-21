@@ -469,5 +469,12 @@ text-align:center;
     });
   }
 </script>
+    <script>
+  fetch('partials/footer.html')
+    .then(res => res.text())
+    .then(html => {
+      document.getElementById('footer-placeholder').innerHTML = html;
+    });
+</script>
 </body>
 </html>
