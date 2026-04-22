@@ -3,80 +3,288 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Commonshub — Prototype Preview</title>
+  <title>Commonshub — Early Access</title>
   <link rel="stylesheet" href="assets/styles.css" />
+  <style>
+    .earlyWrap{
+      max-width: 860px;
+      margin: 0 auto;
+    }
+
+    .earlyTopbar{
+      margin-bottom: 18px;
+    }
+
+    .earlyHeroCard{
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      padding: 34px 34px 28px;
+      box-shadow: 0 18px 40px rgba(16,32,24,.06);
+    }
+
+    .earlyEyebrow{
+      font-size: 14px;
+      font-weight: 800;
+      color: var(--muted);
+      margin: 0 0 10px;
+    }
+
+    .earlyHeroCard h1{
+      margin: 0;
+      font-size: clamp(36px, 5vw, 58px);
+      line-height: 1.02;
+      letter-spacing: -0.03em;
+      color: var(--text);
+    }
+
+    .earlyLead{
+      margin: 18px 0 0;
+      font-size: 26px;
+      line-height: 1.25;
+      color: var(--text);
+    }
+
+    .earlySub{
+      margin: 16px 0 0;
+      font-size: 20px;
+      line-height: 1.5;
+      color: var(--muted);
+      max-width: 760px;
+    }
+
+    .earlyDivider{
+      height: 1px;
+      background: var(--line);
+      margin: 28px 0 24px;
+    }
+
+    .earlyNotify{
+      display: grid;
+      grid-template-columns: minmax(0,1fr) auto;
+      gap: 12px;
+      align-items: end;
+    }
+
+    .earlyField{
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .earlyField label{
+      font-size: 14px;
+      font-weight: 800;
+      color: var(--text);
+    }
+
+    .earlyField input{
+      width: 100%;
+      min-height: 58px;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 0 18px;
+      font: inherit;
+      font-size: 16px;
+      color: var(--text);
+      background: #fcfdfc;
+      outline: none;
+    }
+
+    .earlyField input:focus{
+      border-color: rgba(31,111,74,.28);
+      box-shadow: 0 0 0 3px rgba(31,111,74,.08);
+    }
+
+    .earlyPrimary{
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 58px;
+      padding: 0 24px;
+      border-radius: 18px;
+      background: #1f6f4a;
+      color: #fff;
+      text-decoration: none;
+      font-weight: 900;
+      font-size: 18px;
+      box-shadow: 0 10px 18px rgba(31,111,74,.16);
+      white-space: nowrap;
+    }
+
+    .earlyHelp{
+      margin: 10px 0 0;
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    .earlyMeta{
+      margin-top: 24px;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0,1fr));
+      gap: 14px;
+    }
+
+    .earlyMetaCard{
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      background: linear-gradient(to bottom, rgba(16,32,24,.02), rgba(16,32,24,.005));
+      padding: 18px;
+    }
+
+    .earlyMetaCard b{
+      display: block;
+      font-size: 15px;
+      color: var(--text);
+      margin-bottom: 6px;
+    }
+
+    .earlyMetaCard p{
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.5;
+      font-size: 15px;
+    }
+
+    .earlySecondaryRow{
+      margin-top: 22px;
+      padding-top: 18px;
+      border-top: 1px solid var(--line);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .earlySecondaryCopy{
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.5;
+      max-width: 560px;
+    }
+
+    .earlySecondaryLink{
+      font-weight: 900;
+      color: var(--accent);
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    @media (max-width: 760px){
+      .earlyHeroCard{
+        padding: 24px 20px 20px;
+        border-radius: 22px;
+      }
+
+      .earlyLead{
+        font-size: 22px;
+      }
+
+      .earlySub{
+        font-size: 18px;
+      }
+
+      .earlyNotify{
+        grid-template-columns: 1fr;
+      }
+
+      .earlyPrimary{
+        width: 100%;
+      }
+
+      .earlyMeta{
+        grid-template-columns: 1fr;
+      }
+
+      .earlySecondaryRow{
+        align-items: flex-start;
+      }
+    }
+  </style>
 </head>
 <body class="dashboard">
   <div class="wrap">
     <main class="stage">
-      <div class="topbar appTopbar">
+      <div class="topbar appTopbar earlyTopbar">
         <div class="left">
           <img class="brandMark" src="assets/commonshub-mark-light.svg" alt="Commonshub">
           <div class="meta">
-            <b>Commonshub — Prototype Preview</b>
+            <b>Commonshub — Early Access</b>
           </div>
         </div>
       </div>
 
       <div class="content">
         <div class="center">
+          <div class="earlyWrap">
 
-          <div class="header dashboardHero">
-            <div>
-              <h2>This is a mockup preview</h2>
-              <p id="headerSubcopy">
-                A guided preview of the onboarding, provisioning, and community setup experience.
+            <section class="earlyHeroCard">
+              <p class="earlyEyebrow">Coming soon</p>
+
+              <h1>Own your community.</h1>
+
+              <p class="earlyLead">
+                Early access is opening soon.
               </p>
-            </div>
+
+              <p class="earlySub">
+                We’re finishing the first live version of Commonshub now.
+                If you’d like to be notified when the system is available, leave your email below.
+              </p>
+
+              <div class="earlyDivider"></div>
+
+              <form class="earlyNotify" action="mailto:hello@thecommonshub.com" method="post" enctype="text/plain">
+                <div class="earlyField">
+                  <label for="notify-email">Email address</label>
+                  <input
+                    id="notify-email"
+                    name="email"
+                    type="email"
+                    placeholder="you@example.com"
+                    required
+                  />
+                </div>
+
+                <button class="earlyPrimary" type="submit">
+                  Notify me when it’s live
+                </button>
+              </form>
+
+              <p class="earlyHelp">
+                We’ll only use this to let you know when Commonshub is ready.
+              </p>
+
+              <div class="earlyMeta">
+                <div class="earlyMetaCard">
+                  <b>What’s coming first</b>
+                  <p>Guided onboarding, branded community setup, your public hub page, and direct funding through Stripe.</p>
+                </div>
+
+                <div class="earlyMetaCard">
+                  <b>What Commonshub is for</b>
+                  <p>A calm, chronological conversation space on your own domain — without ads or algorithms.</p>
+                </div>
+
+                <div class="earlyMetaCard">
+                  <b>Use platforms for reach</b>
+                  <p>Keep publishing where people discover you. Use Commonshub for the shared conversation that becomes community.</p>
+                </div>
+              </div>
+
+              <div class="earlySecondaryRow">
+                <div class="earlySecondaryCopy">
+                  Want to see where the product is headed? You can still preview the in-progress experience.
+                </div>
+
+                <a class="earlySecondaryLink" href="onboarding-00-email.html">
+                  Preview the experience →
+                </a>
+              </div>
+            </section>
+
           </div>
-
-          <div class="card overviewCard">
-            <div class="overviewHeader">
-              <div>
-                <h3>Before you continue</h3>
-                <div class="muted">
-                  This is not the live product yet.
-                </div>
-              </div>
-            </div>
-
-            <div class="note" style="margin-top:14px;">
-              <b>Important:</b> The flow you are about to see is a simulated mockup of a real community setup experience created by Commonshub.
-            </div>
-
-            <div class="list" style="margin-top:14px;">
-              <div class="item">
-                <b>What this preview shows</b>
-                <div class="muted">
-                  A prototype of guided onboarding, provisioning, dashboard status, community setup, and financial setup flows.
-                </div>
-              </div>
-
-              <div class="item">
-                <b>What is not live yet</b>
-                <div class="muted">
-                  Some buttons, setup paths, and connected services are simulated for demonstration purposes and may not behave like a live production app yet.
-                </div>
-              </div>
-
-              <div class="item">
-                <b>What is coming next</b>
-                <div class="muted">
-                  The real guided onboarding is coming very soon, followed shortly after by the full product release.
-                </div>
-              </div>
-            </div>
-
-            <div class="note" style="margin-top:14px;">
-              Please bear with us while we finish the live experience. This preview is here to show where Commonshub is headed.
-            </div>
-
-            <div class="footerBar" style="margin-top:16px;">
-              <a class="primary" href="onboarding-00-email.html">Enter the mockup</a>
-              <a class="secondary" href="index.html" style="width:auto;">Back to landing page</a>
-            </div>
-          </div>
-
         </div>
       </div>
     </main>
