@@ -3,109 +3,289 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Commonshub — Get Notified</title>
-  <meta name="description" content="Commonshub is opening soon. Email us to be notified when early access is available." />
+  <title>Commonshub — Early Access</title>
+  <meta name="description" content="Commonshub is opening soon. Get notified when early access becomes available." />
   <meta name="theme-color" content="#1f6f4a" />
-
+  <link rel="stylesheet" href="assets/styles.css" />
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
   <link rel="icon" href="/favicon.png" sizes="32x32">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
-  <link rel="stylesheet" href="assets/styles.css" />
+  <style>
+    .earlyShell{
+      max-width:1020px;
+      margin:0 auto;
+    }
+
+    .earlyStage{
+      border:1px solid rgba(255,255,255,.08);
+      border-radius:28px;
+      overflow:hidden;
+      background:rgba(255,255,255,.02);
+      box-shadow:0 30px 80px rgba(0,0,0,.28);
+    }
+
+    .earlyTop{
+      padding:26px 30px;
+      border-bottom:1px solid rgba(255,255,255,.08);
+      background:rgba(255,255,255,.02);
+    }
+
+    .earlyBrand{
+      display:flex;
+      align-items:center;
+      gap:14px;
+      color:#eef2ff;
+      font-weight:900;
+      font-size:20px;
+    }
+
+    .earlyBrand img{
+      width:28px;
+      height:28px;
+      display:block;
+    }
+
+    .earlyBody{
+      padding:46px 38px 36px;
+      background:#f7f7f7;
+      color:#0b1612;
+    }
+
+    .earlyKicker{
+      margin:0 0 14px;
+      font-size:14px;
+      line-height:1.2;
+      letter-spacing:.06em;
+      text-transform:uppercase;
+      font-weight:900;
+      color:#56655e;
+    }
+
+    .earlyTitle{
+      margin:0 0 18px;
+      font-size:clamp(52px, 8vw, 94px);
+      line-height:.95;
+      letter-spacing:-0.045em;
+      font-weight:900;
+      color:#081511;
+    }
+
+    .earlyLead{
+      margin:0 0 14px;
+      font-size:clamp(24px, 3vw, 40px);
+      line-height:1.12;
+      color:#0f1d18;
+    }
+
+    .earlyCopy{
+      margin:0;
+      max-width:920px;
+      font-size:clamp(18px, 2.1vw, 28px);
+      line-height:1.5;
+      color:#56655e;
+    }
+
+    .earlyRule{
+      height:1px;
+      background:rgba(8,21,17,.10);
+      margin:28px 0 26px;
+    }
+
+    .earlyActions{
+      display:flex;
+      gap:16px;
+      align-items:center;
+      flex-wrap:wrap;
+    }
+
+    .earlyPrimary{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-height:64px;
+      padding:0 30px;
+      border-radius:18px;
+      background:#1f6f4a;
+      color:#fff;
+      text-decoration:none;
+      font-size:18px;
+      font-weight:900;
+      box-shadow:0 12px 26px rgba(31,111,74,.18);
+    }
+
+    .earlySecondary{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-height:64px;
+      padding:0 24px;
+      border-radius:18px;
+      border:1px solid rgba(8,21,17,.10);
+      background:#fff;
+      color:#0b1612;
+      text-decoration:none;
+      font-size:18px;
+      font-weight:900;
+    }
+
+    .earlyMeta{
+      margin-top:14px;
+      font-size:15px;
+      line-height:1.5;
+      color:#65756d;
+    }
+
+    .earlyGrid{
+      margin-top:30px;
+      display:grid;
+      grid-template-columns:repeat(3, minmax(0,1fr));
+      gap:14px;
+    }
+
+    .earlyCard{
+      border:1px solid rgba(8,21,17,.08);
+      border-radius:20px;
+      background:#fbfbfb;
+      padding:20px;
+    }
+
+    .earlyCard h3{
+      margin:0 0 8px;
+      font-size:18px;
+      line-height:1.2;
+      color:#0b1612;
+    }
+
+    .earlyCard p{
+      margin:0;
+      font-size:15px;
+      line-height:1.5;
+      color:#56655e;
+    }
+
+    .earlyPreview{
+      margin-top:26px;
+      padding-top:24px;
+      border-top:1px solid rgba(8,21,17,.10);
+    }
+
+    .earlyPreview p{
+      margin:0 0 10px;
+      font-size:16px;
+      line-height:1.5;
+      color:#56655e;
+    }
+
+    .earlyPreview a{
+      color:#5b2aa8;
+      font-weight:800;
+      text-decoration:underline;
+    }
+
+    @media (max-width: 900px){
+      .earlyGrid{
+        grid-template-columns:1fr;
+      }
+    }
+
+    @media (max-width: 640px){
+      .earlyTop{
+        padding:20px 20px;
+      }
+
+      .earlyBody{
+        padding:28px 20px 24px;
+      }
+
+      .earlyBrand{
+        font-size:16px;
+      }
+
+      .earlyBrand img{
+        width:22px;
+        height:22px;
+      }
+
+      .earlyActions{
+        flex-direction:column;
+        align-items:stretch;
+      }
+
+      .earlyPrimary,
+      .earlySecondary{
+        width:100%;
+      }
+    }
+  </style>
 </head>
 <body class="dashboard">
   <div class="wrap">
     <main class="stage">
-      <div class="topbar appTopbar">
-        <div class="left">
-          <img class="brandMark" src="assets/commonshub-mark-light.svg" alt="Commonshub">
-          <div class="meta">
-            <b>Commonshub — Early Access</b>
-          </div>
-        </div>
-      </div>
-
       <div class="content">
-        <div class="center">
+        <div class="center earlyShell">
 
-          <div class="header dashboardHero">
-            <div>
-              <h2>Coming soon</h2>
-              <p id="headerSubcopy">
-                We’re finishing the first live version of Commonshub now.
-              </p>
+          <section class="earlyStage">
+            <div class="earlyTop">
+              <div class="earlyBrand">
+                <img src="assets/commonshub-mark-light.svg" alt="Commonshub">
+                <span>Commonshub — Early Access</span>
+              </div>
             </div>
-          </div>
 
-          <div class="card overviewCard">
-            <div style="max-width:920px;">
-              <div class="muted" style="font-weight:800; letter-spacing:.02em; text-transform:uppercase; margin-bottom:14px;">
-                Early access
-              </div>
+            <div class="earlyBody">
+              <p class="earlyKicker">Coming soon</p>
 
-              <h1 style="margin:0 0 18px; font-size:clamp(44px,7vw,76px); line-height:0.98; letter-spacing:-0.03em;">
-                Own your community.
-              </h1>
+              <h1 class="earlyTitle">Own your community.</h1>
 
-              <p style="font-size:clamp(22px,3.2vw,34px); line-height:1.18; margin:0 0 20px; color:var(--text);">
-                Early access is opening soon.
+              <p class="earlyLead">Early access is opening soon.</p>
+
+              <p class="earlyCopy">
+                We’re finishing the first live version of Commonshub now. If you’d like to be notified when it becomes available, send us a note and we’ll let you know.
               </p>
 
-              <p class="muted" style="font-size:clamp(18px,2.3vw,28px); line-height:1.5; max-width:980px; margin:0 0 24px;">
-                If you’d like to be notified when Commonshub becomes available, send us a note and we’ll let you know.
-              </p>
+              <div class="earlyRule"></div>
 
-              <div class="note" style="margin-top:0;">
-                <b>What’s coming first:</b> guided onboarding, branded community setup, your public hub page, and direct funding through Stripe.
-              </div>
-
-              <div class="footerBar" style="margin-top:18px; align-items:flex-start;">
+              <div class="earlyActions">
                 <a
-                  class="primary"
+                  class="earlyPrimary"
                   href="mailto:hello@thecommonshub.com?subject=Notify%20me%20when%20Commonshub%20is%20live&body=Hi%20Commonshub%2C%0A%0APlease%20notify%20me%20when%20early%20access%20is%20available.%0A"
                 >
-                      Notify me when it’s live
+                  Email me when it’s live
                 </a>
 
-                <a class="secondary" href="index.html" style="width:auto;">Back to landing page</a>
+                <a class="earlySecondary" href="index.html">
+                  Back to landing page
+                </a>
               </div>
 
-              <div class="muted" style="margin-top:12px; font-size:14px;">
+              <div class="earlyMeta">
                 This opens your email app with a pre-filled message to <b>hello@thecommonshub.com</b>.
               </div>
 
-              <div class="list" style="margin-top:24px;">
-                <div class="item">
-                  <b>What Commonshub is for</b>
-                  <div class="muted">
-                    A calm, chronological conversation space on your own domain — without ads or algorithms.
-                  </div>
+              <div class="earlyGrid">
+                <div class="earlyCard">
+                  <h3>What’s coming first</h3>
+                  <p>Guided onboarding, branded community setup, your public hub page, and direct funding through Stripe.</p>
                 </div>
 
-                <div class="item">
-                  <b>Use platforms for reach</b>
-                  <div class="muted">
-                    Keep publishing where people discover you. Use Commonshub for the shared conversation that becomes community.
-                  </div>
+                <div class="earlyCard">
+                  <h3>What Commonshub is for</h3>
+                  <p>A calm, chronological conversation space on your own domain — without ads or algorithms.</p>
                 </div>
 
-                <div class="item">
-                  <b>What happens next</b>
-                  <div class="muted">
-                    We’ll continue polishing the live onboarding flow and notify interested people as soon as the first release is ready.
-                  </div>
+                <div class="earlyCard">
+                  <h3>Use platforms for reach</h3>
+                  <p>Keep publishing where people discover you. Use Commonshub for the shared conversation that becomes community.</p>
                 </div>
               </div>
 
-              <div class="note" style="margin-top:18px;">
-                Want to see where the product is headed? You can still preview the in-progress experience.
-              </div>
-
-              <div style="margin-top:14px;">
-                <a class="textLink" href="onboarding-00-email.html">Preview the experience →</a>
+              <div class="earlyPreview">
+                <p>Want to see where the product is headed?</p>
+                <a href="onboarding-00-email.html">Preview the in-progress experience →</a>
               </div>
             </div>
-          </div>
+          </section>
 
         </div>
       </div>
