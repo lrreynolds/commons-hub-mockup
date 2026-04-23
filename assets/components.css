@@ -578,15 +578,15 @@
 }
 
 .siteFooterInfra{
-  margin-top: 8px;
-  font-size: 0.95rem;
+  margin-top: 6px;
+  font-size: 0.8rem;
   color: var(--muted);
+  opacity: 0.7;
 }
 
 .siteFooterInfra a{
   color: inherit;
-  text-decoration: underline;
-  text-underline-offset: 2px;
+  text-decoration: none;
 }
 
 .heroHelp{
