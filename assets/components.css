@@ -577,6 +577,18 @@
   opacity: 1;
 }
 
+.siteFooterInfra{
+  margin-top: 8px;
+  font-size: 0.95rem;
+  color: var(--muted);
+}
+
+.siteFooterInfra a{
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
 .heroHelp{
   margin-top:14px;
   font-size:14px;
