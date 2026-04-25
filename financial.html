@@ -8,17 +8,13 @@
 </head>
 
 <body class="dashboard">
-
   <div class="wrap">
-
     <main class="stage">
 
       <div class="topbar appTopbar">
         <div class="left">
           <img class="brandMark" src="assets/commonshub-mark-light.svg" alt="Commonshub">
-          <div class="meta">
-            <b>Commonshub — Financial</b>
-          </div>
+          <div class="meta"><b>Commonshub — Financial</b></div>
         </div>
 
         <div class="appTabs">
@@ -34,348 +30,311 @@
 
           <div class="header dashboardHero">
             <div>
-              <h2>Community Support Settings</h2>
+              <h2>Community Support</h2>
               <p id="headerSubcopy">
-                Connect Stripe, manage support options, and configure how members can contribute.
+                Configure the message, contribution options, and Stripe connection for your Hub page.
               </p>
             </div>
           </div>
 
           <div id="financialAttentionCard" class="card overviewCard">
-           <div class="overviewHeader">
-            <div>
-              <h3 id="financialAttentionTitle">Connect Stripe to enable community support</h3>
-              <div id="financialAttentionText" class="muted">
-                Payments go directly to your Stripe account. Once connected, you can configure monthly, yearly, and one-time support options.
+            <div class="overviewHeader">
+              <div>
+                <h3 id="financialAttentionTitle">Connect Stripe to enable payments</h3>
+                <div id="financialAttentionText" class="muted">
+                  Payments go directly to your Stripe account. You can prepare your support message now, then turn on contribution options after Stripe is connected.
+                </div>
               </div>
             </div>
+
+            <div id="financialAttentionNote" class="note" style="margin-top:14px;">
+              <b>Next:</b> Connect Stripe when you are ready to accept community support.
+            </div>
+
+            <div class="footerBar" style="margin-top:12px;">
+              <a id="connectStripeBtn" class="primary" href="connect-stripe.html">Connect Stripe</a>
+            </div>
           </div>
 
-          <div id="financialAttentionNote" class="note" style="margin-top:14px;">
-            <b>Next:</b> Connect Stripe first, then configure how your community can support your work.
-          </div>
-
-          <div class="footerBar" style="margin-top:12px;">
-            <a id="connectStripeBtn" class="primary" href="connect-stripe.html">
-              Connect Stripe
-            </a>
-          </div>
-        </div>
-
-        <div id="financialReadyCard" class="card overviewCard" style="display:none;">
-          <div class="overviewHeader">
-            <div>
-              <h3 id="financialReadyTitle">Stripe is connected</h3>
-              <div id="financialReadyText" class="muted">
-                Community support is ready to configure. Choose which support options to offer and whether a contribution should automatically issue an invite.
+          <div id="financialReadyCard" class="card overviewCard" style="display:none;">
+            <div class="overviewHeader">
+              <div>
+                <h3 id="financialReadyTitle">Stripe is connected</h3>
+                <div id="financialReadyText" class="muted">
+                  You can now turn on support options for your Hub page.
+                </div>
               </div>
             </div>
-          </div>
 
-          <div class="note" style="margin-top:14px;">
-            <b>Transparent fees:</b> Commonshub currently charges a 3% platform fee.
-            Stripe also charges standard processing fees, including a fixed fee per transaction.
-            <a href="fees.html" style="font-weight:800; color:var(--accent);">Learn how fees work →</a>
-          </div>
-          
-          <div class="note" style="margin-top:14px;">
-            <b>Next:</b> Turn on at least one support option to make community support visible on your hub page.
-          </div>
-
-                 </div>
-
-        <section id="communitySupportCard" class="card" style="margin-top:14px; opacity:.65;">
-          <div class="overviewHeader" style="display:flex; justify-content:space-between; align-items:flex-start; gap:12px; flex-wrap:wrap;">
-            <div>
-              <h3>Community support</h3>
-              <div class="muted">Choose which contribution types you want to offer to your community.</div>
+            <div class="note" style="margin-top:14px;">
+              <b>Transparent fees:</b> Commonshub currently charges a 3% platform fee.
+              Stripe also charges standard processing fees, including a fixed fee per transaction.
+              <a href="fees.html" style="font-weight:800; color:var(--accent);">Learn how fees work →</a>
             </div>
-<!-- Hub page support copy -->
-<div class="item">
-  <div>
-    <b>Hub page support message</b>
-    <div class="muted">
-      Customize the message shown on your hub page when asking your community for support.
-    </div>
-  </div>
+          </div>
 
-  <div class="note" style="margin-top:10px;">
-    <b>Default behavior:</b> The hub page can show one message before funding is enabled and another after support options are active.
-  </div>
+          <section id="communitySupportCard" class="card" style="margin-top:14px; opacity:.65;">
 
-  <div class="field" style="margin-top:12px;">
-    <label>Headline</label>
-    <input
-      id="supportHeadline"
-      type="text"
-      value="Support this community"
-    />
-  </div>
+            <div class="overviewHeader">
+              <div>
+                <h3>Hub page support message</h3>
+                <div class="muted">
+                  Customize how your Hub page asks the community for support.
+                </div>
+              </div>
 
-  <div class="field" style="margin-top:10px;">
-    <label>Message when funding is not enabled</label>
-    <textarea id="supportOffMessage" rows="4">This community is free to join. If you find value here, support options may be added in the future.</textarea>
-  </div>
+              <div id="supportHubActions" style="display:none;">
+                <a class="secondary" href="files/jason-hub-revised.html" target="_blank" rel="noopener" style="width:auto;">
+                  View hub page
+                </a>
+              </div>
+            </div>
 
-  <div class="field" style="margin-top:10px;">
-    <label>Message when funding is enabled</label>
-    <textarea id="supportActiveMessage" rows="4">If this space is valuable to you, consider contributing to support its continued growth.</textarea>
-  </div>
-
-  <div class="field" style="margin-top:10px;">
-    <label>Support button text</label>
-    <input
-      id="supportCtaText"
-      type="text"
-      value="Contribute"
-    />
-  </div>
-
-  <div class="footerBar" style="margin-top:12px; gap:10px; justify-content:flex-start;">
-    <a id="saveSupportCopyBtn" class="primary" href="#" style="width:auto; min-width:180px; flex:0;">
-      Save support message
-    </a>
-    <a id="resetSupportCopyBtn" class="secondary" href="#" style="width:auto;">
-      Reset defaults
-    </a>
-  </div>
-</div>
             <div class="note" style="margin-top:12px;">
-              <b>Tip:</b> Small contributions are allowed, starting at $1.00, but fixed payment processing fees have a bigger impact on $1–$3 transactions.
-              We recommend offering annual support at about 10× your monthly amount.
-              <a href="fees.html" style="font-weight:800; color:var(--accent);">See pricing guidance →</a>
+              <b>Default behavior:</b> Your Hub page can show one message before funding is enabled and another after support options are active.
             </div>
-            <div id="supportHubActions" style="display:none;">
-              <a class="secondary" href="files/jason-hub-revised.html" target="_blank" rel="noopener" style="width:auto;">
-                View hub page
-              </a>
-            </div>
-          </div>
 
-          <div class="list" style="margin-top:12px; gap:12px;">
-
-            <!-- Monthly -->
-            <div class="item">
-              <div style="display:flex; justify-content:space-between; align-items:flex-start; gap:12px; flex-wrap:wrap;">
-                <div>
-                  <b>Monthly contributions</b>
-                  <div class="muted">Allow recurring monthly support.</div>
-                </div>
-                <label style="margin:0;">
-                  <input id="monthlySupportToggle" type="checkbox">
-                </label>
-              </div>
-
-              <div id="monthlyFields" style="display:none; margin-top:10px;">
+            <div class="list" style="margin-top:14px; gap:12px;">
+              <div class="item">
                 <div class="field">
-                  <label>Default monthly amount</label>
-                  <input id="monthlyAmount" type="text" value="$2" />
-                </div>
-              </div>
-            </div>
-
-            <!-- Yearly -->
-            <div class="item">
-              <div style="display:flex; justify-content:space-between; align-items:flex-start; gap:12px; flex-wrap:wrap;">
-                <div>
-                  <b>Yearly contributions</b>
-                  <div class="muted">Allow recurring annual support.</div>
-                </div>
-                <label style="margin:0;">
-                  <input id="yearlySupportToggle" type="checkbox">
-                </label>
-              </div>
-
-              <div id="yearlyFields" style="display:none; margin-top:10px;">
-                <div class="field">
-                  <label>Default yearly amount</label>
-                  <input id="yearlyAmount" type="text" value="$20" />
-                </div>
-              </div>
-            </div>
-
-            <!-- One-time -->
-            <div class="item">
-              <div style="display:flex; justify-content:space-between; align-items:flex-start; gap:12px; flex-wrap:wrap;">
-                <div>
-                  <b>One-time contributions</b>
-                  <div class="muted">Allow one-time support or tips.</div>
-                </div>
-                <label style="margin:0;">
-                  <input id="oneTimeSupportToggle" type="checkbox">
-                </label>
-              </div>
-
-              <div id="oneTimeFields" style="display:none; margin-top:10px;">
-                <div class="field">
-                  <label>Default one-time amount</label>
-                  <input id="oneTimeAmount" type="text" value="$10" />
-                </div>
-              </div>
-            </div>
-
-            <!-- Campaigns -->
-            <div class="item">
-              <div style="display:flex; justify-content:space-between; align-items:flex-start; gap:12px; flex-wrap:wrap;">
-                <div>
-                  <b>Campaigns</b>
-                  <div class="muted">Create focused fundraising campaigns for projects, goals, or special initiatives.</div>
-                </div>
-                <label style="margin:0;">
-                  <input id="campaignSupportToggle" type="checkbox">
-                </label>
-              </div>
-
-              <div id="campaignFields" style="display:none; margin-top:10px;">
-                <div class="field">
-                  <label>Campaign title</label>
-                  <input id="campaignTitle" type="text" placeholder="Help fund our first year" />
+                  <label>Headline</label>
+                  <input id="supportHeadline" type="text" value="Support this community" />
                 </div>
 
                 <div class="field" style="margin-top:10px;">
-                  <label>Description <span class="muted">(optional)</span></label>
-                  <textarea id="campaignDescription" rows="4" placeholder="Explain what this campaign supports and why it matters."></textarea>
+                  <label>Message when funding is not enabled</label>
+                  <textarea id="supportOffMessage" rows="4">This community is free to join. If you find value here, support options may be added in the future.</textarea>
                 </div>
 
-                <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:10px;">
-                  <div class="field">
-                    <label>Goal amount <span class="muted">(optional)</span></label>
-                    <input id="campaignGoalAmount" type="text" placeholder="$500" />
+                <div class="field" style="margin-top:10px;">
+                  <label>Message when funding is enabled</label>
+                  <textarea id="supportActiveMessage" rows="4">If this space is valuable to you, consider contributing to support its continued growth.</textarea>
+                </div>
+
+                <div class="field" style="margin-top:10px;">
+                  <label>Support button text</label>
+                  <input id="supportCtaText" type="text" value="Contribute" />
+                </div>
+
+                <div class="footerBar" style="margin-top:12px; gap:10px; justify-content:flex-start;">
+                  <a id="saveSupportCopyBtn" class="primary" href="#" style="width:auto; min-width:180px; flex:0;">
+                    Save support message
+                  </a>
+                  <a id="resetSupportCopyBtn" class="secondary" href="#" style="width:auto;">
+                    Reset defaults
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <div style="margin-top:22px; padding-top:18px; border-top:1px solid var(--line);">
+              <h3 style="margin:0 0 6px;">Support options</h3>
+              <div class="muted">
+                Choose which contribution types you want to offer to your community.
+              </div>
+
+              <div class="note" style="margin-top:12px;">
+                <b>Tip:</b> Small contributions are allowed, starting at $1.00, but fixed payment processing fees have a bigger impact on $1–$3 transactions.
+                When possible, offer annual support at about 10× your monthly amount.
+                <a href="fees.html" style="font-weight:800; color:var(--accent);">See pricing guidance →</a>
+              </div>
+
+              <div class="list" style="margin-top:12px; gap:12px;">
+
+                <div class="item">
+                  <div style="display:flex; justify-content:space-between; align-items:flex-start; gap:12px;">
+                    <div>
+                      <b>Monthly contributions</b>
+                      <div class="muted">Allow recurring monthly support.</div>
+                    </div>
+                    <label style="margin:0;"><input id="monthlySupportToggle" type="checkbox"></label>
                   </div>
 
-                  <div class="field">
-                    <label>End date <span class="muted">(optional)</span></label>
-                    <input id="campaignEndDate" type="date" />
+                  <div id="monthlyFields" style="display:none; margin-top:10px;">
+                    <div class="field">
+                      <label>Default monthly amount</label>
+                      <input id="monthlyAmount" type="text" value="$2" />
+                    </div>
+                  </div>
+                </div>
+
+                <div class="item">
+                  <div style="display:flex; justify-content:space-between; align-items:flex-start; gap:12px;">
+                    <div>
+                      <b>Yearly contributions</b>
+                      <div class="muted">Allow recurring annual support.</div>
+                    </div>
+                    <label style="margin:0;"><input id="yearlySupportToggle" type="checkbox"></label>
+                  </div>
+
+                  <div id="yearlyFields" style="display:none; margin-top:10px;">
+                    <div class="field">
+                      <label>Default yearly amount</label>
+                      <input id="yearlyAmount" type="text" value="$20" />
+                    </div>
+                  </div>
+                </div>
+
+                <div class="item">
+                  <div style="display:flex; justify-content:space-between; align-items:flex-start; gap:12px;">
+                    <div>
+                      <b>One-time contributions</b>
+                      <div class="muted">Allow one-time support or tips.</div>
+                    </div>
+                    <label style="margin:0;"><input id="oneTimeSupportToggle" type="checkbox"></label>
+                  </div>
+
+                  <div id="oneTimeFields" style="display:none; margin-top:10px;">
+                    <div class="field">
+                      <label>Default one-time amount</label>
+                      <input id="oneTimeAmount" type="text" value="$10" />
+                    </div>
+                  </div>
+                </div>
+
+                <div class="item">
+                  <div style="display:flex; justify-content:space-between; align-items:flex-start; gap:12px;">
+                    <div>
+                      <b>Campaigns</b>
+                      <div class="muted">Create focused fundraising campaigns for projects, goals, or special initiatives.</div>
+                    </div>
+                    <label style="margin:0;"><input id="campaignSupportToggle" type="checkbox"></label>
+                  </div>
+
+                  <div id="campaignFields" style="display:none; margin-top:10px;">
+                    <div class="field">
+                      <label>Campaign title</label>
+                      <input id="campaignTitle" type="text" placeholder="Help fund our first year" />
+                    </div>
+
+                    <div class="field" style="margin-top:10px;">
+                      <label>Description <span class="muted">(optional)</span></label>
+                      <textarea id="campaignDescription" rows="4" placeholder="Explain what this campaign supports and why it matters."></textarea>
+                    </div>
+
+                    <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:10px;">
+                      <div class="field">
+                        <label>Goal amount <span class="muted">(optional)</span></label>
+                        <input id="campaignGoalAmount" type="text" placeholder="$500" />
+                      </div>
+
+                      <div class="field">
+                        <label>End date <span class="muted">(optional)</span></label>
+                        <input id="campaignEndDate" type="date" />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="item">
+                  <div style="display:flex; justify-content:space-between; align-items:flex-start; gap:12px;">
+                    <div>
+                      <b>Invite after contribution</b>
+                      <div class="muted">Optionally issue an invite automatically after someone contributes.</div>
+                    </div>
+                    <span id="joinPolicyBadge" class="chip strong" style="display:none;">On</span>
+                  </div>
+
+                  <div id="joinPolicyDefaultNote" class="note" style="margin-top:10px;">
+                    <b>Default:</b> Contributions support the community but do not issue invites.
+                  </div>
+
+                  <div id="joinPolicyDependencyNote" class="note" style="display:none; margin-top:10px;">
+                    Turn on at least one contribution option above first.
+                  </div>
+
+                  <div id="joinPolicyWarning" class="note" style="display:none; margin-top:12px;">
+                    <b>On:</b> After any contribution is completed, an invite is issued automatically on the Hub page.
+                  </div>
+
+                  <div class="footerBar" style="margin-top:12px; gap:10px; justify-content:flex-start; flex-wrap:wrap;">
+                    <a id="enableContributionGateBtn" class="secondary" href="#" style="width:auto; padding:10px 14px;">Turn on</a>
+                    <a id="cancelContributionGateBtn" class="secondary" href="#" style="display:none; width:auto; padding:10px 14px;">Cancel</a>
+                    <a id="confirmContributionGateBtn" class="primary" href="#" style="display:none; width:auto; padding:10px 14px;">Confirm</a>
+                    <a id="disableContributionGateBtn" class="secondary" href="#" style="display:none; width:auto; padding:10px 14px;">Turn off</a>
                   </div>
                 </div>
               </div>
             </div>
 
-            <!-- Invite after contribution -->
-            <div class="item">
-              <div style="display:flex; justify-content:space-between; align-items:flex-start; gap:12px; flex-wrap:wrap;">
-                <div>
-                  <b>Invite after contribution</b>
-                  <div class="muted">Invites are issued automatically on the hub page after any contribution.</div>
-                </div>
-                <span id="joinPolicyBadge" class="chip strong" style="display:none;">On</span>
-              </div>
+            <div id="supportLockedNote" class="note" style="margin-top:12px;">
+              Connect Stripe to unlock these settings.
+            </div>
+          </section>
 
-              <div id="joinPolicyDefaultNote" class="note" style="margin-top:10px;">
-                <b>Default:</b> Contributions support the community but do not issue invites.
-              </div>
-
-              <div id="joinPolicyDependencyNote" class="note" style="display:none; margin-top:10px;">
-                Turn on at least one contribution option above first.
-              </div>
-
-              <div id="joinPolicyWarning" class="note" style="display:none; margin-top:12px;">
-                <b>On:</b> After any contribution is completed, an invite is issued automatically on the hub page.
-              </div>
-
-              <div class="footerBar" style="margin-top:12px; gap:10px; justify-content:flex-start; flex-wrap:wrap;">
-                <a id="enableContributionGateBtn" class="secondary" href="#" style="width:auto; padding:10px 14px;">
-                  Turn on
-                </a>
-                <a id="cancelContributionGateBtn" class="secondary" href="#" style="display:none; width:auto; padding:10px 14px;">
-                  Cancel
-                </a>
-                <a id="confirmContributionGateBtn" class="primary" href="#" style="display:none; width:auto; padding:10px 14px;">
-                  Confirm
-                </a>
-                <a id="disableContributionGateBtn" class="secondary" href="#" style="display:none; width:auto; padding:10px 14px;">
-                  Turn off
-                </a>
+          <section class="card" style="margin-top:14px;">
+            <div class="overviewHeader">
+              <div>
+                <h3>Prototype controls</h3>
+                <div class="muted">Use these to simulate Stripe states without opening the console.</div>
               </div>
             </div>
 
-          </div>
-
-
-
-          <div id="supportLockedNote" class="note" style="margin-top:12px;">
-            Connect Stripe to unlock these settings.
-          </div>
-        </section>
-
-        <section class="card" style="margin-top:14px;">
-          <div class="overviewHeader">
-            <div>
-              <h3>Prototype controls</h3>
-              <div class="muted">Use these to simulate Stripe states without opening the console.</div>
+            <div class="footerBar" style="margin-top:12px; gap:12px;">
+              <a class="secondary" href="#" id="simulateStripeNotConnected" style="flex:1;">Simulate not connected</a>
+              <a class="secondary" href="#" id="simulateStripeConnected" style="flex:1;">Simulate connected</a>
+              <a class="secondary" href="#" id="simulateStripeRestricted" style="flex:1;">Simulate needs more info</a>
             </div>
-          </div>
+          </section>
 
-          <div class="footerBar" style="margin-top:12px; gap:12px;">
-            <a class="secondary" href="#" id="simulateStripeNotConnected" style="flex:1;">
-              Simulate not connected
-            </a>
-            <a class="secondary" href="#" id="simulateStripeConnected" style="flex:1;">
-              Simulate connected
-            </a>
-            <a class="secondary" href="#" id="simulateStripeRestricted" style="flex:1;">
-              Simulate needs more info
-            </a>
-          </div>
-        </section>
-
+        </div>
       </div>
-    </div>
-  </main>
-</div>
-<script src="assets/app.js"></script>
+    </main>
+  </div>
+
+  <script src="assets/app.js"></script>
+
   <script>
     (function () {
-  const fields = {
-    supportHeadline: "Support this community",
-    supportOffMessage:
-      "This community is free to join. If you find value here, support options may be added in the future.",
-    supportActiveMessage:
-      "If this space is valuable to you, consider contributing to support its continued growth.",
-    supportCtaText: "Contribute"
-  };
+      const fields = {
+        supportHeadline: "Support this community",
+        supportOffMessage:
+          "This community is free to join. If you find value here, support options may be added in the future.",
+        supportActiveMessage:
+          "If this space is valuable to you, consider contributing to support its continued growth.",
+        supportCtaText: "Contribute"
+      };
 
-  const storageKey = "commonshub_support_copy";
-
-  const saved = JSON.parse(localStorage.getItem(storageKey) || "{}");
-
-  Object.keys(fields).forEach((id) => {
-    const el = document.getElementById(id);
-    if (!el) return;
-    el.value = saved[id] || fields[id];
-  });
-
-  const saveBtn = document.getElementById("saveSupportCopyBtn");
-  if (saveBtn) {
-    saveBtn.addEventListener("click", function (e) {
-      e.preventDefault();
-
-      const payload = {};
-      Object.keys(fields).forEach((id) => {
-        const el = document.getElementById(id);
-        if (el) payload[id] = el.value.trim() || fields[id];
-      });
-
-      localStorage.setItem(storageKey, JSON.stringify(payload));
-      saveBtn.textContent = "Saved";
-      setTimeout(() => (saveBtn.textContent = "Save support message"), 1200);
-    });
-  }
-
-  const resetBtn = document.getElementById("resetSupportCopyBtn");
-  if (resetBtn) {
-    resetBtn.addEventListener("click", function (e) {
-      e.preventDefault();
+      const storageKey = "commonshub_support_copy";
+      const saved = JSON.parse(localStorage.getItem(storageKey) || "{}");
 
       Object.keys(fields).forEach((id) => {
         const el = document.getElementById(id);
-        if (el) el.value = fields[id];
+        if (!el) return;
+        el.value = saved[id] || fields[id];
       });
 
-      localStorage.removeItem(storageKey);
-    });
-  }
-})();
+      const saveBtn = document.getElementById("saveSupportCopyBtn");
+      if (saveBtn) {
+        saveBtn.addEventListener("click", function (e) {
+          e.preventDefault();
+
+          const payload = {};
+          Object.keys(fields).forEach((id) => {
+            const el = document.getElementById(id);
+            if (el) payload[id] = el.value.trim() || fields[id];
+          });
+
+          localStorage.setItem(storageKey, JSON.stringify(payload));
+          saveBtn.textContent = "Saved";
+          setTimeout(() => (saveBtn.textContent = "Save support message"), 1200);
+        });
+      }
+
+      const resetBtn = document.getElementById("resetSupportCopyBtn");
+      if (resetBtn) {
+        resetBtn.addEventListener("click", function (e) {
+          e.preventDefault();
+
+          Object.keys(fields).forEach((id) => {
+            const el = document.getElementById(id);
+            if (el) el.value = fields[id];
+          });
+
+          localStorage.removeItem(storageKey);
+        });
+      }
+    })();
   </script>
 </body>
 </html>
