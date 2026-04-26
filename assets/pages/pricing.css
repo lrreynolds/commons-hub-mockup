@@ -2,13 +2,13 @@
   display: inline-flex;
   align-items: center;
   width: fit-content;
-  padding: 5px 9px;
+  padding: 6px 12px;   /* ← was ~5px 8px */
   border-radius: 999px;
   background: rgba(31,111,74,.10);
   color: var(--accent);
   font-size: 12px;
   font-weight: 750;
-  line-height: 1.15;
+  line-height: 1.2;
   margin-bottom: 14px;
 }
 
