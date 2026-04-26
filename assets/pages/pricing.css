@@ -1,3 +1,17 @@
+.pricingBadge {
+  display: inline-flex;
+  align-items: center;
+  width: fit-content;
+  padding: 5px 9px;
+  border-radius: 999px;
+  background: rgba(31,111,74,.10);
+  color: var(--accent);
+  font-size: 12px;
+  font-weight: 750;
+  line-height: 1.15;
+  margin-bottom: 14px;
+}
+
 @media (max-width: 768px) {
   .pricingGrid {
     grid-template-columns: 1fr !important;
@@ -26,4 +40,11 @@
   .pricingCard + .pricingCard {
     margin-top: 8px;
   }
+
+    .pricingBadge {
+    font-size: 12px;
+    padding: 5px 8px;
+    max-width: 180px;
+  }
 }
+
