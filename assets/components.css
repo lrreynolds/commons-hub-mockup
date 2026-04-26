@@ -148,12 +148,13 @@
 }
 
 .heroMission {
-  margin: 10px auto 0;
-  max-width: 680px;
+  margin: 14px auto 0;
+  max-width: 640px;
   color: var(--muted);
-  font-size: 15px;
-  line-height: 1.5;
+  font-size: 13px;
+  line-height: 1.4;
   text-align: center;
+  opacity: 0.8;
 }
 
 .heroBottomCtaRow{
