@@ -595,12 +595,15 @@
   opacity: 0.6;
 }
 
-.heroHelp{
-  margin-top:14px;
-  font-size:14px;
-  color:var(--muted);
-  text-align:center;
+.heroHelp {
+  margin-top: 10px;
+  font-size: 12px;
+  color: var(--muted);
+  text-align: center;
+  opacity: 0.7;
 }
+
+
 
 .heroHelp a{
   color:var(--accent);
