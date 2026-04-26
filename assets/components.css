@@ -147,6 +147,15 @@
   animation:none;
 }
 
+.heroMission {
+  margin: 10px auto 0;
+  max-width: 680px;
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.5;
+  text-align: center;
+}
+
 .heroBottomCtaRow{
   gap:14px;
   align-items:center;
@@ -161,6 +170,7 @@
 .heroBottomCta.center {
   justify-content: center;
 }
+
 
 .sectionCta{
   display:flex;
