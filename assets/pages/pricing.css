@@ -22,4 +22,8 @@
   .pricingHero {
     padding-bottom: 12px !important;
   }
+
+  .pricingCard + .pricingCard {
+    margin-top: 8px;
+  }
 }
