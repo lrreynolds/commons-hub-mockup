@@ -395,6 +395,12 @@ text-align:center;
     window.history.replaceState({}, "", url);
   }
 
+  function trackPlausible(eventName, props) {
+    if (typeof window.plausible === "function") {
+      window.plausible(eventName, { props });
+    }
+  }
+  
   document.addEventListener("DOMContentLoaded", () => {
     initReveal();
 
@@ -408,6 +414,11 @@ text-align:center;
     tabs.forEach(tab => {
       tab.addEventListener("click", () => {
         const host = tab.dataset.host;
+        trackPlausible("Host Tab Click", {
+          host,
+          label: tab.textContent.trim(),
+          location: "Home Hosts"
+        });
         setActiveTab(host);
         updateExplain(host);
         loadHost(host);
@@ -428,6 +439,10 @@ text-align:center;
         const mount = document.getElementById("hostContent");
         if (!mount) return;
         mount.innerHTML = html;
+         trackPlausible("Host Segment View", {
+          host,
+          location: "Home Hosts"
+        });
         initReveal();
       })
       .catch(err => console.error(err));
