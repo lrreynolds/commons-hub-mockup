@@ -1900,3 +1900,61 @@ overflow: hidden;
 .stepPasteGroup.large textarea {
 min-height: 120px;
 }
+
+/* =========================================================
+Community review shortcut buttons — final overrides
+========================================================= */
+
+body.dashboard .settingsActions{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  margin-top:12px;
+}
+
+body.dashboard .settingsLink{
+  flex:0 0 auto;
+  min-width:0;
+  width:auto;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-height:40px;
+  padding:0 14px;
+  border-radius:12px;
+  border:1px solid var(--line);
+  background:#fff;
+  color:var(--cardText);
+  text-decoration:none;
+  font-weight:800;
+  font-size:14px;
+  line-height:1;
+  box-shadow:none;
+}
+
+body.dashboard .settingsLink.primary{
+  flex:0 0 auto;
+  min-width:0;
+  width:auto;
+  background:var(--btn);
+  border-color:var(--btn);
+  color:#fff;
+  box-shadow:none;
+}
+
+body.dashboard .settingsLink:hover{
+  border-color:rgba(31,111,74,.35);
+}
+
+@media (max-width:720px){
+  body.dashboard .settingsList{
+    grid-template-columns:1fr;
+  }
+
+  body.dashboard .settingsLink{
+    min-height:48px;
+    padding:0 18px;
+    border-radius:16px;
+    font-size:17px;
+  }
+}
