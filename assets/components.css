@@ -680,7 +680,6 @@
   font-weight: 900;
 }
 
-<style>
   .settingsList{
     display:grid;
     gap:12px;
@@ -738,7 +737,6 @@
   .settingsLink:hover{
     border-color:rgba(31,111,74,.35);
   }
-</style>
 
 @media (max-width: 900px){
   .siteNavInner{
