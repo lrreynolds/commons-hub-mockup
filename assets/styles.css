@@ -1902,7 +1902,7 @@ body.dashboard .settingsLink.primary{
 /* Top community review CTA row */
 body.dashboard .launchActions{
   margin-top:12px;
-  gap:12px;
+  gap:10px;
   display:grid;
   grid-template-columns:1fr 1fr 1fr;
 }
@@ -1911,8 +1911,10 @@ body.dashboard .launchActions .primary,
 body.dashboard .launchActions .secondary{
   width:100%;
   min-width:0;
-  font-size:15px;
-  padding:12px 14px;
+  min-height:44px;
+  padding:10px 12px;
+  font-size:13px;
+  line-height:1.15;
 }
 
 @media (max-width:720px){
@@ -1926,7 +1928,8 @@ body.dashboard .launchActions .secondary{
 
   body.dashboard .launchActions .primary,
   body.dashboard .launchActions .secondary{
-    font-size:15px;
-    min-height:54px;
+    min-height:44px;
+    font-size:13px;
+    padding:10px 12px;
   }
 }
