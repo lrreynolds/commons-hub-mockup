@@ -1014,63 +1014,96 @@ body.flow.flowDark .guideNoteSubtle b{
   margin-top: 3px;
 }
 
+.settingsList{
+  display:grid;
+  grid-template-columns:repeat(2, minmax(0,1fr));
+  gap:12px;
+  margin-top:14px;
+}
+
+.settingsItem{
+  border:1px solid var(--line);
+  border-radius:16px;
+  background:#fff;
+  padding:16px;
+}
+
+.settingsItem b{
+  display:block;
+  margin-bottom:4px;
+}
+
+.settingsItem .muted{
+  font-size:14px;
+  line-height:1.45;
+}
+
+.settingsActions{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  margin-top:12px;
+}
+
+.settingsLink{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-height:40px;
+  padding:0 14px;
+  border-radius:12px;
+  border:1px solid var(--line);
+  background:#fff;
+  color:var(--text);
+  text-decoration:none;
+  font-weight:800;
+  font-size:14px;
+  line-height:1;
+  width:auto;
+  box-shadow:none;
+}
+
+.settingsLink.primary{
+  background:var(--btn, #1f6f4a);
+  border-color:var(--btn, #1f6f4a);
+  color:#fff;
+}
+
+.settingsLink:hover{
+  border-color:rgba(31,111,74,.35);
+}
+
+@media (max-width: 720px){
   .settingsList{
-    display:grid;
-    gap:12px;
-    margin-top:14px;
+    grid-template-columns:1fr;
   }
 
   .settingsItem{
-    border:1px solid var(--line);
-    border-radius:16px;
-    background:#fff;
-    padding:16px;
+    padding:18px;
+    border-radius:18px;
   }
 
   .settingsItem b{
-    display:block;
-    margin-bottom:4px;
+    font-size:20px;
+    line-height:1.15;
   }
 
   .settingsItem .muted{
-    font-size:14px;
+    font-size:17px;
     line-height:1.45;
   }
 
   .settingsActions{
-    display:flex;
-    flex-wrap:wrap;
-    gap:10px;
-    margin-top:12px;
+    margin-top:14px;
   }
 
   .settingsLink{
-    display:inline-flex;
-    align-items:center;
-    justify-content:center;
-    min-height:40px;
-    padding:0 14px;
-    border-radius:12px;
-    border:1px solid var(--line);
-    background:#fff;
-    color:var(--text);
-    text-decoration:none;
-    font-weight:800;
-    font-size:14px;
-    line-height:1;
-    width:auto;
-    box-shadow:none;
+    min-height:48px;
+    padding:0 18px;
+    border-radius:16px;
+    font-size:17px;
   }
-
-  .settingsLink.primary{
-    background:#1f6f4a;
-    border-color:#1f6f4a;
-    color:#fff;
-  }
-
-  .settingsLink:hover{
-    border-color:rgba(31,111,74,.35);
-  }
+}
 
 
 @media (max-width:640px){
