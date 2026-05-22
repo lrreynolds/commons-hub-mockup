@@ -1074,38 +1074,68 @@ body.flow.flowDark .guideNoteSubtle b{
 }
 
 @media (max-width: 720px){
-  body.dashboard .settingsList{
-    grid-template-columns:1fr;
+
+  body.dashboard .content{
+    padding:12px;
   }
 
-  body.dashboard .settingsItem{
-    padding:16px;
+  body.dashboard .card{
+    padding:14px;
     border-radius:18px;
   }
 
-  body.dashboard .settingsItem b{
-    font-size:16px;
-    line-height:1.2;
-  }
-
-  body.dashboard .settingsItem .muted{
-    font-size:14px;
-    line-height:1.45;
-  }
-
-  body.dashboard .settingsActions{
+  body.dashboard .settingsList{
+    gap:10px;
     margin-top:12px;
   }
 
+  body.dashboard .settingsItem{
+    padding:14px;
+    border-radius:16px;
+  }
+
+  body.dashboard .settingsItem b{
+    font-size:15px;
+    line-height:1.2;
+    margin-bottom:6px;
+  }
+
+  body.dashboard .settingsItem .muted{
+    font-size:13px;
+    line-height:1.42;
+  }
+
+  body.dashboard .settingsActions{
+    gap:8px;
+    margin-top:10px;
+  }
+
   body.dashboard .settingsLink{
-    min-height:42px;
-    padding:0 14px;
-    border-radius:14px;
+    min-height:38px;
+    padding:0 12px;
+    border-radius:12px;
+    font-size:13px;
+    font-weight:800;
+  }
+
+  body.dashboard .footerBar{
+    gap:8px;
+  }
+
+  body.dashboard .primary,
+  body.dashboard .secondary{
+    min-width:0;
+    padding:11px 12px;
     font-size:14px;
   }
 
-  body.dashboard .settingsLink.primary{
-    width:100%;
+  body.dashboard .header h2{
+    font-size:16px;
+  }
+
+  body.dashboard #headerSubcopy{
+    font-size:13px;
+    line-height:1.35;
   }
 }
 
