@@ -156,7 +156,7 @@
   </div>
 </section>
 
-          <section class="card setupCard" style="margin-top:14px;">
+         <section class="card setupCard" style="margin-top:14px;">
   <div class="overviewHeader">
     <div>
       <h3>Hub page settings</h3>
@@ -168,54 +168,86 @@
 
   <div class="settingsList">
 
+    <!-- Header line -->
     <div class="settingsItem">
       <b>Header line</b>
-      <div class="muted">
-        Edit the short headline shown near the top of the hub page and used in previews and invite cards.
+
+      <div class="muted" style="margin-top:4px;">
+        Shown near the top of the hub page and used in invite previews.
       </div>
-      <div class="settingsActions">
-        <a class="settingsLink" href="hub-settings.html#header-line">
-          Edit header line
-        </a>
+
+      <div style="margin-top:14px;">
+        <input
+          type="text"
+          value="Real-time Security Briefings"
+          placeholder="Enter header line"
+        />
       </div>
     </div>
 
+    <!-- Join access -->
     <div class="settingsItem">
       <b>Join access</b>
-      <div class="muted">
-        Control whether visitors can request access, join immediately, or whether joining is currently disabled.
+
+      <div class="muted" style="margin-top:4px;">
+        Allow visitors to join from the hub page.
       </div>
-      <div class="settingsActions">
-        <a class="settingsLink" href="hub-settings.html#join-access">
-          Join settings
-        </a>
+
+      <div class="settingsActions" style="margin-top:16px;">
+        <button class="toggleBtn active">
+          Enabled
+        </button>
+
+        <button class="toggleBtn">
+          Disabled
+        </button>
       </div>
     </div>
 
+    <!-- Gated join -->
     <div class="settingsItem">
       <b>Support-gated join</b>
-      <div class="muted">
-        Require a contribution before issuing a community invite from the hub page.
+
+      <div class="muted" style="margin-top:4px;">
+        Require a contribution before issuing an invite.
       </div>
-      <div class="settingsActions">
-        <a class="settingsLink" href="hub-settings.html#support-gated">
-          Contribution access
-        </a>
+
+      <div class="settingsActions" style="margin-top:16px;">
+        <button class="toggleBtn active">
+          Enabled
+        </button>
+
+        <button class="toggleBtn">
+          Disabled
+        </button>
       </div>
     </div>
 
+    <!-- Theme -->
     <div class="settingsItem">
       <b>Hub page theme</b>
-      <div class="muted">
-        Choose whether the public hub page uses a light or dark appearance.
+
+      <div class="muted" style="margin-top:4px;">
+        Choose the appearance of the public hub page.
       </div>
-      <div class="settingsActions">
-        <a class="settingsLink" href="hub-settings.html#theme">
-          Theme settings
-        </a>
+
+      <div class="settingsActions" style="margin-top:16px;">
+        <button class="toggleBtn active">
+          Dark
+        </button>
+
+        <button class="toggleBtn">
+          Light
+        </button>
       </div>
     </div>
 
+  </div>
+
+  <div class="footerBar" style="margin-top:18px;">
+    <button class="primary">
+      Save hub settings
+    </button>
   </div>
 </section>
 
