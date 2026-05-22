@@ -1014,130 +1014,6 @@ body.flow.flowDark .guideNoteSubtle b{
   margin-top: 3px;
 }
 
-.settingsList{
-  display:grid;
-  grid-template-columns:repeat(2, minmax(0,1fr));
-  gap:12px;
-  margin-top:14px;
-}
-
-.settingsItem{
-  border:1px solid var(--line);
-  border-radius:16px;
-  background:#fff;
-  padding:16px;
-}
-
-.settingsItem b{
-  display:block;
-  margin-bottom:4px;
-}
-
-.settingsItem .muted{
-  font-size:14px;
-  line-height:1.45;
-}
-
-.settingsActions{
-  display:flex;
-  flex-wrap:wrap;
-  gap:10px;
-  margin-top:12px;
-}
-
-.settingsLink{
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  min-height:40px;
-  padding:0 14px;
-  border-radius:12px;
-  border:1px solid var(--line);
-  background:#fff;
-  color:var(--text);
-  text-decoration:none;
-  font-weight:800;
-  font-size:14px;
-  line-height:1;
-  width:auto;
-  box-shadow:none;
-}
-
-.settingsLink.primary{
-  background:var(--btn, #1f6f4a);
-  border-color:var(--btn, #1f6f4a);
-  color:#fff;
-}
-
-.settingsLink:hover{
-  border-color:rgba(31,111,74,.35);
-}
-
-@media (max-width: 720px){
-
-  body.dashboard .content{
-    padding:12px;
-  }
-
-  body.dashboard .card{
-    padding:14px;
-    border-radius:18px;
-  }
-
-  body.dashboard .settingsList{
-    gap:10px;
-    margin-top:12px;
-  }
-
-  body.dashboard .settingsItem{
-    padding:14px;
-    border-radius:16px;
-  }
-
-  body.dashboard .settingsItem b{
-    font-size:15px;
-    line-height:1.2;
-    margin-bottom:6px;
-  }
-
-  body.dashboard .settingsItem .muted{
-    font-size:13px;
-    line-height:1.42;
-  }
-
-  body.dashboard .settingsActions{
-    gap:8px;
-    margin-top:10px;
-  }
-
-  body.dashboard .settingsLink{
-    min-height:38px;
-    padding:0 12px;
-    border-radius:12px;
-    font-size:13px;
-    font-weight:800;
-  }
-
-  body.dashboard .footerBar{
-    gap:8px;
-  }
-
-  body.dashboard .primary,
-  body.dashboard .secondary{
-    min-width:0;
-    padding:11px 12px;
-    font-size:14px;
-  }
-
-  body.dashboard .header h2{
-    font-size:16px;
-  }
-
-  body.dashboard #headerSubcopy{
-    font-size:13px;
-    line-height:1.35;
-  }
-}
 
 
 @media (max-width:640px){
@@ -1936,48 +1812,65 @@ min-height: 120px;
 }
 
 /* =========================================================
-Community review shortcut buttons — final overrides
+Community review shortcuts
 ========================================================= */
+
+body.dashboard .settingsList{
+  display:grid;
+  grid-template-columns:repeat(2, minmax(0,1fr));
+  gap:12px;
+  margin-top:14px;
+}
+
+body.dashboard .settingsItem{
+  border:1px solid var(--line);
+  border-radius:16px;
+  background:#fff;
+  padding:16px;
+}
+
+body.dashboard .settingsItem b{
+  display:block;
+  margin-bottom:4px;
+  font-size:15px;
+  line-height:1.2;
+}
+
+body.dashboard .settingsItem .muted{
+  font-size:13px;
+  line-height:1.42;
+}
 
 body.dashboard .settingsActions{
   display:flex;
   flex-wrap:wrap;
-  gap:10px;
+  gap:8px;
   margin-top:12px;
 }
 
 body.dashboard .settingsLink{
-  flex:0 0 auto;
-  min-width:0;
-  width:auto;
   display:inline-flex;
   align-items:center;
   justify-content:center;
-  min-height:40px;
-  padding:0 14px;
+  width:auto;
+  min-width:0;
+  min-height:38px;
+  padding:0 12px;
   border-radius:12px;
   border:1px solid var(--line);
   background:#fff;
   color:var(--cardText);
   text-decoration:none;
-  font-weight:800;
-  font-size:14px;
+  font-weight:750;
+  font-size:12px;
   line-height:1;
   box-shadow:none;
 }
 
 body.dashboard .settingsLink.primary{
-  flex:0 0 auto;
-  min-width:0;
-  width:auto;
   background:var(--btn);
   border-color:var(--btn);
   color:#fff;
-  box-shadow:none;
-}
-
-body.dashboard .settingsLink:hover{
-  border-color:rgba(31,111,74,.35);
 }
 
 @media (max-width:720px){
@@ -1985,10 +1878,23 @@ body.dashboard .settingsLink:hover{
     grid-template-columns:1fr;
   }
 
+  body.dashboard .settingsItem{
+    padding:14px;
+  }
+
+  body.dashboard .settingsItem b{
+    font-size:15px;
+  }
+
+  body.dashboard .settingsItem .muted{
+    font-size:13px;
+  }
+
   body.dashboard .settingsLink{
-    min-height:48px;
-    padding:0 18px;
-    border-radius:16px;
-    font-size:17px;
+    min-height:38px;
+    padding:0 12px;
+    border-radius:12px;
+    font-size:12px;
+    font-weight:750;
   }
 }
