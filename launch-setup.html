@@ -3,14 +3,12 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Commonshub — Launch setup</title>
+  <title>Commonshub — Community Settings</title>
   <link rel="stylesheet" href="assets/styles.css" />
 </head>
 
 <body class="dashboard">
-
   <div class="wrap">
-
     <main class="stage">
 
       <div class="topbar appTopbar">
@@ -34,42 +32,25 @@
 
           <div class="header dashboardHero">
             <div>
-              <h2>Mastodon Community Settings</h2>
+              <h2>Community Settings</h2>
               <p id="headerSubcopy">
-                Review key settings by category.
+                Your community has been configured from your blueprint. Use these links to review or edit settings in Mastodon.
               </p>
             </div>
-          </div>        
+          </div>
 
-          <div id="launchAttentionCard" class="card overviewCard">
+          <div class="card overviewCard">
             <div class="overviewHeader">
               <div>
-                <h3>Review and finalize your community</h3>
+                <h3>Your community is ready for review</h3>
                 <div class="muted">
-                  Your server is live, but a few launch details still need review before you begin inviting members.
+                  Branding, descriptions, rules, announcements, profile details, and launch posts have been applied automatically where supported.
                 </div>
               </div>
             </div>
 
             <div class="note" style="margin-top:14px;">
-              <b>Next:</b> Review key settings, confirm branding and profile details, then check the hub page before sharing invites.
-            </div>
-
-            <div class="footerBar" style="margin-top:12px;">
-              <button id="continueSetupBtn" class="primary">
-                Continue Setup
-              </button>
-            </div>
-          </div>
-
-          <div id="communityReadyCard" class="card overviewCard" style="display:none;">
-            <div class="overviewHeader">
-              <div>
-                <h3>You’re ready to launch</h3>
-                <div class="muted">
-                  Your community setup is complete. Review the live experience, invite your first cohort, or connect Stripe to prepare for community support.
-                </div>
-              </div>
+              <b>Next:</b> Review the live experience, adjust anything you want in Mastodon, then invite your first members.
             </div>
 
             <div class="footerBar" style="margin-top:12px; gap:12px;">
@@ -81,1043 +62,143 @@
                 View hub page
               </a>
 
-              <a class="primary" href="https://securitybrief.jasonjaysmart.com/admin/invites" style="flex:1;">
-                Generate invite
-              </a>
-            </div>
-
-            <div class="note" style="margin-top:14px;">
-              <b>Optional next step:</b> Connect Stripe now so community support is ready when you want to turn it on.
-            </div>
-
-            <div class="footerBar" style="margin-top:10px;">
-              <a class="secondary" href="financial.html">
-                Connect Stripe
+              <a class="primary" href="https://securitybrief.jasonjaysmart.com/admin/invites" target="_blank" rel="noopener" style="flex:1;">
+                Create invite
               </a>
             </div>
           </div>
-        </div>
 
-        <section class="card setupCard">
-
-          <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap;">
-            <div>
-              <h3>Settings categories</h3>
-              <div class="muted">Review each area, make any needed changes, and return later anytime to fine-tune your community.</div>
-            </div>
-            <div class="progressMeta">
-              <b id="progressText">Step 1 of 7</b>
-              <div class="muted" id="progressPercent">0% complete</div>
-            </div>
-          </div>
-
-          <div class="progress" style="margin-top:12px;">
-            <div class="bar">
-              <div id="progressBar" style="width:0%"></div>
-            </div>
-          </div>
-
-          <div id="steps" class="setupSteps">
-
-            <!-- STEP 1 -->
-            <div class="setupStep locked" data-step="1" data-has-text="true">
-              <div class="setupStepHeader">
-                <div>
-                  <div class="setupStepTitle">1. Registration Settings</div>
-                  <div class="setupStepSummary">Start with an invite-only space so your first cohort sets the tone.</div>
+          <section class="card setupCard" style="margin-top:14px;">
+            <div class="overviewHeader">
+              <div>
+                <h3>Review in Mastodon</h3>
+                <div class="muted">
+                  These shortcuts take you directly to the main areas you may want to review or edit.
                 </div>
-                <a class="stepToggleLink" href="#">Close</a>
               </div>
-              <div class="setupStepDetails">
-                <div class="muted stepHelper">
-                  Complete the tasks below in Mastodon, save changes on every affected page, then click Done.
-                </div>
+            </div>
 
-                <div class="setupActions">
-                  <a class="secondary" href="https://securitybrief.jasonjaysmart.com/admin/settings/registrations" target="_blank" style="width:auto;">
+            <div class="list" style="margin-top:14px; gap:12px;">
+
+              <div class="item">
+                <b>Registration settings</b>
+                <div class="muted">
+                  Review whether the community is invite-only, open, or accepting approval requests.
+                </div>
+                <div class="footerBar" style="margin-top:10px;">
+                  <a class="secondary" href="https://securitybrief.jasonjaysmart.com/admin/settings/registrations" target="_blank" rel="noopener">
                     Open registration settings
                   </a>
                 </div>
+              </div>
 
-                <div class="stepPasteGroup large">
-                 <div class="fieldHeader">
-                  <label>Invite request text</label>
-                  <button class="secondary copyBtn" type="button">Copy text</button>
+              <div class="item">
+                <b>Owner profile</b>
+                <div class="muted">
+                  Review the host profile, bio, links, avatar, header image, and verification fields.
                 </div>
-
-                <div class="stepTextWrap">
-                  <textarea readonly>This space launches in small cohorts.
-
-                    If your work is in this field and you’d like to join, contact:
-                  jason@jaysonjaysmart.com</textarea>
+                <div class="footerBar" style="margin-top:10px; gap:10px;">
+                  <a class="secondary" href="https://securitybrief.jasonjaysmart.com/settings/profile" target="_blank" rel="noopener">
+                    Open profile
+                  </a>
+                  <a class="secondary" href="https://securitybrief.jasonjaysmart.com/settings/verification" target="_blank" rel="noopener">
+                    Open verification
+                  </a>
                 </div>
               </div>
 
-              <div class="setupActions">
-                <button class="primary doneBtn" type="button">Done</button>
+              <div class="item">
+                <b>Branding and about settings</b>
+                <div class="muted">
+                  Review the community name, descriptions, contact details, thumbnail, favicon, and public about page.
+                </div>
+                <div class="footerBar" style="margin-top:10px; gap:10px;">
+                  <a class="secondary" href="https://securitybrief.jasonjaysmart.com/admin/settings/branding" target="_blank" rel="noopener">
+                    Open branding
+                  </a>
+                  <a class="secondary" href="https://securitybrief.jasonjaysmart.com/admin/settings/about" target="_blank" rel="noopener">
+                    Open about settings
+                  </a>
+                </div>
               </div>
-            </div>  
-            <div class="setupStepDoneBar">
-              <div class="setupStepDoneRow">
-               <span class="doneSummary">Invite-only launch settings saved in Mastodon.</span>
-             </div>
-           </div>           
-         </div>
 
-         <!-- STEP 2 -->
-         <div class="setupStep locked" data-step="2" data-has-text="false">
-          <div class="setupStepHeader">
-            <div>
-              <div class="setupStepTitle">2. Owner Profile Settings</div>
-              <div class="setupStepSummary">Complete your profile so the space has a clear host and trust anchor.</div>
+              <div class="item">
+                <b>Rules and discovery</b>
+                <div class="muted">
+                  Review server rules, discovery settings, trends, profile directory, and recommended accounts.
+                </div>
+                <div class="footerBar" style="margin-top:10px; gap:10px;">
+                  <a class="secondary" href="https://securitybrief.jasonjaysmart.com/admin/rules" target="_blank" rel="noopener">
+                    Open rules
+                  </a>
+                  <a class="secondary" href="https://securitybrief.jasonjaysmart.com/admin/settings/discovery" target="_blank" rel="noopener">
+                    Open discovery
+                  </a>
+                </div>
+              </div>
+
+              <div class="item">
+                <b>Launch posts</b>
+                <div class="muted">
+                  Review the welcome posts created from the blueprint and pin or edit them if needed.
+                </div>
+                <div class="footerBar" style="margin-top:10px;">
+                  <a class="secondary" href="https://securitybrief.jasonjaysmart.com/home" target="_blank" rel="noopener">
+                    Open home feed
+                  </a>
+                </div>
+              </div>
+
+              <div class="item">
+                <b>Announcements</b>
+                <div class="muted">
+                  Review the welcome announcement shown to members and visitors.
+                </div>
+                <div class="footerBar" style="margin-top:10px;">
+                  <a class="secondary" href="https://securitybrief.jasonjaysmart.com/admin/announcements" target="_blank" rel="noopener">
+                    Open announcements
+                  </a>
+                </div>
+              </div>
+
+              <div class="item">
+                <b>Invite links</b>
+                <div class="muted">
+                  Generate invite links for collaborators, founding members, or your first cohort.
+                </div>
+                <div class="footerBar" style="margin-top:10px;">
+                  <a class="primary" href="https://securitybrief.jasonjaysmart.com/admin/invites" target="_blank" rel="noopener">
+                    Open invite settings
+                  </a>
+                </div>
+              </div>
+
             </div>
-            <a class="stepToggleLink" href="#">Setup</a>
-          </div>
+          </section>
 
-          <div class="setupStepDetails">
-            <div class="muted stepHelper">
-              Complete the tasks below in Mastodon, save changes on every affected page, then click Done.
+          <section class="card overviewCard" style="margin-top:14px;">
+            <div class="overviewHeader">
+              <div>
+                <h3>Optional next step: community support</h3>
+                <div class="muted">
+                  Connect Stripe when you are ready to enable memberships, one-time contributions, or campaigns on your hub page.
+                </div>
+              </div>
             </div>
 
-            <div class="setupActions">
-              <a class="secondary" href="https://securitybrief.jasonjaysmart.com/settings/profile" target="_blank" style="width:auto;">
-                Open profile settings
+            <div class="footerBar" style="margin-top:12px;">
+              <a class="secondary" href="financial.html">
+                Open financial settings
               </a>
-              <a class="secondary" href="https://securitybrief.jasonjaysmart.com/settings/verification" target="_blank" style="width:auto;">
-                Open verification settings
-              </a>
             </div>
-            <div class="note">
-              <b>Extra fields order:</b> Website first, then remaining links in priority order.
-            </div>
+          </section>
 
-            <div class="stepPasteGroup large">
-              <div class="fieldHeader">
-                <label>Owner bio</label>
-                <button class="secondary copyBtn" type="button">Copy text</button>
-              </div>
-              <div class="stepTextWrap">
-                <textarea readonly>I am a national security analyst reporting from Kyiv on Russia’s war and the structures behind authoritarian power. My work connects real-time developments with historical and strategic context. I host this space to provide a continuous briefing for people tracking war, strategy, and reputational conflict.</textarea>
-              </div>
-              
-            </div>
-
-            <div class="stepPasteGroup large">
-              <div class="fieldHeader">
-                <label>Profile links</label>
-              </div>
-
-              <div class="card" style="padding:12px 14px;">
-                <div class="list" style="margin-top:0;">
-                  <div class="item" style="padding:10px 12px;">
-                    <b>Website</b>
-                    <div>https://jasonjaysmart.com</div>
-                  </div>
-                  <div class="item" style="padding:10px 12px;">
-                    <b>YouTube</b>
-                    <div>https://www.youtube.com/@JasonJaySmart</div>
-                  </div>
-                  <div class="item" style="padding:10px 12px;">
-                    <b>SubStack</b>
-                    <div>https://substack.com/@jasonjaysmart</div>
-                  </div>
-                  <div class="item" style="padding:10px 12px;">
-                    <b>Kyiv Post</b>
-                    <div>https://www.kyivpost.com/authors/5</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="stepPasteGroup large">
-              <div class="fieldHeader">
-                <label>Profile image</label>
-              </div>
-
-              <div class="card" style="padding:12px 14px;">
-                <div><b>Guidance</b></div>
-                <div class="muted" style="margin-top:4px;">
-                  Professional headshot with neutral background and strong lighting conveying authority and continuity with existing public presence.
-                </div>
-
-                <div style="margin-top:10px;"><b>Recommended size</b></div>
-                <div class="muted" style="margin-top:4px;">800x800</div>
-
-                <div style="margin-top:10px;"><b>Recommended formats</b></div>
-                <div class="muted" style="margin-top:4px;">png, jpg</div>
-
-                <div style="margin-top:10px;"><b>Notes</b></div>
-                <div class="muted" style="margin-top:4px;">
-                  Use a square image with the face centered and clearly readable at small sizes.
-                </div>
-
-                <div style="margin-top:14px; display:flex; gap:12px; align-items:center; flex-wrap:wrap;">
-                  <div id="profileImagePreview" style="
-                  width:72px;
-                  height:72px;
-                  border-radius:14px;
-                  border:1px solid var(--line);
-                  background:#eef3ef;
-                  display:flex;
-                  align-items:center;
-                  justify-content:center;
-                  color:var(--muted);
-                  font-size:12px;
-                  overflow:hidden;
-                  flex:0 0 auto;
-                  ">
-                  Preview
-                </div>
-
-                <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap;">
-                  <label class="secondary" style="width:auto; cursor:pointer;">
-                    Upload image
-                    <input id="profileImageUpload" type="file" accept="image/*" hidden>
-                  </label>
-                  <span class="muted">Opens Photos on mobile or files on desktop.</span>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="stepPasteGroup large">
-            <div class="fieldHeader">
-              <label>Header image</label>
-            </div>
-
-            <div class="card" style="padding:12px 14px;">
-              <div><b>Guidance</b></div>
-              <div class="muted" style="margin-top:4px;">
-                Reuse or adapt the main community banner so the owner profile and the site identity feel visually linked.
-              </div>
-
-              <div style="margin-top:10px;"><b>Recommended size</b></div>
-              <div class="muted" style="margin-top:4px;">1500x500</div>
-
-              <div style="margin-top:10px;"><b>Recommended formats</b></div>
-              <div class="muted" style="margin-top:4px;">png, jpg</div>
-
-              <div style="margin-top:10px;"><b>Notes</b></div>
-              <div class="muted" style="margin-top:4px;">
-                Usually best derived from the community banner artwork. Avoid small text near edges and keep important visual elements centered enough to survive cropping.
-              </div>
-
-              <div style="margin-top:14px;">
-                <div id="headerImagePreview" style="
-                width:100%;
-                height:120px;
-                border-radius:14px;
-                border:1px solid var(--line);
-                background:#eef3ef;
-                display:flex;
-                align-items:center;
-                justify-content:center;
-                color:var(--muted);
-                font-size:12px;
-                overflow:hidden;
-                ">
-                Header preview
-              </div>
-
-              <div style="margin-top:12px; display:flex; gap:10px; align-items:center; flex-wrap:wrap;">
-                <label class="secondary" style="width:auto; cursor:pointer;">
-                  Upload image
-                  <input id="headerImageUpload" type="file" accept="image/*" hidden>
-                </label>
-                <span class="muted">Opens Photos on mobile or files on desktop.</span>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="setupActions">
-          <button class="primary doneBtn" type="button">Done</button>
         </div>
       </div>
 
-      <div class="setupStepDoneBar">
-        <div class="setupStepDoneRow">
-          <span class="doneSummary">Owner profile, links, and images saved in Mastodon.</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- STEP 3 -->
-    <div class="setupStep locked" data-step="3" data-has-text="false">
-      <div class="setupStepHeader">
-        <div>
-          <div class="setupStepTitle">3. Community Branding Settings</div>
-          <div class="setupStepSummary">Apply branding, contact details, assets, and description so the space reads like your intended room.</div>
-        </div>
-        <a class="stepToggleLink" href="#">Setup</a>
-      </div>
-
-      <div class="setupStepDetails">
-        <div class="muted stepHelper">
-          Complete the tasks below in Mastodon, save changes on every affected page, then click Done.
-        </div>
-
-        <div class="setupActions">
-          <a class="secondary" href="https://securitybrief.jasonjaysmart.com/admin/settings/branding" target="_blank" style="width:auto;">
-            Open branding settings
-          </a>
-          <a class="secondary" href="https://securitybrief.jasonjaysmart.com/admin/settings/about" target="_blank" style="width:auto;">
-            Open about settings
-          </a>
-        </div>
-
-        <div class="note">
-          <b>Landing page:</b> Use <b>Local feed</b> so new visitors can immediately see the live conversation on this server.
-        </div>
-
-        <div class="stepPasteGroup compact">
-          <div class="fieldHeader">
-            <label>Contact username</label>
-            <button class="secondary copyBtn" type="button">Copy text</button>
-          </div>
-          <div class="stepTextWrap">
-            <textarea readonly>jasonjaysmart</textarea>
-          </div>
-        </div>
-
-        <div class="stepPasteGroup compact">
-          <div class="fieldHeader">
-            <label>Contact e-mail</label>
-            <button class="secondary copyBtn" type="button">Copy text</button>
-          </div>
-          <div class="stepTextWrap">
-            <textarea readonly>jason@jaysonjaysmart.com</textarea>
-          </div>
-        </div>
-
-        <div class="stepPasteGroup compact">
-          <div class="fieldHeader">
-            <label>Community name</label>
-            <button class="secondary copyBtn" type="button">Copy text</button>
-          </div>
-          <div class="stepTextWrap">
-            <textarea readonly>The Security Brief</textarea>
-          </div>
-
-        </div>
-
-        <div class="stepPasteGroup compact">
-         <div class="fieldHeader">
-          <label>Header line</label>
-          <button class="secondary copyBtn" type="button">Copy text</button>
-        </div>
-        <div class="stepTextWrap">
-          <textarea readonly>Real-Time Security Briefings</textarea>
-        </div>
-
-      </div>
-
-      <div class="stepPasteGroup compact">
-        <div class="fieldHeader">
-         <label>Short description</label>
-         <button class="secondary copyBtn" type="button">Copy text</button>
-       </div>
-
-       <div class="stepTextWrap">
-        <textarea readonly>A signal space for analysts, journalists, and operators tracking strategy, national security, and reputational warfare in real time.</textarea>
-      </div>
-
-    </div>
-
-    <div class="stepPasteGroup large">
-     <div class="fieldHeader">
-       <label>Long description / about text</label>
-       <button class="secondary copyBtn" type="button">Copy text</button>
-     </div>
-
-     <div class="stepTextWrap">
-      <textarea readonly>This is the live signal space for tracking strategy, national security developments, and reputational conflict shaping global power. It exists as a continuous briefing room where developments, sources, and analysis can accumulate in real time beyond the limits of traditional publishing cycles.
-
-        The Security Brief is for analysts, journalists, researchers, policy professionals, and highly engaged observers who follow strategic competition, authoritarian systems, and information warfare. It attracts people already working in or closely tracking this domain and creates a shared working context around fast-moving events.
-
-        Here you will find real-time signal: source material, contextual analysis, corrections, and collaborative sense-making as developments unfold. Posts build a durable record of events and interpretations that remain accessible long after the news cycle moves on.
-
-        This space operates independently from algorithmic feeds and editorial throttling. The goal is signal over noise — a place where serious participants can exchange verified context and sharpen understanding of complex geopolitical developments.
-
-      I host this space as part of my work reporting on Russia’s war against Ukraine and the broader structures of authoritarian power. It allows ongoing briefings and collaborative context that cannot exist inside traditional articles alone.</textarea>
-    </div>
-
-  </div>
-  <div class="stepPasteGroup large">
-    <div class="fieldHeader">
-      <label>Server thumbnail</label>
-    </div>
-
-    <div class="card" style="padding:12px 14px;">
-      <div><b>Guidance</b></div>
-      <div class="muted" style="margin-top:4px;">
-        Use the main community banner artwork (1600×500) or upload another banner.  We will compose the server thumbnail from this banner automatically.
-      </div>
-
-      <div style="margin-top:10px;"><b>Recommended size</b></div>
-      <div class="muted" style="margin-top:4px;">1600×500 (banner), composed thumbnail uses 1600×800 ratio</div>
-
-      <div style="margin-top:10px;"><b>Recommended formats</b></div>
-      <div class="muted" style="margin-top:4px;">png, jpg</div>
-
-      <div style="margin-top:10px;"><b>Notes</b></div>
-      <div class="muted" style="margin-top:4px;">
-        If you leave this blank, the header banner will be used.  You can upload a different banner below and preview the composed thumbnail.
-      </div>
-
-      <!-- Preview and upload controls -->
-      <div style="margin-top:14px;">
-        <div id="serverThumbnailPreview" style="
-        width:100%;
-        height:150px;
-        border-radius:14px;
-        border:1px solid var(--line);
-        background:#eef3ef;
-        display:flex;
-        align-items:center;
-        justify-content:center;
-        color:var(--muted);
-        font-size:12px;
-        overflow:hidden;
-        ">
-        Thumbnail preview
-      </div>
-
-      <div style="margin-top:10px; display:flex; gap:10px; align-items:center; flex-wrap:wrap;">
-        <label class="secondary" style="width:auto; cursor:pointer;">
-          Upload banner
-          <input id="serverBannerUpload" type="file" accept="image/*" hidden>
-        </label>
-        <span class="muted">1600×500 banner (png, jpg)</span>
-      </div>
-    </div>
-  </div>
-</div>
-
-</div>
-
-<!-- Favicon upload -->
-<div class="stepPasteGroup large">
-  <div class="fieldHeader">
-    <label>Favicon</label>
+    </main>
   </div>
 
-  <div class="card" style="padding:12px 14px;">
-    <div><b>Guidance</b></div>
-    <div class="muted" style="margin-top:4px;">
-      Use a single-color radar pulse mark centered on a dark background for strong tab visibility.
-    </div>
-
-    <div style="margin-top:10px;"><b>Recommended size</b></div>
-    <div class="muted" style="margin-top:4px;">512×512</div>
-
-    <div style="margin-top:10px;"><b>Recommended formats</b></div>
-    <div class="muted" style="margin-top:4px;">png</div>
-
-    <div style="margin-top:14px;">
-      <div id="faviconPreview" style="
-      width:64px;
-      height:64px;
-      border-radius:8px;
-      border:1px solid var(--line);
-      background:#eef3ef;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      color:var(--muted);
-      font-size:12px;
-      overflow:hidden;">
-      Preview
-    </div>
-
-    <div style="margin-top:10px; display:flex; gap:10px; align-items:center; flex-wrap:wrap;">
-      <label class="secondary" style="width:auto; cursor:pointer;">
-        Upload favicon
-        <input id="faviconUpload" type="file" accept="image/*" hidden />
-      </label>
-      <span class="muted">512×512 (png)</span>
-    </div>
-  </div>
-</div>
-</div>
-
-<!-- App icon upload -->
-<div class="stepPasteGroup large">
-  <div class="fieldHeader">
-    <label>App icon</label>
-  </div>
-
-  <div class="card" style="padding:12px 14px;">
-    <div><b>Guidance</b></div>
-    <div class="muted" style="margin-top:4px;">
-      Use the same radar signal symbol centered on a dark field for mobile install clarity and strong icon contrast.
-    </div>
-
-    <div style="margin-top:10px;"><b>Recommended size</b></div>
-    <div class="muted" style="margin-top:4px;">1024×1024</div>
-
-    <div style="margin-top:10px;"><b>Recommended formats</b></div>
-    <div class="muted" style="margin-top:4px;">png</div>
-
-    <div style="margin-top:14px;">
-      <div id="appIconPreview" style="
-      width:100px;
-      height:100px;
-      border-radius:20px;
-      border:1px solid var(--line);
-      background:#eef3ef;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      color:var(--muted);
-      font-size:12px;
-      overflow:hidden;">
-      Preview
-    </div>
-
-    <div style="margin-top:10px; display:flex; gap:10px; align-items:center; flex-wrap:wrap;">
-      <label class="secondary" style="width:auto; cursor:pointer;">
-        Upload icon
-        <input id="appIconUpload" type="file" accept="image/*" hidden />
-      </label>
-      <span class="muted">1024×1024 (png)</span>
-    </div>
-  </div>
-</div>
-</div>
-
-
-
-<div class="stepPasteGroup large">
-  <div class="fieldHeader">
-    <label>Privacy policy suggestion</label>
-    <button class="secondary copyBtn" type="button">Copy text</button>
-  </div>
-
-  <div class="stepTextWrap">
-    <textarea readonly>Privacy Policy
-
-      This community is operated by Commonshub in partnership with The Security Brief team.
-
-      We are committed to minimal data collection and transparent operation.
-
-      1. What We Collect
-      When you create an account, we store:
-      - The information you provide (username, email, profile details)
-      - Your posts and media
-      - Basic technical logs necessary to operate the service
-
-      2. How Your Data Is Used
-      Your data is used only to:
-      - Provide and maintain the service
-      - Enable federation with other servers
-      - Support moderation and community safety
-      - Prevent abuse and spam
-
-      We do not sell your data.
-      We do not run advertising.
-      We do not use behavioral tracking.
-
-      3. Public Content
-      Public posts are publicly accessible and may be copied, indexed, or shared by other servers in the Fediverse.
-
-      4. Media Storage & Backups
-      Media and posts may be stored and backed up on infrastructure used to operate this service.
-
-      5. Federation
-      Because this is a federated service:
-      - Content may be delivered to other servers
-      - Content from other servers may appear here
-
-      Servers that present safety or policy risks may be blocked.
-
-      6. Data Retention
-      If you delete your account, your profile data will be removed.
-      Some content may remain in backups or on federated servers.
-
-      7. Cookies & Analytics
-      Only essential technical functions are used to keep the service running.
-      No advertising or cross-site tracking is used.
-
-      8. Service Hosting
-      This service is hosted in:
-      [HOSTING COUNTRY]
-
-      9. Contact
-      For privacy questions or data requests, contact:
-    jason@jaysonjaysmart.com</textarea>
-  </div>
-</div>
-
-<div class="setupActions">
-  <button class="primary doneBtn" type="button">Done</button>
-</div>
-</div>
-
-
-<div class="setupStepDoneBar">
-
-  <div class="setupStepDoneRow">
-    <span class="doneSummary">Branding, about settings, assets, and privacy copy saved in Mastodon.</span>
-  </div>
-</div>
-</div>
-
-<!-- STEP 4 -->
-<div class="setupStep locked" data-step="4" data-has-text="false">
-  <div class="setupStepHeader">
-    <div>
-      <div class="setupStepTitle">4. Rules & Discovery Settings</div>
-      <div class="setupStepSummary">Set server rules, discovery defaults, recommended follows, and core hashtags.</div>
-    </div>
-    <a class="stepToggleLink" href="#">Setup</a>
-  </div>
-
-  <div class="setupStepDetails">
-    <div class="muted stepHelper">
-      Complete the tasks below in Mastodon, save changes on every affected page, then click Done.
-    </div>
-
-    <div class="setupActions">
-      <a class="secondary" href="https://securitybrief.jasonjaysmart.com/admin/rules" target="_blank" style="width:auto;">
-        Open rules settings
-      </a>
-      <a class="secondary" href="https://securitybrief.jasonjaysmart.com/admin/settings/discovery" target="_blank" style="width:auto;">
-        Open discovery settings
-      </a>
-    </div>
-
-    <div class="stepPasteGroup large">
-      <div class="fieldHeader">
-        <label>Server rules</label>
-        <button class="secondary copyBtn" type="button">Copy text</button>
-      </div>
-
-      <div class="stepTextWrap">
-        <textarea readonly>1. Be respectful
-          Debate ideas — don’t attack people. No harassment, slurs, or intimidation.
-
-          2. Add signal
-          Share context, sources, or informed perspective. Low-effort trolling and spam will be removed.
-
-          3. Stay on topic
-          Posts should relate to war, geopolitics, and the core focus of this community.
-
-          4. No self-promotion without participation
-          Relevant work is welcome when you are actively part of the conversation.
-
-          5. Protect safety and privacy
-        Do not share personal data, dox, or post information that could put anyone at risk.</textarea>
-      </div>
-    </div>
-
-    <div class="stepPasteGroup large">
-     <div class="fieldHeader">
-      <label>Core hashtags</label>
-      <button class="secondary copyBtn" type="button">Copy text</button>
-    </div>
-
-    <div class="stepTextWrap">
-      <textarea readonly>strategy
-        nationalsecurity
-        informationwarfare
-        geopolitics
-      authoritarianism</textarea>
-    </div>
-
-  </div>
-
-  <div class="stepPasteGroup large">
-    <div class="fieldHeader">
-      <label>Discovery recommendations</label>
-    </div>
-
-    <div class="card" style="padding:12px 14px;">
-      <div><b>Access to live feeds featuring local posts</b></div>
-      <div class="muted" style="margin-top:4px;">Everyone</div>
-
-      <div style="margin-top:10px;"><b>Access to live feeds featuring remote posts</b></div>
-      <div class="muted" style="margin-top:4px;">Everyone</div>
-
-      <div style="margin-top:10px;"><b>Access to hashtag and link feeds featuring local posts</b></div>
-      <div class="muted" style="margin-top:4px;">Everyone</div>
-
-      <div style="margin-top:10px;"><b>Access to hashtag and link feeds featuring remote posts</b></div>
-      <div class="muted" style="margin-top:4px;">Everyone</div>
-
-      <div style="margin-top:10px;"><b>Enable trends</b></div>
-      <div class="muted" style="margin-top:4px;">On</div>
-
-      <div style="margin-top:10px;"><b>Allow trends without prior review</b></div>
-      <div class="muted" style="margin-top:4px;">Off</div>
-
-      <div style="margin-top:10px;"><b>Always recommend these accounts to new users</b></div>
-      <div class="muted" style="margin-top:4px;">@jasonjaysmart</div>
-
-      <div style="margin-top:10px;"><b>Enable profile directory</b></div>
-      <div class="muted" style="margin-top:4px;">On</div>
-
-      <div style="margin-top:10px;"><b>Notes</b></div>
-      <div class="muted" style="margin-top:4px;">
-        Keep local and remote live feeds visible so visitors can immediately see activity. Leave trend review on so trending content stays moderated.
-      </div>
-    </div>
-  </div>  
-
-  <div class="stepPasteGroup large">
-    <div class="fieldHeader">
-      <label>Recommended follows</label>
-      <button class="secondary copyBtn" type="button">Copy text</button>
-    </div>
-
-    <div class="stepTextWrap">
-      <textarea readonly>@jasonjaysmart</textarea>
-    </div>
-  </div>
-
-
-  <div class="setupActions">
-    <button class="primary doneBtn" type="button">Done</button>
-  </div>
-</div>
-
-<div class="setupStepDoneBar">
-
-  <div class="setupStepDoneRow">
-    <span class="doneSummary">Rules, discovery defaults, and recommended follows saved in Mastodon.</span>
-  </div>
-</div>
-</div>
-
-<!-- STEP 5 -->
-<div class="setupStep locked" data-step="5" data-has-text="false">
-  <div class="setupStepHeader">
-    <div>
-      <div class="setupStepTitle">5. Create and Pin Posts</div>
-      <div class="setupStepSummary">Create your launch posts, publish them, then pin them in the correct profile order.</div>
-    </div>
-    <a class="stepToggleLink" href="#">Setup</a>
-  </div>
-
-  <div class="setupStepDetails">
-    <div class="muted stepHelper">
-      Complete the tasks below in Mastodon, save changes on every affected page, then click Done.
-    </div>
-
-    <div class="setupActions">
-      <a class="secondary" href="https://securitybrief.jasonjaysmart.com/home" target="_blank" style="width:auto;">
-        Open home feed
-      </a>
-    </div>
-
-    <div class="stepPasteGroup large">
-      <div class="fieldHeader">
-        <label>Pinning notes</label>
-      </div>
-
-      <div class="card" style="padding:12px 14px;">
-        <div><b>How to pin a post</b></div>
-        <div class="muted" style="margin-top:6px;">
-          1. Create the post.<br>
-          2. Click the <b>…</b> menu in the lower right of the post.<br>
-          3. Select <b>Pin on profile</b>.
-        </div>
-
-        <div style="margin-top:12px;"><b>Pin order</b></div>
-        <div class="muted" style="margin-top:6px;">
-          Pinned posts display in <b>LIFO</b> order — <b>last in, first out</b>.
-        </div>
-
-        <div class="muted" style="margin-top:8px;">
-          Example: if you want the profile to show:
-          <br>1. Welcome post
-          <br>2. How to participate
-          <br>3. Mobile apps
-          <br><br>
-          Pin them in this order:
-          <br>1. Mobile apps
-          <br>2. How to participate
-          <br>3. Welcome post
-        </div>
-      </div>
-    </div>
-
-    <div class="stepPasteGroup large">
-     <div class="fieldHeader">
-      <label>Welcome post</label>
-      <button class="secondary copyBtn" type="button">Copy text</button>
-    </div>
-    <div class="stepTextWrap">
-      <textarea readonly>This is the live signal space for tracking strategy, national security developments, and reputational conflict shaping global power. Here you will see sources, context, and real-time analysis as events unfold across the security landscape.
-
-        Participants here often bring field experience, research, or closely tracked information. Source material, corrections, and contextual additions are especially valuable contributions.
-
-      If you are new, start by introducing yourself and sharing the area of security or strategy you follow most closely.</textarea>
-    </div>
-  </div>
-
-  <div class="stepPasteGroup large">
-    <div class="fieldHeader">
-      <label>How to participate post</label>
-      <button class="secondary copyBtn" type="button">Copy text</button>
-    </div>
-    
-    <div class="stepTextWrap">
-      <textarea readonly>This space works best when participants bring signal.
-
-        Share primary sources, relevant reporting, or informed context that adds to the developing picture. Questions and corrections are welcome — the goal is better shared understanding of events as they unfold.
-
-      Bring context, not just takes.</textarea>
-    </div>
-    
-  </div>
-
-  <div class="stepPasteGroup large"> 
-   <div class="fieldHeader">
-    <label>Mobile apps post</label>
-    <button class="secondary copyBtn" type="button">Copy text</button>
-  </div>
-
-  
-  <div class="stepTextWrap">
-    <textarea readonly>For the best experience, install a Mastodon app on your phone.
-
-      Recommended apps:
-      • Ivory (iOS)
-      • Ice Cubes (iOS)
-      • Tusky (Android)
-
-    Once installed, simply sign in using your Security Brief account.</textarea>
-  </div>
-  
-</div>
-
-<div class="setupActions">
-  <button class="primary doneBtn" type="button">Done</button>
-</div>
-</div>
-
-
-<div class="setupStepDoneBar">
-
-  <div class="setupStepDoneRow">
-    <span class="doneSummary">Launch posts created and pinned in the intended profile order.</span>
-  </div>
-</div>
-</div>
-
-<!-- STEP 6 -->
-<div class="setupStep locked" data-step="6" data-has-text="false">
-  <div class="setupStepHeader">
-    <div>
-      <div class="setupStepTitle">6. Manage Announcements</div>
-      <div class="setupStepSummary">Create the banner that introduces the space to new visitors.</div>
-    </div>
-    <a class="stepToggleLink" href="#">Setup</a>
-  </div>
-
-  <div class="setupStepDetails">
-    <div class="muted stepHelper">
-      Complete the tasks below in Mastodon, save changes on every affected page, then click Done.
-    </div>
-
-    <div class="setupActions">
-      <a class="secondary" href="https://securitybrief.jasonjaysmart.com/admin/announcements" target="_blank" style="width:auto;">
-        Open announcement settings
-      </a>
-    </div>
-
-    <div class="stepPasteGroup large">
-      <div class="fieldHeader">
-        <label>Announcement settings notes</label>
-      </div>
-
-      <div class="card" style="padding:12px 14px;">
-        <div><b>How to create the welcome banner</b></div>
-
-        <div class="muted" style="margin-top:6px;">
-          1. Click <b>New announcement</b>.<br>
-          2. Paste the text below into the <b>Announcement</b> field.<br>
-          3. Leave all date fields empty.<br>
-          4. Click <b>Create announcement</b>.
-        </div>
-
-        <div style="margin-top:12px;"><b>Important defaults</b></div>
-
-        <div class="muted" style="margin-top:6px;">
-          • Leave <b>Start of event</b> empty.<br>
-          • Leave <b>End of event</b> empty.<br>
-          • Leave <b>Schedule publication</b> empty.<br><br>
-
-          Leaving these blank publishes the announcement immediately and keeps it visible as a persistent banner for new visitors.
-        </div>
-      </div>
-    </div>
-
-    <div class="stepPasteGroup large">
-     <div class="fieldHeader">
-      <label>Welcome announcement</label>
-      <button class="secondary copyBtn" type="button">Copy text</button>
-    </div>
-
-    
-    <div class="stepTextWrap">
-      <textarea readonly>This is the live signal space for tracking strategy, national security developments, and reputational conflict shaping global power. Here you will see sources, context, and real-time analysis as events unfold across the security landscape.
-
-        Participants here often bring field experience, research, or closely tracked information. Source material, corrections, and contextual additions are especially valuable contributions.
-
-      If you are new, start by introducing yourself and sharing the area of security or strategy you follow most closely.</textarea>
-    </div>
-    
-  </div>
-
-  <div class="setupActions">
-    <button class="primary doneBtn" type="button">Done</button>
-  </div>
-</div>
-
-<div class="setupStepDoneBar">
-
-  <div class="setupStepDoneRow">
-   <span class="doneSummary">Welcome announcement created and published in Mastodon.</span>
- </div>
-</div>
-</div>
-<!-- STEP 7 -->
-<div class="setupStep locked" data-step="7" data-has-text="false">
-  <div class="setupStepHeader">
-    <div>
-      <div class="setupStepTitle">7. Manage Invite Links</div>
-      <div class="setupStepSummary">Generate invite links for collaborators and your first cohort.</div>
-    </div>
-    <a class="stepToggleLink" href="#">Setup</a>
-  </div>
-  <div class="setupStepDetails">
-    <div class="muted stepHelper">
-      Complete the tasks below in Mastodon, save changes on every affected page, then click Done.
-    </div>
-
-    <div class="setupActions">
-      <a class="secondary" href="https://securitybrief.jasonjaysmart.com/admin/invites" target="_blank" style="width:auto;">
-        Open invite settings
-      </a>
-    </div>
-
-    <div class="stepPasteGroup large">
-      <div class="fieldHeader">
-        <label>Invite link settings</label>
-      </div>
-
-      <div class="card" style="padding:12px 14px;">
-
-        <div><b>Recommended settings for early cohorts</b></div>
-
-        <div class="muted" style="margin-top:6px;">
-          Set a limited number of uses and a short expiration window so invite links do not spread unintentionally.
-        </div>
-
-        <div style="margin-top:12px;"><b>Max number of uses</b></div>
-        <div class="muted" style="margin-top:4px;">
-          You can set invites from <b>1–100 uses</b>.
-          <br><br>
-          Suggested defaults:
-          <br>• 1–5 uses → direct invitations
-          <br>• 10–25 uses → small cohorts
-          <br>• 50–100 uses → public sharing
-        </div>
-
-        <div style="margin-top:12px;"><b>Expire after</b></div>
-        <div class="muted" style="margin-top:4px;">
-          Invite links can expire between <b>30 minutes and 1 week</b>.
-          <br><br>
-          Suggested defaults:
-          <br>• 1–6 hours → private messages
-          <br>• 24 hours → email invites
-          <br>• 3–7 days → newsletter or article links
-        </div>
-
-        <div style="margin-top:12px;"><b>Optional</b></div>
-        <div class="muted" style="margin-top:4px;">
-          Enable <b>"Invite to follow your account"</b> so new members automatically follow you when they join.
-        </div>
-
-      </div>
-    </div>
-
-
-
-    <div class="stepPasteGroup large">
-     <div class="fieldHeader">
-       <label>Invite message template</label>
-       <button class="secondary copyBtn" type="button">Copy text</button>
-     </div>
-     
-     <div class="stepTextWrap">
-      <textarea readonly>I’ve launched a new real-time briefing space called The Security Brief where analysts, journalists, and researchers track strategy, national security, and reputational conflict together.
-
-        You can join the ongoing signal here:
-      https://securitybrief.jasonjaysmart.com</textarea>
-    </div> 
-  </div>
-  <div class="stepPasteGroup large">
-    <div class="fieldHeader">
-      <label>Hub page invite option</label>
-    </div>
-
-    <div class="card" style="padding:12px 14px;">
-      <div><b>Show invite action on the hub page</b></div>
-      <div class="muted" style="margin-top:6px;">
-        Decide whether visitors should be able to request or generate invites directly from your hub page.
-      </div>
-
-      <div class="list" style="margin-top:12px; gap:10px;">
-        <label class="item" style="display:flex; gap:10px; align-items:flex-start; cursor:pointer;">
-          <input type="radio" name="hubInviteMode" checked />
-          <div>
-            <b>Off</b>
-            <div class="muted">Do not show any invite action on the hub page. Owner generates invites manually in Mastodon.</div>
-          </div>
-        </label>
-
-        <label class="item" style="display:flex; gap:10px; align-items:flex-start; cursor:pointer;">
-          <input type="radio" name="hubInviteMode" />
-          <div>
-            <b>Manual request flow</b>
-            <div class="muted">Show interest / request access on the hub page, but do not generate invites automatically.</div>
-          </div>
-        </label>
-
-        <label class="item" style="display:flex; gap:10px; align-items:flex-start; cursor:pointer;">
-          <input type="radio" name="hubInviteMode" />
-          <div>
-            <b>Automatic invite generation</b>
-            <div class="muted">Allow Commonshub to generate invites from the hub page. Best only when you want low-friction growth.</div>
-          </div>
-        </label>
-      </div>
-
-      <div class="note" style="margin-top:12px;">
-        <b>Later option:</b> Hub page invite access can also be placed behind a contribution requirement if you want supporters to unlock access first.
-      </div>
-    </div>
-  </div>
-  <div class="setupActions">
-    <button class="primary doneBtn" type="button">Done</button>
-  </div>
-</div>
-
-
-
-<div class="setupStepDoneBar">
- <div class="setupStepDoneRow">
-  <span class="doneSummary">Invite links generated and ready to share.</span>
-</div>
-</div>
-</div>
-</div>
-</section>
-</div>
-</div>
-</main>
-</div>
-<script src="assets/app.js"></script>
+  <script src="assets/app.js"></script>
 </body>
 </html>
