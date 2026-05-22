@@ -1898,3 +1898,35 @@ body.dashboard .settingsLink.primary{
     font-weight:750;
   }
 }
+
+/* Top community review CTA row */
+body.dashboard .launchActions{
+  margin-top:12px;
+  gap:12px;
+  display:grid;
+  grid-template-columns:1fr 1fr 1fr;
+}
+
+body.dashboard .launchActions .primary,
+body.dashboard .launchActions .secondary{
+  width:100%;
+  min-width:0;
+  font-size:15px;
+  padding:12px 14px;
+}
+
+@media (max-width:720px){
+  body.dashboard .launchActions{
+    grid-template-columns:1fr 1fr;
+  }
+
+  body.dashboard .launchActions .primary{
+    grid-column:1 / -1;
+  }
+
+  body.dashboard .launchActions .primary,
+  body.dashboard .launchActions .secondary{
+    font-size:15px;
+    min-height:54px;
+  }
+}
