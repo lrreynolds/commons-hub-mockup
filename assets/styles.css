@@ -1074,34 +1074,38 @@ body.flow.flowDark .guideNoteSubtle b{
 }
 
 @media (max-width: 720px){
-  .settingsList{
+  body.dashboard .settingsList{
     grid-template-columns:1fr;
   }
 
-  .settingsItem{
-    padding:18px;
+  body.dashboard .settingsItem{
+    padding:16px;
     border-radius:18px;
   }
 
-  .settingsItem b{
-    font-size:20px;
-    line-height:1.15;
+  body.dashboard .settingsItem b{
+    font-size:16px;
+    line-height:1.2;
   }
 
-  .settingsItem .muted{
-    font-size:17px;
+  body.dashboard .settingsItem .muted{
+    font-size:14px;
     line-height:1.45;
   }
 
-  .settingsActions{
-    margin-top:14px;
+  body.dashboard .settingsActions{
+    margin-top:12px;
   }
 
-  .settingsLink{
-    min-height:48px;
-    padding:0 18px;
-    border-radius:16px;
-    font-size:17px;
+  body.dashboard .settingsLink{
+    min-height:42px;
+    padding:0 14px;
+    border-radius:14px;
+    font-size:14px;
+  }
+
+  body.dashboard .settingsLink.primary{
+    width:100%;
   }
 }
 
