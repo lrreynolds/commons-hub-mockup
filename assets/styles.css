@@ -1811,6 +1811,24 @@ overflow: hidden;
 min-height: 120px;
 }
 
+.toggleBtn{
+  appearance:none;
+  border:1px solid var(--line);
+  background:#fff;
+  color:var(--cardText);
+  border-radius:12px;
+  padding:10px 14px;
+  font-size:13px;
+  font-weight:800;
+  cursor:pointer;
+}
+
+.toggleBtn.active{
+  background:rgba(31,111,74,.10);
+  color:var(--accent);
+  border-color:rgba(31,111,74,.35);
+}
+
 /* =========================================================
 Community review shortcuts
 ========================================================= */
