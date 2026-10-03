@@ -1,0 +1,637 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Community Media Search POC</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: #fff;
+      color: #172033;
+      font-family:
+        Inter,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+    }
+
+    /*
+      Embeddable component boundary.
+      The surrounding HubPage/customer site supplies its own branding.
+    */
+    .community-media {
+      width: 100%;
+      max-width: 760px;
+      padding: 24px;
+    }
+
+    /* =========================================================
+       CHANNEL DIRECTORY / SEARCH SCOPE
+       ========================================================= */
+
+    .channels {
+      margin-bottom: 26px;
+    }
+
+    .channels-header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 12px;
+    }
+
+    .channels-title {
+      margin: 0;
+      font-size: 16px;
+      font-weight: 700;
+    }
+
+    .select-all {
+      padding: 0;
+      border: 0;
+      background: none;
+      color: #0284c7;
+      font: inherit;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .select-all:hover {
+      text-decoration: underline;
+    }
+
+    .channel-list {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px 24px;
+      padding: 14px 16px;
+      border: 1px solid #e1e6ed;
+      border-radius: 9px;
+      background: #fafbfc;
+    }
+
+    .channel-option {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      min-width: 0;
+    }
+
+    .channel-option input {
+      width: 16px;
+      height: 16px;
+      margin: 0;
+      accent-color: #0ea5e9;
+      cursor: pointer;
+      flex: 0 0 auto;
+    }
+
+    /*
+      Clicking the channel name is the browse action.
+      In production these URLs would be supplied from the
+      community's associated PeerTube channels.
+    */
+    .channel-link {
+      color: #243247;
+      font-size: 14px;
+      font-weight: 600;
+      text-decoration: none;
+      line-height: 1.35;
+    }
+
+    .channel-link:hover {
+      color: #0284c7;
+      text-decoration: underline;
+    }
+
+    .channel-help {
+      margin: 9px 0 0;
+      color: #7a8699;
+      font-size: 12px;
+      line-height: 1.4;
+    }
+
+    /* =========================================================
+       SEARCH
+       ========================================================= */
+
+    .search-form {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 32px;
+    }
+
+    .search-input {
+      flex: 1;
+      min-width: 0;
+      height: 44px;
+      padding: 0 14px;
+      border: 1px solid #cbd3df;
+      border-radius: 8px;
+      color: #172033;
+      font: inherit;
+      font-size: 15px;
+      outline: none;
+    }
+
+    .search-input:focus {
+      border-color: #0ea5e9;
+      box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.12);
+    }
+
+    .search-button {
+      height: 44px;
+      padding: 0 18px;
+      border: 0;
+      border-radius: 8px;
+      background: #0ea5e9;
+      color: #fff;
+      font: inherit;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .search-button:hover {
+      background: #0284c7;
+    }
+
+    /* =========================================================
+       RESULTS GROUPED BY CHANNEL
+       ========================================================= */
+
+    .channel-results {
+      margin-bottom: 38px;
+    }
+
+    .results-heading {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 4px;
+    }
+
+    .results-channel-name {
+      margin: 0;
+      font-size: 16px;
+      line-height: 1.3;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .results-heading-line {
+      width: 100%;
+      height: 1px;
+      background: #dfe4eb;
+    }
+
+    .result {
+      padding: 18px 0 20px;
+      border-bottom: 1px solid #edf0f4;
+    }
+
+    .result:last-child {
+      border-bottom: 0;
+    }
+
+    .result-title {
+      margin: 0 0 5px;
+      font-size: 18px;
+      line-height: 1.35;
+      font-weight: 650;
+    }
+
+    .result-time {
+      margin-bottom: 11px;
+      color: #64748b;
+      font-size: 14px;
+      font-weight: 500;
+    }
+
+    .result-snippet {
+      margin: 0 0 15px;
+      max-width: 680px;
+      color: #394457;
+      font-size: 15px;
+      line-height: 1.55;
+    }
+
+    .play-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 8px 13px;
+      border: 1px solid #cbd3df;
+      border-radius: 7px;
+      background: #fff;
+      color: #172033;
+      font: inherit;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .play-button:hover {
+      background: #f8fafc;
+    }
+
+    .play-icon {
+      font-size: 12px;
+    }
+
+    /* =========================================================
+       MOBILE
+       ========================================================= */
+
+    @media (max-width: 600px) {
+      .community-media {
+        padding: 16px;
+      }
+
+      .channel-list {
+        grid-template-columns: 1fr;
+      }
+
+      .search-form {
+        flex-direction: column;
+      }
+
+      .search-button {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <main class="community-media">
+
+    <!-- =====================================================
+         CHANNELS
+
+         The checkbox controls search scope.
+         The channel name itself is a link for browsing.
+         ===================================================== -->
+
+    <section class="channels">
+
+      <div class="channels-header">
+        <h2 class="channels-title">Channels</h2>
+
+        <button
+          class="select-all"
+          id="selectAllButton"
+          type="button"
+        >
+          Clear all
+        </button>
+      </div>
+
+      <div class="channel-list">
+
+        <div class="channel-option">
+          <input
+            type="checkbox"
+            id="channel-healing"
+            name="channels"
+            value="healing-exchange"
+            checked
+          >
+          <a
+            class="channel-link"
+            href="#"
+            title="Browse all programs in Healing Exchange"
+          >
+            Healing Exchange
+          </a>
+        </div>
+
+        <div class="channel-option">
+          <input
+            type="checkbox"
+            id="channel-practitioner"
+            name="channels"
+            value="practitioner-interviews"
+            checked
+          >
+          <a
+            class="channel-link"
+            href="#"
+            title="Browse all Practitioner Interviews"
+          >
+            Practitioner Interviews
+          </a>
+        </div>
+
+        <div class="channel-option">
+          <input
+            type="checkbox"
+            id="channel-conversations"
+            name="channels"
+            value="community-conversations"
+            checked
+          >
+          <a
+            class="channel-link"
+            href="#"
+            title="Browse all Community Conversations"
+          >
+            Community Conversations
+          </a>
+        </div>
+
+        <div class="channel-option">
+          <input
+            type="checkbox"
+            id="channel-education"
+            name="channels"
+            value="continuing-education"
+            checked
+          >
+          <a
+            class="channel-link"
+            href="#"
+            title="Browse all Continuing Education programs"
+          >
+            Continuing Education
+          </a>
+        </div>
+
+      </div>
+
+      <p class="channel-help">
+        Select the channels to search, or choose a channel name to browse its programs.
+      </p>
+
+    </section>
+
+
+    <!-- =====================================================
+         SEARCH
+         ===================================================== -->
+
+    <form class="search-form" onsubmit="return false;">
+
+      <input
+        class="search-input"
+        type="search"
+        value="soil health and composting"
+        placeholder="Search programs and transcripts"
+        aria-label="Search programs and transcripts"
+      >
+
+      <button class="search-button" type="submit">
+        Search
+      </button>
+
+    </form>
+
+
+    <!-- =====================================================
+         RESULTS — HEALING EXCHANGE
+         ===================================================== -->
+
+    <section class="channel-results">
+
+      <div class="results-heading">
+        <h2 class="results-channel-name">
+          Healing Exchange
+        </h2>
+        <div class="results-heading-line"></div>
+      </div>
+
+
+      <article class="result">
+
+        <h3 class="result-title">
+          Understanding Soil Health
+        </h3>
+
+        <div class="result-time">
+          18:42–21:16
+        </div>
+
+        <p class="result-snippet">
+          “…the important thing about compost isn't simply adding nutrients.
+          You're introducing an entire biological community, and over time
+          that changes how the soil holds water and makes nutrients available
+          to the plant…”
+        </p>
+
+        <button class="play-button" type="button">
+          <span class="play-icon">▶</span>
+          Play
+        </button>
+
+      </article>
+
+
+      <article class="result">
+
+        <h3 class="result-title">
+          Restoring the Soil Microbiome
+        </h3>
+
+        <div class="result-time">
+          31:08–33:27
+        </div>
+
+        <p class="result-snippet">
+          “…healthy soil isn't really an inert growing medium. It's a living
+          ecosystem. Once we started treating the microbial community as part
+          of the system, we saw very different results from simply adding
+          fertilizer…”
+        </p>
+
+        <button class="play-button" type="button">
+          <span class="play-icon">▶</span>
+          Play
+        </button>
+
+      </article>
+
+    </section>
+
+
+    <!-- =====================================================
+         RESULTS — PRACTITIONER INTERVIEWS
+         ===================================================== -->
+
+    <section class="channel-results">
+
+      <div class="results-heading">
+        <h2 class="results-channel-name">
+          Practitioner Interviews
+        </h2>
+        <div class="results-heading-line"></div>
+      </div>
+
+
+      <article class="result">
+
+        <h3 class="result-title">
+          Regenerative Agriculture with Jane Smith
+        </h3>
+
+        <div class="result-time">
+          08:17–10:04
+        </div>
+
+        <p class="result-snippet">
+          “…we started looking at soil structure rather than simply nutrient
+          levels, and that's when we began seeing a relationship between
+          compost, water retention, and the resilience of the plants during
+          dry periods…”
+        </p>
+
+        <button class="play-button" type="button">
+          <span class="play-icon">▶</span>
+          Play
+        </button>
+
+      </article>
+
+
+      <article class="result">
+
+        <h3 class="result-title">
+          Building Healthy Soil in Small Urban Gardens
+        </h3>
+
+        <div class="result-time">
+          22:51–24:32
+        </div>
+
+        <p class="result-snippet">
+          “…even in a very small garden, repeated applications of good compost
+          can change the soil dramatically. The biggest difference we noticed
+          was how much longer the beds retained moisture between watering…”
+        </p>
+
+        <button class="play-button" type="button">
+          <span class="play-icon">▶</span>
+          Play
+        </button>
+
+      </article>
+
+    </section>
+
+
+    <!-- =====================================================
+         RESULTS — COMMUNITY CONVERSATIONS
+         ===================================================== -->
+
+    <section class="channel-results">
+
+      <div class="results-heading">
+        <h2 class="results-channel-name">
+          Community Conversations
+        </h2>
+        <div class="results-heading-line"></div>
+      </div>
+
+
+      <article class="result">
+
+        <h3 class="result-title">
+          Composting, Water, and Resilient Communities
+        </h3>
+
+        <div class="result-time">
+          42:07–44:31
+        </div>
+
+        <p class="result-snippet">
+          “…composting turned out to be about much more than waste reduction.
+          Once people saw what it did for the soil, it became part of a much
+          broader conversation about local food, water use, and community
+          resilience…”
+        </p>
+
+        <button class="play-button" type="button">
+          <span class="play-icon">▶</span>
+          Play
+        </button>
+
+      </article>
+
+    </section>
+
+  </main>
+
+
+  <script>
+    /*
+      Demonstration only.
+
+      If all channels are selected:
+        button = "Clear all"
+
+      If one or more channels are unselected:
+        button = "Select all"
+
+      Search implementation would send the IDs of the checked
+      channels as the requested search scope.
+    */
+
+    const selectAllButton =
+      document.getElementById("selectAllButton");
+
+    const channelCheckboxes =
+      Array.from(
+        document.querySelectorAll(
+          'input[name="channels"]'
+        )
+      );
+
+    function allChannelsSelected() {
+      return channelCheckboxes.every(
+        checkbox => checkbox.checked
+      );
+    }
+
+    function updateSelectAllButton() {
+      selectAllButton.textContent =
+        allChannelsSelected()
+          ? "Clear all"
+          : "Select all";
+    }
+
+    selectAllButton.addEventListener(
+      "click",
+      () => {
+        const shouldSelect =
+          !allChannelsSelected();
+
+        channelCheckboxes.forEach(
+          checkbox => {
+            checkbox.checked = shouldSelect;
+          }
+        );
+
+        updateSelectAllButton();
+      }
+    );
+
+    channelCheckboxes.forEach(
+      checkbox => {
+        checkbox.addEventListener(
+          "change",
+          updateSelectAllButton
+        );
+      }
+    );
+  </script>
+
+</body>
+</html>
