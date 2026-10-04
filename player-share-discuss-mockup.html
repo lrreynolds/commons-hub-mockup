@@ -1,0 +1,1296 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Commonshub Media Player POC</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: #fff;
+      color: #172033;
+      font-family:
+        Inter,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+    }
+
+    .media-player {
+      width: 100%;
+      max-width: 760px;
+      padding: 24px;
+    }
+
+    /* =========================================================
+       PLAYER
+       ========================================================= */
+
+    .player-frame {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      overflow: hidden;
+      border-radius: 9px;
+      background: #111827;
+      color: #fff;
+    }
+
+    .player-placeholder {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .large-play-button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 64px;
+      height: 64px;
+      padding-left: 4px;
+      border: 0;
+      border-radius: 50%;
+      background: rgba(255,255,255,.94);
+      color: #111827;
+      font-size: 23px;
+      cursor: pointer;
+    }
+
+    .player-controls {
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px;
+      background:
+        linear-gradient(
+          to top,
+          rgba(0,0,0,.75),
+          rgba(0,0,0,0)
+        );
+    }
+
+    .control-play {
+      border: 0;
+      background: transparent;
+      color: #fff;
+      font-size: 15px;
+      cursor: pointer;
+    }
+
+    .progress {
+      flex: 1;
+      accent-color: #fff;
+      cursor: pointer;
+    }
+
+    .player-time {
+      min-width: 92px;
+      color: #fff;
+      font-size: 12px;
+      text-align: right;
+      white-space: nowrap;
+    }
+
+    /* =========================================================
+       PROGRAM BAR
+       ========================================================= */
+
+    .program-bar {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      padding-top: 14px;
+    }
+
+    .program-info {
+      min-width: 0;
+    }
+
+    .program-title {
+      margin: 0 0 4px;
+      font-size: 19px;
+      line-height: 1.35;
+      font-weight: 700;
+    }
+
+    .program-location {
+      color: #64748b;
+      font-size: 14px;
+      font-weight: 500;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .player-actions {
+      display: flex;
+      flex: 0 0 auto;
+      gap: 8px;
+    }
+
+    .action-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      min-height: 36px;
+      padding: 7px 13px;
+      border: 1px solid #cbd3df;
+      border-radius: 7px;
+      background: #fff;
+      color: #172033;
+      font: inherit;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .action-button:hover {
+      background: #f8fafc;
+    }
+
+    /* =========================================================
+       POPOVERS
+       ========================================================= */
+
+    .popover {
+      position: absolute;
+      z-index: 10;
+      top: calc(100% + 10px);
+      right: 0;
+      display: none;
+      border: 1px solid #dbe1e8;
+      border-radius: 10px;
+      background: #fff;
+      box-shadow:
+        0 12px 30px rgba(15,23,42,.14);
+    }
+
+    .popover.open {
+      display: block;
+    }
+
+    /*
+      Shared media context styling.
+
+      At 0:00:
+        Understanding Soil Health
+
+      Otherwise:
+        Understanding Soil Health at 18:42
+    */
+
+    .media-context {
+      color: #475569;
+      font-size: 12px;
+      font-weight: 600;
+      line-height: 1.4;
+      text-align: center;
+    }
+
+    /* =========================================================
+       SHARE
+       ========================================================= */
+
+    .share-popover {
+      width: 285px;
+      padding: 12px 14px 11px;
+    }
+
+    .share-title {
+      margin: 0 0 4px;
+      font-size: 15px;
+      font-weight: 700;
+      text-align: center;
+    }
+
+    .share-popover .media-context {
+      margin-bottom: 10px;
+    }
+
+    .share-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 7px;
+    }
+
+    .share-action {
+      min-height: 29px;
+      padding: 4px 11px;
+      border: 1px solid #cbd3df;
+      border-radius: 6px;
+      background: #fff;
+      color: #172033;
+      font: inherit;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .share-action:hover {
+      background: #f8fafc;
+    }
+
+    .share-action.primary {
+      border-color: #0ea5e9;
+      background: #0ea5e9;
+      color: #fff;
+    }
+
+    .share-action.primary:hover {
+      background: #0284c7;
+    }
+
+    .copy-status {
+      height: 10px;
+      margin-top: 2px;
+      color: #64748b;
+      font-size: 11px;
+      text-align: center;
+    }
+
+    /* =========================================================
+       DISCUSS — IDENTITY
+       ========================================================= */
+
+    .discuss-popover {
+      width: 340px;
+      padding: 16px;
+    }
+
+    .discuss-title {
+      margin: 0 0 4px;
+      font-size: 15px;
+      font-weight: 700;
+      text-align: center;
+    }
+
+    .discuss-subtitle {
+      margin: 0 0 14px;
+      color: #64748b;
+      font-size: 12px;
+      text-align: center;
+    }
+
+    .community-login {
+      width: 100%;
+      min-height: 38px;
+      padding: 7px 12px;
+      border: 1px solid #0ea5e9;
+      border-radius: 7px;
+      background: #0ea5e9;
+      color: #fff;
+      font: inherit;
+      font-size: 13px;
+      font-weight: 650;
+      cursor: pointer;
+    }
+
+    .community-login:hover {
+      background: #0284c7;
+    }
+
+    .other-account {
+      display: block;
+      width: 100%;
+      margin-top: 10px;
+      padding: 2px;
+      border: 0;
+      background: transparent;
+      color: #0284c7;
+      font: inherit;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .other-account:hover {
+      text-decoration: underline;
+    }
+
+    /* =========================================================
+       DISCUSS — COMPOSER
+       ========================================================= */
+
+    .composer-popover {
+      width: 390px;
+      padding: 14px;
+    }
+
+    .composer-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 4px;
+    }
+
+    .composer-title {
+      margin: 0;
+      font-size: 15px;
+      font-weight: 700;
+    }
+
+    .composer-identity {
+      color: #64748b;
+      font-size: 11px;
+      white-space: nowrap;
+    }
+
+    .composer-popover .media-context {
+      margin-bottom: 9px;
+      text-align: left;
+    }
+
+    .composer-textarea {
+      display: block;
+      width: 100%;
+      height: 92px;
+      resize: vertical;
+      padding: 10px;
+      border: 1px solid #cbd3df;
+      border-radius: 7px;
+      outline: none;
+      color: #172033;
+      background: #fff;
+      font: inherit;
+      font-size: 14px;
+      line-height: 1.45;
+    }
+
+    .composer-textarea:focus {
+      border-color: #0ea5e9;
+      box-shadow:
+        0 0 0 3px rgba(14,165,233,.10);
+    }
+
+    .composer-footer {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 10px;
+      margin-top: 8px;
+    }
+
+    .character-count {
+      color: #64748b;
+      font-size: 11px;
+      font-variant-numeric: tabular-nums;
+      white-space: nowrap;
+    }
+
+    .post-button {
+      min-height: 30px;
+      padding: 5px 14px;
+      border: 1px solid #0ea5e9;
+      border-radius: 6px;
+      background: #0ea5e9;
+      color: #fff;
+      font: inherit;
+      font-size: 12px;
+      font-weight: 650;
+      cursor: pointer;
+    }
+
+    .post-button:disabled {
+      border-color: #cbd3df;
+      background: #e2e8f0;
+      color: #94a3b8;
+      cursor: default;
+    }
+
+    /* =========================================================
+       MOBILE
+       ========================================================= */
+
+    @media (max-width: 520px) {
+
+      .media-player {
+        padding: 16px;
+      }
+
+      .program-bar {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 11px;
+      }
+
+      .program-title {
+        font-size: 18px;
+      }
+
+      .popover {
+        right: auto;
+        left: 0;
+        max-width: calc(100vw - 32px);
+      }
+
+      .composer-header {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 3px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<main class="media-player">
+
+  <!-- =======================================================
+       PLAYER
+       ======================================================= -->
+
+  <div class="player-frame">
+
+    <div class="player-placeholder">
+
+      <button
+        id="largePlay"
+        class="large-play-button"
+        type="button"
+        aria-label="Play"
+      >
+        ▶
+      </button>
+
+    </div>
+
+    <div class="player-controls">
+
+      <button
+        id="controlPlay"
+        class="control-play"
+        type="button"
+        aria-label="Play"
+      >
+        ▶
+      </button>
+
+      <input
+        id="progress"
+        class="progress"
+        type="range"
+        min="0"
+        max="3128"
+        value="1122"
+        aria-label="Playback position"
+      >
+
+      <span
+        id="playerTime"
+        class="player-time"
+      >
+        18:42 / 52:08
+      </span>
+
+    </div>
+
+  </div>
+
+
+  <!-- =======================================================
+       COMMONSHUB WRAPPER
+       ======================================================= -->
+
+  <div class="program-bar">
+
+    <div class="program-info">
+
+      <h1 class="program-title">
+        Understanding Soil Health
+      </h1>
+
+      <div
+        id="programLocation"
+        class="program-location"
+      >
+        18:42
+      </div>
+
+    </div>
+
+
+    <div class="player-actions">
+
+      <button
+        id="shareButton"
+        class="action-button"
+        type="button"
+      >
+        ↗ Share
+      </button>
+
+      <button
+        id="discussButton"
+        class="action-button"
+        type="button"
+      >
+        💬 Discuss
+      </button>
+
+    </div>
+
+
+    <!-- =====================================================
+         SHARE
+         ===================================================== -->
+
+    <div
+      id="sharePopover"
+      class="popover share-popover"
+    >
+
+      <h2 class="share-title">
+        Share
+      </h2>
+
+      <div
+        id="shareContext"
+        class="media-context"
+      >
+        Understanding Soil Health at 18:42
+      </div>
+
+
+      <div class="share-buttons">
+
+        <button
+          id="copyButton"
+          class="share-action"
+          type="button"
+        >
+          Copy link
+        </button>
+
+        <button
+          id="nativeShareButton"
+          class="share-action primary"
+          type="button"
+        >
+          Share…
+        </button>
+
+      </div>
+
+
+      <div
+        id="copyStatus"
+        class="copy-status"
+        aria-live="polite"
+      ></div>
+
+    </div>
+
+
+    <!-- =====================================================
+         FIRST-TIME DISCUSS IDENTITY
+         ===================================================== -->
+
+    <div
+      id="discussPopover"
+      class="popover discuss-popover"
+    >
+
+      <h2 class="discuss-title">
+        Discuss
+      </h2>
+
+      <p class="discuss-subtitle">
+        Post using your Fediverse account
+      </p>
+
+      <button
+        id="communityLogin"
+        class="community-login"
+        type="button"
+      >
+        Use Healing Exchange account
+      </button>
+
+      <button
+        id="otherAccount"
+        class="other-account"
+        type="button"
+      >
+        Use another Fediverse account
+      </button>
+
+    </div>
+
+
+    <!-- =====================================================
+         DISCUSS COMPOSER
+         ===================================================== -->
+
+    <div
+      id="composerPopover"
+      class="popover composer-popover"
+    >
+
+      <div class="composer-header">
+
+        <h2 class="composer-title">
+          Discuss
+        </h2>
+
+        <div class="composer-identity">
+          @jane@healingexchange.tcmclinic.org
+        </div>
+
+      </div>
+
+
+      <div
+        id="discussContext"
+        class="media-context"
+      >
+        Understanding Soil Health at 18:42
+      </div>
+
+
+      <textarea
+        id="composerText"
+        class="composer-textarea"
+        maxlength="1500"
+        placeholder="Add your thoughts…"
+      ></textarea>
+
+
+      <div class="composer-footer">
+
+        <span
+          id="characterCount"
+          class="character-count"
+        >
+          0 / 1500
+        </span>
+
+        <button
+          id="postButton"
+          class="post-button"
+          type="button"
+          disabled
+        >
+          Post
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</main>
+
+
+<script>
+
+  const duration = 3128;
+
+  const programTitle =
+    "Understanding Soil Health";
+
+  const programUrl =
+    "https://media.example.org/w/abc123";
+
+
+  /*
+    MOCK ONLY.
+
+    Production:
+    retrieve this from the authenticated user's
+    Mastodon server configuration.
+  */
+
+  const maxCharacters = 1500;
+
+
+  const progress =
+    document.getElementById("progress");
+
+  const playerTime =
+    document.getElementById("playerTime");
+
+  const programLocation =
+    document.getElementById("programLocation");
+
+  const shareContext =
+    document.getElementById("shareContext");
+
+  const discussContext =
+    document.getElementById("discussContext");
+
+  const shareButton =
+    document.getElementById("shareButton");
+
+  const discussButton =
+    document.getElementById("discussButton");
+
+  const sharePopover =
+    document.getElementById("sharePopover");
+
+  const discussPopover =
+    document.getElementById("discussPopover");
+
+  const composerPopover =
+    document.getElementById("composerPopover");
+
+  const communityLogin =
+    document.getElementById("communityLogin");
+
+  const otherAccount =
+    document.getElementById("otherAccount");
+
+  const composerText =
+    document.getElementById("composerText");
+
+  const characterCount =
+    document.getElementById("characterCount");
+
+  const postButton =
+    document.getElementById("postButton");
+
+  const copyButton =
+    document.getElementById("copyButton");
+
+  const nativeShareButton =
+    document.getElementById("nativeShareButton");
+
+  const copyStatus =
+    document.getElementById("copyStatus");
+
+  const controlPlay =
+    document.getElementById("controlPlay");
+
+  const largePlay =
+    document.getElementById("largePlay");
+
+
+  let playing = false;
+  let timer = null;
+
+
+  function formatTime(seconds) {
+
+    const minutes =
+      Math.floor(seconds / 60);
+
+    const secs =
+      seconds % 60;
+
+    return (
+      minutes +
+      ":" +
+      String(secs).padStart(2, "0")
+    );
+  }
+
+
+  /*
+    Shared semantic rule:
+
+    0:00
+      Understanding Soil Health
+
+    otherwise
+      Understanding Soil Health at 18:42
+  */
+
+  function formatProgramContext(seconds) {
+
+    if (seconds === 0) {
+      return programTitle;
+    }
+
+    return (
+      programTitle +
+      " at " +
+      formatTime(seconds)
+    );
+  }
+
+
+  /*
+    PLAYER POSITION IS THE SINGLE SOURCE OF TRUTH.
+
+    Both Share and Discuss follow the current
+    player position continuously.
+  */
+
+  function updateTimeDisplay() {
+
+    const current =
+      Number(progress.value);
+
+    const formatted =
+      formatTime(current);
+
+    const context =
+      formatProgramContext(current);
+
+
+    playerTime.textContent =
+      formatted +
+      " / " +
+      formatTime(duration);
+
+
+    programLocation.textContent =
+      formatted;
+
+
+    shareContext.textContent =
+      context;
+
+
+    discussContext.textContent =
+      context;
+  }
+
+
+  function setPlaying(state) {
+
+    playing = state;
+
+
+    controlPlay.textContent =
+      playing ? "❚❚" : "▶";
+
+
+    largePlay.style.display =
+      playing ? "none" : "flex";
+
+
+    if (timer) {
+
+      clearInterval(timer);
+
+      timer = null;
+    }
+
+
+    if (playing) {
+
+      timer =
+        setInterval(() => {
+
+          let current =
+            Number(progress.value);
+
+
+          if (current >= duration) {
+
+            setPlaying(false);
+
+            return;
+          }
+
+
+          progress.value =
+            current + 1;
+
+
+          updateTimeDisplay();
+
+        }, 1000);
+    }
+  }
+
+
+  function closePopovers() {
+
+    sharePopover.classList.remove("open");
+
+    discussPopover.classList.remove("open");
+
+    composerPopover.classList.remove("open");
+  }
+
+
+  /*
+    URL rule:
+
+    0:00
+      canonical program URL
+
+    otherwise
+      timestamped program URL
+  */
+
+  function getCurrentProgramUrl() {
+
+    const current =
+      Number(progress.value);
+
+
+    if (current === 0) {
+      return programUrl;
+    }
+
+
+    return (
+      programUrl +
+      "?t=" +
+      current
+    );
+  }
+
+
+  /* =========================================================
+     PLAYER
+     ========================================================= */
+
+
+  progress.addEventListener(
+    "input",
+    updateTimeDisplay
+  );
+
+
+  controlPlay.addEventListener(
+    "click",
+    () => {
+
+      setPlaying(!playing);
+    }
+  );
+
+
+  largePlay.addEventListener(
+    "click",
+    () => {
+
+      setPlaying(true);
+    }
+  );
+
+
+  /* =========================================================
+     SHARE
+     ========================================================= */
+
+
+  shareButton.addEventListener(
+    "click",
+    () => {
+
+      const opening =
+        !sharePopover.classList.contains(
+          "open"
+        );
+
+
+      closePopovers();
+
+
+      if (opening) {
+
+        sharePopover.classList.add(
+          "open"
+        );
+      }
+
+
+      copyStatus.textContent = "";
+
+      updateTimeDisplay();
+    }
+  );
+
+
+  copyButton.addEventListener(
+    "click",
+    async () => {
+
+      /*
+        SHARE COMMIT POINT.
+
+        Current position is read only now.
+      */
+
+      const url =
+        getCurrentProgramUrl();
+
+
+      try {
+
+        await navigator.clipboard.writeText(
+          url
+        );
+
+
+        copyStatus.textContent =
+          "Link copied";
+
+      } catch {
+
+        copyStatus.textContent =
+          url;
+      }
+    }
+  );
+
+
+  nativeShareButton.addEventListener(
+    "click",
+    async () => {
+
+      /*
+        SHARE COMMIT POINT.
+      */
+
+      const url =
+        getCurrentProgramUrl();
+
+
+      if (navigator.share) {
+
+        try {
+
+          await navigator.share({
+
+            title:
+              formatProgramContext(
+                Number(progress.value)
+              ),
+
+            url: url
+          });
+
+        } catch {
+
+          /*
+            User cancelled.
+          */
+        }
+
+      } else {
+
+        try {
+
+          await navigator.clipboard.writeText(
+            url
+          );
+
+
+          copyStatus.textContent =
+            "Link copied";
+
+        } catch {
+
+          copyStatus.textContent =
+            url;
+        }
+      }
+    }
+  );
+
+
+  /* =========================================================
+     DISCUSS
+     ========================================================= */
+
+
+  discussButton.addEventListener(
+    "click",
+    () => {
+
+      const opening =
+        !discussPopover.classList.contains(
+          "open"
+        );
+
+
+      closePopovers();
+
+
+      if (opening) {
+
+        /*
+          Pause for convenience.
+
+          DO NOT freeze the position.
+
+          The user may continue to scrub before
+          choosing an account or posting.
+        */
+
+        setPlaying(false);
+
+
+        discussPopover.classList.add(
+          "open"
+        );
+
+
+        updateTimeDisplay();
+      }
+    }
+  );
+
+
+  /*
+    MOCK HAPPY PATH.
+
+    Production:
+
+      If already authenticated:
+        open composer.
+
+      Otherwise:
+        authenticate through Healing Exchange,
+        return to this media item,
+        restore current playback position,
+        then open composer.
+
+    Position is STILL not committed.
+  */
+
+  communityLogin.addEventListener(
+    "click",
+    () => {
+
+      discussPopover.classList.remove(
+        "open"
+      );
+
+
+      composerPopover.classList.add(
+        "open"
+      );
+
+
+      composerText.maxLength =
+        maxCharacters;
+
+
+      characterCount.textContent =
+        composerText.value.length +
+        " / " +
+        maxCharacters;
+
+
+      updateTimeDisplay();
+
+
+      composerText.focus();
+    }
+  );
+
+
+  /*
+    External Fediverse identity flow
+    will be implemented separately.
+  */
+
+  otherAccount.addEventListener(
+    "click",
+    () => {
+
+      alert(
+        "External Fediverse account flow comes next."
+      );
+    }
+  );
+
+
+  /* =========================================================
+     COMPOSER
+     ========================================================= */
+
+
+  composerText.addEventListener(
+    "input",
+    () => {
+
+      const count =
+        composerText.value.length;
+
+
+      characterCount.textContent =
+        count +
+        " / " +
+        maxCharacters;
+
+
+      postButton.disabled =
+        count === 0;
+    }
+  );
+
+
+  postButton.addEventListener(
+    "click",
+    () => {
+
+      /*
+        DISCUSS COMMIT POINT.
+
+        This is the FIRST time the final discussion
+        position is captured.
+      */
+
+      const finalTime =
+        Number(progress.value);
+
+
+      const finalContext =
+        formatProgramContext(
+          finalTime
+        );
+
+
+      const finalUrl =
+        getCurrentProgramUrl();
+
+
+      /*
+        PRODUCTION GOAL:
+
+        Publish this text using the authenticated
+        user's Fediverse identity.
+
+        Ideally the resulting ActivityPub Note is
+        a reply to the PeerTube Video object so that
+        PeerTube displays the same federated object
+        as a comment.
+
+        The timestamped program URL should reference
+        the playback position captured here.
+
+        At 0:00 use the canonical program URL.
+      */
+
+
+      alert(
+        "Mock post\n\n" +
+        finalContext +
+        "\n\n" +
+        finalUrl +
+        "\n\n" +
+        composerText.value
+      );
+    }
+  );
+
+
+  updateTimeDisplay();
+
+</script>
+
+</body>
+</html>
