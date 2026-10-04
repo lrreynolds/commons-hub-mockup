@@ -3,64 +3,164 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Community Media Search POC</title>
+  <title>Commonshub Media Library POC</title>
 
   <style>
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
 
     body {
       margin: 0;
       background: #fff;
       color: #172033;
-      font-family:
-        Inter,
-        -apple-system,
-        BlinkMacSystemFont,
-        "Segoe UI",
-        sans-serif;
+      font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
     }
 
-    /*
-      Embeddable component boundary.
-      The surrounding HubPage/customer site supplies its own branding.
-    */
-    .community-media {
+    button,
+    input,
+    select {
+      font: inherit;
+    }
+
+    .media-library {
       width: 100%;
       max-width: 760px;
       padding: 24px;
     }
 
-    /* =========================================================
-       CHANNEL DIRECTORY / SEARCH SCOPE
-       ========================================================= */
+    /* ---------------------------------------------------------
+       GENERAL
+       --------------------------------------------------------- */
 
-    .channels {
-      margin-bottom: 26px;
+    .section {
+      margin-bottom: 28px;
     }
 
-    .channels-header {
+    .section:last-child {
+      margin-bottom: 0;
+    }
+
+    .section-title {
+      margin: 0 0 12px;
+      color: #64748b;
+      font-size: 11px;
+      font-weight: 750;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    /* ---------------------------------------------------------
+       NOW & UPCOMING
+       --------------------------------------------------------- */
+
+    .schedule-list {
+      overflow: hidden;
+      border: 1px solid #e2e8f0;
+      border-radius: 9px;
+      background: #fff;
+    }
+
+    .schedule-item {
       display: flex;
-      align-items: baseline;
+      align-items: center;
+      gap: 14px;
+      padding: 12px 14px;
+      border-bottom: 1px solid #edf1f5;
+      cursor: pointer;
+    }
+
+    .schedule-item:last-child {
+      border-bottom: 0;
+    }
+
+    .schedule-item:hover {
+      background: #f8fafc;
+    }
+
+    .schedule-state {
+      width: 72px;
+      flex: 0 0 72px;
+      color: #64748b;
+      font-size: 11px;
+      font-weight: 650;
+      line-height: 1.35;
+    }
+
+    .live-state {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      color: #dc2626;
+      font-weight: 750;
+      letter-spacing: .03em;
+    }
+
+    .live-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #dc2626;
+    }
+
+    .schedule-program {
+      min-width: 0;
+      flex: 1;
+    }
+
+    .program-link {
+      display: inline;
+      padding: 0;
+      border: 0;
+      background: transparent;
+      color: #172033;
+      font: inherit;
+      font-size: 14px;
+      font-weight: 650;
+      line-height: 1.35;
+      text-align: left;
+      cursor: pointer;
+    }
+
+    .program-link:hover {
+      color: #0284c7;
+      text-decoration: underline;
+    }
+
+    .schedule-detail {
+      margin-top: 2px;
+      color: #64748b;
+      font-size: 12px;
+    }
+
+    .schedule-chevron,
+    .program-chevron {
+      color: #94a3b8;
+      font-size: 16px;
+    }
+
+    /* ---------------------------------------------------------
+       BROWSE / SEARCH CHANNEL SCOPE
+       --------------------------------------------------------- */
+
+    .channel-controls {
+      display: flex;
+      align-items: center;
       justify-content: space-between;
       gap: 16px;
-      margin-bottom: 12px;
+      margin-bottom: 8px;
     }
 
-    .channels-title {
-      margin: 0;
-      font-size: 16px;
-      font-weight: 700;
+    .channel-label {
+      color: #334155;
+      font-size: 13px;
+      font-weight: 650;
     }
 
     .select-all {
       padding: 0;
       border: 0;
-      background: none;
+      background: transparent;
       color: #0284c7;
-      font: inherit;
-      font-size: 13px;
+      font-size: 12px;
       font-weight: 600;
       cursor: pointer;
     }
@@ -70,202 +170,310 @@
     }
 
     .channel-list {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 10px 24px;
-      padding: 14px 16px;
-      border: 1px solid #e1e6ed;
-      border-radius: 9px;
-      background: #fafbfc;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px 18px;
+      margin-bottom: 16px;
     }
 
     .channel-option {
-      display: flex;
+      display: inline-flex;
       align-items: center;
-      gap: 8px;
-      min-width: 0;
+      gap: 6px;
+      color: #475569;
+      font-size: 13px;
+      cursor: pointer;
     }
 
     .channel-option input {
-      width: 16px;
-      height: 16px;
       margin: 0;
       accent-color: #0ea5e9;
-      cursor: pointer;
-      flex: 0 0 auto;
     }
 
-    /*
-      Clicking the channel name is the browse action.
-      In production these URLs would be supplied from the
-      community's associated PeerTube channels.
-    */
-    .channel-link {
-      color: #243247;
-      font-size: 14px;
-      font-weight: 600;
-      text-decoration: none;
-      line-height: 1.35;
-    }
+    /* ---------------------------------------------------------
+       SEARCH + SORT
+       --------------------------------------------------------- */
 
-    .channel-link:hover {
-      color: #0284c7;
-      text-decoration: underline;
-    }
-
-    .channel-help {
-      margin: 9px 0 0;
-      color: #7a8699;
-      font-size: 12px;
-      line-height: 1.4;
-    }
-
-    /* =========================================================
-       SEARCH
-       ========================================================= */
-
-    .search-form {
+    .library-tools {
       display: flex;
+      align-items: center;
       gap: 10px;
-      margin-bottom: 32px;
+      margin-bottom: 18px;
+    }
+
+    .search-wrap {
+      position: relative;
+      min-width: 0;
+      flex: 1;
     }
 
     .search-input {
-      flex: 1;
-      min-width: 0;
-      height: 44px;
-      padding: 0 14px;
-      border: 1px solid #cbd3df;
-      border-radius: 8px;
-      color: #172033;
-      font: inherit;
-      font-size: 15px;
+      width: 100%;
+      min-height: 40px;
+      padding: 8px 38px 8px 12px;
+      border: 1px solid #cbd5e1;
+      border-radius: 7px;
       outline: none;
+      background: #fff;
+      color: #172033;
+      font-size: 13px;
     }
 
     .search-input:focus {
       border-color: #0ea5e9;
-      box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.12);
+      box-shadow: 0 0 0 3px rgba(14,165,233,.10);
     }
 
-    .search-button {
-      height: 44px;
-      padding: 0 18px;
+    .clear-search {
+      position: absolute;
+      top: 50%;
+      right: 10px;
+      display: none;
+      transform: translateY(-50%);
+      padding: 2px 4px;
       border: 0;
-      border-radius: 8px;
-      background: #0ea5e9;
-      color: #fff;
-      font: inherit;
+      background: transparent;
+      color: #94a3b8;
+      font-size: 18px;
+      line-height: 1;
+      cursor: pointer;
+    }
+
+    .clear-search.visible {
+      display: block;
+    }
+
+    .sort-select {
+      min-height: 40px;
+      padding: 7px 28px 7px 10px;
+      border: 1px solid #cbd5e1;
+      border-radius: 7px;
+      outline: none;
+      background: #fff;
+      color: #475569;
+      font-size: 12px;
       font-weight: 600;
       cursor: pointer;
     }
 
-    .search-button:hover {
-      background: #0284c7;
+    .sort-select.hidden {
+      display: none;
     }
 
-    /* =========================================================
-       RESULTS GROUPED BY CHANNEL
-       ========================================================= */
+    /* ---------------------------------------------------------
+       COLLAPSIBLE CHANNELS
+       --------------------------------------------------------- */
 
-    .channel-results {
-      margin-bottom: 38px;
+    .channel-group {
+      border-bottom: 1px solid #e2e8f0;
     }
 
-    .results-heading {
+    .channel-toggle {
+      width: 100%;
       display: flex;
       align-items: center;
-      gap: 12px;
-      margin-bottom: 4px;
-    }
-
-    .results-channel-name {
-      margin: 0;
-      font-size: 16px;
-      line-height: 1.3;
-      font-weight: 700;
-      white-space: nowrap;
-    }
-
-    .results-heading-line {
-      width: 100%;
-      height: 1px;
-      background: #dfe4eb;
-    }
-
-    .result {
-      padding: 18px 0 20px;
-      border-bottom: 1px solid #edf0f4;
-    }
-
-    .result:last-child {
-      border-bottom: 0;
-    }
-
-    .result-title {
-      margin: 0 0 5px;
-      font-size: 18px;
-      line-height: 1.35;
-      font-weight: 650;
-    }
-
-    .result-time {
-      margin-bottom: 11px;
-      color: #64748b;
-      font-size: 14px;
-      font-weight: 500;
-    }
-
-    .result-snippet {
-      margin: 0 0 15px;
-      max-width: 680px;
-      color: #394457;
-      font-size: 15px;
-      line-height: 1.55;
-    }
-
-    .play-button {
-      display: inline-flex;
-      align-items: center;
-      gap: 7px;
-      padding: 8px 13px;
-      border: 1px solid #cbd3df;
-      border-radius: 7px;
-      background: #fff;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 12px 4px;
+      border: 0;
+      background: transparent;
       color: #172033;
-      font: inherit;
-      font-size: 14px;
-      font-weight: 600;
       cursor: pointer;
+      text-align: left;
     }
 
-    .play-button:hover {
+    .channel-toggle:hover {
       background: #f8fafc;
     }
 
-    .play-icon {
+    .channel-heading {
+      font-size: 15px;
+      font-weight: 750;
+    }
+
+    .channel-chevron {
+      flex: 0 0 auto;
+      color: #94a3b8;
+      font-size: 17px;
+      transition: transform .15s ease;
+    }
+
+    .channel-group.expanded .channel-chevron {
+      transform: rotate(90deg);
+    }
+
+    .program-list {
+      display: none;
+      border-top: 1px solid #edf1f5;
+    }
+
+    .channel-group.expanded .program-list {
+      display: block;
+    }
+
+    .program-item {
+      display: block;
+      padding: 11px 4px 11px 14px;
+      border-bottom: 1px solid #edf1f5;
+      cursor: pointer;
+    }
+
+    .program-item .program-link {
+      font-size: 13.5px;
+      font-weight: 600;
+    }
+
+    .program-item:last-child {
+      border-bottom: 0;
+    }
+
+    .program-item:hover {
+      background: #f8fafc;
+    }
+
+    .program-main {
+      min-width: 0;
+    }
+
+    .program-meta {
+      margin-top: 3px;
+      color: #64748b;
+      font-size: 11px;
+    }
+
+    /* ---------------------------------------------------------
+       SEMANTIC SEARCH RESULTS
+       --------------------------------------------------------- */
+
+    .search-results {
+      display: none;
+    }
+
+    .search-results.visible {
+      display: block;
+    }
+
+    .browse-results.hidden {
+      display: none;
+    }
+
+    .search-summary {
+      margin: -5px 0 18px;
+      color: #64748b;
       font-size: 12px;
     }
 
-    /* =========================================================
-       MOBILE
-       ========================================================= */
+    .search-group {
+      margin-bottom: 26px;
+    }
 
-    @media (max-width: 600px) {
-      .community-media {
+    .search-group:last-child {
+      margin-bottom: 0;
+    }
+
+    .search-group-heading {
+      margin: 0 0 8px;
+      color: #172033;
+      font-size: 15px;
+      font-weight: 700;
+    }
+
+    .search-result {
+      padding: 12px 4px 14px;
+      border-top: 1px solid #e2e8f0;
+      cursor: pointer;
+    }
+
+    .search-result:last-child {
+      border-bottom: 1px solid #e2e8f0;
+    }
+
+    .search-result:hover {
+      background: #f8fafc;
+    }
+
+    .result-header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .result-title {
+      color: #172033;
+      font-size: 14px;
+      font-weight: 650;
+      line-height: 1.35;
+    }
+
+    .result-location {
+      flex: 0 0 auto;
+      color: #64748b;
+      font-size: 11px;
+      font-weight: 600;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .result-snippet {
+      max-width: 650px;
+      margin: 7px 0 0;
+      color: #475569;
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    /* ---------------------------------------------------------
+       EMPTY STATE
+       --------------------------------------------------------- */
+
+    .empty-state {
+      display: none;
+      padding: 24px 12px;
+      color: #64748b;
+      font-size: 13px;
+      text-align: center;
+    }
+
+    .empty-state.visible {
+      display: block;
+    }
+
+    /* ---------------------------------------------------------
+       MOBILE
+       --------------------------------------------------------- */
+
+    @media (max-width: 560px) {
+      .media-library {
         padding: 16px;
       }
 
-      .channel-list {
-        grid-template-columns: 1fr;
+      .schedule-item {
+        align-items: flex-start;
       }
 
-      .search-form {
+      .schedule-state {
+        width: 60px;
+        flex-basis: 60px;
+      }
+
+      .library-tools {
+        align-items: stretch;
         flex-direction: column;
       }
 
-      .search-button {
-        width: 100%;
+      .sort-select {
+        align-self: flex-end;
+      }
+
+      .channel-list {
+        flex-direction: column;
+        gap: 9px;
+      }
+
+      .result-header {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 3px;
       }
     }
   </style>
@@ -273,365 +481,890 @@
 
 <body>
 
-  <main class="community-media">
+<main class="media-library">
 
-    <!-- =====================================================
-         CHANNELS
+  <!-- NOW & UPCOMING -->
+  <section id="scheduleSection" class="section">
 
-         The checkbox controls search scope.
-         The channel name itself is a link for browsing.
-         ===================================================== -->
+    <h2 class="section-title">
+      Now &amp; Upcoming
+    </h2>
 
-    <section class="channels">
+    <div class="schedule-list">
 
-      <div class="channels-header">
-        <h2 class="channels-title">Channels</h2>
-
-        <button
-          class="select-all"
-          id="selectAllButton"
-          type="button"
-        >
-          Clear all
-        </button>
-      </div>
-
-      <div class="channel-list">
-
-        <div class="channel-option">
-          <input
-            type="checkbox"
-            id="channel-healing"
-            name="channels"
-            value="healing-exchange"
-            checked
-          >
-          <a
-            class="channel-link"
-            href="#"
-            title="Browse all programs in Healing Exchange"
-          >
-            Healing Exchange
-          </a>
-        </div>
-
-        <div class="channel-option">
-          <input
-            type="checkbox"
-            id="channel-practitioner"
-            name="channels"
-            value="practitioner-interviews"
-            checked
-          >
-          <a
-            class="channel-link"
-            href="#"
-            title="Browse all Practitioner Interviews"
-          >
-            Practitioner Interviews
-          </a>
-        </div>
-
-        <div class="channel-option">
-          <input
-            type="checkbox"
-            id="channel-conversations"
-            name="channels"
-            value="community-conversations"
-            checked
-          >
-          <a
-            class="channel-link"
-            href="#"
-            title="Browse all Community Conversations"
-          >
-            Community Conversations
-          </a>
-        </div>
-
-        <div class="channel-option">
-          <input
-            type="checkbox"
-            id="channel-education"
-            name="channels"
-            value="continuing-education"
-            checked
-          >
-          <a
-            class="channel-link"
-            href="#"
-            title="Browse all Continuing Education programs"
-          >
-            Continuing Education
-          </a>
-        </div>
-
-      </div>
-
-      <p class="channel-help">
-        Select the channels to search, or choose a channel name to browse its programs.
-      </p>
-
-    </section>
-
-
-    <!-- =====================================================
-         SEARCH
-         ===================================================== -->
-
-    <form class="search-form" onsubmit="return false;">
-
-      <input
-        class="search-input"
-        type="search"
-        value="soil health and composting"
-        placeholder="Search programs and transcripts"
-        aria-label="Search programs and transcripts"
+      <div
+        class="schedule-item"
+        data-channel="healing"
+        data-program="Community Roundtable"
       >
+        <div class="schedule-state">
+          <span class="live-state">
+            <span class="live-dot"></span>
+            LIVE
+          </span>
+        </div>
 
-      <button class="search-button" type="submit">
-        Search
+        <div class="schedule-program">
+          <button class="program-link" type="button">
+            Community Roundtable
+          </button>
+
+          <div class="schedule-detail">
+            Started 12 minutes ago
+          </div>
+        </div>
+
+        <span class="schedule-chevron">›</span>
+      </div>
+
+
+      <div
+        class="schedule-item"
+        data-channel="healing"
+        data-program="Healing Exchange Live"
+      >
+        <div class="schedule-state">
+          Today<br>7:00 PM
+        </div>
+
+        <div class="schedule-program">
+          <button class="program-link" type="button">
+            Healing Exchange Live
+          </button>
+
+          <div class="schedule-detail">
+            Practitioner discussion
+          </div>
+        </div>
+
+        <span class="schedule-chevron">›</span>
+      </div>
+
+
+      <div
+        class="schedule-item"
+        data-channel="interviews"
+        data-program="Practitioner Q&A"
+      >
+        <div class="schedule-state">
+          Thursday<br>2:00 PM
+        </div>
+
+        <div class="schedule-program">
+          <button class="program-link" type="button">
+            Practitioner Q&amp;A
+          </button>
+
+          <div class="schedule-detail">
+            Live interview and discussion
+          </div>
+        </div>
+
+        <span class="schedule-chevron">›</span>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- MEDIA LIBRARY -->
+  <section class="section">
+
+    <h2 class="section-title">
+      Media Library
+    </h2>
+
+
+    <div class="channel-controls">
+
+      <div class="channel-label">
+        Browse/Search channels
+      </div>
+
+      <button
+        id="selectAllButton"
+        class="select-all"
+        type="button"
+      >
+        Clear all
       </button>
 
-    </form>
+    </div>
 
 
-    <!-- =====================================================
-         RESULTS — HEALING EXCHANGE
-         ===================================================== -->
+    <div class="channel-list">
 
-    <section class="channel-results">
+      <label class="channel-option">
+        <input
+          class="channel-checkbox"
+          type="checkbox"
+          value="healing"
+          checked
+        >
+        Healing Exchange
+      </label>
 
-      <div class="results-heading">
-        <h2 class="results-channel-name">
+      <label class="channel-option">
+        <input
+          class="channel-checkbox"
+          type="checkbox"
+          value="interviews"
+          checked
+        >
+        Practitioner Interviews
+      </label>
+
+      <label class="channel-option">
+        <input
+          class="channel-checkbox"
+          type="checkbox"
+          value="conversations"
+          checked
+        >
+        Community Conversations
+      </label>
+
+    </div>
+
+
+    <div class="library-tools">
+
+      <div class="search-wrap">
+
+        <input
+          id="searchInput"
+          class="search-input"
+          type="search"
+          placeholder="Search programs and transcripts..."
+          autocomplete="off"
+        >
+
+        <button
+          id="clearSearch"
+          class="clear-search"
+          type="button"
+          aria-label="Clear search"
+        >
+          ×
+        </button>
+
+      </div>
+
+      <select
+        id="sortSelect"
+        class="sort-select"
+        aria-label="Sort programs"
+      >
+        <option value="newest">Newest</option>
+        <option value="alpha">A–Z</option>
+      </select>
+
+    </div>
+
+
+    <!-- COLLAPSED BROWSE STATE -->
+    <div id="browseResults" class="browse-results">
+
+      <!-- Healing Exchange -->
+      <section
+        class="channel-group"
+        data-channel-group="healing"
+      >
+
+        <button
+          class="channel-toggle"
+          type="button"
+          aria-expanded="false"
+        >
+          <span class="channel-heading">
+            Healing Exchange
+          </span>
+
+          <span class="channel-chevron">›</span>
+        </button>
+
+        <div class="program-list">
+
+          <div
+            class="program-item"
+            data-title="Understanding Soil Health"
+            data-date="2026-09-28"
+          >
+            <div class="program-main">
+              <button class="program-link" type="button">
+                Understanding Soil Health
+              </button>
+
+              <div class="program-meta">
+                Sep 28 · 52 min
+              </div>
+            </div>
+
+          </div>
+
+
+          <div
+            class="program-item"
+            data-title="Clinical Approaches to Chronic Pain"
+            data-date="2026-09-14"
+          >
+            <div class="program-main">
+              <button class="program-link" type="button">
+                Clinical Approaches to Chronic Pain
+              </button>
+
+              <div class="program-meta">
+                Sep 14 · 46 min
+              </div>
+            </div>
+
+          </div>
+
+
+          <div
+            class="program-item"
+            data-title="Herbal Medicine in Clinical Practice"
+            data-date="2026-08-21"
+          >
+            <div class="program-main">
+              <button class="program-link" type="button">
+                Herbal Medicine in Clinical Practice
+              </button>
+
+              <div class="program-meta">
+                Aug 21 · 44 min
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </section>
+
+
+      <!-- Practitioner Interviews -->
+      <section
+        class="channel-group"
+        data-channel-group="interviews"
+      >
+
+        <button
+          class="channel-toggle"
+          type="button"
+          aria-expanded="false"
+        >
+          <span class="channel-heading">
+            Practitioner Interviews
+          </span>
+
+          <span class="channel-chevron">›</span>
+        </button>
+
+        <div class="program-list">
+
+          <div
+            class="program-item"
+            data-title="Regenerative Agriculture with Jane Smith"
+            data-date="2026-09-24"
+          >
+            <div class="program-main">
+              <button class="program-link" type="button">
+                Regenerative Agriculture with Jane Smith
+              </button>
+
+              <div class="program-meta">
+                Sep 24 · 38 min
+              </div>
+            </div>
+
+          </div>
+
+
+          <div
+            class="program-item"
+            data-title="Treating Chronic Pain"
+            data-date="2026-09-16"
+          >
+            <div class="program-main">
+              <button class="program-link" type="button">
+                Treating Chronic Pain
+              </button>
+
+              <div class="program-meta">
+                Sep 16 · 1 hr 12 min
+              </div>
+            </div>
+
+          </div>
+
+
+          <div
+            class="program-item"
+            data-title="Understanding Herbal Formulas"
+            data-date="2026-08-30"
+          >
+            <div class="program-main">
+              <button class="program-link" type="button">
+                Understanding Herbal Formulas
+              </button>
+
+              <div class="program-meta">
+                Aug 30 · 41 min
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </section>
+
+
+      <!-- Community Conversations -->
+      <section
+        class="channel-group"
+        data-channel-group="conversations"
+      >
+
+        <button
+          class="channel-toggle"
+          type="button"
+          aria-expanded="false"
+        >
+          <span class="channel-heading">
+            Community Conversations
+          </span>
+
+          <span class="channel-chevron">›</span>
+        </button>
+
+        <div class="program-list">
+
+          <div
+            class="program-item"
+            data-title="Food as Medicine"
+            data-date="2026-09-20"
+          >
+            <div class="program-main">
+              <button class="program-link" type="button">
+                Food as Medicine
+              </button>
+
+              <div class="program-meta">
+                Sep 20 · 57 min
+              </div>
+            </div>
+
+          </div>
+
+
+          <div
+            class="program-item"
+            data-title="Building a Practitioner Community"
+            data-date="2026-09-07"
+          >
+            <div class="program-main">
+              <button class="program-link" type="button">
+                Building a Practitioner Community
+              </button>
+
+              <div class="program-meta">
+                Sep 7 · 35 min
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </section>
+
+    </div>
+
+
+    <!-- MOCK SEMANTIC SEARCH STATE -->
+    <div id="searchResults" class="search-results">
+
+      <div class="search-summary">
+        Results ranked by relevance
+      </div>
+
+
+      <section
+        class="search-group"
+        data-search-channel="healing"
+      >
+        <h3 class="search-group-heading">
           Healing Exchange
-        </h2>
-        <div class="results-heading-line"></div>
-      </div>
-
-
-      <article class="result">
-
-        <h3 class="result-title">
-          Understanding Soil Health
         </h3>
 
-        <div class="result-time">
-          18:42–21:16
-        </div>
+        <article
+          class="search-result"
+          data-start="1062"
+          data-program="Understanding Soil Health"
+        >
+          <div class="result-header">
 
-        <p class="result-snippet">
-          “…the important thing about compost isn't simply adding nutrients.
-          You're introducing an entire biological community, and over time
-          that changes how the soil holds water and makes nutrients available
-          to the plant…”
-        </p>
+            <div class="result-title">
+              Understanding Soil Health
+            </div>
 
-        <button class="play-button" type="button">
-          <span class="play-icon">▶</span>
-          Play
-        </button>
+            <div class="result-location">
+              17:42–18:16
+            </div>
 
-      </article>
+          </div>
 
-
-      <article class="result">
-
-        <h3 class="result-title">
-          Restoring the Soil Microbiome
-        </h3>
-
-        <div class="result-time">
-          31:08–33:27
-        </div>
-
-        <p class="result-snippet">
-          “…healthy soil isn't really an inert growing medium. It's a living
-          ecosystem. Once we started treating the microbial community as part
-          of the system, we saw very different results from simply adding
-          fertilizer…”
-        </p>
-
-        <button class="play-button" type="button">
-          <span class="play-icon">▶</span>
-          Play
-        </button>
-
-      </article>
-
-    </section>
+          <p class="result-snippet">
+            “…microbial communities surrounding the root
+            system can dramatically alter nutrient availability
+            and the way plants respond to stress…”
+          </p>
+        </article>
+      </section>
 
 
-    <!-- =====================================================
-         RESULTS — PRACTITIONER INTERVIEWS
-         ===================================================== -->
-
-    <section class="channel-results">
-
-      <div class="results-heading">
-        <h2 class="results-channel-name">
+      <section
+        class="search-group"
+        data-search-channel="interviews"
+      >
+        <h3 class="search-group-heading">
           Practitioner Interviews
-        </h2>
-        <div class="results-heading-line"></div>
-      </div>
-
-
-      <article class="result">
-
-        <h3 class="result-title">
-          Regenerative Agriculture with Jane Smith
         </h3>
 
-        <div class="result-time">
-          08:17–10:04
-        </div>
+        <article
+          class="search-result"
+          data-start="1868"
+          data-program="Regenerative Agriculture with Jane Smith"
+        >
+          <div class="result-header">
 
-        <p class="result-snippet">
-          “…we started looking at soil structure rather than simply nutrient
-          levels, and that's when we began seeing a relationship between
-          compost, water retention, and the resilience of the plants during
-          dry periods…”
-        </p>
+            <div class="result-title">
+              Regenerative Agriculture with Jane Smith
+            </div>
 
-        <button class="play-button" type="button">
-          <span class="play-icon">▶</span>
-          Play
-        </button>
+            <div class="result-location">
+              31:08–31:47
+            </div>
 
-      </article>
+          </div>
 
-
-      <article class="result">
-
-        <h3 class="result-title">
-          Building Healthy Soil in Small Urban Gardens
-        </h3>
-
-        <div class="result-time">
-          22:51–24:32
-        </div>
-
-        <p class="result-snippet">
-          “…even in a very small garden, repeated applications of good compost
-          can change the soil dramatically. The biggest difference we noticed
-          was how much longer the beds retained moisture between watering…”
-        </p>
-
-        <button class="play-button" type="button">
-          <span class="play-icon">▶</span>
-          Play
-        </button>
-
-      </article>
-
-    </section>
+          <p class="result-snippet">
+            “…soil biology changes considerably when you stop
+            thinking only in terms of nutrients and start
+            considering the living relationships in the soil…”
+          </p>
+        </article>
+      </section>
 
 
-    <!-- =====================================================
-         RESULTS — COMMUNITY CONVERSATIONS
-         ===================================================== -->
-
-    <section class="channel-results">
-
-      <div class="results-heading">
-        <h2 class="results-channel-name">
+      <section
+        class="search-group"
+        data-search-channel="conversations"
+      >
+        <h3 class="search-group-heading">
           Community Conversations
-        </h2>
-        <div class="results-heading-line"></div>
-      </div>
-
-
-      <article class="result">
-
-        <h3 class="result-title">
-          Composting, Water, and Resilient Communities
         </h3>
 
-        <div class="result-time">
-          42:07–44:31
-        </div>
+        <article
+          class="search-result"
+          data-start="742"
+          data-program="Food as Medicine"
+        >
+          <div class="result-header">
 
-        <p class="result-snippet">
-          “…composting turned out to be about much more than waste reduction.
-          Once people saw what it did for the soil, it became part of a much
-          broader conversation about local food, water use, and community
-          resilience…”
-        </p>
+            <div class="result-title">
+              Food as Medicine
+            </div>
 
-        <button class="play-button" type="button">
-          <span class="play-icon">▶</span>
-          Play
-        </button>
+            <div class="result-location">
+              12:22–12:58
+            </div>
 
-      </article>
+          </div>
 
-    </section>
+          <p class="result-snippet">
+            “…the quality of the soil becomes part of the
+            nutritional story long before the food reaches
+            someone's plate…”
+          </p>
+        </article>
+      </section>
 
-  </main>
+    </div>
 
 
-  <script>
-    /*
-      Demonstration only.
+    <div id="emptyState" class="empty-state">
+      Select at least one channel.
+    </div>
 
-      If all channels are selected:
-        button = "Clear all"
+  </section>
 
-      If one or more channels are unselected:
-        button = "Select all"
+</main>
 
-      Search implementation would send the IDs of the checked
-      channels as the requested search scope.
-    */
 
-    const selectAllButton =
-      document.getElementById("selectAllButton");
+<script>
+  const checkboxes =
+    Array.from(document.querySelectorAll(".channel-checkbox"));
 
-    const channelCheckboxes =
-      Array.from(
-        document.querySelectorAll(
-          'input[name="channels"]'
-        )
-      );
+  const selectAllButton =
+    document.getElementById("selectAllButton");
 
-    function allChannelsSelected() {
-      return channelCheckboxes.every(
-        checkbox => checkbox.checked
-      );
+  const scheduleSection =
+    document.getElementById("scheduleSection");
+
+  const scheduleItems =
+    Array.from(document.querySelectorAll(".schedule-item"));
+
+  const searchInput =
+    document.getElementById("searchInput");
+
+  const clearSearch =
+    document.getElementById("clearSearch");
+
+  const sortSelect =
+    document.getElementById("sortSelect");
+
+  const browseResults =
+    document.getElementById("browseResults");
+
+  const searchResults =
+    document.getElementById("searchResults");
+
+  const emptyState =
+    document.getElementById("emptyState");
+
+
+  function selectedChannels() {
+    return checkboxes
+      .filter(checkbox => checkbox.checked)
+      .map(checkbox => checkbox.value);
+  }
+
+
+  function isSearching() {
+    return searchInput.value.trim().length > 0;
+  }
+
+
+  /* ---------------------------------------------------------
+     COLLAPSE / EXPAND CHANNELS
+
+     This is independent from checkbox scope.
+     Multiple channels may be expanded simultaneously.
+     --------------------------------------------------------- */
+
+  document
+    .querySelectorAll(".channel-toggle")
+    .forEach(toggle => {
+
+      toggle.addEventListener("click", () => {
+
+        const group =
+          toggle.closest(".channel-group");
+
+        const expanded =
+          group.classList.toggle("expanded");
+
+        toggle.setAttribute(
+          "aria-expanded",
+          expanded ? "true" : "false"
+        );
+      });
+
+    });
+
+
+  /* ---------------------------------------------------------
+     CHANNEL SCOPE
+     --------------------------------------------------------- */
+
+  function updateScope() {
+
+    const selected = selectedChannels();
+    const hasSelection = selected.length > 0;
+
+    selectAllButton.textContent =
+      selected.length === checkboxes.length
+        ? "Clear all"
+        : "Select all";
+
+
+    /* Now & Upcoming */
+
+    let visibleScheduleItems = 0;
+
+    scheduleItems.forEach(item => {
+
+      const visible =
+        selected.includes(item.dataset.channel);
+
+      item.style.display =
+        visible ? "flex" : "none";
+
+      if (visible) {
+        visibleScheduleItems++;
+      }
+    });
+
+    scheduleSection.style.display =
+      visibleScheduleItems > 0
+        ? "block"
+        : "none";
+
+
+    /* Browse channels */
+
+    document
+      .querySelectorAll("[data-channel-group]")
+      .forEach(group => {
+
+        group.style.display =
+          selected.includes(group.dataset.channelGroup)
+            ? "block"
+            : "none";
+      });
+
+
+    /* Search channels */
+
+    document
+      .querySelectorAll("[data-search-channel]")
+      .forEach(group => {
+
+        group.style.display =
+          selected.includes(group.dataset.searchChannel)
+            ? "block"
+            : "none";
+      });
+
+
+    emptyState.classList.toggle(
+      "visible",
+      !hasSelection
+    );
+
+
+    if (!hasSelection) {
+
+      browseResults.classList.add("hidden");
+      searchResults.classList.remove("visible");
+
+    } else {
+
+      updateMode();
     }
+  }
 
-    function updateSelectAllButton() {
-      selectAllButton.textContent =
-        allChannelsSelected()
-          ? "Clear all"
-          : "Select all";
+
+  /* ---------------------------------------------------------
+     BROWSE / SEARCH MODE
+     --------------------------------------------------------- */
+
+  function updateMode() {
+
+    const searching = isSearching();
+    const hasSelection =
+      selectedChannels().length > 0;
+
+    clearSearch.classList.toggle(
+      "visible",
+      searching
+    );
+
+    sortSelect.classList.toggle(
+      "hidden",
+      searching
+    );
+
+    if (!hasSelection) return;
+
+
+    if (searching) {
+
+      browseResults.classList.add("hidden");
+      searchResults.classList.add("visible");
+
+    } else {
+
+      searchResults.classList.remove("visible");
+      browseResults.classList.remove("hidden");
     }
+  }
 
-    selectAllButton.addEventListener(
-      "click",
-      () => {
-        const shouldSelect =
-          !allChannelsSelected();
 
-        channelCheckboxes.forEach(
-          checkbox => {
-            checkbox.checked = shouldSelect;
+  /* ---------------------------------------------------------
+     SORT EXPANDED PROGRAM LISTS
+     --------------------------------------------------------- */
+
+  function sortPrograms() {
+
+    const mode = sortSelect.value;
+
+    document
+      .querySelectorAll(".program-list")
+      .forEach(list => {
+
+        const items =
+          Array.from(
+            list.querySelectorAll(".program-item")
+          );
+
+        items.sort((a, b) => {
+
+          if (mode === "alpha") {
+
+            return a.dataset.title.localeCompare(
+              b.dataset.title
+            );
           }
+
+          return (
+            new Date(b.dataset.date) -
+            new Date(a.dataset.date)
+          );
+        });
+
+        items.forEach(
+          item => list.appendChild(item)
+        );
+      });
+  }
+
+
+  /* ---------------------------------------------------------
+     EVENTS
+     --------------------------------------------------------- */
+
+  checkboxes.forEach(checkbox => {
+
+    checkbox.addEventListener(
+      "change",
+      updateScope
+    );
+  });
+
+
+  selectAllButton.addEventListener(
+    "click",
+    () => {
+
+      const allSelected =
+        checkboxes.every(
+          checkbox => checkbox.checked
         );
 
-        updateSelectAllButton();
-      }
-    );
+      checkboxes.forEach(checkbox => {
+        checkbox.checked = !allSelected;
+      });
 
-    channelCheckboxes.forEach(
-      checkbox => {
-        checkbox.addEventListener(
-          "change",
-          updateSelectAllButton
+      updateScope();
+    }
+  );
+
+
+  searchInput.addEventListener(
+    "input",
+    updateMode
+  );
+
+
+  clearSearch.addEventListener(
+    "click",
+    () => {
+
+      searchInput.value = "";
+
+      updateMode();
+
+      searchInput.focus();
+    }
+  );
+
+
+  sortSelect.addEventListener(
+    "change",
+    sortPrograms
+  );
+
+
+  /* ---------------------------------------------------------
+     PROGRAM SELECTION
+
+     POC:
+     Represents loading selected media into the Commonshub
+     Player wrapper.
+     --------------------------------------------------------- */
+
+  document
+    .querySelectorAll(".program-item, .schedule-item")
+    .forEach(item => {
+
+      item.addEventListener("click", event => {
+
+        /*
+          Don't interfere with the nested button itself.
+          Both represent the same action.
+        */
+
+        const title =
+          item.dataset.program ||
+          item.dataset.title;
+
+        alert(
+          "Load into Commonshub Player:\n\n" +
+          title
         );
-      }
-    );
-  </script>
+      });
+    });
+
+
+  /* ---------------------------------------------------------
+     SEMANTIC RESULT SELECTION
+
+     Production:
+     Load the program into the Player and seek directly
+     to this timestamp.
+     --------------------------------------------------------- */
+
+  document
+    .querySelectorAll(".search-result")
+    .forEach(result => {
+
+      result.addEventListener("click", () => {
+
+        const title =
+          result.dataset.program;
+
+        const start =
+          Number(result.dataset.start);
+
+        const minutes =
+          Math.floor(start / 60);
+
+        const seconds =
+          String(start % 60).padStart(2, "0");
+
+        alert(
+          "Load into Commonshub Player:\n\n" +
+          title +
+          "\n\nStart at " +
+          minutes +
+          ":" +
+          seconds
+        );
+      });
+    });
+
+
+  /* Initial state:
+     - every channel selected
+     - every browse list collapsed
+     - newest sort
+  */
+
+  sortPrograms();
+  updateScope();
+
+</script>
 
 </body>
 </html>
