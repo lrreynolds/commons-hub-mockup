@@ -438,6 +438,35 @@
       display: block;
     }
 
+
+    /* ENTITLEMENT POC */
+    .entitlement-demo { display:inline-flex; align-items:center; gap:6px; margin-bottom:24px; padding:6px; border:1px dashed #b8c7d9; border-radius:8px; color:#475569; font-size:12px; font-weight:650; }
+    .entitlement-demo button { padding:6px 10px; border:1px solid #cbd5e1; border-radius:6px; background:#fff; color:#475569; font-size:12px; font-weight:650; cursor:pointer; }
+    .entitlement-demo button.active { border-color:#172033; background:#172033; color:#fff; }
+    .protected-label { display:inline-flex; margin-left:7px; color:#64748b; font-size:10px; font-weight:650; vertical-align:1px; }
+    .member-access-note { display:flex; align-items:center; justify-content:space-between; gap:16px; margin:-10px 0 24px; padding:10px 12px; border:1px solid #dbe4ee; border-radius:8px; background:#f8fafc; color:#64748b; font-size:12px; line-height:1.4; }
+    .member-access-note strong { color:#334155; font-weight:700; }
+    .member-access-note button { flex:none; border:0; background:transparent; color:#0284c7; font:inherit; font-weight:700; cursor:pointer; padding:2px 0; }
+    .member-access-note button:hover { text-decoration:underline; }
+    .viewer-entitled .member-access-note { display:none; }
+    body:not(.viewer-entitled) .protected-content { opacity:.78; }
+    body:not(.viewer-entitled) .protected-content .protected-label { opacity:1; color:#64748b; }
+    body:not(.viewer-entitled) .protected-content .program-link,
+    body:not(.viewer-entitled) .protected-content .result-title { color:#64748b; }
+    body:not(.viewer-entitled) .protected-content .program-meta,
+    body:not(.viewer-entitled) .protected-content .schedule-detail,
+    body:not(.viewer-entitled) .protected-content .result-location,
+    body:not(.viewer-entitled) .protected-content .result-snippet { color:#94a3b8; }
+    .viewer-entitled .protected-label { display:none; }
+    .access-popover { position:fixed; z-index:100; width:min(330px,calc(100vw - 32px)); padding:18px 20px 16px; border:1px solid #d7e0ea; border-radius:10px; background:#fff; box-shadow:0 14px 32px rgba(15,23,42,.14); text-align:center; }
+    .access-popover[hidden] { display:none; }
+    .access-popover h3 { margin:0 0 7px; font-size:15px; }
+    .access-popover p { margin:0 auto; color:#64748b; font-size:12.5px; line-height:1.5; }
+    .access-actions { display:flex; justify-content:center; gap:8px; margin-top:15px; }
+    .access-actions button { min-height:32px; padding:6px 13px; border-radius:6px; font-size:12px; font-weight:650; cursor:pointer; }
+    .access-primary { border:1px solid #0ea5e9; background:#0ea5e9; color:#fff; }
+    .access-secondary { border:1px solid #cbd5e1; background:#fff; color:#172033; }
+
     /* ---------------------------------------------------------
        MOBILE
        --------------------------------------------------------- */
@@ -476,12 +505,41 @@
         gap: 3px;
       }
     }
-  </style>
+  
+    /* Compact member-access flow */
+    .member-access-note{justify-content:flex-start;gap:6px;padding:0;margin:-8px 0 22px;border:0;background:transparent;font-size:12px}.member-access-note button{color:#0284c7;font-weight:700}.member-separator{color:#94a3b8}.access-popover{width:auto;min-width:235px;max-width:min(310px,calc(100vw - 32px));padding:12px 14px;text-align:left}.tiny-title{display:block;margin:0 0 7px;color:#172033;font-size:13px;font-weight:700;line-height:1.2}.tiny-links{display:flex;align-items:center;gap:7px;color:#94a3b8;font-size:12px}.tiny-links button{padding:0;border:0;background:transparent;color:#0284c7;font:inherit;font-weight:700;cursor:pointer}.email-row{display:flex;align-items:center;gap:7px}.email-row input{width:185px;height:31px;padding:5px 8px;border:1px solid #cbd5e1;border-radius:6px;outline:none;font:inherit;font-size:12px}.email-row button{height:31px;padding:5px 9px;border:1px solid #0ea5e9;border-radius:6px;background:#0ea5e9;color:#fff;font-size:11.5px;font-weight:700;cursor:pointer}.tiny-copy{color:#64748b;font-size:12px;line-height:1.35}
+
+.prototype-view-switch{display:flex;align-items:center;gap:6px;width:max-content;margin:0 0 20px;padding:6px 7px;border:1px dashed #b9c9df;border-radius:7px;color:#475569;font-size:12px}
+.prototype-view-switch button{padding:6px 12px;border:1px solid #cbd5e1;border-radius:6px;background:#fff;color:#475569;font-weight:700;cursor:pointer}
+.prototype-view-switch button.active{background:#172033;color:#fff;border-color:#172033}
+.search-result .result-snippet strong{color:#526b8d}
+.search-result .result-meta{margin-top:4px;color:#64748b;font-size:10.5px}
+.search-result.protected-content .result-snippet strong,.search-result.protected-content .result-meta{color:#8b99ad}
+body.viewer-entitled #memberAccessNote{display:none!important}
+</style>
 </head>
 
 <body>
 
 <main class="media-library">
+  <div class="entitlement-demo">
+    <span>Access state:</span>
+    <button id="notEntitledState" class="active" type="button">Not entitled</button>
+    <button id="entitledState" type="button">Entitled</button>
+  </div>
+
+  <div class="member-access-note" id="memberAccessNote">
+    <span>Includes member-only content:</span>
+    <button id="memberAccessLink" type="button">I’m a member</button>
+    <span class="member-separator">·</span>
+    <button id="memberSubscribeLink" type="button">Subscribe</button>
+  </div>
+
+  <div class="prototype-view-switch">
+    <span>View:</span>
+    <button id="browseViewButton" class="active" type="button">Browse</button>
+    <button id="searchViewButton" type="button">Search</button>
+  </div>
 
   <!-- NOW & UPCOMING -->
   <section id="scheduleSection" class="section">
@@ -513,13 +571,12 @@
             Started 12 minutes ago
           </div>
         </div>
-
-        <span class="schedule-chevron">›</span>
       </div>
 
 
       <div
-        class="schedule-item"
+        class="schedule-item protected-content"
+        data-protected="true"
         data-channel="healing"
         data-program="Healing Exchange Live"
       >
@@ -530,14 +587,12 @@
         <div class="schedule-program">
           <button class="program-link" type="button">
             Healing Exchange Live
-          </button>
+          </button><span class="protected-label">🔒 Members</span>
 
           <div class="schedule-detail">
             Practitioner discussion
           </div>
         </div>
-
-        <span class="schedule-chevron">›</span>
       </div>
 
 
@@ -559,8 +614,6 @@
             Live interview and discussion
           </div>
         </div>
-
-        <span class="schedule-chevron">›</span>
       </div>
 
     </div>
@@ -704,14 +757,15 @@
 
 
           <div
-            class="program-item"
+            class="program-item protected-content"
+            data-protected="true"
             data-title="Clinical Approaches to Chronic Pain"
             data-date="2026-09-14"
           >
             <div class="program-main">
               <button class="program-link" type="button">
                 Clinical Approaches to Chronic Pain
-              </button>
+              </button><span class="protected-label">🔒 Members</span>
 
               <div class="program-meta">
                 Sep 14 · 46 min
@@ -781,14 +835,15 @@
 
 
           <div
-            class="program-item"
+            class="program-item protected-content"
+            data-protected="true"
             data-title="Treating Chronic Pain"
             data-date="2026-09-16"
           >
             <div class="program-main">
               <button class="program-link" type="button">
                 Treating Chronic Pain
-              </button>
+              </button><span class="protected-label">🔒 Members</span>
 
               <div class="program-meta">
                 Sep 16 · 1 hr 12 min
@@ -840,14 +895,15 @@
         <div class="program-list">
 
           <div
-            class="program-item"
+            class="program-item protected-content"
+            data-protected="true"
             data-title="Food as Medicine"
             data-date="2026-09-20"
           >
             <div class="program-main">
               <button class="program-link" type="button">
                 Food as Medicine
-              </button>
+              </button><span class="protected-label">🔒 Members</span>
 
               <div class="program-meta">
                 Sep 20 · 57 min
@@ -882,122 +938,46 @@
 
     <!-- MOCK SEMANTIC SEARCH STATE -->
     <div id="searchResults" class="search-results">
+      <div class="search-summary">Semantic matches across program transcripts</div>
 
-      <div class="search-summary">
-        Results ranked by relevance
-      </div>
-
-
-      <section
-        class="search-group"
-        data-search-channel="healing"
-      >
-        <h3 class="search-group-heading">
-          Healing Exchange
-        </h3>
-
-        <article
-          class="search-result"
-          data-start="1062"
-          data-program="Understanding Soil Health"
-        >
-          <div class="result-header">
-
-            <div class="result-title">
-              Understanding Soil Health
-            </div>
-
-            <div class="result-location">
-              17:42–18:16
-            </div>
-
-          </div>
-
-          <p class="result-snippet">
-            “…microbial communities surrounding the root
-            system can dramatically alter nutrient availability
-            and the way plants respond to stress…”
-          </p>
+      <section class="search-group" data-search-channel="healing">
+        <h3 class="search-group-heading">Healing Exchange</h3>
+        <article class="search-result" data-start="1122" data-program="Understanding Soil Health">
+          <div class="result-title">Understanding Soil Health</div>
+          <p class="result-snippet"><strong>18:42</strong> “Repeated tillage disrupts fungal networks and reduces the biological diversity we depend on for nutrient cycling.”</p>
+          <div class="result-meta">Sep 28 · 52 min</div>
+        </article>
+        <article class="search-result protected-content" data-protected="true" data-start="1876" data-program="Clinical Approaches to Chronic Pain">
+          <div class="result-title">Clinical Approaches to Chronic Pain <span class="protected-label">🔒 Members</span></div>
+          <p class="result-snippet"><strong>31:16</strong> “We see similar ecological relationships in human health, where disrupting the surrounding environment can change the resilience of the whole system.”</p>
+          <div class="result-meta">Sep 14 · 46 min</div>
         </article>
       </section>
 
-
-      <section
-        class="search-group"
-        data-search-channel="interviews"
-      >
-        <h3 class="search-group-heading">
-          Practitioner Interviews
-        </h3>
-
-        <article
-          class="search-result"
-          data-start="1868"
-          data-program="Regenerative Agriculture with Jane Smith"
-        >
-          <div class="result-header">
-
-            <div class="result-title">
-              Regenerative Agriculture with Jane Smith
-            </div>
-
-            <div class="result-location">
-              31:08–31:47
-            </div>
-
-          </div>
-
-          <p class="result-snippet">
-            “…soil biology changes considerably when you stop
-            thinking only in terms of nutrients and start
-            considering the living relationships in the soil…”
-          </p>
+      <section class="search-group" data-search-channel="interviews">
+        <h3 class="search-group-heading">Practitioner Interviews</h3>
+        <article class="search-result" data-start="728" data-program="Regenerative Agriculture with Jane Smith">
+          <div class="result-title">Regenerative Agriculture with Jane Smith</div>
+          <p class="result-snippet"><strong>12:08</strong> “We stopped disturbing the beds, added cover crops, and within two seasons were seeing much better water retention and root development.”</p>
+          <div class="result-meta">Sep 24 · 38 min</div>
         </article>
       </section>
 
-
-      <section
-        class="search-group"
-        data-search-channel="conversations"
-      >
-        <h3 class="search-group-heading">
-          Community Conversations
-        </h3>
-
-        <article
-          class="search-result"
-          data-start="742"
-          data-program="Food as Medicine"
-        >
-          <div class="result-header">
-
-            <div class="result-title">
-              Food as Medicine
-            </div>
-
-            <div class="result-location">
-              12:22–12:58
-            </div>
-
-          </div>
-
-          <p class="result-snippet">
-            “…the quality of the soil becomes part of the
-            nutritional story long before the food reaches
-            someone's plate…”
-          </p>
+      <section class="search-group" data-search-channel="conversations">
+        <h3 class="search-group-heading">Community Conversations</h3>
+        <article class="search-result protected-content" data-protected="true" data-start="1611" data-program="Food as Medicine">
+          <div class="result-title">Food as Medicine <span class="protected-label">🔒 Members</span></div>
+          <p class="result-snippet"><strong>26:51</strong> “How food is grown affects much more than yield. Soil conditions influence the nutritional qualities of the plants we eventually eat.”</p>
+          <div class="result-meta">Sep 20 · 57 min</div>
         </article>
       </section>
-
     </div>
 
-
-    <div id="emptyState" class="empty-state">
-      Select at least one channel.
-    </div>
-
-  </section>
-
+  <div id="accessPopover" class="access-popover" hidden>
+    <div id="memberChoiceState"><div class="tiny-title">Member-only content</div><div class="tiny-links"><button id="imMemberButton" type="button">I’m a member</button><span>·</span><button id="subscribeButton" type="button">Subscribe</button></div></div>
+    <div id="memberEmailState" hidden><label class="tiny-title" for="memberEmail">Member email</label><div class="email-row"><input id="memberEmail" type="email" placeholder="you@example.com" autocomplete="email"><button id="memberEmailContinue" type="button">Continue</button></div></div>
+    <div id="memberCheckEmailState" hidden><div class="tiny-title">Check your email</div><div class="tiny-copy">We sent you a link to continue.</div></div>
+  </div>
 </main>
 
 
@@ -1150,7 +1130,13 @@
 
     } else {
 
-      updateMode();
+      if (typeof prototypeView !== "undefined") {
+        const searching = prototypeView === "search";
+        browseResults.classList.toggle("hidden", searching);
+        searchResults.classList.toggle("visible", searching);
+      } else {
+        updateMode();
+      }
     }
   }
 
@@ -1355,13 +1341,100 @@
     });
 
 
+
+  /* ENTITLEMENT POC */
+  const notEntitledState=document.getElementById("notEntitledState"),entitledState=document.getElementById("entitledState"),accessPopover=document.getElementById("accessPopover"),memberAccessLink=document.getElementById("memberAccessLink"),memberSubscribeLink=document.getElementById("memberSubscribeLink"),memberChoiceState=document.getElementById("memberChoiceState"),memberEmailState=document.getElementById("memberEmailState"),memberCheckEmailState=document.getElementById("memberCheckEmailState"),imMemberButton=document.getElementById("imMemberButton"),subscribeButton=document.getElementById("subscribeButton"),memberEmail=document.getElementById("memberEmail"),memberEmailContinue=document.getElementById("memberEmailContinue");
+  let viewerEntitled=false;
+  function setEntitlement(v){viewerEntitled=v;document.body.classList.toggle("viewer-entitled",v);notEntitledState.classList.toggle("active",!v);entitledState.classList.toggle("active",v);accessPopover.hidden=true}
+  function setMemberState(x){memberChoiceState.hidden=x!=="choice";memberEmailState.hidden=x!=="email";memberCheckEmailState.hidden=x!=="check"}
+  function positionPopover(a){accessPopover.hidden=false;requestAnimationFrame(()=>{const r=a.getBoundingClientRect(),m=8,w=accessPopover.offsetWidth;let l=Math.min(innerWidth-w-16,Math.max(16,r.right-w)),t=r.bottom+m;if(t+accessPopover.offsetHeight>innerHeight-16)t=Math.max(16,r.top-accessPopover.offsetHeight-m);accessPopover.style.left=l+"px";accessPopover.style.top=t+"px"})}
+  function showChoice(a){setMemberState("choice");positionPopover(a)} function showEmail(a){setMemberState("email");positionPopover(a);requestAnimationFrame(()=>memberEmail.focus())}
+  document.addEventListener("click",e=>{const i=e.target.closest("[data-protected='true']");if(!i||viewerEntitled)return;e.preventDefault();e.stopImmediatePropagation();showChoice(i)},true);
+  notEntitledState.addEventListener("click",()=>setEntitlement(false));entitledState.addEventListener("click",()=>setEntitlement(true));memberAccessLink.addEventListener("click",()=>showEmail(memberAccessLink));imMemberButton.addEventListener("click",()=>showEmail(accessPopover));
+  function subscribe(){alert("POC: Begin the subscription flow.")} memberSubscribeLink.addEventListener("click",subscribe);subscribeButton.addEventListener("click",subscribe);
+  memberEmailContinue.addEventListener("click",()=>{if(!memberEmail.value.trim()||!memberEmail.checkValidity()){memberEmail.reportValidity();return}setMemberState("check");positionPopover(accessPopover)});
+
+  /* ---------------------------------------------------------
+     PROTOTYPE BROWSE / SEARCH VIEW
+     One authoritative state controls the demo.
+     --------------------------------------------------------- */
+
+  const browseViewButton =
+    document.getElementById("browseViewButton");
+
+  const searchViewButton =
+    document.getElementById("searchViewButton");
+
+  let prototypeView = "browse";
+
+  function setPrototypeView(mode) {
+    prototypeView = mode;
+
+    const searching = mode === "search";
+    const hasSelection = selectedChannels().length > 0;
+
+    browseViewButton.classList.toggle("active", !searching);
+    searchViewButton.classList.toggle("active", searching);
+
+    if (searching) {
+      searchInput.value = "how farming practices affect soil health";
+      clearSearch.classList.add("visible");
+      sortSelect.classList.add("hidden");
+
+      if (hasSelection) {
+        browseResults.classList.add("hidden");
+        searchResults.classList.add("visible");
+      }
+    } else {
+      searchInput.value = "";
+      clearSearch.classList.remove("visible");
+      sortSelect.classList.remove("hidden");
+
+      searchResults.classList.remove("visible");
+      if (hasSelection) {
+        browseResults.classList.remove("hidden");
+      }
+    }
+  }
+
+  browseViewButton.addEventListener(
+    "click",
+    () => setPrototypeView("browse")
+  );
+
+  searchViewButton.addEventListener(
+    "click",
+    () => setPrototypeView("search")
+  );
+
+  /* Keep manual typing useful too. */
+  searchInput.removeEventListener("input", updateMode);
+  searchInput.addEventListener("input", () => {
+    if (searchInput.value.trim()) {
+      setPrototypeView("search");
+    } else {
+      setPrototypeView("browse");
+    }
+  });
+
+  clearSearch.replaceWith(clearSearch.cloneNode(true));
+  const prototypeClearSearch = document.getElementById("clearSearch");
+  prototypeClearSearch.addEventListener(
+    "click",
+    () => {
+      setPrototypeView("browse");
+      searchInput.focus();
+    }
+  );
+
   /* Initial state:
      - every channel selected
      - every browse list collapsed
      - newest sort
+     - browse view
   */
-
   sortPrograms();
+  setPrototypeView("browse");
   updateScope();
 
 </script>
