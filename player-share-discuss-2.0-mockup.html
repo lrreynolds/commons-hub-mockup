@@ -1,0 +1,2669 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Commonshub Media Player POC</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: #fff;
+      color: #172033;
+      font-family:
+      Inter,
+      -apple-system,
+      BlinkMacSystemFont,
+      "Segoe UI",
+      sans-serif;
+    }
+
+    .media-player {
+      width: 100%;
+      max-width: 760px;
+      padding: 24px;
+    }
+
+    /* =========================================================
+       PLAYER
+       ========================================================= */
+
+       .player-frame {
+        position: relative;
+        width: 100%;
+        aspect-ratio: 16 / 9;
+        overflow: hidden;
+        border-radius: 9px;
+        background: #111827;
+        color: #fff;
+      }
+
+      .player-placeholder {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .large-play-button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 64px;
+        height: 64px;
+        padding-left: 4px;
+        border: 0;
+        border-radius: 50%;
+        background: rgba(255,255,255,.94);
+        color: #111827;
+        font-size: 23px;
+        cursor: pointer;
+      }
+
+      .player-controls {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 14px;
+        background:
+        linear-gradient(
+          to top,
+          rgba(0,0,0,.75),
+          rgba(0,0,0,0)
+        );
+      }
+
+      .control-play {
+        border: 0;
+        background: transparent;
+        color: #fff;
+        font-size: 15px;
+        cursor: pointer;
+      }
+
+      .progress {
+        flex: 1;
+        accent-color: #fff;
+        cursor: pointer;
+      }
+
+      .player-time {
+        min-width: 92px;
+        color: #fff;
+        font-size: 12px;
+        text-align: right;
+        white-space: nowrap;
+      }
+
+    /* =========================================================
+       PROGRAM BAR
+       ========================================================= */
+
+       .program-bar {
+         position: relative;
+         padding-top: 10px;
+      }
+
+       .program-meta-row {
+         display: grid;
+         grid-template-columns: 1fr auto 1fr;
+         align-items: center;
+         min-height: 24px;
+         gap: 12px;
+      }
+
+       .program-location {
+         justify-self: start;
+         color: #64748b;
+         font-size: 14px;
+         font-weight: 500;
+         font-variant-numeric: tabular-nums;
+         white-space: nowrap;
+      }
+
+       .viewer-welcome {
+         justify-self: center;
+         color: #64748b;
+         font-size: 12px;
+         font-weight: 600;
+         white-space: nowrap;
+      }
+
+       .viewer-welcome[hidden] {
+         display: block;
+         visibility: hidden;
+      }
+
+       .player-actions {
+         justify-self: end;
+         display: flex;
+         align-items: center;
+         gap: 16px;
+      }
+
+       .action-button {
+         display: inline-flex;
+         align-items: center;
+         gap: 5px;
+         padding: 0;
+         border: 0;
+         background: transparent;
+         color: #475569;
+         font: inherit;
+         font-size: 13px;
+         font-weight: 600;
+         cursor: pointer;
+      }
+
+       .action-button:hover {
+         color: #0284c7;
+         text-decoration: underline;
+      }
+
+       .program-title {
+         margin: 4px 0 0;
+         font-size: 19px;
+         line-height: 1.35;
+         font-weight: 700;
+      }
+
+     /* =========================================================
+       POPOVERS
+       ========================================================= */
+
+       .popover {
+        position: absolute;
+        z-index: 10;
+        top: calc(100% + 10px);
+        right: 0;
+        display: none;
+        border: 1px solid #dbe1e8;
+        border-radius: 10px;
+        background: #fff;
+        box-shadow:
+        0 12px 30px rgba(15,23,42,.14);
+      }
+
+      .popover.open {
+        display: block;
+      }
+
+    /*
+      Shared media context styling.
+
+      At 0:00:
+        Understanding Soil Health
+
+      Otherwise:
+        Understanding Soil Health at 18:42
+    */
+
+      .media-context {
+        color: #475569;
+        font-size: 12px;
+        font-weight: 600;
+        line-height: 1.4;
+        text-align: center;
+      }
+
+    /* =========================================================
+       SHARE
+       ========================================================= */
+
+       .share-popover {
+        width: 285px;
+        padding: 12px 14px 11px;
+      }
+
+      .share-title {
+        margin: 0 0 4px;
+        font-size: 15px;
+        font-weight: 700;
+        text-align: center;
+      }
+
+      .share-popover .media-context {
+        margin-bottom: 10px;
+      }
+
+      .share-buttons {
+        display: flex;
+        justify-content: center;
+        gap: 7px;
+      }
+
+      .share-action {
+        min-height: 29px;
+        padding: 4px 11px;
+        border: 1px solid #cbd3df;
+        border-radius: 6px;
+        background: #fff;
+        color: #172033;
+        font: inherit;
+        font-size: 12px;
+        font-weight: 600;
+        cursor: pointer;
+      }
+
+      .share-action:hover {
+        background: #f8fafc;
+      }
+
+      .share-action.primary {
+        border-color: #0ea5e9;
+        background: #0ea5e9;
+        color: #fff;
+      }
+
+      .share-action.primary:hover {
+        background: #0284c7;
+      }
+
+      .copy-status {
+        height: 10px;
+        margin-top: 2px;
+        color: #64748b;
+        font-size: 11px;
+        text-align: center;
+      }
+
+    /* =========================================================
+       DISCUSS — IDENTITY
+       ========================================================= */
+
+       .discuss-popover {
+        width: 340px;
+        padding: 16px;
+      }
+
+      .discuss-title {
+        margin: 0 0 4px;
+        font-size: 15px;
+        font-weight: 700;
+        text-align: center;
+      }
+
+      .discuss-subtitle {
+        margin: 0 0 14px;
+        color: #64748b;
+        font-size: 12px;
+        text-align: center;
+      }
+
+      .community-login {
+        width: 100%;
+        min-height: 38px;
+        padding: 7px 12px;
+        border: 1px solid #0ea5e9;
+        border-radius: 7px;
+        background: #0ea5e9;
+        color: #fff;
+        font: inherit;
+        font-size: 13px;
+        font-weight: 650;
+        cursor: pointer;
+      }
+
+      .community-login:hover {
+        background: #0284c7;
+      }
+
+      .other-account {
+        display: block;
+        width: 100%;
+        margin-top: 10px;
+        padding: 2px;
+        border: 0;
+        background: transparent;
+        color: #0284c7;
+        font: inherit;
+        font-size: 12px;
+        font-weight: 600;
+        cursor: pointer;
+      }
+
+      .other-account:hover {
+        text-decoration: underline;
+      }
+
+      /* Failure / unsupported account modal */
+
+      .connection-error {
+        padding: 18px 20px 16px;
+        text-align: center;
+      }
+
+      .connection-error h3 {
+        margin: 0 0 7px;
+        color: #172033;
+        font-size: 15px;
+        font-weight: 700;
+        line-height: 1.25;
+      }
+
+      .connection-error p {
+        max-width: 290px;
+        margin: 0 auto;
+        color: #64748b;
+        font-size: 12.5px;
+        line-height: 1.5;
+      }
+
+      .connection-error .error-actions {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 8px;
+        margin-top: 15px;
+      }
+
+      .connection-error .error-actions button {
+        min-height: 32px;
+        padding: 6px 13px;
+        border-radius: 6px;
+        font-size: 12px;
+        font-weight: 650;
+        cursor: pointer;
+      }
+
+/* Primary: retry the action the user originally wanted */
+
+.connection-error .retry-button {
+  border: 1px solid #0ea5e9;
+  background: #0ea5e9;
+  color: #fff;
+}
+
+.connection-error .retry-button:hover {
+  background: #0284c7;
+  border-color: #0284c7;
+}
+
+/* Secondary: graceful fallback to Share */
+
+.connection-error .share-instead-button {
+  border: 1px solid #cbd5e1;
+  background: #fff;
+  color: #172033;
+}
+
+.connection-error .share-instead-button:hover {
+  background: #f8fafc;
+  border-color: #94a3b8;
+}
+
+    /* =========================================================
+       DISCUSS — COMPOSER
+       ========================================================= */
+
+       .composer-popover {
+        width: 390px;
+        padding: 14px;
+      }
+
+      .composer-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        margin-bottom: 4px;
+      }
+
+      .composer-title {
+        margin: 0;
+        font-size: 15px;
+        font-weight: 700;
+      }
+
+      .composer-identity {
+        color: #64748b;
+        font-size: 11px;
+        white-space: nowrap;
+      }
+
+      .composer-popover .media-context {
+        margin-bottom: 9px;
+        text-align: left;
+      }
+
+      .composer-textarea {
+        display: block;
+        width: 100%;
+        height: 92px;
+        resize: vertical;
+        padding: 10px;
+        border: 1px solid #cbd3df;
+        border-radius: 7px;
+        outline: none;
+        color: #172033;
+        background: #fff;
+        font: inherit;
+        font-size: 14px;
+        line-height: 1.45;
+      }
+
+      .composer-textarea:focus {
+        border-color: #0ea5e9;
+        box-shadow:
+        0 0 0 3px rgba(14,165,233,.10);
+      }
+
+      .composer-footer {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        gap: 10px;
+        margin-top: 8px;
+      }
+
+      .character-count {
+        color: #64748b;
+        font-size: 11px;
+        font-variant-numeric: tabular-nums;
+        white-space: nowrap;
+      }
+
+      .post-button {
+        min-height: 30px;
+        padding: 5px 14px;
+        border: 1px solid #0ea5e9;
+        border-radius: 6px;
+        background: #0ea5e9;
+        color: #fff;
+        font: inherit;
+        font-size: 12px;
+        font-weight: 650;
+        cursor: pointer;
+      }
+
+      .post-button:disabled {
+        border-color: #cbd3df;
+        background: #e2e8f0;
+        color: #94a3b8;
+        cursor: default;
+      }
+
+    /* =========================================================
+       MOBILE
+       ========================================================= */
+
+       @media (max-width: 520px) {
+
+        .media-player {
+          padding: 16px;
+        }
+
+        .program-bar {
+          align-items: flex-start;
+          flex-direction: column;
+          gap: 11px;
+        }
+
+        .program-title {
+          font-size: 18px;
+        }
+
+        .popover {
+          right: auto;
+          left: 0;
+          max-width: calc(100vw - 32px);
+        }
+
+        .composer-header {
+          align-items: flex-start;
+          flex-direction: column;
+          gap: 3px;
+        }
+      }
+
+    /* =========================================================
+       DEMO STATE CONTROLS — outside production widget
+       ========================================================= */
+       .demo-shell {
+        padding: 18px 24px 0;
+      }
+
+      .demo-controls {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 7px;
+        border: 1px dashed #94a3b8;
+        border-radius: 9px;
+        background: #f8fafc;
+        color: #475569;
+        font-size: 12px;
+      }
+
+      .demo-label {
+        margin-right: 4px;
+        font-weight: 700;
+      }
+
+      .demo-state {
+        padding: 5px 9px;
+        border: 1px solid #cbd5e1;
+        border-radius: 6px;
+        background: #fff;
+        color: #334155;
+        font: inherit;
+        font-weight: 650;
+        cursor: pointer;
+      }
+
+      .demo-state.active {
+        border-color: #172033;
+        background: #172033;
+        color: #fff;
+      }
+
+      .external-step {
+        display: none;
+      }
+
+      .external-step.open {
+        display: block;
+      }
+
+      .external-label {
+        display: block;
+        margin: 0 0 6px;
+        color: #475569;
+        font-size: 12px;
+        font-weight: 650;
+      }
+
+      .external-row {
+        display: flex;
+        gap: 7px;
+      }
+
+      .external-input {
+        min-width: 0;
+        flex: 1;
+        padding: 8px 9px;
+        border: 1px solid #cbd3df;
+        border-radius: 7px;
+        outline: none;
+        font: inherit;
+        font-size: 12px;
+      }
+
+      .external-input:focus {
+        border-color: #0ea5e9;
+        box-shadow: 0 0 0 3px rgba(14,165,233,.10);
+      }
+
+      .external-continue {
+        padding: 7px 10px;
+        border: 1px solid #0ea5e9;
+        border-radius: 7px;
+        background: #0ea5e9;
+        color: #fff;
+        font: inherit;
+        font-size: 12px;
+        font-weight: 650;
+        cursor: pointer;
+      }
+
+      .external-back {
+        display: block;
+        margin: 9px auto 0;
+        padding: 2px;
+        border: 0;
+        background: transparent;
+        color: #64748b;
+        font: inherit;
+        font-size: 11px;
+        cursor: pointer;
+      }
+
+      .composer-identity-button {
+        padding: 0;
+        border: 0;
+        background: transparent;
+        color: #64748b;
+        font: inherit;
+        font-size: 11px;
+        cursor: pointer;
+      }
+
+      .composer-identity-button:hover {
+        color: #0284c7;
+        text-decoration: underline;
+      }
+
+
+    /* =========================================================
+       MOCK COMMUNITY AUTHORIZATION FLOW
+       ========================================================= */
+       .server-picker {
+        display: none;
+      }
+
+      .server-picker.open {
+        display: block;
+      }
+
+      .server-suggestions {
+        margin: 6px 0 0;
+        overflow: hidden;
+        border: 1px solid #d8e0ea;
+        border-radius: 8px;
+        background: #fff;
+      }
+
+      .server-suggestion {
+        width: 100%;
+        display: block;
+        padding: 9px 11px;
+        border: 0;
+        border-bottom: 1px solid #edf1f5;
+        background: #fff;
+        color: #334155;
+        font: inherit;
+        font-size: 13px;
+        text-align: left;
+        cursor: pointer;
+      }
+
+      .server-suggestion:last-child { border-bottom: 0; }
+      .server-suggestion:hover { background: #f8fafc; }
+
+      .server-note {
+        margin: 8px 0 0;
+        color: #64748b;
+        font-size: 11px;
+        line-height: 1.4;
+      }
+
+      .failure-actions {
+        display: flex;
+        justify-content: center;
+        gap: 8px;
+        margin-top: 14px;
+      }
+
+      .failure-popover {
+        width: 340px;
+        text-align: center;
+      }
+
+      .failure-popover .connection-error {
+        width: 100%;
+      }
+
+      .auth-popover {
+        width: 390px;
+        padding: 16px;
+      }
+
+      .auth-brand {
+        margin-bottom: 3px;
+        font-size: 14px;
+        font-weight: 750;
+        text-align: center;
+      }
+
+      .auth-heading {
+        margin: 0 0 5px;
+        font-size: 15px;
+        font-weight: 700;
+        text-align: center;
+      }
+
+      .auth-copy {
+        margin: 0 0 13px;
+        color: #64748b;
+        font-size: 12px;
+        line-height: 1.45;
+        text-align: center;
+      }
+
+      .auth-field {
+        display: block;
+        width: 100%;
+        margin-top: 8px;
+        padding: 9px 10px;
+        border: 1px solid #cbd3df;
+        border-radius: 7px;
+        outline: none;
+        font: inherit;
+        font-size: 13px;
+      }
+
+      .auth-field:focus {
+        border-color: #0ea5e9;
+        box-shadow: 0 0 0 3px rgba(14,165,233,.10);
+      }
+
+      .auth-primary {
+        width: 100%;
+        margin-top: 10px;
+        padding: 8px 12px;
+        border: 1px solid #0ea5e9;
+        border-radius: 7px;
+        background: #0ea5e9;
+        color: #fff;
+        font: inherit;
+        font-size: 13px;
+        font-weight: 650;
+        cursor: pointer;
+      }
+
+      .auth-secondary {
+        display: block;
+        margin: 10px auto 0;
+        padding: 2px;
+        border: 0;
+        background: transparent;
+        color: #64748b;
+        font: inherit;
+        font-size: 11px;
+        cursor: pointer;
+      }
+
+      .auth-permissions {
+        margin: 12px 0 0;
+        padding: 10px 12px;
+        border-radius: 7px;
+        background: #f8fafc;
+        color: #475569;
+        font-size: 12px;
+        line-height: 1.5;
+      }
+
+      .auth-user {
+        margin-top: 9px;
+        color: #172033;
+        font-size: 12px;
+        font-weight: 700;
+        text-align: center;
+      }
+
+    
+/* =========================================================
+   CONVERSATION — integrated viewer activity
+   ========================================================= */
+.conversation {
+  margin-top: 20px;
+  border-top: 1px solid #e5eaf0;
+  padding-top: 14px;
+}
+
+.conversation-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 2px;
+}
+
+.conversation-title {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.conversation-note {
+  color: #94a3b8;
+  font-size: 10.5px;
+}
+
+.timeline-item {
+  padding: 13px 0;
+  border-bottom: 1px solid #edf1f5;
+}
+
+.timeline-author-row {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  min-width: 0;
+}
+
+.timeline-name {
+  color: #172033;
+  font-size: 12.5px;
+  font-weight: 700;
+}
+
+.timeline-handle {
+  min-width: 0;
+  overflow: hidden;
+  color: #7b8797;
+  font-size: 10.5px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.timeline-age {
+  margin-left: auto;
+  color: #94a3b8;
+  font-size: 10.5px;
+  white-space: nowrap;
+}
+
+.timeline-body {
+  margin: 6px 0 7px;
+  color: #334155;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.timeline-actions {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  min-height: 17px;
+}
+
+.timeline-time,
+.timeline-thread {
+  padding: 0;
+  border: 0;
+  background: transparent;
+  font: inherit;
+  cursor: pointer;
+}
+
+.timeline-time {
+  color: #526b8d;
+  font-size: 11.5px;
+  font-weight: 700;
+}
+
+.timeline-time:hover,
+.timeline-thread:hover {
+  text-decoration: underline;
+}
+
+.timeline-thread {
+  display: none;
+  color: #64748b;
+  font-size: 11.5px;
+  font-weight: 600;
+}
+
+.conversation.authenticated .timeline-thread {
+  display: inline;
+}
+
+.timeline-reply {
+  display: none;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: #64748b;
+  font: inherit;
+  font-size: 11.5px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.conversation.authenticated .timeline-item:not(.own-post) .timeline-reply {
+  display: inline;
+}
+
+.timeline-reply:hover {
+  text-decoration: underline;
+}
+
+.reply-target {
+  display: none;
+  align-items: center;
+  gap: 7px;
+  margin-bottom: 8px;
+  padding: 7px 9px;
+  border-radius: 6px;
+  background: #f1f5f9;
+  color: #52627a;
+  font-size: 11.5px;
+}
+
+.reply-target.active {
+  display: flex;
+}
+
+.reply-target strong {
+  color: #172033;
+}
+
+.reply-target-preview {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  flex: 1;
+}
+
+.reply-cancel {
+  border: 0;
+  background: transparent;
+  padding: 0 2px;
+  color: #64748b;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.conversation-empty-action {
+  display: none;
+}
+
+.conversation-composer {
+  display: none;
+  margin-top: 12px;
+  padding: 12px;
+  border: 1px solid #e1e7ee;
+  border-radius: 8px;
+  background: #fafbfd;
+}
+
+.conversation.authenticated .conversation-composer {
+  display: block;
+}
+
+.conversation-composer-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 7px;
+}
+
+.conversation-identity {
+  color: #64748b;
+  font-size: 11px;
+}
+
+.conversation-context {
+  color: #64748b;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.conversation-textarea {
+  display: block;
+  width: 100%;
+  min-height: 66px;
+  resize: vertical;
+  padding: 9px 10px;
+  border: 1px solid #cbd3df;
+  border-radius: 7px;
+  outline: none;
+  background: #fff;
+  color: #172033;
+  font: inherit;
+  font-size: 13px;
+  line-height: 1.45;
+}
+
+.conversation-textarea:focus {
+  border-color: #0ea5e9;
+  box-shadow: 0 0 0 3px rgba(14,165,233,.10);
+}
+
+.conversation-composer-foot {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 7px;
+}
+
+.conversation-count {
+  color: #94a3b8;
+  font-size: 10.5px;
+  font-variant-numeric: tabular-nums;
+}
+
+.conversation-post {
+  min-height: 29px;
+  padding: 5px 13px;
+  border: 1px solid #0ea5e9;
+  border-radius: 6px;
+  background: #0ea5e9;
+  color: #fff;
+  font: inherit;
+  font-size: 12px;
+  font-weight: 650;
+  cursor: pointer;
+}
+
+.conversation-post:disabled {
+  border-color: #cbd3df;
+  background: #e2e8f0;
+  color: #94a3b8;
+  cursor: default;
+}
+
+.timeline-item.just-posted {
+  animation: conversationFlash 1.2s ease-out;
+}
+
+@keyframes conversationFlash {
+  from { background: #f0f9ff; }
+  to { background: transparent; }
+}
+
+@media (max-width: 520px) {
+  .conversation { margin-top: 16px; }
+  .timeline-author-row { flex-wrap: wrap; }
+  .timeline-age { margin-left: 0; }
+}
+
+
+/* Final integrated conversation behavior */
+.conversation-composer {
+  margin-top: 10px;
+  margin-bottom: 2px;
+  padding: 10px 12px;
+}
+
+.conversation-textarea {
+  min-height: 48px;
+  max-height: 150px;
+  resize: none;
+  overflow-y: auto;
+}
+
+.conversation.authenticated .conversation-composer + #conversationTimeline {
+  margin-top: 4px;
+}
+
+</style>
+  </head>
+
+  <body>
+
+
+    <div class="demo-shell">
+      <div class="demo-controls" aria-label="Demo identity state">
+        <span class="demo-label">Auth state:</span>
+        <button class="demo-state active" data-state="unknown" type="button">Not logged in · Not authorized</button>
+        <button class="demo-state" data-state="logged" type="button">Logged in · Not authorized</button>
+        <button class="demo-state" data-state="community" type="button">Logged in · Authorized</button>
+      </div>
+    </div>
+
+    <main class="media-player">
+
+  <!-- =======================================================
+       PLAYER
+       ======================================================= -->
+
+       <div class="player-frame">
+
+        <div class="player-placeholder">
+
+          <button
+          id="largePlay"
+          class="large-play-button"
+          type="button"
+          aria-label="Play"
+          >
+          ▶
+        </button>
+
+      </div>
+
+      <div class="player-controls">
+
+        <button
+        id="controlPlay"
+        class="control-play"
+        type="button"
+        aria-label="Play"
+        >
+        ▶
+      </button>
+
+      <input
+      id="progress"
+      class="progress"
+      type="range"
+      min="0"
+      max="3128"
+      value="1122"
+      aria-label="Playback position"
+      >
+
+      <span
+      id="playerTime"
+      class="player-time"
+      >
+      18:42 / 52:08
+    </span>
+
+  </div>
+
+</div>
+
+
+  <!-- =======================================================
+       COMMONSHUB WRAPPER
+       ======================================================= -->
+
+       <div class="program-bar">
+
+         <div class="program-meta-row">
+           <div id="programLocation" class="program-location">18:42</div>
+
+           <div id="viewerWelcome" class="viewer-welcome" hidden>
+             Welcome, Jane
+           </div>
+
+           <div class="player-actions">
+             <button id="shareButton" class="action-button" type="button">↗ Share</button>
+             <button id="discussButton" class="action-button" type="button">💬 Discuss</button>
+           </div>
+         </div>
+
+         <h1 class="program-title">Understanding Soil Health</h1>
+
+     <!-- =====================================================
+         SHARE
+         ===================================================== -->
+
+         <div
+         id="sharePopover"
+         class="popover share-popover"
+         >
+
+         <h2 class="share-title">
+          Share
+        </h2>
+
+        <div
+        id="shareContext"
+        class="media-context"
+        >
+        Understanding Soil Health at 18:42
+      </div>
+
+
+      <div class="share-buttons">
+
+        <button
+        id="copyButton"
+        class="share-action"
+        type="button"
+        >
+        Copy link
+      </button>
+
+      <button
+      id="nativeShareButton"
+      class="share-action primary"
+      type="button"
+      >
+      Share…
+    </button>
+
+  </div>
+
+
+  <div
+  id="copyStatus"
+  class="copy-status"
+  aria-live="polite"
+  ></div>
+
+</div>
+
+
+    <!-- =====================================================
+         FIRST-TIME DISCUSS IDENTITY
+         ===================================================== -->
+
+         <div
+         id="discussPopover"
+         class="popover discuss-popover"
+         >
+
+         <h2 class="discuss-title">
+          Discuss
+        </h2>
+
+        <p class="discuss-subtitle">
+          Post using your Fediverse account
+        </p>
+
+        <div id="identityChoices">
+          <button
+          id="communityLogin"
+          class="community-login"
+          type="button"
+          >
+          Use Healing Exchange account
+        </button>
+
+        <button
+        id="otherAccount"
+        class="other-account"
+        type="button"
+        >
+        Use another Fediverse account
+      </button>
+    </div>
+
+    <div id="externalStep" class="external-step server-picker">
+      <label class="external-label" for="externalServer">
+        Where is your account?
+      </label>
+
+      <div class="external-row">
+        <input
+        id="externalServer"
+        class="external-input"
+        type="text"
+        placeholder="Search or enter your Fediverse server"
+        autocomplete="off"
+        aria-label="Fediverse server"
+        >
+        <button id="externalContinue" class="external-continue" type="button">
+          Continue
+        </button>
+      </div>
+
+      <div id="serverSuggestions" class="server-suggestions">
+        <button class="server-suggestion" type="button" data-server="mastodon.social">mastodon.social</button>
+        <button class="server-suggestion" type="button" data-server="mstdn.social">mstdn.social</button>
+        <button class="server-suggestion" type="button" data-server="mastodon.online">mastodon.online</button>
+        <button class="server-suggestion" type="button" data-server="example.unsupported">example.unsupported <span style="color:#94a3b8">· demo unsupported server</span></button>
+      </div>
+
+      <p class="server-note">
+        Suggestions help you find a server, but you can enter any domain.
+        Commonshub will check whether it supports a compatible sign-in and posting flow.
+      </p>
+
+      <button id="externalBack" class="external-back" type="button">Back</button>
+    </div>
+
+  </div>
+
+
+    <!-- =====================================================
+         MOCK EXTERNAL MASTODON AUTH FLOW
+         These screens represent pages owned by the community Mastodon
+         server, not Commonshub UI.
+         ===================================================== -->
+
+         <div id="authPopover" class="popover auth-popover">
+          <div id="authLoginStep">
+            <div class="auth-brand">Mastodon · healingexchange.tcmclinic.org</div>
+            <h2 class="auth-heading">Login to healingexchange.tcmclinic.org</h2>
+            <p class="auth-copy">Login with your healingexchange.tcmclinic.org credentials.</p>
+            <input class="auth-field" type="email" placeholder="E-mail address" aria-label="E-mail address">
+            <input class="auth-field" type="password" placeholder="Password" aria-label="Password">
+            <button id="authLoginButton" class="auth-primary" type="button">Log in</button>
+            <button id="authCancel" class="auth-secondary" type="button">Cancel</button>
+          </div>
+
+          <div id="authAuthorizeStep" style="display:none">
+            <div class="auth-brand">Mastodon · healingexchange.tcmclinic.org</div>
+            <h2 class="auth-heading">Authorize Commonshub Media?</h2>
+            <p class="auth-copy">Commonshub Media is requesting permission to use your Healing Exchange account for discussion.</p>
+            <div class="auth-user">@jane@healingexchange.tcmclinic.org</div>
+            <div class="auth-permissions">Requested permissions will be shown here by Mastodon. The production implementation should request only the minimum scopes needed to identify the account and publish the discussion post.</div>
+            <button id="authAuthorizeButton" class="auth-primary" type="button">Authorize</button>
+            <button id="authBack" class="auth-secondary" type="button">Deny</button>
+          </div>
+        </div>
+
+
+    <!-- =====================================================
+         MOCK REMOTE-SERVER AUTH FLOW
+         The remote server owns these screens. Mastodon servers
+         will normally look almost identical to the community flow.
+         Other compatible Fediverse software may look different.
+         ===================================================== -->
+
+         <div id="externalAuthPopover" class="popover auth-popover">
+          <div id="externalAuthLoginStep">
+            <div id="externalAuthBrand" class="auth-brand">Mastodon · mastodon.social</div>
+            <h2 id="externalAuthHeading" class="auth-heading">Login to mastodon.social</h2>
+            <p id="externalAuthCopy" class="auth-copy">Login with your mastodon.social credentials.</p>
+            <input class="auth-field" type="email" placeholder="E-mail address" aria-label="E-mail address">
+            <input class="auth-field" type="password" placeholder="Password" aria-label="Password">
+            <button id="externalAuthLoginButton" class="auth-primary" type="button">Log in</button>
+            <button id="externalAuthCancel" class="auth-secondary" type="button">Cancel</button>
+          </div>
+
+          <div id="externalAuthAuthorizeStep" style="display:none">
+            <div id="externalAuthorizeBrand" class="auth-brand">Mastodon · mastodon.social</div>
+            <h2 class="auth-heading">Authorize Commonshub Media?</h2>
+            <p id="externalAuthorizeCopy" class="auth-copy">Commonshub Media is requesting permission to use your account for discussion.</p>
+            <div id="externalAuthUser" class="auth-user">@alex@mastodon.social</div>
+            <div class="auth-permissions">The remote server shows its own authorization UI and requested permissions. Commonshub should request only the minimum capability needed to identify the account and publish the discussion post.</div>
+            <button id="externalAuthAuthorizeButton" class="auth-primary" type="button">Authorize</button>
+            <button id="externalAuthDeny" class="auth-secondary" type="button">Deny</button>
+          </div>
+        </div>
+
+
+    <!-- =====================================================
+         CONNECTION / AUTH FAILURE
+         ===================================================== -->
+
+         <div id="failurePopover" class="popover failure-popover">
+          <div class="connection-error">
+            <h3 id="failureTitle">Couldn't connect your account</h3>
+
+            <p id="failureCopy">
+              We couldn't connect to your Fediverse account for discussion.
+              You can try again or share this program instead.
+            </p>
+
+            <div class="error-actions">
+              <button id="failureRetry" class="retry-button" type="button">
+                Try again
+              </button>
+
+              <button id="failureShare" class="share-instead-button" type="button">
+                Share instead
+              </button>
+            </div>
+          </div>
+        </div>
+
+
+    <!-- =====================================================
+         DISCUSS COMPOSER
+         ===================================================== -->
+
+         <div
+         id="composerPopover"
+         class="popover composer-popover"
+         >
+
+         <div class="composer-header">
+
+          <h2 class="composer-title">
+            Discuss
+          </h2>
+
+          <button
+          id="composerIdentity"
+          class="composer-identity-button"
+          type="button"
+          title="Change account"
+          >
+          @jane@healingexchange.tcmclinic.org
+        </button>
+
+      </div>
+
+
+      <div
+      id="discussContext"
+      class="media-context"
+      >
+      Understanding Soil Health at 18:42
+    </div>
+
+
+    <textarea
+    id="composerText"
+    class="composer-textarea"
+    maxlength="1500"
+    placeholder="Add your thoughts…"
+    ></textarea>
+
+
+    <div class="composer-footer">
+
+      <span
+      id="characterCount"
+      class="character-count"
+      >
+      0 / 1500
+    </span>
+
+    <button
+    id="postButton"
+    class="post-button"
+    type="button"
+    disabled
+    >
+    Post
+  </button>
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- =======================================================
+     CONVERSATION — federated activity around this program
+     ======================================================= -->
+<section id="conversation" class="conversation" aria-label="Conversation about this program">
+  <div class="conversation-header">
+    <h2 class="conversation-title">Conversation</h2>
+    <span class="conversation-note">Across the Fediverse</span>
+  </div>
+
+
+
+  <div id="conversationComposer" class="conversation-composer">
+    <div class="conversation-composer-head">
+      <span id="conversationIdentity" class="conversation-identity">@jane@healingexchange.tcmclinic.org</span>
+      <span id="conversationContext" class="conversation-context">Understanding Soil Health at 18:42</span>
+    </div>
+    <div id="replyTarget" class="reply-target">
+      <span>Replying to <strong id="replyTargetName"></strong></span>
+      <span id="replyTargetPreview" class="reply-target-preview"></span>
+      <button id="replyCancel" class="reply-cancel" type="button" aria-label="Cancel reply">×</button>
+    </div>
+    <textarea id="conversationText" class="conversation-textarea" maxlength="1500" placeholder="Add your thoughts…"></textarea>
+    <div class="conversation-composer-foot">
+      <span id="conversationCount" class="conversation-count">0 / 1500</span>
+      <button id="conversationPost" class="conversation-post" type="button" disabled>Post</button>
+    </div>
+  </div>
+
+  <div id="conversationTimeline">
+    <article class="timeline-item">
+      <div class="timeline-author-row">
+        <span class="timeline-name">Monique Santos</span>
+        <span class="timeline-handle">@monique@healingexchange.tcmclinic.org</span>
+        <span class="timeline-age">8m</span>
+      </div>
+      <div class="timeline-body">
+        This explanation of the fungal network is really useful. I hadn't thought about repeated tillage this way.
+      </div>
+      <div class="timeline-actions">
+        <button class="timeline-time" type="button" data-seconds="1122">18:42</button>
+        <button class="timeline-reply" type="button">Reply</button>
+        <button class="timeline-thread" type="button">View conversation →</button>
+      </div>
+    </article>
+
+    <article class="timeline-item">
+      <div class="timeline-author-row">
+        <span class="timeline-name">Robert</span>
+        <span class="timeline-handle">@robert@social.example</span>
+        <span class="timeline-age">27m</span>
+      </div>
+      <div class="timeline-body">
+        The distinction she makes here reminds me of the resilience discussion from last week's program.
+      </div>
+      <div class="timeline-actions">
+        <button class="timeline-time" type="button" data-seconds="1876">31:16</button>
+        <button class="timeline-reply" type="button">Reply</button>
+        <button class="timeline-thread" type="button">View conversation →</button>
+      </div>
+    </article>
+
+    <article class="timeline-item">
+      <div class="timeline-author-row">
+        <span class="timeline-name">Alex Kim</span>
+        <span class="timeline-handle">@alex@mastodon.social</span>
+        <span class="timeline-age">1h</span>
+      </div>
+      <div class="timeline-body">
+        I'd be interested in hearing how other practitioners are applying this in their own work.
+      </div>
+      <div class="timeline-actions">
+        <button class="timeline-reply" type="button">Reply</button>
+        <button class="timeline-thread" type="button">View conversation →</button>
+      </div>
+    </article>
+  </div>
+</section>
+
+</main>
+
+
+<script>
+
+  const duration = 3128;
+
+  const programTitle =
+  "Understanding Soil Health";
+
+  const programUrl =
+  "https://media.example.org/w/abc123";
+
+
+  /*
+    MOCK ONLY.
+
+    Production:
+    retrieve this from the authenticated user's
+    Mastodon server configuration.
+  */
+
+  const maxCharacters = 1500;
+
+
+  const progress =
+  document.getElementById("progress");
+
+  const playerTime =
+  document.getElementById("playerTime");
+
+  const programLocation =
+  document.getElementById("programLocation");
+
+  const viewerWelcome =
+  document.getElementById("viewerWelcome");
+
+  const shareContext =
+  document.getElementById("shareContext");
+
+  const discussContext =
+  document.getElementById("discussContext");
+
+  const shareButton =
+  document.getElementById("shareButton");
+
+  const discussButton =
+  document.getElementById("discussButton");
+
+  const sharePopover =
+  document.getElementById("sharePopover");
+
+  const discussPopover =
+  document.getElementById("discussPopover");
+
+  const composerPopover =
+  document.getElementById("composerPopover");
+
+  const communityLogin =
+  document.getElementById("communityLogin");
+
+  const otherAccount =
+  document.getElementById("otherAccount");
+
+  const composerText =
+  document.getElementById("composerText");
+
+  const characterCount =
+  document.getElementById("characterCount");
+
+  const postButton =
+  document.getElementById("postButton");
+
+  const copyButton =
+  document.getElementById("copyButton");
+
+  const nativeShareButton =
+  document.getElementById("nativeShareButton");
+
+  const copyStatus =
+  document.getElementById("copyStatus");
+
+  const controlPlay =
+  document.getElementById("controlPlay");
+
+  const largePlay =
+  document.getElementById("largePlay");
+
+
+  const demoStateButtons =
+  document.querySelectorAll(".demo-state");
+
+  const identityChoices =
+  document.getElementById("identityChoices");
+
+  const externalStep =
+  document.getElementById("externalStep");
+
+  const externalServer =
+  document.getElementById("externalServer");
+
+  const serverSuggestions =
+  document.getElementById("serverSuggestions");
+
+  const externalContinue =
+  document.getElementById("externalContinue");
+
+  const externalBack =
+  document.getElementById("externalBack");
+
+  const composerIdentity =
+  document.getElementById("composerIdentity");
+
+
+  const authPopover =
+  document.getElementById("authPopover");
+
+  const authLoginStep =
+  document.getElementById("authLoginStep");
+
+  const authAuthorizeStep =
+  document.getElementById("authAuthorizeStep");
+
+  const authLoginButton =
+  document.getElementById("authLoginButton");
+
+  const authAuthorizeButton =
+  document.getElementById("authAuthorizeButton");
+
+  const authCancel =
+  document.getElementById("authCancel");
+
+  const authBack =
+  document.getElementById("authBack");
+
+  const externalAuthPopover = document.getElementById("externalAuthPopover");
+  const externalAuthLoginStep = document.getElementById("externalAuthLoginStep");
+  const externalAuthAuthorizeStep = document.getElementById("externalAuthAuthorizeStep");
+  const externalAuthBrand = document.getElementById("externalAuthBrand");
+  const externalAuthHeading = document.getElementById("externalAuthHeading");
+  const externalAuthCopy = document.getElementById("externalAuthCopy");
+  const externalAuthorizeBrand = document.getElementById("externalAuthorizeBrand");
+  const externalAuthorizeCopy = document.getElementById("externalAuthorizeCopy");
+  const externalAuthUser = document.getElementById("externalAuthUser");
+  const externalAuthLoginButton = document.getElementById("externalAuthLoginButton");
+  const externalAuthAuthorizeButton = document.getElementById("externalAuthAuthorizeButton");
+  const externalAuthCancel = document.getElementById("externalAuthCancel");
+  const externalAuthDeny = document.getElementById("externalAuthDeny");
+  const failurePopover = document.getElementById("failurePopover");
+  const failureTitle = document.getElementById("failureTitle");
+  const failureCopy = document.getElementById("failureCopy");
+  const failureRetry = document.getElementById("failureRetry");
+  const failureShare = document.getElementById("failureShare");
+
+
+  const identities = {
+    community: "@jane@healingexchange.tcmclinic.org",
+    external: "@alex@mastodon.social"
+  };
+
+  let identityState = "unknown";
+  let selectedExternalServer = "mastodon.social";
+
+
+  function resetIdentityChooser() {
+    identityChoices.style.display = "block";
+    externalStep.classList.remove("open");
+  }
+
+
+  function setIdentityState(state) {
+    identityState = state;
+
+    demoStateButtons.forEach((button) => {
+      button.classList.toggle(
+        "active",
+        button.dataset.state === state
+      );
+    });
+
+    if (state === "community" || state === "logged") {
+      composerIdentity.textContent = identities.community;
+    } else if (state === "external") {
+      composerIdentity.textContent = identities.external;
+    }
+
+    const isLoggedIn =
+      state === "logged" ||
+      state === "community" ||
+      state === "external";
+
+    viewerWelcome.hidden = !isLoggedIn;
+    viewerWelcome.textContent =
+      state === "external" ? "Welcome, Alex" : "Welcome, Jane";
+
+    closePopovers();
+    resetIdentityChooser();
+  }
+
+
+  function openComposer() {
+    discussPopover.classList.remove("open");
+    composerPopover.classList.add("open");
+
+    composerText.maxLength = maxCharacters;
+
+    characterCount.textContent =
+    composerText.value.length +
+    " / " +
+    maxCharacters;
+
+    updateTimeDisplay();
+    composerText.focus();
+  }
+
+
+  demoStateButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+      setIdentityState(button.dataset.state);
+    });
+  });
+
+
+  let playing = false;
+  let timer = null;
+
+
+  function formatTime(seconds) {
+
+    const minutes =
+    Math.floor(seconds / 60);
+
+    const secs =
+    seconds % 60;
+
+    return (
+      minutes +
+      ":" +
+      String(secs).padStart(2, "0")
+    );
+  }
+
+
+  /*
+    Shared semantic rule:
+
+    0:00
+      Understanding Soil Health
+
+    otherwise
+      Understanding Soil Health at 18:42
+  */
+
+  function formatProgramContext(seconds) {
+
+    if (seconds === 0) {
+      return programTitle;
+    }
+
+    return (
+      programTitle +
+      " at " +
+      formatTime(seconds)
+    );
+  }
+
+
+  /*
+    PLAYER POSITION IS THE SINGLE SOURCE OF TRUTH.
+
+    Both Share and Discuss follow the current
+    player position continuously.
+  */
+
+  function updateTimeDisplay() {
+
+    const current =
+    Number(progress.value);
+
+    const formatted =
+    formatTime(current);
+
+    const context =
+    formatProgramContext(current);
+
+
+    playerTime.textContent =
+    formatted +
+    " / " +
+    formatTime(duration);
+
+
+    programLocation.textContent =
+    formatted;
+
+
+    shareContext.textContent =
+    context;
+
+
+    discussContext.textContent =
+    context;
+  }
+
+
+  function setPlaying(state) {
+
+    playing = state;
+
+
+    controlPlay.textContent =
+    playing ? "❚❚" : "▶";
+
+
+    largePlay.style.display =
+    playing ? "none" : "flex";
+
+
+    if (timer) {
+
+      clearInterval(timer);
+
+      timer = null;
+    }
+
+
+    if (playing) {
+
+      timer =
+      setInterval(() => {
+
+        let current =
+        Number(progress.value);
+
+
+        if (current >= duration) {
+
+          setPlaying(false);
+
+          return;
+        }
+
+
+        progress.value =
+        current + 1;
+
+
+        updateTimeDisplay();
+
+      }, 1000);
+    }
+  }
+
+
+  function closePopovers() {
+
+    sharePopover.classList.remove("open");
+
+    discussPopover.classList.remove("open");
+
+    composerPopover.classList.remove("open");
+    authPopover.classList.remove("open");
+    externalAuthPopover.classList.remove("open");
+    failurePopover.classList.remove("open");
+  }
+
+
+  /*
+    URL rule:
+
+    0:00
+      canonical program URL
+
+    otherwise
+      timestamped program URL
+  */
+
+  function getCurrentProgramUrl() {
+
+    const current =
+    Number(progress.value);
+
+
+    if (current === 0) {
+      return programUrl;
+    }
+
+
+    return (
+      programUrl +
+      "?t=" +
+      current
+    );
+  }
+
+
+  /* =========================================================
+     PLAYER
+     ========================================================= */
+
+
+  progress.addEventListener(
+    "input",
+    updateTimeDisplay
+  );
+
+
+  controlPlay.addEventListener(
+    "click",
+    () => {
+
+      setPlaying(!playing);
+    }
+  );
+
+
+  largePlay.addEventListener(
+    "click",
+    () => {
+
+      setPlaying(true);
+    }
+  );
+
+
+  /* =========================================================
+     SHARE
+     ========================================================= */
+
+
+  shareButton.addEventListener(
+    "click",
+    () => {
+
+      const opening =
+      !sharePopover.classList.contains(
+        "open"
+      );
+
+
+      closePopovers();
+
+
+      if (opening) {
+
+        sharePopover.classList.add(
+          "open"
+        );
+      }
+
+
+      copyStatus.textContent = "";
+
+      updateTimeDisplay();
+    }
+  );
+
+
+  copyButton.addEventListener(
+    "click",
+    async () => {
+
+      /*
+        SHARE COMMIT POINT.
+
+        Current position is read only now.
+      */
+
+      const url =
+      getCurrentProgramUrl();
+
+
+      try {
+
+        await navigator.clipboard.writeText(
+          url
+        );
+
+
+        copyStatus.textContent =
+        "Link copied";
+
+      } catch {
+
+        copyStatus.textContent =
+        url;
+      }
+    }
+  );
+
+
+  nativeShareButton.addEventListener(
+    "click",
+    async () => {
+
+      /*
+        SHARE COMMIT POINT.
+      */
+
+      const url =
+      getCurrentProgramUrl();
+
+
+      if (navigator.share) {
+
+        try {
+
+          await navigator.share({
+
+            title:
+            formatProgramContext(
+              Number(progress.value)
+              ),
+
+            url: url
+          });
+
+        } catch {
+
+          /*
+            User cancelled.
+          */
+        }
+
+      } else {
+
+        try {
+
+          await navigator.clipboard.writeText(
+            url
+          );
+
+
+          copyStatus.textContent =
+          "Link copied";
+
+        } catch {
+
+          copyStatus.textContent =
+          url;
+        }
+      }
+    }
+  );
+
+
+  /* =========================================================
+     DISCUSS
+     ========================================================= */
+
+
+  discussButton.addEventListener(
+    "click",
+    () => {
+
+      const anyOpen =
+      discussPopover.classList.contains("open") ||
+      composerPopover.classList.contains("open");
+
+      closePopovers();
+
+      if (!anyOpen) {
+
+        setPlaying(false);
+        updateTimeDisplay();
+
+        if (identityState === "community" || identityState === "external") {
+          conversationText.focus();
+          conversationText.scrollIntoView({ behavior: "smooth", block: "center" });
+        } else if (identityState === "logged") {
+          authLoginStep.style.display = "none";
+          authAuthorizeStep.style.display = "block";
+          authPopover.classList.add("open");
+        } else {
+          resetIdentityChooser();
+          discussPopover.classList.add("open");
+        }
+      }
+    }
+  );
+
+
+  /*
+    MOCK HAPPY PATH.
+
+    Production:
+
+      If already authenticated:
+        open composer.
+
+      Otherwise:
+        authenticate through Healing Exchange,
+        return to this media item,
+        restore current playback position,
+        then open composer.
+
+    Position is STILL not committed.
+  */
+
+  communityLogin.addEventListener(
+    "click",
+    () => {
+      discussPopover.classList.remove("open");
+
+      if (identityState === "community") {
+        openComposer();
+        return;
+      }
+
+      if (identityState === "logged") {
+        authLoginStep.style.display = "none";
+        authAuthorizeStep.style.display = "block";
+      } else {
+        authLoginStep.style.display = "block";
+        authAuthorizeStep.style.display = "none";
+      }
+
+      authPopover.classList.add("open");
+    }
+  );
+
+
+  authLoginButton.addEventListener(
+    "click",
+    () => {
+      identityState = "logged";
+      demoStateButtons.forEach((button) => {
+        button.classList.toggle("active", button.dataset.state === "logged");
+      });
+      authLoginStep.style.display = "none";
+      authAuthorizeStep.style.display = "block";
+    }
+  );
+
+
+  authAuthorizeButton.addEventListener(
+    "click",
+    () => {
+      authPopover.classList.remove("open");
+      setIdentityState("community");
+      closePopovers();
+      updateConversationState();
+      updateAuthorizedViewerActions();
+      setTimeout(() => {
+        conversationText.focus();
+        conversationText.scrollIntoView({ behavior: "smooth", block: "center" });
+      }, 0);
+    }
+  );
+
+
+  authCancel.addEventListener(
+    "click",
+    () => {
+      authPopover.classList.remove("open");
+      resetIdentityChooser();
+      discussPopover.classList.add("open");
+    }
+  );
+
+
+  authBack.addEventListener(
+    "click",
+    () => {
+      authPopover.classList.remove("open");
+      resetIdentityChooser();
+      discussPopover.classList.add("open");
+    }
+  );
+
+
+  /* =========================================================
+     OTHER FEDIVERSE ACCOUNT
+
+     Commonshub owns server selection/discovery.
+     The selected remote server owns login + authorization UI.
+     ========================================================= */
+
+  otherAccount.addEventListener(
+    "click",
+    () => {
+      identityChoices.style.display = "none";
+      externalStep.classList.add("open");
+      externalServer.focus();
+    }
+  );
+
+  externalBack.addEventListener(
+    "click",
+    () => {
+      resetIdentityChooser();
+    }
+  );
+
+  document.querySelectorAll(".server-suggestion").forEach((button) => {
+    button.addEventListener("click", () => {
+      externalServer.value = button.dataset.server;
+      externalContinue.click();
+    });
+  });
+
+  externalServer.addEventListener("input", () => {
+    const q = externalServer.value.trim().toLowerCase();
+    document.querySelectorAll(".server-suggestion").forEach((button) => {
+      button.style.display = !q || button.dataset.server.includes(q) ? "block" : "none";
+    });
+  });
+
+  function showExternalAuth(server) {
+    selectedExternalServer = server;
+
+    /* Demo capability discovery. In production this is where
+       Commonshub determines whether the server exposes a
+       compatible authorization/posting mechanism. */
+    if (server === "example.unsupported") {
+      closePopovers();
+      failureTitle.textContent = "This server isn't supported yet";
+      failureCopy.textContent =
+      "We can't currently post discussions through " + server +
+      ". You can try another server or share this program instead.";
+      failurePopover.classList.add("open");
+      return;
+    }
+
+    const looksLikeMastodon =
+    server.includes("mastodon") || server === "mstdn.social";
+
+    const softwareName = looksLikeMastodon ? "Mastodon" : "Fediverse server";
+    externalAuthBrand.textContent = softwareName + " · " + server;
+    externalAuthorizeBrand.textContent = softwareName + " · " + server;
+    externalAuthHeading.textContent = "Login to " + server;
+    externalAuthCopy.textContent = "Login with your " + server + " credentials.";
+    externalAuthorizeCopy.textContent =
+    "Commonshub Media is requesting permission to use your " + server +
+    " account for discussion.";
+    externalAuthUser.textContent = "@alex@" + server;
+
+    discussPopover.classList.remove("open");
+    externalAuthLoginStep.style.display = "block";
+    externalAuthAuthorizeStep.style.display = "none";
+    externalAuthPopover.classList.add("open");
+  }
+
+  externalContinue.addEventListener(
+    "click",
+    () => {
+      const server = externalServer.value.trim()
+      .replace(/^https?:\/\//, "")
+      .replace(/\/$/, "");
+
+      if (!server) {
+        externalServer.focus();
+        return;
+      }
+
+      showExternalAuth(server);
+    }
+  );
+
+  externalServer.addEventListener(
+    "keydown",
+    (event) => {
+      if (event.key === "Enter") externalContinue.click();
+    }
+  );
+
+  externalAuthLoginButton.addEventListener("click", () => {
+    externalAuthLoginStep.style.display = "none";
+    externalAuthAuthorizeStep.style.display = "block";
+  });
+
+  externalAuthAuthorizeButton.addEventListener("click", () => {
+    identities.external = "@alex@" + selectedExternalServer;
+    externalAuthPopover.classList.remove("open");
+    setIdentityState("external");
+    closePopovers();
+    updateConversationState();
+    updateAuthorizedViewerActions();
+    setTimeout(() => {
+      conversationText.focus();
+      conversationText.scrollIntoView({ behavior: "smooth", block: "center" });
+    }, 0);
+  });
+
+  function showAuthFailure() {
+    closePopovers();
+    failureTitle.textContent = "Couldn't connect your account";
+    failureCopy.textContent =
+    "We couldn't connect to your Fediverse account for discussion. " +
+    "You can try again or share this program instead.";
+    failurePopover.classList.add("open");
+  }
+
+  externalAuthCancel.addEventListener("click", showAuthFailure);
+  externalAuthDeny.addEventListener("click", showAuthFailure);
+
+  failureRetry.addEventListener("click", () => {
+    closePopovers();
+    resetIdentityChooser();
+    identityChoices.style.display = "none";
+    externalStep.classList.add("open");
+    discussPopover.classList.add("open");
+    externalServer.focus();
+  });
+
+  failureShare.addEventListener("click", () => {
+    closePopovers();
+    sharePopover.classList.add("open");
+    updateTimeDisplay();
+  });
+
+
+  composerIdentity.addEventListener(
+    "click",
+    () => {
+      setIdentityState("unknown");
+      resetIdentityChooser();
+      discussPopover.classList.add("open");
+    }
+  );
+
+
+  /* =========================================================
+     COMPOSER
+     ========================================================= */
+
+
+  composerText.addEventListener(
+    "input",
+    () => {
+
+      const count =
+      composerText.value.length;
+
+
+      characterCount.textContent =
+      count +
+      " / " +
+      maxCharacters;
+
+
+      postButton.disabled =
+      count === 0;
+    }
+  );
+
+
+  postButton.addEventListener(
+    "click",
+    () => {
+
+      /*
+        DISCUSS COMMIT POINT.
+
+        This is the FIRST time the final discussion
+        position is captured.
+      */
+
+      const finalTime =
+      Number(progress.value);
+
+
+      const finalContext =
+      formatProgramContext(
+        finalTime
+      );
+
+
+      const finalUrl =
+      getCurrentProgramUrl();
+
+
+      /*
+        PRODUCTION GOAL:
+
+        Publish this text using the authenticated
+        user's Fediverse identity.
+
+        Ideally the resulting ActivityPub Note is
+        a reply to the PeerTube Video object so that
+        PeerTube displays the same federated object
+        as a comment.
+
+        The timestamped program URL should reference
+        the playback position captured here.
+
+        At 0:00 use the canonical program URL.
+      */
+
+
+      alert(
+        "Mock post\n\n" +
+        finalContext +
+        "\n\n" +
+        finalUrl +
+        "\n\n" +
+        composerText.value
+      );
+    }
+  );
+
+
+
+  /* =========================================================
+     INTEGRATED CONVERSATION
+     ========================================================= */
+
+  const conversation = document.getElementById("conversation");
+  const conversationTimeline = document.getElementById("conversationTimeline");
+  const replyTarget = document.getElementById("replyTarget");
+  const replyTargetName = document.getElementById("replyTargetName");
+  const replyTargetPreview = document.getElementById("replyTargetPreview");
+  const replyCancel = document.getElementById("replyCancel");
+  let activeReply = null;
+  const conversationIdentity = document.getElementById("conversationIdentity");
+  const conversationContext = document.getElementById("conversationContext");
+  const conversationText = document.getElementById("conversationText");
+  const conversationCount = document.getElementById("conversationCount");
+  const conversationPost = document.getElementById("conversationPost");
+
+  function conversationIsAuthenticated() {
+    return identityState === "community" || identityState === "external";
+  }
+
+  function clearReplyTarget() {
+    activeReply = null;
+    replyTarget.classList.remove("active");
+    replyTargetName.textContent = "";
+    replyTargetPreview.textContent = "";
+    conversationText.placeholder = "Add your thoughts…";
+  }
+
+  function beginReply(item) {
+    if (!conversationIsAuthenticated() || item.classList.contains("own-post")) return;
+    const name = item.querySelector(".timeline-name")?.textContent || "this person";
+    const body = item.querySelector(".timeline-body")?.textContent.trim() || "";
+    activeReply = { name, body };
+    replyTargetName.textContent = name;
+    replyTargetPreview.textContent = body ? "“" + body + "”" : "";
+    replyTarget.classList.add("active");
+    conversationText.placeholder = "Add your reply…";
+    conversationText.focus();
+    conversationText.scrollIntoView({ behavior: "smooth", block: "center" });
+  }
+
+  replyCancel.addEventListener("click", clearReplyTarget);
+
+  document.querySelectorAll(".timeline-reply").forEach((button) => {
+    button.addEventListener("click", () => beginReply(button.closest(".timeline-item")));
+  });
+
+  function updateConversationState() {
+    const authenticated = conversationIsAuthenticated();
+    conversation.classList.toggle("authenticated", authenticated);
+
+    if (identityState === "external") {
+      conversationIdentity.textContent = identities.external;
+    } else {
+      conversationIdentity.textContent = identities.community;
+    }
+
+    conversationContext.textContent =
+      formatProgramContext(Number(progress.value));
+  }
+
+  function seekConversationTimestamp(seconds) {
+    progress.value = String(seconds);
+    updateTimeDisplay();
+    updateConversationState();
+  }
+
+  document.querySelectorAll(".timeline-time").forEach((button) => {
+    button.addEventListener("click", () => {
+      seekConversationTimestamp(Number(button.dataset.seconds));
+    });
+  });
+
+  document.querySelectorAll(".timeline-thread").forEach((button) => {
+    button.addEventListener("click", () => {
+      alert(
+        "Mock: open this post's canonical Fediverse thread " +
+        "for interaction using the authenticated account."
+      );
+    });
+  });
+
+  conversationText.addEventListener("input", () => {
+    const count = conversationText.value.length;
+    conversationCount.textContent = count + " / " + maxCharacters;
+    conversationPost.disabled = count === 0;
+  });
+
+  conversationPost.addEventListener("click", () => {
+    const text = conversationText.value.trim();
+    if (!text) return;
+
+    const finalTime = Number(progress.value);
+    const handle =
+      identityState === "external"
+        ? identities.external
+        : identities.community;
+    const displayName =
+      identityState === "external" ? "Alex" : "Jane";
+
+    const item = document.createElement("article");
+    item.className = "timeline-item just-posted own-post";
+
+    const authorRow = document.createElement("div");
+    authorRow.className = "timeline-author-row";
+
+    const name = document.createElement("span");
+    name.className = "timeline-name";
+    name.textContent = displayName;
+
+    const origin = document.createElement("span");
+    origin.className = "timeline-handle";
+    origin.textContent = handle;
+
+    const age = document.createElement("span");
+    age.className = "timeline-age";
+    age.textContent = "now";
+
+    authorRow.append(name, origin, age);
+
+    if (activeReply) {
+      const replyContext = document.createElement("div");
+      replyContext.className = "timeline-handle";
+      replyContext.style.margin = "2px 0 5px";
+      replyContext.textContent = "↳ Reply to " + activeReply.name;
+      item.append(authorRow, replyContext);
+    } else {
+      item.appendChild(authorRow);
+    }
+
+    const body = document.createElement("div");
+    body.className = "timeline-body";
+    body.textContent = text;
+
+    const actions = document.createElement("div");
+    actions.className = "timeline-actions";
+
+    if (finalTime > 0) {
+      const timeButton = document.createElement("button");
+      timeButton.className = "timeline-time";
+      timeButton.type = "button";
+      timeButton.textContent = formatTime(finalTime);
+      timeButton.addEventListener("click", () => {
+        seekConversationTimestamp(finalTime);
+      });
+      actions.appendChild(timeButton);
+    }
+
+    const threadButton = document.createElement("button");
+    threadButton.className = "timeline-thread";
+    threadButton.type = "button";
+    threadButton.textContent = "View conversation →";
+    threadButton.addEventListener("click", () => {
+      alert("Mock: open the newly-created federated thread.");
+    });
+    actions.appendChild(threadButton);
+
+    item.append(body, actions);
+    conversationTimeline.prepend(item);
+
+    conversationText.value = "";
+    conversationText.style.height = "auto";
+    conversationCount.textContent = "0 / " + maxCharacters;
+    conversationPost.disabled = true;
+    clearReplyTarget();
+  });
+
+  /* Keep conversation context synchronized with the player. */
+  progress.addEventListener("input", updateConversationState);
+
+  /* Extend demo auth buttons so the integrated feed follows auth state. */
+  demoStateButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+      setTimeout(updateConversationState, 0);
+    });
+  });
+
+  /* Discuss now focuses the integrated composer when already authorized.
+     Existing first-time authentication flow remains intact. */
+  discussButton.addEventListener("click", () => {
+    if (conversationIsAuthenticated()) {
+      setTimeout(() => {
+        closePopovers();
+        conversationText.focus();
+        conversationText.scrollIntoView({ behavior: "smooth", block: "center" });
+      }, 0);
+    }
+  });
+
+  /* If authorization completes through either existing path, the feed
+     becomes interactive immediately. */
+  authAuthorizeButton.addEventListener("click", () => {
+    setTimeout(updateConversationState, 0);
+  });
+
+  externalAuthAuthorizeButton.addEventListener("click", () => {
+    setTimeout(updateConversationState, 0);
+  });
+
+
+
+  function updateAuthorizedViewerActions() {
+    const authorized = conversationIsAuthenticated();
+    discussButton.style.display = authorized ? "none" : "";
+  }
+
+  /* Grow the top composer only as needed. */
+  function autosizeConversationComposer() {
+    conversationText.style.height = "auto";
+    conversationText.style.height =
+      Math.min(conversationText.scrollHeight, 150) + "px";
+  }
+
+  conversationText.addEventListener("input", autosizeConversationComposer);
+
+  /* Keep action visibility synchronized with demo/auth transitions. */
+  demoStateButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+      setTimeout(updateAuthorizedViewerActions, 0);
+    });
+  });
+
+  authAuthorizeButton.addEventListener("click", () => {
+    setTimeout(updateAuthorizedViewerActions, 0);
+  });
+
+  externalAuthAuthorizeButton.addEventListener("click", () => {
+    setTimeout(updateAuthorizedViewerActions, 0);
+  });
+
+  setIdentityState(identityState);
+  updateTimeDisplay();
+  updateConversationState();
+  updateAuthorizedViewerActions();
+
+</script>
+
+</body>
+</html>
