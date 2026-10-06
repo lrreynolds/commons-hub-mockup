@@ -40,6 +40,10 @@
     }
 
     .section-title {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
       margin: 0 0 12px;
       color: #64748b;
       font-size: 11px;
@@ -516,6 +520,7 @@
 .search-result .result-meta{margin-top:4px;color:#64748b;font-size:10.5px}
 .search-result.protected-content .result-snippet strong,.search-result.protected-content .result-meta{color:#8b99ad}
 body.viewer-entitled #memberAccessNote{display:none!important}
+.fediverse-welcome{display:inline-block;margin:0;color:#64748b;font-size:12px;line-height:1.4;cursor:default;white-space:nowrap}.fediverse-welcome:hover{color:#334155}
 </style>
 </head>
 
@@ -545,7 +550,8 @@ body.viewer-entitled #memberAccessNote{display:none!important}
   <section id="scheduleSection" class="section">
 
     <h2 class="section-title">
-      Now &amp; Upcoming
+      <span>Now &amp; Upcoming</span>
+      <span class="fediverse-welcome identity-welcome" title="@jane@healingexchange.tcmclinic.org" aria-label="Signed in as @jane@healingexchange.tcmclinic.org">Welcome, Jane</span>
     </h2>
 
     <div class="schedule-list">
@@ -623,8 +629,8 @@ body.viewer-entitled #memberAccessNote{display:none!important}
   <!-- MEDIA LIBRARY -->
   <section class="section">
 
-    <h2 class="section-title">
-      Media Library
+    <h2 class="section-title" id="mediaLibraryTitle">
+      <span>Media Library</span>
     </h2>
 
 
@@ -1438,6 +1444,27 @@ body.viewer-entitled #memberAccessNote{display:none!important}
   updateScope();
 
 </script>
+<script>
+(function () {
+  function placeIdentityWelcome() {
+    const schedule = document.getElementById('scheduleSection');
+    const mediaTitle = document.getElementById('mediaLibraryTitle');
+    const welcome = document.querySelector('.identity-welcome');
+    if (!welcome || !mediaTitle) return;
+
+    const scheduleVisible = schedule &&
+      getComputedStyle(schedule).display !== 'none' &&
+      schedule.querySelector('.schedule-item');
+
+    if (!scheduleVisible) {
+      mediaTitle.appendChild(welcome);
+    }
+  }
+
+  placeIdentityWelcome();
+})();
+</script>
+
 
 </body>
 </html>
